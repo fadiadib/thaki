@@ -3,3 +3,5 @@ export 'strings.dart';
 export 'theme.dart';
 export 'settings.dart';
 export 'apiuris.dart';
+export 'icons.dart';
+export 'dimensions.dart';

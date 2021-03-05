@@ -30,3 +30,15 @@ const Color kHintTextColor = kMediumGreyColor;
 const Color kErrorTextColor = kPrimaryColor;
 const Color kBtnTextColor = kPrimaryTextColor;
 const Color kSectionTitleColor = kWhiteColor;
+
+/// Gradients
+const Color kBgStartColor = kPrimaryBgColor;
+const Color kBgEndColor = kPrimaryBgColor;
+
+/// Gradients
+// General background gradients
+const LinearGradient kBgLinearGradient = LinearGradient(
+  begin: Alignment(-1.0, -1.0),
+  end: Alignment(1.0, 1.0),
+  colors: [kBgStartColor, kBgEndColor],
+);
