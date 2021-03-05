@@ -26,3 +26,16 @@ const String kNotFound = 'Not Found';
 const String kUnknown = 'Unknown';
 const String kUnknownError = 'Unknown Error Occurred';
 const String kUnsupportedImageFile = 'Unsupported Image File';
+
+/// Dialogs
+const String kConfirm = 'Confirm';
+const String kCancel = 'Cancel';
+const String kYes = 'Yes';
+const String kNo = 'No';
+const String kOk = 'Ok';
+const String kAgree = 'I Agree';
+const String kDisagree = 'I Disagree';
+const String kUpgradeNow = 'Upgrade Now';
+const String kUnsupportedVersion = 'Unsupported App Version';
+const String kUpgradeRequiredMessage =
+    'Please download the latest version of $kAppTitle to continue using the application';

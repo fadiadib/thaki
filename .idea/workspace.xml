@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="905d3c98-3b62-48e2-b2c9-ce7991e6688f" name="Default Changelist" comment="" />
+    <list default="true" id="905d3c98-3b62-48e2-b2c9-ce7991e6688f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/widgets/base/pane.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/widgets/dialogs/dialogs.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/globals/colors.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/colors.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/globals/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/settings.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/globals/strings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/strings.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/globals/theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/theme.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +29,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1pJZNtLO2IKCHOhrCJB6ooWdyPZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -39,13 +51,29 @@
       <option name="presentableId" value="Default" />
       <updated>1614903116410</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit">
+      <created>1614907641676</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1614907641676</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="313" y="508" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1614904530458">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="313" y="508" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1614904530458" />
+    <state x="271" y="123" key="CommitChangelistDialog2" timestamp="1614907641474">
+      <screen x="0" y="23" width="1920" height="1126" />
+    </state>
+    <state x="271" y="123" key="CommitChangelistDialog2/0.23.1920.1126@0.23.1920.1126" timestamp="1614907641474" />
     <state x="549" y="470" key="Github.ShareDialog" timestamp="1614907514907">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
@@ -70,5 +98,9 @@
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state width="1344" height="299" key="GridCell.Tab.0.right/0.23.1920.1126@0.23.1920.1126" timestamp="1614905331475" />
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1614907656291">
+      <screen x="0" y="23" width="1920" height="1126" />
+    </state>
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1126@0.23.1920.1126" timestamp="1614907656291" />
   </component>
 </project>
