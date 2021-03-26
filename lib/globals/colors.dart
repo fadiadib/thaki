@@ -4,41 +4,92 @@ import 'package:flutter/material.dart';
 const Color kWhiteColor = Colors.white;
 const Color kBlackColor = Colors.black;
 const Color kTransparentColor = Colors.transparent;
-const Color kLightGreyColor = Color(0xFFA1A1A1);
-const Color kMediumGreyColor = Color(0xFF777777);
-const Color kDarkGreyColor = Color(0xFF2E2E2E);
-const Color kLightBlueColor = Color(0xFF009DBA);
-const Color kRedAccentColor = Color(0xFFDB4a39);
-const Color kGreenAccentColor = Color(0xFF86B642);
-const Color kYellowAccentColor = Color(0xFFEEB011);
+const Color kLightGreyColor = Color(0xFFF7F9FC);
+const Color kMediumGreyColor = Color(0xFF71809C);
+const Color kDarkGreyColor = Color(0xFF444444);
+const Color kAccentGreyColor = Color(0xFFDCE0E7);
+const Color kLightPurpleColor = Color(0xFFA530C7);
+const Color kMediumPurpleColor = Color(0xFF5E2D9B);
+const Color kDarkPurpleColor = Color(0xFF402F8B);
+const Color kOrangeColor = Color(0xFFE77301);
+const Color kCyanColor = Color(0xFF22D4D7);
+const Color kGreenAccentColor = Colors.lightGreen;
+const Color kRedAccentColor = Colors.redAccent;
 
 /// Color scheme
-const Color kPrimaryColor = Color(0xFFF47627);
-const Color kSecondaryColor = Color(0xFF86B642);
-const Color kTertiaryColor = Color(0xFFFDDE09);
+const Color kPrimaryColor = kMediumPurpleColor;
+const Color kSecondaryColor = kCyanColor;
+const Color kTertiaryColor = kOrangeColor;
 
 /// Named colors
 const Color kPrimaryBgColor = kWhiteColor;
-const Color kPrimaryIconColor = kPrimaryColor;
+const Color kFormBgColor = kWhiteColor;
+const Color kPrimaryIconColor = kDarkGreyColor;
 
 /// Text colors
 const Color kLightTextColor = kLightGreyColor;
 const Color kDarkTextColor = kDarkGreyColor;
 const Color kPrimaryTextColor = kDarkTextColor;
-const Color kDisabledTextColor = kMediumGreyColor;
+const Color kDisabledTextColor = kLightGreyColor;
 const Color kHintTextColor = kMediumGreyColor;
-const Color kErrorTextColor = kPrimaryColor;
-const Color kBtnTextColor = kPrimaryTextColor;
-const Color kSectionTitleColor = kWhiteColor;
+const Color kErrorTextColor = kTertiaryColor;
+
+/// Buttons
+const Color kDefaultButtonBgColor = kPrimaryColor;
+const Color kDefaultButtonTextColor = kWhiteColor;
+const Color kDefaultButtonDisabledTextColor = kLightPurpleColor;
 
 /// Gradients
-const Color kBgStartColor = kPrimaryBgColor;
-const Color kBgEndColor = kPrimaryBgColor;
-
-/// Gradients
-// General background gradients
-const LinearGradient kBgLinearGradient = LinearGradient(
+// General white background color gradient
+const LinearGradient kWhiteBgLinearGradient = LinearGradient(
   begin: Alignment(-1.0, -1.0),
   end: Alignment(1.0, 1.0),
-  colors: [kBgStartColor, kBgEndColor],
+  colors: [kWhiteColor, kLightGreyColor],
 );
+
+/// Shadows
+const List<BoxShadow> kFormShadow = [
+  BoxShadow(
+    color: Color(0x14000000),
+    offset: Offset(5.0, 15.0),
+    blurRadius: 30.0,
+  ),
+];
+const Color kShadowTopColor = kLightGreyColor;
+const Color kShadowBottomColor = kDarkGreyColor;
+// Used for logo box, all cards and buttons
+const List<BoxShadow> kBoxRaisedShadow = [
+  BoxShadow(
+    color: kShadowBottomColor,
+    offset: Offset(5.0, 5.0),
+    blurRadius: 9.0,
+  ),
+  BoxShadow(
+    color: kShadowTopColor,
+    offset: Offset(-5.0, -5.0),
+    blurRadius: 9.0,
+  ),
+];
+const List<BoxShadow> kBoxDepressedShadow = [
+  BoxShadow(
+    color: kShadowBottomColor,
+    offset: Offset(-5.0, -5.0),
+    blurRadius: 9.0,
+  ),
+  BoxShadow(
+    color: kShadowTopColor,
+    offset: Offset(5.0, 5.0),
+    blurRadius: 9.0,
+  ),
+];
+
+/// Carousel Colors
+const Color kCarouselSelectedDotColor = kWhiteColor;
+const Color kCarouselUnselectedDotColor = kGreenAccentColor;
+const Color kCarouselArrowColor = kWhiteColor;
+const Color kCarouselArrowBgColor = kTransparentColor;
+
+/// Card Colors
+const Color kCardBgColor = kPrimaryColor;
+const Color kCardBorderColor = kTransparentColor;
+const Color kCardTextColor = kWhiteColor;

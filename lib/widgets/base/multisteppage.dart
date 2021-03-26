@@ -11,7 +11,7 @@ abstract class TkMultiStepPage extends StatefulWidget {
 class TkMultiStepPageState extends State<TkMultiStepPage> {
   /// Panes control
   int _paneIndex = 0;
-  List<BfPane> _panes = [];
+  List<TkPane> _panes = [];
 
   /// Returns the current pane title
   String _getPaneTitle() => _panes[_paneIndex].title;
@@ -42,7 +42,7 @@ class TkMultiStepPageState extends State<TkMultiStepPage> {
   }
 
   /// Creates the panes - Must be overridden
-  List<BfPane> getPanes() => null;
+  List<TkPane> getPanes() => null;
 
   /// Initializes the data - Must be overridden
   void initData() {}

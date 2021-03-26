@@ -5,3 +5,6 @@ export 'settings.dart';
 export 'apiuris.dart';
 export 'icons.dart';
 export 'dimensions.dart';
+export 'images.dart';
+export 'heroes.dart';
+export 'dbcommands.dart';

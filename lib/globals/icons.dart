@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 
 /// Icons
@@ -19,7 +18,6 @@ const IconData kDoneBtnIcon = Icons.check;
 const IconData kLinkBtnIcon = Icons.link;
 const IconData kAddressBtnIcon = Icons.location_on;
 const IconData kNotificationBtnIcon = Icons.notifications;
-const IconData kErrorBtnIcon = FontAwesomeIcons.thumbsDown;
 const IconData kWarningBtnIcon = Icons.error_outline;
 const IconData kAddBtnIcon = Icons.add;
 const IconData kPaymentBtnIcon = Icons.payment;
@@ -28,8 +26,8 @@ const IconData kGalleryBtnIcon = Icons.photo;
 const IconData kCameraBtnIcon = Icons.add_a_photo;
 const IconData kRatingBtnIcon = Icons.star;
 const IconData kClockBtnIcon = Icons.timer;
-const IconData kBookClassBtnIcon = Icons.person_add;
 const IconData kProfileBtnIcon = Icons.person;
+const IconData kProfileOutlineBtnIcon = Icons.person_outline;
 const IconData kSendAgainBtnIcon = Icons.refresh;
 const IconData kTickBtnIcon = Icons.check;
 const IconData kPlayBtnIcon = Icons.play_arrow;
@@ -38,24 +36,11 @@ const IconData kPreviousVideoBtnIcon = Icons.skip_previous;
 const IconData kVolumeUpBtnIcon = Icons.volume_up;
 const IconData kVolumeOffBtnIcon = Icons.volume_off;
 const IconData kDefaultNotificationBtnIcon = Icons.info;
-const IconData kSuccessBtnIcon = FontAwesomeIcons.thumbsUp;
-const IconData kGooglePlusBtnIcon = FontAwesomeIcons.googlePlusSquare;
-const IconData kFacebookBtnIcon = FontAwesomeIcons.facebookSquare;
-const IconData kVitalsBtnIcon = FontAwesomeIcons.heartbeat;
-const IconData kTrainingBtnIcon = MaterialIcons.fitness_center;
-const IconData kNutritionBtnIcon = MaterialCommunityIcons.silverware_variant;
-const IconData kClassesBtnIcon = FontAwesomeIcons.calendarAlt;
-const IconData kGymsBtnIcon = MaterialIcons.fitness_center;
-const IconData kQRCodeBtnIcon = FontAwesomeIcons.qrcode;
-const IconData kBarCodeScanBtnIcon = FontAwesomeIcons.barcode;
 const IconData kBarCodeBtnIcon = MaterialCommunityIcons.barcode_scan;
-const IconData kReservationsBtnIcon = FontAwesome.calendar;
-const IconData kIdCardBtnIcon = FontAwesomeIcons.solidIdCard;
-const IconData kFreezeBtnIcon = FontAwesomeIcons.snowflake;
-const IconData kUnfreezeBtnIcon = FontAwesomeIcons.snowflake;
-const IconData kPhoneBtnIcon = FontAwesomeIcons.mobileAlt;
+const IconData kCalendarBtnIcon = MaterialCommunityIcons.calendar_month;
+const IconData kPhoneBtnIcon = FontAwesome.mobile;
 const IconData kEmailBtnIcon = MaterialCommunityIcons.email;
-const IconData kBirthDateBtnIcon = FontAwesomeIcons.birthdayCake;
+const IconData kEmailOutlineBtnIcon = MaterialCommunityIcons.email_outline;
 const IconData kGenderBtnIcon = MaterialCommunityIcons.gender_male_female;
 const IconData kHeightBtnIcon = MaterialCommunityIcons.human_male_height;
 const IconData kFeedbackBtnIcon = MaterialCommunityIcons.message_alert;
@@ -69,3 +54,8 @@ const Map<String, IconData> kNotificationsIconsMap = {
   'program': Icons.star,
   'url': Icons.send,
 };
+const IconData kParkingBtnIcon = MaterialCommunityIcons.parking;
+const IconData kViolationBtnIcon = MaterialIcons.not_interested;
+const IconData kHomeBtnIcon = Icons.home;
+const IconData kAddCircleBtnIcon = Icons.add_circle;
+const IconData kStarCircleBtnIcon = Icons.stars;

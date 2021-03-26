@@ -1,30 +1,24 @@
 import 'package:flutter/material.dart';
 
 /// A class that holds the bottom navigation icon data
-/// It could hold an icon or an image
+/// It holds an icon
 @immutable
 class TkNavIconData {
   TkNavIconData({
     this.icon,
-    this.image,
-    this.tag,
     this.disabled = false,
-    this.keepColor = false,
   });
 
   final IconData icon;
-  final String image;
   final bool disabled;
-  final String tag;
-  final bool keepColor;
 }
 
 /// Abstract class that defines a pane with a title and an onDone callback
 /// the callback should be called when the pane is about to pop with the
 /// appropriate variable passed (should be the identifier of what was clicked
 /// last to pop the pane)
-abstract class BfPane extends StatelessWidget {
-  BfPane({
+abstract class TkPane extends StatelessWidget {
+  TkPane({
     this.paneTitle,
     this.image,
     this.navIconData,
@@ -64,7 +58,7 @@ abstract class BfPane extends StatelessWidget {
   // Is this pane ready to be loaded
   final bool enabled;
 
-  // Pane image
+  // Pane top image
   final String image;
 
   // Getters

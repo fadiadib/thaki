@@ -29,11 +29,8 @@ class TkAppBar extends AppBar {
                 ? IconButton(
                     icon: Icon(kCloseBtnIcon),
                     color: kPrimaryIconColor,
-                    iconSize: kPrimaryIconSize,
-                    onPressed: closeCallback ??
-                        () {
-                          Navigator.pop(context);
-                        },
+                    iconSize: kAppbarIconsSize,
+                    onPressed: closeCallback ?? () => Navigator.pop(context),
                   )
                 : Container(),
             enableNotifications
@@ -42,7 +39,7 @@ class TkAppBar extends AppBar {
                       IconButton(
                         icon: Icon(kNotificationBtnIcon),
                         color: kPrimaryIconColor,
-                        iconSize: kPrimaryIconSize,
+                        iconSize: kAppbarIconsSize,
                         onPressed: onNotificationClick,
                       ),
                       hasNotifications

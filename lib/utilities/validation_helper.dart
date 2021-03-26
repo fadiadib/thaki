@@ -26,6 +26,7 @@ class TkValidationHelper {
   }
 
   static bool validateNationalID(String value) {
+    if (value == null) return false;
     String converted = int.tryParse(value).toString();
     if (converted != null && converted.length == 14) {
       if (int.tryParse(converted[0]) <= 3 &&

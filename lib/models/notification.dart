@@ -1,0 +1,65 @@
+import 'package:thaki/globals/index.dart';
+
+class TkNotification {
+  TkNotification(Map<String, dynamic> json) {
+    // Notification data can be inside a 'data'
+    // ag or 'notification' tag
+    Map<dynamic, dynamic> dataJson = json;
+    if (json[kNotificationDataTag] != null) {
+      dataJson = json[kNotificationDataTag];
+    } else {
+      dataJson = json;
+    }
+
+    // Get the id
+    id = int.tryParse(dataJson[kNotificationIdTag].toString());
+
+    // Get message details: title, short and body
+    title = dataJson[kNotificationTitleTag] ?? '';
+    short = dataJson[kNotificationMessageTag] ?? '';
+    body = dataJson[kNotificationBodyTag] ?? '';
+
+    // Additional data: Type and details
+    dataType = dataJson[kNotificationDataTypeTag];
+    dataDetail = dataJson[kNotificationDataDetailTag];
+
+    // Get expiry date
+    if (dataJson[kNotificationExpiryTag] != null)
+      expiry = DateTime.tryParse(dataJson[kNotificationExpiryTag].toString());
+
+    // isSeen flag (this is an internal variable
+    // that doesn't come from the backend)
+    isSeen = json[kNotificationSeenTag] ?? false;
+
+    // Date received (this is an internal variable
+    // that doesn't come from the backend)
+    if (json[kNotificationDateTag] != null)
+      date = DateTime.tryParse(json[kNotificationDateTag].toString());
+    else
+      date = DateTime.now();
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      kNotificationIdTag: id.toString(),
+      kNotificationTitleTag: title,
+      kNotificationMessageTag: short,
+      kNotificationBodyTag: body,
+      kNotificationDataDetailTag: dataDetail,
+      kNotificationDataTypeTag: dataType,
+      kNotificationSeenTag: isSeen,
+      kNotificationExpiryTag: expiry.toString(),
+      kNotificationDateTag: date.toString(),
+    };
+  }
+
+  int id;
+  String title;
+  String short;
+  String body;
+  String dataDetail;
+  String dataType;
+  bool isSeen;
+  DateTime expiry;
+  DateTime date;
+}
