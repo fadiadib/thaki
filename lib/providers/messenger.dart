@@ -14,6 +14,8 @@ import 'package:thaki/utilities/index.dart';
 /// and notifies the UI accordingly
 class TkMessenger extends ChangeNotifier {
   static Mutex mutex = Mutex();
+
+  // Model variables
   static List<TkNotification> _notifications = [];
   List<TkNotification> get notifications => _notifications;
 

@@ -1,4 +1,9 @@
 export 'forms_data.dart';
-export 'infofields.dart';
+export 'info_fields.dart';
 export 'user.dart';
 export 'notification.dart';
+export 'car.dart';
+export 'credit.dart';
+export 'ticket.dart';
+export 'balance.dart';
+export 'package.dart';

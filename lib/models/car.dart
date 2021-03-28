@@ -7,6 +7,7 @@ class TkCar {
     make = json[kCarMakeTag];
     model = json[kCarModelTag];
     state = json[kCarStateTag];
+    preferred = json[kCarPreferredTag] ?? false;
   }
 
   String name;
@@ -14,4 +15,5 @@ class TkCar {
   String make;
   String model;
   String state;
+  bool preferred;
 }

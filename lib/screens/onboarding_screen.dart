@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/screens/welcome.dart';
+import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/utilities/index.dart';
-import 'package:thaki/widgets/base/scaffold.dart';
+import 'package:thaki/widgets/base/scaffold_body.dart';
 
 class TkOnBoardingScreen extends StatefulWidget {
   static const String id = 'on_boarding_screen';

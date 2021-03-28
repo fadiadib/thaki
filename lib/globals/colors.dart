@@ -26,6 +26,14 @@ const Color kPrimaryBgColor = kWhiteColor;
 const Color kFormBgColor = kWhiteColor;
 const Color kPrimaryIconColor = kDarkGreyColor;
 
+/// Tiles colors
+const Color kTileBgColor = kWhiteColor;
+const List<Color> kTileColor = [
+  kPrimaryColor,
+  kLightPurpleColor,
+  kSecondaryColor,
+];
+
 /// Text colors
 const Color kLightTextColor = kLightGreyColor;
 const Color kDarkTextColor = kDarkGreyColor;
@@ -53,6 +61,13 @@ const List<BoxShadow> kFormShadow = [
     color: Color(0x14000000),
     offset: Offset(5.0, 15.0),
     blurRadius: 30.0,
+  ),
+];
+const List<BoxShadow> kTileShadow = [
+  BoxShadow(
+    color: Color(0x14000000),
+    offset: Offset(0.0, 2.0),
+    blurRadius: 10.0,
   ),
 ];
 const Color kShadowTopColor = kLightGreyColor;

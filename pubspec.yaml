@@ -48,6 +48,8 @@ dependencies:
   package_info: ^0.4.1
   carousel_slider: ^1.4.1
   firebase_messaging: ^7.0.0
+  flutter_slidable: ^0.5.7
+  flutter_custom_clippers: ^1.1.2
 
 dev_dependencies:
   flutter_test:

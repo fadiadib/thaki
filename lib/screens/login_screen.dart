@@ -4,9 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
-import 'package:thaki/screens/forgot_password.dart';
-import 'package:thaki/screens/home.dart';
-import 'package:thaki/screens/register.dart';
+import 'package:thaki/screens/forgot_password_screen.dart';
+import 'package:thaki/screens/home_screen.dart';
+import 'package:thaki/screens/register_screen.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';

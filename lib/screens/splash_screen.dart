@@ -11,8 +11,8 @@ import 'package:thaki/globals/index.dart';
 
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/server.dart';
-import 'package:thaki/screens/home.dart';
-import 'package:thaki/screens/onboarding.dart';
+import 'package:thaki/screens/home_screen.dart';
+import 'package:thaki/screens/onboarding_screen.dart';
 
 class TkSplashScreen extends StatefulWidget {
   static const String id = 'splash_screen';

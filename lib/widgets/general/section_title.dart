@@ -25,7 +25,7 @@ class TkSectionTitle extends StatelessWidget {
         children: [
           Text(
             uppercase ? title.toUpperCase() : title,
-            style: kRegularStyle[kNormalSize],
+            style: kMediumStyle[kNormalSize],
           ),
           if (icon != null)
             GestureDetector(

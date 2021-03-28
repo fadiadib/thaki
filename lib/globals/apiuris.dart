@@ -4,6 +4,9 @@ const String kRootURL = 'https://admin.thaki.app/api';
 // APIs
 const String kCheckAPI = '$kRootURL/check';
 const String kLoginAPI = '$kRootURL/login';
+const String kLoadTicketsAPI = '$kRootURL/load_tickets';
+const String kLoadBalanceAPI = '$kRootURL/load_balance';
+const String kLoadPackagesAPI = '$kRootURL/load_packages';
 
 /// Network Codes and tags
 // Codes
@@ -60,6 +63,7 @@ const String kCarLicenseTag = 'car_license';
 const String kCarMakeTag = 'car_make';
 const String kCarModelTag = 'car_model';
 const String kCarStateTag = 'car_state';
+const String kCarPreferredTag = 'car_preferred';
 // Card tags
 const String kCardNameTag = 'card_name';
 const String kCardHolderTag = 'card_holder';
@@ -67,3 +71,16 @@ const String kCardNumberTag = 'card_number';
 const String kCardExpiryTag = 'card_expiry';
 const String kCardCVVTag = 'card_cvv';
 const String kCardBrandPathTag = 'card_brand_path';
+const String kCardPreferredTag = 'card_preferred';
+const String kCardTypeTag = 'card_type';
+// Booking tags
+const String kTicketStartTag = 'ticket_start';
+const String kTicketEndTag = 'ticket_end';
+// Balance tags
+const String kBalancePointsTag = 'balance_points';
+const String kBalanceValidityTag = 'balance_validity';
+// Package tags
+const String kPackagePointsTag = 'package_points';
+const String kPackagePriceTag = 'package_price';
+const String kPackageValidityTag = 'package_validity';
+const String kPackageDetailsTag = 'package_details';

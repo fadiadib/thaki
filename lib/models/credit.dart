@@ -8,6 +8,8 @@ class TkCredit {
     expiry = json[kCardExpiryTag];
     cvv = json[kCardCVVTag];
     brandPath = json[kCardBrandPathTag];
+    preferred = json[kCardPreferredTag] ?? false;
+    type = json[kCardTypeTag];
   }
 
   String name;
@@ -16,4 +18,6 @@ class TkCredit {
   String expiry;
   String cvv;
   String brandPath;
+  int type;
+  bool preferred;
 }

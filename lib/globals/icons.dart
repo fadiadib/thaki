@@ -59,3 +59,4 @@ const IconData kViolationBtnIcon = MaterialIcons.not_interested;
 const IconData kHomeBtnIcon = Icons.home;
 const IconData kAddCircleBtnIcon = Icons.add_circle;
 const IconData kStarCircleBtnIcon = Icons.stars;
+const IconData kSelectBtnIcon = Icons.check_circle;

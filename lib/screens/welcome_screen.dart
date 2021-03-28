@@ -5,8 +5,8 @@ import 'package:thaki/globals/strings.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
-import 'package:thaki/screens/login.dart';
-import 'package:thaki/screens/register.dart';
+import 'package:thaki/screens/login_screen.dart';
+import 'package:thaki/screens/register_screen.dart';
 
 class TkWelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';

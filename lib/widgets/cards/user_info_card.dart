@@ -3,8 +3,8 @@ import 'package:thaki/globals/icons.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 
-class TkUserInfo extends StatelessWidget {
-  TkUserInfo({this.user});
+class TkUserInfoCard extends StatelessWidget {
+  TkUserInfoCard({this.user});
   final TkUser user;
 
   Widget _getInfoRow({IconData iconData, String title}) {

@@ -5,16 +5,20 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/car.dart';
 import 'package:thaki/models/credit.dart';
 import 'package:thaki/providers/account.dart';
-import 'package:thaki/screens/add_card.dart';
-import 'package:thaki/screens/edit_profile.dart';
+import 'package:thaki/screens/add_car_screen.dart';
+import 'package:thaki/screens/add_card_screen.dart';
+import 'package:thaki/screens/cars_list_screen.dart';
+import 'package:thaki/screens/credit_cards_list_screen.dart';
+import 'package:thaki/screens/edit_profile_screen.dart';
 
 import 'package:thaki/widgets/base/index.dart';
-import 'package:thaki/widgets/credit/credit_card.dart';
+import 'package:thaki/widgets/general/progress_indicator.dart';
+import 'package:thaki/widgets/cards/credit_card.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/general/card.dart';
 import 'package:thaki/widgets/general/carousel.dart';
 import 'package:thaki/widgets/general/section_title.dart';
-import 'package:thaki/widgets/profile/user_info.dart';
+import 'package:thaki/widgets/cards/user_info_card.dart';
 
 class TkProfilePane extends TkPane {
   TkProfilePane({onDone, onSelect})
@@ -33,7 +37,7 @@ class TkProfilePane extends TkPane {
         ),
         Padding(
           padding: const EdgeInsets.all(20.0),
-          child: TkUserInfo(user: account.user),
+          child: TkUserInfoCard(user: account.user),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50.0),
@@ -49,7 +53,7 @@ class TkProfilePane extends TkPane {
     );
   }
 
-  List<Widget> _getCarCards(TkAccount account) {
+  List<Widget> _getCarCards(TkAccount account, BuildContext context) {
     List<Widget> widgets = [];
     if (account.user.cars != null)
       for (TkCar car in account.user.cars) {
@@ -57,6 +61,7 @@ class TkProfilePane extends TkPane {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: TkCard(
+              onTap: () => Navigator.of(context).pushNamed(TkCarsListScreen.id),
               titles: {
                 TkCardSide.topLeft: kCarName,
                 TkCardSide.bottomLeft: kCarPlate,
@@ -75,32 +80,15 @@ class TkProfilePane extends TkPane {
     return widgets;
   }
 
-  List<Widget> _getCardCards(TkAccount account) {
-    List<Widget> widgets = [];
-    if (account.user.cards != null)
-      for (TkCredit card in account.user.cards) {
-        widgets.add(
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30.0),
-            child: TkCreditCard(
-              bgColor: kLightPurpleColor,
-              creditCard: card,
-            ),
-          ),
-        );
-      }
-
-    return widgets;
-  }
-
-  Widget _createCars(TkAccount account) {
+  Widget _createCars(TkAccount account, BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TkSectionTitle(
           title: kMyCars,
           icon: kAddCircleBtnIcon,
-          // TODO: implement action to open add car screen
+          // Open add car screen
+          action: () => Navigator.of(context).pushNamed(TkAddCarScreen.id),
         ),
 
         // Add cars carousel
@@ -110,11 +98,31 @@ class TkProfilePane extends TkPane {
             dotColor: kPrimaryColor.withOpacity(0.5),
             selectedDotColor: kPrimaryColor,
             emptyMessage: kNoCars,
-            children: _getCarCards(account),
+            children: _getCarCards(account, context),
           ),
         )
       ],
     );
+  }
+
+  List<Widget> _getCardCards(TkAccount account, BuildContext context) {
+    List<Widget> widgets = [];
+    if (account.user.cards != null)
+      for (TkCredit card in account.user.cards) {
+        widgets.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
+            child: TkCreditCard(
+              bgColor: kLightPurpleColor,
+              creditCard: card,
+              onTap: () =>
+                  Navigator.of(context).pushNamed(TkCreditCardsListScreen.id),
+            ),
+          ),
+        );
+      }
+
+    return widgets;
   }
 
   Widget _createCards(TkAccount account, BuildContext context) {
@@ -134,7 +142,7 @@ class TkProfilePane extends TkPane {
             dotColor: kPrimaryColor.withOpacity(0.5),
             selectedDotColor: kPrimaryColor,
             emptyMessage: kNoPaymentCards,
-            children: _getCardCards(account),
+            children: _getCardCards(account, context),
             aspectRatio: 2,
           ),
         )
@@ -145,13 +153,15 @@ class TkProfilePane extends TkPane {
   @override
   Widget build(BuildContext context) {
     return Consumer<TkAccount>(builder: (context, account, child) {
-      return ListView(
-        children: [
-          _createPersonalInfo(account, context),
-          _createCars(account),
-          _createCards(account, context),
-        ],
-      );
+      return account.isLoading
+          ? TkProgressIndicator()
+          : ListView(
+              children: [
+                _createPersonalInfo(account, context),
+                _createCars(account, context),
+                _createCards(account, context),
+              ],
+            );
     });
   }
 }

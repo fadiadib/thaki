@@ -12,6 +12,7 @@ class TkCard extends StatelessWidget {
     this.textColor = kCardTextColor,
     this.titles,
     this.data,
+    this.onTap,
   });
   final Color bgColor;
   final Color borderColor;
@@ -19,6 +20,7 @@ class TkCard extends StatelessWidget {
   final double borderRadius;
   final Map<TkCardSide, String> titles;
   final Map<TkCardSide, String> data;
+  final Function onTap;
 
   Widget _getSideWidget(TkCardSide side) {
     String title = titles == null ? null : titles[side];
@@ -46,34 +48,37 @@ class TkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
-        color: bgColor,
-        border: Border.all(color: borderColor, width: 1.0),
-      ),
-      padding: EdgeInsets.symmetric(vertical: kCardPadding / 2),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(borderRadius),
+          color: bgColor,
+          border: Border.all(color: borderColor, width: 1.0),
+        ),
+        padding: EdgeInsets.symmetric(vertical: kCardPadding / 2),
 
-      // Two quadrants
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _getSideWidget(TkCardSide.topLeft),
-              _getSideWidget(TkCardSide.topRight)
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _getSideWidget(TkCardSide.bottomLeft),
-              _getSideWidget(TkCardSide.bottomRight)
-            ],
-          ),
-        ],
+        // Two quadrants
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _getSideWidget(TkCardSide.topLeft),
+                _getSideWidget(TkCardSide.topRight)
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _getSideWidget(TkCardSide.bottomLeft),
+                _getSideWidget(TkCardSide.bottomRight)
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

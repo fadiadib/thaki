@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/models/infofields.dart';
+import 'package:thaki/models/info_fields.dart';
 import 'package:thaki/utilities/date_time_helper.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 

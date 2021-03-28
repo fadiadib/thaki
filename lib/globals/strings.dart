@@ -1,6 +1,9 @@
 /// String constants
 const String kAppTitle = 'Thaki';
 
+/// Panes Titles
+const String kPurchasePackage = 'Purchase Package';
+
 /// Date time helper strings
 const String kWeekDaySep = ', ';
 const String kAM = 'am';
@@ -81,9 +84,42 @@ const String kPersonalInfo = 'Personal Information';
 const String kEditPersonalInfo = 'Edit Personal Info';
 const String kMyCars = 'My Cars';
 const String kMyCards = 'My Cards';
+const String kMyBookings = 'My Bookings';
+const String kMyBalance = 'My Balance';
 const String kNoCars = 'No cars added yet';
 const String kCarName = 'Car Name';
 const String kCarPlate = 'Car Plate';
 const String kCarState = 'State';
 const String kNoPaymentCards = 'No payment cards added yet';
 const String kPasswordWontChange = 'Password will not be changed if left empty';
+const String kNoBookings = 'No bookings yet';
+const String kBookParking = 'Book your parking';
+const String kCurrentBalance = 'Current Balance';
+const String kValidTill = 'Valid until';
+const String kRechargeBalance = 'Recharge your balance';
+const String kApplySubscription = 'Apply for subscription';
+const String kHours = 'Hours';
+const String kContinue = 'Continue';
+
+/// Credit Cards
+const String kCardHolderName = 'Card holder name';
+const String kCardNumber = 'Credit card number';
+const String kCardExpires = 'Expires';
+const String kCardCVV = 'CVV';
+const String kSave = 'Save';
+
+/// Cars
+const String kCarNickname = 'Car nickname';
+const String kCarLicensePlate = 'Car license plate';
+const String kCarMake = 'Make';
+const String kCarModel = 'Model';
+
+/// Tickets
+const String kFrom = 'From';
+const String kTo = 'To';
+
+/// Packages
+const String kHourPackage = 'Hour Package';
+const String kValidFor = 'Valid for';
+const String kDays = 'days';
+const String kSAR = 'SAR';

@@ -2,28 +2,30 @@ import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
-import 'package:thaki/screens/login.dart';
+import 'package:thaki/screens/home_screen.dart';
+import 'package:thaki/screens/login_screen.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/form_frame.dart';
+import 'package:thaki/widgets/login/social_login.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 
-class TkForgotPasswordScreen extends StatefulWidget {
-  static const String id = 'reset_screen';
+class TkRegisterScreen extends StatefulWidget {
+  static const String id = 'register_screen';
 
   @override
-  _TkForgotPasswordScreenState createState() => _TkForgotPasswordScreenState();
+  _TkRegisterScreenState createState() => _TkRegisterScreenState();
 }
 
-class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
+class _TkRegisterScreenState extends State<TkRegisterScreen> {
   TkInfoFieldsList _fields;
 
   @override
   void initState() {
     super.initState();
 
-    _fields = TkInfoFieldsList.fromJson(data: kResetFieldsJson);
+    _fields = TkInfoFieldsList.fromJson(data: kRegisterFieldsJson);
   }
 
   Future<void> _updateModel(TkInfoFieldsList results) async {
@@ -33,13 +35,15 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
     // TODO: Update user model with result from API
     // TODO: If Remember me is checked, save model to prefs
     // TODO: Encrypt password before sending it
+
+    Navigator.pushNamed(context, TkHomeScreen.id);
   }
 
   Widget _createForm() {
     return TkFormFrame(
-      formTitle: kResetFieldsJson[kFormName],
-      actionTitle: kResetFieldsJson[kFormAction],
-      buttonTag: kLoginTag,
+      formTitle: kRegisterFieldsJson[kFormName],
+      actionTitle: kRegisterFieldsJson[kFormAction],
+      buttonTag: kSignUpTag,
       fields: _fields,
       action: (TkInfoFieldsList results) async {
         await _updateModel(results);
@@ -50,10 +54,11 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
   Widget _createLoginOptions() {
     return Column(
       children: [
+        TkSocialLogin(),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(kBackTo),
+            Text(kAlreadyRegistered),
             GestureDetector(
               onTap: () =>
                   Navigator.pushReplacementNamed(context, TkLoginScreen.id),

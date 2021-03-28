@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/models/infofields.dart';
-import 'package:thaki/widgets/forms/textfield.dart';
+import 'package:thaki/models/info_fields.dart';
+import 'package:thaki/widgets/forms/text_fields.dart';
 
 /// Utility that creates form widgets
 class TkFormBuilder {

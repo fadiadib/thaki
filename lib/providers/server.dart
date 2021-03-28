@@ -4,17 +4,18 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/utilities/index.dart';
 
 class TkServer extends ChangeNotifier {
+  // Helpers
   static TkAPIHelper _apis = new TkAPIHelper();
 
-  /// Loading variable
-  bool _isLoading = false;
-  bool get isLoading => _isLoading;
-
-  /// App needs upgrade variable
+  // Model variables
   bool _needUpgrade = false;
   bool get needUpgrade => _needUpgrade;
 
-  /// Error variables
+  // Loading variable
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+
+  // Error variables
   String _error;
   String get error => _error;
 

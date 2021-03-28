@@ -7,4 +7,4 @@ export 'icons.dart';
 export 'dimensions.dart';
 export 'images.dart';
 export 'heroes.dart';
-export 'dbcommands.dart';
+export 'db_commands.dart';

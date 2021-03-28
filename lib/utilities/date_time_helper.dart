@@ -100,6 +100,7 @@ class TkDateTimeHelper {
   /// removes the seconds and adds am and pm
   static String formatTime(String time) {
     if (time == null) return time;
+    time = time.split(' ').last;
 
     List<int> timeComponents = [];
     String suffix;

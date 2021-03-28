@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
-
-import 'package:thaki/models/infofields.dart';
-
+import 'package:thaki/models/info_fields.dart';
 import 'package:thaki/utilities/form_builder.dart';
 import 'package:thaki/utilities/formfield_validator.dart';
 import 'package:thaki/utilities/validation_helper.dart';
-
 import 'package:thaki/widgets/forms/button.dart';
 
 class TkFormFrame extends StatefulWidget {

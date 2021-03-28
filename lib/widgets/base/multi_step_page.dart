@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/widgets/base/index.dart';
+import 'package:thaki/widgets/general/logo_box.dart';
 
 abstract class TkMultiStepPage extends StatefulWidget {
   @override
@@ -78,7 +79,7 @@ class TkMultiStepPageState extends State<TkMultiStepPage> {
               : null,
 
           // Pane title
-          title: Text(_getPaneTitle() ?? '', style: kPageTitleStyle),
+          title: TkLogoBox(),
 
           // Close button callback
           closeCallback: !_panes[_paneIndex].close

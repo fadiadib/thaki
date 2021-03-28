@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:provider/provider.dart';
 
-import 'package:thaki/globals/colors.dart';
+import 'package:thaki/globals/index.dart';
+import 'package:thaki/models/index.dart';
 import 'package:thaki/panes/home/index.dart';
-import 'package:thaki/widgets/base/appbar.dart';
-import 'package:thaki/widgets/base/pane.dart';
-import 'package:thaki/widgets/base/scaffold.dart';
+import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/booker.dart';
+import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 
 class TkHomeScreen extends StatefulWidget {
@@ -17,7 +19,7 @@ class TkHomeScreen extends StatefulWidget {
 
 class _TkHomeScreenState extends State<TkHomeScreen> {
   List<TkPane> _panes = [];
-  int _activePane = 0;
+  int _activePane = 2;
 
   List<Icon> _getIcons() {
     List<Icon> icons = [];
@@ -37,6 +39,14 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
   @override
   void initState() {
     super.initState();
+
+    // TODO: Load user profile here
+    TkUser user = Provider.of<TkAccount>(context, listen: false).user;
+
+    // Load user tickets and balance
+    TkBooker booker = Provider.of<TkBooker>(context, listen: false);
+    booker.loadTickets(user);
+    booker.loadBalance(user);
 
     _panes = [
       TkViolationsPane(),
@@ -60,6 +70,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
 
       /// Bottom Navigation Menu Bar
       bottomNavigationBar: CurvedNavigationBar(
+        index: _activePane,
         animationDuration: Duration(milliseconds: 300),
         backgroundColor: kTransparentColor,
         color: kPrimaryColor,

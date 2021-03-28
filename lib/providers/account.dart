@@ -7,20 +7,20 @@ import 'package:thaki/utilities/index.dart';
 enum TkLoginMode { login, register }
 
 class TkAccount extends ChangeNotifier {
-  /// Helpers
+  // Helpers
   static TkAPIHelper _apis = new TkAPIHelper();
   // static TkCryptoHelper _crypto = new TkCryptoHelper();
   static TkSharedPrefHelper _prefs = new TkSharedPrefHelper();
 
-  /// Model
+  // Model variables
   TkUser _user;
   TkUser get user => _user;
 
-  /// Loading variables
+  // Loading variables
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  /// Errors
+  // Error variables
   String _loginError;
   String get loginError => _loginError;
 
