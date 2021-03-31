@@ -7,6 +7,11 @@ const String kLoginAPI = '$kRootURL/login';
 const String kLoadTicketsAPI = '$kRootURL/load_tickets';
 const String kLoadBalanceAPI = '$kRootURL/load_balance';
 const String kLoadPackagesAPI = '$kRootURL/load_packages';
+const String kPurchasePackageAPI = '$kRootURL/purchase_packages';
+const String kLoadPermitDisclaimerAPI = '$kRootURL/load_permit_disclaimer';
+const String kApplyResidentPermitAPI = '$kRootURL/apply _permit';
+const String kLoadViolationsAPI = '$kRootURL/load_violations';
+const String kPayViolationsAPI = '$kRootURL/pay_violations';
 
 /// Network Codes and tags
 // Codes
@@ -58,6 +63,7 @@ const String kNotificationExpiryTag = 'n_expiry';
 const String kNotificationSeenTag = 'n_seen';
 const String kNotificationDateTag = 'n_date';
 // Car tags
+const String kCarIdTag = 'car_id';
 const String kCarNameTag = 'car_name';
 const String kCarLicenseTag = 'car_license';
 const String kCarMakeTag = 'car_make';
@@ -65,6 +71,7 @@ const String kCarModelTag = 'car_model';
 const String kCarStateTag = 'car_state';
 const String kCarPreferredTag = 'car_preferred';
 // Card tags
+const String kCardIdTag = 'card_id';
 const String kCardNameTag = 'card_name';
 const String kCardHolderTag = 'card_holder';
 const String kCardNumberTag = 'card_number';
@@ -74,6 +81,8 @@ const String kCardBrandPathTag = 'card_brand_path';
 const String kCardPreferredTag = 'card_preferred';
 const String kCardTypeTag = 'card_type';
 // Booking tags
+const String kTicketIdTag = 'ticket_id';
+const String kTicketNameTag = 'ticket_name';
 const String kTicketStartTag = 'ticket_start';
 const String kTicketEndTag = 'ticket_end';
 // Balance tags
@@ -84,3 +93,17 @@ const String kPackagePointsTag = 'package_points';
 const String kPackagePriceTag = 'package_price';
 const String kPackageValidityTag = 'package_validity';
 const String kPackageDetailsTag = 'package_details';
+const String kPackageIdTag = 'package_id';
+// Permit tags
+const String kPermitDisclaimerTag = 'permit_disclaimer';
+const String kPermitName = 'permit_name';
+const String kPermitPhone = 'permit_phone';
+const String kPermitEmail = 'permit_email';
+const String kPermitsDocuments = 'permit_documents';
+// Violations tags
+const String kViolationsTag = 'violations';
+const String kViolationIdTag = 'violation_id';
+const String kViolationDescTag = 'violation_name';
+const String kViolationDateTimeTag = 'violation_datetime';
+const String kViolationLocationTag = 'violation_location';
+const String kViolationFineTag = 'violation_fine';

@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/booker.dart';
-import 'package:thaki/screens/purchase_package_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
@@ -12,6 +11,8 @@ import 'package:thaki/widgets/general/card.dart';
 import 'package:thaki/widgets/general/carousel.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
+import 'package:thaki/screens/purchase_package_screen.dart';
+import 'package:thaki/screens/resident_permit_screen.dart';
 
 class TkDashboardPane extends TkPane {
   TkDashboardPane({onDone, onSelect})
@@ -122,8 +123,9 @@ class TkDashboardPane extends TkPane {
           padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
           child: TkButton(
             title: kRechargeBalance,
-            onPressed: () =>
-                Navigator.of(context).pushNamed(TkPurchasePackageScreen.id),
+            onPressed: () => Navigator.of(context).pushNamed(
+              TkPurchasePackageScreen.id,
+            ),
           ),
         ),
 
@@ -132,9 +134,11 @@ class TkDashboardPane extends TkPane {
           padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
           child: TkButton(
             title: kApplySubscription,
-            onPressed: () {
-              // TODO: Open subscription page
-            },
+            btnBorderColor: kSecondaryColor,
+            btnColor: kSecondaryColor,
+            onPressed: () => Navigator.of(context).pushNamed(
+              TkResidentPermitScreen.id,
+            ),
           ),
         ),
       ],

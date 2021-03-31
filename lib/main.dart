@@ -6,14 +6,18 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/messenger.dart';
+import 'package:thaki/providers/payer.dart';
+import 'package:thaki/providers/permitter.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/server.dart';
 
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/login_screen.dart';
 import 'package:thaki/screens/onboarding_screen.dart';
+import 'package:thaki/screens/pay_violation_screen.dart';
 import 'package:thaki/screens/purchase_package_screen.dart';
 import 'package:thaki/screens/register_screen.dart';
+import 'package:thaki/screens/resident_permit_screen.dart';
 import 'package:thaki/screens/splash_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/screens/add_card_screen.dart';
@@ -22,6 +26,7 @@ import 'package:thaki/screens/forgot_password_screen.dart';
 import 'package:thaki/screens/add_car_screen.dart';
 import 'package:thaki/screens/cars_list_screen.dart';
 import 'package:thaki/screens/credit_cards_list_screen.dart';
+import 'package:thaki/screens/book_parking_screen.dart';
 
 void main() => runApp(ThankiApp());
 
@@ -49,6 +54,12 @@ class ThankiApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<TkPurchaser>(
           create: (context) => new TkPurchaser(),
+        ),
+        ChangeNotifierProvider<TkPermitter>(
+          create: (context) => new TkPermitter(),
+        ),
+        ChangeNotifierProvider<TkPayer>(
+          create: (context) => new TkPayer(),
         ),
       ],
 
@@ -78,6 +89,9 @@ class ThankiApp extends StatelessWidget {
           TkAddCarScreen.id: (context) => TkAddCarScreen(),
           TkCarsListScreen.id: (context) => TkCarsListScreen(),
           TkPurchasePackageScreen.id: (context) => TkPurchasePackageScreen(),
+          TkResidentPermitScreen.id: (context) => TkResidentPermitScreen(),
+          TkPayViolationScreen.id: (context) => TkPayViolationScreen(),
+          TkBookParkingScreen.id: (context) => TkBookParkingScreen(),
         },
 
         // Push the splash screen

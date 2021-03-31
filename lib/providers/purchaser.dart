@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
@@ -17,6 +18,13 @@ class TkPurchaser extends ChangeNotifier {
     notifyListeners();
   }
 
+  TkCredit _selectedCard;
+  TkCredit get selectedCard => _selectedCard;
+  set selectedCard(TkCredit card) {
+    _selectedCard = card;
+    notifyListeners();
+  }
+
   // Loading variables
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -26,8 +34,6 @@ class TkPurchaser extends ChangeNotifier {
   String get loadError => _loadError;
   String _purchaseError;
   String get purchaseError => _purchaseError;
-
-  // TODO: Purchase package method
 
   /// Load available packages to purchase
   Future<bool> loadPackages() async {
@@ -55,5 +61,28 @@ class TkPurchaser extends ChangeNotifier {
     notifyListeners();
 
     return (_loadError == null);
+  }
+
+  /// Purchase package method
+  Future<bool> purchaseSelectedPackage() async {
+    // Start any loading indicators
+    _isLoading = true;
+
+    Map result = await _apis.purchasePackage(
+        package: selectedPackage, card: selectedCard);
+
+    // Clear model
+    _purchaseError = null;
+
+    if (result[kStatusTag] != kSuccessCode) {
+      // an _purchaseError happened
+      _purchaseError = result[kErrorMessageTag] ?? kUnknownError;
+    }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (_purchaseError == null);
   }
 }

@@ -2,6 +2,7 @@ import 'package:thaki/globals/index.dart';
 
 class TkCredit {
   TkCredit.fromJson(Map<String, dynamic> json) {
+    id = int.tryParse(json[kCardIdTag].toString());
     name = json[kCardNameTag];
     holder = json[kCardHolderTag];
     number = json[kCardNumberTag];
@@ -12,6 +13,7 @@ class TkCredit {
     type = json[kCardTypeTag];
   }
 
+  int id;
   String name;
   String holder;
   String number;

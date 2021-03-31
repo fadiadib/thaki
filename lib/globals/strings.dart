@@ -3,6 +3,7 @@ const String kAppTitle = 'Thaki';
 
 /// Panes Titles
 const String kPurchasePackage = 'Purchase Package';
+const String kResidentPermit = 'Resident Permit';
 
 /// Date time helper strings
 const String kWeekDaySep = ', ';
@@ -100,6 +101,13 @@ const String kRechargeBalance = 'Recharge your balance';
 const String kApplySubscription = 'Apply for subscription';
 const String kHours = 'Hours';
 const String kContinue = 'Continue';
+const String kCheckout = 'Checkout';
+const String kSuccess = 'Success!';
+const String kFailure = 'Error!';
+const String kClose = 'Close';
+const String kIAgree = 'I Agree';
+const String kPayViolations = 'Pay Violations';
+const String kChooseCar = 'Choose Car';
 
 /// Credit Cards
 const String kCardHolderName = 'Card holder name';
@@ -123,3 +131,26 @@ const String kHourPackage = 'Hour Package';
 const String kValidFor = 'Valid for';
 const String kDays = 'days';
 const String kSAR = 'SAR';
+const String kPackageDetails = 'Package Details';
+const String kPaymentMethod = 'Payment Method';
+const String kPurchaseSuccess = 'Package purchased successfully';
+
+/// Permit
+const String kApplyForResidentPermit = 'Apply for resident permit';
+const String kPermitSuccess =
+    'Request submitted successfully, you will be notified once your application has been reviewed';
+const String kUploadDocument = 'Upload Required Documents';
+const String kSelectFromPhoneGallery = 'Select from Phone Gallery';
+
+/// Violations
+const String kCheckForLPR = 'Check violations for another LPR';
+const String kEnterLRP = 'Enter one time car LRP';
+const String kCurrentViolations = 'Current Violations';
+const String kTotal = 'Total';
+const String kPaySelected = 'Pay Selected';
+const String kFinePaymentSuccess =
+    'Fine paid successfully, please allow 30 minutes for updates on CivicSmart system';
+
+/// Parking
+const String kPickParkingTime = 'Pick parking time';
+const String kBookParkingNow = 'Book parking now';

@@ -9,19 +9,6 @@ class TkPackageTile extends StatelessWidget {
   final bool isSelected;
   final Function onTap;
 
-  static int colorIndex = 0;
-  static Color getTileColor(bool advance) {
-    Color result = kTileColor[colorIndex];
-    if (advance) {
-      if (colorIndex < kTileColor.length - 1)
-        colorIndex++;
-      else
-        colorIndex = 0;
-    }
-
-    return result;
-  }
-
   Widget _getTileImage() {
     return Container(
       height: 100,
@@ -29,12 +16,12 @@ class TkPackageTile extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Container(
         decoration: BoxDecoration(
-          color: getTileColor(false).withOpacity(0.08),
+          color: package.color.withOpacity(0.08),
           borderRadius: BorderRadius.circular(100.0),
         ),
         child: Image.asset(
           kPackageIcon,
-          color: getTileColor(true),
+          color: package.color,
         ),
       ),
     );

@@ -13,6 +13,7 @@ class TkBooker extends ChangeNotifier {
   List<TkTicket> get tickets => _tickets;
   TkBalance _balance;
   TkBalance get balance => _balance;
+  TkCar selectedCar;
 
   // Loading variables
   bool _isLoading = false;
@@ -21,14 +22,13 @@ class TkBooker extends ChangeNotifier {
   // Errors
   String _loadError;
   String get loadError => _loadError;
-  String _createError;
-  String get createError => _createError;
+  String _parkError;
+  String get parkError => _parkError;
   String _cancelError;
   String get cancelError => _cancelError;
   String _balanceError;
   String get balanceError => _balanceError;
 
-  // TODO: Create ticket method
   // TODO: Cancel ticket method
 
   /// Load user tickets method
@@ -77,5 +77,28 @@ class TkBooker extends ChangeNotifier {
     notifyListeners();
 
     return (_balanceError == null);
+  }
+
+  /// Reserve Parking
+  Future<bool> reserveParking() async {
+    // Start any loading indicators
+    _isLoading = true;
+
+    // Map result = await _apis.payViolations(
+    //     violations: selectedViolations, card: selectedCard);
+    //
+    // // Clear model
+    // _parkError = null;
+    //
+    // if (result[kStatusTag] != kSuccessCode) {
+    //   // an _purchaseError happened
+    //   _parkError = result[kErrorMessageTag] ?? kUnknownError;
+    // }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (_parkError == null);
   }
 }

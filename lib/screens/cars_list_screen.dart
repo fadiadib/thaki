@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thaki/globals/index.dart';
 
-import 'package:thaki/models/car.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/screens/add_car_screen.dart';
 import 'package:thaki/widgets/base/index.dart';
-import 'package:thaki/widgets/tiles/car_tile.dart';
+import 'package:thaki/widgets/lists/car_list.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 
@@ -18,21 +17,6 @@ class TkCarsListScreen extends StatefulWidget {
 }
 
 class _TkCarsListScreenState extends State<TkCarsListScreen> {
-  List<Widget> _getTiles(TkAccount account) {
-    List<Widget> tiles = [];
-
-    for (TkCar car in account.user.cars) {
-      tiles.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
-          child: TkCarTile(car: car),
-        ),
-      );
-    }
-
-    return tiles;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<TkAccount>(
@@ -57,7 +41,7 @@ class _TkCarsListScreenState extends State<TkCarsListScreen> {
                         Navigator.of(context).pushNamed(TkAddCarScreen.id),
                   ),
                 ),
-                Column(children: _getTiles(account)),
+                TkCarList(cars: account.user.cars),
               ],
             ),
           ),

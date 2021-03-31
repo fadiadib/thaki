@@ -290,10 +290,7 @@ class _TkFormFrameState extends State<TkFormFrame>
 
               // Separator
               if (widget.introTitle != null || widget.formTitle != null)
-                Divider(
-                  color: kAccentGreyColor,
-                  thickness: 1.0,
-                ),
+                Divider(color: kAccentGreyColor, thickness: 1.0),
 
               // Render info fields
               Padding(

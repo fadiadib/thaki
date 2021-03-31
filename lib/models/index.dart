@@ -7,3 +7,5 @@ export 'credit.dart';
 export 'ticket.dart';
 export 'balance.dart';
 export 'package.dart';
+export 'permit.dart';
+export 'violation.dart';

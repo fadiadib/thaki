@@ -113,3 +113,28 @@ Map<String, dynamic> kEditProfileFieldsJson = {
     },
   ]
 };
+
+Map<String, dynamic> kResidentPermitFieldsJson = {
+  kFormName: 'Enter Personal Information',
+  kFormAction: 'Confirm',
+  kInfoFieldsTag: [
+    {
+      kIFName: 'Full Name',
+      kIFTitle: 'Full Name',
+      kIFRequired: false,
+      kIFType: TkInfoFieldType.AlphaNum.index,
+    },
+    {
+      kIFName: 'Email',
+      kIFTitle: 'Email',
+      kIFRequired: false,
+      kIFType: TkInfoFieldType.Email.index,
+    },
+    {
+      kIFName: 'Phone',
+      kIFTitle: 'Phone',
+      kIFRequired: false,
+      kIFType: TkInfoFieldType.Phone.index,
+    },
+  ]
+};

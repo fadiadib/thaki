@@ -17,3 +17,6 @@ const List<String> kCCLogos = [
   'images/Cc_6.png'
 ];
 const String kPackageIcon = 'images/Package.png';
+const String kSuccessIcon = 'images/Success_Icon.png';
+const String kFailureIcon = 'images/Failure_Icon.png';
+const String kCameraButton = 'images/Camera_Button.png';

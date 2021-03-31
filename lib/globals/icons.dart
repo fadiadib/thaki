@@ -55,8 +55,9 @@ const Map<String, IconData> kNotificationsIconsMap = {
   'url': Icons.send,
 };
 const IconData kParkingBtnIcon = MaterialCommunityIcons.parking;
-const IconData kViolationBtnIcon = MaterialIcons.not_interested;
+const IconData kViolationBtnIcon = Icons.not_interested;
 const IconData kHomeBtnIcon = Icons.home;
 const IconData kAddCircleBtnIcon = Icons.add_circle;
 const IconData kStarCircleBtnIcon = Icons.stars;
 const IconData kSelectBtnIcon = Icons.check_circle;
+const IconData kUploadBtnIcon = Icons.file_upload;

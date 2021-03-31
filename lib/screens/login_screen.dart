@@ -45,24 +45,25 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
 
   Widget _createForm() {
     return TkFormFrame(
-        introTitle: kLoginIntroTitle,
-        formTitle: kLoginFieldsJson[kFormName],
-        actionTitle: kLoginFieldsJson[kFormAction],
-        buttonTag: kLoginTag,
-        fields: _fields,
-        action: (TkInfoFieldsList results) async {
-          await _updateModel(results);
-        },
-        footer: Center(
-          child: GestureDetector(
-            onTap: () => Navigator.pushReplacementNamed(
-                context, TkForgotPasswordScreen.id),
-            child: Text(
-              kForgotPassword + '?',
-              style: kLinkStyle,
-            ),
+      introTitle: kLoginIntroTitle,
+      formTitle: kLoginFieldsJson[kFormName],
+      actionTitle: kLoginFieldsJson[kFormAction],
+      buttonTag: kLoginTag,
+      fields: _fields,
+      action: (TkInfoFieldsList results) async {
+        await _updateModel(results);
+      },
+      footer: Center(
+        child: GestureDetector(
+          onTap: () => Navigator.pushReplacementNamed(
+              context, TkForgotPasswordScreen.id),
+          child: Text(
+            kForgotPassword + '?',
+            style: kLinkStyle,
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   Widget _createLoginOptions() {
