@@ -12,6 +12,7 @@ const String kLoadPermitDisclaimerAPI = '$kRootURL/load_permit_disclaimer';
 const String kApplyResidentPermitAPI = '$kRootURL/apply _permit';
 const String kLoadViolationsAPI = '$kRootURL/load_violations';
 const String kPayViolationsAPI = '$kRootURL/pay_violations';
+const String kReserveParkingAPI = '$kRootURL/reserve_parking';
 
 /// Network Codes and tags
 // Codes
@@ -81,10 +82,12 @@ const String kCardBrandPathTag = 'card_brand_path';
 const String kCardPreferredTag = 'card_preferred';
 const String kCardTypeTag = 'card_type';
 // Booking tags
+const String kTicketTag = 'ticket';
 const String kTicketIdTag = 'ticket_id';
 const String kTicketNameTag = 'ticket_name';
 const String kTicketStartTag = 'ticket_start';
 const String kTicketEndTag = 'ticket_end';
+const String kTicketDurationTag = 'ticket_duration';
 // Balance tags
 const String kBalancePointsTag = 'balance_points';
 const String kBalanceValidityTag = 'balance_validity';

@@ -6,7 +6,8 @@ class TkTicket {
     id = int.tryParse(json[kTicketIdTag].toString());
     name = json[kTicketNameTag];
     start = DateTime.tryParse(json[kTicketStartTag]);
-    end = DateTime.tryParse(json[kTicketEndTag]);
+    duration = int.tryParse(json[kTicketDurationTag]) ?? 1;
+    end = start.add(Duration(hours: duration));
     car = TkCar.fromJson(json);
   }
 
@@ -15,4 +16,5 @@ class TkTicket {
   TkCar car;
   DateTime start;
   DateTime end;
+  int duration; // in hours
 }

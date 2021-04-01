@@ -11,9 +11,41 @@ class TkBooker extends ChangeNotifier {
   // Model
   List<TkTicket> _tickets = [];
   List<TkTicket> get tickets => _tickets;
+
   TkBalance _balance;
   TkBalance get balance => _balance;
+
   TkCar selectedCar;
+
+  bool _bookNow = true;
+  bool get bookNow => _bookNow;
+  set bookNow(bool value) {
+    _bookNow = value;
+    notifyListeners();
+  }
+
+  DateTime _bookDate;
+  DateTime get bookDate => _bookDate;
+  set bookDate(DateTime value) {
+    _bookDate = value;
+    notifyListeners();
+  }
+
+  int _bookDuration;
+  int get bookDuration => _bookDuration;
+  set bookDuration(int value) {
+    _bookDuration = value;
+    notifyListeners();
+  }
+
+  TkTicket _newTicket;
+  TkTicket get newTicket => _newTicket;
+
+  void clearBooking() {
+    _bookNow = true;
+    _bookDate = null;
+    _bookDuration = 1;
+  }
 
   // Loading variables
   bool _isLoading = false;
@@ -84,16 +116,19 @@ class TkBooker extends ChangeNotifier {
     // Start any loading indicators
     _isLoading = true;
 
-    // Map result = await _apis.payViolations(
-    //     violations: selectedViolations, card: selectedCard);
-    //
-    // // Clear model
-    // _parkError = null;
-    //
-    // if (result[kStatusTag] != kSuccessCode) {
-    //   // an _purchaseError happened
-    //   _parkError = result[kErrorMessageTag] ?? kUnknownError;
-    // }
+    Map result = await _apis.reserveParking(
+        dateTime: _bookNow ? DateTime.now() : _bookDate,
+        duration: _bookDuration);
+
+    // Clear model
+    _parkError = null;
+    _newTicket = null;
+    if (result[kStatusTag] != kSuccessCode) {
+      // an _purchaseError happened
+      _parkError = result[kErrorMessageTag] ?? kUnknownError;
+    } else {
+      _newTicket = TkTicket.fromJson(result[kDataTag][kTicketTag]);
+    }
 
     // Stop any listening loading indicators
     _isLoading = false;

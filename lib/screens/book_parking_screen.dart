@@ -1,6 +1,8 @@
+import 'package:provider/provider.dart';
+
 import 'package:thaki/panes/parking/index.dart';
+import 'package:thaki/providers/booker.dart';
 import 'package:thaki/widgets/base/index.dart';
-import 'package:thaki/panes/violation/index.dart';
 
 class TkBookParkingScreen extends TkMultiStepPage {
   static const id = 'book_parking_screen';
@@ -11,13 +13,21 @@ class TkBookParkingScreen extends TkMultiStepPage {
 
 class _TkBookParkingScreenState extends TkMultiStepPageState {
   @override
-  void initData() async {}
+  void initData() async {
+    Provider.of<TkBooker>(context, listen: false).clearBooking();
+  }
 
   @override
   List<TkPane> getPanes() {
     return [
       TkParkingTimePane(onDone: () => loadNextPane()),
-      TkParkingDurationPane(onDone: () => loadNextPane()),
+      TkParkingDurationPane(onDone: () {
+        // Book parking
+        Provider.of<TkBooker>(context, listen: false).reserveParking();
+
+        // Load next screen
+        loadNextPane();
+      }),
       TkParkingSuccessPane(onDone: () => loadNextPane()),
     ];
   }

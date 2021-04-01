@@ -134,12 +134,12 @@ class TkAPIHelper {
           {
             kCarLicenseTag: 'ABC 123',
             kTicketStartTag: '2021-04-01 09:30:00',
-            kTicketEndTag: '2021-04-02 09:30:00',
+            kTicketDurationTag: '20',
           },
           {
             kCarLicenseTag: 'DEF 456',
             kTicketStartTag: '2021-05-01 10:00:00',
-            kTicketEndTag: '2021-05-01 10:30:00',
+            kTicketDurationTag: '10',
           },
         ],
       };
@@ -372,6 +372,40 @@ class TkAPIHelper {
       params: {
         kViolationIdTag: ids,
         kCardIdTag: card.id,
+      },
+    );
+  }
+
+  /// Reserve parking API
+  Future<Map> reserveParking({DateTime dateTime, int duration}) async {
+    //////////////////////////////////////////////////////////
+    // Temporary code for debug purposes
+    if (kDemoMode) {
+      await Future.delayed(Duration(seconds: 1));
+
+      return {
+        kStatusTag: kSuccessCode,
+        kErrorMessageTag: '',
+        kDataTag: {
+          kTicketTag: {
+            kTicketIdTag: 0,
+            kTicketNameTag: 'My Test Ticket',
+            kTicketStartTag: '2021-03-12 00:00:00',
+            kTicketDurationTag: '10',
+            kCarLicenseTag: '123 ABC',
+            kCarMakeTag: 'BMW',
+            kCarModelTag: '116I',
+          }
+        },
+      };
+    }
+    //////////////////////////////////////////////////////////
+
+    return await _network.getData(
+      url: kReserveParkingAPI,
+      params: {
+        kTicketStartTag: dateTime.toString(),
+        kTicketDurationTag: duration,
       },
     );
   }

@@ -9,3 +9,4 @@ export 'balance.dart';
 export 'package.dart';
 export 'permit.dart';
 export 'violation.dart';
+import 'parking_type.dart';

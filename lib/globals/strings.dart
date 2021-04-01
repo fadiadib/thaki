@@ -154,3 +154,9 @@ const String kFinePaymentSuccess =
 /// Parking
 const String kPickParkingTime = 'Pick parking time';
 const String kBookParkingNow = 'Book parking now';
+const String kSelectDateTime = 'Select date and time';
+const String kDateTime = 'date and time';
+const String kParkingDuration = 'Parking Duration';
+const String kParkFor = 'Park for';
+const String kParkSuccess =
+    'Parking Confirmed, QR code will be available 15 minutes before parking time';

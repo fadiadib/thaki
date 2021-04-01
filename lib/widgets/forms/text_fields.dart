@@ -180,6 +180,7 @@ class TkDateField extends TkTextField {
     @required this.context,
     this.type = TkInfoFieldType.Date,
     this.allowFuture = false,
+    this.allowPast = true,
   }) : super(
           isLoading: isLoading,
           enabled: enabled,
@@ -208,6 +209,7 @@ class TkDateField extends TkTextField {
   final BuildContext context;
   final TkInfoFieldType type;
   final bool allowFuture;
+  final bool allowPast;
 
   String _formatValue(DateTime value) {
     if (value == null) return hintText ?? '';
@@ -240,7 +242,7 @@ class TkDateField extends TkTextField {
         DatePicker.showDatePicker(
           context,
           showTitleActions: true,
-          minTime: DateTime(1900, 1, 1),
+          minTime: allowPast ? DateTime(1900, 1, 1) : DateTime.now(),
           maxTime: allowFuture
               ? DateTime.now().add(Duration(days: 365 * 10))
               : DateTime.now(),
