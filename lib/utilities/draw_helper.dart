@@ -11,7 +11,9 @@ class TkDrawHelper {
     Color borderColor,
     Widget child,
   }) {
-    Widget ball = Container(
+    Widget ball = AnimatedContainer(
+      duration: Duration(milliseconds: 900),
+      curve: Curves.easeOut,
       height: diameter,
       width: diameter,
       decoration: BoxDecoration(
@@ -21,7 +23,9 @@ class TkDrawHelper {
       ),
     );
 
-    return Positioned(
+    return AnimatedPositioned(
+      duration: Duration(milliseconds: 900),
+      curve: Curves.easeOut,
       top: y,
       left: x,
       child: tag == null ? ball : Hero(tag: tag, child: ball),

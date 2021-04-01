@@ -7,23 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="905d3c98-3b62-48e2-b2c9-ce7991e6688f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/widgets/lists/ticket_list.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/globals/apiuris.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/apiuris.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/globals/strings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/strings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/car.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/car.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/index.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/index.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/ticket.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/ticket.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/balance_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/tickets_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/dashboard_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/dashboard_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/index.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/index.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/parking_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/parking_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/profile_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/profile_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/violations_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/violations_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/booker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/booker.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/.last_build_id" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/.last_build_id" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities/api_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/api_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/lists/payment_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/lists/payment_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/splash_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/draw_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/draw_helper.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1617300125475</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="+ Tickets pane.">
+      <created>1617306476000</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1617306476000</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -138,7 +133,8 @@
     <MESSAGE value="+ Dashboard pane.&#10;+ Profile pane." />
     <MESSAGE value="+ Violations pane" />
     <MESSAGE value="+ Parking pane." />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Parking pane." />
+    <MESSAGE value="+ Tickets pane." />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Tickets pane." />
   </component>
   <component name="WindowStateProjectService">
     <state x="133" y="89" key="#Web_Browsers" timestamp="1616800164162">
@@ -157,12 +153,16 @@
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state x="606" y="334" key="AndroidProcessChooserDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1617258842680" />
-    <state x="271" y="23" key="CommitChangelistDialog2" timestamp="1617300125352">
+    <state x="271" y="23" key="CommitChangelistDialog2" timestamp="1617306475817">
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state x="271" y="57" key="CommitChangelistDialog2/0.23.1920.1126@0.23.1920.1126" timestamp="1617168929167" />
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1127@0.23.1920.1127" timestamp="1617300125352" />
+    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1127@0.23.1920.1127" timestamp="1617306475817" />
     <state x="271" y="123" key="CommitChangelistDialog2/0.23.1920.1128@0.23.1920.1128" timestamp="1616737105140" />
+    <state x="158" y="123" width="1085" height="926" key="DiffContextDialog" timestamp="1617320777438">
+      <screen x="0" y="23" width="1920" height="1130" />
+    </state>
+    <state x="158" y="123" width="1085" height="926" key="DiffContextDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1617320777438" />
     <state x="549" y="470" key="Github.ShareDialog" timestamp="1614907514907">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
@@ -171,35 +171,35 @@
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="436" y="234" key="Github.UntrackedFilesDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1614907527891" />
-    <state width="1459" height="305" key="GridCell.Tab.0.bottom" timestamp="1617300832501">
+    <state width="1459" height="305" key="GridCell.Tab.0.bottom" timestamp="1617318330493">
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state width="1409" height="305" key="GridCell.Tab.0.bottom/0.23.1920.1126@0.23.1920.1126" timestamp="1617146916889" />
-    <state width="1459" height="305" key="GridCell.Tab.0.bottom/0.23.1920.1127@0.23.1920.1127" timestamp="1617300832501" />
+    <state width="1459" height="305" key="GridCell.Tab.0.bottom/0.23.1920.1127@0.23.1920.1127" timestamp="1617318330493" />
     <state width="1472" height="307" key="GridCell.Tab.0.bottom/0.23.1920.1128@0.23.1920.1128" timestamp="1616966055921" />
     <state width="1368" height="314" key="GridCell.Tab.0.bottom/0.23.1920.1129@0.23.1920.1129" timestamp="1616723653462" />
     <state width="1734" height="311" key="GridCell.Tab.0.bottom/0.23.1920.1130@0.23.1920.1130" timestamp="1616289762224" />
-    <state width="1459" height="305" key="GridCell.Tab.0.center" timestamp="1617300832500">
+    <state width="1459" height="305" key="GridCell.Tab.0.center" timestamp="1617318330492">
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state width="1409" height="305" key="GridCell.Tab.0.center/0.23.1920.1126@0.23.1920.1126" timestamp="1617146916888" />
-    <state width="1459" height="305" key="GridCell.Tab.0.center/0.23.1920.1127@0.23.1920.1127" timestamp="1617300832500" />
+    <state width="1459" height="305" key="GridCell.Tab.0.center/0.23.1920.1127@0.23.1920.1127" timestamp="1617318330492" />
     <state width="1472" height="307" key="GridCell.Tab.0.center/0.23.1920.1128@0.23.1920.1128" timestamp="1616966055919" />
     <state width="1368" height="314" key="GridCell.Tab.0.center/0.23.1920.1129@0.23.1920.1129" timestamp="1616723653462" />
     <state width="1734" height="311" key="GridCell.Tab.0.center/0.23.1920.1130@0.23.1920.1130" timestamp="1616289762224" />
-    <state width="1459" height="305" key="GridCell.Tab.0.left" timestamp="1617300832500">
+    <state width="1459" height="305" key="GridCell.Tab.0.left" timestamp="1617318330469">
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state width="1409" height="305" key="GridCell.Tab.0.left/0.23.1920.1126@0.23.1920.1126" timestamp="1617146916887" />
-    <state width="1459" height="305" key="GridCell.Tab.0.left/0.23.1920.1127@0.23.1920.1127" timestamp="1617300832500" />
+    <state width="1459" height="305" key="GridCell.Tab.0.left/0.23.1920.1127@0.23.1920.1127" timestamp="1617318330469" />
     <state width="1472" height="307" key="GridCell.Tab.0.left/0.23.1920.1128@0.23.1920.1128" timestamp="1616966055918" />
     <state width="1368" height="314" key="GridCell.Tab.0.left/0.23.1920.1129@0.23.1920.1129" timestamp="1616723653462" />
     <state width="1734" height="311" key="GridCell.Tab.0.left/0.23.1920.1130@0.23.1920.1130" timestamp="1616289762223" />
-    <state width="1459" height="305" key="GridCell.Tab.0.right" timestamp="1617300832501">
+    <state width="1459" height="305" key="GridCell.Tab.0.right" timestamp="1617318330492">
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state width="1409" height="305" key="GridCell.Tab.0.right/0.23.1920.1126@0.23.1920.1126" timestamp="1617146916888" />
-    <state width="1459" height="305" key="GridCell.Tab.0.right/0.23.1920.1127@0.23.1920.1127" timestamp="1617300832501" />
+    <state width="1459" height="305" key="GridCell.Tab.0.right/0.23.1920.1127@0.23.1920.1127" timestamp="1617318330492" />
     <state width="1472" height="307" key="GridCell.Tab.0.right/0.23.1920.1128@0.23.1920.1128" timestamp="1616966055920" />
     <state width="1368" height="314" key="GridCell.Tab.0.right/0.23.1920.1129@0.23.1920.1129" timestamp="1616723653462" />
     <state width="1734" height="311" key="GridCell.Tab.0.right/0.23.1920.1130@0.23.1920.1130" timestamp="1616289762224" />
@@ -207,12 +207,16 @@
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="111" y="137" key="SettingsEditor/0.23.1920.1128@0.23.1920.1128" timestamp="1616799675374" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1617300128245">
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1617306478577">
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1126@0.23.1920.1126" timestamp="1617168934423" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1127@0.23.1920.1127" timestamp="1617300128245" />
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1127@0.23.1920.1127" timestamp="1617306478577" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1128@0.23.1920.1128" timestamp="1616737107712" />
+    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog" timestamp="1617320770607">
+      <screen x="0" y="23" width="1920" height="1130" />
+    </state>
+    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1617320770607" />
     <state x="165" y="123" width="1222" height="926" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1616724796177">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
@@ -231,11 +235,11 @@
     </state>
     <state x="492" y="294" width="788" height="584" key="find.popup/0.23.1920.1126@0.23.1920.1126" timestamp="1616127184085" />
     <state x="492" y="294" width="788" height="586" key="find.popup/0.23.1920.1128@0.23.1920.1128" timestamp="1616555308934" />
-    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup" timestamp="1617304987570">
+    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup" timestamp="1617319451156">
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state x="323" y="117" width="1005" height="1032" key="search.everywhere.popup/0.23.1920.1126@0.23.1920.1126" timestamp="1617166960988" />
-    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1127@0.23.1920.1127" timestamp="1617304987570" />
+    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1127@0.23.1920.1127" timestamp="1617319451156" />
     <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1128@0.23.1920.1128" timestamp="1616966382967" />
     <state x="323" y="117" width="1005" height="1035" key="search.everywhere.popup/0.23.1920.1129@0.23.1920.1129" timestamp="1616805257431" />
   </component>

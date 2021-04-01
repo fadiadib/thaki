@@ -72,7 +72,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
       bottomNavigationBar: CurvedNavigationBar(
         index: _activePane,
         animationDuration: Duration(milliseconds: 300),
-        backgroundColor: kTransparentColor,
+        backgroundColor: kLightGreyColor,
         color: kPrimaryColor,
         buttonBackgroundColor: kSecondaryColor,
         height: 60.0,

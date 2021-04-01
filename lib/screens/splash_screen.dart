@@ -33,7 +33,11 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
   // times
   bool _loadingNextScreen = false;
   String _startupError;
+
+  // Animations controllers
   double _logoRadius = 0;
+  List<double> _blueBallCoords = [-412, -390];
+  List<double> _purpleBallCoords = [138, 900];
 
   /// Called on initState, so it is the first function to be called in
   /// the application. It checks if the user has an active session and
@@ -156,8 +160,8 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
         // Blue ball
         TkDrawHelper.drawBall(
           diameter: 473.0,
-          x: -194,
-          y: -327,
+          x: _blueBallCoords[0],
+          y: _blueBallCoords[1],
           tag: 'blue_ball',
           color: kCyanColor,
         ),
@@ -165,18 +169,28 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
         // Purple Ball
         TkDrawHelper.drawBall(
             diameter: 783.0,
-            x: -123,
-            y: 704,
+            x: _purpleBallCoords[0],
+            y: _purpleBallCoords[1],
             tag: 'purple_ball',
             color: kLightPurpleColor),
 
         // Orange Ball 1
-        TkDrawHelper.drawBall(
-            diameter: 34.0, x: 268, y: 96, color: kOrangeColor),
-
-        // Orange Ball 2
-        TkDrawHelper.drawBall(
-            diameter: 18.0, x: 56, y: 101, color: kOrangeColor),
+        TweenAnimationBuilder(
+          curve: Curves.easeIn,
+          tween: Tween<double>(begin: 1, end: 0),
+          duration: Duration(milliseconds: 600),
+          builder: (context, angle, child) {
+            return Transform.rotate(
+              origin: Offset(268 + 203.0, -600),
+              angle: angle,
+              child: child,
+            );
+          },
+          child: Stack(children: [
+            TkDrawHelper.drawBall(
+                diameter: 34.0, x: 268, y: 96, color: kOrangeColor),
+          ]),
+        ),
 
         // Hollow Ball 1
         TkDrawHelper.drawBall(
@@ -185,6 +199,24 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
             y: -186,
             color: kTransparentColor,
             borderColor: kBlackColor.withOpacity(0.3)),
+
+        // Orange Ball 2
+        TweenAnimationBuilder(
+          curve: Curves.easeIn,
+          tween: Tween<double>(begin: 1, end: 0),
+          duration: Duration(milliseconds: 600),
+          builder: (context, angle, child) {
+            return Transform.rotate(
+              origin: Offset(-50, 300),
+              angle: angle,
+              child: child,
+            );
+          },
+          child: Stack(children: [
+            TkDrawHelper.drawBall(
+                diameter: 18.0, x: 56, y: 101, color: kOrangeColor),
+          ]),
+        ),
 
         // Hollow Ball 2
         TkDrawHelper.drawBall(
@@ -200,10 +232,9 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
           child: Hero(
             tag: 'logo',
             child: AnimatedContainer(
-              duration: Duration(milliseconds: 300),
+              duration: Duration(milliseconds: 900),
               height: _logoRadius * 2,
               width: _logoRadius * 2,
-              // curve: Curves.decelerate,
               decoration: BoxDecoration(
                 color: kWhiteColor,
                 borderRadius: BorderRadius.circular(_logoRadius),
@@ -223,9 +254,11 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
   }
 
   Future<void> _updateGraphics() async {
-    await Future.delayed(Duration(microseconds: 100));
+    await Future.delayed(Duration(milliseconds: 600));
     setState(() {
       _logoRadius = 180;
+      _blueBallCoords = [-194, -327];
+      _purpleBallCoords = [-123, 704];
     });
   }
 
@@ -233,6 +266,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
   void initState() {
     super.initState();
 
+    // TODO: enable messenger to receive notifications
     // TkMessenger messenger = Provider.of<TkMessenger>(context, listen: false);
 
     // Update the logo radius
