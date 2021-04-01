@@ -1,5 +1,4 @@
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/models/index.dart';
 
 class TkCar {
   TkCar.fromJson(Map<String, dynamic> json) {
@@ -10,11 +9,6 @@ class TkCar {
     model = json[kCarModelTag];
     state = json[kCarStateTag];
     preferred = json[kCarPreferredTag] == true;
-    // violations = [];
-    // if (json[kViolationsTag] != null) {
-    //   for (Map<String, dynamic> vJson in json[kViolationsTag])
-    //     violations.add(TkViolation.fromJson(vJson));
-    // }
   }
 
   int id;
@@ -24,5 +18,4 @@ class TkCar {
   String model;
   String state;
   bool preferred;
-  // List<TkViolation> violations;
 }

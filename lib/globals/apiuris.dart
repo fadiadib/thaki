@@ -88,6 +88,9 @@ const String kTicketNameTag = 'ticket_name';
 const String kTicketStartTag = 'ticket_start';
 const String kTicketEndTag = 'ticket_end';
 const String kTicketDurationTag = 'ticket_duration';
+const String kTicketCancelledTag = 'ticket_cancelled';
+const String kTicketShowCodeTag = 'ticket_show_code';
+const String kTicketCodeTag = 'ticket_code';
 // Balance tags
 const String kBalancePointsTag = 'balance_points';
 const String kBalanceValidityTag = 'balance_validity';

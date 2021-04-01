@@ -23,7 +23,7 @@ import 'package:thaki/widgets/cards/user_info_card.dart';
 class TkProfilePane extends TkPane {
   TkProfilePane({onDone, onSelect})
       : super(
-          paneTitle: 'Profile',
+          paneTitle: kProfilePaneTitle,
           navIconData: TkNavIconData(icon: kProfileBtnIcon),
         );
 

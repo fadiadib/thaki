@@ -14,7 +14,7 @@ import 'package:thaki/widgets/lists/car_list.dart';
 class TkViolationsPane extends TkPane {
   TkViolationsPane({onDone, onSelect})
       : super(
-          paneTitle: 'Violations',
+          paneTitle: kViolationsPaneTitle,
           navIconData: TkNavIconData(icon: kViolationBtnIcon),
         );
 

@@ -52,7 +52,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
       TkViolationsPane(),
       TkParkingPane(),
       TkDashboardPane(),
-      TkBalancePane(),
+      TkTicketsPane(),
       TkProfilePane(),
     ];
   }

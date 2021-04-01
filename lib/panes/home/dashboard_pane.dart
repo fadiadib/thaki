@@ -17,7 +17,7 @@ import 'package:thaki/screens/resident_permit_screen.dart';
 class TkDashboardPane extends TkPane {
   TkDashboardPane({onDone, onSelect})
       : super(
-          paneTitle: 'Dashboard',
+          paneTitle: kDashboardPaneTitle,
           navIconData: TkNavIconData(icon: kHomeBtnIcon),
         );
 

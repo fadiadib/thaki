@@ -14,7 +14,7 @@ import 'package:thaki/widgets/lists/car_list.dart';
 class TkParkingPane extends TkPane {
   TkParkingPane({onDone, onSelect})
       : super(
-          paneTitle: 'Parking',
+          paneTitle: kParkingPaneTitle,
           navIconData: TkNavIconData(icon: kParkingBtnIcon),
         );
 

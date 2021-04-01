@@ -4,10 +4,11 @@ import 'package:provider/provider.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
-import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/tiles/credit_card_tile.dart';
 
+// TODO: this should be generic and should not depend on the account provider
+// TODO: data should be passed in through the constructor
 class TkPaymentList extends StatelessWidget {
   TkPaymentList({this.onSelect, this.selected});
   final Function onSelect;

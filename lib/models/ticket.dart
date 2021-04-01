@@ -8,6 +8,9 @@ class TkTicket {
     start = DateTime.tryParse(json[kTicketStartTag]);
     duration = int.tryParse(json[kTicketDurationTag]) ?? 1;
     end = start.add(Duration(hours: duration));
+    cancelled = json[kTicketCancelledTag] == true;
+    showCode = json[kTicketShowCodeTag] == true;
+    code = json[kTicketCodeTag];
     car = TkCar.fromJson(json);
   }
 
@@ -17,4 +20,7 @@ class TkTicket {
   DateTime start;
   DateTime end;
   int duration; // in hours
+  bool cancelled;
+  bool showCode;
+  String code;
 }

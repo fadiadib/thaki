@@ -11,6 +11,31 @@ class TkBooker extends ChangeNotifier {
   // Model
   List<TkTicket> _tickets = [];
   List<TkTicket> get tickets => _tickets;
+  List<TkTicket> get upcomingTickets {
+    List<TkTicket> tickets = [];
+    for (TkTicket ticket in _tickets) {
+      if (ticket.end.isAfter(DateTime.now()) && !ticket.cancelled)
+        tickets.add(ticket);
+    }
+    return tickets;
+  }
+
+  List<TkTicket> get completedTickets {
+    List<TkTicket> tickets = [];
+    for (TkTicket ticket in _tickets) {
+      if (ticket.end.isBefore(DateTime.now()) && !ticket.cancelled)
+        tickets.add(ticket);
+    }
+    return tickets;
+  }
+
+  List<TkTicket> get cancelledTickets {
+    List<TkTicket> tickets = [];
+    for (TkTicket ticket in _tickets) {
+      if (ticket.cancelled) tickets.add(ticket);
+    }
+    return tickets;
+  }
 
   TkBalance _balance;
   TkBalance get balance => _balance;

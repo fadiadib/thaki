@@ -4,6 +4,11 @@ const String kAppTitle = 'Thaki';
 /// Panes Titles
 const String kPurchasePackage = 'Purchase Package';
 const String kResidentPermit = 'Resident Permit';
+const String kTicketsPaneTitle = 'My Tickets';
+const String kDashboardPaneTitle = 'Dashboard';
+const String kParkingPaneTitle = 'Book Parking';
+const String kProfilePaneTitle = 'Profile';
+const String kViolationsPaneTitle = 'Pay Violations';
 
 /// Date time helper strings
 const String kWeekDaySep = ', ';
@@ -160,3 +165,8 @@ const String kParkingDuration = 'Parking Duration';
 const String kParkFor = 'Park for';
 const String kParkSuccess =
     'Parking Confirmed, QR code will be available 15 minutes before parking time';
+
+/// Tickets
+const String kUpcoming = 'Upcoming';
+const String kCompleted = 'Completed';
+const String kCancelled = 'Cancelled';
