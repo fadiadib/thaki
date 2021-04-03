@@ -15,6 +15,7 @@ class TkPurchaser extends ChangeNotifier {
   TkPackage get selectedPackage => _selectedPackage;
   set selectedPackage(TkPackage package) {
     _selectedPackage = package;
+
     notifyListeners();
   }
 
@@ -22,6 +23,8 @@ class TkPurchaser extends ChangeNotifier {
   TkCredit get selectedCard => _selectedCard;
   set selectedCard(TkCredit card) {
     _selectedCard = card;
+    _validationPaymentError = null;
+
     notifyListeners();
   }
 
@@ -34,6 +37,18 @@ class TkPurchaser extends ChangeNotifier {
   String get loadError => _loadError;
   String _purchaseError;
   String get purchaseError => _purchaseError;
+
+  // Validation
+  String _validationPaymentError;
+  String get validationPaymentError => _validationPaymentError;
+  bool validatePayment() {
+    if (_selectedCard == null) {
+      _validationPaymentError = kSelectPaymentToProceed;
+      notifyListeners();
+      return false;
+    }
+    return true;
+  }
 
   /// Load available packages to purchase
   Future<bool> loadPackages() async {

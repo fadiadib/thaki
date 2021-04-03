@@ -4,8 +4,6 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
 
-enum TkLoginMode { login, register }
-
 class TkAccount extends ChangeNotifier {
   // Helpers
   static TkAPIHelper _apis = new TkAPIHelper();

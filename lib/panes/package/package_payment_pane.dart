@@ -23,16 +23,31 @@ class TkPackagePaymentPane extends TkPane {
     );
   }
 
-  Widget _getCheckoutButton() {
+  Widget _getCheckoutButton(TkPurchaser purchaser) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: TkButton(
         title: kCheckout,
-        onPressed: onDone,
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
+        onPressed: () {
+          if (purchaser.validatePayment()) onDone();
+        },
       ),
     );
+  }
+
+  Widget _getErrorMessage(TkPurchaser purchaser) {
+    if (purchaser.validationPaymentError != null)
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+        child: Text(
+          purchaser.validationPaymentError,
+          style: kErrorStyle,
+          textAlign: TextAlign.center,
+        ),
+      );
+    return Container();
   }
 
   @override
@@ -53,7 +68,8 @@ class TkPackagePaymentPane extends TkPane {
                   },
                   selected: purchaser.selectedCard,
                 ),
-                _getCheckoutButton(),
+                _getCheckoutButton(purchaser),
+                _getErrorMessage(purchaser),
               ],
             );
     });

@@ -31,7 +31,7 @@ class TkPackageDetailsPane extends TkPane {
 
   Widget _getContinueButton() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: TkButton(title: kContinue, onPressed: onDone),
     );
   }

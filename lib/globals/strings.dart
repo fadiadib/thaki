@@ -48,6 +48,8 @@ const String kUpgradeNow = 'Upgrade Now';
 const String kUnsupportedVersion = 'Unsupported App Version';
 const String kUpgradeRequiredMessage =
     'Please download the latest version of $kAppTitle to continue using the application';
+const String kDelete = 'Delete';
+const String kEdit = 'Edit';
 
 /// Forms
 const String kPleaseEnter = '* Please Enter ';
@@ -126,6 +128,7 @@ const String kCarNickname = 'Car nickname';
 const String kCarLicensePlate = 'Car license plate';
 const String kCarMake = 'Make';
 const String kCarModel = 'Model';
+const String kCarIsPreferred = 'Preferred';
 
 /// Tickets
 const String kFrom = 'From';
@@ -155,6 +158,12 @@ const String kTotal = 'Total';
 const String kPaySelected = 'Pay Selected';
 const String kFinePaymentSuccess =
     'Fine paid successfully, please allow 30 minutes for updates on CivicSmart system';
+const String kSelectViolationToProceed =
+    'Please select at least one violation to proceed to payment';
+const String kSelectPaymentToProceed =
+    'Please select a payment method to proceed';
+const String kSelectCardToProceed =
+    'Please enter your car license plate to proceed';
 
 /// Parking
 const String kPickParkingTime = 'Pick parking time';

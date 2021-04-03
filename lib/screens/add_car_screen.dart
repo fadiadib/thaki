@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/utilities/form_builder.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -53,11 +54,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen> {
                   TkSectionTitle(title: kCarMake, uppercase: false),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
-                      30.0,
-                      10.0,
-                      5.0,
-                      10.0,
-                    ),
+                        30.0, 10.0, 5.0, 10.0),
                     child: TkTextField(hintText: kCarMake),
                   ),
                 ],
@@ -73,18 +70,21 @@ class _TkAddCarScreenState extends State<TkAddCarScreen> {
                       title: kCarModel, uppercase: false, start: false),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
-                      5.0,
-                      10.0,
-                      30,
-                      10.0,
-                    ),
+                        5.0, 10.0, 30, 10.0),
                     child: TkTextField(hintText: kCarModel),
                   ),
                 ],
               ),
-            )
+            ),
           ],
-        )
+        ),
+
+        // Car default
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+          child: TkFormBuilder.createCheckBox(
+              label: kCarIsPreferred, value: false, onChanged: (value) {}),
+        ),
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
@@ -79,7 +80,14 @@ class _TkAddCardScreenState extends State<TkAddCardScreen> {
               ),
             )
           ],
-        )
+        ),
+
+        // Car default
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+          child: TkFormBuilder.createCheckBox(
+              label: kCarIsPreferred, value: false, onChanged: (value) {}),
+        ),
       ],
     );
   }

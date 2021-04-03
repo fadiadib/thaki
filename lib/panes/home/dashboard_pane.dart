@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
@@ -82,7 +83,8 @@ class TkDashboardPane extends TkPane {
           child: TkButton(
             title: kBookParking,
             onPressed: () {
-              // TODO: Open booking page
+              // Open booking page
+              Provider.of<TkTabSelector>(context, listen: false).activeTab = 1;
             },
           ),
         )

@@ -136,7 +136,7 @@ class TkFormBuilder {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Theme(
-          data: ThemeData(unselectedWidgetColor: kPrimaryColor),
+          data: ThemeData(unselectedWidgetColor: kSecondaryColor),
           child: Checkbox(
             value: value ?? false,
             checkColor: kWhiteColor,

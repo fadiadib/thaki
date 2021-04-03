@@ -37,16 +37,31 @@ class TkViolationListPane extends TkPane {
     );
   }
 
-  Widget _getPaySelectionButton() {
+  Widget _getPaySelectionButton(TkPayer payer) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(30.0, 20.0, 30.0, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: TkButton(
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
         title: kPaySelected,
-        onPressed: onDone,
+        onPressed: () {
+          if (payer.validateViolations()) onDone();
+        },
       ),
     );
+  }
+
+  Widget _getErrorMessage(TkPayer payer) {
+    if (payer.validationViolationsError != null)
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+        child: Text(
+          payer.validationViolationsError,
+          style: kErrorStyle,
+          textAlign: TextAlign.center,
+        ),
+      );
+    return Container();
   }
 
   @override
@@ -63,7 +78,8 @@ class TkViolationListPane extends TkPane {
                   ),
                   _getViolationList(payer),
                   _getTotalFine(payer),
-                  _getPaySelectionButton(),
+                  _getPaySelectionButton(payer),
+                  _getErrorMessage(payer),
                 ],
               );
       },

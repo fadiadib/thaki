@@ -11,7 +11,15 @@ class TkPayer extends ChangeNotifier {
   // Model
   List<TkViolation> _violations = [];
   List<TkViolation> get violations => _violations;
-  TkCar selectedCar;
+  String _selectedCar;
+  String get selectedCar => _selectedCar;
+  set selectedCar(String car) {
+    _selectedCar = car;
+    _validationCarError = null;
+
+    notifyListeners();
+  }
+
   List<TkViolation> _selectedViolations = [];
   List<TkViolation> get selectedViolations => _selectedViolations;
   void toggleSelection(TkViolation violation) {
@@ -24,6 +32,8 @@ class TkPayer extends ChangeNotifier {
     } else {
       _selectedViolations.add(violation);
     }
+    _validationViolationsError = null;
+
     notifyListeners();
   }
 
@@ -31,6 +41,8 @@ class TkPayer extends ChangeNotifier {
   TkCredit get selectedCard => _selectedCard;
   set selectedCard(TkCredit card) {
     _selectedCard = card;
+    _validationPaymentError = null;
+
     notifyListeners();
   }
 
@@ -51,6 +63,40 @@ class TkPayer extends ChangeNotifier {
   String get loadError => _loadError;
   String _payError;
   String get payError => _payError;
+
+  // Validation
+  String _validationViolationsError;
+  String get validationViolationsError => _validationViolationsError;
+  bool validateViolations() {
+    if (_selectedViolations == null || _selectedViolations.isEmpty) {
+      _validationViolationsError = kSelectViolationToProceed;
+      notifyListeners();
+      return false;
+    }
+    return true;
+  }
+
+  String _validationPaymentError;
+  String get validationPaymentError => _validationPaymentError;
+  bool validatePayment() {
+    if (_selectedCard == null) {
+      _validationPaymentError = kSelectPaymentToProceed;
+      notifyListeners();
+      return false;
+    }
+    return true;
+  }
+
+  String _validationCarError;
+  String get validationCarError => _validationCarError;
+  bool validateCar() {
+    if (_selectedCar == null || _selectedCar.isEmpty) {
+      _validationCarError = kSelectCardToProceed;
+      notifyListeners();
+      return false;
+    }
+    return true;
+  }
 
   /// Load violations
   Future<bool> loadViolations() async {

@@ -16,7 +16,7 @@ class TkParkingTimePane extends TkPane {
 
   Widget _createBookParkingButton(TkBooker booker) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(30.0, 20.0, 30.0, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: TkButton(
         title: booker.bookNow ? kBookParkingNow : kPickParkingTime,
         onPressed: () {

@@ -145,6 +145,8 @@ class TkAPIHelper {
             kTicketNameTag: 'Ticket 2',
             kTicketStartTag: '2021-05-01 10:00:00',
             kTicketDurationTag: '10',
+            kTicketShowCodeTag: true,
+            kTicketCodeTag: 'Hello World',
             kCarLicenseTag: 'DEF 456',
             kCarMakeTag: 'Mercedes',
             kCarModelTag: 'C 200',
@@ -318,7 +320,7 @@ class TkAPIHelper {
   }
 
   /// Load violations API
-  Future<Map> loadViolations(TkCar car) async {
+  Future<Map> loadViolations(String car) async {
     //////////////////////////////////////////////////////////
     // Temporary code for debug purposes
     if (kDemoMode) {
@@ -359,7 +361,7 @@ class TkAPIHelper {
     return await _network.getData(
       url: kLoadViolationsAPI,
       params: {
-        kCarIdTag: car.id,
+        kCarLicensePlate: car,
       },
     );
   }

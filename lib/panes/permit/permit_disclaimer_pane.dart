@@ -15,7 +15,7 @@ class TkPermitDisclaimerPane extends TkPane {
 
   Widget _getAgreeButton() {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 20.0),
       child: TkButton(title: kIAgree, onPressed: onDone),
     );
   }

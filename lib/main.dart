@@ -10,6 +10,7 @@ import 'package:thaki/providers/payer.dart';
 import 'package:thaki/providers/permitter.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/server.dart';
+import 'package:thaki/providers/tab_selector.dart';
 
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/login_screen.dart';
@@ -40,6 +41,9 @@ class ThankiApp extends StatelessWidget {
     // TODO: Initialize Providers
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<TkTabSelector>(
+          create: (context) => new TkTabSelector(),
+        ),
         ChangeNotifierProvider<TkAccount>(
           create: (context) => new TkAccount(),
         ),

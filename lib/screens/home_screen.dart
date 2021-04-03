@@ -7,6 +7,7 @@ import 'package:thaki/models/index.dart';
 import 'package:thaki/panes/home/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 
@@ -19,7 +20,6 @@ class TkHomeScreen extends StatefulWidget {
 
 class _TkHomeScreenState extends State<TkHomeScreen> {
   List<TkPane> _panes = [];
-  int _activePane = 2;
 
   List<Icon> _getIcons() {
     List<Icon> icons = [];
@@ -59,31 +59,35 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      /// Appbar
-      appBar: TkAppBar(
-        context: context,
-        enableClose: false,
-        removeLeading: false,
-        title: TkLogoBox(),
-      ),
+    return Consumer<TkTabSelector>(
+      builder: (context, selector, _) {
+        return Scaffold(
+          /// Appbar
+          appBar: TkAppBar(
+            context: context,
+            enableClose: false,
+            removeLeading: false,
+            title: TkLogoBox(),
+          ),
 
-      /// Bottom Navigation Menu Bar
-      bottomNavigationBar: CurvedNavigationBar(
-        index: _activePane,
-        animationDuration: Duration(milliseconds: 300),
-        backgroundColor: kLightGreyColor,
-        color: kPrimaryColor,
-        buttonBackgroundColor: kSecondaryColor,
-        height: 60.0,
-        items: _getIcons(),
-        onTap: (index) => setState(() => _activePane = index),
-      ),
+          /// Bottom Navigation Menu Bar
+          bottomNavigationBar: CurvedNavigationBar(
+            index: selector.activeTab,
+            animationDuration: Duration(milliseconds: 300),
+            backgroundColor: kLightGreyColor,
+            color: kPrimaryColor,
+            buttonBackgroundColor: kSecondaryColor,
+            height: 60.0,
+            items: _getIcons(),
+            onTap: (index) => setState(() => selector.activeTab = index),
+          ),
 
-      /// Scaffold body: Active pane
-      body: TkScaffoldBody(
-        child: _panes[_activePane],
-      ),
+          /// Scaffold body: Active pane
+          body: TkScaffoldBody(
+            child: _panes[selector.activeTab],
+          ),
+        );
+      },
     );
   }
 }

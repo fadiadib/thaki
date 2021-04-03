@@ -34,7 +34,7 @@ class TkViolationsPane extends TkPane {
                   onTap: (TkCar car) {
                     // Select the car in the payer provider
                     Provider.of<TkPayer>(context, listen: false).selectedCar =
-                        car;
+                        car.licensePlate;
 
                     // Push the pay violations screen
                     Navigator.of(context).pushNamed(TkPayViolationScreen.id);

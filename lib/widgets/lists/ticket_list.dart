@@ -10,6 +10,8 @@ class TkTicketList extends StatelessWidget {
   List<Widget> _getTicketTiles() {
     List<Widget> tiles = [];
 
+    tiles.add(SizedBox(height: 20));
+
     for (TkTicket ticket in tickets) {
       tiles.add(
         Padding(

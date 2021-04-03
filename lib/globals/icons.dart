@@ -61,3 +61,5 @@ const IconData kAddCircleBtnIcon = Icons.add_circle;
 const IconData kStarCircleBtnIcon = Icons.stars;
 const IconData kSelectBtnIcon = Icons.check_circle;
 const IconData kUploadBtnIcon = Icons.file_upload;
+const IconData kDeleteBtnIcon = Icons.delete;
+const IconData kEditBtIcon = Icons.edit;
