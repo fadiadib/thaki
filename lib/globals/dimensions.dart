@@ -13,6 +13,9 @@ const double kDefaultTextEditRadius = 18.0;
 const double kDefaultTextEditInternalPadding = 0.0;
 const double kDefaultTextEditIconSize = 14.0;
 const double kDefaultTextEditTitleSize = 48.0;
+const double kDefaultOTPGapSize = 10.0;
+const double kDefaultOTPBorderRadius = 5.0;
+const double kDefaultOTPWidth = 300;
 
 /// Carousel Dimensions
 const double kArrowBgSize = 40.0;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:card_scanner/card_scanner.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/utilities/index.dart';
@@ -116,6 +117,10 @@ class _TkAddCardScreenState extends State<TkAddCardScreen> {
         title: kSave,
         onPressed: () async {
           // TODO: Call API to add card
+          print('Hello Scaner');
+          var cardDetails = await CardScanner.scanCard();
+
+          print(cardDetails);
         },
       ),
     );

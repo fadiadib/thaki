@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/account.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/login_screen.dart';
 
@@ -28,15 +30,24 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
     _fields = TkInfoFieldsList.fromJson(data: kRegisterFieldsJson);
   }
 
-  Future<void> _updateModel(TkInfoFieldsList results) async {
+  Future<void> _updateModelAndPushNext(TkInfoFieldsList results) async {
     _fields = results;
 
-    // TODO: Call Login in Account Provider
-    // TODO: Update user model with result from API
-    // TODO: If Remember me is checked, save model to prefs
-    // TODO: Encrypt password before sending it
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    account.user = TkUser.fromInfoFields(results);
 
-    Navigator.pushNamed(context, TkHomeScreen.id);
+    if (await account.register(store: account.user.rememberMe))
+      Navigator.pushNamed(context, TkHomeScreen.id);
+  }
+
+  bool _validatePasswordMatch(TkInfoField confirmField) {
+    // Search for the password field in fields
+    TkInfoField passwordField = _fields.fields.firstWhere(
+        (element) => element.name == kUserPasswordTag,
+        orElse: () => null);
+    if (passwordField != null && passwordField.value == confirmField.value)
+      return true;
+    return false;
   }
 
   Widget _createForm() {
@@ -45,8 +56,9 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
       actionTitle: kRegisterFieldsJson[kFormAction],
       buttonTag: kSignUpTag,
       fields: _fields,
+      validatePasswordMatch: _validatePasswordMatch,
       action: (TkInfoFieldsList results) async {
-        await _updateModel(results);
+        await _updateModelAndPushNext(results);
       },
     );
   }

@@ -12,6 +12,7 @@ class TkPermitter extends ChangeNotifier {
   String _disclaimer;
   String get disclaimer => _disclaimer;
   TkPermit _permit;
+  TkPermit get permit => _permit;
   set permit(TkPermit p) {
     _permit = p;
     notifyListeners();

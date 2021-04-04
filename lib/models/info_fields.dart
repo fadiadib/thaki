@@ -40,7 +40,7 @@ class TkInfoField {
   String name;
   String label;
   bool required;
-  String value;
+  dynamic value;
   bool visible;
   int numLines;
   TkInfoFieldType type;

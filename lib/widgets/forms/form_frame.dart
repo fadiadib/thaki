@@ -16,6 +16,8 @@ class TkFormFrame extends StatefulWidget {
     this.fields,
     this.buttonTag = 'action',
     this.footer,
+    this.validatePasswordMatch,
+    this.child,
   });
 
   final String formTitle;
@@ -25,6 +27,8 @@ class TkFormFrame extends StatefulWidget {
   final TkInfoFieldsList fields;
   final String buttonTag;
   final Widget footer;
+  final Function validatePasswordMatch;
+  final Widget child;
 
   @override
   _TkFormFrameState createState() => _TkFormFrameState();
@@ -71,6 +75,8 @@ class _TkFormFrameState extends State<TkFormFrame>
       case TkInfoFieldType.Radio:
       case TkInfoFieldType.DropDown:
       case TkInfoFieldType.Password:
+      case TkInfoFieldType.ConfirmPassword:
+      case TkInfoFieldType.OTP:
         return TkValidationHelper.validateNotEmpty(field.value);
     }
     return false;
@@ -167,8 +173,13 @@ class _TkFormFrameState extends State<TkFormFrame>
               : TextInputType.text,
           onChanged: (value) => setState(() => field.value = value),
           obscured: true,
-          isValidating: isValidating,
-          validator: () => validateInfoField(field),
+          isValidating: true,
+          validator: () {
+            if (this.widget.validatePasswordMatch != null) {
+              return this.widget.validatePasswordMatch(field);
+            } else
+              return validateInfoField(field);
+          },
           errorMessage: kPasswordMismatch,
         );
         break;
@@ -240,6 +251,21 @@ class _TkFormFrameState extends State<TkFormFrame>
           values: field.valueOptions,
         );
         break;
+      case TkInfoFieldType.OTP:
+        // OTP
+        widget = TkFormBuilder.createOTP(
+          enabled: !isLoading,
+          label: field.label,
+          initialValue: field.value,
+          onChanged: (value) {
+            print(value);
+            setState(() => field.value = value);
+          },
+          errorMessage: kPleaseEnter + field.label,
+          isValidating: isValidating,
+          validator: () => validateInfoField(field),
+        );
+        break;
     }
 
     // Return the created widget
@@ -300,6 +326,9 @@ class _TkFormFrameState extends State<TkFormFrame>
                   children: _createInfoFieldsWidgets(widget.fields),
                 ),
               ),
+
+              // Footer widget
+              if (widget.child != null) widget.child,
 
               // Action button
               if (widget.action != null)

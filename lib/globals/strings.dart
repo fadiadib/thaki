@@ -86,6 +86,8 @@ const String kAlreadyRegistered = 'Already registered? ';
 const String kLoginExclamation = 'Login!';
 const String kBackTo = 'Back to ';
 const String kForgotPassword = 'Forgot Password';
+const String kEnterOTPMessage =
+    'Please enter the six digit code received on your registered phone number/Email';
 
 /// Home
 const String kPersonalInfo = 'Personal Information';

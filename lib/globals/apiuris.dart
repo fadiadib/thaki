@@ -3,7 +3,9 @@
 const String kRootURL = 'https://admin.thaki.app/api';
 // APIs
 const String kCheckAPI = '$kRootURL/check';
+const String kRegisterAPI = '$kRootURL/register';
 const String kLoginAPI = '$kRootURL/login';
+const String KLoadAPI = '$kRootURL/load_user';
 const String kLoadTicketsAPI = '$kRootURL/load_tickets';
 const String kLoadBalanceAPI = '$kRootURL/load_balance';
 const String kLoadPackagesAPI = '$kRootURL/load_packages';
@@ -44,13 +46,18 @@ const String kIFLines = 'f_lines';
 const String kIFValueId = 'id';
 const String kIFValueTitle = 'title';
 // User tags
+const String kUserTag = 'user';
 const String kUserTokenTag = 'user_token';
 const String kUserNameTag = 'user_name';
 const String kUserEmailTag = 'user_email';
+const String kUserPasswordTag = 'user_password';
+const String kUserConfirmPasswordTag = 'user_confirm_password';
+const String kUserRememberTag = 'user_remember';
 const String kUserPhoneTag = 'user_phone';
 const String kUserFbTokenTag = 'fb_token';
 const String kUserCarsTag = 'user_cars';
 const String kUserCardsTag = 'user_cards';
+const String kUserOTPTag = 'user_otp';
 // Notifications tags
 const String kNotificationTag = 'notification';
 const String kNotificationIdTag = 'id';

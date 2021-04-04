@@ -159,7 +159,7 @@ Map<double, TextStyle> kBlackStyle = {
 TextStyle kHintStyle =
     kRegularStyle[kSmallSize].copyWith(color: kHintTextColor);
 TextStyle kTextEditStyle = kRegularStyle[kNormalSize];
-TextStyle kOTPEditStyle = kVeryBoldStyle[kBigSize];
+TextStyle kOTPEditStyle = kBoldStyle[kNormalSize];
 TextStyle kDisabledTextEditStyle =
     kMediumStyle[kNormalSize].copyWith(color: kDisabledTextColor);
 TextStyle kDisclaimerStyle = kLightStyle[kSmallSize];

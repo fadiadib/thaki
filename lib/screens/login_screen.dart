@@ -31,15 +31,13 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     _fields = TkInfoFieldsList.fromJson(data: kLoginFieldsJson);
   }
 
-  Future<void> _updateModel(TkInfoFieldsList results) async {
+  Future<void> _updateModelAndPushNext(TkInfoFieldsList results) async {
     _fields = results;
 
-    // TODO: Call Login in Account Provider
-    // TODO: Update user model with result from API
-    // TODO: If Remember me is checked, save model to prefs
-    // TODO: Encrypt password before sending it
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
-    if (await account.login(results))
+    account.user = TkUser.fromInfoFields(results);
+
+    if (await account.login(store: account.user.rememberMe))
       Navigator.pushNamed(context, TkHomeScreen.id);
   }
 
@@ -50,9 +48,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
       actionTitle: kLoginFieldsJson[kFormAction],
       buttonTag: kLoginTag,
       fields: _fields,
-      action: (TkInfoFieldsList results) async {
-        await _updateModel(results);
-      },
+      action: _updateModelAndPushNext,
       footer: Center(
         child: GestureDetector(
           onTap: () => Navigator.pushReplacementNamed(

@@ -7,19 +7,19 @@ Map<String, dynamic> kLoginFieldsJson = {
   kFormAction: 'Log In',
   kInfoFieldsTag: [
     {
-      kIFName: 'Email',
+      kIFName: kUserEmailTag,
       kIFTitle: 'Email',
       kIFRequired: true,
       kIFType: TkInfoFieldType.Email.index,
     },
     {
-      kIFName: 'Password',
+      kIFName: kUserPasswordTag,
       kIFTitle: 'Password',
       kIFRequired: true,
       kIFType: TkInfoFieldType.Password.index,
     },
     {
-      kIFName: 'Remember Me',
+      kIFName: kUserRememberTag,
       kIFTitle: 'Remember Me',
       kIFRequired: false,
       kIFType: TkInfoFieldType.Boolean.index,
@@ -32,34 +32,40 @@ Map<String, dynamic> kRegisterFieldsJson = {
   kFormAction: 'Register',
   kInfoFieldsTag: [
     {
-      kIFName: 'Full Name',
+      kIFName: kUserNameTag,
       kIFTitle: 'Full Name',
       kIFRequired: true,
       kIFType: TkInfoFieldType.AlphaNum.index,
     },
     {
-      kIFName: 'Email',
+      kIFName: kUserEmailTag,
       kIFTitle: 'Email',
       kIFRequired: true,
       kIFType: TkInfoFieldType.Email.index,
     },
     {
-      kIFName: 'Phone',
+      kIFName: kUserPhoneTag,
       kIFTitle: 'Phone',
       kIFRequired: true,
       kIFType: TkInfoFieldType.Phone.index,
     },
     {
-      kIFName: 'Password',
+      kIFName: kUserPasswordTag,
       kIFTitle: 'Password',
       kIFRequired: true,
       kIFType: TkInfoFieldType.Password.index,
     },
     {
-      kIFName: 'Confirm Password',
+      kIFName: kUserConfirmPasswordTag,
       kIFTitle: 'Confirm Password',
       kIFRequired: true,
       kIFType: TkInfoFieldType.ConfirmPassword.index,
+    },
+    {
+      kIFName: kUserRememberTag,
+      kIFTitle: 'Remember Me',
+      kIFRequired: false,
+      kIFType: TkInfoFieldType.Boolean.index,
     },
   ]
 };
@@ -69,10 +75,23 @@ Map<String, dynamic> kResetFieldsJson = {
   kFormAction: 'Reset Password',
   kInfoFieldsTag: [
     {
-      kIFName: 'Phone',
+      kIFName: kUserPhoneTag,
       kIFTitle: 'Phone',
       kIFRequired: true,
       kIFType: TkInfoFieldType.Phone.index,
+    },
+  ]
+};
+
+Map<String, dynamic> kOTPFieldsJson = {
+  kFormName: 'Reset Password',
+  kFormAction: 'Confirm',
+  kInfoFieldsTag: [
+    {
+      kIFName: kUserOTPTag,
+      kIFTitle: 'OTP',
+      kIFRequired: true,
+      kIFType: TkInfoFieldType.OTP.index,
     },
   ]
 };
@@ -82,31 +101,31 @@ Map<String, dynamic> kEditProfileFieldsJson = {
   kFormAction: 'Update',
   kInfoFieldsTag: [
     {
-      kIFName: 'Full Name',
+      kIFName: kUserNameTag,
       kIFTitle: 'Full Name',
       kIFRequired: true,
       kIFType: TkInfoFieldType.AlphaNum.index,
     },
     {
-      kIFName: 'Email',
+      kIFName: kUserEmailTag,
       kIFTitle: 'Email',
       kIFRequired: true,
       kIFType: TkInfoFieldType.Email.index,
     },
     {
-      kIFName: 'Phone',
+      kIFName: kUserPhoneTag,
       kIFTitle: 'Phone',
       kIFRequired: true,
       kIFType: TkInfoFieldType.Phone.index,
     },
     {
-      kIFName: 'Password',
+      kIFName: kUserPasswordTag,
       kIFTitle: 'Password',
       kIFRequired: false,
       kIFType: TkInfoFieldType.Password.index,
     },
     {
-      kIFName: 'Confirm Password',
+      kIFName: kUserConfirmPasswordTag,
       kIFTitle: 'Confirm Password',
       kIFRequired: false,
       kIFType: TkInfoFieldType.ConfirmPassword.index,
@@ -119,19 +138,19 @@ Map<String, dynamic> kResidentPermitFieldsJson = {
   kFormAction: 'Confirm',
   kInfoFieldsTag: [
     {
-      kIFName: 'Full Name',
+      kIFName: kUserNameTag,
       kIFTitle: 'Full Name',
       kIFRequired: false,
       kIFType: TkInfoFieldType.AlphaNum.index,
     },
     {
-      kIFName: 'Email',
+      kIFName: kUserEmailTag,
       kIFTitle: 'Email',
       kIFRequired: false,
       kIFType: TkInfoFieldType.Email.index,
     },
     {
-      kIFName: 'Phone',
+      kIFName: kUserPhoneTag,
       kIFTitle: 'Phone',
       kIFRequired: false,
       kIFType: TkInfoFieldType.Phone.index,

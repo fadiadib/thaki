@@ -15,6 +15,7 @@ import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/login_screen.dart';
 import 'package:thaki/screens/onboarding_screen.dart';
+import 'package:thaki/screens/otp_screen.dart';
 import 'package:thaki/screens/pay_violation_screen.dart';
 import 'package:thaki/screens/purchase_package_screen.dart';
 import 'package:thaki/screens/register_screen.dart';
@@ -86,6 +87,7 @@ class ThankiApp extends StatelessWidget {
           TkLoginScreen.id: (context) => TkLoginScreen(),
           TkRegisterScreen.id: (context) => TkRegisterScreen(),
           TkForgotPasswordScreen.id: (context) => TkForgotPasswordScreen(),
+          TkOTPScreen.id: (context) => TkOTPScreen(),
           TkHomeScreen.id: (context) => TkHomeScreen(),
           TkEditProfileScreen.id: (context) => TkEditProfileScreen(),
           TkAddCardScreen.id: (context) => TkAddCardScreen(),

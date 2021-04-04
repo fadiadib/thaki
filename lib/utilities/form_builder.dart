@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/info_fields.dart';
+import 'package:thaki/widgets/forms/otp_field.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
 
 /// Utility that creates form widgets
@@ -145,6 +146,32 @@ class TkFormBuilder {
           ),
         ),
         createLabel(label: label, noComma: true, forceLabel: true),
+      ],
+    );
+  }
+
+  /// Create a checkbox
+  static Widget createOTP({
+    @required bool enabled,
+    @required String label,
+    @required String initialValue,
+    @required Function onChanged,
+    @required Function validator,
+    @required bool isValidating,
+    @required String errorMessage,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        createLabel(label: label),
+        TkOTPField(
+          enabled: enabled,
+          values: initialValue?.split('') ?? [],
+          onChanged: onChanged,
+          validator: validator,
+          validate: isValidating,
+          errorMessage: errorMessage,
+        ),
       ],
     );
   }

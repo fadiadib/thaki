@@ -3,28 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/screens/login_screen.dart';
-import 'package:thaki/screens/otp_screen.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/form_frame.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 
-class TkForgotPasswordScreen extends StatefulWidget {
-  static const String id = 'reset_screen';
+class TkOTPScreen extends StatefulWidget {
+  static const String id = 'otp_screen';
 
   @override
-  _TkForgotPasswordScreenState createState() => _TkForgotPasswordScreenState();
+  _TkOTPScreenState createState() => _TkOTPScreenState();
 }
 
-class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
+class _TkOTPScreenState extends State<TkOTPScreen> {
   TkInfoFieldsList _fields;
 
   @override
   void initState() {
     super.initState();
 
-    _fields = TkInfoFieldsList.fromJson(data: kResetFieldsJson);
+    _fields = TkInfoFieldsList.fromJson(data: kOTPFieldsJson);
   }
 
   Future<void> _updateModel(TkInfoFieldsList results) async {
@@ -34,41 +33,32 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
     // TODO: Update user model with result from API
     // TODO: If Remember me is checked, save model to prefs
     // TODO: Encrypt password before sending it
-    Navigator.pushNamed(context, TkOTPScreen.id);
+  }
+
+  bool _validatePasswordMatch(TkInfoField confirmField) {
+    // Search for the password field in fields
+    TkInfoField passwordField = _fields.fields.firstWhere(
+        (element) => element.name == kUserPasswordTag,
+        orElse: () => null);
+    if (passwordField != null && passwordField.value == confirmField.value)
+      return true;
+    return false;
   }
 
   Widget _createForm() {
     return TkFormFrame(
-      formTitle: kResetFieldsJson[kFormName],
-      actionTitle: kResetFieldsJson[kFormAction],
+      formTitle: kOTPFieldsJson[kFormName],
+      actionTitle: kOTPFieldsJson[kFormAction],
       buttonTag: kLoginTag,
       fields: _fields,
+      validatePasswordMatch: _validatePasswordMatch,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+        child: Text(kEnterOTPMessage, textAlign: TextAlign.center),
+      ),
       action: (TkInfoFieldsList results) async {
         await _updateModel(results);
       },
-    );
-  }
-
-  Widget _createLoginOptions() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(kBackTo),
-            GestureDetector(
-              onTap: () =>
-                  Navigator.pushReplacementNamed(context, TkLoginScreen.id),
-              child: Text(
-                kLoginExclamation,
-                style: kRegularStyle[kSmallSize].copyWith(
-                  color: kPrimaryColor,
-                ),
-              ),
-            )
-          ],
-        ),
-      ],
     );
   }
 
@@ -89,7 +79,6 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
               children: [
                 TkLogoBox(),
                 _createForm(),
-                _createLoginOptions(),
               ],
             ),
           ],
