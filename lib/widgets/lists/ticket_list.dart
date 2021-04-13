@@ -1,22 +1,45 @@
 import 'package:flutter/material.dart';
+
+import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/widgets/tiles/ticket_tile.dart';
 
 class TkTicketList extends StatelessWidget {
-  TkTicketList({this.tickets, this.onTap});
+  TkTicketList(
+      {this.tickets, this.onTap, this.onDelete, this.ribbon, this.ribbonColor});
   final List<TkTicket> tickets;
   final Function onTap;
+  final Function onDelete;
+  final String ribbon;
+  final Color ribbonColor;
 
-  List<Widget> _getTicketTiles() {
+  List<Widget> _getTicketTiles(BuildContext context) {
     List<Widget> tiles = [];
 
     tiles.add(SizedBox(height: 20));
 
-    for (TkTicket ticket in tickets) {
+    if (tickets != null && tickets.isNotEmpty) {
+      for (TkTicket ticket in tickets) {
+        tiles.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
+            child: TkTicketTile(
+              ticket: ticket,
+              onTap: onTap,
+              onDelete: onDelete,
+              ribbon: ribbon,
+              ribbonColor: ribbonColor,
+            ),
+          ),
+        );
+      }
+    } else {
       tiles.add(
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
-          child: TkTicketTile(ticket: ticket, onTap: onTap),
+          child:
+              Center(child: Text(S.of(context).kNoBookings, style: kHintStyle)),
         ),
       );
     }
@@ -26,6 +49,6 @@ class TkTicketList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: _getTicketTiles());
+    return ListView(children: _getTicketTiles(context));
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 
 class TkSocialLogin extends StatelessWidget {
@@ -6,7 +8,7 @@ class TkSocialLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(kYouCanAlsoLoginWith),
+        Text(S.of(context).kYouCanAlsoLoginWith),
         Container(
           width: 250,
           height: 80,

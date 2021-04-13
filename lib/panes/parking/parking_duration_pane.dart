@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -10,14 +11,13 @@ import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 
 class TkParkingDurationPane extends TkPane {
-  TkParkingDurationPane({onDone})
-      : super(paneTitle: kBookParking, onDone: onDone);
+  TkParkingDurationPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _createConfirmButton(TkBooker booker) {
+  Widget _createConfirmButton(TkBooker booker, BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: TkButton(
-        title: kConfirm,
+        title: S.of(context).kConfirm,
         onPressed: onDone,
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
@@ -25,7 +25,7 @@ class TkParkingDurationPane extends TkPane {
     );
   }
 
-  Widget _createDurationPicker(TkBooker booker) {
+  Widget _createDurationPicker(TkBooker booker, BuildContext context) {
     List<Widget> items = [];
     for (int i = 1; i <= 100; i++) {
       items.add(Text(i.toString()));
@@ -38,7 +38,7 @@ class TkParkingDurationPane extends TkPane {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Text(
-              kParkFor.toUpperCase(),
+              S.of(context).kParkFor.toUpperCase(),
               style: kBoldStyle[kNormalSize],
             ),
           ),
@@ -57,7 +57,7 @@ class TkParkingDurationPane extends TkPane {
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Text(
-              kHours.toUpperCase(),
+              S.of(context).kHours.toUpperCase(),
               style: kBoldStyle[kNormalSize],
             ),
           ),
@@ -76,10 +76,11 @@ class TkParkingDurationPane extends TkPane {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: TkSectionTitle(title: kPickParkingTime),
+                    child:
+                        TkSectionTitle(title: S.of(context).kPickParkingTime),
                   ),
-                  _createDurationPicker(booker),
-                  _createConfirmButton(booker),
+                  _createDurationPicker(booker, context),
+                  _createConfirmButton(booker, context),
                 ],
               );
       },

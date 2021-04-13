@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:thaki/globals/index.dart';
 
+import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/globals/index.dart';
+import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/screens/add_car_screen.dart';
+import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
+import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/lists/car_list.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 import 'package:thaki/widgets/general/section_title.dart';
@@ -30,20 +34,47 @@ class _TkCarsListScreenState extends State<TkCarsListScreen> {
             title: TkLogoBox(),
           ),
           body: TkScaffoldBody(
-            child: ListView(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: TkSectionTitle(
-                    title: kMyCars,
-                    icon: kAddCircleBtnIcon,
-                    action: () =>
-                        Navigator.of(context).pushNamed(TkAddCarScreen.id),
+            child: account.isLoading
+                ? TkProgressIndicator()
+                : ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 20.0),
+                        child: TkSectionTitle(
+                          title: S.of(context).kMyCars,
+                          icon: kAddCircleBtnIcon,
+                          action: () => Navigator.of(context)
+                              .pushNamed(TkAddCarScreen.id),
+                        ),
+                      ),
+                      TkCarList(
+                        cars: account.user.cars,
+                        onTap: (TkCar car) {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  TkAddCarScreen(editMode: true, car: car),
+                            ),
+                          );
+                        },
+                        onDelete: (TkCar car) async {
+                          if (await TkDialogHelper.gShowConfirmationDialog(
+                            context: context,
+                            message: S.of(context).kAreYouSureCar,
+                            type: gDialogType.yesNo,
+                          )) await account.deleteCar(car);
+                        },
+                        onEdit: (TkCar car) async {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  TkAddCarScreen(editMode: true, car: car),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                ),
-                TkCarList(cars: account.user.cars),
-              ],
-            ),
           ),
         );
       },

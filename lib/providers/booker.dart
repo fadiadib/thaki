@@ -4,41 +4,17 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
 
+enum TkBookerError { load, park, cancel, balance }
+
 class TkBooker extends ChangeNotifier {
   // Helpers
   static TkAPIHelper _apis = new TkAPIHelper();
 
   // Model
-  List<TkTicket> _tickets = [];
-  List<TkTicket> get tickets => _tickets;
-  List<TkTicket> get upcomingTickets {
-    List<TkTicket> tickets = [];
-    for (TkTicket ticket in _tickets) {
-      if (ticket.end.isAfter(DateTime.now()) && !ticket.cancelled)
-        tickets.add(ticket);
-    }
-    return tickets;
-  }
-
-  List<TkTicket> get completedTickets {
-    List<TkTicket> tickets = [];
-    for (TkTicket ticket in _tickets) {
-      if (ticket.end.isBefore(DateTime.now()) && !ticket.cancelled)
-        tickets.add(ticket);
-    }
-    return tickets;
-  }
-
-  List<TkTicket> get cancelledTickets {
-    List<TkTicket> tickets = [];
-    for (TkTicket ticket in _tickets) {
-      if (ticket.cancelled) tickets.add(ticket);
-    }
-    return tickets;
-  }
-
-  TkBalance _balance;
-  TkBalance get balance => _balance;
+  Map<String, List<TkTicket>> _tickets = Map();
+  List<TkTicket> get upcomingTickets => _tickets[kUpcomingTicketsTag];
+  List<TkTicket> get completedTickets => _tickets[kCompletedTicketsTag];
+  List<TkTicket> get cancelledTickets => _tickets[kCancelledTicketsTag];
 
   TkCar selectedCar;
 
@@ -77,88 +53,150 @@ class TkBooker extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   // Errors
-  String _loadError;
-  String get loadError => _loadError;
-  String _parkError;
-  String get parkError => _parkError;
-  String _cancelError;
-  String get cancelError => _cancelError;
-  String _balanceError;
-  String get balanceError => _balanceError;
+  Map<TkBookerError, String> _error = Map();
+  Map<TkBookerError, String> get error => _error;
+  String loadQRError;
+  void clearErrors() => _error.clear();
 
-  // TODO: Cancel ticket method
+  Future<bool> loadQR(TkUser user, TkTicket ticket) async {
+    // Start any loading indicators
+    _isLoading = true;
+    loadQRError = null;
+
+    Map result = await _apis.loadQR(user: user, ticket: ticket);
+    if (result[kStatusTag] == kSuccessCode) {
+      if (result[kDataTag]['qr_message'] != null) {
+        loadQRError = result[kDataTag]['qr_message'];
+      } else {
+        // Load user data
+        TkTicket theTicket = _tickets[kUpcomingTicketsTag].firstWhere(
+            (element) => element.id == ticket.id,
+            orElse: () => null);
+        if (theTicket != null) {
+          theTicket.updateModel({
+            kTicketCodeTag: result[kDataTag][kBookingQRData],
+          });
+        } else {
+          theTicket = _tickets[kCompletedTicketsTag].firstWhere(
+              (element) => element.id == ticket.id,
+              orElse: () => null);
+          if (theTicket != null) {
+            theTicket.updateModel({
+              kTicketCodeTag: result[kDataTag][kBookingQRData],
+            });
+          }
+        }
+      }
+    } else {
+      // an error happened
+      loadQRError = result[kErrorMessageTag] ?? kUnknownError;
+    }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (loadQRError == null);
+  }
 
   /// Load user tickets method
   Future<bool> loadTickets(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
+    _error[TkBookerError.load] = null;
 
-    Map result = await _apis.loadTickets(userToken: user.token);
+    Map result = await _apis.loadTickets(user: user);
 
-    _loadError = null;
     _tickets.clear();
+    _tickets[kUpcomingTicketsTag] = [];
+    _tickets[kCancelledTicketsTag] = [];
+    _tickets[kCompletedTicketsTag] = [];
+
     if (result[kStatusTag] == kSuccessCode) {
       // Load user data
-      for (Map data in result[kDataTag]) _tickets.add(TkTicket.fromJson(data));
+      for (String groupTag in [
+        kUpcomingTicketsTag,
+        kCancelledTicketsTag,
+        kCompletedTicketsTag
+      ]) {
+        if (result[kDataTag][kBookingsTag].isNotEmpty) {
+          if (result[kDataTag][kBookingsTag][groupTag] != null) {
+            for (Map ticketData in result[kDataTag][kBookingsTag][groupTag])
+              _tickets[groupTag].add(TkTicket.fromJson(ticketData));
+          }
+        }
+      }
     } else {
       // an error happened
-      _loadError = result[kErrorMessageTag] ?? kUnknownError;
+      _error[TkBookerError.load] = result[kErrorMessageTag] ?? kUnknownError;
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_loadError == null);
+    return (_error[TkBookerError.load] == null);
   }
 
-  /// Load user balance method
-  Future<bool> loadBalance(TkUser user) async {
+  /// Cancel ticket method
+  Future<bool> cancelTicket(TkUser user, TkTicket ticket) async {
     // Start any loading indicators
     _isLoading = true;
+    _error[TkBookerError.cancel] = null;
 
-    Map result = await _apis.loadBalance(userToken: user.token);
+    notifyListeners();
 
-    _balanceError = null;
-    _balance = null;
+    Map result = await _apis.cancelTicket(user: user, ticket: ticket);
     if (result[kStatusTag] == kSuccessCode) {
       // Load user data
-      _balance = TkBalance.fromJson(result[kDataTag]);
+      TkTicket theTicket = _tickets[kUpcomingTicketsTag]
+          .firstWhere((element) => element.id == ticket.id, orElse: () => null);
+      if (theTicket != null) {
+        _tickets[kUpcomingTicketsTag].remove(theTicket);
+        _tickets[kCancelledTicketsTag].add(theTicket);
+      }
     } else {
       // an error happened
-      _balanceError = result[kErrorMessageTag] ?? kUnknownError;
+      _error[TkBookerError.cancel] = result[kErrorMessageTag] ?? kUnknownError;
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_balanceError == null);
+    return (_error[TkBookerError.cancel] == null);
   }
 
   /// Reserve Parking
-  Future<bool> reserveParking() async {
+  Future<bool> reserveParking(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
+    _error[TkBookerError.park] = null;
+
+    notifyListeners();
 
     Map result = await _apis.reserveParking(
-        dateTime: _bookNow ? DateTime.now() : _bookDate,
-        duration: _bookDuration);
+      user: user,
+      car: selectedCar,
+      dateTime: _bookNow ? null : _bookDate,
+      duration: _bookDuration,
+    );
 
     // Clear model
-    _parkError = null;
     _newTicket = null;
-    if (result[kStatusTag] != kSuccessCode) {
+    if (result[kStatusTag] != kSuccessCreationCode) {
       // an _purchaseError happened
-      _parkError = result[kErrorMessageTag] ?? kUnknownError;
+      _error[TkBookerError.park] = result[kErrorMessageTag] ?? kUnknownError;
     } else {
-      _newTicket = TkTicket.fromJson(result[kDataTag][kTicketTag]);
+      _newTicket = TkTicket.fromJson(result[kDataTag][kBookingInfoTag]);
+      _tickets[kUpcomingTicketsTag].add(_newTicket);
+      _tickets[kUpcomingTicketsTag].sort((a, b) => a.start.compareTo(b.start));
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_parkError == null);
+    return (_error[TkBookerError.park] == null);
   }
 }

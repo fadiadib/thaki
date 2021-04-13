@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/widgets/cards/title_text_card.dart';
 
@@ -19,7 +21,7 @@ class TkSuccessCard extends StatelessWidget {
           ),
         ),
         TkTitleTextCard(
-          title: result ? kSuccess : kFailure,
+          title: result ? S.of(context).kSuccess : S.of(context).kFailure,
           message: message,
           titleColor: result ? kPrimaryColor : kErrorTextColor,
         ),

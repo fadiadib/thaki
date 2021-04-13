@@ -44,6 +44,12 @@ Map<String, dynamic> kRegisterFieldsJson = {
       kIFType: TkInfoFieldType.Email.index,
     },
     {
+      kIFName: kUserAgeTag,
+      kIFTitle: 'Age',
+      kIFRequired: true,
+      kIFType: TkInfoFieldType.Double.index,
+    },
+    {
       kIFName: kUserPhoneTag,
       kIFTitle: 'Phone',
       kIFRequired: true,
@@ -119,6 +125,12 @@ Map<String, dynamic> kEditProfileFieldsJson = {
       kIFType: TkInfoFieldType.Phone.index,
     },
     {
+      kIFName: kUserAgeTag,
+      kIFTitle: 'Age',
+      kIFRequired: true,
+      kIFType: TkInfoFieldType.Double.index,
+    },
+    {
       kIFName: kUserPasswordTag,
       kIFTitle: 'Password',
       kIFRequired: false,
@@ -140,19 +152,19 @@ Map<String, dynamic> kResidentPermitFieldsJson = {
     {
       kIFName: kUserNameTag,
       kIFTitle: 'Full Name',
-      kIFRequired: false,
+      kIFRequired: true,
       kIFType: TkInfoFieldType.AlphaNum.index,
     },
     {
       kIFName: kUserEmailTag,
       kIFTitle: 'Email',
-      kIFRequired: false,
+      kIFRequired: true,
       kIFType: TkInfoFieldType.Email.index,
     },
     {
       kIFName: kUserPhoneTag,
       kIFTitle: 'Phone',
-      kIFRequired: false,
+      kIFRequired: true,
       kIFType: TkInfoFieldType.Phone.index,
     },
   ]

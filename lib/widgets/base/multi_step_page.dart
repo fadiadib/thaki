@@ -15,7 +15,7 @@ class TkMultiStepPageState extends State<TkMultiStepPage> {
   List<TkPane> _panes = [];
 
   /// Returns the current pane title
-  String _getPaneTitle() => _panes[_paneIndex].title;
+  // String _getPaneTitle() => _panes[_paneIndex].title;
 
   /// Loads the previous pane in the list
   Future<bool> _loadPreviousPane() async {

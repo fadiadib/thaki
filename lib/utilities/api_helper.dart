@@ -5,47 +5,31 @@ import 'package:thaki/models/index.dart';
 
 import 'package:thaki/utilities/network_helper.dart';
 
-/// Thank API methods return json maps
+/// Thaki API methods return json maps
 class TkAPIHelper {
   static TkNetworkHelper _network = new TkNetworkHelper();
 
+  ///////////////////////// GENERAL /////////////////////////
   /// Check server API
   /// Returns user_token and success or failure
-  Future<Map> checkServer({
-    @required String platform,
-    @required String version,
-  }) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: 'Server error',
-        kDataTag: {
-          kUpgradeTag: false,
-        },
-      };
-    }
-    //////////////////////////////////////////////////////////
-
+  Future<Map> checkServer(
+      {@required String platform, @required String version}) async {
     return await _network.getData(
-      url: kCheckAPI,
-      params: {
-        kVersionTag: version,
-        kPlatformTag: platform,
-      },
+      url: kCheckAPI + '?$kVersionTag=$version&$kPlatformTag=$platform',
     );
   }
 
-  /// User register API
-  Future<Map> register({
-    @required TkUser user,
-    @required String fbToken,
-  }) async {
-    print(user.toJson());
+  /// Load disclaimer API
+  Future<Map> loadDisclaimer(
+      {@required TkUser user, @required String type}) async {
+    return await _network.getData(
+      url: kLoadDisclaimerAPI + '?$kDisclaimerType=$type',
+      headers: user.toHeader(),
+    );
+  }
 
+  /// Load states API
+  Future<Map> loadStates({@required TkUser user}) async {
     //////////////////////////////////////////////////////////
     // Temporary code for debug purposes
     if (kDemoMode) {
@@ -53,431 +37,295 @@ class TkAPIHelper {
 
       return {
         kStatusTag: kSuccessCode,
-        kErrorMessageTag: '',
+        kErrorMessageTag: 'Cannot pay',
         kDataTag: {
-          kUserTokenTag: '12345',
-          kUserNameTag: 'John Doe',
-          kUserEmailTag: 'john.doe@email.com',
-          kUserPhoneTag: '01200000000',
-          kUserCarsTag: [
+          kStatesTag: [
             {
-              kCarIdTag: 0,
-              kCarNameTag: 'My First Car',
-              kCarLicenseTag: 'ABC 123',
-              kCarMakeTag: 'BMW',
-              kCarModelTag: '116i',
-              kCarStateTag: 'Saudi Arabia',
-              kCarPreferredTag: true,
+              'id': 1,
+              'name_en': 'Saudi Arabia',
+              'name_ar': 'المملكة العربية السعودية'
             },
+            {'id': 2, 'name_en': 'Bahrain', 'name_ar': 'االبحرين'},
+            {'id': 3, 'name_en': 'Kuwait', 'name_ar': 'الكويت'},
+            {'id': 4, 'name_en': 'Oman', 'name_ar': 'عُمان'},
+            {'id': 5, 'name_en': 'Qatar', 'name_ar': 'قطر'},
             {
-              kCarIdTag: 1,
-              kCarNameTag: 'My Second Car',
-              kCarLicenseTag: 'DEF 456',
-              kCarMakeTag: 'Mercedes',
-              kCarModelTag: 'C Class',
-              kCarStateTag: 'Qatar',
-              kCarPreferredTag: false,
+              'id': 6,
+              'name_en': 'United Arab Emirates',
+              'name_ar': 'لإمارات العربية المتحدة'
             },
-          ],
-          kUserCardsTag: [
-            {
-              kCardIdTag: 0,
-              kCardNameTag: 'My Visa',
-              kCardHolderTag: 'John C. Doe',
-              kCardNumberTag: '1234567890123456',
-              kCardExpiryTag: '11/23',
-              kCardCVVTag: '123',
-              kCardPreferredTag: true,
-              kCardTypeTag: 0,
-              kCardBrandPathTag:
-                  'https://www.pngfind.com/pngs/m/81-810053_visa-logo-png-transparent-svg-vector-freebie-supply.png',
-            },
-            {
-              kCardIdTag: 1,
-              kCardNameTag: 'My Mastercard',
-              kCardHolderTag: 'Hane Doe',
-              kCardNumberTag: '0987654321098765',
-              kCardExpiryTag: '12/26',
-              kCardCVVTag: '321',
-              kCardPreferredTag: false,
-              kCardTypeTag: 1,
-              kCardBrandPathTag:
-                  'https://w7.pngwing.com/pngs/924/607/png-transparent-mastercard-credit-card-business-debit-card-logo-mastercard-text-service-orange.png',
-            },
+            {'id': 7, 'name_en': 'Other', 'name_ar': 'أخرى'},
           ]
-        },
+        }
       };
     }
     //////////////////////////////////////////////////////////
 
     return await _network.getData(
+      url: kLoadStates,
+      headers: user.toHeader(),
+    );
+  }
+
+  /////////////////////////////////////////////////////////////
+  /////////////////////////// USER  ///////////////////////////
+  /// User register API
+  Future<Map> register({@required TkUser user}) async {
+    return await _network.postData(
       url: kRegisterAPI,
-      params: {
-        kUserTag: user.toJson(),
-        kUserFbTokenTag: fbToken,
-      },
+      params: user.toJson(),
+      headers: user.toHeader(),
     );
   }
 
   /// User login API
   /// Returns user_token and success or failure
-  Future<Map> login({
-    @required TkUser user,
-    @required String fbToken,
-  }) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: '',
-        kDataTag: {
-          kUserTokenTag: '12345',
-          kUserNameTag: 'John Doe',
-          kUserEmailTag: 'john.doe@email.com',
-          kUserPhoneTag: '01200000000',
-          kUserCarsTag: [
-            {
-              kCarIdTag: 0,
-              kCarNameTag: 'My First Car',
-              kCarLicenseTag: 'ABC 123',
-              kCarMakeTag: 'BMW',
-              kCarModelTag: '116i',
-              kCarStateTag: 'Saudi Arabia',
-              kCarPreferredTag: true,
-            },
-            {
-              kCarIdTag: 1,
-              kCarNameTag: 'My Second Car',
-              kCarLicenseTag: 'DEF 456',
-              kCarMakeTag: 'Mercedes',
-              kCarModelTag: 'C Class',
-              kCarStateTag: 'Qatar',
-              kCarPreferredTag: false,
-            },
-          ],
-          kUserCardsTag: [
-            {
-              kCardIdTag: 0,
-              kCardNameTag: 'My Visa',
-              kCardHolderTag: 'John C. Doe',
-              kCardNumberTag: '1234567890123456',
-              kCardExpiryTag: '11/23',
-              kCardCVVTag: '123',
-              kCardPreferredTag: true,
-              kCardTypeTag: 0,
-              kCardBrandPathTag:
-                  'https://www.pngfind.com/pngs/m/81-810053_visa-logo-png-transparent-svg-vector-freebie-supply.png',
-            },
-            {
-              kCardIdTag: 1,
-              kCardNameTag: 'My Mastercard',
-              kCardHolderTag: 'Hane Doe',
-              kCardNumberTag: '0987654321098765',
-              kCardExpiryTag: '12/26',
-              kCardCVVTag: '321',
-              kCardPreferredTag: false,
-              kCardTypeTag: 1,
-              kCardBrandPathTag:
-                  'https://w7.pngwing.com/pngs/924/607/png-transparent-mastercard-credit-card-business-debit-card-logo-mastercard-text-service-orange.png',
-            },
-          ]
-        },
-      };
-    }
-    //////////////////////////////////////////////////////////
-
-    return await _network.getData(
+  Future<Map> login({@required TkUser user}) async {
+    return await _network.postData(
       url: kLoginAPI,
-      params: {
-        kUserTag: user.toLoginJson(),
-        kUserFbTokenTag: fbToken,
-      },
+      params: user.toLoginJson(),
+      headers: user.toHeader(),
+    );
+  }
+
+  /// User logout API
+  Future<Map> logout({@required TkUser user}) async {
+    return await _network.postData(
+      url: kLogoutAPI,
+      headers: user.toHeader(),
     );
   }
 
   /// User load profile API
-  /// Returns user_token and success or failure
-  Future<Map> load({
-    @required TkUser user,
-    @required String fbToken,
-  }) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: '',
-        kDataTag: {
-          kUserTokenTag: '12345',
-          kUserNameTag: 'John Doe',
-          kUserEmailTag: 'john.doe@email.com',
-          kUserPhoneTag: '01200000000',
-          kUserCarsTag: [
-            {
-              kCarIdTag: 0,
-              kCarNameTag: 'My First Car',
-              kCarLicenseTag: 'ABC 123',
-              kCarMakeTag: 'BMW',
-              kCarModelTag: '116i',
-              kCarStateTag: 'Saudi Arabia',
-              kCarPreferredTag: true,
-            },
-            {
-              kCarIdTag: 1,
-              kCarNameTag: 'My Second Car',
-              kCarLicenseTag: 'DEF 456',
-              kCarMakeTag: 'Mercedes',
-              kCarModelTag: 'C Class',
-              kCarStateTag: 'Qatar',
-              kCarPreferredTag: false,
-            },
-          ],
-          kUserCardsTag: [
-            {
-              kCardIdTag: 0,
-              kCardNameTag: 'My Visa',
-              kCardHolderTag: 'John C. Doe',
-              kCardNumberTag: '1234567890123456',
-              kCardExpiryTag: '11/23',
-              kCardCVVTag: '123',
-              kCardPreferredTag: true,
-              kCardTypeTag: 0,
-              kCardBrandPathTag:
-                  'https://www.pngfind.com/pngs/m/81-810053_visa-logo-png-transparent-svg-vector-freebie-supply.png',
-            },
-            {
-              kCardIdTag: 1,
-              kCardNameTag: 'My Mastercard',
-              kCardHolderTag: 'Hane Doe',
-              kCardNumberTag: '0987654321098765',
-              kCardExpiryTag: '12/26',
-              kCardCVVTag: '321',
-              kCardPreferredTag: false,
-              kCardTypeTag: 1,
-              kCardBrandPathTag:
-                  'https://w7.pngwing.com/pngs/924/607/png-transparent-mastercard-credit-card-business-debit-card-logo-mastercard-text-service-orange.png',
-            },
-          ]
-        },
-      };
-    }
-    //////////////////////////////////////////////////////////
-
-    return await _network.getData(
+  Future<Map> load({@required TkUser user}) async {
+    return await _network.postData(
       url: KLoadAPI,
-      params: {
-        kUserTokenTag: user.token,
-        kUserFbTokenTag: fbToken,
-      },
+      headers: user.toHeader(),
     );
   }
 
-  /// Load tickets API
-  Future<Map> loadTickets({
-    @required String userToken,
-  }) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
+  /// User update profile API
+  Future<Map> edit({@required TkUser user}) async {
+    return await _network.putData(
+      url: kEditAPI,
+      params: user.toJson(),
+      headers: user.toHeader(),
+    );
+  }
 
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: '',
-        kDataTag: [
-          {
-            kTicketIdTag: 0,
-            kTicketNameTag: 'Ticket 1',
-            kTicketStartTag: '2021-03-01 09:30:00',
-            kTicketDurationTag: '20',
-            kCarLicenseTag: 'ABC 123',
-            kCarMakeTag: 'BMW',
-            kCarModelTag: '116i',
-          },
-          {
-            kTicketIdTag: 1,
-            kTicketNameTag: 'Ticket 2',
-            kTicketStartTag: '2021-05-01 10:00:00',
-            kTicketDurationTag: '10',
-            kTicketShowCodeTag: true,
-            kTicketCodeTag: 'Hello World',
-            kCarLicenseTag: 'DEF 456',
-            kCarMakeTag: 'Mercedes',
-            kCarModelTag: 'C 200',
-          },
-          {
-            kTicketIdTag: 2,
-            kTicketNameTag: 'Ticket 3',
-            kTicketStartTag: '2021-05-01 10:00:00',
-            kTicketDurationTag: '10',
-            kTicketCancelledTag: true,
-            kCarLicenseTag: 'DEF 456',
-            kCarMakeTag: 'Mercedes',
-            kCarModelTag: 'C 200',
-          },
-        ],
-      };
-    }
-    //////////////////////////////////////////////////////////
-
+  /////////////////////////////////////////////////////////////
+  /////////////////////////// CARS  ///////////////////////////
+  /// Get user cars API
+  Future<Map> loadCars({@required TkUser user}) async {
     return await _network.getData(
-      url: kLoadTicketsAPI,
-      params: {
-        kUserTokenTag: userToken,
-      },
+      url: kLoadCarsAPI,
+      headers: user.toHeader(),
     );
   }
 
-  /// Load user balance API
-  Future<Map> loadBalance({
-    @required String userToken,
-  }) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
+  /// Add car API
+  Future<Map> addCar({@required TkUser user, @required TkCar car}) async {
+    return await _network.postData(
+      url: kAddCarAPI,
+      params: car.toJson(),
+      headers: user.toHeader(),
+    );
+  }
 
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: '',
-        kDataTag: {
-          kBalancePointsTag: 30,
-          kBalanceValidityTag: '2022-12-31 00:00:00'
-        },
-      };
-    }
-    //////////////////////////////////////////////////////////
+  /// Delete car API
+  Future<Map> deleteCar({@required TkUser user, @required TkCar car}) async {
+    return await _network.deleteData(
+      url: kDeleteCarAPI + '/${car.id}',
+      headers: user.toHeader(),
+    );
+  }
 
+  /// Update car API
+  Future<Map> updateCar({@required TkUser user, @required TkCar car}) async {
+    return await _network.putData(
+      url: kUpdateCarAPI + '/${car.id}',
+      params: car.toJson(),
+      headers: user.toHeader(),
+    );
+  }
+
+  /////////////////////////////////////////////////////////////
+  /////////////////////////// CARDS ///////////////////////////
+  /// Get user cards API
+  Future<Map> loadCards({@required TkUser user}) async {
     return await _network.getData(
-      url: kLoadBalanceAPI,
-      params: {
-        kUserTokenTag: userToken,
-      },
+      url: kLoadCardsAPI,
+      headers: user.toHeader(),
     );
   }
 
+  /// Add card API
+  Future<Map> addCard({@required TkUser user, @required TkCredit card}) async {
+    return await _network.postData(
+      url: kAddCardAPI,
+      params: card.toJson(),
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Delete card API
+  Future<Map> deleteCard(
+      {@required TkUser user, @required TkCredit card}) async {
+    return await _network.deleteData(
+      url: kDeleteCardAPI + '/${card.id}',
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Update card API
+  Future<Map> updateCard(
+      {@required TkUser user, @required TkCredit card}) async {
+    return await _network.putData(
+      url: kUpdateCardAPI + '/${card.id}',
+      params: card.toJson(),
+      headers: user.toHeader(),
+    );
+  }
+
+  /////////////////////////////////////////////////////////////
+  ////////////////////////// Packages /////////////////////////
   /// Load packages API
-  Future<Map> loadPackages() async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: '',
-        kDataTag: [
-          {
-            kPackagePointsTag: 30,
-            kPackagePriceTag: 60.0,
-            kPackageValidityTag: 30,
-            kPackageDetailsTag:
-                'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras mattis consectetur purus sit amet fermentum.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. '
-          },
-          {
-            kPackagePointsTag: 60,
-            kPackagePriceTag: 120.0,
-            kPackageValidityTag: 30,
-            kPackageDetailsTag:
-                'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras mattis consectetur purus sit amet fermentum.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. '
-          },
-          {
-            kPackagePointsTag: 120,
-            kPackagePriceTag: 240.0,
-            kPackageValidityTag: 30,
-            kPackageDetailsTag:
-                'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cras mattis consectetur purus sit amet fermentum.\n\nCum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras justo odio, dapibus ac facilisis in, egestas eget quam. '
-          }
-        ],
-      };
-    }
-    //////////////////////////////////////////////////////////
-
+  Future<Map> loadPackages({@required TkUser user}) async {
     return await _network.getData(
       url: kLoadPackagesAPI,
-      params: {},
+      headers: user.toHeader(),
     );
   }
 
   /// Purchase package API
-  Future<Map> purchasePackage({TkPackage package, TkCredit card}) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: 'Cannot purchase package',
-        kDataTag: {},
-      };
-    }
-    //////////////////////////////////////////////////////////
-
-    return await _network.getData(
+  Future<Map> purchasePackage({
+    @required TkUser user,
+    @required TkPackage package,
+    @required TkCredit card,
+    @required String cvv,
+  }) async {
+    return await _network.postData(
       url: kPurchasePackageAPI,
       params: {
-        kPackageIdTag: package.id,
-        kCardIdTag: card.id,
+        kPackagePkgIdTag: package.id.toString(),
+        kCardCardIdTag: card.id.toString(),
+        kCardCVVTag: cvv,
       },
+      headers: user.toHeader(),
     );
   }
 
-  /// Load disclaimer API
-  Future<Map> loadPermitDisclaimer() async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: '',
-        kDataTag: {
-          kPermitDisclaimerTag:
-              'Donec ullamcorper nulla non metus auctor fringilla. Etiam porta sem malesuada magna mollis euismod. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Maecenas sed diam eget risus varius blandit sit amet non magna. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas sed diam eget risus varius blandit sit amet non magna.\n\nCras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.',
-        },
-      };
-    }
-    //////////////////////////////////////////////////////////
-
+  /// Load user balance API
+  Future<Map> loadUserPackages({@required TkUser user}) async {
     return await _network.getData(
-      url: kLoadPermitDisclaimerAPI,
-      params: {},
+      url: kLoadUserPackagesAPI,
+      headers: user.toHeader(),
     );
   }
 
+  /////////////////////////////////////////////////////////////
+  /////////////////////// SUBSCRIPTIONS ///////////////////////
   /// Apply for resident permit API
-  Future<Map> applyResidentPermit(TkPermit permit) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: 'Cannot purchase package',
-        kDataTag: {},
-      };
-    }
-    //////////////////////////////////////////////////////////
-
-    return await _network.getData(
-      url: kApplyResidentPermitAPI,
+  Future<Map> applyForSubscription(
+      {@required TkUser user, @required TkPermit permit}) async {
+    return await _network.postData(
+      url: kApplySubscriptionPermitAPI,
       params: {
-        kPermitName: permit.name,
-        kPermitPhone: permit.phone,
-        kPermitEmail: permit.email,
-        kPermitsDocuments: permit.documents,
+        kSubscriberName: permit.name,
+        kSubscriberPhone: permit.phone,
+        kSubscriberEmail: permit.email,
       },
+      headers: user.toHeader(),
+      files: permit.toFiles(),
     );
   }
 
+  /// Load all subscriptions API
+  Future<Map> loadSubscriptions({@required TkUser user}) async {
+    return await _network.getData(
+      url: kLoadSubscriptions,
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Load all subscriptions API
+  Future<Map> buySubscriptions(
+      {@required TkUser user,
+      @required TkSubscription subscription,
+      @required TkCredit card,
+      @required String cvv}) async {
+    return await _network.postData(
+      url: kBuySubscription,
+      params: {
+        kSubscriptionIdIdTag: subscription.id.toString(),
+        kCardCardIdTag: card.id.toString(),
+        kCardCVVTag: cvv,
+      },
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Load user subscriptions API
+  Future<Map> loadUserSubscriptions({@required TkUser user}) async {
+    return await _network.getData(
+      url: kLoadUserSubscriptions,
+      headers: user.toHeader(),
+    );
+  }
+
+  /////////////////////////////////////////////////////////////
+  ////////////////////////// TICKETS //////////////////////////
+  /// Load tickets API
+  Future<Map> loadTickets({@required TkUser user}) async {
+    return await _network.getData(
+      url: kLoadTicketsAPI,
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Load tickets QR
+  Future<Map> loadQR({@required TkUser user, @required TkTicket ticket}) async {
+    return await _network.postData(
+      url: kGetParkingQRAPI,
+      params: {
+        kBookingIdTag: ticket.id.toString(),
+        kBookingQRData: '1',
+      },
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Cancel ticket
+  Future<Map> cancelTicket(
+      {@required TkUser user, @required TkTicket ticket}) async {
+    return await _network.deleteData(
+      url: kCancelTicketAPI + '/${ticket.id}',
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Reserve parking API
+  Future<Map> reserveParking(
+      {@required TkUser user,
+      @required TkCar car,
+      @required DateTime dateTime,
+      @required int duration}) async {
+    Map<String, dynamic> params = {
+      kCarIdIdTad: car.id.toString(),
+      kTicketDurationTag: duration.toString(),
+    };
+    if (dateTime != null)
+      params[kTicketStartTag] = dateTime.toString().split('.').first;
+
+    return await _network.postData(
+      url: kReserveParkingAPI,
+      params: params,
+      headers: user.toHeader(),
+    );
+  }
+
+  /////////////////////////////////////////////////////////////
+  ///////////////////////// VIOLATIONS ////////////////////////
   /// Load violations API
   Future<Map> loadViolations(String car) async {
     //////////////////////////////////////////////////////////
@@ -520,14 +368,16 @@ class TkAPIHelper {
     return await _network.getData(
       url: kLoadViolationsAPI,
       params: {
-        kCarLicensePlate: car,
+        kCarPlateENTag: car,
       },
     );
   }
 
   /// Purchase package API
   Future<Map> payViolations(
-      {List<TkViolation> violations, TkCredit card}) async {
+      {@required List<TkViolation> violations,
+      @required TkCredit card,
+      @required String cvv}) async {
     //////////////////////////////////////////////////////////
     // Temporary code for debug purposes
     if (kDemoMode) {
@@ -549,42 +399,9 @@ class TkAPIHelper {
     return await _network.getData(
       url: kPayViolationsAPI,
       params: {
-        kViolationIdTag: ids,
-        kCardIdTag: card.id,
-      },
-    );
-  }
-
-  /// Reserve parking API
-  Future<Map> reserveParking({DateTime dateTime, int duration}) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: '',
-        kDataTag: {
-          kTicketTag: {
-            kTicketIdTag: 0,
-            kTicketNameTag: 'My Test Ticket',
-            kTicketStartTag: '2021-03-12 00:00:00',
-            kTicketDurationTag: '10',
-            kCarLicenseTag: '123 ABC',
-            kCarMakeTag: 'BMW',
-            kCarModelTag: '116I',
-          }
-        },
-      };
-    }
-    //////////////////////////////////////////////////////////
-
-    return await _network.getData(
-      url: kReserveParkingAPI,
-      params: {
-        kTicketStartTag: dateTime.toString(),
-        kTicketDurationTag: duration,
+        kViolationIdsTag: ids,
+        kCardCardIdTag: card.id,
+        kCardCVVTag: cvv,
       },
     );
   }

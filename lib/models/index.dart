@@ -10,3 +10,5 @@ export 'package.dart';
 export 'permit.dart';
 export 'violation.dart';
 export 'parking_type.dart';
+export 'subscription.dart';
+export 'state.dart';

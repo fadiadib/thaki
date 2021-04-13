@@ -9,7 +9,7 @@ class TkNavIconData {
     this.disabled = false,
   });
 
-  final IconData icon;
+  final ImageProvider icon;
   final bool disabled;
 }
 

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/payer.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
+import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/lists/violation_list.dart';
 
 class TkViolationListPane extends TkPane {
-  TkViolationListPane({onDone})
-      : super(paneTitle: kPayViolations, onDone: onDone);
+  TkViolationListPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
   Widget _getViolationList(TkPayer payer) {
     return TkViolationList(
@@ -21,15 +22,17 @@ class TkViolationListPane extends TkPane {
         onTap: (TkViolation violation) => payer.toggleSelection(violation));
   }
 
-  Widget _getTotalFine(TkPayer payer) {
+  Widget _getTotalFine(TkPayer payer, BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(kTotal, style: kBoldStyle[kBigSize]),
+          Text(S.of(context).kTotal, style: kBoldStyle[kBigSize]),
           Text(
-            kSAR + ' ' + payer.getSelectedViolationsFine().toString(),
+            S.of(context).kSAR +
+                ' ' +
+                payer.getSelectedViolationsFine().toString(),
             style: kBoldStyle[kBigSize],
           ),
         ],
@@ -37,31 +40,18 @@ class TkViolationListPane extends TkPane {
     );
   }
 
-  Widget _getPaySelectionButton(TkPayer payer) {
+  Widget _getPaySelectionButton(TkPayer payer, BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: TkButton(
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
-        title: kPaySelected,
+        title: S.of(context).kPaySelected,
         onPressed: () {
-          if (payer.validateViolations()) onDone();
+          if (payer.validateViolations(context)) onDone();
         },
       ),
     );
-  }
-
-  Widget _getErrorMessage(TkPayer payer) {
-    if (payer.validationViolationsError != null)
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-        child: Text(
-          payer.validationViolationsError,
-          style: kErrorStyle,
-          textAlign: TextAlign.center,
-        ),
-      );
-    return Container();
   }
 
   @override
@@ -74,12 +64,13 @@ class TkViolationListPane extends TkPane {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: TkSectionTitle(title: kCurrentViolations),
+                    child:
+                        TkSectionTitle(title: S.of(context).kCurrentViolations),
                   ),
                   _getViolationList(payer),
-                  _getTotalFine(payer),
-                  _getPaySelectionButton(payer),
-                  _getErrorMessage(payer),
+                  _getTotalFine(payer, context),
+                  _getPaySelectionButton(payer, context),
+                  TkError(message: payer.validationViolationsError),
                 ],
               );
       },

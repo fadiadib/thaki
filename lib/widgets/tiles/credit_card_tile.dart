@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/credit.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
 
 class TkCreditCardTile extends StatelessWidget {
-  TkCreditCardTile({@required this.creditCard, this.onTap, this.isSelected});
+  TkCreditCardTile(
+      {@required this.creditCard,
+      this.onTap,
+      this.isSelected,
+      this.onEdit,
+      this.onDelete});
   final TkCredit creditCard;
   final Function onTap;
+  final Function onDelete;
+  final Function onEdit;
   final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
     return TkSlidableTile(
+      onDelete: onDelete == null ? null : () => onDelete(creditCard),
+      onEdit: onEdit == null ? null : () => onEdit(creditCard),
       child: GestureDetector(
         onTap: () {
-          if (onTap != null) onTap();
+          if (onTap != null) onTap(creditCard);
         },
         child: Container(
           height: kTileHeight,
@@ -53,7 +64,7 @@ class TkCreditCardTile extends StatelessWidget {
                             .copyWith(color: kBlackColor),
                       ),
                     ),
-                    Text(kCardExpires + ' ' + creditCard.expiry),
+                    Text(S.of(context).kCardExpires + ' ' + creditCard.expiry),
                   ],
                 ),
 

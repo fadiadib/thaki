@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:thaki/globals/index.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
 
@@ -17,6 +19,13 @@ class TkPayer extends ChangeNotifier {
     _selectedCar = car;
     _validationCarError = null;
 
+    notifyListeners();
+  }
+
+  String _cvv;
+  String get cvv => _cvv;
+  set cvv(String value) {
+    _cvv = value;
     notifyListeners();
   }
 
@@ -46,6 +55,18 @@ class TkPayer extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Validation
+  String _validationPaymentError;
+  String get validationPaymentError => _validationPaymentError;
+  bool validatePayment(BuildContext context) {
+    if (_selectedCard == null) {
+      _validationPaymentError = S.of(context).kSelectPaymentToProceed;
+      notifyListeners();
+      return false;
+    }
+    return true;
+  }
+
   double getSelectedViolationsFine() {
     double fine = 0;
     for (TkViolation violation in _selectedViolations) {
@@ -67,20 +88,9 @@ class TkPayer extends ChangeNotifier {
   // Validation
   String _validationViolationsError;
   String get validationViolationsError => _validationViolationsError;
-  bool validateViolations() {
+  bool validateViolations(BuildContext context) {
     if (_selectedViolations == null || _selectedViolations.isEmpty) {
-      _validationViolationsError = kSelectViolationToProceed;
-      notifyListeners();
-      return false;
-    }
-    return true;
-  }
-
-  String _validationPaymentError;
-  String get validationPaymentError => _validationPaymentError;
-  bool validatePayment() {
-    if (_selectedCard == null) {
-      _validationPaymentError = kSelectPaymentToProceed;
+      _validationViolationsError = S.of(context).kSelectViolationToProceed;
       notifyListeners();
       return false;
     }
@@ -89,9 +99,9 @@ class TkPayer extends ChangeNotifier {
 
   String _validationCarError;
   String get validationCarError => _validationCarError;
-  bool validateCar() {
+  bool validateCar(BuildContext context) {
     if (_selectedCar == null || _selectedCar.isEmpty) {
-      _validationCarError = kSelectCardToProceed;
+      _validationCarError = S.of(context).kSelectCardToProceed;
       notifyListeners();
       return false;
     }
@@ -132,7 +142,7 @@ class TkPayer extends ChangeNotifier {
     _isLoading = true;
 
     Map result = await _apis.payViolations(
-        violations: selectedViolations, card: selectedCard);
+        violations: selectedViolations, card: selectedCard, cvv: _cvv);
 
     // Clear model
     _payError = null;

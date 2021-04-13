@@ -1,26 +1,29 @@
+import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
 
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/generated/l10n.dart';
 
 class TkDateTimeHelper {
   /// Translates the week day number into the weekday
   /// string
-  static String translateWeekday(int weekday, {bool shorten = true}) {
+  static String translateWeekday(BuildContext context, int weekday,
+      {bool shorten = true}) {
     switch (weekday) {
       case 1:
-        return shorten ? kMon : kMonday;
+        return shorten ? S.of(context).kMon : S.of(context).kMonday;
       case 2:
-        return shorten ? kTue : kTuesday;
+        return shorten ? S.of(context).kTue : S.of(context).kTuesday;
       case 3:
-        return shorten ? kWed : kWednesday;
+        return shorten ? S.of(context).kWed : S.of(context).kWednesday;
       case 4:
-        return shorten ? kThur : kThursday;
+        return shorten ? S.of(context).kThur : S.of(context).kThursday;
       case 5:
-        return shorten ? kFri : kFriday;
+        return shorten ? S.of(context).kFri : S.of(context).kFriday;
       case 6:
-        return shorten ? kSat : kSaturday;
+        return shorten ? S.of(context).kSat : S.of(context).kSaturday;
       case 7:
-        return shorten ? kSun : kSunday;
+        return shorten ? S.of(context).kSun : S.of(context).kSunday;
       default:
         return kUnknown;
     }
@@ -49,7 +52,7 @@ class TkDateTimeHelper {
 
   /// Function that takes a string date and returns
   /// the weekday and the formatted date
-  static String getWeekdayString(String date) {
+  static String getWeekdayString(BuildContext context, String date) {
     if (date == null) return date;
 
     DateTime formatted = DateTime.tryParse(date);
@@ -63,7 +66,9 @@ class TkDateTimeHelper {
     try {
       date = date.split(' ')[0].split('-').reversed.join('/');
 
-      return translateWeekday(formatted.weekday) + kWeekDaySep + date;
+      return translateWeekday(context, formatted.weekday) +
+          S.of(context).kWeekDaySep +
+          date;
     } catch (e) {
       if (kVerboseNetworkMessages) print(e);
       return date;
@@ -98,7 +103,7 @@ class TkDateTimeHelper {
 
   /// Function that takes a string time and
   /// removes the seconds and adds am and pm
-  static String formatTime(String time) {
+  static String formatTime(BuildContext context, String time) {
     if (time == null) return time;
     time = time.split(' ').last;
 
@@ -114,11 +119,11 @@ class TkDateTimeHelper {
 
     if (timeComponents[0] < 12) {
       // AM
-      suffix = kAM;
+      suffix = S.of(context).kAM;
       if (timeComponents[0] == 0) timeComponents[0] = 12;
     } else {
       // PM
-      suffix = kPM;
+      suffix = S.of(context).kPM;
       if (timeComponents[0] != 12) timeComponents[0] -= 12;
     }
 

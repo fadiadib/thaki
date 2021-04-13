@@ -1,25 +1,16 @@
 /// Form fields types, add to it any
 /// new type you have in your form
 enum TkFormField {
-  firstName,
-  lastName,
-  email,
-  phone,
-  password,
-  cPassword,
-  gender,
-  birthDate,
-  weight,
-  height,
-  targetWeight,
-  objective,
-  barcode,
-  startDate,
-  endDate,
-  payment,
-  code,
-  time,
-  date
+  carName,
+  carPlateEN,
+  carPlateAR,
+  carState,
+  carModel,
+  carMake,
+  cardHolder,
+  cardNumber,
+  cardExpiry,
+  cardCVV,
 }
 
 /// Mixin class to implement form validations

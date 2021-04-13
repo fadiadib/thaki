@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/booker.dart';
@@ -12,13 +13,15 @@ import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/lists/parking_type_list.dart';
 
 class TkParkingTimePane extends TkPane {
-  TkParkingTimePane({onDone}) : super(paneTitle: kBookParking, onDone: onDone);
+  TkParkingTimePane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _createBookParkingButton(TkBooker booker) {
+  Widget _createBookParkingButton(TkBooker booker, BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: TkButton(
-        title: booker.bookNow ? kBookParkingNow : kPickParkingTime,
+        title: booker.bookNow
+            ? S.of(context).kBookParkingNow
+            : S.of(context).kPickParkingTime,
         onPressed: () {
           if (booker.bookNow || booker.bookDate != null) onDone();
         },
@@ -45,10 +48,11 @@ class TkParkingTimePane extends TkPane {
               allowFuture: true,
               allowPast: false,
               validate: true,
-              hintText: kSelectDateTime,
+              hintText: S.of(context).kSelectDateTime,
               validator: () => booker.bookDate != null,
               onChanged: (value) => booker.bookDate = value,
-              errorMessage: kPleaseChoose + kDateTime,
+              errorMessage:
+                  S.of(context).kPleaseChoose + S.of(context).kDateTime,
             ),
           ),
       ],
@@ -65,10 +69,11 @@ class TkParkingTimePane extends TkPane {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: TkSectionTitle(title: kPickParkingTime),
+                    child:
+                        TkSectionTitle(title: S.of(context).kPickParkingTime),
                   ),
                   _createParkingList(booker, context),
-                  _createBookParkingButton(booker),
+                  _createBookParkingButton(booker, context),
                 ],
               );
       },

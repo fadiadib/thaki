@@ -4,23 +4,25 @@ import 'package:thaki/models/car.dart';
 class TkTicket {
   TkTicket.fromJson(Map<String, dynamic> json) {
     id = int.tryParse(json[kTicketIdTag].toString());
-    name = json[kTicketNameTag];
-    start = DateTime.tryParse(json[kTicketStartTag]);
-    duration = int.tryParse(json[kTicketDurationTag]) ?? 1;
+    start = DateTime.tryParse(json[kTicketStartTag].toString());
+    duration = int.tryParse(json[kTicketDurationTag].toString());
     end = start.add(Duration(hours: duration));
-    cancelled = json[kTicketCancelledTag] == true;
-    showCode = json[kTicketShowCodeTag] == true;
+    cancelled = json[kTicketCancelledTag].toString() == '1';
+    showCodeTime = DateTime.tryParse(json[kTicketShowCodeTag].toString());
     code = json[kTicketCodeTag];
-    car = TkCar.fromJson(json);
+    car = TkCar.fromJson(json[kCarTag]);
+  }
+
+  void updateModel(Map<String, dynamic> json) {
+    code = json[kTicketCodeTag];
   }
 
   int id;
-  String name;
   TkCar car;
   DateTime start;
   DateTime end;
+  DateTime showCodeTime;
   int duration; // in hours
   bool cancelled;
-  bool showCode;
   String code;
 }

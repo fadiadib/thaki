@@ -27,7 +27,7 @@ class TkLicenseCard extends StatelessWidget {
                   ),
                   child: Center(
                       child: Text(
-                    car.licensePlate.split(' ').first,
+                    car.plateEN.split(' ').first,
                     style: kBoldStyle[kSmallSize],
                   )),
                 ),
@@ -37,8 +37,7 @@ class TkLicenseCard extends StatelessWidget {
                   decoration: BoxDecoration(),
                   child: Center(
                     child: Text(
-                      // TODO: needs translation
-                      car.licensePlate.split(' ').last,
+                      car.plateAR.split(' ').first,
                       style: kBoldStyle[kSmallSize],
                     ),
                   ),
@@ -58,7 +57,7 @@ class TkLicenseCard extends StatelessWidget {
                   ),
                   child: Center(
                       child: Text(
-                    car.licensePlate.split(' ').last,
+                    car.plateEN.split(' ').last,
                     style: kBoldStyle[kSmallSize],
                   )),
                 ),
@@ -71,9 +70,8 @@ class TkLicenseCard extends StatelessWidget {
                     ),
                   ),
                   child: Center(
-                    // TODO: needs translation
                     child: Text(
-                      car.licensePlate.split(' ').first,
+                      car.plateAR.split(' ').last,
                       style: kBoldStyle[kSmallSize],
                     ),
                   ),

@@ -10,3 +10,4 @@ const String kIOSAppId = '';
 const int kSplashDelay = 2;
 const int kAnimationInterval = 200; // in milliseconds
 const int kOTPDigits = 6;
+const bool kDefaultToAR = true;

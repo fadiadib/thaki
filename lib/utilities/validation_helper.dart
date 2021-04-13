@@ -35,4 +35,19 @@ class TkValidationHelper {
     }
     return false;
   }
+
+  static bool validateLicense(String value, int state) {
+    if (value == null) return false;
+    if (state == null) return true;
+    if (state == 1) {
+      List<String> parts = value.split(' ');
+      String converted = int.tryParse(parts[0]).toString();
+      if (converted == null) return false;
+      if (parts == null || parts.length != 2 || parts[1].length != 3)
+        return false;
+      return true;
+    } else {
+      return (value.length == 7);
+    }
+  }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/lang_controller.dart';
 
 class TkPackageTile extends StatelessWidget {
   TkPackageTile({@required this.package, this.isSelected = false, this.onTap});
@@ -27,7 +30,7 @@ class TkPackageTile extends StatelessWidget {
     );
   }
 
-  Widget _getTileDetails() {
+  Widget _getTileDetails(BuildContext context) {
     return Expanded(
       child: Padding(
         padding: const EdgeInsetsDirectional.only(start: 10),
@@ -38,20 +41,30 @@ class TkPackageTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  package.points.toString() + ' ' + kHourPackage,
+                  package.points.toString() + ' ' + S.of(context).kHourPackage,
                   style: kBoldStyle[kNormalSize],
                 ),
                 SizedBox(height: 15),
-                Text(kValidFor +
+                Text(S.of(context).kValidFor +
                     ' ' +
                     package.validity.toString() +
                     ' ' +
-                    kDays),
-                Text(kSAR + ' ' + package.price.toString())
+                    S.of(context).kDays),
+                Text(
+                  S.of(context).kSAR + ' ' + package.price.toString(),
+                  style: kBoldStyle[kSmallSize].copyWith(color: kPrimaryColor),
+                )
               ],
             ),
-            Positioned(
-              right: 10,
+            Positioned.directional(
+              textDirection:
+                  Provider.of<TkLangController>(context, listen: false)
+                              .lang
+                              .languageCode ==
+                          'ar'
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
+              end: 10,
               bottom: -5,
               child: Container(
                 decoration: BoxDecoration(
@@ -92,7 +105,7 @@ class TkPackageTile extends StatelessWidget {
                 border: Border.all(color: kMediumGreyColor.withOpacity(0.2)),
               ),
             ),
-            _getTileDetails(),
+            _getTileDetails(context),
           ],
         ),
       ),

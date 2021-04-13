@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/screens/login_screen.dart';
@@ -55,12 +56,12 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(kBackTo),
+            Text(S.of(context).kBackTo),
             GestureDetector(
               onTap: () =>
                   Navigator.pushReplacementNamed(context, TkLoginScreen.id),
               child: Text(
-                kLoginExclamation,
+                S.of(context).kLoginExclamation,
                 style: kRegularStyle[kSmallSize].copyWith(
                   color: kPrimaryColor,
                 ),

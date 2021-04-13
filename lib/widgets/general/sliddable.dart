@@ -15,8 +15,9 @@ class TkSlidableTile extends StatelessWidget {
       actionPane: SlidableDrawerActionPane(),
       actionExtentRatio: 0.25,
       child: child,
-      actions: [TkEditAction(onTap: onEdit)],
-      secondaryActions: [TkDeleteAction(onTap: onDelete)],
+      actions: onEdit == null ? null : [TkEditAction(onTap: onEdit)],
+      secondaryActions:
+          onDelete == null ? null : [TkDeleteAction(onTap: onDelete)],
     );
   }
 }

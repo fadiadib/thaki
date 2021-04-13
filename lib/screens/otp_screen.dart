@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
-import 'package:thaki/screens/login_screen.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -54,7 +54,8 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
       validatePasswordMatch: _validatePasswordMatch,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-        child: Text(kEnterOTPMessage, textAlign: TextAlign.center),
+        child:
+            Text(S.of(context).kEnterOTPMessage, textAlign: TextAlign.center),
       ),
       action: (TkInfoFieldsList results) async {
         await _updateModel(results);

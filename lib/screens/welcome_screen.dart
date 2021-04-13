@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/globals/strings.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
@@ -55,7 +55,7 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
                   child: Hero(
                     tag: kSignUpTag,
                     child: TkButton(
-                      title: kSignUp,
+                      title: S.of(context).kSignUp,
                       btnColor: kWhiteColor,
                       titleColor: kLightPurpleColor,
                       btnWidth: 140.0,
@@ -69,7 +69,7 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
                   child: Hero(
                     tag: kLoginTag,
                     child: TkButton(
-                      title: kLogin,
+                      title: S.of(context).kLogin,
                       btnColor: kTransparentColor,
                       btnBorderColor: kWhiteColor,
                       btnWidth: 140.0,

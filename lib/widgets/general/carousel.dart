@@ -68,16 +68,20 @@ class _TkCarouselState extends State<TkCarousel> {
 
   /// Creates the slider
   void _createSlider() {
-    _slider = CarouselSlider(
-      items: _widgets,
-      viewportFraction: 1.0,
-      aspectRatio: widget.aspectRatio,
-      initialPage: widget.initialPage,
-      enableInfiniteScroll: widget.infiniteScroll,
-      onPageChanged: (index) {
-        setState(() => _currentSlide = index);
-        if (widget.onChanged != null) widget.onChanged(index);
-      },
+    _slider = CarouselSlider.builder(
+      itemCount: _widgets.length,
+      itemBuilder: (context, idx, _) => _widgets[idx],
+      options: CarouselOptions(
+        // height: 400,
+        aspectRatio: widget.aspectRatio,
+        viewportFraction: 1.0,
+        initialPage: widget.initialPage,
+        enableInfiniteScroll: widget.infiniteScroll,
+        onPageChanged: (index, _) {
+          setState(() => _currentSlide = index);
+          if (widget.onChanged != null) widget.onChanged(index);
+        },
+      ),
     );
   }
 

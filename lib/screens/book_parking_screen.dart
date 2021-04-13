@@ -1,6 +1,7 @@
 import 'package:provider/provider.dart';
 
 import 'package:thaki/panes/parking/index.dart';
+import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/widgets/base/index.dart';
 
@@ -23,7 +24,8 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
       TkParkingTimePane(onDone: () => loadNextPane()),
       TkParkingDurationPane(onDone: () {
         // Book parking
-        Provider.of<TkBooker>(context, listen: false).reserveParking();
+        Provider.of<TkBooker>(context, listen: false).reserveParking(
+            Provider.of<TkAccount>(context, listen: false).user);
 
         // Load next screen
         loadNextPane();

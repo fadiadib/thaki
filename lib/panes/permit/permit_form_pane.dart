@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
-import 'package:thaki/providers/permitter.dart';
+import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/subscriber.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/form_frame.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 
 class TkPermitFormPane extends TkPane {
-  TkPermitFormPane({onDone})
-      : super(paneTitle: kResidentPermit, onDone: onDone);
+  TkPermitFormPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _createForm() {
+  Widget _createForm(BuildContext context, TkSubscriber subscriber) {
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
     return TkFormFrame(
       formTitle: kResidentPermitFieldsJson[kFormName],
       actionTitle: kResidentPermitFieldsJson[kFormAction],
       buttonTag: kLoginTag,
-      fields: TkInfoFieldsList.fromJson(data: kResidentPermitFieldsJson),
+      fields: account.user.toInfoFields(
+          TkInfoFieldsList.fromJson(data: kResidentPermitFieldsJson)),
       action: (TkInfoFieldsList results) async {
-        // TODO: save data into model
+        // Save data into model
+        // TODO: It is better to first move the data from the user model to
+        // TODO: a permit model and then update the info fields from the permit
+        subscriber.permit = TkPermit.fromInfoFields(results);
+
         onDone();
       },
     );
@@ -27,18 +35,18 @@ class TkPermitFormPane extends TkPane {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TkPermitter>(builder: (context, permitter, _) {
-      return permitter.isLoading
+    return Consumer<TkSubscriber>(builder: (context, subscriber, _) {
+      return subscriber.isLoading
           ? TkProgressIndicator()
           : ListView(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, bottom: 0.0),
-                  child: TkSectionTitle(title: kResidentPermit),
+                  child: TkSectionTitle(title: S.of(context).kResidentPermit),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: _createForm(),
+                  child: _createForm(context, subscriber),
                 ),
               ],
             );

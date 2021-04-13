@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:package_info/package_info.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/globals/index.dart';
@@ -57,7 +58,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
     var connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       // No Internet connectivity
-      setState(() => _startupError = kConnectionError);
+      setState(() => _startupError = S.of(context).kConnectionError);
       _loadingNextScreen = false;
     } else {
       // Get the providers
@@ -73,11 +74,11 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
         Platform.operatingSystem,
       )) {
         // Server is not alive
-        setState(() => _startupError = kServerError);
+        setState(() => _startupError = S.of(context).kServerError);
         _loadingNextScreen = false;
       } else if (server.needUpgrade) {
         // Server is alive but needs the app to upgrade
-        setState(() => _startupError = kVersionError);
+        setState(() => _startupError = S.of(context).kVersionError);
 
         await TkDialogHelper.gShowUpgradeDialog(context: context);
         _loadingNextScreen = false;
@@ -142,7 +143,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
                       kBoldStyle[kSmallSize].copyWith(color: kLightPurpleColor),
                   children: [
                     TextSpan(
-                      text: kTryAgain,
+                      text: S.of(context).kTryAgain,
                       style: kLinkStyle.copyWith(color: kWhiteColor),
                     ),
                   ],
@@ -240,7 +241,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
                 color: kWhiteColor,
                 borderRadius: BorderRadius.circular(_logoRadius),
                 image: DecorationImage(
-                  image: AssetImage(kLogoPath),
+                  image: AssetImage(kSloganPath),
                   fit: BoxFit.scaleDown,
                 ),
               ),

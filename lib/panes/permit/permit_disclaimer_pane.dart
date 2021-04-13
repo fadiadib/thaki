@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/providers/permitter.dart';
+import 'package:thaki/providers/subscriber.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/cards/title_text_card.dart';
 import 'package:thaki/widgets/forms/button.dart';
@@ -10,33 +11,35 @@ import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 
 class TkPermitDisclaimerPane extends TkPane {
-  TkPermitDisclaimerPane({onDone})
-      : super(paneTitle: kResidentPermit, onDone: onDone);
+  TkPermitDisclaimerPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _getAgreeButton() {
+  Widget _getAgreeButton(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 20.0),
-      child: TkButton(title: kIAgree, onPressed: onDone),
+      padding: kButtonPadding,
+      child: TkButton(title: S.of(context).kIAgree, onPressed: onDone),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TkPermitter>(builder: (context, permitter, _) {
-      return permitter.isLoading
+    return Consumer<TkSubscriber>(builder: (context, subscriber, _) {
+      String error = subscriber.error[TkSubscriberError.loadDisclaimer];
+      return subscriber.isLoading
           ? TkProgressIndicator()
           : ListView(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                  child: TkSectionTitle(title: kResidentPermit),
+                  child: TkSectionTitle(title: S.of(context).kResidentPermit),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: TkTitleTextCard(
-                    title: kApplyForResidentPermit,
-                    message: permitter.disclaimer,
-                    child: _getAgreeButton(),
+                    title: S.of(context).kApplyForResidentPermit,
+                    message: error == null ? subscriber.disclaimer : error,
+                    messageColor: error == null ? null : kErrorTextColor,
+                    child:
+                        error != null ? Container() : _getAgreeButton(context),
                   ),
                 ),
               ],

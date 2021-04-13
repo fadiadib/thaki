@@ -1,60 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/payer.dart';
+import 'package:thaki/screens/add_card_screen.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
+import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/lists/payment_list.dart';
 
 class TkViolationPaymentPane extends TkPane {
-  TkViolationPaymentPane({onDone})
-      : super(paneTitle: kPayViolations, onDone: onDone);
+  TkViolationPaymentPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _getCheckoutButton(TkPayer payer) {
+  Widget _getCheckoutButton(TkPayer payer, BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: TkButton(
-        title: kCheckout,
+        title: S.of(context).kCheckout,
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
         onPressed: () {
-          if (payer.validatePayment()) onDone();
+          if (payer.validatePayment(context)) onDone();
         },
       ),
     );
   }
 
-  Widget _getErrorMessage(TkPayer payer) {
-    if (payer.validationPaymentError != null)
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-        child: Text(
-          payer.validationPaymentError,
-          style: kErrorStyle,
-          textAlign: TextAlign.center,
-        ),
-      );
-    return Container();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Consumer<TkPayer>(builder: (context, payer, _) {
+    return Consumer2<TkPayer, TkAccount>(builder: (context, payer, account, _) {
       return payer.isLoading
           ? TkProgressIndicator()
           : ListView(
               children: [
                 TkPaymentList(
-                  onSelect: (TkCredit card) {
-                    payer.selectedCard = card;
-                  },
-                  selected: payer.selectedCard,
+                  cards: account.user.cards,
+                  onTap: (TkCredit card) => payer.selectedCard = card,
                 ),
-                _getCheckoutButton(payer),
-                _getErrorMessage(payer),
+                if (account.user.cards.isEmpty)
+                  GestureDetector(
+                    onTap: () =>
+                        Navigator.of(context).pushNamed(TkAddCardScreen.id),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(kAddCircleBtnIcon,
+                              size: 16, color: kPrimaryColor),
+                          SizedBox(width: 5),
+                          Text(S.of(context).kAddCard,
+                              style: kBoldStyle[kSmallSize]
+                                  .copyWith(color: kPrimaryColor)),
+                        ],
+                      ),
+                    ),
+                  ),
+                _getCheckoutButton(payer, context),
+                TkError(message: payer.validationPaymentError),
               ],
             );
     });

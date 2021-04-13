@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:store_redirect/store_redirect.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 
 enum gDialogType {
@@ -29,7 +30,8 @@ class TkDialogHelper {
     if (type == gDialogType.upgrade) {
       widgets.add(
         MaterialButton(
-          child: Text(kUpgradeNow, style: kRegularStyle[kNormalSize]),
+          child: Text(S.of(context).kUpgradeNow,
+              style: kRegularStyle[kNormalSize].copyWith(color: kBlackColor)),
           onPressed: () {
             Navigator.pop(context, true);
             StoreRedirect.redirect(
@@ -52,7 +54,7 @@ class TkDialogHelper {
       widgets.add(
         MaterialButton(
           child: Text(gDialogBtnText[type].first,
-              style: kRegularStyle[kNormalSize]),
+              style: kRegularStyle[kNormalSize].copyWith(color: kBlackColor)),
           onPressed: () => Navigator.pop(context, true),
         ),
       );
@@ -61,7 +63,7 @@ class TkDialogHelper {
         widgets.add(
           MaterialButton(
             child: Text(gDialogBtnText[type].last,
-                style: kRegularStyle[kNormalSize]),
+                style: kRegularStyle[kNormalSize].copyWith(color: kBlackColor)),
             onPressed: () => Navigator.pop(context, false),
           ),
         );
@@ -107,8 +109,8 @@ class TkDialogHelper {
       {@required BuildContext context}) async {
     return gShowConfirmationDialog(
       context: context,
-      message: kUnsupportedVersion,
-      content: kUpgradeRequiredMessage,
+      message: S.of(context).kUnsupportedVersion,
+      content: S.of(context).kUpgradeRequiredMessage,
       type: gDialogType.upgrade,
     );
   }

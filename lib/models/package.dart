@@ -16,7 +16,8 @@ class TkPackage {
   TkPackage.fromJson(Map<String, dynamic> json) {
     id = int.tryParse(json[kPackageIdTag].toString());
     points = json[kPackagePointsTag];
-    price = json[kPackagePriceTag];
+    remaining = json[kPackageRemainingTag];
+    price = double.tryParse(json[kPackagePriceTag].toString());
     validity = json[kPackageValidityTag];
     details = json[kPackageDetailsTag];
     color = getTileColor();
@@ -24,6 +25,7 @@ class TkPackage {
 
   int id;
   int points;
+  int remaining;
   double price;
   int validity; // in days
   String details;

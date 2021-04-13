@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/date_time_helper.dart';
@@ -41,7 +43,7 @@ class TkViolationTile extends StatelessWidget {
                     TkDateTimeHelper.formatDate(violation.dateTime.toString()) +
                         ' ' +
                         TkDateTimeHelper.formatTime(
-                            violation.dateTime.toString()),
+                            context, violation.dateTime.toString()),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 10),
@@ -51,7 +53,7 @@ class TkViolationTile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    kSAR + ' ' + violation.fine.toString(),
+                    S.of(context).kSAR + ' ' + violation.fine.toString(),
                   )
                 ],
               ),

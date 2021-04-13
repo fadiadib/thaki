@@ -5,6 +5,7 @@ const Color kWhiteColor = Colors.white;
 const Color kBlackColor = Colors.black;
 const Color kTransparentColor = Colors.transparent;
 const Color kLightGreyColor = Color(0xFFF7F9FC);
+const Color kSemiGreyColor = Color(0x55444444);
 const Color kMediumGreyColor = Color(0xFF71809C);
 const Color kDarkGreyColor = Color(0xFF444444);
 const Color kAccentGreyColor = Color(0xFFDCE0E7);
@@ -38,7 +39,7 @@ const List<Color> kTileColor = [
 const Color kLightTextColor = kLightGreyColor;
 const Color kDarkTextColor = kDarkGreyColor;
 const Color kPrimaryTextColor = kDarkTextColor;
-const Color kDisabledTextColor = kLightGreyColor;
+const Color kDisabledTextColor = kSemiGreyColor;
 const Color kHintTextColor = kMediumGreyColor;
 const Color kErrorTextColor = kTertiaryColor;
 

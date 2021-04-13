@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/utilities/dialog_helper.dart';
 import 'package:thaki/widgets/base/index.dart';
+import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/lists/ticket_list.dart';
 
 class TkTicketsPane extends TkPane {
   TkTicketsPane({onDone, onSelect})
       : super(
-          paneTitle: kTicketsPaneTitle,
-          navIconData: TkNavIconData(icon: kCalendarBtnIcon),
+          paneTitle: '',
+          navIconData: TkNavIconData(icon: AssetImage(kTicketsIcon)),
         );
 
   @override
@@ -20,7 +26,7 @@ class TkTicketsPane extends TkPane {
       return booker.isLoading
           ? TkProgressIndicator()
           : DefaultTabController(
-              length: 3,
+              length: 4,
               child: Column(
                 children: [
                   SizedBox(
@@ -28,15 +34,20 @@ class TkTicketsPane extends TkPane {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: TabBar(
-                        labelStyle: kMediumStyle[kNormalSize],
+                        labelStyle: kBoldStyle[kSmallSize].copyWith(
+                            fontFamily: Provider.of<TkLangController>(context,
+                                    listen: false)
+                                .fontFamily,
+                            fontSize: 11.0),
                         indicatorWeight: 4.0,
                         labelColor: kPrimaryColor,
                         indicatorColor: kPrimaryColor,
                         unselectedLabelColor: kMediumGreyColor.withOpacity(0.5),
                         tabs: [
-                          Tab(text: kUpcoming.toUpperCase()),
-                          Tab(text: kCompleted.toUpperCase()),
-                          Tab(text: kCancelled.toUpperCase()),
+                          Tab(text: S.of(context).kUpcoming.toUpperCase()),
+                          Tab(text: S.of(context).kCompleted.toUpperCase()),
+                          Tab(text: S.of(context).kPending.toUpperCase()),
+                          Tab(text: S.of(context).kCancelled.toUpperCase()),
                         ],
                       ),
                     ),
@@ -44,12 +55,37 @@ class TkTicketsPane extends TkPane {
                   Expanded(
                     child: TabBarView(
                       children: [
-                        TkTicketList(tickets: booker.upcomingTickets),
-                        TkTicketList(tickets: booker.completedTickets),
-                        TkTicketList(tickets: booker.cancelledTickets),
+                        TkTicketList(
+                          tickets: booker.upcomingTickets,
+                          onDelete: (TkTicket ticket) async {
+                            if (await TkDialogHelper.gShowConfirmationDialog(
+                              context: context,
+                              message: S.of(context).kAreYouSureTicket,
+                              type: gDialogType.yesNo,
+                            ))
+                              booker.cancelTicket(
+                                Provider.of<TkAccount>(context, listen: false)
+                                    .user,
+                                ticket,
+                              );
+                          },
+                        ),
+                        TkTicketList(
+                            ribbon: S.of(context).kCompleted,
+                            ribbonColor: kGreenAccentColor),
+                        TkTicketList(
+                          tickets: booker.completedTickets,
+                          ribbon: S.of(context).kPending,
+                          ribbonColor: kSecondaryColor,
+                        ),
+                        TkTicketList(
+                            tickets: booker.cancelledTickets,
+                            ribbon: S.of(context).kCancelled,
+                            ribbonColor: kTertiaryColor),
                       ],
                     ),
                   ),
+                  TkError(message: booker.error[TkBookerError.cancel])
                 ],
               ),
             );

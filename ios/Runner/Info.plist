@@ -2,6 +2,15 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>Arabic</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -41,5 +50,7 @@
 	<false/>
 	<key>NSCameraUsageDescription</key>
 	<string>Access to camera to scan credit cards and ID cards</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access to image gallery allows the user to upload images of their documents such as their IDs</string>
 </dict>
 </plist>

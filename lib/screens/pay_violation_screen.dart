@@ -1,4 +1,5 @@
 import 'package:provider/provider.dart';
+import 'package:thaki/providers/account.dart';
 
 import 'package:thaki/providers/payer.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -25,7 +26,15 @@ class _TkPayViolationScreenState extends TkMultiStepPageState {
 
         loadNextPane();
       }),
-      TkViolationListPane(onDone: () => loadNextPane()),
+      TkViolationListPane(onDone: () {
+        TkAccount account = Provider.of<TkAccount>(context, listen: false);
+
+        if (account.user.cards != null && account.user.cards.isNotEmpty)
+          Provider.of<TkPayer>(context, listen: false).selectedCard =
+              Provider.of<TkAccount>(context, listen: false).user.cards?.first;
+
+        loadNextPane();
+      }),
       TkViolationPaymentPane(onDone: () {
         Provider.of<TkPayer>(context, listen: false).paySelectedViolations();
         loadNextPane();

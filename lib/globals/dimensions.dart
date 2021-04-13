@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 /// Dimensions
 /// Default Icons Sizes
 const double kAppbarIconsSize = 20.0;
@@ -31,3 +33,7 @@ const double kCardPadding = 30.0;
 
 /// Tiles Dimensions
 const double kTileHeight = 80.0;
+
+/// General Padding
+const EdgeInsetsGeometry kButtonPadding =
+    const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0);

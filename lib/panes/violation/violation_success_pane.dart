@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:thaki/globals/index.dart';
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/providers/payer.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/cards/success_card.dart';
@@ -11,13 +11,12 @@ import 'package:thaki/widgets/general/section_title.dart';
 
 class TkViolationSuccessPane extends TkPane {
   TkViolationSuccessPane({onDone})
-      : super(
-            paneTitle: kPayViolations, onDone: onDone, allowNavigation: false);
+      : super(paneTitle: '', onDone: onDone, allowNavigation: false);
 
-  Widget _getCloseButton() {
+  Widget _getCloseButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
-      child: TkButton(title: kClose, onPressed: onDone),
+      child: TkButton(title: S.of(context).kClose, onPressed: onDone),
     );
   }
 
@@ -39,12 +38,12 @@ class TkViolationSuccessPane extends TkPane {
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: TkSuccessCard(
                       message: payer.payError == null
-                          ? kFinePaymentSuccess
+                          ? S.of(context).kFinePaymentSuccess
                           : payer.payError,
                       result: payer.payError == null,
                     ),
                   ),
-                  _getCloseButton(),
+                  _getCloseButton(context),
                 ],
               );
       },

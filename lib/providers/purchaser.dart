@@ -1,8 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
+
+enum TkPurchaserError { load, purchase, loadBalance }
 
 class TkPurchaser extends ChangeNotifier {
   // Helpers
@@ -15,7 +19,6 @@ class TkPurchaser extends ChangeNotifier {
   TkPackage get selectedPackage => _selectedPackage;
   set selectedPackage(TkPackage package) {
     _selectedPackage = package;
-
     notifyListeners();
   }
 
@@ -24,80 +27,110 @@ class TkPurchaser extends ChangeNotifier {
   set selectedCard(TkCredit card) {
     _selectedCard = card;
     _validationPaymentError = null;
-
     notifyListeners();
   }
+
+  String _cvv;
+  String get cvv => _cvv;
+  set cvv(String value) {
+    _cvv = value;
+    notifyListeners();
+  }
+
+  TkBalance _balance;
+  TkBalance get balance => _balance;
 
   // Loading variables
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
   // Errors
-  String _loadError;
-  String get loadError => _loadError;
-  String _purchaseError;
-  String get purchaseError => _purchaseError;
+  Map<TkPurchaserError, String> _error = Map();
+  Map<TkPurchaserError, String> get error => _error;
+  void clearErrors() => _error.clear();
 
   // Validation
   String _validationPaymentError;
   String get validationPaymentError => _validationPaymentError;
-  bool validatePayment() {
+  bool validatePayment(BuildContext context) {
     if (_selectedCard == null) {
-      _validationPaymentError = kSelectPaymentToProceed;
+      _validationPaymentError = S.of(context).kSelectPaymentToProceed;
       notifyListeners();
       return false;
     }
     return true;
   }
 
-  /// Load available packages to purchase
-  Future<bool> loadPackages() async {
+  /// Load user balance method
+  Future<bool> loadBalance(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
+    _error[TkPurchaserError.loadBalance] = null;
+    Map result = await _apis.loadUserPackages(user: user);
 
-    Map result = await _apis.loadPackages();
+    _balance = null;
+    if (result[kStatusTag] == kSuccessCode) {
+      // Load user data
+      _balance = TkBalance.fromJson(result[kDataTag]);
+    } else {
+      // an error happened
+      _error[TkPurchaserError.loadBalance] =
+          result[kErrorMessageTag] ?? kUnknownError;
+    }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (_error[TkPurchaserError.loadBalance] == null);
+  }
+
+  /// Load available packages to purchase
+  Future<bool> loadPackages(TkUser user) async {
+    // Start any loading indicators
+    _isLoading = true;
+    _error[TkPurchaserError.load] = null;
+    Map result = await _apis.loadPackages(user: user);
 
     // Clear model
-    _loadError = null;
     _packages.clear();
     selectedPackage = null;
 
     if (result[kStatusTag] == kSuccessCode) {
-      for (Map data in result[kDataTag])
+      for (Map data in result[kDataTag][kPackagesTag])
         _packages.add(TkPackage.fromJson(data));
-      if (_packages.length > 0) selectedPackage = _packages.first;
+      if (_packages.isNotEmpty) selectedPackage = _packages.first;
     } else {
       // an error happened
-      _loadError = result[kErrorMessageTag] ?? kUnknownError;
+      _error[TkPurchaserError.load] = result[kErrorMessageTag] ?? kUnknownError;
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_loadError == null);
+    return (_error[TkPurchaserError.load] == null);
   }
 
   /// Purchase package method
-  Future<bool> purchaseSelectedPackage() async {
+  Future<bool> purchaseSelectedPackage(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
-
+    _error[TkPurchaserError.purchase] = null;
     Map result = await _apis.purchasePackage(
-        package: selectedPackage, card: selectedCard);
+        user: user, package: selectedPackage, card: selectedCard, cvv: _cvv);
 
-    // Clear model
-    _purchaseError = null;
-
-    if (result[kStatusTag] != kSuccessCode) {
-      // an _purchaseError happened
-      _purchaseError = result[kErrorMessageTag] ?? kUnknownError;
+    if (result[kStatusTag] == kSuccessCreationCode) {
+      _balance.updateFromJson(result[kDataTag]);
+    } else {
+      _error[TkPurchaserError.purchase] =
+          result[kErrorMessageTag] ?? kUnknownError;
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_purchaseError == null);
+    return (_error[TkPurchaserError.purchase] == null);
   }
 }

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'index.dart';
 
 /// Font family
-const String kMainFontFamily = 'BwModelica';
+const String kLTRFontFamily = 'BwModelica';
+const String kRTLFontFamily = 'Almarai';
+const String kMainFontFamily = kLTRFontFamily;
 
 /// Special text styles (not included in the theme)
 /// 1. Normal text styles

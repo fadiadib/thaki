@@ -1,31 +1,58 @@
 /// URIs
 // Root API uri
-const String kRootURL = 'https://admin.thaki.app/api';
-// APIs
+const String kRootURL = 'http://thaki.aurasystems.xyz/backend/public/api';
+// APIs URIs
+// Authentication
 const String kCheckAPI = '$kRootURL/check';
-const String kRegisterAPI = '$kRootURL/register';
-const String kLoginAPI = '$kRootURL/login';
-const String KLoadAPI = '$kRootURL/load_user';
-const String kLoadTicketsAPI = '$kRootURL/load_tickets';
-const String kLoadBalanceAPI = '$kRootURL/load_balance';
-const String kLoadPackagesAPI = '$kRootURL/load_packages';
-const String kPurchasePackageAPI = '$kRootURL/purchase_packages';
-const String kLoadPermitDisclaimerAPI = '$kRootURL/load_permit_disclaimer';
-const String kApplyResidentPermitAPI = '$kRootURL/apply _permit';
+const String kLoginAPI = '$kRootURL/auth/login';
+const String kLogoutAPI = '$kRootURL/auth/logout';
+const String kRegisterAPI = '$kRootURL/auth/register';
+const String KLoadAPI = '$kRootURL/auth/validate';
+const String kEditAPI = '$kRootURL/update_profile';
+// Cars
+const String kLoadCarsAPI = '$kRootURL/cars';
+const String kAddCarAPI = '$kRootURL/cars';
+const String kDeleteCarAPI = '$kRootURL/cars';
+const String kUpdateCarAPI = '$kRootURL/cars';
+const String kLoadStates = '$kRootURL/states';
+// Cards
+const String kLoadCardsAPI = '$kRootURL/cards';
+const String kAddCardAPI = '$kRootURL/cards';
+const String kDeleteCardAPI = '$kRootURL/cards';
+const String kUpdateCardAPI = '$kRootURL/cards';
+// Packages
+const String kLoadPackagesAPI = '$kRootURL/packages';
+const String kPurchasePackageAPI = '$kRootURL/packages/buy';
+const String kLoadUserPackagesAPI = '$kRootURL/packages/client';
+// Subscriptions
+const String kLoadDisclaimerAPI = '$kRootURL/disclaimer';
+const String kApplySubscriptionPermitAPI = '$kRootURL/subscriptions/request';
+const String kLoadSubscriptions = '$kRootURL/subscriptions';
+const String kBuySubscription = '$kRootURL/subscriptions/buy';
+const String kLoadUserSubscriptions = '$kRootURL/subscriptions/client';
+// Parking
+const String kGetParkingQRAPI = '$kRootURL/booking/qrcode';
+const String kLoadTicketsAPI = '$kRootURL/booking';
+const String kCancelTicketAPI = '$kRootURL/booking';
+const String kReserveParkingAPI = '$kRootURL/booking';
+// Violations
 const String kLoadViolationsAPI = '$kRootURL/load_violations';
 const String kPayViolationsAPI = '$kRootURL/pay_violations';
-const String kReserveParkingAPI = '$kRootURL/reserve_parking';
 
 /// Network Codes and tags
 // Codes
 const int kSuccessCode = 200;
-const int kErrorCode = 201;
+const int kSuccessCreationCode = 201;
 const int kPendingCode = 202;
 const int kDelayedSuccessCode = 203;
+const int kErrorCode = 401;
 // General tags
 const String kStatusTag = 'status';
-const String kErrorMessageTag = 'error';
+const String kErrorMessageTag = 'message';
 const String kDataTag = 'data';
+// Header tags
+const String kAuthTag = 'Authorization';
+const String kLangTag = 'X-localization';
 // Check server tags
 const String kVersionTag = 'version';
 const String kPlatformTag = 'platform';
@@ -47,17 +74,20 @@ const String kIFValueId = 'id';
 const String kIFValueTitle = 'title';
 // User tags
 const String kUserTag = 'user';
-const String kUserTokenTag = 'user_token';
-const String kUserNameTag = 'user_name';
-const String kUserEmailTag = 'user_email';
-const String kUserPasswordTag = 'user_password';
-const String kUserConfirmPasswordTag = 'user_confirm_password';
-const String kUserRememberTag = 'user_remember';
-const String kUserPhoneTag = 'user_phone';
+const String kUserTokenTag = 'access_token';
+const String kUserTokenTypeTag = 'token_type';
+const String kUserNameTag = 'name';
+const String kUserEmailTag = 'email';
+const String kUserAgeTag = 'age';
+const String kUserPhoneTag = 'phone';
+const String kUserPasswordTag = 'password';
+const String kUserConfirmPasswordTag = 'password_confirmation';
+const String kUserRememberTag = 'remember_me';
 const String kUserFbTokenTag = 'fb_token';
-const String kUserCarsTag = 'user_cars';
-const String kUserCardsTag = 'user_cards';
+const String kUserCarsTag = 'cars_list';
+const String kUserCardsTag = 'card_list';
 const String kUserOTPTag = 'user_otp';
+const String kUserApprovedTag = 'is_approved';
 // Notifications tags
 const String kNotificationTag = 'notification';
 const String kNotificationIdTag = 'id';
@@ -71,52 +101,81 @@ const String kNotificationExpiryTag = 'n_expiry';
 const String kNotificationSeenTag = 'n_seen';
 const String kNotificationDateTag = 'n_date';
 // Car tags
-const String kCarIdTag = 'car_id';
+const String kCarTag = 'car';
+const String kCarIdTag = 'id';
+const String kCarIdIdTad = 'car_id';
 const String kCarNameTag = 'car_name';
-const String kCarLicenseTag = 'car_license';
-const String kCarMakeTag = 'car_make';
-const String kCarModelTag = 'car_model';
-const String kCarStateTag = 'car_state';
-const String kCarPreferredTag = 'car_preferred';
+const String kCarPlateENTag = 'plate_number_en';
+const String kCarPlateARTag = 'plate_number_ar';
+const String kCarMakeTag = 'make';
+const String kCarModelTag = 'model';
+const String kCarStateTag = 'state';
+const String kCarPreferredTag = 'is_default';
 // Card tags
-const String kCardIdTag = 'card_id';
-const String kCardNameTag = 'card_name';
+const String kCardTag = 'card';
+const String kCardIdTag = 'id';
+const String kCardCardIdTag = 'card_id';
 const String kCardHolderTag = 'card_holder';
 const String kCardNumberTag = 'card_number';
 const String kCardExpiryTag = 'card_expiry';
 const String kCardCVVTag = 'card_cvv';
-const String kCardBrandPathTag = 'card_brand_path';
-const String kCardPreferredTag = 'card_preferred';
+const String kCardPreferredTag = 'is_default';
 const String kCardTypeTag = 'card_type';
 // Booking tags
+const String kBookingInfoTag = 'booking_info';
+const String kBookingsTag = 'booking_list';
+const String kUpcomingTicketsTag = 'upcoming';
+const String kCompletedTicketsTag = 'past';
+const String kCancelledTicketsTag = 'cancelled';
 const String kTicketTag = 'ticket';
-const String kTicketIdTag = 'ticket_id';
+const String kTicketIdTag = 'id';
 const String kTicketNameTag = 'ticket_name';
-const String kTicketStartTag = 'ticket_start';
+const String kTicketStartTag = 'datetime';
 const String kTicketEndTag = 'ticket_end';
-const String kTicketDurationTag = 'ticket_duration';
-const String kTicketCancelledTag = 'ticket_cancelled';
-const String kTicketShowCodeTag = 'ticket_show_code';
-const String kTicketCodeTag = 'ticket_code';
+const String kTicketDurationTag = 'duration';
+const String kTicketCancelledTag = 'cancelled';
+const String kTicketShowCodeTag = 'show_qr_time';
+const String kTicketCodeTag = 'qr_data';
+const String kBookingIdTag = 'booking_id';
+const String kBookingQRData = 'qr_data';
 // Balance tags
+const String kClientPackages = 'client_packages_list';
+const String kClientPackage = 'client_package';
 const String kBalancePointsTag = 'balance_points';
 const String kBalanceValidityTag = 'balance_validity';
 // Package tags
-const String kPackagePointsTag = 'package_points';
-const String kPackagePriceTag = 'package_price';
-const String kPackageValidityTag = 'package_validity';
-const String kPackageDetailsTag = 'package_details';
-const String kPackageIdTag = 'package_id';
-// Permit tags
-const String kPermitDisclaimerTag = 'permit_disclaimer';
-const String kPermitName = 'permit_name';
-const String kPermitPhone = 'permit_phone';
-const String kPermitEmail = 'permit_email';
-const String kPermitsDocuments = 'permit_documents';
+const String kPackagesTag = 'packages_list';
+const String kPackageIdTag = 'id';
+const String kPackagePkgIdTag = 'package_id';
+const String kPackagePointsTag = 'amount_of_hours';
+const String kPackageRemainingTag = 'remaining_hours';
+const String kPackagePriceTag = 'price';
+const String kPackageValidityTag = 'expiry_after';
+const String kPackageDetailsTag = 'description';
+// Subscriptions tags
+const String kDisclaimerType = 'type';
+const String kDisclaimerTag = 'disclaimer';
+const String kSubscriberName = 'client_full_name';
+const String kSubscriberPhone = 'client_phones';
+const String kSubscriberEmail = 'client_email';
+const String kSubscriberCardFront = 'id_card_front_img';
+const String kSubscriberCardBack = 'id_card_back_img';
+const String kSubscriptionIdTag = 'id';
+const String kSubscriptionNameTag = 'name';
+const String kSubscriptionPriceTag = 'price';
+const String kSubscriptionPeriodTag = 'period';
+const String kSubscriptionIdIdTag = 'subscription_id';
+const String kSubscriptionsTag = 'subscriptions_list';
 // Violations tags
-const String kViolationsTag = 'violations';
-const String kViolationIdTag = 'violation_id';
-const String kViolationDescTag = 'violation_name';
-const String kViolationDateTimeTag = 'violation_datetime';
-const String kViolationLocationTag = 'violation_location';
-const String kViolationFineTag = 'violation_fine';
+const String kViolationsTag = 'violations_list';
+const String kViolationIdTag = 'id';
+const String kViolationIdsTag = 'ids';
+const String kViolationDescTag = 'name';
+const String kViolationDateTimeTag = 'datetime';
+const String kViolationLocationTag = 'location';
+const String kViolationFineTag = 'fine';
+// States tags
+const String kStateIdTag = 'id';
+const String kStateEName = 'name_en';
+const String kStateAName = 'name_ar';
+const String kStatesTag = 'states_list';

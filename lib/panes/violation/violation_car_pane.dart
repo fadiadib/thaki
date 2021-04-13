@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/payer.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -10,18 +11,17 @@ import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 
 class TkViolationCarPane extends TkPane {
-  TkViolationCarPane({onDone})
-      : super(paneTitle: kPayViolations, onDone: onDone);
+  TkViolationCarPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _createForm(TkPayer payer) {
+  Widget _createForm(TkPayer payer, BuildContext context) {
     return Column(
       children: [
         // Car license number
-        TkSectionTitle(title: kCarLicensePlate, uppercase: false),
+        TkSectionTitle(title: S.of(context).kCarPlateEN, uppercase: false),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
           child: TkTextField(
-            hintText: kCarLicensePlate,
+            hintText: S.of(context).kCarPlateEN,
             initialValue: payer.selectedCar,
             onChanged: (String value) {
               payer.selectedCar = value;
@@ -32,13 +32,13 @@ class TkViolationCarPane extends TkPane {
     );
   }
 
-  Widget _createFormButton(TkPayer payer) {
+  Widget _createFormButton(TkPayer payer, BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: TkButton(
-        title: kContinue,
+        title: S.of(context).kContinue,
         onPressed: () {
-          if (payer.validateCar()) onDone();
+          if (payer.validateCar(context)) onDone();
         },
       ),
     );
@@ -68,11 +68,11 @@ class TkViolationCarPane extends TkPane {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: TkSectionTitle(
-                      title: kEnterLRP,
+                      title: S.of(context).kEnterLRP,
                     ),
                   ),
-                  _createForm(payer),
-                  _createFormButton(payer),
+                  _createForm(payer, context),
+                  _createFormButton(payer, context),
                   _getErrorMessage(payer),
                 ],
               );

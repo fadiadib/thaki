@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:thaki/globals/index.dart';
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/cards/success_card.dart';
@@ -12,12 +12,12 @@ import 'package:thaki/widgets/tiles/ticket_tile.dart';
 
 class TkParkingSuccessPane extends TkPane {
   TkParkingSuccessPane({onDone})
-      : super(paneTitle: kBookParking, onDone: onDone, allowNavigation: false);
+      : super(paneTitle: '', onDone: onDone, allowNavigation: false);
 
-  Widget _getCloseButton() {
+  Widget _getCloseButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
-      child: TkButton(title: kClose, onPressed: onDone),
+      child: TkButton(title: S.of(context).kClose, onPressed: onDone),
     );
   }
 
@@ -33,7 +33,7 @@ class TkParkingSuccessPane extends TkPane {
                     padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
                     child: TkSectionTitle(title: ''),
                   ),
-                  if (booker.parkError == null)
+                  if (booker.error[TkBookerError.park] == null)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: TkTicketTile(ticket: booker.newTicket),
@@ -43,13 +43,13 @@ class TkParkingSuccessPane extends TkPane {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: TkSuccessCard(
-                      message: booker.parkError == null
-                          ? kParkSuccess
-                          : booker.parkError,
-                      result: booker.parkError == null,
+                      message: booker.error[TkBookerError.park] == null
+                          ? S.of(context).kParkSuccess
+                          : booker.error[TkBookerError.park],
+                      result: booker.error[TkBookerError.park] == null,
                     ),
                   ),
-                  _getCloseButton(),
+                  _getCloseButton(context),
                 ],
               );
       },

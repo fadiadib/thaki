@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/utilities/index.dart';
@@ -83,8 +85,15 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
               child: Container(
                 width: 300,
                 child: Text(
-                  kOnBoardingMessage[_current],
-                  style: kBoldStyle[kNormalSize].copyWith(color: kWhiteColor),
+                  _current == 0
+                      ? S.of(context).kOnBoardingMessage1
+                      : _current == 1
+                          ? S.of(context).kOnBoardingMessage2
+                          : S.of(context).kOnBoardingMessage3,
+                  style: kBoldStyle[kBigSize].copyWith(
+                    color: kWhiteColor,
+                    fontFamily: kRTLFontFamily,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               )),
@@ -110,7 +119,7 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                   onTap: () => Navigator.pushReplacementNamed(
                       context, TkWelcomeScreen.id),
                   child: Text(
-                    kSkip,
+                    S.of(context).kSkip,
                     style:
                         kRegularStyle[kSmallSize].copyWith(color: kWhiteColor),
                   ),
@@ -127,7 +136,7 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                 child: GestureDetector(
                   onTap: _updateCurrent,
                   child: Text(
-                    kNext,
+                    S.of(context).kNext,
                     style:
                         kRegularStyle[kSmallSize].copyWith(color: kWhiteColor),
                   ),

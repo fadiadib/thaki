@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/models/parking_type.dart';
 import 'package:thaki/widgets/tiles/parking_type_tile.dart';
 
@@ -15,8 +17,9 @@ class TkParkingTypeList extends StatelessWidget {
         child: TkParkingTypeTile(
           isSelected: parkNow,
           onTap: onTap,
-          parkingType:
-              TkParkingType(title: 'Immediate Parking', subTitle: 'Park now'),
+          parkingType: TkParkingType(
+              title: S.of(context).kImmediateParking,
+              subTitle: S.of(context).kParkNow),
         ),
       ),
       Padding(
@@ -25,7 +28,8 @@ class TkParkingTypeList extends StatelessWidget {
           isSelected: !parkNow,
           onTap: onTap,
           parkingType: TkParkingType(
-              title: 'Schedule Parking', subTitle: 'Schedule your parking'),
+              title: S.of(context).kScheduleParking,
+              subTitle: S.of(context).kScheduleYourParking),
         ),
       ),
     ]);

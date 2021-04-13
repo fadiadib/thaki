@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thaki/globals/index.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/models/credit.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/screens/add_card_screen.dart';
+import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
-import 'package:thaki/widgets/tiles/credit_card_tile.dart';
+import 'package:thaki/widgets/lists/payment_list.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 
@@ -19,21 +21,6 @@ class TkCreditCardsListScreen extends StatefulWidget {
 }
 
 class _TkCreditCardsListScreenState extends State<TkCreditCardsListScreen> {
-  List<Widget> _getTiles(TkAccount account) {
-    List<Widget> tiles = [];
-
-    for (TkCredit card in account.user.cards) {
-      tiles.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
-          child: TkCreditCardTile(creditCard: card),
-        ),
-      );
-    }
-
-    return tiles;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<TkAccount>(
@@ -52,13 +39,39 @@ class _TkCreditCardsListScreenState extends State<TkCreditCardsListScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: TkSectionTitle(
-                    title: kMyCards,
+                    title: S.of(context).kMyCards,
                     icon: kAddCircleBtnIcon,
                     action: () =>
                         Navigator.of(context).pushNamed(TkAddCardScreen.id),
                   ),
                 ),
-                Column(children: _getTiles(account)),
+                TkPaymentList(
+                  enableTitle: false,
+                  cards: account.user.cards,
+                  onTap: (TkCredit card) async {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            TkAddCardScreen(editMode: true, card: card),
+                      ),
+                    );
+                  },
+                  onDelete: (TkCredit card) async {
+                    if (await TkDialogHelper.gShowConfirmationDialog(
+                      context: context,
+                      message: S.of(context).kAreYouSureCard,
+                      type: gDialogType.yesNo,
+                    )) account.deleteCard(card);
+                  },
+                  onEdit: (TkCredit card) async {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            TkAddCardScreen(editMode: true, card: card),
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),

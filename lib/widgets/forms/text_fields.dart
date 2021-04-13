@@ -220,13 +220,13 @@ class TkDateField extends TkTextField {
         return TkDateTimeHelper.formatDate(value.toString());
       case TkInfoFieldType.Time:
         // Time only
-        return TkDateTimeHelper.formatTime(value.toString());
+        return TkDateTimeHelper.formatTime(context, value.toString());
       case TkInfoFieldType.DateTime:
         // Date and Time
         String date =
             TkDateTimeHelper.formatDate(value.toString().split(' ').first);
-        String time =
-            TkDateTimeHelper.formatTime(value.toString().split(' ').last);
+        String time = TkDateTimeHelper.formatTime(
+            context, value.toString().split(' ').last);
 
         return date + ' - ' + time;
       default:
@@ -430,6 +430,7 @@ class TkDropDownField extends TkTextField {
           iconEnabledColor: kHintTextColor,
           isExpanded: true,
           itemHeight: kDefaultTextEditTitleSize,
+          underline: Container(),
 
           hint: Text(
             hintText,

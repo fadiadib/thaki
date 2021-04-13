@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:thaki/drawers/menu_drawer.dart';
 
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/models/index.dart';
 import 'package:thaki/panes/home/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/purchaser.dart';
+import 'package:thaki/providers/state_controller.dart';
 import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
@@ -21,13 +23,13 @@ class TkHomeScreen extends StatefulWidget {
 class _TkHomeScreenState extends State<TkHomeScreen> {
   List<TkPane> _panes = [];
 
-  List<Icon> _getIcons() {
-    List<Icon> icons = [];
+  List<Image> _getIcons() {
+    List<Image> icons = [];
     for (TkPane pane in _panes) {
       icons.add(
-        Icon(
-          pane.navIconData.icon,
-          size: 24,
+        Image(
+          image: pane.navIconData.icon,
+          height: 24,
           color: kWhiteColor,
         ),
       );
@@ -36,17 +38,25 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
     return icons;
   }
 
+  Future<void> initModel() async {
+    // Load user profile here
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    TkBooker booker = Provider.of<TkBooker>(context, listen: false);
+    TkPurchaser purchaser = Provider.of<TkPurchaser>(context, listen: false);
+    TkStateController states =
+        Provider.of<TkStateController>(context, listen: false);
+
+    await booker.loadTickets(account.user);
+    await purchaser.loadBalance(account.user);
+    await account.loadCars();
+    await account.loadCards();
+    await states.loadStates(account.user);
+  }
+
   @override
   void initState() {
     super.initState();
-
-    // TODO: Load user profile here
-    TkUser user = Provider.of<TkAccount>(context, listen: false).user;
-
-    // Load user tickets and balance
-    TkBooker booker = Provider.of<TkBooker>(context, listen: false);
-    booker.loadTickets(user);
-    booker.loadBalance(user);
+    initModel();
 
     _panes = [
       TkViolationsPane(),
@@ -59,35 +69,41 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TkTabSelector>(
-      builder: (context, selector, _) {
-        return Scaffold(
-          /// Appbar
-          appBar: TkAppBar(
-            context: context,
-            enableClose: false,
-            removeLeading: false,
-            title: TkLogoBox(),
-          ),
+    return RefreshIndicator(
+      onRefresh: initModel,
+      child: Consumer<TkTabSelector>(
+        builder: (context, selector, _) {
+          return Scaffold(
+            /// Appbar
+            appBar: TkAppBar(
+              context: context,
+              enableClose: false,
+              removeLeading: false,
+              title: TkLogoBox(),
+            ),
 
-          /// Bottom Navigation Menu Bar
-          bottomNavigationBar: CurvedNavigationBar(
-            index: selector.activeTab,
-            animationDuration: Duration(milliseconds: 300),
-            backgroundColor: kLightGreyColor,
-            color: kPrimaryColor,
-            buttonBackgroundColor: kSecondaryColor,
-            height: 60.0,
-            items: _getIcons(),
-            onTap: (index) => setState(() => selector.activeTab = index),
-          ),
+            /// Bottom Navigation Menu Bar
+            bottomNavigationBar: CurvedNavigationBar(
+              index: selector.activeTab,
+              animationDuration: Duration(milliseconds: 300),
+              backgroundColor: kLightGreyColor,
+              color: kPrimaryColor,
+              buttonBackgroundColor: kSecondaryColor,
+              height: 60.0,
+              items: _getIcons(),
+              onTap: (index) => setState(() => selector.activeTab = index),
+            ),
 
-          /// Scaffold body: Active pane
-          body: TkScaffoldBody(
-            child: _panes[selector.activeTab],
-          ),
-        );
-      },
+            /// Scaffold body: Active pane
+            body: TkScaffoldBody(
+              child: _panes[selector.activeTab],
+            ),
+
+            // Create the side drawer
+            drawer: TkMenuDrawer(),
+          );
+        },
+      ),
     );
   }
 }

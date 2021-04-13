@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:card_scanner/card_scanner.dart';
+import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/account.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
@@ -12,15 +15,33 @@ import 'package:thaki/widgets/general/section_title.dart';
 class TkAddCardScreen extends StatefulWidget {
   static const String id = 'add_card_screen';
 
+  TkAddCardScreen({this.editMode = false, this.card});
+  final bool editMode;
+  final TkCredit card;
+
   @override
   _TkAddCardScreenState createState() => _TkAddCardScreenState();
 }
 
-class _TkAddCardScreenState extends State<TkAddCardScreen> {
-  String _holderName;
-  String _cardNumber;
-  String _cardExpiry;
-  String _ccv;
+class _TkAddCardScreenState extends State<TkAddCardScreen>
+    with TkFormFieldValidatorMixin {
+  TkCredit _card;
+
+  @override
+  bool validateField(TkFormField field, dynamic value) {
+    switch (field) {
+      case TkFormField.cardHolder:
+        return TkValidationHelper.validateNotEmpty(_card.holder);
+      case TkFormField.cardNumber:
+        return TkValidationHelper.validateNotEmpty(_card.number);
+      case TkFormField.cardExpiry:
+        return TkValidationHelper.validateNotEmpty(_card.expiry);
+      case TkFormField.cardCVV:
+        return TkValidationHelper.validateNotEmpty(_card.cvv);
+      default:
+        return true;
+    }
+  }
 
   Widget _createForm() {
     return Column(
@@ -28,22 +49,36 @@ class _TkAddCardScreenState extends State<TkAddCardScreen> {
         // Holder name title and edit
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
-          child: TkSectionTitle(title: kCardHolderName, uppercase: false),
+          child: TkSectionTitle(
+              title: S.of(context).kCardHolderName, uppercase: false),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 10.0,
-            horizontal: 30.0,
-          ),
-          child: TkTextField(hintText: kCardHolderName),
-        ),
-
-        // Card number title and edit
-        TkSectionTitle(title: kCardNumber, uppercase: false),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
           child: TkTextField(
-              hintText: kCardNumber, keyboardType: TextInputType.number),
+            hintText: S.of(context).kCardHolderName,
+            initialValue: _card?.holder,
+            onChanged: (value) => setState(() => _card.holder = value),
+            validator: getValidationCallback(TkFormField.cardHolder),
+            validate: isValidating,
+            errorMessage:
+                S.of(context).kPleaseEnter + S.of(context).kCardHolderName,
+          ),
+        ),
+
+        // Card number title and edit
+        TkSectionTitle(title: S.of(context).kCardNumber, uppercase: false),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+          child: TkTextField(
+            hintText: S.of(context).kCardNumber,
+            keyboardType: TextInputType.number,
+            initialValue: _card?.number,
+            onChanged: (value) => setState(() => _card.number = value),
+            validator: getValidationCallback(TkFormField.cardNumber),
+            validate: isValidating,
+            errorMessage:
+                S.of(context).kPleaseEnter + S.of(context).kCardNumber,
+          ),
         ),
         Row(
           children: [
@@ -52,13 +87,22 @@ class _TkAddCardScreenState extends State<TkAddCardScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TkSectionTitle(title: kCardExpires, uppercase: false),
+                  TkSectionTitle(
+                      title: S.of(context).kCardExpiresYm, uppercase: false),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         30.0, 10.0, 5.0, 10.0),
                     child: TkTextField(
-                        hintText: kCardExpires,
-                        keyboardType: TextInputType.datetime),
+                      hintText: S.of(context).kCardExpiresYm,
+                      keyboardType: TextInputType.datetime,
+                      initialValue: _card?.expiry,
+                      onChanged: (value) =>
+                          setState(() => _card.expiry = value),
+                      validator: getValidationCallback(TkFormField.cardExpiry),
+                      validate: isValidating,
+                      errorMessage: S.of(context).kPleaseEnter +
+                          S.of(context).kCardExpiry,
+                    ),
                   ),
                 ],
               ),
@@ -70,12 +114,22 @@ class _TkAddCardScreenState extends State<TkAddCardScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TkSectionTitle(
-                      title: kCardCVV, uppercase: false, start: false),
+                      title: S.of(context).kCardCVV,
+                      uppercase: false,
+                      start: false),
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
                     child: TkTextField(
-                        hintText: kCardCVV, keyboardType: TextInputType.number),
+                      hintText: S.of(context).kCardCVV,
+                      keyboardType: TextInputType.number,
+                      initialValue: _card?.cvv,
+                      onChanged: (value) => setState(() => _card.cvv = value),
+                      validator: getValidationCallback(TkFormField.cardCVV),
+                      validate: isValidating,
+                      errorMessage:
+                          S.of(context).kPleaseEnter + S.of(context).kCardCVV,
+                    ),
                   ),
                 ],
               ),
@@ -87,7 +141,9 @@ class _TkAddCardScreenState extends State<TkAddCardScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
           child: TkFormBuilder.createCheckBox(
-              label: kCarIsPreferred, value: false, onChanged: (value) {}),
+              label: S.of(context).kCarIsPreferred,
+              value: _card?.preferred,
+              onChanged: (value) => setState(() => _card.preferred = value)),
         ),
       ],
     );
@@ -114,16 +170,42 @@ class _TkAddCardScreenState extends State<TkAddCardScreen> {
       child: TkButton(
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
-        title: kSave,
+        title: S.of(context).kSave,
         onPressed: () async {
-          // TODO: Call API to add card
-          print('Hello Scaner');
-          var cardDetails = await CardScanner.scanCard();
+          // Call API to add/update card
+          setState(() => startValidating());
 
-          print(cardDetails);
+          if (validate()) {
+            stopValidating();
+
+            if (widget.editMode) {
+              // Call API to add car
+              await Provider.of<TkAccount>(context, listen: false)
+                  .updateCard(_card);
+
+              Navigator.of(context).pop();
+            } else {
+              // Call API to add car
+              await Provider.of<TkAccount>(context, listen: false)
+                  .addCard(_card);
+
+              Navigator.of(context).pop();
+            }
+          }
         },
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.editMode) {
+      _card = widget.card;
+    } else {
+      _card = TkCredit.fromJson({});
+    }
   }
 
   @override

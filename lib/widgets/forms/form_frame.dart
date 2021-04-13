@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/info_fields.dart';
 import 'package:thaki/utilities/form_builder.dart';
@@ -18,6 +19,7 @@ class TkFormFrame extends StatefulWidget {
     this.footer,
     this.validatePasswordMatch,
     this.child,
+    this.isLoading = false,
   });
 
   final String formTitle;
@@ -29,6 +31,7 @@ class TkFormFrame extends StatefulWidget {
   final Widget footer;
   final Function validatePasswordMatch;
   final Widget child;
+  final bool isLoading;
 
   @override
   _TkFormFrameState createState() => _TkFormFrameState();
@@ -36,8 +39,6 @@ class TkFormFrame extends StatefulWidget {
 
 class _TkFormFrameState extends State<TkFormFrame>
     with TkFormFieldValidatorMixin {
-  bool isLoading = false;
-
   @override
   bool validate() {
     for (TkInfoField field in widget.fields.fields) {
@@ -77,7 +78,7 @@ class _TkFormFrameState extends State<TkFormFrame>
       case TkInfoFieldType.Password:
       case TkInfoFieldType.ConfirmPassword:
       case TkInfoFieldType.OTP:
-        return TkValidationHelper.validateNotEmpty(field.value);
+        return TkValidationHelper.validateNotEmpty(field.value.toString());
     }
     return false;
   }
@@ -107,20 +108,20 @@ class _TkFormFrameState extends State<TkFormFrame>
       case TkInfoFieldType.NationalId:
         // National ID type
         widget = TkFormBuilder.createTextField(
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           label: field.label,
           initialValue: field.value,
           keyboardType: TextInputType.number,
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + field.label,
         );
         break;
       case TkInfoFieldType.AlphaNum:
         // AlphaNum type
         widget = TkFormBuilder.createTextField(
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           label: field.label,
           initialValue: field.value,
           keyboardType: field.subType == TkInfoFieldSubType.Numeric
@@ -129,27 +130,27 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + field.label,
           lines: field.numLines,
         );
         break;
       case TkInfoFieldType.Double:
         // Double type
         widget = TkFormBuilder.createTextField(
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           label: field.label,
-          initialValue: field.value,
+          initialValue: field.value.toString(),
           keyboardType: TextInputType.numberWithOptions(decimal: true),
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + field.label,
         );
         break;
       case TkInfoFieldType.Password:
         // Password type
         widget = TkFormBuilder.createTextField(
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           label: field.label,
           initialValue: field.value,
           keyboardType: field.subType == TkInfoFieldSubType.Numeric
@@ -159,13 +160,13 @@ class _TkFormFrameState extends State<TkFormFrame>
           obscured: true,
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + field.label,
         );
         break;
       case TkInfoFieldType.ConfirmPassword:
         // Password type
         widget = TkFormBuilder.createTextField(
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           label: field.label,
           initialValue: field.value,
           keyboardType: field.subType == TkInfoFieldSubType.Numeric
@@ -180,33 +181,33 @@ class _TkFormFrameState extends State<TkFormFrame>
             } else
               return validateInfoField(field);
           },
-          errorMessage: kPasswordMismatch,
+          errorMessage: S.of(context).kPasswordMismatch,
         );
         break;
       case TkInfoFieldType.Email:
         // Email type
         widget = TkFormBuilder.createTextField(
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           label: field.label,
           initialValue: field.value,
           keyboardType: TextInputType.emailAddress,
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: kPleaseEnterAValid + field.label,
+          errorMessage: S.of(context).kPleaseEnterAValid + field.label,
         );
         break;
       case TkInfoFieldType.Phone:
         // Phone type
         widget = TkFormBuilder.createTextField(
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           label: field.label,
           initialValue: field.value,
           keyboardType: TextInputType.phone,
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: kPleaseEnterAValid + field.label,
+          errorMessage: S.of(context).kPleaseEnterAValid + field.label,
         );
         break;
       case TkInfoFieldType.Date:
@@ -214,14 +215,14 @@ class _TkFormFrameState extends State<TkFormFrame>
       case TkInfoFieldType.DateTime:
         widget = TkFormBuilder.createDateTimeField(
           context: context,
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           type: field.type,
           label: field.label,
           value: field.value,
           onChanged: (value) {
             setState(() => field.value = value.toString());
           },
-          errorMessage: kPleaseChoose + field.label,
+          errorMessage: S.of(context).kPleaseChoose + field.label,
           isValidating: isValidating,
           validator: () => validateInfoField(field),
         );
@@ -241,11 +242,11 @@ class _TkFormFrameState extends State<TkFormFrame>
         // Dropdown and radio types
         widget = TkFormBuilder.createDropDownField(
           context: context,
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           label: field.label,
           initialValue: field.value,
           onChanged: (value) => setState(() => field.value = value),
-          errorMessage: kPleaseChoose + field.label,
+          errorMessage: S.of(context).kPleaseChoose + field.label,
           isValidating: isValidating,
           validator: () => validateInfoField(field),
           values: field.valueOptions,
@@ -254,14 +255,13 @@ class _TkFormFrameState extends State<TkFormFrame>
       case TkInfoFieldType.OTP:
         // OTP
         widget = TkFormBuilder.createOTP(
-          enabled: !isLoading,
+          enabled: !this.widget.isLoading,
           label: field.label,
           initialValue: field.value,
           onChanged: (value) {
-            print(value);
             setState(() => field.value = value);
           },
-          errorMessage: kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + field.label,
           isValidating: isValidating,
           validator: () => validateInfoField(field),
         );
@@ -339,7 +339,7 @@ class _TkFormFrameState extends State<TkFormFrame>
                     tag: widget.buttonTag,
                     child: TkButton(
                       title: widget.actionTitle,
-                      isLoading: isLoading,
+                      isLoading: this.widget.isLoading,
                       onPressed: () async {
                         // Enable validation
                         setState(() => startValidating());
