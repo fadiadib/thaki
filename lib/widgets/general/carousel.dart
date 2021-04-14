@@ -6,6 +6,7 @@ import 'package:thaki/globals/index.dart';
 class TkCarousel extends StatefulWidget {
   TkCarousel({
     key,
+    this.height,
     this.children,
     this.onClick,
     this.onChanged,
@@ -29,6 +30,7 @@ class TkCarousel extends StatefulWidget {
   final Color selectedDotColor;
   final Color dotColor;
   final double aspectRatio;
+  final double height;
 
   @override
   _TkCarouselState createState() => _TkCarouselState();
@@ -72,7 +74,7 @@ class _TkCarouselState extends State<TkCarousel> {
       itemCount: _widgets.length,
       itemBuilder: (context, idx, _) => _widgets[idx],
       options: CarouselOptions(
-        // height: 400,
+        height: widget.height,
         aspectRatio: widget.aspectRatio,
         viewportFraction: 1.0,
         initialPage: widget.initialPage,

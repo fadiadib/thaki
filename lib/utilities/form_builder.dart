@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/info_fields.dart';
@@ -74,6 +75,7 @@ class TkFormBuilder {
     @required bool isValidating,
     @required String errorMessage,
     @required bool enabled,
+    @required LocaleType locale,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,6 +91,7 @@ class TkFormBuilder {
           validate: isValidating,
           errorMessage: errorMessage,
           type: type,
+          locale: locale,
         ),
       ],
     );

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:thaki/globals/colors.dart';
 
 class TkProgressIndicator extends StatelessWidget {
-  TkProgressIndicator({this.strokeWidth = 4.0, this.size});
+  TkProgressIndicator(
+      {this.strokeWidth = 4.0, this.size, this.color = kSecondaryColor});
 
   final double strokeWidth;
   final double size;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +15,11 @@ class TkProgressIndicator extends StatelessWidget {
       child: Container(
         height: size,
         width: size,
-        child: CircularProgressIndicator(
-          strokeWidth: strokeWidth,
+        child: Theme(
+          data: Theme.of(context).copyWith(accentColor: color),
+          child: CircularProgressIndicator(
+            strokeWidth: strokeWidth,
+          ),
         ),
       ),
     );

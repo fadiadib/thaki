@@ -5,6 +5,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/state_controller.dart';
 import 'package:thaki/utilities/form_builder.dart';
 import 'package:thaki/utilities/formfield_validator.dart';
@@ -14,6 +15,7 @@ import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
+import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 
@@ -34,13 +36,22 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
   @override
   bool validateField(TkFormField field, dynamic value) {
+    TkLangController langController =
+        Provider.of<TkLangController>(context, listen: false);
+
     switch (field) {
       case TkFormField.carName:
         return TkValidationHelper.validateNotEmpty(_car.name);
       case TkFormField.carState:
         return TkValidationHelper.validateNotEmpty(_car.state.toString());
       case TkFormField.carPlateEN:
-        return TkValidationHelper.validateLicense(_car.plateEN, _car.state);
+        return langController.lang.languageCode == 'ar' ||
+            TkValidationHelper.validateLicense(
+                _car.plateEN, _car.state, langController.lang.languageCode);
+      case TkFormField.carPlateAR:
+        return langController.lang.languageCode == 'en' ||
+            TkValidationHelper.validateLicense(
+                _car.plateAR, _car.state, langController.lang.languageCode);
       case TkFormField.carMake:
         return TkValidationHelper.validateNotEmpty(_car.make);
       case TkFormField.carModel:
@@ -50,10 +61,12 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     }
   }
 
-  Widget _createForm() {
+  Widget _createForm(TkAccount account) {
     TkStateController states =
         Provider.of<TkStateController>(context, listen: false);
     TkUser user = Provider.of<TkAccount>(context, listen: false).user;
+    TkLangController langController =
+        Provider.of<TkLangController>(context, listen: false);
 
     return Column(
       children: [
@@ -66,6 +79,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
           child: TkTextField(
+            enabled: !account.isLoading,
             hintText: S.of(context).kCarNickname,
             initialValue: _car?.name,
             onChanged: (value) => setState(() => _car.name = value),
@@ -94,19 +108,50 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
         ),
 
         // Car license number (EN)
-        TkSectionTitle(title: S.of(context).kCarPlateEN, uppercase: false),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-          child: TkTextField(
-            hintText: S.of(context).kCarPlateEN,
-            initialValue: _car?.plateEN,
-            onChanged: (value) => setState(() => _car.plateEN = value),
-            validator: getValidationCallback(TkFormField.carPlateEN),
-            validate: isValidating,
-            errorMessage:
-                S.of(context).kPleaseEnter + S.of(context).kCarPlateEN,
+        if (langController.lang.languageCode == 'en')
+          Column(
+            children: [
+              TkSectionTitle(
+                  title: S.of(context).kCarPlateEN, uppercase: false),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 30.0),
+                child: TkTextField(
+                  enabled: !account.isLoading,
+                  hintText: S.of(context).kCarPlateEN,
+                  initialValue: _car?.plateEN,
+                  onChanged: (value) => setState(() => _car.plateEN = value),
+                  validator: getValidationCallback(TkFormField.carPlateEN),
+                  validate: isValidating,
+                  errorMessage: S.of(context).kPleaseEnterAValid +
+                      S.of(context).kCarPlateEN,
+                ),
+              ),
+            ],
           ),
-        ),
+
+        // Car license number (AR)
+        if (langController.lang.languageCode == 'ar')
+          Column(
+            children: [
+              TkSectionTitle(
+                  title: S.of(context).kCarPlateAR, uppercase: false),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 30.0),
+                child: TkTextField(
+                  enabled: !account.isLoading,
+                  hintText: S.of(context).kCarPlateAR,
+                  initialValue: _car?.plateAR,
+                  onChanged: (value) => setState(() => _car.plateAR = value),
+                  validator: getValidationCallback(TkFormField.carPlateAR),
+                  validate: isValidating,
+                  errorMessage: S.of(context).kPleaseEnterAValid +
+                      S.of(context).kCarPlateAR,
+                ),
+              ),
+            ],
+          ),
 
         Row(
           children: [
@@ -121,6 +166,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         30.0, 10.0, 5.0, 10.0),
                     child: TkTextField(
+                      enabled: !account.isLoading,
                       hintText: S.of(context).kCarMake,
                       initialValue: _car?.make,
                       onChanged: (value) => setState(() => _car.make = value),
@@ -147,6 +193,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
                     child: TkTextField(
+                      enabled: !account.isLoading,
                       hintText: S.of(context).kCarModel,
                       initialValue: _car?.model,
                       onChanged: (value) => setState(() => _car.model = value),
@@ -174,10 +221,11 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     );
   }
 
-  Widget _createFormButton() {
+  Widget _createFormButton(TkAccount account) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(30.0, 20.0, 30.0, 0),
       child: TkButton(
+        isLoading: account.isLoading,
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
         title: S.of(context).kSave,
@@ -189,15 +237,10 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
             if (widget.editMode) {
               // Call API to add car
-              await Provider.of<TkAccount>(context, listen: false)
-                  .updateCar(_car);
-
-              Navigator.of(context).pop();
+              if (await account.updateCar(_car)) Navigator.of(context).pop();
             } else {
               // Call API to add car
-              await Provider.of<TkAccount>(context, listen: false).addCar(_car);
-
-              Navigator.of(context).pop();
+              if (await account.addCar(_car)) Navigator.of(context).pop();
             }
           }
         },
@@ -218,22 +261,28 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TkAppBar(
-        context: context,
-        enableNotifications: false,
-        enableClose: true,
-        removeLeading: false,
-        title: TkLogoBox(),
-      ),
-      body: TkScaffoldBody(
-        child: ListView(
-          children: [
-            _createForm(),
-            _createFormButton(),
-          ],
+    return Consumer<TkAccount>(builder: (context, account, _) {
+      return Scaffold(
+        appBar: TkAppBar(
+          context: context,
+          enableNotifications: false,
+          enableClose: true,
+          removeLeading: false,
+          title: TkLogoBox(),
         ),
-      ),
-    );
+        body: TkScaffoldBody(
+          child: ListView(
+            children: [
+              _createForm(account),
+              _createFormButton(account),
+              TkError(
+                  message: widget.editMode
+                      ? account.updateCarError
+                      : account.addCarError),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

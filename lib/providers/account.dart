@@ -4,22 +4,6 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
 
-enum TkAccountError {
-  register,
-  login,
-  logout,
-  load,
-  edit,
-  loadCars,
-  addCar,
-  updateCar,
-  deleteCar,
-  loadCards,
-  addCard,
-  updateCard,
-  deleteCard
-}
-
 class TkAccount extends ChangeNotifier {
   // Helpers
   static TkAPIHelper _apis = new TkAPIHelper();
@@ -33,31 +17,46 @@ class TkAccount extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   // Error variables
-  Map<TkAccountError, String> _error = Map();
-  Map<TkAccountError, String> get error => _error;
-  void clearErrors() => _error.clear();
+  void clearErrors() {
+    registerError = loginError = logoutError = loadError = editError =
+        loadCarsError = addCarError = updateCarError = deleteCarError =
+            addCardError =
+                loadCardsError = updateCardError = deleteCardError = null;
+  }
+
+  String registerError;
+  String loginError;
+  String logoutError;
+  String loadError;
+  String editError;
+  String loadCarsError;
+  String addCarError;
+  String updateCarError;
+  String deleteCarError;
+  String addCardError;
+  String loadCardsError;
+  String updateCardError;
+  String deleteCardError;
 
   /// Checks for an active login session using user_token
   Future<bool> isLoggedIn() async {
     // Check if user token is stored
     String token = await _prefs.get(tag: kUserTokenTag);
     String tokenType = await _prefs.get(tag: kUserTokenTypeTag);
+    String lang = await _prefs.get(tag: kLangTag);
 
     if (token != null && tokenType != null)
-      user =
-          TkUser.fromJson({kUserTokenTag: token, kUserTokenTypeTag: tokenType});
+      user = TkUser.fromJson({
+        kUserTokenTag: token,
+        kUserTokenTypeTag: tokenType,
+        kUserLangTag: lang
+      });
 
     // No user object initialized
     if (user == null) return false;
 
     // If the token is already loaded, return true
     if (user.token != null) return true;
-
-    if (token != null) {
-      // User token is stored on disk, load it and return true
-      user = TkUser.fromJson({kUserTokenTag: token});
-      return true;
-    }
 
     // No login was called and no token in shared preference
     return false;
@@ -67,14 +66,19 @@ class TkAccount extends ChangeNotifier {
   Future<bool> register({bool store = false}) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.register] = null;
+    registerError = null;
 
     notifyListeners();
+
+    // Update user language
+    String lang = await _prefs.get(tag: kLangTag);
+    user.updateModelFromJson({kUserLangTag: lang});
 
     Map result = await _apis.register(user: user);
     if (result[kStatusTag] == kSuccessCreationCode) {
       // Load user data
       user = TkUser.fromJson(result[kDataTag]);
+      user.updateModelFromJson({kUserLangTag: lang});
 
       // Save token
       if (store) {
@@ -83,29 +87,33 @@ class TkAccount extends ChangeNotifier {
       }
     } else {
       // an error happened
-      _error[TkAccountError.register] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      registerError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.register] == null);
+    return (registerError == null);
   }
 
   /// User login, calls API and loads user model
   Future<bool> login({bool store = false}) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.login] = null;
+    loginError = null;
 
     notifyListeners();
-    Map result = await _apis.login(user: user);
 
+    // Update user language
+    String lang = await _prefs.get(tag: kLangTag);
+    user.updateModelFromJson({kUserLangTag: lang});
+
+    Map result = await _apis.login(user: user);
     if (result[kStatusTag] == kSuccessCode) {
       // Load user data
       user = TkUser.fromJson(result[kDataTag]);
+      user.updateModelFromJson({kUserLangTag: lang});
 
       // Save token
       if (store) {
@@ -114,27 +122,27 @@ class TkAccount extends ChangeNotifier {
       }
     } else {
       // an error happened
-      _error[TkAccountError.login] = result[kErrorMessageTag] ?? kUnknownError;
+      loginError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.login] == null);
+    return (loginError == null);
   }
 
   /// User logout, calls API and loads user model
   Future<bool> logout() async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.logout] = null;
+    logoutError = null;
     notifyListeners();
 
     Map result = await _apis.logout(user: user);
     if (result[kStatusTag] != kSuccessCreationCode) {
       // an error happened
-      _error[TkAccountError.logout] = result[kErrorMessageTag] ?? kUnknownError;
+      logoutError = _apis.normalizeError(result);
     } else {
       _prefs.delete(tag: kUserTokenTag);
       _prefs.delete(tag: kUserTokenTypeTag);
@@ -144,14 +152,14 @@ class TkAccount extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.logout] == null);
+    return (logoutError == null);
   }
 
   /// Load user profile, calls API and loads user model
   Future<bool> load() async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.load] = null;
+    loadError = null;
 
     notifyListeners();
 
@@ -161,21 +169,21 @@ class TkAccount extends ChangeNotifier {
       user.updateModelFromJson(result[kDataTag]);
     } else {
       // an error happened
-      _error[TkAccountError.load] = result[kErrorMessageTag] ?? kUnknownError;
+      loadError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.load] == null);
+    return (loadError == null);
   }
 
   /// User register, calls API and loads user model
   Future<bool> edit() async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.edit] = null;
+    editError = null;
 
     notifyListeners();
 
@@ -185,21 +193,21 @@ class TkAccount extends ChangeNotifier {
       user.updateModelFromJson(result[kDataTag]);
     } else {
       // an error happened
-      _error[TkAccountError.edit] = result[kErrorMessageTag] ?? kUnknownError;
+      editError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.edit] == null);
+    return (editError == null);
   }
 
   /// Get user cars, calls API and loads user model
   Future<bool> loadCars() async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.loadCars] = null;
+    loadCarsError = null;
 
     Map result = await _apis.loadCars(user: user);
     if (result[kStatusTag] == kSuccessCode) {
@@ -207,22 +215,22 @@ class TkAccount extends ChangeNotifier {
       user.updateModelFromJson(result[kDataTag]);
     } else {
       // an error happened
-      _error[TkAccountError.loadCars] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      loadCarsError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.loadCars] == null);
+    return (loadCarsError == null);
   }
 
   /// Get user cars, calls API and loads user model
   Future<bool> addCar(TkCar car) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.addCar] = null;
+    addCarError = null;
+    notifyListeners();
 
     Map result = await _apis.addCar(user: user, car: car);
     if (result[kStatusTag] == kSuccessCreationCode) {
@@ -230,21 +238,22 @@ class TkAccount extends ChangeNotifier {
       user.cars.add(TkCar.fromJson(result[kDataTag][kCarTag]));
     } else {
       // an error happened
-      _error[TkAccountError.addCar] = result[kErrorMessageTag] ?? kUnknownError;
+      addCarError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.addCar] == null);
+    return (addCarError == null);
   }
 
   /// Get user cars, calls API and loads user model
   Future<bool> deleteCar(TkCar car) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.deleteCar] = null;
+    deleteCarError = null;
+    notifyListeners();
 
     Map result = await _apis.deleteCar(user: user, car: car);
     if (result[kStatusTag] == kSuccessCode) {
@@ -252,42 +261,41 @@ class TkAccount extends ChangeNotifier {
       user.cars.removeWhere((element) => element.id == car.id);
     } else {
       // an error happened
-      _error[TkAccountError.deleteCar] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      deleteCarError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.deleteCar] == null);
+    return (deleteCarError == null);
   }
 
   /// Get user cars, calls API and loads user model
   Future<bool> updateCar(TkCar car) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.updateCar] = null;
+    updateCarError = null;
+    notifyListeners();
 
     Map result = await _apis.updateCar(user: user, car: car);
     if (result[kStatusTag] != kSuccessCode) {
       // an error happened
-      _error[TkAccountError.updateCar] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      updateCarError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.updateCar] == null);
+    return (updateCarError == null);
   }
 
   /// Get user cars, calls API and loads user model
   Future<bool> loadCards() async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.loadCards] = null;
+    loadCardsError = null;
 
     Map result = await _apis.loadCards(user: user);
     if (result[kStatusTag] == kSuccessCode) {
@@ -295,22 +303,22 @@ class TkAccount extends ChangeNotifier {
       user.updateModelFromJson(result[kDataTag]);
     } else {
       // an error happened
-      _error[TkAccountError.loadCards] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      loadCardsError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.loadCards] == null);
+    return (loadCardsError == null);
   }
 
   /// Get user cars, calls API and loads user model
   Future<bool> addCard(TkCredit card) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.addCard] = null;
+    addCardError = null;
+    notifyListeners();
 
     Map result = await _apis.addCard(user: user, card: card);
     if (result[kStatusTag] == kSuccessCreationCode) {
@@ -322,22 +330,22 @@ class TkAccount extends ChangeNotifier {
         user.cards.add(card);
     } else {
       // an error happened
-      _error[TkAccountError.addCard] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      addCardError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.addCard] == null);
+    return (addCardError == null);
   }
 
   /// Get user cars, calls API and loads user model
   Future<bool> deleteCard(TkCredit card) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.deleteCard] = null;
+    deleteCardError = null;
+    notifyListeners();
 
     Map result = await _apis.deleteCard(user: user, card: card);
     if (result[kStatusTag] == kSuccessCode) {
@@ -345,34 +353,33 @@ class TkAccount extends ChangeNotifier {
       user.cards.removeWhere((element) => element.id == card.id);
     } else {
       // an error happened
-      _error[TkAccountError.deleteCard] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      deleteCardError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.deleteCard] == null);
+    return (deleteCardError == null);
   }
 
   /// Get user cars, calls API and loads user model
   Future<bool> updateCard(TkCredit card) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkAccountError.updateCard] = null;
+    updateCardError = null;
+    notifyListeners();
 
     Map result = await _apis.updateCard(user: user, card: card);
     if (result[kStatusTag] != kSuccessCode) {
       // an error happened
-      _error[TkAccountError.updateCard] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      updateCardError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkAccountError.updateCard] == null);
+    return (updateCardError == null);
   }
 }

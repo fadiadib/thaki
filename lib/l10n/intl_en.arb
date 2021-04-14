@@ -65,7 +65,7 @@
   "kLoginExclamation": "Login!",
   "kLogOut": "Logout",
   "kBackTo": "Back to ",
-  "kForgotPassword": "Forgot Password",
+  "kForgotPassword": "Forgot Password?",
   "kEnterOTPMessage": "Please enter the six digit code received on your registered phone number/Email",
   "kPersonalInfo": "Personal Information",
   "kEditPersonalInfo": "Edit Personal Info",
@@ -161,5 +161,8 @@
   "kAreYouSureCar": "Are you sure you want to delete this car?",
   "kAreYouSureCard": "Are you sure you want to delete this card?",
   "kAddCar": "Add car",
-  "kAddCard": "Add card"
+  "kAddCard": "Add card",
+  "kLoginIntroTitle": "Welcome Back!",
+  "kYourRequestIsPending": "Subscription Request is Pending",
+  "kYourRequestIsDeclined": "Subscription Request is Declined"
 }

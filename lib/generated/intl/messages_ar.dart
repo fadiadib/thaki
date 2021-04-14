@@ -77,7 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kEnterOTPMessage" : MessageLookupByLibrary.simpleMessage("الرجاء إدخال الرمز المكون من ستة أرقام الذي تلقيته على رقم هاتفك / بريدك الإلكتروني المسجل"),
     "kFailure" : MessageLookupByLibrary.simpleMessage("خطأ!"),
     "kFinePaymentSuccess" : MessageLookupByLibrary.simpleMessage("تم دفع الغرامة بنجاح، يرجى الإنتظار ٣٠ دقيقة للحصول على تحديثات نظام CivicSmart"),
-    "kForgotPassword" : MessageLookupByLibrary.simpleMessage("هل نسيت كلمة السر"),
+    "kForgotPassword" : MessageLookupByLibrary.simpleMessage("هل نسيت كلمة المرور؟"),
     "kFri" : MessageLookupByLibrary.simpleMessage("الجمعاء"),
     "kFriday" : MessageLookupByLibrary.simpleMessage("الجمعاء"),
     "kFrom" : MessageLookupByLibrary.simpleMessage("من"),
@@ -90,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kLogOut" : MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
     "kLogin" : MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
     "kLoginExclamation" : MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
+    "kLoginIntroTitle" : MessageLookupByLibrary.simpleMessage("مرحبا!"),
     "kMon" : MessageLookupByLibrary.simpleMessage("الاثنين"),
     "kMonday" : MessageLookupByLibrary.simpleMessage("الاثنين"),
     "kMyBalance" : MessageLookupByLibrary.simpleMessage("رصيدي"),
@@ -126,7 +127,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kPickParkingTime" : MessageLookupByLibrary.simpleMessage("اختر وقت وقوف السيارة"),
     "kPleaseChoose" : MessageLookupByLibrary.simpleMessage("* يرجى إختيار "),
     "kPleaseEnter" : MessageLookupByLibrary.simpleMessage("* يرجى إدخال "),
-    "kPleaseEnterAValid" : MessageLookupByLibrary.simpleMessage("* يرجى إدخال "),
+    "kPleaseEnterAValid" : MessageLookupByLibrary.simpleMessage("* يرجى تصحيح "),
     "kPrivacyPolicy" : MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "kProfilePaneTitle" : MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "kPurchasePackage" : MessageLookupByLibrary.simpleMessage("اشتر باقة"),
@@ -181,6 +182,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "kWednesday" : MessageLookupByLibrary.simpleMessage("الأربعاء"),
     "kWeekDaySep" : MessageLookupByLibrary.simpleMessage(" ٬ "),
     "kYes" : MessageLookupByLibrary.simpleMessage("نعم"),
-    "kYouCanAlsoLoginWith" : MessageLookupByLibrary.simpleMessage("يمكنك أيضًا تسجيل الدخول باستخدام ...")
+    "kYouCanAlsoLoginWith" : MessageLookupByLibrary.simpleMessage("يمكنك أيضًا تسجيل الدخول باستخدام ..."),
+    "kYourRequestIsDeclined" : MessageLookupByLibrary.simpleMessage("تم رفض طلب الاشتراك"),
+    "kYourRequestIsPending" : MessageLookupByLibrary.simpleMessage("طلب الاشتراك قيد الموافقة")
   };
 }

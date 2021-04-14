@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
@@ -40,41 +42,74 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
           alignment: Alignment.topCenter,
           child: Padding(
             padding: const EdgeInsets.only(top: 50.0),
-            child: Hero(tag: 'logo', child: Image.asset(kLogoPath)),
+            child: Hero(
+                tag: 'logo',
+                child: Image.asset(
+                  kLogoPath,
+                  height: 140,
+                )),
           ),
         ),
 
         Align(
           child: Padding(
             padding: const EdgeInsets.only(top: 200.0),
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Hero(
-                    tag: kSignUpTag,
-                    child: TkButton(
-                      title: S.of(context).kSignUp,
-                      btnColor: kWhiteColor,
-                      titleColor: kLightPurpleColor,
-                      btnWidth: 140.0,
-                      onPressed: () =>
-                          Navigator.pushNamed(context, TkRegisterScreen.id),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Hero(
+                        tag: kSignUpTag,
+                        child: TkButton(
+                          title: S.of(context).kSignUp,
+                          btnColor: kWhiteColor,
+                          titleColor: kLightPurpleColor,
+                          btnWidth: 140.0,
+                          onPressed: () =>
+                              Navigator.pushNamed(context, TkRegisterScreen.id),
+                        ),
+                      ),
                     ),
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Hero(
+                        tag: kLoginTag,
+                        child: TkButton(
+                          title: S.of(context).kLogin,
+                          btnColor: kTransparentColor,
+                          btnBorderColor: kWhiteColor,
+                          btnWidth: 140.0,
+                          onPressed: () =>
+                              Navigator.pushNamed(context, TkLoginScreen.id),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Hero(
-                    tag: kLoginTag,
-                    child: TkButton(
-                      title: S.of(context).kLogin,
-                      btnColor: kTransparentColor,
-                      btnBorderColor: kWhiteColor,
-                      btnWidth: 140.0,
-                      onPressed: () =>
-                          Navigator.pushNamed(context, TkLoginScreen.id),
+                GestureDetector(
+                  onTap: () {
+                    Provider.of<TkLangController>(context, listen: false)
+                        .switchLang();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20.0),
+                    child: Text(
+                      S.of(context).kSwitchLanguage,
+                      style: kBoldStyle[kSmallSize].copyWith(
+                        color: kWhiteColor,
+                        decoration: TextDecoration.underline,
+                        fontFamily: Provider.of<TkLangController>(context,
+                                        listen: false)
+                                    .lang
+                                    .languageCode ==
+                                'ar'
+                            ? kLTRFontFamily
+                            : kRTLFontFamily,
+                      ),
                     ),
                   ),
                 ),
@@ -88,13 +123,16 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: TkScaffoldBody(
-        image: AssetImage(kOBBg),
-        colorOverlay: kPrimaryColor,
-        overlayOpacity: 0.5,
-        enableSafeArea: false,
-        child: _drawStack(),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: TkScaffoldBody(
+          image: AssetImage(kOBBg),
+          colorOverlay: kPrimaryColor,
+          overlayOpacity: 0.5,
+          enableSafeArea: false,
+          child: _drawStack(),
+        ),
       ),
     );
   }

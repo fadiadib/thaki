@@ -77,7 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kEnterOTPMessage" : MessageLookupByLibrary.simpleMessage("Please enter the six digit code received on your registered phone number/Email"),
     "kFailure" : MessageLookupByLibrary.simpleMessage("Error!"),
     "kFinePaymentSuccess" : MessageLookupByLibrary.simpleMessage("Fine paid successfully, please allow 30 minutes for updates on CivicSmart system"),
-    "kForgotPassword" : MessageLookupByLibrary.simpleMessage("Forgot Password"),
+    "kForgotPassword" : MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "kFri" : MessageLookupByLibrary.simpleMessage("Fri"),
     "kFriday" : MessageLookupByLibrary.simpleMessage("Friday"),
     "kFrom" : MessageLookupByLibrary.simpleMessage("From"),
@@ -90,6 +90,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kLogOut" : MessageLookupByLibrary.simpleMessage("Logout"),
     "kLogin" : MessageLookupByLibrary.simpleMessage("Log In"),
     "kLoginExclamation" : MessageLookupByLibrary.simpleMessage("Login!"),
+    "kLoginIntroTitle" : MessageLookupByLibrary.simpleMessage("Welcome Back!"),
     "kMon" : MessageLookupByLibrary.simpleMessage("Mon"),
     "kMonday" : MessageLookupByLibrary.simpleMessage("Monday"),
     "kMyBalance" : MessageLookupByLibrary.simpleMessage("My Balance"),
@@ -181,6 +182,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "kWednesday" : MessageLookupByLibrary.simpleMessage("Wednesday"),
     "kWeekDaySep" : MessageLookupByLibrary.simpleMessage(", "),
     "kYes" : MessageLookupByLibrary.simpleMessage("Yes"),
-    "kYouCanAlsoLoginWith" : MessageLookupByLibrary.simpleMessage("You can also login with …")
+    "kYouCanAlsoLoginWith" : MessageLookupByLibrary.simpleMessage("You can also login with …"),
+    "kYourRequestIsDeclined" : MessageLookupByLibrary.simpleMessage("Subscription Request is Declined"),
+    "kYourRequestIsPending" : MessageLookupByLibrary.simpleMessage("Subscription Request is Pending")
   };
 }

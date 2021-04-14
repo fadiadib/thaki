@@ -6,11 +6,12 @@ import 'package:thaki/models/index.dart';
 import 'package:thaki/widgets/tiles/car_tile.dart';
 
 class TkCarList extends StatelessWidget {
-  TkCarList({this.cars, this.onTap, this.onDelete, this.onEdit});
+  TkCarList({this.cars, this.onTap, this.onDelete, this.onEdit, this.langCode});
   final List<TkCar> cars;
   final Function onTap;
   final Function onDelete;
   final Function onEdit;
+  final String langCode;
 
   List<Widget> _getCarTiles(BuildContext context) {
     List<Widget> tiles = [];
@@ -23,6 +24,7 @@ class TkCarList extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
             child: TkCarTile(
+              langCode: langCode,
               car: car,
               onTap: onTap,
               onDelete: onDelete,

@@ -25,8 +25,13 @@ class TkLangController extends ChangeNotifier {
 
   void initLang() async {
     String langCode = await _prefs.get(tag: kLangTag);
+    if (langCode == null) {
+      // No language selected, choose default
+      langCode = 'en';
+      if (kDefaultToAR) langCode = 'ar';
+    }
 
-    if (langCode == null || langCode == 'en') {
+    if (langCode == 'en') {
       lang = Locale('en', '');
       fontFamily = kLTRFontFamily;
     } else {

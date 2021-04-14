@@ -6,7 +6,11 @@ class TkCar {
     name = json[kCarNameTag];
     plateEN = json[kCarPlateENTag];
     plateAR = json[kCarPlateARTag] ?? json[kCarPlateENTag];
+
+    // Temporary solution
     if (plateAR == null || plateAR.isEmpty) plateAR = plateEN;
+    if (plateEN == null || plateEN.isEmpty) plateEN = plateAR;
+
     make = json[kCarMakeTag] ?? '';
     model = json[kCarModelTag] ?? '';
     state = json[kCarStateTag] == null
@@ -18,8 +22,8 @@ class TkCar {
   Map<String, dynamic> toJson() {
     return {
       kCarNameTag: name,
-      kCarPlateENTag: plateEN,
-      // kCarPlateARTag: plateAR,
+      kCarPlateENTag: plateEN ?? '',
+      kCarPlateARTag: plateAR ?? '',
       kCarMakeTag: make,
       kCarModelTag: model,
       kCarStateTag: state.toString(),

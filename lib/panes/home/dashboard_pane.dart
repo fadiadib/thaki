@@ -97,6 +97,22 @@ class TkDashboardPane extends TkPane {
     );
   }
 
+  String _getSubscriptionBtnTitle(TkUser user, BuildContext context) {
+    if (user.isApproved == 0) return S.of(context).kApplySubscription;
+    if (user.isApproved == 1) return S.of(context).kBuySubscription;
+    if (user.isApproved == 2) return S.of(context).kYourRequestIsPending;
+    return S.of(context).kYourRequestIsDeclined;
+  }
+
+  Function _getSubscriptionBtnAction(TkUser user, BuildContext context) {
+    if (user.isApproved == 0)
+      return () => Navigator.of(context).pushNamed(TkBuySubscriptionScreen.id);
+    if (user.isApproved == 1)
+      return () =>
+          Navigator.of(context).pushNamed(TkApplyForSubscriptionScreen.id);
+    return null;
+  }
+
   Widget _createBalance(
       TkPurchaser purchaser, TkAccount account, BuildContext context) {
     TkUser user = account.user;
@@ -142,21 +158,15 @@ class TkDashboardPane extends TkPane {
 
         // Subscription button
         Padding(
-          padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
+          padding:
+              const EdgeInsets.only(top: 20, left: 50, right: 50, bottom: 20),
           child: TkButton(
-            title: user.isApproved
-                ? S.of(context).kBuySubscription
-                : S.of(context).kApplySubscription,
+            title: _getSubscriptionBtnTitle(user, context),
             btnBorderColor: kSecondaryColor,
             btnColor: kSecondaryColor,
-            onPressed: () {
-              if (user.isApproved) {
-                Navigator.of(context).pushNamed(TkBuySubscriptionScreen.id);
-              } else {
-                Navigator.of(context)
-                    .pushNamed(TkApplyForSubscriptionScreen.id);
-              }
-            },
+            disabledTitleColor: kWhiteColor.withOpacity(0.5),
+            enabled: user.isApproved == 1 || user.isApproved == 0,
+            onPressed: _getSubscriptionBtnAction(user, context),
           ),
         ),
       ],
@@ -167,7 +177,7 @@ class TkDashboardPane extends TkPane {
   Widget build(BuildContext context) {
     return Consumer3<TkPurchaser, TkBooker, TkAccount>(
         builder: (context, purchaser, booker, account, child) {
-      return purchaser.isLoading
+      return purchaser.isLoading || booker.isLoading
           ? TkProgressIndicator()
           : ListView(
               children: [

@@ -69,40 +69,43 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: initModel,
-      child: Consumer<TkTabSelector>(
-        builder: (context, selector, _) {
-          return Scaffold(
-            /// Appbar
-            appBar: TkAppBar(
-              context: context,
-              enableClose: false,
-              removeLeading: false,
-              title: TkLogoBox(),
-            ),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: RefreshIndicator(
+        onRefresh: initModel,
+        child: Consumer<TkTabSelector>(
+          builder: (context, selector, _) {
+            return Scaffold(
+              /// Appbar
+              appBar: TkAppBar(
+                context: context,
+                enableClose: false,
+                removeLeading: false,
+                title: TkLogoBox(),
+              ),
 
-            /// Bottom Navigation Menu Bar
-            bottomNavigationBar: CurvedNavigationBar(
-              index: selector.activeTab,
-              animationDuration: Duration(milliseconds: 300),
-              backgroundColor: kLightGreyColor,
-              color: kPrimaryColor,
-              buttonBackgroundColor: kSecondaryColor,
-              height: 60.0,
-              items: _getIcons(),
-              onTap: (index) => setState(() => selector.activeTab = index),
-            ),
+              /// Bottom Navigation Menu Bar
+              bottomNavigationBar: CurvedNavigationBar(
+                index: selector.activeTab,
+                animationDuration: Duration(milliseconds: 300),
+                backgroundColor: kLightGreyColor,
+                color: kPrimaryColor,
+                buttonBackgroundColor: kSecondaryColor,
+                height: 60.0,
+                items: _getIcons(),
+                onTap: (index) => setState(() => selector.activeTab = index),
+              ),
 
-            /// Scaffold body: Active pane
-            body: TkScaffoldBody(
-              child: _panes[selector.activeTab],
-            ),
+              /// Scaffold body: Active pane
+              body: TkScaffoldBody(
+                child: _panes[selector.activeTab],
+              ),
 
-            // Create the side drawer
-            drawer: TkMenuDrawer(),
-          );
-        },
+              // Create the side drawer
+              drawer: TkMenuDrawer(),
+            );
+          },
+        ),
       ),
     );
   }

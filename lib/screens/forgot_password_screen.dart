@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/login_screen.dart';
 import 'package:thaki/screens/otp_screen.dart';
 
@@ -39,9 +41,12 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
   }
 
   Widget _createForm() {
+    TkLangController controller = Provider.of<TkLangController>(context);
+
     return TkFormFrame(
-      formTitle: kResetFieldsJson[kFormName],
-      actionTitle: kResetFieldsJson[kFormAction],
+      langCode: controller.lang.languageCode,
+      formTitle: kResetFieldsJson[kFormName][controller.lang.languageCode],
+      actionTitle: kResetFieldsJson[kFormAction][controller.lang.languageCode],
       buttonTag: kLoginTag,
       fields: _fields,
       action: (TkInfoFieldsList results) async {

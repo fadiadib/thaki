@@ -80,10 +80,8 @@ class TkPayer extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   // Errors
-  String _loadError;
-  String get loadError => _loadError;
-  String _payError;
-  String get payError => _payError;
+  String loadError;
+  String payError;
 
   // Validation
   String _validationViolationsError;
@@ -113,12 +111,13 @@ class TkPayer extends ChangeNotifier {
     // Start any loading indicators
     _isLoading = true;
 
-    Map result = await _apis.loadViolations(selectedCar);
-
     // Clear model
-    _loadError = null;
+    loadError = null;
     _violations.clear();
     _selectedViolations.clear();
+    _cvv = null;
+
+    Map result = await _apis.loadViolations(selectedCar);
 
     if (result[kStatusTag] == kSuccessCode) {
       for (Map<String, dynamic> json in result[kDataTag][kViolationsTag]) {
@@ -126,36 +125,38 @@ class TkPayer extends ChangeNotifier {
       }
     } else {
       // an error happened
-      _loadError = result[kErrorMessageTag] ?? kUnknownError;
+      loadError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_loadError == null);
+    return (loadError == null);
   }
 
   /// Pay for selected violations using selected card
   Future<bool> paySelectedViolations() async {
     // Start any loading indicators
     _isLoading = true;
+    payError = null;
+
+    notifyListeners();
 
     Map result = await _apis.payViolations(
         violations: selectedViolations, card: selectedCard, cvv: _cvv);
 
     // Clear model
-    _payError = null;
 
     if (result[kStatusTag] != kSuccessCode) {
       // an _purchaseError happened
-      _payError = result[kErrorMessageTag] ?? kUnknownError;
+      payError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_payError == null);
+    return (payError == null);
   }
 }

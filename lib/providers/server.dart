@@ -34,7 +34,7 @@ class TkServer extends ChangeNotifier {
       _error = null;
     } else {
       // an error happened
-      _error = result[kErrorMessageTag] ?? kUnknownError;
+      _error = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators

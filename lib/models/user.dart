@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:thaki/globals/index.dart';
+
 import 'index.dart';
 import 'package:thaki/globals/apiuris.dart';
 import 'package:thaki/utilities/index.dart';
@@ -10,7 +12,8 @@ class TkUser {
       if (field.name == kUserNameTag) name = field.value;
       if (field.name == kUserEmailTag) email = field.value;
       if (field.name == kUserPhoneTag) phone = field.value;
-      if (field.name == kUserAgeTag) age = int.tryParse(field.value.toString());
+      if (field.name == kUserBirthDateTag)
+        birthDate = DateTime.tryParse(field.value.toString());
       if (field.name == kUserPasswordTag) password = field.value;
       if (field.name == kUserConfirmPasswordTag) confirmPassword = field.value;
       if (field.name == kUserRememberTag) rememberMe = field.value == 'true';
@@ -24,8 +27,23 @@ class TkUser {
       name = json[kUserTag][kUserNameTag];
       email = json[kUserTag][kUserEmailTag];
       phone = json[kUserTag][kUserPhoneTag];
-      age = int.tryParse(json[kUserTag][kUserAgeTag].toString());
-      isApproved = json[kUserTag][kUserApprovedTag].toString() == '1';
+      birthDate =
+          DateTime.tryParse(json[kUserTag][kUserBirthDateTag].toString());
+      isApproved = int.tryParse(json[kUserTag][kUserApprovedTag].toString());
+    }
+    if (json[kUserLangTag] != null) {
+      String langCode = json[kUserLangTag];
+      if (langCode == null) {
+        // No language selected, choose default
+        langCode = 'en';
+        if (kDefaultToAR) langCode = 'ar';
+      }
+
+      if (langCode == 'en') {
+        lang = Locale('en', '');
+      } else {
+        lang = Locale('ar', '');
+      }
     }
 
     // Create user cars
@@ -64,7 +82,7 @@ class TkUser {
       kUserNameTag: name,
       kUserEmailTag: email,
       kUserPhoneTag: phone,
-      kUserAgeTag: age.toString()
+      kUserBirthDateTag: birthDate.toString().split('.').first,
     };
     if (password != null)
       result[kUserPasswordTag] = TkCryptoHelper.hashSha256(password);
@@ -93,24 +111,24 @@ class TkUser {
       if (field.name == kUserNameTag) field.value = name;
       if (field.name == kUserEmailTag) field.value = email;
       if (field.name == kUserPhoneTag) field.value = phone;
-      if (field.name == kUserAgeTag) field.value = age.toString();
+      if (field.name == kUserBirthDateTag) field.value = birthDate?.toString();
       if (field.name == kUserPasswordTag) field.value = password;
       if (field.name == kUserConfirmPasswordTag) field.value = confirmPassword;
     }
     return fields;
   }
 
-  Locale lang = Locale('en', '');
+  Locale lang;
   String token;
   String tokenType;
   String name;
   String email;
-  int age;
+  DateTime birthDate;
   String password;
   String confirmPassword;
   String phone;
   bool rememberMe;
-  bool isApproved;
+  int isApproved;
   List<TkCar> cars;
   List<TkCredit> cards;
 }

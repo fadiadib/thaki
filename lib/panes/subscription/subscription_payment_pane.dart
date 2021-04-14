@@ -113,25 +113,23 @@ class TkSubscriptionPaymentPane extends TkPane {
                   onTap: (TkCredit card) => subscriber.selectedCard = card,
                   selected: subscriber.selectedCard,
                 ),
-                if (account.user.cards.isEmpty)
-                  GestureDetector(
-                    onTap: () =>
-                        Navigator.of(context).pushNamed(TkAddCardScreen.id),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(kAddCircleBtnIcon,
-                              size: 16, color: kPrimaryColor),
-                          SizedBox(width: 5),
-                          Text(S.of(context).kAddCard,
-                              style: kBoldStyle[kSmallSize]
-                                  .copyWith(color: kPrimaryColor)),
-                        ],
-                      ),
+                GestureDetector(
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(TkAddCardScreen.id),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(kAddCircleBtnIcon, size: 16, color: kPrimaryColor),
+                        SizedBox(width: 5),
+                        Text(S.of(context).kAddCard,
+                            style: kBoldStyle[kSmallSize]
+                                .copyWith(color: kPrimaryColor)),
+                      ],
                     ),
                   ),
+                ),
                 _getCheckoutButton(subscriber, context),
                 TkError(message: subscriber.validationPaymentError),
               ],

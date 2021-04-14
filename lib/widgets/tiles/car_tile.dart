@@ -6,11 +6,17 @@ import 'package:thaki/widgets/cards/license_card.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
 
 class TkCarTile extends StatelessWidget {
-  TkCarTile({@required this.car, this.onTap, this.onDelete, this.onEdit});
+  TkCarTile(
+      {@required this.car,
+      this.onTap,
+      this.onDelete,
+      this.onEdit,
+      this.langCode = 'en'});
   final TkCar car;
   final Function onTap;
   final Function onDelete;
   final Function onEdit;
+  final String langCode;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +62,13 @@ class TkCarTile extends StatelessWidget {
                                 .copyWith(color: kBlackColor),
                           ),
                         ),
-                        Text(car.plateEN + ' - ' + car.make + ' ' + car.model),
+                        Text((langCode == 'en'
+                                ? car.plateEN ?? '-'
+                                : car.plateAR ?? '-') +
+                            ' - ' +
+                            car.make +
+                            ' ' +
+                            car.model),
                       ],
                     ),
                   ],

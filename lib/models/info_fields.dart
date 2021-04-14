@@ -39,6 +39,7 @@ class TkInfoFieldValueOption {
 class TkInfoField {
   String name;
   String label;
+  String labelAR;
   bool required;
   dynamic value;
   bool visible;
@@ -48,10 +49,11 @@ class TkInfoField {
   List<TkInfoFieldValueOption> valueOptions;
 
   TkInfoField.fromJson({Map<String, dynamic> data}) {
-    name = data[kIFName]?.toString();
-    label = data[kIFTitle]?.toString();
+    if (data[kIFName] != null) name = data[kIFName];
+    if (data[kIFTitle] != null) label = data[kIFTitle];
+    if (data[kIFTitleAR] != null) labelAR = data[kIFTitleAR];
+    if (data[kIFValue] != null) value = data[kIFValue];
     required = data[kIFRequired] ?? false;
-    value = data[kIFValue]?.toString();
     visible = data[kIFVisible] ?? true;
     numLines = 1;
     if (data[kIFLines] != null &&

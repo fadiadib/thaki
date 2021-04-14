@@ -20,12 +20,14 @@ class TkTicketTile extends StatefulWidget {
     this.onDelete,
     this.ribbon,
     this.ribbonColor,
+    this.langCode = 'en',
   });
   final TkTicket ticket;
   final Function onTap;
   final Function onDelete;
   final String ribbon;
   final Color ribbonColor;
+  final String langCode;
 
   @override
   _TkTicketTileState createState() => _TkTicketTileState();
@@ -116,7 +118,12 @@ class _TkTicketTileState extends State<TkTicketTile> {
               ],
             ),
             if (widget.ribbon != null)
-              TkCardRibbon(title: widget.ribbon, color: widget.ribbonColor)
+              TkCardRibbon(
+                  title: widget.ribbon,
+                  color: widget.ribbonColor,
+                  side: widget.langCode == 'en'
+                      ? TkCardRibbonSide.right
+                      : TkCardRibbonSide.left)
           ],
         ),
       ),

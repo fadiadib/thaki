@@ -7,12 +7,18 @@ import 'package:thaki/widgets/tiles/ticket_tile.dart';
 
 class TkTicketList extends StatelessWidget {
   TkTicketList(
-      {this.tickets, this.onTap, this.onDelete, this.ribbon, this.ribbonColor});
+      {this.tickets,
+      this.onTap,
+      this.onDelete,
+      this.ribbon,
+      this.ribbonColor,
+      this.langCode = 'en'});
   final List<TkTicket> tickets;
   final Function onTap;
   final Function onDelete;
   final String ribbon;
   final Color ribbonColor;
+  final String langCode;
 
   List<Widget> _getTicketTiles(BuildContext context) {
     List<Widget> tiles = [];
@@ -25,6 +31,7 @@ class TkTicketList extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
             child: TkTicketTile(
+              langCode: langCode,
               ticket: ticket,
               onTap: onTap,
               onDelete: onDelete,

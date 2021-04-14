@@ -9,6 +9,21 @@ import 'package:thaki/utilities/network_helper.dart';
 class TkAPIHelper {
   static TkNetworkHelper _network = new TkNetworkHelper();
 
+  String normalizeError(Map result) {
+    String errorMessage = '';
+    if (result[kErrorMessageTag] != null) {
+      Map errors = result[kErrorMessageTag];
+      for (String key in errors.keys) {
+        for (String value in errors[key]) errorMessage += value + '\n';
+      }
+    } else if (result[kMessageTag] != null) {
+      errorMessage = result[kMessageTag];
+    } else {
+      errorMessage = kUnknownError;
+    }
+    return errorMessage;
+  }
+
   ///////////////////////// GENERAL /////////////////////////
   /// Check server API
   /// Returns user_token and success or failure

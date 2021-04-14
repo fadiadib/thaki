@@ -5,6 +5,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/payer.dart';
 import 'package:thaki/screens/add_car_screen.dart';
 import 'package:thaki/screens/pay_violation_screen.dart';
@@ -32,6 +33,10 @@ class TkViolationsPane extends TkPane {
                   child: TkSectionTitle(title: S.of(context).kPayViolations),
                 ),
                 TkCarList(
+                  langCode:
+                      Provider.of<TkLangController>(context, listen: false)
+                          .lang
+                          .languageCode,
                   cars: account.user.cars,
                   onTap: (TkCar car) {
                     // Select the car in the payer provider
@@ -42,28 +47,27 @@ class TkViolationsPane extends TkPane {
                     Navigator.of(context).pushNamed(TkPayViolationScreen.id);
                   },
                 ),
-                if (account.user.cars.isEmpty)
-                  GestureDetector(
-                    onTap: () =>
-                        Navigator.of(context).pushNamed(TkAddCarScreen.id),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            kAddCircleBtnIcon,
-                            size: 16,
-                            color: kPrimaryColor,
-                          ),
-                          SizedBox(width: 5),
-                          Text(S.of(context).kAddCar,
-                              style: kBoldStyle[kSmallSize]
-                                  .copyWith(color: kPrimaryColor)),
-                        ],
-                      ),
+                GestureDetector(
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(TkAddCarScreen.id),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          kAddCircleBtnIcon,
+                          size: 16,
+                          color: kPrimaryColor,
+                        ),
+                        SizedBox(width: 5),
+                        Text(S.of(context).kAddCar,
+                            style: kBoldStyle[kSmallSize]
+                                .copyWith(color: kPrimaryColor)),
+                      ],
                     ),
                   ),
+                ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
                   child: GestureDetector(

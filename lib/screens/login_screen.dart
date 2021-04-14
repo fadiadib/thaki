@@ -5,6 +5,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/forgot_password_screen.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/register_screen.dart';
@@ -31,9 +32,10 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     super.initState();
 
     _fields = TkInfoFieldsList.fromJson(data: kLoginFieldsJson);
-    TkAccount account = Provider.of<TkAccount>(context, listen: false);
 
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.clearErrors();
+
     if (account.user != null) _fields = account.user.toInfoFields(_fields);
   }
 
@@ -49,11 +51,13 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
 
   Widget _createForm() {
     TkAccount account = Provider.of<TkAccount>(context);
+    TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
-      introTitle: kLoginIntroTitle,
-      formTitle: kLoginFieldsJson[kFormName],
-      actionTitle: kLoginFieldsJson[kFormAction],
+      langCode: controller.lang.languageCode,
+      introTitle: S.of(context).kLoginIntroTitle,
+      formTitle: kLoginFieldsJson[kFormName][controller.lang.languageCode],
+      actionTitle: kLoginFieldsJson[kFormAction][controller.lang.languageCode],
       buttonTag: kLoginTag,
       fields: _fields,
       action: _updateModelAndPushNext,
@@ -62,13 +66,13 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
           onTap: () => Navigator.pushReplacementNamed(
               context, TkForgotPasswordScreen.id),
           child: Text(
-            S.of(context).kForgotPassword + '?',
+            S.of(context).kForgotPassword,
             style: kLinkStyle,
           ),
         ),
       ),
       isLoading: account.isLoading,
-      child: TkError(message: account.error[TkAccountError.login]),
+      child: TkError(message: account.loginError),
     );
   }
 

@@ -101,7 +101,8 @@ class TkButton extends StatelessWidget {
                   ? SizedBox(
                       height: 20.0,
                       width: 20.0,
-                      child: TkProgressIndicator(strokeWidth: 3.0),
+                      child: TkProgressIndicator(
+                          strokeWidth: 3.0, color: kWhiteColor),
                     )
                   : btnIcon != null
                       ? Transform.rotate(

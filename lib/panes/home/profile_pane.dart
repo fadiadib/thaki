@@ -6,6 +6,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/car.dart';
 import 'package:thaki/models/credit.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/state_controller.dart';
 import 'package:thaki/screens/add_car_screen.dart';
 import 'package:thaki/screens/add_card_screen.dart';
@@ -66,7 +67,7 @@ class TkProfilePane extends TkPane {
                   child: Text(S.of(context).kLogOut,
                       style: kMediumStyle[kSmallSize])),
             ),
-            TkError(message: account.error[TkAccountError.logout])
+            TkError(message: account.logoutError)
           ],
         ),
       ],
@@ -92,7 +93,13 @@ class TkProfilePane extends TkPane {
               },
               data: {
                 TkCardSide.topLeft: car.name,
-                TkCardSide.bottomLeft: car.plateEN,
+                TkCardSide.bottomLeft:
+                    Provider.of<TkLangController>(context, listen: false)
+                                .lang
+                                .languageCode ==
+                            'en'
+                        ? car.plateEN
+                        : car.plateAR,
                 TkCardSide.bottomRight: Provider.of<TkStateController>(context)
                     .getStateName(
                         car.state, Provider.of<TkAccount>(context).user)
@@ -123,6 +130,7 @@ class TkProfilePane extends TkPane {
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: TkCarousel(
+            height: 180,
             dotColor: kPrimaryColor.withOpacity(0.5),
             selectedDotColor: kPrimaryColor,
             emptyMessage: S.of(context).kNoCars,
@@ -141,6 +149,9 @@ class TkProfilePane extends TkPane {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: TkCreditCard(
+              locale: Provider.of<TkLangController>(context, listen: false)
+                  .lang
+                  .languageCode,
               bgColor: kLightPurpleColor,
               creditCard: card,
               onTap: () async {

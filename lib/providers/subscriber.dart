@@ -107,8 +107,7 @@ class TkSubscriber extends ChangeNotifier {
       _disclaimer = result[kDataTag][kDisclaimerTag];
     } else {
       // an error happened
-      _error[TkSubscriberError.loadDisclaimer] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      _error[TkSubscriberError.loadDisclaimer] = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
@@ -129,8 +128,7 @@ class TkSubscriber extends ChangeNotifier {
     // Clear model
     if (result[kStatusTag] != kSuccessCreationCode) {
       // an error happened
-      _error[TkSubscriberError.apply] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      _error[TkSubscriberError.apply] = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
@@ -151,6 +149,7 @@ class TkSubscriber extends ChangeNotifier {
 
     // Clear model
     _subscriptions.clear();
+    _cvv = null;
     if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kSubscriptionsTag]) {
         _subscriptions.add(TkSubscription.fromJson(data));
@@ -159,8 +158,7 @@ class TkSubscriber extends ChangeNotifier {
         _selectedSubscription = _subscriptions.first;
     } else {
       // an error happened
-      _error[TkSubscriberError.loadAllSubs] =
-          result[kErrorMessageTag] ?? kUnknownError;
+      _error[TkSubscriberError.loadAllSubs] = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
@@ -182,8 +180,8 @@ class TkSubscriber extends ChangeNotifier {
         card: _selectedCard,
         cvv: _cvv);
 
-    if (result[kStatusTag] != kSuccessCode) {
-      _error[TkSubscriberError.buy] = result[kErrorMessageTag] ?? kUnknownError;
+    if (result[kStatusTag] != kSuccessCreationCode) {
+      _error[TkSubscriberError.buy] = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators

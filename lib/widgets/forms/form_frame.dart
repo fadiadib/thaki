@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
@@ -20,6 +21,7 @@ class TkFormFrame extends StatefulWidget {
     this.validatePasswordMatch,
     this.child,
     this.isLoading = false,
+    this.langCode = 'en',
   });
 
   final String formTitle;
@@ -32,6 +34,7 @@ class TkFormFrame extends StatefulWidget {
   final Function validatePasswordMatch;
   final Widget child;
   final bool isLoading;
+  final String langCode;
 
   @override
   _TkFormFrameState createState() => _TkFormFrameState();
@@ -78,9 +81,13 @@ class _TkFormFrameState extends State<TkFormFrame>
       case TkInfoFieldType.Password:
       case TkInfoFieldType.ConfirmPassword:
       case TkInfoFieldType.OTP:
-        return TkValidationHelper.validateNotEmpty(field.value.toString());
+        return TkValidationHelper.validateNotEmpty(field.value);
     }
     return false;
+  }
+
+  String _getLabel(TkInfoField field) {
+    return widget.langCode == 'en' ? field.label : field.labelAR ?? field.label;
   }
 
   /// Loops the visible info fields and creates a form with all the widgets
@@ -109,20 +116,20 @@ class _TkFormFrameState extends State<TkFormFrame>
         // National ID type
         widget = TkFormBuilder.createTextField(
           enabled: !this.widget.isLoading,
-          label: field.label,
+          label: _getLabel(field),
           initialValue: field.value,
           keyboardType: TextInputType.number,
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
         );
         break;
       case TkInfoFieldType.AlphaNum:
         // AlphaNum type
         widget = TkFormBuilder.createTextField(
           enabled: !this.widget.isLoading,
-          label: field.label,
+          label: _getLabel(field),
           initialValue: field.value,
           keyboardType: field.subType == TkInfoFieldSubType.Numeric
               ? TextInputType.number
@@ -130,7 +137,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
           lines: field.numLines,
         );
         break;
@@ -138,20 +145,20 @@ class _TkFormFrameState extends State<TkFormFrame>
         // Double type
         widget = TkFormBuilder.createTextField(
           enabled: !this.widget.isLoading,
-          label: field.label,
-          initialValue: field.value.toString(),
+          label: _getLabel(field),
+          initialValue: field.value?.toString(),
           keyboardType: TextInputType.numberWithOptions(decimal: true),
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
         );
         break;
       case TkInfoFieldType.Password:
         // Password type
         widget = TkFormBuilder.createTextField(
           enabled: !this.widget.isLoading,
-          label: field.label,
+          label: _getLabel(field),
           initialValue: field.value,
           keyboardType: field.subType == TkInfoFieldSubType.Numeric
               ? TextInputType.number
@@ -160,14 +167,14 @@ class _TkFormFrameState extends State<TkFormFrame>
           obscured: true,
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
         );
         break;
       case TkInfoFieldType.ConfirmPassword:
         // Password type
         widget = TkFormBuilder.createTextField(
           enabled: !this.widget.isLoading,
-          label: field.label,
+          label: _getLabel(field),
           initialValue: field.value,
           keyboardType: field.subType == TkInfoFieldSubType.Numeric
               ? TextInputType.number
@@ -188,26 +195,26 @@ class _TkFormFrameState extends State<TkFormFrame>
         // Email type
         widget = TkFormBuilder.createTextField(
           enabled: !this.widget.isLoading,
-          label: field.label,
+          label: _getLabel(field),
           initialValue: field.value,
           keyboardType: TextInputType.emailAddress,
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnterAValid + field.label,
+          errorMessage: S.of(context).kPleaseEnterAValid + _getLabel(field),
         );
         break;
       case TkInfoFieldType.Phone:
         // Phone type
         widget = TkFormBuilder.createTextField(
           enabled: !this.widget.isLoading,
-          label: field.label,
+          label: _getLabel(field),
           initialValue: field.value,
           keyboardType: TextInputType.phone,
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnterAValid + field.label,
+          errorMessage: S.of(context).kPleaseEnterAValid + _getLabel(field),
         );
         break;
       case TkInfoFieldType.Date:
@@ -217,19 +224,20 @@ class _TkFormFrameState extends State<TkFormFrame>
           context: context,
           enabled: !this.widget.isLoading,
           type: field.type,
-          label: field.label,
+          label: _getLabel(field),
           value: field.value,
           onChanged: (value) {
             setState(() => field.value = value.toString());
           },
-          errorMessage: S.of(context).kPleaseChoose + field.label,
+          errorMessage: S.of(context).kPleaseChoose + _getLabel(field),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
+          locale: this.widget.langCode == 'en' ? LocaleType.en : LocaleType.ar,
         );
         break;
       case TkInfoFieldType.Boolean:
         widget = TkFormBuilder.createCheckBox(
-          label: field.label,
+          label: _getLabel(field),
           value: field.value != null &&
               field.value.isNotEmpty &&
               field.value != 'false' &&
@@ -243,10 +251,10 @@ class _TkFormFrameState extends State<TkFormFrame>
         widget = TkFormBuilder.createDropDownField(
           context: context,
           enabled: !this.widget.isLoading,
-          label: field.label,
+          label: _getLabel(field),
           initialValue: field.value,
           onChanged: (value) => setState(() => field.value = value),
-          errorMessage: S.of(context).kPleaseChoose + field.label,
+          errorMessage: S.of(context).kPleaseChoose + _getLabel(field),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
           values: field.valueOptions,
@@ -256,12 +264,12 @@ class _TkFormFrameState extends State<TkFormFrame>
         // OTP
         widget = TkFormBuilder.createOTP(
           enabled: !this.widget.isLoading,
-          label: field.label,
+          label: _getLabel(field),
           initialValue: field.value,
           onChanged: (value) {
             setState(() => field.value = value);
           },
-          errorMessage: S.of(context).kPleaseEnter + field.label,
+          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
         );

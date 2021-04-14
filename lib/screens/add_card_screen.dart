@@ -9,6 +9,7 @@ import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
+import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 
@@ -33,7 +34,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
       case TkFormField.cardHolder:
         return TkValidationHelper.validateNotEmpty(_card.holder);
       case TkFormField.cardNumber:
-        return TkValidationHelper.validateNotEmpty(_card.number);
+        return TkValidationHelper.validateCreditCard(_card.number);
       case TkFormField.cardExpiry:
         return TkValidationHelper.validateNotEmpty(_card.expiry);
       case TkFormField.cardCVV:
@@ -43,7 +44,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
     }
   }
 
-  Widget _createForm() {
+  Widget _createForm(TkAccount account) {
     return Column(
       children: [
         // Holder name title and edit
@@ -55,6 +56,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
           child: TkTextField(
+            enabled: !account.isLoading,
             hintText: S.of(context).kCardHolderName,
             initialValue: _card?.holder,
             onChanged: (value) => setState(() => _card.holder = value),
@@ -70,6 +72,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
           child: TkTextField(
+            enabled: !account.isLoading,
             hintText: S.of(context).kCardNumber,
             keyboardType: TextInputType.number,
             initialValue: _card?.number,
@@ -77,9 +80,10 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
             validator: getValidationCallback(TkFormField.cardNumber),
             validate: isValidating,
             errorMessage:
-                S.of(context).kPleaseEnter + S.of(context).kCardNumber,
+                S.of(context).kPleaseEnterAValid + S.of(context).kCardNumber,
           ),
         ),
+
         Row(
           children: [
             // Expiration date title and entry
@@ -93,6 +97,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         30.0, 10.0, 5.0, 10.0),
                     child: TkTextField(
+                      enabled: !account.isLoading,
                       hintText: S.of(context).kCardExpiresYm,
                       keyboardType: TextInputType.datetime,
                       initialValue: _card?.expiry,
@@ -121,6 +126,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
                     child: TkTextField(
+                      enabled: !account.isLoading,
                       hintText: S.of(context).kCardCVV,
                       keyboardType: TextInputType.number,
                       initialValue: _card?.cvv,
@@ -164,10 +170,11 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
     );
   }
 
-  Widget _createFormButton() {
+  Widget _createFormButton(TkAccount account) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: TkButton(
+        isLoading: account.isLoading,
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
         title: S.of(context).kSave,
@@ -180,16 +187,10 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
 
             if (widget.editMode) {
               // Call API to add car
-              await Provider.of<TkAccount>(context, listen: false)
-                  .updateCard(_card);
-
-              Navigator.of(context).pop();
+              if (await account.updateCard(_card)) Navigator.of(context).pop();
             } else {
               // Call API to add car
-              await Provider.of<TkAccount>(context, listen: false)
-                  .addCard(_card);
-
-              Navigator.of(context).pop();
+              if (await account.addCard(_card)) Navigator.of(context).pop();
             }
           }
         },
@@ -210,23 +211,29 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TkAppBar(
-        context: context,
-        enableNotifications: false,
-        enableClose: true,
-        removeLeading: false,
-        title: TkLogoBox(),
-      ),
-      body: TkScaffoldBody(
-        child: ListView(
-          children: [
-            _createForm(),
-            _createCCLogos(),
-            _createFormButton(),
-          ],
+    return Consumer<TkAccount>(builder: (context, account, _) {
+      return Scaffold(
+        appBar: TkAppBar(
+          context: context,
+          enableNotifications: false,
+          enableClose: true,
+          removeLeading: false,
+          title: TkLogoBox(),
         ),
-      ),
-    );
+        body: TkScaffoldBody(
+          child: ListView(
+            children: [
+              _createForm(account),
+              _createCCLogos(),
+              _createFormButton(account),
+              TkError(
+                  message: widget.editMode
+                      ? account.updateCardError
+                      : account.addCardError),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

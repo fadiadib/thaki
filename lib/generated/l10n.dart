@@ -675,10 +675,10 @@ class S {
     );
   }
 
-  /// `Forgot Password`
+  /// `Forgot Password?`
   String get kForgotPassword {
     return Intl.message(
-      'Forgot Password',
+      'Forgot Password?',
       name: 'kForgotPassword',
       desc: '',
       args: [],
@@ -1640,6 +1640,36 @@ class S {
     return Intl.message(
       'Add card',
       name: 'kAddCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome Back!`
+  String get kLoginIntroTitle {
+    return Intl.message(
+      'Welcome Back!',
+      name: 'kLoginIntroTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscription Request is Pending`
+  String get kYourRequestIsPending {
+    return Intl.message(
+      'Subscription Request is Pending',
+      name: 'kYourRequestIsPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscription Request is Declined`
+  String get kYourRequestIsDeclined {
+    return Intl.message(
+      'Subscription Request is Declined',
+      name: 'kYourRequestIsDeclined',
       desc: '',
       args: [],
     );

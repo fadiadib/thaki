@@ -113,25 +113,23 @@ class TkPackagePaymentPane extends TkPane {
                   onTap: (TkCredit card) => purchaser.selectedCard = card,
                   selected: purchaser.selectedCard,
                 ),
-                if (account.user.cards.isEmpty)
-                  GestureDetector(
-                    onTap: () =>
-                        Navigator.of(context).pushNamed(TkAddCardScreen.id),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(kAddCircleBtnIcon,
-                              size: 16, color: kPrimaryColor),
-                          SizedBox(width: 5),
-                          Text(S.of(context).kAddCard,
-                              style: kBoldStyle[kSmallSize]
-                                  .copyWith(color: kPrimaryColor)),
-                        ],
-                      ),
+                GestureDetector(
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(TkAddCardScreen.id),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(kAddCircleBtnIcon, size: 16, color: kPrimaryColor),
+                        SizedBox(width: 5),
+                        Text(S.of(context).kAddCard,
+                            style: kBoldStyle[kSmallSize]
+                                .copyWith(color: kPrimaryColor)),
+                      ],
                     ),
                   ),
+                ),
                 _getCheckoutButton(purchaser, context),
                 TkError(message: purchaser.validationPaymentError),
               ],

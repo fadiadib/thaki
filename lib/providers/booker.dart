@@ -4,8 +4,6 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
 
-enum TkBookerError { load, park, cancel, balance }
-
 class TkBooker extends ChangeNotifier {
   // Helpers
   static TkAPIHelper _apis = new TkAPIHelper();
@@ -15,6 +13,7 @@ class TkBooker extends ChangeNotifier {
   List<TkTicket> get upcomingTickets => _tickets[kUpcomingTicketsTag];
   List<TkTicket> get completedTickets => _tickets[kCompletedTicketsTag];
   List<TkTicket> get cancelledTickets => _tickets[kCancelledTicketsTag];
+  List<TkTicket> get pendingTickets => _tickets[kPendingTicketsTag];
 
   TkCar selectedCar;
 
@@ -53,10 +52,15 @@ class TkBooker extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   // Errors
-  Map<TkBookerError, String> _error = Map();
-  Map<TkBookerError, String> get error => _error;
+  void clearErrors() {
+    loadError = parkError = cancelError = balanceError = loadQRError = null;
+  }
+
   String loadQRError;
-  void clearErrors() => _error.clear();
+  String loadError;
+  String parkError;
+  String cancelError;
+  String balanceError;
 
   Future<bool> loadQR(TkUser user, TkTicket ticket) async {
     // Start any loading indicators
@@ -84,12 +88,21 @@ class TkBooker extends ChangeNotifier {
             theTicket.updateModel({
               kTicketCodeTag: result[kDataTag][kBookingQRData],
             });
+          } else {
+            theTicket = _tickets[kPendingTicketsTag].firstWhere(
+                (element) => element.id == ticket.id,
+                orElse: () => null);
+            if (theTicket != null) {
+              theTicket.updateModel({
+                kTicketCodeTag: result[kDataTag][kBookingQRData],
+              });
+            }
           }
         }
       }
     } else {
       // an error happened
-      loadQRError = result[kErrorMessageTag] ?? kUnknownError;
+      loadQRError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
@@ -103,7 +116,7 @@ class TkBooker extends ChangeNotifier {
   Future<bool> loadTickets(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkBookerError.load] = null;
+    loadError = null;
 
     Map result = await _apis.loadTickets(user: user);
 
@@ -111,13 +124,15 @@ class TkBooker extends ChangeNotifier {
     _tickets[kUpcomingTicketsTag] = [];
     _tickets[kCancelledTicketsTag] = [];
     _tickets[kCompletedTicketsTag] = [];
+    _tickets[kPendingTicketsTag] = [];
 
     if (result[kStatusTag] == kSuccessCode) {
       // Load user data
       for (String groupTag in [
         kUpcomingTicketsTag,
         kCancelledTicketsTag,
-        kCompletedTicketsTag
+        kCompletedTicketsTag,
+        kPendingTicketsTag,
       ]) {
         if (result[kDataTag][kBookingsTag].isNotEmpty) {
           if (result[kDataTag][kBookingsTag][groupTag] != null) {
@@ -128,21 +143,21 @@ class TkBooker extends ChangeNotifier {
       }
     } else {
       // an error happened
-      _error[TkBookerError.load] = result[kErrorMessageTag] ?? kUnknownError;
+      loadError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkBookerError.load] == null);
+    return (loadError == null);
   }
 
   /// Cancel ticket method
   Future<bool> cancelTicket(TkUser user, TkTicket ticket) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkBookerError.cancel] = null;
+    cancelError = null;
 
     notifyListeners();
 
@@ -157,21 +172,21 @@ class TkBooker extends ChangeNotifier {
       }
     } else {
       // an error happened
-      _error[TkBookerError.cancel] = result[kErrorMessageTag] ?? kUnknownError;
+      cancelError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkBookerError.cancel] == null);
+    return (cancelError == null);
   }
 
   /// Reserve Parking
   Future<bool> reserveParking(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
-    _error[TkBookerError.park] = null;
+    parkError = null;
 
     notifyListeners();
 
@@ -186,7 +201,7 @@ class TkBooker extends ChangeNotifier {
     _newTicket = null;
     if (result[kStatusTag] != kSuccessCreationCode) {
       // an _purchaseError happened
-      _error[TkBookerError.park] = result[kErrorMessageTag] ?? kUnknownError;
+      parkError = _apis.normalizeError(result);
     } else {
       _newTicket = TkTicket.fromJson(result[kDataTag][kBookingInfoTag]);
       _tickets[kUpcomingTicketsTag].add(_newTicket);
@@ -197,6 +212,6 @@ class TkBooker extends ChangeNotifier {
     _isLoading = false;
     notifyListeners();
 
-    return (_error[TkBookerError.park] == null);
+    return (parkError == null);
   }
 }

@@ -5,6 +5,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -43,16 +44,20 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen> {
 
   Widget _createForm() {
     TkAccount account = Provider.of<TkAccount>(context);
+    TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
-      formTitle: kEditProfileFieldsJson[kFormName],
-      actionTitle: kEditProfileFieldsJson[kFormAction],
+      langCode: controller.lang.languageCode,
+      formTitle: kEditProfileFieldsJson[kFormName]
+          [controller.lang.languageCode],
+      actionTitle: kEditProfileFieldsJson[kFormAction]
+          [controller.lang.languageCode],
       validatePasswordMatch: _validatePasswordMatch,
       buttonTag: kSignUpTag,
       fields: _fields,
       action: _updateModelAndPushNext,
       isLoading: account.isLoading,
-      child: TkError(message: account.error[TkAccountError.edit]),
+      child: TkError(message: account.editError),
     );
   }
 

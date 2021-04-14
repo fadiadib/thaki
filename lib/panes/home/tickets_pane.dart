@@ -56,6 +56,10 @@ class TkTicketsPane extends TkPane {
                     child: TabBarView(
                       children: [
                         TkTicketList(
+                          langCode: Provider.of<TkLangController>(context,
+                                  listen: false)
+                              .lang
+                              .languageCode,
                           tickets: booker.upcomingTickets,
                           onDelete: (TkTicket ticket) async {
                             if (await TkDialogHelper.gShowConfirmationDialog(
@@ -71,21 +75,34 @@ class TkTicketsPane extends TkPane {
                           },
                         ),
                         TkTicketList(
+                            langCode: Provider.of<TkLangController>(context,
+                                    listen: false)
+                                .lang
+                                .languageCode,
+                            tickets: booker.completedTickets,
                             ribbon: S.of(context).kCompleted,
                             ribbonColor: kGreenAccentColor),
                         TkTicketList(
-                          tickets: booker.completedTickets,
+                          langCode: Provider.of<TkLangController>(context,
+                                  listen: false)
+                              .lang
+                              .languageCode,
+                          tickets: booker.pendingTickets,
                           ribbon: S.of(context).kPending,
                           ribbonColor: kSecondaryColor,
                         ),
                         TkTicketList(
+                            langCode: Provider.of<TkLangController>(context,
+                                    listen: false)
+                                .lang
+                                .languageCode,
                             tickets: booker.cancelledTickets,
                             ribbon: S.of(context).kCancelled,
                             ribbonColor: kTertiaryColor),
                       ],
                     ),
                   ),
-                  TkError(message: booker.error[TkBookerError.cancel])
+                  TkError(message: booker.cancelError)
                 ],
               ),
             );

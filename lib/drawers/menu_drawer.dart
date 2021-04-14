@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/versioner.dart';
 import 'package:thaki/widgets/general/list_menu_item.dart';
@@ -61,11 +62,16 @@ class TkMenuDrawer extends StatelessWidget {
                   textStyle: kRegularStyle[kNormalSize]
                       .copyWith(fontFamily: kRTLFontFamily),
                   action: () {
+                    TkAccount account =
+                        Provider.of<TkAccount>(context, listen: false);
                     Provider.of<TkLangController>(context, listen: false)
                         .switchLang();
-                    Provider.of<TkAccount>(context, listen: false).user.lang =
+                    account.user.lang =
                         Provider.of<TkLangController>(context, listen: false)
                             .lang;
+                    account.load();
+                    Provider.of<TkBooker>(context, listen: false)
+                        .loadTickets(account.user);
                   },
                 ),
 

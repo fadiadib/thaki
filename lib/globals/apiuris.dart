@@ -48,7 +48,8 @@ const int kDelayedSuccessCode = 203;
 const int kErrorCode = 401;
 // General tags
 const String kStatusTag = 'status';
-const String kErrorMessageTag = 'message';
+const String kErrorMessageTag = 'errors';
+const String kMessageTag = 'message';
 const String kDataTag = 'data';
 // Header tags
 const String kAuthTag = 'Authorization';
@@ -60,10 +61,13 @@ const String kUpgradeTag = 'upgrade';
 // Info fields
 // Info fields tags
 const String kFormName = 'form_name';
+const String kFormNameAR = 'form_name_ar';
 const String kFormAction = 'form_action';
+const String kFormActionAR = 'form_action_ar';
 const String kInfoFieldsTag = 'fields';
 const String kIFName = 'f_name';
 const String kIFTitle = 'f_title';
+const String kIFTitleAR = 'f_title_ar';
 const String kIFRequired = 'f_required';
 const String kIFValue = 'f_value';
 const String kIFVisible = 'f_visible';
@@ -78,7 +82,7 @@ const String kUserTokenTag = 'access_token';
 const String kUserTokenTypeTag = 'token_type';
 const String kUserNameTag = 'name';
 const String kUserEmailTag = 'email';
-const String kUserAgeTag = 'age';
+const String kUserBirthDateTag = 'birth_date';
 const String kUserPhoneTag = 'phone';
 const String kUserPasswordTag = 'password';
 const String kUserConfirmPasswordTag = 'password_confirmation';
@@ -88,6 +92,7 @@ const String kUserCarsTag = 'cars_list';
 const String kUserCardsTag = 'card_list';
 const String kUserOTPTag = 'user_otp';
 const String kUserApprovedTag = 'is_approved';
+const String kUserLangTag = 'lang';
 // Notifications tags
 const String kNotificationTag = 'notification';
 const String kNotificationIdTag = 'id';
@@ -125,8 +130,9 @@ const String kCardTypeTag = 'card_type';
 const String kBookingInfoTag = 'booking_info';
 const String kBookingsTag = 'booking_list';
 const String kUpcomingTicketsTag = 'upcoming';
-const String kCompletedTicketsTag = 'past';
+const String kCompletedTicketsTag = 'completed';
 const String kCancelledTicketsTag = 'cancelled';
+const String kPendingTicketsTag = 'pending';
 const String kTicketTag = 'ticket';
 const String kTicketIdTag = 'id';
 const String kTicketNameTag = 'ticket_name';

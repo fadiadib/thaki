@@ -5,6 +5,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/login_screen.dart';
 
@@ -58,16 +59,19 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
 
   Widget _createForm() {
     TkAccount account = Provider.of<TkAccount>(context);
+    TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
-      formTitle: kRegisterFieldsJson[kFormName],
-      actionTitle: kRegisterFieldsJson[kFormAction],
+      langCode: controller.lang.languageCode,
+      formTitle: kRegisterFieldsJson[kFormName][controller.lang.languageCode],
+      actionTitle: kRegisterFieldsJson[kFormAction]
+          [controller.lang.languageCode],
       buttonTag: kSignUpTag,
       fields: _fields,
       validatePasswordMatch: _validatePasswordMatch,
       action: _updateModelAndPushNext,
       isLoading: account.isLoading,
-      child: TkError(message: account.error[TkAccountError.register]),
+      child: TkError(message: account.registerError),
     );
   }
 
@@ -88,7 +92,10 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
             )
           ],
         ),
-        TkSocialLogin(),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 50.0),
+          child: TkSocialLogin(),
+        ),
       ],
     );
   }

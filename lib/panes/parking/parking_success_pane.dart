@@ -33,7 +33,7 @@ class TkParkingSuccessPane extends TkPane {
                     padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
                     child: TkSectionTitle(title: ''),
                   ),
-                  if (booker.error[TkBookerError.park] == null)
+                  if (booker.parkError == null)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: TkTicketTile(ticket: booker.newTicket),
@@ -43,10 +43,10 @@ class TkParkingSuccessPane extends TkPane {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: TkSuccessCard(
-                      message: booker.error[TkBookerError.park] == null
+                      message: booker.parkError == null
                           ? S.of(context).kParkSuccess
-                          : booker.error[TkBookerError.park],
-                      result: booker.error[TkBookerError.park] == null,
+                          : booker.parkError,
+                      result: booker.parkError == null,
                     ),
                   ),
                   _getCloseButton(context),

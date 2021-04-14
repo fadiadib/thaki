@@ -50,12 +50,10 @@ class TkPackageSuccessPane extends TkPane {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
                     child: TkSuccessCard(
-                      message:
-                          purchaser.error[TkPurchaserError.purchase] == null
-                              ? S.of(context).kPurchaseSuccess
-                              : purchaser.error[TkPurchaserError.purchase],
-                      result:
-                          purchaser.error[TkPurchaserError.purchase] == null,
+                      message: purchaser.purchaseError == null
+                          ? S.of(context).kPurchaseSuccess
+                          : purchaser.purchaseError,
+                      result: purchaser.purchaseError == null,
                     ),
                   ),
                   _getCloseButton(context),

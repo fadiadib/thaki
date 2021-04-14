@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/scaffold_body.dart';
@@ -84,17 +86,46 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
               alignment: Alignment.center,
               child: Container(
                 width: 300,
-                child: Text(
-                  _current == 0
-                      ? S.of(context).kOnBoardingMessage1
-                      : _current == 1
-                          ? S.of(context).kOnBoardingMessage2
-                          : S.of(context).kOnBoardingMessage3,
-                  style: kBoldStyle[kBigSize].copyWith(
-                    color: kWhiteColor,
-                    fontFamily: kRTLFontFamily,
-                  ),
-                  textAlign: TextAlign.center,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      _current == 0
+                          ? S.of(context).kOnBoardingMessage1
+                          : _current == 1
+                              ? S.of(context).kOnBoardingMessage2
+                              : S.of(context).kOnBoardingMessage3,
+                      style: kBoldStyle[kBigSize].copyWith(
+                        color: kWhiteColor,
+                        fontFamily: kRTLFontFamily,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    if (_current == 0)
+                      GestureDetector(
+                        onTap: () {
+                          Provider.of<TkLangController>(context, listen: false)
+                              .switchLang();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 20.0),
+                          child: Text(
+                            S.of(context).kSwitchLanguage,
+                            style: kBoldStyle[kSmallSize].copyWith(
+                              color: kWhiteColor,
+                              decoration: TextDecoration.underline,
+                              fontFamily: Provider.of<TkLangController>(context,
+                                              listen: false)
+                                          .lang
+                                          .languageCode ==
+                                      'ar'
+                                  ? kLTRFontFamily
+                                  : kRTLFontFamily,
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               )),
 

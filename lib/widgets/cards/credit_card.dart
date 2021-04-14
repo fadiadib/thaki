@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/credit.dart';
 import 'package:thaki/utilities/index.dart';
 
 class TkCreditCard extends StatelessWidget {
-  TkCreditCard({
-    this.textColor = kCardTextColor,
-    this.bgColor = kCardBgColor,
-    this.borderColor = kCardBorderColor,
-    this.borderRadius = kCardBorderRadius,
-    @required this.creditCard,
-    this.onTap,
-  });
+  TkCreditCard(
+      {this.textColor = kCardTextColor,
+      this.bgColor = kCardBgColor,
+      this.borderColor = kCardBorderColor,
+      this.borderRadius = kCardBorderRadius,
+      @required this.creditCard,
+      this.onTap,
+      this.locale = 'en'});
   final Color bgColor;
   final Color borderColor;
   final Color textColor;
   final double borderRadius;
   final TkCredit creditCard;
   final Function onTap;
+  final String locale;
+
+  String _getNumber() {
+    String number = TkCreditCardHelper.obscure(creditCard.number);
+
+    if (locale == 'en') return number;
+
+    List<String> numbers = number.split(' ');
+    if (numbers.length != 4) return number;
+    return "${numbers[3]} ${numbers[2]} ${numbers[1]} ${numbers[0]}";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +60,7 @@ class TkCreditCard extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  TkCreditCardHelper.obscure(creditCard.number),
+                  _getNumber(),
                   style: kMediumStyle[kBigSize].copyWith(color: textColor),
                 ),
               ),

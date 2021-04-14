@@ -26,10 +26,11 @@ class TkLicenseCard extends StatelessWidget {
                     border: Border(bottom: BorderSide(color: kPrimaryColor)),
                   ),
                   child: Center(
-                      child: Text(
-                    car.plateEN.split(' ').first,
-                    style: kBoldStyle[kSmallSize],
-                  )),
+                    child: Text(
+                      RegExp(r"\[A-Z]{3}").stringMatch(car.plateEN) ?? '-',
+                      style: kBoldStyle[kSmallSize].copyWith(fontSize: 10),
+                    ),
+                  ),
                 ),
                 Container(
                   height: 20,
@@ -37,8 +38,10 @@ class TkLicenseCard extends StatelessWidget {
                   decoration: BoxDecoration(),
                   child: Center(
                     child: Text(
-                      car.plateAR.split(' ').first,
-                      style: kBoldStyle[kSmallSize],
+                      RegExp(r"[\u0660-\u0669]+", unicode: true)
+                              .stringMatch(car.plateAR) ??
+                          '-',
+                      style: kBoldStyle[kSmallSize].copyWith(fontSize: 10),
                     ),
                   ),
                 ),
@@ -52,27 +55,31 @@ class TkLicenseCard extends StatelessWidget {
                   decoration: BoxDecoration(
                     border: Border(
                       left: BorderSide(color: kPrimaryColor),
+                      right: BorderSide(color: kPrimaryColor),
                       bottom: BorderSide(color: kPrimaryColor),
                     ),
                   ),
                   child: Center(
-                      child: Text(
-                    car.plateEN.split(' ').last,
-                    style: kBoldStyle[kSmallSize],
-                  )),
+                    child: Text(
+                      RegExp(r"\d+").stringMatch(car.plateEN) ?? '-',
+                      style: kBoldStyle[kSmallSize].copyWith(fontSize: 10),
+                    ),
+                  ),
                 ),
                 Container(
                   height: 20,
                   width: 40,
                   decoration: BoxDecoration(
                     border: Border(
-                      left: BorderSide(color: kPrimaryColor),
-                    ),
+                        left: BorderSide(color: kPrimaryColor),
+                        right: BorderSide(color: kPrimaryColor)),
                   ),
                   child: Center(
                     child: Text(
-                      car.plateAR.split(' ').last,
-                      style: kBoldStyle[kSmallSize],
+                      RegExp(r"[\u0621-\u064A]{3}", unicode: true)
+                              .stringMatch(car.plateAR) ??
+                          '-',
+                      style: kBoldStyle[kSmallSize].copyWith(fontSize: 10),
                     ),
                   ),
                 ),

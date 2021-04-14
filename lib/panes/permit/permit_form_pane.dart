@@ -5,6 +5,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/subscriber.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/form_frame.dart';
@@ -16,9 +17,14 @@ class TkPermitFormPane extends TkPane {
 
   Widget _createForm(BuildContext context, TkSubscriber subscriber) {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    TkLangController controller = Provider.of<TkLangController>(context);
+
     return TkFormFrame(
-      formTitle: kResidentPermitFieldsJson[kFormName],
-      actionTitle: kResidentPermitFieldsJson[kFormAction],
+      langCode: controller.lang.languageCode,
+      formTitle: kResidentPermitFieldsJson[kFormName]
+          [controller.lang.languageCode],
+      actionTitle: kResidentPermitFieldsJson[kFormAction]
+          [controller.lang.languageCode],
       buttonTag: kLoginTag,
       fields: account.user.toInfoFields(
           TkInfoFieldsList.fromJson(data: kResidentPermitFieldsJson)),

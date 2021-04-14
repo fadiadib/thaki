@@ -51,6 +51,7 @@ class TkCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        width: 800,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
           color: bgColor,
@@ -60,22 +61,29 @@ class TkCard extends StatelessWidget {
 
         // Two quadrants
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _getSideWidget(TkCardSide.topLeft),
-                _getSideWidget(TkCardSide.topRight)
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _getSideWidget(TkCardSide.topLeft),
+                  _getSideWidget(TkCardSide.topRight)
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _getSideWidget(TkCardSide.bottomLeft),
-                _getSideWidget(TkCardSide.bottomRight)
-              ],
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _getSideWidget(TkCardSide.bottomLeft),
+                  _getSideWidget(TkCardSide.bottomRight)
+                ],
+              ),
             ),
           ],
         ),

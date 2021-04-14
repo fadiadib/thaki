@@ -43,7 +43,7 @@
   "kDelete": "إلغاء",
   "kEdit": "تعديل",
   "kPleaseEnter": "* يرجى إدخال ",
-  "kPleaseEnterAValid": "* يرجى إدخال ",
+  "kPleaseEnterAValid": "* يرجى تصحيح ",
   "kPleaseChoose": "* يرجى إختيار ",
   "kPasswordMismatch": "* كلمة الدخول غير مطابقة",
   "kConnectionError": "هاتفك ليس لديه اتصال بالإنترنت ،\nيرجى التحقق من الاتصال و ",
@@ -64,7 +64,7 @@
   "kLoginExclamation": "تسجيل دخول",
   "kLogOut": "تسجيل خروج",
   "kBackTo": "ارجع الى ",
-  "kForgotPassword": "هل نسيت كلمة السر",
+  "kForgotPassword": "هل نسيت كلمة المرور؟",
   "kEnterOTPMessage": "الرجاء إدخال الرمز المكون من ستة أرقام الذي تلقيته على رقم هاتفك / بريدك الإلكتروني المسجل",
   "kPersonalInfo": "معلومات شخصية",
   "kEditPersonalInfo": "تعديل المعلومات الشخصية",
@@ -160,5 +160,8 @@
   "kAreYouSureCar": "هل أنت متأكد أنك تريد حذف هذه السيارة؟",
   "kAreYouSureCard": "هل أنت متأكد أنك تريد حذف هذه البطاقة؟",
   "kAddCar": "أضف سيارة",
-  "kAddCard": "أضف بطاقة"
+  "kAddCard": "أضف بطاقة",
+  "kLoginIntroTitle": "مرحبا!",
+  "kYourRequestIsPending": "طلب الاشتراك قيد الموافقة",
+  "kYourRequestIsDeclined": "تم رفض طلب الاشتراك"
 }

@@ -5,6 +5,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/add_car_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -48,6 +49,10 @@ class _TkCarsListScreenState extends State<TkCarsListScreen> {
                         ),
                       ),
                       TkCarList(
+                        langCode: Provider.of<TkLangController>(context,
+                                listen: false)
+                            .lang
+                            .languageCode,
                         cars: account.user.cars,
                         onTap: (TkCar car) {
                           Navigator.of(context).push(

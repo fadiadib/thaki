@@ -181,6 +181,7 @@ class TkDateField extends TkTextField {
     this.type = TkInfoFieldType.Date,
     this.allowFuture = false,
     this.allowPast = true,
+    this.locale = LocaleType.en,
   }) : super(
           isLoading: isLoading,
           enabled: enabled,
@@ -210,6 +211,7 @@ class TkDateField extends TkTextField {
   final TkInfoFieldType type;
   final bool allowFuture;
   final bool allowPast;
+  final LocaleType locale;
 
   String _formatValue(DateTime value) {
     if (value == null) return hintText ?? '';
@@ -255,7 +257,7 @@ class TkDateField extends TkTextField {
           onChanged: (date) {},
           onConfirm: (date) => onChanged(date),
           currentTime: value,
-          locale: LocaleType.en,
+          locale: locale,
         );
         break;
       case TkInfoFieldType.Time:
@@ -272,7 +274,7 @@ class TkDateField extends TkTextField {
           onChanged: (time) {},
           onConfirm: (time) => onChanged(time),
           currentTime: value,
-          locale: LocaleType.en,
+          locale: locale,
         );
         break;
       case TkInfoFieldType.DateTime:
@@ -293,7 +295,7 @@ class TkDateField extends TkTextField {
           onChanged: (date) {},
           onConfirm: (date) => onChanged(date),
           currentTime: value,
-          locale: LocaleType.en,
+          locale: locale,
         );
         break;
       default:

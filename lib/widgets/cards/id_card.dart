@@ -34,7 +34,7 @@ class TkIDCard extends StatelessWidget {
         androidUiSettings: AndroidUiSettings(
             toolbarTitle: S.of(context).kUploadImage,
             toolbarColor: kPrimaryBgColor,
-            toolbarWidgetColor: kWhiteColor,
+            toolbarWidgetColor: kPrimaryColor,
             initAspectRatio: CropAspectRatioPreset.original,
             lockAspectRatio: false),
         iosUiSettings: IOSUiSettings(
