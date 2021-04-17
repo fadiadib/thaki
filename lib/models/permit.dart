@@ -1,8 +1,8 @@
-import 'dart:io';
 import 'dart:math';
 import 'package:http/http.dart' as http;
 
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/models/index.dart';
 import 'package:thaki/models/info_fields.dart';
 import 'package:thaki/utilities/crypto_helper.dart';
 
@@ -10,8 +10,7 @@ class TkPermit {
   String name;
   String phone;
   String email;
-  File idFront;
-  File idBack;
+  List<TkDocument> documents;
 
   void updateModelFromInfoFields(TkInfoFieldsList fields) {
     for (TkInfoField field in fields.fields) {
@@ -23,25 +22,17 @@ class TkPermit {
 
   List<http.MultipartFile> toFiles() {
     List<http.MultipartFile> files = [];
-    files.add(
-      http.MultipartFile(
-        kSubscriberCardFront,
-        idFront.readAsBytes().asStream(),
-        idFront.lengthSync(),
-        filename: TkCryptoHelper.hashMD5(
-            Random().toString() + '_' + DateTime.now().toString()),
-      ),
-    );
-    files.add(
-      http.MultipartFile(
-        kSubscriberCardBack,
-        idBack.readAsBytes().asStream(),
-        idBack.lengthSync(),
-        filename: TkCryptoHelper.hashMD5(
-            Random().toString() + '_' + DateTime.now().toString()),
-      ),
-    );
-
+    for (TkDocument doc in documents) {
+      files.add(
+        http.MultipartFile(
+          doc.tag,
+          doc.image.readAsBytes().asStream(),
+          doc.image.lengthSync(),
+          filename: TkCryptoHelper.hashMD5(
+              Random().toString() + '_' + DateTime.now().toString()),
+        ),
+      );
+    }
     return files;
   }
 

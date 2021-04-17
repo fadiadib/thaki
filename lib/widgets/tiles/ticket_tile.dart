@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
-import 'package:thaki/providers/account.dart';
-import 'package:thaki/providers/booker.dart';
 import 'package:thaki/utilities/date_time_helper.dart';
 import 'package:thaki/utilities/index.dart';
-import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/ribbon.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
@@ -130,60 +125,7 @@ class _TkTicketTileState extends State<TkTicketTile> {
     );
   }
 
-  void openCode(BuildContext context) async {
-    TkBooker booker = Provider.of<TkBooker>(context, listen: false);
-    if (widget.ticket.cancelled == false) {
-      booker.loadQRError = null;
-
-      if (widget.ticket.code == null) {
-        setState(() => isLoading = true);
-        await booker.loadQR(
-            Provider.of<TkAccount>(context, listen: false).user, widget.ticket);
-        setState(() => isLoading = false);
-      }
-
-      TkDialogHelper.gOpenDrawer(
-        context: context,
-        drawer: ClipRRect(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(20.0),
-            topLeft: Radius.circular(20.0),
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: kWhiteBgLinearGradient,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(20.0),
-                topLeft: Radius.circular(20.0),
-              ),
-            ),
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: booker.loadQRError == null
-                    ? widget.ticket.code != null
-                        ? Container(
-                            padding: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              color: kFormBgColor,
-                              boxShadow: kTileShadow,
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            child: QrImage(
-                              data: widget.ticket.code,
-                              version: QrVersions.auto,
-                              size: 380.0,
-                            ),
-                          )
-                        : TkError(message: kUnknownError)
-                    : TkError(message: booker.loadQRError),
-              ),
-            ),
-          ),
-        ),
-      );
-    }
-  }
+  void load(bool status) => setState(() => isLoading = status);
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +133,9 @@ class _TkTicketTileState extends State<TkTicketTile> {
       onDelete:
           widget.onDelete == null ? null : () => widget.onDelete(widget.ticket),
       child: GestureDetector(
-        onTap: widget.onTap ?? () => openCode(context),
+        onTap: widget.onTap ??
+            () => TkQRHelper.showQRCode(
+                context: context, ticket: widget.ticket, loadCallback: load),
         child: Container(
           decoration: BoxDecoration(
             color: kTileBgColor,

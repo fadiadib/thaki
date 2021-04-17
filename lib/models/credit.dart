@@ -8,7 +8,7 @@ class TkCredit {
     expiry = json[kCardExpiryTag];
     cvv = json[kCardCVVTag];
     preferred = json[kCardPreferredTag].toString() == '1';
-    type = json[kCardTypeTag] ?? 1;
+    type = int.tryParse(json[kCardTypeTag].toString());
   }
 
   Map<String, dynamic> toJson() {
@@ -19,6 +19,27 @@ class TkCredit {
       kCardCVVTag: cvv,
       kCardPreferredTag: preferred ? '1' : '0',
     };
+  }
+
+  TkCredit createCopy() {
+    return TkCredit.fromJson({})
+      ..id = id
+      ..holder = holder
+      ..number = number
+      ..expiry = expiry
+      ..cvv = cvv
+      ..type = type
+      ..preferred = preferred;
+  }
+
+  void copyValue(TkCredit card) {
+    id = card.id;
+    holder = card.holder;
+    number = card.number;
+    expiry = card.expiry;
+    cvv = card.cvv;
+    preferred = card.preferred;
+    type = card.type;
   }
 
   int id;

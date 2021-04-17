@@ -1285,10 +1285,10 @@ class S {
     );
   }
 
-  /// `Check violations for another LPR`
+  /// `Enter another LPR`
   String get kCheckForLPR {
     return Intl.message(
-      'Check violations for another LPR',
+      'Enter another LPR',
       name: 'kCheckForLPR',
       desc: '',
       args: [],
@@ -1670,6 +1670,66 @@ class S {
     return Intl.message(
       'Subscription Request is Declined',
       name: 'kYourRequestIsDeclined',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` is in the past`
+  String get kIsPast {
+    return Intl.message(
+      ' is in the past',
+      name: 'kIsPast',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose car to book parking`
+  String get kChooseCarToBook {
+    return Intl.message(
+      'Choose car to book parking',
+      name: 'kChooseCarToBook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose car to pay violations`
+  String get kChooseCarToPayViolations {
+    return Intl.message(
+      'Choose car to pay violations',
+      name: 'kChooseCarToPayViolations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Color`
+  String get kCarColor {
+    return Intl.message(
+      'Color',
+      name: 'kCarColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Year`
+  String get kCarYear {
+    return Intl.message(
+      'Year',
+      name: 'kCarYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have any violations`
+  String get kNoViolations {
+    return Intl.message(
+      'You don\'t have any violations',
+      name: 'kNoViolations',
       desc: '',
       args: [],
     );

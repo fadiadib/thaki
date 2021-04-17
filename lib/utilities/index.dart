@@ -13,3 +13,4 @@ export 'url_launcher.dart';
 export 'validation_helper.dart';
 export 'dialog_helper.dart';
 export 'credit_card_helper.dart';
+export 'qr_helper.dart';

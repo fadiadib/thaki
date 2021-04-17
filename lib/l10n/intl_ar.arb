@@ -163,5 +163,11 @@
   "kAddCard": "أضف بطاقة",
   "kLoginIntroTitle": "مرحبا!",
   "kYourRequestIsPending": "طلب الاشتراك قيد الموافقة",
-  "kYourRequestIsDeclined": "تم رفض طلب الاشتراك"
+  "kYourRequestIsDeclined": "تم رفض طلب الاشتراك",
+  "kIsPast": " في الماضي",
+  "kChooseCarToBook": "اختر سيارة لحجز وقوف",
+  "kChooseCarToPayViolations" : "اختر سيارة لدفع المخالفات",
+  "kCarColor": "اللون",
+  "kCarYear": "سنة الصنع",
+  "kNoViolations": "ليس لديك أي مخالفات"
 }

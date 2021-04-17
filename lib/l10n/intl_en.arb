@@ -126,7 +126,7 @@
   "kIDBack": "ID Card (Back)",
   "kUploadImage": "Upload Image",
   "kUploadDocumentsToProceed": "Please upload all documents to proceed",
-  "kCheckForLPR": "Check violations for another LPR",
+  "kCheckForLPR": "Enter another LPR",
   "kEnterLRP": "Enter one time car LPR",
   "kCurrentViolations": "Current Violations",
   "kTotal": "Total",
@@ -164,5 +164,11 @@
   "kAddCard": "Add card",
   "kLoginIntroTitle": "Welcome Back!",
   "kYourRequestIsPending": "Subscription Request is Pending",
-  "kYourRequestIsDeclined": "Subscription Request is Declined"
+  "kYourRequestIsDeclined": "Subscription Request is Declined",
+  "kIsPast": " is in the past",
+  "kChooseCarToBook": "Choose car to book parking",
+  "kChooseCarToPayViolations" : "Choose car to pay violations",
+  "kCarColor": "Color",
+  "kCarYear": "Year",
+  "kNoViolations": "You don't have any violations"
 }

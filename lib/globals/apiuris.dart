@@ -26,6 +26,7 @@ const String kPurchasePackageAPI = '$kRootURL/packages/buy';
 const String kLoadUserPackagesAPI = '$kRootURL/packages/client';
 // Subscriptions
 const String kLoadDisclaimerAPI = '$kRootURL/disclaimer';
+const String kLoadDocumentsAPI = '$kRootURL/documents';
 const String kApplySubscriptionPermitAPI = '$kRootURL/subscriptions/request';
 const String kLoadSubscriptions = '$kRootURL/subscriptions';
 const String kBuySubscription = '$kRootURL/subscriptions/buy';
@@ -36,8 +37,8 @@ const String kLoadTicketsAPI = '$kRootURL/booking';
 const String kCancelTicketAPI = '$kRootURL/booking';
 const String kReserveParkingAPI = '$kRootURL/booking';
 // Violations
-const String kLoadViolationsAPI = '$kRootURL/load_violations';
-const String kPayViolationsAPI = '$kRootURL/pay_violations';
+const String kLoadViolationsAPI = '$kRootURL/violations'; // 200, 404: empty
+const String kPayViolationsAPI = '$kRootURL/violations/pay'; // 201
 
 /// Network Codes and tags
 // Codes
@@ -116,6 +117,8 @@ const String kCarMakeTag = 'make';
 const String kCarModelTag = 'model';
 const String kCarStateTag = 'state';
 const String kCarPreferredTag = 'is_default';
+const String kCarColorTag = 'color';
+const String kCarYearTag = 'year';
 // Card tags
 const String kCardTag = 'card';
 const String kCardIdTag = 'id';
@@ -144,6 +147,7 @@ const String kTicketShowCodeTag = 'show_qr_time';
 const String kTicketCodeTag = 'qr_data';
 const String kBookingIdTag = 'booking_id';
 const String kBookingQRData = 'qr_data';
+const String kBookingQRMessage = 'qr_message';
 // Balance tags
 const String kClientPackages = 'client_packages_list';
 const String kClientPackage = 'client_package';
@@ -158,8 +162,14 @@ const String kPackageRemainingTag = 'remaining_hours';
 const String kPackagePriceTag = 'price';
 const String kPackageValidityTag = 'expiry_after';
 const String kPackageDetailsTag = 'description';
+// Documents tags
+const String kDocumentsTag = 'document_list';
+const String kDocumentNameTag = 'name';
+const String kDocumentTitleTag = 'title';
+const String kDocumentRequiredTag = 'required';
 // Subscriptions tags
 const String kDisclaimerType = 'type';
+const String kDocumentType = 'type';
 const String kDisclaimerTag = 'disclaimer';
 const String kSubscriberName = 'client_full_name';
 const String kSubscriberPhone = 'client_phones';
@@ -184,4 +194,4 @@ const String kViolationFineTag = 'fine';
 const String kStateIdTag = 'id';
 const String kStateEName = 'name_en';
 const String kStateAName = 'name_ar';
-const String kStatesTag = 'states_list';
+const String kStatesTag = 'state_list';

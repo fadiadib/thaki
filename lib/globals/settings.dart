@@ -1,5 +1,5 @@
 /// Network settings
-const bool kVerboseNetworkMessages = true;
+const bool kVerboseNetworkMessages = false;
 const bool kDemoMode = true;
 
 /// App ID
@@ -11,3 +11,8 @@ const int kSplashDelay = 2;
 const int kAnimationInterval = 200; // in milliseconds
 const int kOTPDigits = 6;
 const bool kDefaultToAR = true;
+const bool kShowLogoutInProfile = false;
+const bool kShowEditBtnInProfile = false;
+const bool kShowSubscriptionBtInDashboard = false;
+const bool kShowCreditType = true;
+const bool kShowOtherCarAsButton = true;

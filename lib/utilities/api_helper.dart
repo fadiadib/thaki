@@ -45,39 +45,17 @@ class TkAPIHelper {
 
   /// Load states API
   Future<Map> loadStates({@required TkUser user}) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: 'Cannot pay',
-        kDataTag: {
-          kStatesTag: [
-            {
-              'id': 1,
-              'name_en': 'Saudi Arabia',
-              'name_ar': 'المملكة العربية السعودية'
-            },
-            {'id': 2, 'name_en': 'Bahrain', 'name_ar': 'االبحرين'},
-            {'id': 3, 'name_en': 'Kuwait', 'name_ar': 'الكويت'},
-            {'id': 4, 'name_en': 'Oman', 'name_ar': 'عُمان'},
-            {'id': 5, 'name_en': 'Qatar', 'name_ar': 'قطر'},
-            {
-              'id': 6,
-              'name_en': 'United Arab Emirates',
-              'name_ar': 'لإمارات العربية المتحدة'
-            },
-            {'id': 7, 'name_en': 'Other', 'name_ar': 'أخرى'},
-          ]
-        }
-      };
-    }
-    //////////////////////////////////////////////////////////
-
     return await _network.getData(
       url: kLoadStates,
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Load documents API
+  Future<Map> loadDocuments(
+      {@required TkUser user, @required String type}) async {
+    return await _network.getData(
+      url: kLoadDocumentsAPI + '?$kDocumentType=$type',
       headers: user.toHeader(),
     );
   }
@@ -343,42 +321,42 @@ class TkAPIHelper {
   ///////////////////////// VIOLATIONS ////////////////////////
   /// Load violations API
   Future<Map> loadViolations(String car) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: '',
-        kDataTag: {
-          kViolationsTag: [
-            {
-              kViolationIdTag: 0,
-              kViolationDescTag: 'الوقوف في أماكن عبور المشاة كلياَ أو جزئياَ',
-              kViolationLocationTag: 'شارع خادم الحرمين الشريفين',
-              kViolationDateTimeTag: '2021-01-31 00:00:00',
-              kViolationFineTag: '100',
-            },
-            {
-              kViolationIdTag: 1,
-              kViolationDescTag: 'الوقوف في أماكن عبور المشاة كلياَ أو جزئياَ',
-              kViolationLocationTag: 'شارع خادم الحرمين الشريفين',
-              kViolationDateTimeTag: '2021-02-27 00:00:00',
-              kViolationFineTag: '50',
-            },
-            {
-              kViolationIdTag: 2,
-              kViolationDescTag: 'الوقوف في أماكن عبور المشاة كلياَ أو جزئياَ',
-              kViolationLocationTag: 'شارع خادم الحرمين الشريفين',
-              kViolationDateTimeTag: '2021-03-12 00:00:00',
-              kViolationFineTag: '100',
-            },
-          ]
-        },
-      };
-    }
-    //////////////////////////////////////////////////////////
+    // //////////////////////////////////////////////////////////
+    // // Temporary code for debug purposes
+    // if (kDemoMode) {
+    //   await Future.delayed(Duration(seconds: 1));
+    //
+    //   return {
+    //     kStatusTag: kSuccessCode,
+    //     kErrorMessageTag: '',
+    //     kDataTag: {
+    //       kViolationsTag: [
+    //         {
+    //           kViolationIdTag: 0,
+    //           kViolationDescTag: 'الوقوف في أماكن عبور المشاة كلياَ أو جزئياَ',
+    //           kViolationLocationTag: 'شارع خادم الحرمين الشريفين',
+    //           kViolationDateTimeTag: '2021-01-31 00:00:00',
+    //           kViolationFineTag: '100',
+    //         },
+    //         {
+    //           kViolationIdTag: 1,
+    //           kViolationDescTag: 'الوقوف في أماكن عبور المشاة كلياَ أو جزئياَ',
+    //           kViolationLocationTag: 'شارع خادم الحرمين الشريفين',
+    //           kViolationDateTimeTag: '2021-02-27 00:00:00',
+    //           kViolationFineTag: '50',
+    //         },
+    //         {
+    //           kViolationIdTag: 2,
+    //           kViolationDescTag: 'الوقوف في أماكن عبور المشاة كلياَ أو جزئياَ',
+    //           kViolationLocationTag: 'شارع خادم الحرمين الشريفين',
+    //           kViolationDateTimeTag: '2021-03-12 00:00:00',
+    //           kViolationFineTag: '100',
+    //         },
+    //       ]
+    //     },
+    //   };
+    // }
+    // //////////////////////////////////////////////////////////
 
     return await _network.getData(
       url: kLoadViolationsAPI,
@@ -393,25 +371,12 @@ class TkAPIHelper {
       {@required List<TkViolation> violations,
       @required TkCredit card,
       @required String cvv}) async {
-    //////////////////////////////////////////////////////////
-    // Temporary code for debug purposes
-    if (kDemoMode) {
-      await Future.delayed(Duration(seconds: 1));
-
-      return {
-        kStatusTag: kSuccessCode,
-        kErrorMessageTag: 'Cannot pay',
-        kDataTag: {},
-      };
-    }
-    //////////////////////////////////////////////////////////
-
     List<int> ids = [];
     for (TkViolation violation in violations) {
       ids.add(violation.id);
     }
 
-    return await _network.getData(
+    return await _network.postData(
       url: kPayViolationsAPI,
       params: {
         kViolationIdsTag: ids,

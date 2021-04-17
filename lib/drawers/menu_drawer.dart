@@ -3,21 +3,32 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/versioner.dart';
 import 'package:thaki/widgets/general/list_menu_item.dart';
-import 'package:thaki/widgets/general/logo_box.dart';
 
 /// Home Side drawer
 /// Has two parts, a header that shows basic profile information
 /// and a list of menu items such as settings..etc.
 class TkMenuDrawer extends StatelessWidget {
+  TkMenuDrawer({this.popParentCallback, this.subscriptionCallback});
+  final Function popParentCallback;
+  final Function subscriptionCallback;
+
+  String _getSubscriptionBtnTitle(TkUser user, BuildContext context) {
+    if (user.isApproved == 0) return S.of(context).kApplySubscription;
+    if (user.isApproved == 1) return S.of(context).kBuySubscription;
+    if (user.isApproved == 2) return S.of(context).kYourRequestIsPending;
+    return S.of(context).kYourRequestIsDeclined;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Consumer<TkVersioner>(
-      builder: (context, versioner, _) {
+    return Consumer2<TkVersioner, TkAccount>(
+      builder: (context, versioner, account, _) {
         return Drawer(
           child: Container(
             decoration: BoxDecoration(
@@ -46,7 +57,7 @@ class TkMenuDrawer extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
-                        child: TkLogoBox(),
+                        child: Image(width: 200, image: AssetImage(kLogoPath)),
                       ),
                     ),
                   ),
@@ -54,8 +65,9 @@ class TkMenuDrawer extends StatelessWidget {
 
                 Divider(thickness: 0.5, height: 1),
 
-                // Lower pane: the menu
+                // Switch language menu item
                 TkListMenuItem(
+                  pop: false,
                   title: S.of(context).kSwitchLanguage,
                   child: Icon(kCarouselForwardBtnIcon,
                       color: kMediumGreyColor, size: 10),
@@ -72,9 +84,38 @@ class TkMenuDrawer extends StatelessWidget {
                     account.load();
                     Provider.of<TkBooker>(context, listen: false)
                         .loadTickets(account.user);
+
+                    Navigator.of(context).pop();
                   },
                 ),
 
+                // Logout menu item
+                TkListMenuItem(
+                  pop: false,
+                  title: S.of(context).kLogOut,
+                  // child: Icon(kCarouselForwardBtnIcon,
+                  //     color: kMediumGreyColor, size: 10),
+                  textStyle: kRegularStyle[kNormalSize],
+                  action: () async {
+                    if (await account.logout()) popParentCallback();
+                  },
+                ),
+
+                // Subscription menu item
+                TkListMenuItem(
+                  pop: false,
+                  title: _getSubscriptionBtnTitle(account.user, context),
+                  child: Icon(kCarouselForwardBtnIcon,
+                      color: kMediumGreyColor, size: 10),
+                  textStyle: account.user.isApproved == 0 ||
+                          account.user.isApproved == 1
+                      ? kRegularStyle[kNormalSize]
+                      : kRegularStyle[kNormalSize]
+                          .copyWith(color: kDarkGreyColor.withOpacity(0.5)),
+                  action: subscriptionCallback,
+                ),
+
+                // Support menu item
                 TkListMenuItem(
                   title: S.of(context).kSupport,
                   child: Icon(kCarouselForwardBtnIcon,
@@ -83,6 +124,7 @@ class TkMenuDrawer extends StatelessWidget {
                   action: () {},
                 ),
 
+                // Privacy menu item
                 TkListMenuItem(
                   title: S.of(context).kPrivacyPolicy,
                   child: Icon(kCarouselForwardBtnIcon,
@@ -91,6 +133,7 @@ class TkMenuDrawer extends StatelessWidget {
                   action: () {},
                 ),
 
+                // Copyright and version
                 if (versioner.version != null && versioner.build != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 15, bottom: 30),

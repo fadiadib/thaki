@@ -15,7 +15,8 @@ const List<String> kCCLogos = [
   'images/Cc_3.png',
   'images/Cc_4.png',
   'images/Cc_5.png',
-  'images/Cc_6.png'
+  'images/Cc_6.png',
+  'images/Cc_7.png'
 ];
 const String kPackageIcon = 'images/Package.png';
 const String kSuccessIcon = 'images/Success_Icon.png';

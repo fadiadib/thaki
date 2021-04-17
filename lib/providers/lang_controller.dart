@@ -10,6 +10,8 @@ class TkLangController extends ChangeNotifier {
   Locale lang;
   String fontFamily;
 
+  bool get isRTL => lang.languageCode == 'ar';
+
   void switchLang() {
     if (lang.languageCode == 'en') {
       lang = Locale('ar', '');

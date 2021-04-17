@@ -34,6 +34,8 @@ class TkDashboardPane extends TkPane {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: TkCard(
+              onTap: () =>
+                  TkQRHelper.showQRCode(context: context, ticket: ticket),
               bgColor: kPrimaryColor.withOpacity(0.15),
               textColor: kDarkGreyColor,
               titles: {
@@ -45,12 +47,12 @@ class TkDashboardPane extends TkPane {
                 TkCardSide.topLeft: ticket.car.plateEN,
                 TkCardSide.bottomLeft:
                     TkDateTimeHelper.formatDate(ticket.start.toString()) +
-                        '\n' +
+                        ' ' +
                         TkDateTimeHelper.formatTime(
                             context, ticket.start.toString()),
                 TkCardSide.bottomRight: TkDateTimeHelper.formatDate(
                         ticket.end.toString()) +
-                    '\n' +
+                    ' ' +
                     TkDateTimeHelper.formatTime(context, ticket.end.toString()),
               },
             ),
@@ -74,7 +76,7 @@ class TkDashboardPane extends TkPane {
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: TkCarousel(
-            aspectRatio: 2.0,
+            height: 150,
             dotColor: kPrimaryColor.withOpacity(0.5),
             selectedDotColor: kPrimaryColor,
             emptyMessage: S.of(context).kNoBookingsYet,
@@ -157,18 +159,19 @@ class TkDashboardPane extends TkPane {
         ),
 
         // Subscription button
-        Padding(
-          padding:
-              const EdgeInsets.only(top: 20, left: 50, right: 50, bottom: 20),
-          child: TkButton(
-            title: _getSubscriptionBtnTitle(user, context),
-            btnBorderColor: kSecondaryColor,
-            btnColor: kSecondaryColor,
-            disabledTitleColor: kWhiteColor.withOpacity(0.5),
-            enabled: user.isApproved == 1 || user.isApproved == 0,
-            onPressed: _getSubscriptionBtnAction(user, context),
+        if (kShowSubscriptionBtInDashboard)
+          Padding(
+            padding:
+                const EdgeInsets.only(top: 20, left: 50, right: 50, bottom: 20),
+            child: TkButton(
+              title: _getSubscriptionBtnTitle(user, context),
+              btnBorderColor: kSecondaryColor,
+              btnColor: kSecondaryColor,
+              disabledTitleColor: kWhiteColor.withOpacity(0.5),
+              enabled: user.isApproved == 1 || user.isApproved == 0,
+              onPressed: _getSubscriptionBtnAction(user, context),
+            ),
           ),
-        ),
       ],
     );
   }

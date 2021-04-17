@@ -5,6 +5,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
@@ -75,7 +76,11 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
             enabled: !account.isLoading,
             hintText: S.of(context).kCardNumber,
             keyboardType: TextInputType.number,
-            initialValue: _card?.number,
+            initialValue: TkCreditCardHelper.obscure(
+                _card?.number,
+                Provider.of<TkLangController>(context, listen: false)
+                    .lang
+                    .languageCode),
             onChanged: (value) => setState(() => _card.number = value),
             validator: getValidationCallback(TkFormField.cardNumber),
             validate: isValidating,
@@ -172,7 +177,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
 
   Widget _createFormButton(TkAccount account) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      padding: const EdgeInsets.symmetric(horizontal: 50.0),
       child: TkButton(
         isLoading: account.isLoading,
         btnColor: kSecondaryColor,
@@ -187,7 +192,10 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
 
             if (widget.editMode) {
               // Call API to add car
-              if (await account.updateCard(_card)) Navigator.of(context).pop();
+              if (await account.updateCard(_card)) {
+                widget.card.copyValue(_card);
+                Navigator.of(context).pop();
+              }
             } else {
               // Call API to add car
               if (await account.addCard(_card)) Navigator.of(context).pop();
@@ -203,7 +211,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
     super.initState();
 
     if (widget.editMode) {
-      _card = widget.card;
+      _card = widget.card.createCopy();
     } else {
       _card = TkCredit.fromJson({});
     }

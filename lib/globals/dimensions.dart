@@ -29,7 +29,7 @@ const double kArrowPadding = 5;
 
 /// Cards Dimensions
 const double kCardBorderRadius = 30.0;
-const double kCardPadding = 30.0;
+const double kCardPadding = 20.0;
 
 /// Tiles Dimensions
 const double kTileHeight = 80.0;

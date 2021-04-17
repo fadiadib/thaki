@@ -56,6 +56,8 @@ class TkValidationHelper {
   }
 
   static bool validateCreditCard(String value) {
+    if (value == null) return false;
+
     CreditCardValidator _ccValidator = CreditCardValidator();
     var ccNumResults = _ccValidator.validateCCNum(value);
 

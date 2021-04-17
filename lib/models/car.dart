@@ -17,6 +17,9 @@ class TkCar {
         ? 1
         : int.tryParse(json[kCarStateTag]?.toString()) ?? 1;
     preferred = json[kCarPreferredTag].toString() == '1';
+    if (json[kCarColorTag] != null) color = json[kCarColorTag];
+    if (json[kCarYearTag] != null)
+      year = int.tryParse(json[kCarYearTag]?.toString());
   }
 
   Map<String, dynamic> toJson() {
@@ -28,7 +31,36 @@ class TkCar {
       kCarModelTag: model,
       kCarStateTag: state.toString(),
       kCarPreferredTag: preferred == true ? '1' : '0',
+      kCarColorTag: color ?? '',
+      kCarYearTag: year?.toString() ?? '',
     };
+  }
+
+  TkCar createCopy() {
+    return TkCar.fromJson({})
+      ..id = id
+      ..name = name
+      ..state = state
+      ..plateAR = plateAR
+      ..plateEN = plateEN
+      ..make = make
+      ..model = model
+      ..year = year
+      ..color = color
+      ..preferred = preferred;
+  }
+
+  void copyValue(TkCar car) {
+    id = car.id;
+    name = car.name;
+    state = car.state;
+    plateAR = car.plateAR;
+    plateEN = car.plateEN;
+    make = car.make;
+    model = car.model;
+    year = car.year;
+    color = car.color;
+    preferred = car.preferred;
   }
 
   int id;
@@ -39,4 +71,6 @@ class TkCar {
   String model;
   int state;
   bool preferred;
+  String color;
+  int year;
 }

@@ -34,11 +34,16 @@ class TkTicketsPane extends TkPane {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 20),
                       child: TabBar(
+                        isScrollable: true,
                         labelStyle: kBoldStyle[kSmallSize].copyWith(
                             fontFamily: Provider.of<TkLangController>(context,
                                     listen: false)
                                 .fontFamily,
-                            fontSize: 11.0),
+                            fontSize: Provider.of<TkLangController>(context,
+                                        listen: false)
+                                    .isRTL
+                                ? 18.0
+                                : 12.0),
                         indicatorWeight: 4.0,
                         labelColor: kPrimaryColor,
                         indicatorColor: kPrimaryColor,

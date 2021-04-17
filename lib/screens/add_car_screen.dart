@@ -209,6 +209,56 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           ],
         ),
 
+        Row(
+          children: [
+            // Color
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TkSectionTitle(
+                      title: S.of(context).kCarColor, uppercase: false),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        30.0, 10.0, 5.0, 10.0),
+                    child: TkTextField(
+                      enabled: !account.isLoading,
+                      hintText: S.of(context).kCarColor,
+                      initialValue: _car?.color,
+                      onChanged: (value) => setState(() => _car.color = value),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // Year
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TkSectionTitle(
+                      title: S.of(context).kCarYear,
+                      uppercase: false,
+                      start: false),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        5.0, 10.0, 30, 10.0),
+                    child: TkTextField(
+                      keyboardType: TextInputType.number,
+                      enabled: !account.isLoading,
+                      hintText: S.of(context).kCarYear,
+                      initialValue: _car?.year?.toString(),
+                      onChanged: (value) => setState(
+                          () => _car.year = int.tryParse(value?.toString())),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+
         // Car default
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
@@ -223,7 +273,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
   Widget _createFormButton(TkAccount account) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(30.0, 20.0, 30.0, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 20.0),
       child: TkButton(
         isLoading: account.isLoading,
         btnColor: kSecondaryColor,
@@ -237,7 +287,11 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
             if (widget.editMode) {
               // Call API to add car
-              if (await account.updateCar(_car)) Navigator.of(context).pop();
+              if (await account.updateCar(_car)) {
+                // Copy by value
+                widget.car.copyValue(_car);
+                Navigator.of(context).pop();
+              }
             } else {
               // Call API to add car
               if (await account.addCar(_car)) Navigator.of(context).pop();
@@ -253,7 +307,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     super.initState();
 
     if (widget.editMode) {
-      _car = widget.car;
+      // Copy by value
+      _car = widget.car.createCopy();
     } else {
       _car = TkCar.fromJson({});
     }

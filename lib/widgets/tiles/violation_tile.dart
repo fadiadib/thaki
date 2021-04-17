@@ -32,30 +32,33 @@ class TkViolationTile extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    violation.description,
-                    style: kBoldStyle[kNormalSize],
-                  ),
-                  Text(
-                    TkDateTimeHelper.formatDate(violation.dateTime.toString()) +
-                        ' ' +
-                        TkDateTimeHelper.formatTime(
-                            context, violation.dateTime.toString()),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Text(
-                      violation.location,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      violation.description,
                       style: kBoldStyle[kNormalSize],
                     ),
-                  ),
-                  Text(
-                    S.of(context).kSAR + ' ' + violation.fine.toString(),
-                  )
-                ],
+                    Text(
+                      TkDateTimeHelper.formatDate(
+                              violation.dateTime.toString()) +
+                          ' ' +
+                          TkDateTimeHelper.formatTime(
+                              context, violation.dateTime.toString()),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(
+                        violation.location,
+                        style: kBoldStyle[kNormalSize],
+                      ),
+                    ),
+                    Text(
+                      S.of(context).kSAR + ' ' + violation.fine.toString(),
+                    )
+                  ],
+                ),
               ),
 
               // Preferred mark

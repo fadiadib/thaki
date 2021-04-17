@@ -113,12 +113,14 @@ class TkPayer extends ChangeNotifier {
 
     // Clear model
     loadError = null;
+    _validationViolationsError = null;
+    _validationCarError = null;
     _violations.clear();
     _selectedViolations.clear();
     _cvv = null;
 
     Map result = await _apis.loadViolations(selectedCar);
-
+    print(result[kStatusTag]);
     if (result[kStatusTag] == kSuccessCode) {
       for (Map<String, dynamic> json in result[kDataTag][kViolationsTag]) {
         _violations.add(TkViolation.fromJson(json));
@@ -146,10 +148,7 @@ class TkPayer extends ChangeNotifier {
     Map result = await _apis.payViolations(
         violations: selectedViolations, card: selectedCard, cvv: _cvv);
 
-    // Clear model
-
-    if (result[kStatusTag] != kSuccessCode) {
-      // an _purchaseError happened
+    if (result[kStatusTag] != kSuccessCreationCode) {
       payError = _apis.normalizeError(result);
     }
 

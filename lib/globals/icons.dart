@@ -63,4 +63,6 @@ const IconData kSelectBtnIcon = Icons.check_circle;
 const IconData kUploadBtnIcon = Icons.file_upload;
 const IconData kDeleteBtnIcon = Icons.delete;
 const IconData kEditBtIcon = Icons.edit;
+// const IconData kEditCircleBtnIcon = FontAwesome.edit;
+const IconData kEditCircleBtnIcon = FlutterIcons.circle_edit_outline_mco;
 const IconData kSecuredBtnIcon = MaterialCommunityIcons.shield_check;

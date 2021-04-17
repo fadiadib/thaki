@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/widgets/tiles/violation_tile.dart';
 
@@ -8,24 +11,33 @@ class TkViolationList extends StatelessWidget {
   final List<TkViolation> selection;
   final Function onTap;
 
-  List<Widget> _getViolationTiles() {
+  List<Widget> _getViolationTiles(BuildContext context) {
     List<Widget> tiles = [];
 
-    for (TkViolation violation in violations) {
-      TkViolation found = selection.firstWhere(
-          (element) => element.id == violation.id,
-          orElse: () => null);
+    if (violations != null && violations.isNotEmpty)
+      for (TkViolation violation in violations) {
+        TkViolation found = selection.firstWhere(
+            (element) => element.id == violation.id,
+            orElse: () => null);
 
-      tiles.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
-          child: TkViolationTile(
-            violation: violation,
-            onTap: onTap,
-            isSelected: found != null,
+        tiles.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
+            child: TkViolationTile(
+              violation: violation,
+              onTap: onTap,
+              isSelected: found != null,
+            ),
           ),
+        );
+      }
+    else {
+      tiles.add(Center(
+        child: Text(
+          S.of(context).kNoViolations,
+          style: kHintStyle,
         ),
-      );
+      ));
     }
 
     return tiles;
@@ -33,6 +45,6 @@ class TkViolationList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: _getViolationTiles());
+    return Column(children: _getViolationTiles(context));
   }
 }

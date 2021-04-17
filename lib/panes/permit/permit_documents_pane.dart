@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/subscriber.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/cards/id_card.dart';
@@ -18,25 +19,25 @@ class TkPermitDocumentsPane extends TkPane {
   TkPermitDocumentsPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
   Widget _getDocumentsWidgets(BuildContext context, TkSubscriber subscriber) {
+    List<Widget> widgets = [];
+    for (TkDocument doc in subscriber.documents) {
+      widgets.add(
+        Padding(
+          padding: EdgeInsets.only(bottom: 20),
+          child: TkIDCard(
+            title: doc.title,
+            image: doc.image,
+            callback: (File imageFile) =>
+                subscriber.updateDocument(doc.tag, imageFile),
+            cancelCallback: () => doc.image = null,
+          ),
+        ),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        children: [
-          TkIDCard(
-            title: S.of(context).kIDFront,
-            image: subscriber.permit.idFront,
-            callback: (File imageFile) => subscriber.frontImage = imageFile,
-            cancelCallback: () => subscriber.frontImage = null,
-          ),
-          SizedBox(height: 20),
-          TkIDCard(
-            title: S.of(context).kIDBack,
-            image: subscriber.permit.idBack,
-            callback: (File imageFile) => subscriber.backImage = imageFile,
-            cancelCallback: () => subscriber.backImage = null,
-          ),
-        ],
-      ),
+      child: Column(children: widgets),
     );
   }
 

@@ -18,6 +18,8 @@ class _TkApplyForSubscriptionScreenState extends TkMultiStepPageState {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     await Provider.of<TkSubscriber>(context, listen: false)
         .loadDisclaimer(account.user);
+    await Provider.of<TkSubscriber>(context, listen: false)
+        .loadDocuments(account.user);
   }
 
   @override
@@ -32,7 +34,11 @@ class _TkApplyForSubscriptionScreenState extends TkMultiStepPageState {
 
         loadNextPane();
       }),
-      TkPermitSuccessPane(onDone: () => loadNextPane()),
+      TkPermitSuccessPane(onDone: () {
+        loadNextPane();
+
+        Provider.of<TkAccount>(context, listen: false).load();
+      }),
     ];
   }
 }

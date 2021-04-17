@@ -66,11 +66,12 @@ class TkBooker extends ChangeNotifier {
     // Start any loading indicators
     _isLoading = true;
     loadQRError = null;
+    notifyListeners();
 
     Map result = await _apis.loadQR(user: user, ticket: ticket);
     if (result[kStatusTag] == kSuccessCode) {
-      if (result[kDataTag]['qr_message'] != null) {
-        loadQRError = result[kDataTag]['qr_message'];
+      if (result[kDataTag][kBookingQRMessage] != null) {
+        loadQRError = result[kDataTag][kBookingQRMessage];
       } else {
         // Load user data
         TkTicket theTicket = _tickets[kUpcomingTicketsTag].firstWhere(
@@ -162,7 +163,7 @@ class TkBooker extends ChangeNotifier {
     notifyListeners();
 
     Map result = await _apis.cancelTicket(user: user, ticket: ticket);
-    if (result[kStatusTag] == kSuccessCode) {
+    if (result[kStatusTag] == kSuccessCreationCode) {
       // Load user data
       TkTicket theTicket = _tickets[kUpcomingTicketsTag]
           .firstWhere((element) => element.id == ticket.id, orElse: () => null);

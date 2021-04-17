@@ -10,6 +10,7 @@ import 'package:thaki/providers/payer.dart';
 import 'package:thaki/screens/add_car_screen.dart';
 import 'package:thaki/screens/pay_violation_screen.dart';
 import 'package:thaki/widgets/base/index.dart';
+import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/lists/car_list.dart';
@@ -30,7 +31,8 @@ class TkViolationsPane extends TkPane {
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: TkSectionTitle(title: S.of(context).kPayViolations),
+                  child: TkSectionTitle(
+                      title: S.of(context).kChooseCarToPayViolations),
                 ),
                 TkCarList(
                   langCode:
@@ -68,22 +70,38 @@ class TkViolationsPane extends TkPane {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 20.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      // Push the pay violations screen
-                      Navigator.of(context).pushNamed(TkPayViolationScreen.id);
-                    },
-                    child: Center(
+                if (!kShowOtherCarAsButton)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        // Push the pay violations screen
+                        Navigator.of(context)
+                            .pushNamed(TkPayViolationScreen.id);
+                      },
+                      child: Center(
                         child: Text(
-                      S.of(context).kCheckForLPR,
-                      style: kRegularStyle[kNormalSize].copyWith(
-                        color: kPrimaryColor,
+                          S.of(context).kCheckForLPR,
+                          style: kRegularStyle[kNormalSize].copyWith(
+                            color: kPrimaryColor,
+                          ),
+                        ),
                       ),
-                    )),
+                    ),
                   ),
-                )
+                if (kShowOtherCarAsButton)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 50.0, vertical: 20.0),
+                    child: TkButton(
+                      title: S.of(context).kCheckForLPR,
+                      onPressed: () {
+                        // Push the pay violations screen
+                        Navigator.of(context)
+                            .pushNamed(TkPayViolationScreen.id);
+                      },
+                    ),
+                  ),
               ],
             );
     });

@@ -120,7 +120,7 @@ class TkTextField extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 // The field
-                Expanded(flex: 2, child: getField()),
+                Expanded(flex: 1, child: getField()),
 
                 // Validation
                 (validate && (validator != null) && !validator())

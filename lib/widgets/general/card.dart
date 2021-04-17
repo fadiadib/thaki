@@ -31,16 +31,18 @@ class TkCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (title != null && title.isNotEmpty)
-            Text(
-              title,
-              style: kLightStyle[kSmallSize].copyWith(color: textColor),
-            ),
-          if (details != null && details.isNotEmpty)
-            Text(
-              details,
-              style: kBoldStyle[kNormalSize].copyWith(color: textColor),
-            ),
+          (title != null && title.isNotEmpty)
+              ? Text(
+                  title,
+                  style: kLightStyle[kSmallSize].copyWith(color: textColor),
+                )
+              : Container(),
+          (details != null && details.isNotEmpty)
+              ? Text(
+                  details,
+                  style: kBoldStyle[kNormalSize].copyWith(color: textColor),
+                )
+              : Container(),
         ],
       ),
     );
@@ -66,7 +68,7 @@ class TkCard extends StatelessWidget {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _getSideWidget(TkCardSide.topLeft),
@@ -77,7 +79,7 @@ class TkCard extends StatelessWidget {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _getSideWidget(TkCardSide.bottomLeft),

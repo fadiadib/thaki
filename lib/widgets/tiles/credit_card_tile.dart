@@ -7,17 +7,20 @@ import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
 
 class TkCreditCardTile extends StatelessWidget {
-  TkCreditCardTile(
-      {@required this.creditCard,
-      this.onTap,
-      this.isSelected,
-      this.onEdit,
-      this.onDelete});
+  TkCreditCardTile({
+    @required this.creditCard,
+    this.onTap,
+    this.isSelected,
+    this.onEdit,
+    this.onDelete,
+    this.langCode = 'en',
+  });
   final TkCredit creditCard;
   final Function onTap;
   final Function onDelete;
   final Function onEdit;
   final bool isSelected;
+  final String langCode;
 
   @override
   Widget build(BuildContext context) {
@@ -45,27 +48,38 @@ class TkCreditCardTile extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // Brand logo
-                Image.asset(kCCLogos[creditCard.type]),
+                creditCard.type != null
+                    ? Expanded(child: Image.asset(kCCLogos[creditCard.type]))
+                    : Expanded(child: Container()),
 
                 // Card number/expiration
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 5.0),
-                      child: Text(
-                        TkCreditCardHelper.obscure(creditCard.number),
-                        style: kBoldStyle[kNormalSize]
-                            .copyWith(color: kBlackColor),
-                      ),
+                Expanded(
+                  flex: 5,
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(start: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 5.0),
+                          child: Text(
+                            TkCreditCardHelper.obscure(
+                                creditCard.number, langCode),
+                            style: kBoldStyle[kNormalSize]
+                                .copyWith(color: kBlackColor),
+                          ),
+                        ),
+                        Text(S.of(context).kCardExpires +
+                            ' ' +
+                            creditCard.expiry),
+                      ],
                     ),
-                    Text(S.of(context).kCardExpires + ' ' + creditCard.expiry),
-                  ],
+                  ),
                 ),
 
                 // Preferred mark

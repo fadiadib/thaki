@@ -8,7 +8,14 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
 
-enum TkSubscriberError { loadDisclaimer, apply, loadAllSubs, buy, loadUserSubs }
+enum TkSubscriberError {
+  loadDisclaimer,
+  apply,
+  loadAllSubs,
+  buy,
+  loadUserSubs,
+  loadDocuments
+}
 
 class TkSubscriber extends ChangeNotifier {
   // Helpers
@@ -24,17 +31,17 @@ class TkSubscriber extends ChangeNotifier {
     notifyListeners();
   }
 
-  set frontImage(File image) {
-    _validationDocumentsError = null;
-    _permit.idFront = image;
-    notifyListeners();
-  }
-
-  set backImage(File image) {
-    _validationDocumentsError = null;
-    _permit.idBack = image;
-    notifyListeners();
-  }
+  // set frontImage(File image) {
+  //   _validationDocumentsError = null;
+  //   _permit.idFront = image;
+  //   notifyListeners();
+  // }
+  //
+  // set backImage(File image) {
+  //   _validationDocumentsError = null;
+  //   _permit.idBack = image;
+  //   notifyListeners();
+  // }
 
   List<TkSubscription> _subscriptions = [];
   List<TkSubscription> get subscriptions => _subscriptions;
@@ -58,6 +65,17 @@ class TkSubscriber extends ChangeNotifier {
   set cvv(String value) {
     _cvv = value;
     notifyListeners();
+  }
+
+  List<TkDocument> _documents = [];
+  List<TkDocument> get documents => _documents;
+  void updateDocument(String tag, File image) {
+    TkDocument found = _documents.firstWhere((element) => element.tag == tag,
+        orElse: () => null);
+    if (found != null) {
+      found.image = image;
+      notifyListeners();
+    }
   }
 
   // Loading variables
@@ -85,11 +103,18 @@ class TkSubscriber extends ChangeNotifier {
   String _validationDocumentsError;
   String get validationDocumentsError => _validationDocumentsError;
   bool validateDocuments(BuildContext context) {
-    if (_permit.idBack == null || _permit.idFront == null) {
-      _validationDocumentsError = S.of(context).kUploadDocumentsToProceed;
-      notifyListeners();
-      return false;
+    for (TkDocument doc in _documents) {
+      if (doc.required && doc.image == null) {
+        _validationDocumentsError = S.of(context).kUploadDocumentsToProceed;
+        notifyListeners();
+        return false;
+      }
     }
+    // if (_permit.idBack == null || _permit.idFront == null) {
+    //   _validationDocumentsError = S.of(context).kUploadDocumentsToProceed;
+    //   notifyListeners();
+    //   return false;
+    // }
     return true;
   }
 
@@ -117,11 +142,36 @@ class TkSubscriber extends ChangeNotifier {
     return (_error[TkSubscriberError.loadDisclaimer] == null);
   }
 
+  /// Load documents
+  Future<bool> loadDocuments(TkUser user) async {
+    // Start any loading indicators
+    _isLoading = true;
+    _error[TkSubscriberError.loadDocuments] = null;
+    _documents.clear();
+
+    Map result = await _apis.loadDocuments(user: user, type: 'subscription');
+    if (result[kStatusTag] == kSuccessCode) {
+      for (Map json in result[kDataTag][kDocumentsTag]) {
+        _documents.add(TkDocument.fromJson(json));
+      }
+    } else {
+      // an error happened
+      _error[TkSubscriberError.loadDocuments] = _apis.normalizeError(result);
+    }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (_error[TkSubscriberError.loadDocuments] == null);
+  }
+
   /// Apply for resident permit method
   Future<bool> applyForSubscription(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
     _error[TkSubscriberError.apply] = null;
+    _permit.documents = _documents;
 
     Map result = await _apis.applyForSubscription(permit: _permit, user: user);
 

@@ -46,9 +46,15 @@ class TkViolationListPane extends TkPane {
       child: TkButton(
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
-        title: S.of(context).kPaySelected,
+        title: (payer.violations != null && payer.violations.isNotEmpty)
+            ? S.of(context).kPaySelected
+            : S.of(context).kClose,
         onPressed: () {
-          if (payer.validateViolations(context)) onDone();
+          if ((payer.violations == null || payer.violations.isEmpty))
+            Navigator.of(context).pop();
+          else {
+            if (payer.validateViolations(context)) onDone();
+          }
         },
       ),
     );

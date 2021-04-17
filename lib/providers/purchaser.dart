@@ -95,14 +95,14 @@ class TkPurchaser extends ChangeNotifier {
     // Clear model
     loadError = null;
     _packages.clear();
-    selectedPackage = null;
+    _selectedPackage = null;
     _cvv = null;
 
     Map result = await _apis.loadPackages(user: user);
     if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kPackagesTag])
         _packages.add(TkPackage.fromJson(data));
-      if (_packages.isNotEmpty) selectedPackage = _packages.first;
+      if (_packages.isNotEmpty) _selectedPackage = _packages.first;
     } else {
       // an error happened
       loadError = _apis.normalizeError(result);

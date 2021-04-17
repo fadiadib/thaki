@@ -8,5 +8,6 @@ class TkLogoBox extends StatelessWidget {
       tag: 'logo',
       child: Image(width: 200, image: AssetImage(kLogoPath)),
     );
+    // return Image(width: 200, image: AssetImage(kLogoPath));
   }
 }

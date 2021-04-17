@@ -23,7 +23,9 @@ class TkParkingTimePane extends TkPane {
             ? S.of(context).kBookParkingNow
             : S.of(context).kPickParkingTime,
         onPressed: () {
-          if (booker.bookNow || booker.bookDate != null) onDone();
+          if (booker.bookNow ||
+              (booker.bookDate != null &&
+                  DateTime.now().isBefore(booker.bookDate))) onDone();
         },
         btnColor: kSecondaryColor,
         btnBorderColor: kSecondaryColor,
@@ -49,10 +51,12 @@ class TkParkingTimePane extends TkPane {
               allowPast: false,
               validate: true,
               hintText: S.of(context).kSelectDateTime,
-              validator: () => booker.bookDate != null,
+              validator: () => (booker.bookDate != null &&
+                  DateTime.now().isBefore(booker.bookDate)),
               onChanged: (value) => booker.bookDate = value,
-              errorMessage:
-                  S.of(context).kPleaseChoose + S.of(context).kDateTime,
+              errorMessage: booker.bookDate == null
+                  ? S.of(context).kPleaseEnterAValid + S.of(context).kDateTime
+                  : S.of(context).kDateTime + S.of(context).kIsPast,
             ),
           ),
       ],

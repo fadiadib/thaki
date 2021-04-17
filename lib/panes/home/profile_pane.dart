@@ -38,38 +38,45 @@ class TkProfilePane extends TkPane {
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
-          child: TkSectionTitle(title: S.of(context).kPersonalInfo),
+          child: TkSectionTitle(
+            title: S.of(context).kPersonalInfo, icon: kEditCircleBtnIcon,
+            // Open add car screen
+            action: () =>
+                Navigator.of(context).pushNamed(TkEditProfileScreen.id),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: TkUserInfoCard(user: account.user),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50.0),
-          child: TkButton(
-            title: S.of(context).kEditPersonalInfo,
-            onPressed: () {
-              // Push edit profile page
-              Navigator.pushNamed(context, TkEditProfileScreen.id);
-            },
-          ),
-        ),
-        Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: GestureDetector(
-                  onTap: () async {
-                    if (await account.logout())
-                      Navigator.pushReplacementNamed(
-                          context, TkWelcomeScreen.id);
-                  },
-                  child: Text(S.of(context).kLogOut,
-                      style: kMediumStyle[kSmallSize])),
+        if (kShowEditBtnInProfile)
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50.0),
+            child: TkButton(
+              title: S.of(context).kEditPersonalInfo,
+              onPressed: () {
+                // Push edit profile page
+                Navigator.pushNamed(context, TkEditProfileScreen.id);
+              },
             ),
-            TkError(message: account.logoutError)
-          ],
-        ),
+          ),
+        if (kShowLogoutInProfile)
+          Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GestureDetector(
+                    onTap: () async {
+                      if (await account.logout())
+                        Navigator.pushReplacementNamed(
+                            context, TkWelcomeScreen.id);
+                    },
+                    child: Text(S.of(context).kLogOut,
+                        style: kMediumStyle[kSmallSize])),
+              ),
+              TkError(message: account.logoutError)
+            ],
+          ),
       ],
     );
   }
@@ -130,7 +137,7 @@ class TkProfilePane extends TkPane {
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: TkCarousel(
-            height: 180,
+            height: 150,
             dotColor: kPrimaryColor.withOpacity(0.5),
             selectedDotColor: kPrimaryColor,
             emptyMessage: S.of(context).kNoCars,
@@ -149,7 +156,7 @@ class TkProfilePane extends TkPane {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: TkCreditCard(
-              locale: Provider.of<TkLangController>(context, listen: false)
+              langCode: Provider.of<TkLangController>(context, listen: false)
                   .lang
                   .languageCode,
               bgColor: kLightPurpleColor,

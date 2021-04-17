@@ -10,6 +10,9 @@ import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/state_controller.dart';
 import 'package:thaki/providers/tab_selector.dart';
+import 'package:thaki/screens/apply_subscription_screen.dart';
+import 'package:thaki/screens/buy_subscription_screen.dart';
+import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 
@@ -69,13 +72,16 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: RefreshIndicator(
-        onRefresh: initModel,
-        child: Consumer<TkTabSelector>(
-          builder: (context, selector, _) {
-            return Scaffold(
+    return RefreshIndicator(
+      onRefresh: initModel,
+      child: Consumer2<TkTabSelector, TkAccount>(
+        builder: (context, selector, account, _) {
+          return WillPopScope(
+            onWillPop: () async {
+              selector.activeTab = 2;
+              return false;
+            },
+            child: Scaffold(
               /// Appbar
               appBar: TkAppBar(
                 context: context,
@@ -102,10 +108,20 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
               ),
 
               // Create the side drawer
-              drawer: TkMenuDrawer(),
-            );
-          },
-        ),
+              drawer: TkMenuDrawer(
+                  popParentCallback: () => Navigator.of(context)
+                      .pushReplacementNamed(TkWelcomeScreen.id),
+                  subscriptionCallback: () {
+                    if (account.user.isApproved == 0)
+                      Navigator.of(context)
+                          .pushNamed(TkApplyForSubscriptionScreen.id);
+                    if (account.user.isApproved == 1)
+                      Navigator.of(context)
+                          .pushNamed(TkBuySubscriptionScreen.id);
+                  }),
+            ),
+          );
+        },
       ),
     );
   }

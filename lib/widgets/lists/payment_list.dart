@@ -14,6 +14,7 @@ class TkPaymentList extends StatelessWidget {
     this.selected,
     this.cards,
     this.enableTitle = true,
+    this.langCode = 'en',
   });
   final bool enableTitle;
   final TkCredit selected;
@@ -21,6 +22,7 @@ class TkPaymentList extends StatelessWidget {
   final Function onTap;
   final Function onDelete;
   final Function onEdit;
+  final String langCode;
 
   Widget _getPaymentList(BuildContext context) {
     List<Widget> tiles = [];
@@ -43,6 +45,7 @@ class TkPaymentList extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
             child: TkCreditCardTile(
+              langCode: langCode,
               creditCard: creditCard,
               onTap: onTap,
               onDelete: onDelete,

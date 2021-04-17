@@ -5,6 +5,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/models/credit.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/add_card_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -46,6 +47,10 @@ class _TkCreditCardsListScreenState extends State<TkCreditCardsListScreen> {
                   ),
                 ),
                 TkPaymentList(
+                  langCode:
+                      Provider.of<TkLangController>(context, listen: false)
+                          .lang
+                          .languageCode,
                   enableTitle: false,
                   cards: account.user.cards,
                   onTap: (TkCredit card) async {
