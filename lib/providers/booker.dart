@@ -66,7 +66,6 @@ class TkBooker extends ChangeNotifier {
     // Start any loading indicators
     _isLoading = true;
     loadQRError = null;
-    notifyListeners();
 
     Map result = await _apis.loadQR(user: user, ticket: ticket);
     if (result[kStatusTag] == kSuccessCode) {

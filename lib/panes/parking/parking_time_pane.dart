@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
@@ -44,6 +46,10 @@ class TkParkingTimePane extends TkPane {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 7.0),
             child: TkDateField(
+              locale:
+                  Provider.of<TkLangController>(context, listen: false).isRTL
+                      ? LocaleType.ar
+                      : LocaleType.en,
               value: booker.bookDate,
               context: context,
               type: TkInfoFieldType.DateTime,

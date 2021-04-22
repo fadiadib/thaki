@@ -18,13 +18,19 @@ class TkAccount extends ChangeNotifier {
 
   // Error variables
   void clearErrors() {
-    registerError = loginError = logoutError = loadError = editError =
+    _registerError = loginError = logoutError = loadError = editError =
         loadCarsError = addCarError = updateCarError = deleteCarError =
             addCardError =
                 loadCardsError = updateCardError = deleteCardError = null;
   }
 
-  String registerError;
+  String _registerError;
+  String get registerError => _registerError;
+  set registerError(String message) {
+    _registerError = message;
+    notifyListeners();
+  }
+
   String loginError;
   String logoutError;
   String loadError;
@@ -66,7 +72,7 @@ class TkAccount extends ChangeNotifier {
   Future<bool> register({bool store = false}) async {
     // Start any loading indicators
     _isLoading = true;
-    registerError = null;
+    _registerError = null;
 
     notifyListeners();
 
@@ -87,14 +93,14 @@ class TkAccount extends ChangeNotifier {
       }
     } else {
       // an error happened
-      registerError = _apis.normalizeError(result);
+      _registerError = _apis.normalizeError(result);
     }
 
     // Stop any listening loading indicators
     _isLoading = false;
     notifyListeners();
 
-    return (registerError == null);
+    return (_registerError == null);
   }
 
   /// User login, calls API and loads user model
@@ -143,10 +149,10 @@ class TkAccount extends ChangeNotifier {
     if (result[kStatusTag] != kSuccessCreationCode) {
       // an error happened
       logoutError = _apis.normalizeError(result);
-    } else {
-      _prefs.delete(tag: kUserTokenTag);
-      _prefs.delete(tag: kUserTokenTypeTag);
     }
+
+    _prefs.delete(tag: kUserTokenTag);
+    _prefs.delete(tag: kUserTokenTypeTag);
 
     // Stop any listening loading indicators
     _isLoading = false;

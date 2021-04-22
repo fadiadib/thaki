@@ -15,9 +15,9 @@ class TkSocialLogin extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              GestureDetector(child: Image.asset(kFacebookBtn)),
-              GestureDetector(child: Image.asset(kTwitterBtn)),
-              GestureDetector(child: Image.asset(kGoogleBtn))
+              GestureDetector(child: Image.asset(kFacebookBtn, height: 52.0)),
+              GestureDetector(child: Image.asset(kTwitterBtn, height: 52.0)),
+              GestureDetector(child: Image.asset(kGoogleBtn, height: 52.0))
             ],
           ),
         )

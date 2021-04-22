@@ -8,6 +8,7 @@ import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/login_screen.dart';
+import 'package:thaki/utilities/index.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -25,6 +26,7 @@ class TkRegisterScreen extends StatefulWidget {
 
 class _TkRegisterScreenState extends State<TkRegisterScreen> {
   TkInfoFieldsList _fields;
+  bool terms = false;
 
   @override
   void initState() {
@@ -38,13 +40,18 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
   }
 
   Future<void> _updateModelAndPushNext(TkInfoFieldsList results) async {
-    _fields = results;
+    if (terms == false) {
+      Provider.of<TkAccount>(context, listen: false).registerError =
+          S.of(context).kYouMustAcceptTerms;
+    } else {
+      _fields = results;
 
-    TkAccount account = Provider.of<TkAccount>(context, listen: false);
-    account.user = TkUser.fromInfoFields(results);
+      TkAccount account = Provider.of<TkAccount>(context, listen: false);
+      account.user = TkUser.fromInfoFields(results);
 
-    if (await account.register(store: account.user.rememberMe))
-      Navigator.pushNamed(context, TkHomeScreen.id);
+      if (await account.register(store: account.user.rememberMe))
+        Navigator.pushNamed(context, TkHomeScreen.id);
+    }
   }
 
   bool _validatePasswordMatch(TkInfoField confirmField) {
@@ -71,7 +78,19 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
       validatePasswordMatch: _validatePasswordMatch,
       action: _updateModelAndPushNext,
       isLoading: account.isLoading,
-      child: TkError(message: account.registerError),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TkFormBuilder.createCheckBox(
+                label: S.of(context).kAcceptTerms,
+                value: terms,
+                onChanged: (value) => setState(() => terms = value)),
+            TkError(message: account.registerError),
+          ],
+        ),
+      ),
     );
   }
 

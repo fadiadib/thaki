@@ -93,11 +93,10 @@ class TkMenuDrawer extends StatelessWidget {
                 TkListMenuItem(
                   pop: false,
                   title: S.of(context).kLogOut,
-                  // child: Icon(kCarouselForwardBtnIcon,
-                  //     color: kMediumGreyColor, size: 10),
                   textStyle: kRegularStyle[kNormalSize],
                   action: () async {
-                    if (await account.logout()) popParentCallback();
+                    await account.logout();
+                    popParentCallback();
                   },
                 ),
 

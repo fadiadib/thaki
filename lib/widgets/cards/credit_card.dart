@@ -65,7 +65,10 @@ class TkCreditCard extends StatelessWidget {
                 Positioned(
                   bottom: 20.0,
                   right: 30.0,
-                  child: Image.asset(kCCLogos[creditCard.type]),
+                  child: Image.asset(
+                    kCCLogos[creditCard.type],
+                    height: 30.0,
+                  ),
                 ),
             ],
           ),

@@ -120,7 +120,6 @@ class TkPayer extends ChangeNotifier {
     _cvv = null;
 
     Map result = await _apis.loadViolations(selectedCar);
-    print(result[kStatusTag]);
     if (result[kStatusTag] == kSuccessCode) {
       for (Map<String, dynamic> json in result[kDataTag][kViolationsTag]) {
         _violations.add(TkViolation.fromJson(json));

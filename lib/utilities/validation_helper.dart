@@ -11,8 +11,17 @@ class TkValidationHelper {
   }
 
   static bool validatePhone(String value) {
-    int number = value != null ? int.tryParse(value) : null;
-    return (number != null && value.length == 11);
+    if (value == null) return false;
+
+    // Mach 10 or 11 numeric digits
+    RegExp exp = RegExp(r"[\d]{10,11}", unicode: true);
+    if (exp.stringMatch(value) == value) return true;
+
+    // Check if the number has a + and 12 digits
+    exp = RegExp(r"\+[\d]{12}", unicode: true);
+    if (exp.stringMatch(value) == value) return true;
+
+    return false;
   }
 
   static bool validatePositiveNumber(double value) {

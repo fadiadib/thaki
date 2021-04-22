@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "UnknownError" : MessageLookupByLibrary.simpleMessage("Unknown Error Occurred"),
     "kAM" : MessageLookupByLibrary.simpleMessage("am"),
+    "kAcceptTerms" : MessageLookupByLibrary.simpleMessage("I accept the terms and conditions"),
     "kAddCar" : MessageLookupByLibrary.simpleMessage("Add car"),
     "kAddCard" : MessageLookupByLibrary.simpleMessage("Add card"),
     "kAgree" : MessageLookupByLibrary.simpleMessage("I Agree"),
@@ -189,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kWeekDaySep" : MessageLookupByLibrary.simpleMessage(", "),
     "kYes" : MessageLookupByLibrary.simpleMessage("Yes"),
     "kYouCanAlsoLoginWith" : MessageLookupByLibrary.simpleMessage("You can also login with …"),
+    "kYouMustAcceptTerms" : MessageLookupByLibrary.simpleMessage("You must accept the terms and conditions to proceed"),
     "kYourRequestIsDeclined" : MessageLookupByLibrary.simpleMessage("Subscription Request is Declined"),
     "kYourRequestIsPending" : MessageLookupByLibrary.simpleMessage("Subscription Request is Pending")
   };

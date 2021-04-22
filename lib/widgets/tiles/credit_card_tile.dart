@@ -53,7 +53,9 @@ class TkCreditCardTile extends StatelessWidget {
               children: [
                 // Brand logo
                 creditCard.type != null
-                    ? Expanded(child: Image.asset(kCCLogos[creditCard.type]))
+                    ? Expanded(
+                        child:
+                            Image.asset(kCCLogos[creditCard.type], height: 30))
                     : Expanded(child: Container()),
 
                 // Card number/expiration

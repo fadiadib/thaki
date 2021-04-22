@@ -18,8 +18,7 @@ class TkCar {
         : int.tryParse(json[kCarStateTag]?.toString()) ?? 1;
     preferred = json[kCarPreferredTag].toString() == '1';
     if (json[kCarColorTag] != null) color = json[kCarColorTag];
-    if (json[kCarYearTag] != null)
-      year = int.tryParse(json[kCarYearTag]?.toString());
+    if (json[kCarYearTag] != null) year = json[kCarYearTag];
   }
 
   Map<String, dynamic> toJson() {
@@ -32,7 +31,7 @@ class TkCar {
       kCarStateTag: state.toString(),
       kCarPreferredTag: preferred == true ? '1' : '0',
       kCarColorTag: color ?? '',
-      kCarYearTag: year?.toString() ?? '',
+      kCarYearTag: year ?? '',
     };
   }
 
@@ -72,5 +71,5 @@ class TkCar {
   int state;
   bool preferred;
   String color;
-  int year;
+  String year;
 }

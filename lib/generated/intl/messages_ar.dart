@@ -23,6 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static _notInlinedMessages(_) => <String, Function> {
     "UnknownError" : MessageLookupByLibrary.simpleMessage("حدث خطأ غير معروف"),
     "kAM" : MessageLookupByLibrary.simpleMessage("ص"),
+    "kAcceptTerms" : MessageLookupByLibrary.simpleMessage("أوافق على الشروط والأحكام"),
     "kAddCar" : MessageLookupByLibrary.simpleMessage("أضف سيارة"),
     "kAddCard" : MessageLookupByLibrary.simpleMessage("أضف بطاقة"),
     "kAgree" : MessageLookupByLibrary.simpleMessage("موافق"),
@@ -189,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kWeekDaySep" : MessageLookupByLibrary.simpleMessage(" ٬ "),
     "kYes" : MessageLookupByLibrary.simpleMessage("نعم"),
     "kYouCanAlsoLoginWith" : MessageLookupByLibrary.simpleMessage("يمكنك أيضًا تسجيل الدخول باستخدام ..."),
+    "kYouMustAcceptTerms" : MessageLookupByLibrary.simpleMessage("يجب قبول الشروط والأحكام للمتابعة"),
     "kYourRequestIsDeclined" : MessageLookupByLibrary.simpleMessage("تم رفض طلب الاشتراك"),
     "kYourRequestIsPending" : MessageLookupByLibrary.simpleMessage("طلب الاشتراك قيد الموافقة")
   };

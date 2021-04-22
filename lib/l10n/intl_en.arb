@@ -170,5 +170,7 @@
   "kChooseCarToPayViolations" : "Choose car to pay violations",
   "kCarColor": "Color",
   "kCarYear": "Year",
-  "kNoViolations": "You don't have any violations"
+  "kNoViolations": "You don't have any violations",
+  "kAcceptTerms": "I accept the terms and conditions",
+  "kYouMustAcceptTerms": "You must accept the terms and conditions to proceed"
 }

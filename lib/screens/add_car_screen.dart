@@ -249,8 +249,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                       enabled: !account.isLoading,
                       hintText: S.of(context).kCarYear,
                       initialValue: _car?.year?.toString(),
-                      onChanged: (value) => setState(
-                          () => _car.year = int.tryParse(value?.toString())),
+                      onChanged: (value) => setState(() => _car.year = value),
                     ),
                   ),
                 ],

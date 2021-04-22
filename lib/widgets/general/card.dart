@@ -26,8 +26,8 @@ class TkCard extends StatelessWidget {
     String title = titles == null ? null : titles[side];
     String details = data == null ? null : data[side];
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(
-          kCardPadding, kCardPadding / 2, kCardPadding, kCardPadding / 2),
+      padding: const EdgeInsetsDirectional.fromSTEB(kCardPadding * 2,
+          kCardPadding / 2, kCardPadding * 2, kCardPadding / 2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

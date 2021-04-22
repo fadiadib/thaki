@@ -103,51 +103,71 @@ class TkTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SizedBox(
-        width: width,
-        child: Container(
-          // Specify the input text height
-          height: height + (lines - 1) * kDefaultTextEditHeight,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Center(
+          child: SizedBox(
+            width: width,
+            child: Container(
+              // Specify the input text height
+              height: height + (lines - 1) * kDefaultTextEditHeight,
 
-          // Create the surrounding box with
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius),
-          ),
+              // Create the surrounding box with
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(borderRadius),
+              ),
 
-          // Place a TextField in the middle of the box
-          child: Center(
-            child: Row(
-              children: <Widget>[
-                // The field
-                Expanded(flex: 1, child: getField()),
+              // Place a TextField in the middle of the box
+              child: Center(
+                child: Row(
+                  children: <Widget>[
+                    // The field
+                    Expanded(flex: 2, child: getField()),
 
-                // Validation
-                (validate && (validator != null) && !validator())
-                    ? Expanded(
-                        flex: 1,
-                        child: Text(
-                          errorMessage,
-                          textAlign: TextAlign.end,
-                          style: kErrorStyle,
-                          softWrap: true,
-                        ),
-                      )
-                    : Container(),
+                    // // Validation
+                    // (validate && (validator != null) && !validator())
+                    //     ? Expanded(
+                    //         flex: 1,
+                    //         child: Text(
+                    //           errorMessage,
+                    //           textAlign: TextAlign.end,
+                    //           style: kErrorStyle.copyWith(fontSize: 10.0),
+                    //           softWrap: true,
+                    //         ),
+                    //       )
+                    //     : Container(),
 
-                // If loading, show small gap and progress indicator
-                isLoading ? SizedBox(width: 20.0) : Container(),
-                isLoading
-                    ? SizedBox(
-                        height: 20.0, width: 20.0, child: TkProgressIndicator())
-                    : icon != null
-                        ? Icon(icon, color: kPrimaryIconColor)
-                        : Container(),
-              ],
+                    // If loading, show small gap and progress indicator
+                    isLoading ? SizedBox(width: 20.0) : Container(),
+                    isLoading
+                        ? SizedBox(
+                            height: 20.0,
+                            width: 20.0,
+                            child: TkProgressIndicator())
+                        : icon != null
+                            ? Icon(icon, color: kPrimaryIconColor)
+                            : Container(),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
-      ),
+
+        // Validation
+        (validate && (validator != null) && !validator())
+            ? Padding(
+                padding: const EdgeInsets.only(top: 5.0),
+                child: Text(
+                  errorMessage,
+                  textAlign: TextAlign.start,
+                  style: kErrorStyle,
+                  softWrap: true,
+                ),
+              )
+            : Container(),
+      ],
     );
   }
 }

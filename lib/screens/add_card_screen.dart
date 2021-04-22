@@ -163,7 +163,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
   Widget _createCCLogos() {
     List<Image> _icons = [];
     for (String image in kCCLogos) {
-      _icons.add(Image.asset(image));
+      _icons.add(Image.asset(image, height: 30));
     }
 
     return Padding(

@@ -63,7 +63,10 @@ class _TkTicketTileState extends State<TkTicketTile> {
               children: [
                 Row(
                   children: [
-                    Text(widget.ticket.car.plateEN,
+                    Text(
+                        widget.langCode == 'en'
+                            ? widget.ticket.car.plateEN
+                            : widget.ticket.car.plateAR,
                         style: kBoldStyle[kNormalSize]),
                     Text(' - ' + widget.ticket.car.make + ' '),
                     Text(widget.ticket.car.model)

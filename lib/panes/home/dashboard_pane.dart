@@ -6,6 +6,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/screens/buy_subscription_screen.dart';
@@ -44,15 +45,18 @@ class TkDashboardPane extends TkPane {
                 TkCardSide.bottomRight: S.of(context).kTo
               },
               data: {
-                TkCardSide.topLeft: ticket.car.plateEN,
+                TkCardSide.topLeft:
+                    Provider.of<TkLangController>(context, listen: false).isRTL
+                        ? ticket.car.plateAR
+                        : ticket.car.plateEN,
                 TkCardSide.bottomLeft:
                     TkDateTimeHelper.formatDate(ticket.start.toString()) +
-                        ' ' +
+                        '\n' +
                         TkDateTimeHelper.formatTime(
                             context, ticket.start.toString()),
                 TkCardSide.bottomRight: TkDateTimeHelper.formatDate(
                         ticket.end.toString()) +
-                    ' ' +
+                    '\n' +
                     TkDateTimeHelper.formatTime(context, ticket.end.toString()),
               },
             ),

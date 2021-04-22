@@ -1734,6 +1734,26 @@ class S {
       args: [],
     );
   }
+
+  /// `I accept the terms and conditions`
+  String get kAcceptTerms {
+    return Intl.message(
+      'I accept the terms and conditions',
+      name: 'kAcceptTerms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You must accept the terms and conditions to proceed`
+  String get kYouMustAcceptTerms {
+    return Intl.message(
+      'You must accept the terms and conditions to proceed',
+      name: 'kYouMustAcceptTerms',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

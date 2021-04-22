@@ -88,8 +88,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
         // Check for logged session
         bool loggedIn = await account.isLoggedIn();
 
-        if (loggedIn) {
-          await account.load();
+        if (loggedIn && await account.load()) {
           await Navigator.pushReplacementNamed(context, TkHomeScreen.id);
           _loadingNextScreen = false;
         } else {

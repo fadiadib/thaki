@@ -169,5 +169,7 @@
   "kChooseCarToPayViolations" : "اختر سيارة لدفع المخالفات",
   "kCarColor": "اللون",
   "kCarYear": "سنة الصنع",
-  "kNoViolations": "ليس لديك أي مخالفات"
+  "kNoViolations": "ليس لديك أي مخالفات",
+  "kAcceptTerms": "أوافق على الشروط والأحكام",
+  "kYouMustAcceptTerms": "يجب قبول الشروط والأحكام للمتابعة"
 }
