@@ -171,5 +171,6 @@
   "kCarYear": "سنة الصنع",
   "kNoViolations": "ليس لديك أي مخالفات",
   "kAcceptTerms": "أوافق على الشروط والأحكام",
-  "kYouMustAcceptTerms": "يجب قبول الشروط والأحكام للمتابعة"
+  "kYouMustAcceptTerms": "يجب قبول الشروط والأحكام للمتابعة",
+  "kNoSpaces": " - بدون مسافات"
 }

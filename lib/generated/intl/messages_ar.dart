@@ -109,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kNoBookingsYet" : MessageLookupByLibrary.simpleMessage("لا حجوزات بعد"),
     "kNoCars" : MessageLookupByLibrary.simpleMessage("لم يتم إضافة أي سيارات بعد"),
     "kNoPaymentCards" : MessageLookupByLibrary.simpleMessage("لم يتم إضافة بطاقات الدفع حتى الآن"),
+    "kNoSpaces" : MessageLookupByLibrary.simpleMessage(" - بدون مسافات"),
     "kNoViolations" : MessageLookupByLibrary.simpleMessage("ليس لديك أي مخالفات"),
     "kNotFound" : MessageLookupByLibrary.simpleMessage("غير موجود"),
     "kNotRegisteredYet" : MessageLookupByLibrary.simpleMessage("لم يتم التسجيل بعد؟"),

@@ -1754,6 +1754,16 @@ class S {
       args: [],
     );
   }
+
+  /// ` - without spaces`
+  String get kNoSpaces {
+    return Intl.message(
+      ' - without spaces',
+      name: 'kNoSpaces',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

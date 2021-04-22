@@ -119,6 +119,7 @@ const String kCarStateTag = 'state';
 const String kCarPreferredTag = 'is_default';
 const String kCarColorTag = 'color';
 const String kCarYearTag = 'year';
+const String kCarApprovedTag = 'is_approved';
 // Card tags
 const String kCardTag = 'card';
 const String kCardIdTag = 'id';

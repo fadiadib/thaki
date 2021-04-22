@@ -64,7 +64,7 @@ class TkButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kDefaultButtonRadius),
           color: btnColor,
-          boxShadow: enableShadow ? kBoxRaisedShadow : [],
+          boxShadow: enableShadow ? kFormShadow : [],
           border: Border.all(color: btnBorderColor, width: 1.0),
         ),
 

@@ -172,5 +172,6 @@
   "kCarYear": "Year",
   "kNoViolations": "You don't have any violations",
   "kAcceptTerms": "I accept the terms and conditions",
-  "kYouMustAcceptTerms": "You must accept the terms and conditions to proceed"
+  "kYouMustAcceptTerms": "You must accept the terms and conditions to proceed",
+  "kNoSpaces": " - without spaces"
 }

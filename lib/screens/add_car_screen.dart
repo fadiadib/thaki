@@ -135,7 +135,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           Column(
             children: [
               TkSectionTitle(
-                  title: S.of(context).kCarPlateAR, uppercase: false),
+                  title: S.of(context).kCarPlateAR + S.of(context).kNoSpaces,
+                  uppercase: false),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 30.0),

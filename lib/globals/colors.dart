@@ -59,43 +59,16 @@ const LinearGradient kWhiteBgLinearGradient = LinearGradient(
 /// Shadows
 const List<BoxShadow> kFormShadow = [
   BoxShadow(
-    color: Color(0x14000000),
+    color: Color(0x18000000),
     offset: Offset(5.0, 15.0),
     blurRadius: 30.0,
   ),
 ];
 const List<BoxShadow> kTileShadow = [
   BoxShadow(
-    color: Color(0x14000000),
+    color: Color(0x22000000),
     offset: Offset(0.0, 2.0),
     blurRadius: 10.0,
-  ),
-];
-const Color kShadowTopColor = kLightGreyColor;
-const Color kShadowBottomColor = kDarkGreyColor;
-// Used for logo box, all cards and buttons
-const List<BoxShadow> kBoxRaisedShadow = [
-  BoxShadow(
-    color: kShadowBottomColor,
-    offset: Offset(5.0, 5.0),
-    blurRadius: 9.0,
-  ),
-  BoxShadow(
-    color: kShadowTopColor,
-    offset: Offset(-5.0, -5.0),
-    blurRadius: 9.0,
-  ),
-];
-const List<BoxShadow> kBoxDepressedShadow = [
-  BoxShadow(
-    color: kShadowBottomColor,
-    offset: Offset(-5.0, -5.0),
-    blurRadius: 9.0,
-  ),
-  BoxShadow(
-    color: kShadowTopColor,
-    offset: Offset(5.0, 5.0),
-    blurRadius: 9.0,
   ),
 ];
 

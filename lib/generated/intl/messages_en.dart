@@ -109,6 +109,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kNoBookingsYet" : MessageLookupByLibrary.simpleMessage("No bookings yet"),
     "kNoCars" : MessageLookupByLibrary.simpleMessage("No cars added yet"),
     "kNoPaymentCards" : MessageLookupByLibrary.simpleMessage("No payment cards added yet"),
+    "kNoSpaces" : MessageLookupByLibrary.simpleMessage(" - without spaces"),
     "kNoViolations" : MessageLookupByLibrary.simpleMessage("You don\'t have any violations"),
     "kNotFound" : MessageLookupByLibrary.simpleMessage("Not Found"),
     "kNotRegisteredYet" : MessageLookupByLibrary.simpleMessage("Not registered yet? "),
