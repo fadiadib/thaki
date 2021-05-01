@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 
 class TkCar {
@@ -34,7 +37,6 @@ class TkCar {
       kCarPreferredTag: preferred == true ? '1' : '0',
       kCarColorTag: color ?? '',
       kCarYearTag: year ?? '',
-      kCarApprovedTag: isApproved ?? '',
     };
   }
 
@@ -65,6 +67,20 @@ class TkCar {
     color = car.color;
     preferred = car.preferred;
     isApproved = car.isApproved;
+  }
+
+  String statusTitle(BuildContext context) {
+    if (isApproved == 1) return S.of(context).kApproved;
+    if (isApproved == 3) return S.of(context).kPending;
+    if (isApproved == 2) return S.of(context).kRejected;
+    return '';
+  }
+
+  Color get statusColor {
+    if (isApproved == 1) return kGreenAccentColor;
+    if (isApproved == 3) return kTertiaryColor;
+    if (isApproved == 2) return kRedAccentColor;
+    return kTransparentColor;
   }
 
   int id;

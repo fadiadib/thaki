@@ -3,27 +3,19 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/versioner.dart';
+import 'package:thaki/screens/subscription_screen.dart';
 import 'package:thaki/widgets/general/list_menu_item.dart';
 
 /// Home Side drawer
 /// Has two parts, a header that shows basic profile information
 /// and a list of menu items such as settings..etc.
 class TkMenuDrawer extends StatelessWidget {
-  TkMenuDrawer({this.popParentCallback, this.subscriptionCallback});
+  TkMenuDrawer({this.popParentCallback});
   final Function popParentCallback;
-  final Function subscriptionCallback;
-
-  String _getSubscriptionBtnTitle(TkUser user, BuildContext context) {
-    if (user.isApproved == 0) return S.of(context).kApplySubscription;
-    if (user.isApproved == 1) return S.of(context).kBuySubscription;
-    if (user.isApproved == 2) return S.of(context).kYourRequestIsPending;
-    return S.of(context).kYourRequestIsDeclined;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,16 +94,15 @@ class TkMenuDrawer extends StatelessWidget {
 
                 // Subscription menu item
                 TkListMenuItem(
-                  pop: false,
-                  title: _getSubscriptionBtnTitle(account.user, context),
+                  pop: true,
+                  title: S.of(context).kSubscriptions,
                   child: Icon(kCarouselForwardBtnIcon,
                       color: kMediumGreyColor, size: 10),
-                  textStyle: account.user.isApproved == 0 ||
-                          account.user.isApproved == 1
-                      ? kRegularStyle[kNormalSize]
-                      : kRegularStyle[kNormalSize]
-                          .copyWith(color: kDarkGreyColor.withOpacity(0.5)),
-                  action: subscriptionCallback,
+                  textStyle: kRegularStyle[kNormalSize],
+                  action: () async {
+                    await Navigator.of(context)
+                        .pushNamed(TkSubscriptionScreen.id);
+                  },
                 ),
 
                 // Support menu item

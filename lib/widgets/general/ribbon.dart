@@ -74,3 +74,37 @@ class RibbonClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
+
+class TkMarker extends StatelessWidget {
+  TkMarker({
+    this.title,
+    this.color,
+    this.side = TkCardRibbonSide.right,
+  });
+
+  final Color color;
+  final String title;
+  final TkCardRibbonSide side;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      right: side == TkCardRibbonSide.right ? -5 : null,
+      left: side == TkCardRibbonSide.left ? -5 : null,
+      top: 10,
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
+        child: Text(
+          title.toUpperCase(),
+          style:
+              kBoldStyle[kSmallSize].copyWith(color: kWhiteColor, fontSize: 10),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
+}

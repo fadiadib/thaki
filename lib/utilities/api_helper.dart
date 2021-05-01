@@ -219,14 +219,18 @@ class TkAPIHelper {
   /////////////////////////////////////////////////////////////
   /////////////////////// SUBSCRIPTIONS ///////////////////////
   /// Apply for resident permit API
-  Future<Map> applyForSubscription(
-      {@required TkUser user, @required TkPermit permit}) async {
+  Future<Map> applyForSubscription({
+    @required TkUser user,
+    @required TkPermit permit,
+    @required TkCar car,
+  }) async {
     return await _network.postData(
       url: kApplySubscriptionPermitAPI,
       params: {
         kSubscriberName: permit.name,
         kSubscriberPhone: permit.phone,
         kSubscriberEmail: permit.email,
+        kSubscriberCarId: car.id.toString(),
       },
       headers: user.toHeader(),
       files: permit.toFiles(),
@@ -246,6 +250,7 @@ class TkAPIHelper {
       {@required TkUser user,
       @required TkSubscription subscription,
       @required TkCredit card,
+      @required TkCar car,
       @required String cvv}) async {
     return await _network.postData(
       url: kBuySubscription,
@@ -253,6 +258,7 @@ class TkAPIHelper {
         kSubscriptionIdIdTag: subscription.id.toString(),
         kCardCardIdTag: card.id.toString(),
         kCardCVVTag: cvv,
+        kSubscriberCarId: car.id.toString(),
       },
       headers: user.toHeader(),
     );
@@ -321,43 +327,6 @@ class TkAPIHelper {
   ///////////////////////// VIOLATIONS ////////////////////////
   /// Load violations API
   Future<Map> loadViolations(String car) async {
-    // //////////////////////////////////////////////////////////
-    // // Temporary code for debug purposes
-    // if (kDemoMode) {
-    //   await Future.delayed(Duration(seconds: 1));
-    //
-    //   return {
-    //     kStatusTag: kSuccessCode,
-    //     kErrorMessageTag: '',
-    //     kDataTag: {
-    //       kViolationsTag: [
-    //         {
-    //           kViolationIdTag: 0,
-    //           kViolationDescTag: 'الوقوف في أماكن عبور المشاة كلياَ أو جزئياَ',
-    //           kViolationLocationTag: 'شارع خادم الحرمين الشريفين',
-    //           kViolationDateTimeTag: '2021-01-31 00:00:00',
-    //           kViolationFineTag: '100',
-    //         },
-    //         {
-    //           kViolationIdTag: 1,
-    //           kViolationDescTag: 'الوقوف في أماكن عبور المشاة كلياَ أو جزئياَ',
-    //           kViolationLocationTag: 'شارع خادم الحرمين الشريفين',
-    //           kViolationDateTimeTag: '2021-02-27 00:00:00',
-    //           kViolationFineTag: '50',
-    //         },
-    //         {
-    //           kViolationIdTag: 2,
-    //           kViolationDescTag: 'الوقوف في أماكن عبور المشاة كلياَ أو جزئياَ',
-    //           kViolationLocationTag: 'شارع خادم الحرمين الشريفين',
-    //           kViolationDateTimeTag: '2021-03-12 00:00:00',
-    //           kViolationFineTag: '100',
-    //         },
-    //       ]
-    //     },
-    //   };
-    // }
-    // //////////////////////////////////////////////////////////
-
     return await _network.getData(
       url: kLoadViolationsAPI,
       params: {

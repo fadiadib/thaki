@@ -168,10 +168,14 @@
   "kIsPast": " is in the past",
   "kChooseCarToBook": "Choose car to book parking",
   "kChooseCarToPayViolations" : "Choose car to pay violations",
+  "kChooseCarToSubscribe": "Choose car to subscribe",
   "kCarColor": "Color",
   "kCarYear": "Year",
   "kNoViolations": "You don't have any violations",
   "kAcceptTerms": "I accept the terms and conditions",
   "kYouMustAcceptTerms": "You must accept the terms and conditions to proceed",
-  "kNoSpaces": " - without spaces"
+  "kNoSpaces": " - without spaces",
+  "kSubscriptions": "Subscriptions",
+  "kApproved": "Approved",
+  "kRejected": "Rejected"
 }

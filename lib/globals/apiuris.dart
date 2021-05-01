@@ -183,6 +183,7 @@ const String kSubscriptionPriceTag = 'price';
 const String kSubscriptionPeriodTag = 'period';
 const String kSubscriptionIdIdTag = 'subscription_id';
 const String kSubscriptionsTag = 'subscriptions_list';
+const String kSubscriberCarId = 'car_id';
 // Violations tags
 const String kViolationsTag = 'violations_list';
 const String kViolationIdTag = 'id';

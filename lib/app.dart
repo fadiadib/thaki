@@ -18,6 +18,7 @@ import 'package:thaki/screens/purchase_package_screen.dart';
 import 'package:thaki/screens/register_screen.dart';
 import 'package:thaki/screens/apply_subscription_screen.dart';
 import 'package:thaki/screens/splash_screen.dart';
+import 'package:thaki/screens/subscription_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/screens/add_card_screen.dart';
 import 'package:thaki/screens/edit_profile_screen.dart';
@@ -102,6 +103,7 @@ class TkThakiApp extends StatelessWidget {
             TkBuySubscriptionScreen.id: (context) => TkBuySubscriptionScreen(),
             TkPayViolationScreen.id: (context) => TkPayViolationScreen(),
             TkBookParkingScreen.id: (context) => TkBookParkingScreen(),
+            TkSubscriptionScreen.id: (context) => TkSubscriptionScreen(),
           },
 
           // Push the splash screen

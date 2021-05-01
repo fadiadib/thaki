@@ -31,18 +31,6 @@ class TkSubscriber extends ChangeNotifier {
     notifyListeners();
   }
 
-  // set frontImage(File image) {
-  //   _validationDocumentsError = null;
-  //   _permit.idFront = image;
-  //   notifyListeners();
-  // }
-  //
-  // set backImage(File image) {
-  //   _validationDocumentsError = null;
-  //   _permit.idBack = image;
-  //   notifyListeners();
-  // }
-
   List<TkSubscription> _subscriptions = [];
   List<TkSubscription> get subscriptions => _subscriptions;
   TkSubscription _selectedSubscription;
@@ -59,6 +47,8 @@ class TkSubscriber extends ChangeNotifier {
     _validationPaymentError = null;
     notifyListeners();
   }
+
+  TkCar selectedCar;
 
   String _cvv;
   String get cvv => _cvv;
@@ -110,11 +100,6 @@ class TkSubscriber extends ChangeNotifier {
         return false;
       }
     }
-    // if (_permit.idBack == null || _permit.idFront == null) {
-    //   _validationDocumentsError = S.of(context).kUploadDocumentsToProceed;
-    //   notifyListeners();
-    //   return false;
-    // }
     return true;
   }
 
@@ -173,12 +158,15 @@ class TkSubscriber extends ChangeNotifier {
     _error[TkSubscriberError.apply] = null;
     _permit.documents = _documents;
 
-    Map result = await _apis.applyForSubscription(permit: _permit, user: user);
+    Map result = await _apis.applyForSubscription(
+        permit: _permit, user: user, car: selectedCar);
 
     // Clear model
     if (result[kStatusTag] != kSuccessCreationCode) {
       // an error happened
       _error[TkSubscriberError.apply] = _apis.normalizeError(result);
+    } else {
+      selectedCar.isApproved = 3;
     }
 
     // Stop any listening loading indicators
@@ -225,10 +213,12 @@ class TkSubscriber extends ChangeNotifier {
     _error[TkSubscriberError.buy] = null;
 
     Map result = await _apis.buySubscriptions(
-        user: user,
-        subscription: _selectedSubscription,
-        card: _selectedCard,
-        cvv: _cvv);
+      user: user,
+      car: selectedCar,
+      subscription: _selectedSubscription,
+      card: _selectedCard,
+      cvv: _cvv,
+    );
 
     if (result[kStatusTag] != kSuccessCreationCode) {
       _error[TkSubscriberError.buy] = _apis.normalizeError(result);

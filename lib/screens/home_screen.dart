@@ -10,8 +10,6 @@ import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/state_controller.dart';
 import 'package:thaki/providers/tab_selector.dart';
-import 'package:thaki/screens/apply_subscription_screen.dart';
-import 'package:thaki/screens/buy_subscription_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
@@ -109,16 +107,9 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
 
               // Create the side drawer
               drawer: TkMenuDrawer(
-                  popParentCallback: () => Navigator.of(context)
-                      .pushReplacementNamed(TkWelcomeScreen.id),
-                  subscriptionCallback: () {
-                    if (account.user.isApproved == 0)
-                      Navigator.of(context)
-                          .pushNamed(TkApplyForSubscriptionScreen.id);
-                    if (account.user.isApproved == 1)
-                      Navigator.of(context)
-                          .pushNamed(TkBuySubscriptionScreen.id);
-                  }),
+                popParentCallback: () => Navigator.of(context)
+                    .pushReplacementNamed(TkWelcomeScreen.id),
+              ),
             ),
           );
         },

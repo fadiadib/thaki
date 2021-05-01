@@ -36,8 +36,6 @@ class _TkApplyForSubscriptionScreenState extends TkMultiStepPageState {
       }),
       TkPermitSuccessPane(onDone: () {
         loadNextPane();
-
-        Provider.of<TkAccount>(context, listen: false).load();
       }),
     ];
   }

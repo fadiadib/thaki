@@ -1705,6 +1705,16 @@ class S {
     );
   }
 
+  /// `Choose car to subscribe`
+  String get kChooseCarToSubscribe {
+    return Intl.message(
+      'Choose car to subscribe',
+      name: 'kChooseCarToSubscribe',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Color`
   String get kCarColor {
     return Intl.message(
@@ -1760,6 +1770,36 @@ class S {
     return Intl.message(
       ' - without spaces',
       name: 'kNoSpaces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscriptions`
+  String get kSubscriptions {
+    return Intl.message(
+      'Subscriptions',
+      name: 'kSubscriptions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Approved`
+  String get kApproved {
+    return Intl.message(
+      'Approved',
+      name: 'kApproved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rejected`
+  String get kRejected {
+    return Intl.message(
+      'Rejected',
+      name: 'kRejected',
       desc: '',
       args: [],
     );
