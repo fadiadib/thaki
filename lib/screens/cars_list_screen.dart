@@ -64,10 +64,11 @@ class _TkCarsListScreenState extends State<TkCarsListScreen> {
                         },
                         onDelete: (TkCar car) async {
                           if (await TkDialogHelper.gShowConfirmationDialog(
-                            context: context,
-                            message: S.of(context).kAreYouSureCar,
-                            type: gDialogType.yesNo,
-                          )) await account.deleteCar(car);
+                                context: context,
+                                message: S.of(context).kAreYouSureCar,
+                                type: gDialogType.yesNo,
+                              ) ??
+                              false) await account.deleteCar(car);
                         },
                         onEdit: (TkCar car) async {
                           Navigator.of(context).push(

@@ -425,10 +425,10 @@ class S {
     );
   }
 
-  /// `Please download the latest version of $kAppTitle to continue using the application`
+  /// `Please download the latest version to continue using the application`
   String get kUpgradeRequiredMessage {
     return Intl.message(
-      'Please download the latest version of \$kAppTitle to continue using the application',
+      'Please download the latest version to continue using the application',
       name: 'kUpgradeRequiredMessage',
       desc: '',
       args: [],
@@ -785,10 +785,10 @@ class S {
     );
   }
 
-  /// `State`
+  /// `Country`
   String get kCarState {
     return Intl.message(
-      'State',
+      'Country',
       name: 'kCarState',
       desc: '',
       args: [],
@@ -1625,6 +1625,26 @@ class S {
     );
   }
 
+  /// `Are you sure you want to delete this notification?`
+  String get kAreYouSureNotification {
+    return Intl.message(
+      'Are you sure you want to delete this notification?',
+      name: 'kAreYouSureNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to clear notifications?`
+  String get kAreYouSureAllNotification {
+    return Intl.message(
+      'Are you sure you want to clear notifications?',
+      name: 'kAreYouSureAllNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add car`
   String get kAddCar {
     return Intl.message(
@@ -1800,6 +1820,36 @@ class S {
     return Intl.message(
       'Rejected',
       name: 'kRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Notifications`
+  String get kNoNotifications {
+    return Intl.message(
+      'No Notifications',
+      name: 'kNoNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get kMyNotifications {
+    return Intl.message(
+      'Notifications',
+      name: 'kMyNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Seen`
+  String get kUpdateSeen {
+    return Intl.message(
+      'Seen',
+      name: 'kUpdateSeen',
       desc: '',
       args: [],
     );

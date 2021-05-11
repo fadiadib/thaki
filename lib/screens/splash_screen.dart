@@ -135,11 +135,11 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
 
               // Show error message
               RichText(
-                textAlign: TextAlign.left,
+                textAlign: TextAlign.start,
                 text: TextSpan(
                   text: _startupError,
-                  style:
-                      kBoldStyle[kSmallSize].copyWith(color: kLightPurpleColor),
+                  style: kBoldStyle[kSmallSize].copyWith(
+                      color: kLightPurpleColor, fontFamily: kRTLFontFamily),
                   children: [
                     TextSpan(
                       text: S.of(context).kTryAgain,

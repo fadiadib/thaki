@@ -1,23 +1,30 @@
+import 'dart:math';
+
 import 'package:thaki/globals/index.dart';
 
 class TkNotification {
-  TkNotification(Map<String, dynamic> json) {
+  TkNotification.fromJson(Map<String, dynamic> json) {
     // Notification data can be inside a 'data'
     // ag or 'notification' tag
     Map<dynamic, dynamic> dataJson = json;
-    if (json[kNotificationDataTag] != null) {
+    if (json[kNotificationTag] != null) {
+      dataJson = json[kNotificationTag];
+    } else if (json[kNotificationDataTag] != null) {
       dataJson = json[kNotificationDataTag];
-    } else {
-      dataJson = json;
     }
 
     // Get the id
     id = int.tryParse(dataJson[kNotificationIdTag].toString());
+    if (id == null)
+      id = int.tryParse(
+          dataJson[kNotificationTagTag].toString().split('_').last);
+    if (id == null) id = Random().nextInt(10000);
 
     // Get message details: title, short and body
     title = dataJson[kNotificationTitleTag] ?? '';
     short = dataJson[kNotificationMessageTag] ?? '';
     body = dataJson[kNotificationBodyTag] ?? '';
+    print('id: $id, title: $title, short: $short, body: $body');
 
     // Additional data: Type and details
     dataType = dataJson[kNotificationDataTypeTag];
@@ -60,6 +67,7 @@ class TkNotification {
   String dataDetail;
   String dataType;
   bool isSeen;
+  bool showBody = false;
   DateTime expiry;
   DateTime date;
 }

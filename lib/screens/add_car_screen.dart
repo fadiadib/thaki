@@ -53,7 +53,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
             TkValidationHelper.validateLicense(
                 _car.plateAR, _car.state, langController.lang.languageCode);
       case TkFormField.carMake:
-        return TkValidationHelper.validateNotEmpty(_car.make);
+        return TkValidationHelper.validateNotEmpty(_car.make.toString());
       case TkFormField.carModel:
         return TkValidationHelper.validateNotEmpty(_car.model);
       default:
@@ -96,11 +96,11 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
           child: TkDropDownField(
             context: context,
-            values: states.getStateNames(user),
-            value: states.getStateName(_car.state, user),
+            values: states.stateNames(user),
+            value: states.stateName(_car.state, user),
             hintText: S.of(context).kCarState,
             onChanged: (value) =>
-                setState(() => _car.state = states.getStateId(value, user)),
+                setState(() => _car.state = states.stateId(value, user)),
             validator: getValidationCallback(TkFormField.carState),
             validate: isValidating,
             errorMessage: S.of(context).kPleaseChoose + S.of(context).kCarState,
@@ -176,6 +176,19 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                       errorMessage:
                           S.of(context).kPleaseEnter + S.of(context).kCarMake,
                     ),
+                    // child: TkDropDownField(
+                    //   context: context,
+                    //   enabled: !account.isLoading,
+                    //   hintText: S.of(context).kCarMake,
+                    //   value: states.makeName(_car.make, user),
+                    //   values: states.makeNames(user),
+                    //   onChanged: (value) => setState(
+                    //       () => _car.make = states.makeId(value, user)),
+                    //   validator: getValidationCallback(TkFormField.carMake),
+                    //   validate: isValidating,
+                    //   errorMessage:
+                    //       S.of(context).kPleaseChoose + S.of(context).kCarMake,
+                    // ),
                   ),
                 ],
               ),

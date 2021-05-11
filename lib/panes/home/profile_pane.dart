@@ -108,8 +108,7 @@ class TkProfilePane extends TkPane {
                         ? car.plateEN
                         : car.plateAR,
                 TkCardSide.bottomRight: Provider.of<TkStateController>(context)
-                    .getStateName(
-                        car.state, Provider.of<TkAccount>(context).user)
+                    .stateName(car.state, Provider.of<TkAccount>(context).user)
               },
             ),
           ),

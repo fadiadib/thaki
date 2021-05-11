@@ -87,10 +87,10 @@ class TkMessenger extends ChangeNotifier {
         kNtfTableName, kCreateNtfDBCmd, kSelectBtfDBCmd);
 
     // Iterate on each row and create a notification object
-    for (Map<String, dynamic> message in messages) {
+    for (Map<String, dynamic> message in messages.reversed) {
       Map<String, dynamic> js = json.decode(message[kNtfDataColumnName]);
 
-      TkNotification notification = TkNotification(js);
+      TkNotification notification = TkNotification.fromJson(js);
       if (notification.expiry != null &&
           notification.expiry.isBefore(DateTime.now())) {
         // Expired, Remove from database
@@ -115,7 +115,7 @@ class TkMessenger extends ChangeNotifier {
     await mutex.acquire();
 
     try {
-      TkNotification notification = TkNotification(message);
+      TkNotification notification = TkNotification.fromJson(message);
 
       // Look for a notification with the same id
       TkNotification found = _notifications.firstWhere(
@@ -158,6 +158,24 @@ class TkMessenger extends ChangeNotifier {
         kSelectIdNtfDBCmd,
         notification.id,
         json.encode(notification.toJson()));
+
+    notifyListeners();
+  }
+
+  /// Show notification body
+  Future<void> showBody(TkNotification notification, {bool value}) async {
+    if (value != null)
+      notification.showBody = value;
+    else
+      notification.showBody = !notification.showBody;
+    notifyListeners();
+  }
+
+  Future<void> deleteNotification(TkNotification notification) async {
+    // Remove old entry
+    await TkDBHelper.deleteFromDatabase(
+        kNtfTableName, kCreateNtfDBCmd, kDeleteNtfDBCmd, notification.id);
+    _notifications.remove(notification);
 
     notifyListeners();
   }

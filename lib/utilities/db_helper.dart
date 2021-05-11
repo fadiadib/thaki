@@ -1,3 +1,4 @@
+import 'package:path/path.dart' as path;
 import 'package:sqflite/sqflite.dart';
 import 'package:mutex/mutex.dart';
 
@@ -20,15 +21,18 @@ class TkDBHelper {
       var databasesPath = await getDatabasesPath();
 
       // Open the database
-      Database database = await openDatabase(databasesPath + dbName, version: 1,
-          onCreate: (Database db, int version) async {
+      Database database = await openDatabase(path.join(databasesPath, dbName),
+          version: 1, onCreate: (Database db, int version) async {
         await db.execute(createCmd);
       });
 
       // Check that the entry does not exist
-      var search = await database.rawQuery(selectCmd + id.toString());
+      var search;
+      try {
+        search = await database.rawQuery(selectCmd + id.toString());
+      } finally {}
 
-      if (search.isEmpty) {
+      if (search == null || search.isEmpty) {
         // Insert the data
         await database.rawInsert(insertCmd + '(\'$id\', \'$data\')');
       }
@@ -50,8 +54,8 @@ class TkDBHelper {
       var databasesPath = await getDatabasesPath();
 
       // Open the database
-      Database database = await openDatabase(databasesPath + dbName, version: 1,
-          onCreate: (Database db, int version) async {
+      Database database = await openDatabase(path.join(databasesPath, dbName),
+          version: 1, onCreate: (Database db, int version) async {
         await db.execute(createCmd);
       });
 
@@ -79,8 +83,8 @@ class TkDBHelper {
       var databasesPath = await getDatabasesPath();
 
       // Open the database
-      Database database = await openDatabase(databasesPath + dbName, version: 1,
-          onCreate: (Database db, int version) async {
+      Database database = await openDatabase(path.join(databasesPath, dbName),
+          version: 1, onCreate: (Database db, int version) async {
         await db.execute(createCmd);
       });
 
@@ -104,8 +108,8 @@ class TkDBHelper {
     var databasesPath = await getDatabasesPath();
 
     // Open the database
-    Database database = await openDatabase(databasesPath + dbName, version: 1,
-        onCreate: (Database db, int version) async {
+    Database database = await openDatabase(path.join(databasesPath, dbName),
+        version: 1, onCreate: (Database db, int version) async {
       await db.execute(createCmd);
     });
 

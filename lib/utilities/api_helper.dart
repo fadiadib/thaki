@@ -46,7 +46,7 @@ class TkAPIHelper {
   /// Load states API
   Future<Map> loadStates({@required TkUser user}) async {
     return await _network.getData(
-      url: kLoadStates,
+      url: kLoadStatesAPI,
       headers: user.toHeader(),
     );
   }

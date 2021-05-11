@@ -194,6 +194,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
               // Call API to add car
               if (await account.updateCard(_card)) {
                 widget.card.copyValue(_card);
+                account.loadCards();
                 Navigator.of(context).pop();
               }
             } else {

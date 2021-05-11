@@ -68,10 +68,11 @@ class TkTicketsPane extends TkPane {
                           tickets: booker.upcomingTickets,
                           onDelete: (TkTicket ticket) async {
                             if (await TkDialogHelper.gShowConfirmationDialog(
-                              context: context,
-                              message: S.of(context).kAreYouSureTicket,
-                              type: gDialogType.yesNo,
-                            ))
+                                  context: context,
+                                  message: S.of(context).kAreYouSureTicket,
+                                  type: gDialogType.yesNo,
+                                ) ??
+                                false)
                               booker.cancelTicket(
                                 Provider.of<TkAccount>(context, listen: false)
                                     .user,

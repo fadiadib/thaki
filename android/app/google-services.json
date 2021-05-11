@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "307293462691",
+    "project_id": "thaki-ceab4",
+    "storage_bucket": "thaki-ceab4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:307293462691:android:df4ff0d670ca7c04af1f16",
+        "android_client_info": {
+          "package_name": "com.aurasys.thaki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "307293462691-o84t7gckqkuvnmif1p0gqvnu9b05fj91.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2wMoHCGXr7sV8ljGmQNRQabAbrCRU_CY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "307293462691-o84t7gckqkuvnmif1p0gqvnu9b05fj91.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "307293462691-hi0moehk31ri8b3r8ttnjhdc13dg2obr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.aurasys.thaki",
+                "app_store_id": "1562619162"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -8,7 +8,7 @@ import 'package:thaki/widgets/forms/text_fields.dart';
 
 /// Utility that creates form widgets
 class TkFormBuilder {
-  static bool enableLabels = false;
+  static bool enableLabels = true;
 
   /// Creates the widget label
   static Widget createLabel({
@@ -18,10 +18,15 @@ class TkFormBuilder {
     bool forceLabel = false,
   }) {
     if (forceLabel || enableLabels)
-      return Text(
-        label,
-        style: kRegularStyle[kSmallSize],
-        textAlign: TextAlign.start,
+      return Padding(
+        padding: forceLabel
+            ? const EdgeInsets.all(0)
+            : const EdgeInsetsDirectional.fromSTEB(5, 0, 0, 8),
+        child: Text(
+          label,
+          style: kBoldStyle[kSmallSize],
+          textAlign: TextAlign.start,
+        ),
       );
     return Container();
   }

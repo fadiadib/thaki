@@ -41,28 +41,37 @@ class TkPermitDocumentsPane extends TkPane {
     );
   }
 
-  Widget _getAgreeButton(TkSubscriber subscriber, BuildContext context) {
+  Widget _getAgreeButton(TkSubscriber subscriber, BuildContext context,
+      ScrollController scrollController) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
       child: TkButton(
           title: S.of(context).kContinue,
           onPressed: () {
-            if (subscriber.validateDocuments(context)) onDone();
+            if (subscriber.validateDocuments(context))
+              onDone();
+            else
+              scrollController.animateTo(0,
+                  duration: Duration(milliseconds: 600), curve: Curves.easeOut);
           }),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    ScrollController scrollController = ScrollController();
     return Consumer<TkSubscriber>(
       builder: (context, subscriber, _) {
         return subscriber.isLoading
             ? TkProgressIndicator()
             : ListView(
+                controller: scrollController,
+                reverse: true,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                    child: TkSectionTitle(title: S.of(context).kResidentPermit),
+                    child:
+                        TkError(message: subscriber.validationDocumentsError),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -73,15 +82,15 @@ class TkPermitDocumentsPane extends TkPane {
                       child: Column(
                         children: [
                           _getDocumentsWidgets(context, subscriber),
-                          _getAgreeButton(subscriber, context),
+                          _getAgreeButton(
+                              subscriber, context, scrollController),
                         ],
                       ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                    child:
-                        TkError(message: subscriber.validationDocumentsError),
+                    child: TkSectionTitle(title: S.of(context).kResidentPermit),
                   ),
                 ],
               );

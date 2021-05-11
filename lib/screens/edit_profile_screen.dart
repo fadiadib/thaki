@@ -57,6 +57,7 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen> {
       fields: _fields,
       action: _updateModelAndPushNext,
       isLoading: account.isLoading,
+      footer: Center(child: Text(S.of(context).kPasswordWontChange)),
       child: TkError(message: account.editError),
     );
   }
@@ -87,11 +88,7 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen> {
         child: ListView(
           children: [
             Column(
-              children: [
-                TkLogoBox(),
-                _createForm(),
-                Text(S.of(context).kPasswordWontChange),
-              ],
+              children: [TkLogoBox(), _createForm()],
             ),
           ],
         ),

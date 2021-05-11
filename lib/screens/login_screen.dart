@@ -55,7 +55,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
 
     return TkFormFrame(
       langCode: controller.lang.languageCode,
-      introTitle: S.of(context).kLoginIntroTitle,
+      // introTitle: S.of(context).kLoginIntroTitle,
       formTitle: kLoginFieldsJson[kFormName][controller.lang.languageCode],
       actionTitle: kLoginFieldsJson[kFormAction][controller.lang.languageCode],
       buttonTag: kLoginTag,

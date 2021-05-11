@@ -10,6 +10,12 @@ class TkStateController extends ChangeNotifier {
   // Model
   List<TkState> _states = [];
   List<TkState> get states => _states;
+  List<TkModel> _models = [];
+  List<TkModel> get models => _models;
+  List<TkMake> _makes = [];
+  List<TkMake> get makes => _makes;
+  List<TkColor> _colors = [];
+  List<TkColor> get colors => _colors;
 
   // Error handling
   String _loadError;
@@ -19,31 +25,38 @@ class TkStateController extends ChangeNotifier {
   bool _isLoading;
   bool get isLoading => _isLoading;
 
-  String getStateName(int id, TkUser user) {
-    TkState state =
-        _states.firstWhere((element) => element.id == id, orElse: () => null);
-    if (state != null) {
-      return user.lang.languageCode == 'en' ? state.nameEN : state.nameAR;
+  String getAttributeName(int id, TkUser user, List<TkAttribute> data) {
+    TkAttribute attribute =
+        data.firstWhere((element) => element.id == id, orElse: () => null);
+    if (attribute != null) {
+      return user.lang.languageCode == 'en'
+          ? attribute.nameEN
+          : attribute.nameAR;
     }
     return null;
   }
 
-  int getStateId(String name, TkUser user) {
-    TkState state = _states.firstWhere(
+  int getAttributeId(String name, TkUser user, List<TkAttribute> data) {
+    TkAttribute attribute = data.firstWhere(
         (element) => element.nameEN == name || element.nameAR == name,
         orElse: () => null);
-    if (state != null) return state.id;
+    if (attribute != null) return attribute.id;
 
     return null;
   }
 
-  List<String> getStateNames(TkUser user) {
-    List<String> states = [];
-    for (TkState state in _states)
-      states.add(user.lang.languageCode == 'en' ? state.nameEN : state.nameAR);
-    return states;
+  List<String> getAttributeNames(TkUser user, List<TkAttribute> data) {
+    List<String> names = [];
+    for (TkAttribute attribute in data)
+      names.add(
+          user.lang.languageCode == 'en' ? attribute.nameEN : attribute.nameAR);
+    return names;
   }
 
+  /// States
+  String stateName(int id, TkUser user) => getAttributeName(id, user, _states);
+  int stateId(String name, TkUser user) => getAttributeId(name, user, _states);
+  List<String> stateNames(TkUser user) => getAttributeNames(user, _states);
   Future<bool> loadStates(TkUser user) async {
     _isLoading = true;
     _loadError = null;
@@ -51,12 +64,37 @@ class TkStateController extends ChangeNotifier {
     notifyListeners();
 
     Map result = await _apis.loadStates(user: user);
-    if (result[kStatusTag] != kSuccessCode) {
-      _loadError = result[kErrorMessageTag] ?? kUnknownError;
-    } else {
+    if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kStatesTag]) {
         _states.add(TkState.fromJson(data));
       }
+    } else {
+      _loadError = _apis.normalizeError(result);
+    }
+
+    _isLoading = false;
+    notifyListeners();
+
+    return (_loadError == null);
+  }
+
+  /// Makes
+  String makeName(int id, TkUser user) => getAttributeName(id, user, _makes);
+  int makeId(String name, TkUser user) => getAttributeId(name, user, _makes);
+  List<String> makeNames(TkUser user) => getAttributeNames(user, _makes);
+  Future<bool> loadMakes(TkUser user) async {
+    _isLoading = true;
+    _loadError = null;
+    _makes.clear();
+    notifyListeners();
+
+    Map result = await _apis.loadStates(user: user);
+    if (result[kStatusTag] == kSuccessCode) {
+      for (Map data in result[kDataTag][kStatesTag]) {
+        _makes.add(TkMake.fromJson(data));
+      }
+    } else {
+      _loadError = _apis.normalizeError(result);
     }
 
     _isLoading = false;

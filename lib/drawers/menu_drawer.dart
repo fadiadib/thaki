@@ -8,6 +8,7 @@ import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/versioner.dart';
 import 'package:thaki/screens/subscription_screen.dart';
+import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/general/list_menu_item.dart';
 
 /// Home Side drawer
@@ -111,7 +112,7 @@ class TkMenuDrawer extends StatelessWidget {
                   child: Icon(kCarouselForwardBtnIcon,
                       color: kMediumGreyColor, size: 10),
                   textStyle: kRegularStyle[kNormalSize],
-                  action: () {},
+                  action: () => TkURLLauncher.launch(kSupportURL),
                 ),
 
                 // Privacy menu item
@@ -120,7 +121,7 @@ class TkMenuDrawer extends StatelessWidget {
                   child: Icon(kCarouselForwardBtnIcon,
                       color: kMediumGreyColor, size: 10),
                   textStyle: kRegularStyle[kNormalSize],
-                  action: () {},
+                  action: () => TkURLLauncher.launch(kPrivacyPolicyURL),
                 ),
 
                 // Copyright and version

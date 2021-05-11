@@ -13,3 +13,7 @@ export 'parking_type.dart';
 export 'subscription.dart';
 export 'state.dart';
 export 'document.dart';
+export 'color.dart';
+export 'make.dart';
+export 'model.dart';
+export 'attribute.dart';

@@ -7,9 +7,11 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/panes/home/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/messenger.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/state_controller.dart';
 import 'package:thaki/providers/tab_selector.dart';
+import 'package:thaki/screens/notification_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
@@ -52,6 +54,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
     await account.loadCars();
     await account.loadCards();
     await states.loadStates(account.user);
+    await states.loadMakes(account.user);
   }
 
   @override
@@ -72,8 +75,8 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: initModel,
-      child: Consumer2<TkTabSelector, TkAccount>(
-        builder: (context, selector, account, _) {
+      child: Consumer3<TkTabSelector, TkAccount, TkMessenger>(
+        builder: (context, selector, account, messenger, _) {
           return WillPopScope(
             onWillPop: () async {
               selector.activeTab = 2;
@@ -85,6 +88,9 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
                 context: context,
                 enableClose: false,
                 removeLeading: false,
+                hasNotifications: messenger.hasNewNotifications,
+                onNotificationClick: () =>
+                    Navigator.of(context).pushNamed(TkNotificationScreen.id),
                 title: TkLogoBox(),
               ),
 

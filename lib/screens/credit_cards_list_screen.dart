@@ -63,10 +63,11 @@ class _TkCreditCardsListScreenState extends State<TkCreditCardsListScreen> {
                   },
                   onDelete: (TkCredit card) async {
                     if (await TkDialogHelper.gShowConfirmationDialog(
-                      context: context,
-                      message: S.of(context).kAreYouSureCard,
-                      type: gDialogType.yesNo,
-                    )) account.deleteCard(card);
+                          context: context,
+                          message: S.of(context).kAreYouSureCard,
+                          type: gDialogType.yesNo,
+                        ) ??
+                        false) account.deleteCard(card);
                   },
                   onEdit: (TkCredit card) async {
                     Navigator.of(context).push(

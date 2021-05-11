@@ -14,7 +14,10 @@ const String kLoadCarsAPI = '$kRootURL/cars';
 const String kAddCarAPI = '$kRootURL/cars';
 const String kDeleteCarAPI = '$kRootURL/cars';
 const String kUpdateCarAPI = '$kRootURL/cars';
-const String kLoadStates = '$kRootURL/states';
+const String kLoadStatesAPI = '$kRootURL/states';
+const String kLoadMakesAPI = '$kRootURL/make';
+const String kLoadModelsAPI = '$kRootURL/model';
+const String kLoadColorsAPI = '$kRootURL/color';
 // Cards
 const String kLoadCardsAPI = '$kRootURL/cards';
 const String kAddCardAPI = '$kRootURL/cards';
@@ -97,6 +100,7 @@ const String kUserLangTag = 'lang';
 // Notifications tags
 const String kNotificationTag = 'notification';
 const String kNotificationIdTag = 'id';
+const String kNotificationTagTag = 'tag';
 const String kNotificationDataTag = 'data';
 const String kNotificationTitleTag = 'title';
 const String kNotificationBodyTag = 'message';
@@ -192,8 +196,12 @@ const String kViolationDescTag = 'name';
 const String kViolationDateTimeTag = 'datetime';
 const String kViolationLocationTag = 'location';
 const String kViolationFineTag = 'fine';
-// States tags
-const String kStateIdTag = 'id';
-const String kStateEName = 'name_en';
-const String kStateAName = 'name_ar';
+// Attributes tags
+const String kAttributeIdTag = 'id';
+const String kAttributeEName = 'name_en';
+const String kAttributeAName = 'name_ar';
+const String kColorHexTag = 'hex';
 const String kStatesTag = 'state_list';
+const String kMakeTag = 'make_list';
+const String kModelTag = 'model_list';
+const String kColorTag = 'color_list';

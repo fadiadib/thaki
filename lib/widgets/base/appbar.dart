@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/providers/lang_controller.dart';
 
 /// AppBar subclass that removes elevation, bg color and leading widget
 /// adds a close button that does a navigation pop
@@ -46,7 +48,16 @@ class TkAppBar extends AppBar {
                           ? Positioned(
                               // Show an indicator with the number or notifications
                               top: 12.0,
-                              right: 12.0,
+                              right: Provider.of<TkLangController>(context,
+                                          listen: false)
+                                      .isRTL
+                                  ? null
+                                  : 12.0,
+                              left: Provider.of<TkLangController>(context,
+                                          listen: false)
+                                      .isRTL
+                                  ? 12.0
+                                  : null,
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: kRedAccentColor,

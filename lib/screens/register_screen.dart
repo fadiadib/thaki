@@ -83,10 +83,13 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TkFormBuilder.createCheckBox(
-                label: S.of(context).kAcceptTerms,
-                value: terms,
-                onChanged: (value) => setState(() => terms = value)),
+            GestureDetector(
+              onTap: () => TkURLLauncher.launch(kPrivacyPolicyURL),
+              child: TkFormBuilder.createCheckBox(
+                  label: S.of(context).kAcceptTerms,
+                  value: terms,
+                  onChanged: (value) => setState(() => terms = value)),
+            ),
             TkError(message: account.registerError),
           ],
         ),

@@ -4,7 +4,7 @@ const bool kDemoMode = true;
 
 /// App ID
 const String kAndroidAppId = 'com.aurasys.thaki';
-const String kIOSAppId = '';
+const String kIOSAppId = '1562619162';
 
 /// Settings
 const int kSplashDelay = 2;
@@ -16,3 +16,7 @@ const bool kShowEditBtnInProfile = false;
 const bool kShowSubscriptionBtInDashboard = false;
 const bool kShowCreditType = true;
 const bool kShowOtherCarAsButton = true;
+
+/// URLs
+const String kPrivacyPolicyURL = 'https://aura-demo.com/thaki/privacy-policy/';
+const String kSupportURL = 'https://aura-demo.com/thaki/contact/';

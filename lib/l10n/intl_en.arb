@@ -39,7 +39,7 @@
   "kDisagree":  "I Disagree",
   "kUpgradeNow": "Upgrade Now",
   "kUnsupportedVersion": "Unsupported App Version",
-  "kUpgradeRequiredMessage": "Please download the latest version of $kAppTitle to continue using the application",
+  "kUpgradeRequiredMessage": "Please download the latest version to continue using the application",
   "kDelete": "Delete",
   "kEdit": "Edit",
   "kPleaseEnter": "* Please Enter ",
@@ -76,7 +76,7 @@
   "kNoCars": "No cars added yet",
   "kCarName": "Car Name",
   "kCarPlate": "Car Plate",
-  "kCarState": "State",
+  "kCarState": "Country",
   "kNoPaymentCards": "No payment cards added yet",
   "kPasswordWontChange": "Password will not be changed if left empty",
   "kNoBookingsYet": "No bookings yet",
@@ -160,6 +160,8 @@
   "kAreYouSureTicket": "Are you sure you want to cancel this booking?",
   "kAreYouSureCar": "Are you sure you want to delete this car?",
   "kAreYouSureCard": "Are you sure you want to delete this card?",
+  "kAreYouSureNotification": "Are you sure you want to delete this notification?",
+  "kAreYouSureAllNotification": "Are you sure you want to clear notifications?",
   "kAddCar": "Add car",
   "kAddCard": "Add card",
   "kLoginIntroTitle": "Welcome Back!",
@@ -177,5 +179,8 @@
   "kNoSpaces": " - without spaces",
   "kSubscriptions": "Subscriptions",
   "kApproved": "Approved",
-  "kRejected": "Rejected"
+  "kRejected": "Rejected",
+  "kNoNotifications": "No Notifications",
+  "kMyNotifications": "Notifications",
+  "kUpdateSeen": "Seen"
 }

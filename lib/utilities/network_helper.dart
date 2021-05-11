@@ -75,7 +75,8 @@ class TkNetworkHelper {
     try {
       // Print verbose
       if (kVerboseNetworkMessages)
-        print('$method $url\n$bodyParams\n$headers\n$files');
+        print(
+            '$method $url\nparams: $bodyParams\nheaders: $headers\nfiles: $files');
 
       // Perform network request
       http.MultipartRequest request =
@@ -118,7 +119,8 @@ class TkNetworkHelper {
   }) async {
     try {
       // Print verbose
-      if (kVerboseNetworkMessages) print('$method $url\n$bodyParams\n$headers');
+      if (kVerboseNetworkMessages)
+        print('$method $url\nparams: $bodyParams\nheaders: $headers');
 
       // Perform network request
       http.Response response =
@@ -147,7 +149,7 @@ class TkNetworkHelper {
   }) async {
     try {
       // Print verbose
-      if (kVerboseNetworkMessages) print('$method $url\n$headers');
+      if (kVerboseNetworkMessages) print('$method $url\nheaders: $headers');
 
       // Perform network request
       http.Response response =

@@ -377,7 +377,7 @@ class TkAccount extends ChangeNotifier {
     notifyListeners();
 
     Map result = await _apis.updateCard(user: user, card: card);
-    if (result[kStatusTag] != kSuccessCode) {
+    if (result[kStatusTag] != kSuccessCreationCode) {
       // an error happened
       updateCardError = _apis.normalizeError(result);
     }

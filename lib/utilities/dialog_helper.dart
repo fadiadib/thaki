@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:store_redirect/store_redirect.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/providers/lang_controller.dart';
 
 enum gDialogType {
   confirmCancel,
@@ -14,16 +16,25 @@ enum gDialogType {
   agreeDisagree,
 }
 
-const Map<gDialogType, Set<String>> gDialogBtnText = {
-  gDialogType.confirmCancel: {kConfirm, kCancel},
-  gDialogType.yesNo: {kYes, kNo},
-  gDialogType.confirm: {kConfirm},
-  gDialogType.upgrade: {kUpgradeNow},
-  gDialogType.agree: {kAgree},
-  gDialogType.agreeDisagree: {kAgree, kDisagree},
-};
-
 class TkDialogHelper {
+  static String _getButtonText(
+      BuildContext context, gDialogType type, int idx) {
+    switch (type) {
+      case gDialogType.confirm:
+      case gDialogType.confirmCancel:
+        return idx == 0 ? S.of(context).kConfirm : S.of(context).kCancel;
+      case gDialogType.yesNo:
+        return idx == 0 ? S.of(context).kYes : S.of(context).kNo;
+      case gDialogType.upgrade:
+        return S.of(context).kUpgradeNow;
+      case gDialogType.agree:
+      case gDialogType.agreeDisagree:
+        return idx == 0 ? S.of(context).kAgree : S.of(context).kDisagree;
+    }
+
+    return '';
+  }
+
   static List<Widget> _getButtons(BuildContext context, gDialogType type) {
     List<Widget> widgets = [];
 
@@ -53,7 +64,7 @@ class TkDialogHelper {
 
       widgets.add(
         MaterialButton(
-          child: Text(gDialogBtnText[type].first,
+          child: Text(_getButtonText(context, type, 0),
               style: kRegularStyle[kNormalSize].copyWith(color: kBlackColor)),
           onPressed: () => Navigator.pop(context, true),
         ),
@@ -62,7 +73,7 @@ class TkDialogHelper {
       if (addCancelBtn) {
         widgets.add(
           MaterialButton(
-            child: Text(gDialogBtnText[type].last,
+            child: Text(_getButtonText(context, type, 1),
                 style: kRegularStyle[kNormalSize].copyWith(color: kBlackColor)),
             onPressed: () => Navigator.pop(context, false),
           ),
@@ -87,14 +98,26 @@ class TkDialogHelper {
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
           // Title message
-          title: Center(child: Text(message, style: kBoldStyle[kNormalSize])),
+          title: Center(
+            child: Text(
+              message,
+              style: kBoldStyle[kNormalSize].copyWith(
+                  fontFamily:
+                      Provider.of<TkLangController>(context, listen: false)
+                          .fontFamily),
+            ),
+          ),
 
           // Content if applicable
           content: content != null
               ? Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(content,
-                      style: kRegularStyle[kSmallSize], textAlign: align),
+                      style: kRegularStyle[kSmallSize].copyWith(
+                          fontFamily: Provider.of<TkLangController>(context,
+                                  listen: false)
+                              .fontFamily),
+                      textAlign: align),
                 )
               : Container(),
 
@@ -112,6 +135,7 @@ class TkDialogHelper {
       message: S.of(context).kUnsupportedVersion,
       content: S.of(context).kUpgradeRequiredMessage,
       type: gDialogType.upgrade,
+      barrierDismissible: false,
     );
   }
 
