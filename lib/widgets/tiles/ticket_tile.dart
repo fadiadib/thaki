@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/utilities/date_time_helper.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/ribbon.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
+
+import '../../providers/lang_controller.dart';
 
 class TkTicketTile extends StatefulWidget {
   TkTicketTile({
@@ -52,6 +56,11 @@ class _TkTicketTileState extends State<TkTicketTile> {
   }
 
   Widget _getTileDetails(BuildContext context) {
+    TkAttributesController attributesController =
+        Provider.of<TkAttributesController>(context, listen: false);
+    TkLangController langController =
+        Provider.of<TkLangController>(context, listen: false);
+
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.all(10),
@@ -68,8 +77,9 @@ class _TkTicketTileState extends State<TkTicketTile> {
                             ? widget.ticket.car.plateEN
                             : widget.ticket.car.plateAR,
                         style: kBoldStyle[kNormalSize]),
-                    Text(' - ' + widget.ticket.car.make + ' '),
-                    Text(widget.ticket.car.model)
+                    Text(' - ' +
+                        attributesController.makeName(
+                            widget.ticket.car.make, langController)),
                   ],
                 ),
                 SizedBox(height: 5),

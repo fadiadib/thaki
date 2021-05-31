@@ -4,11 +4,14 @@ import 'package:provider/provider.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/screens/login_screen.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/form_frame.dart';
+import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 
 class TkOTPScreen extends StatefulWidget {
@@ -25,16 +28,22 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
   void initState() {
     super.initState();
 
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    account.clearErrors();
+
     _fields = TkInfoFieldsList.fromJson(data: kOTPFieldsJson);
   }
 
   Future<void> _updateModel(TkInfoFieldsList results) async {
     _fields = results;
 
-    // TODO: Call Login in Account Provider
-    // TODO: Update user model with result from API
-    // TODO: If Remember me is checked, save model to prefs
-    // TODO: Encrypt password before sending it
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    account.user.updateModelFromInfoFields(results);
+
+    if (await account.resetPassword()) {
+      Navigator.of(context).pop();
+      Navigator.of(context).pushReplacementNamed(TkLoginScreen.id);
+    }
   }
 
   bool _validatePasswordMatch(TkInfoField confirmField) {
@@ -48,19 +57,26 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
   }
 
   Widget _createForm() {
+    TkAccount account = Provider.of<TkAccount>(context);
     TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
+      isLoading: account.isLoading,
       langCode: controller.lang.languageCode,
       formTitle: kOTPFieldsJson[kFormName][controller.lang.languageCode],
       actionTitle: kOTPFieldsJson[kFormAction][controller.lang.languageCode],
       buttonTag: kLoginTag,
       fields: _fields,
       validatePasswordMatch: _validatePasswordMatch,
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
-        child:
-            Text(S.of(context).kEnterOTPMessage, textAlign: TextAlign.center),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+            child: Text(S.of(context).kEnterOTPMessage,
+                textAlign: TextAlign.center),
+          ),
+          TkError(message: account.resetPasswordError)
+        ],
       ),
       action: (TkInfoFieldsList results) async {
         await _updateModel(results);

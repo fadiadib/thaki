@@ -61,42 +61,41 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
       buttonTag: kLoginTag,
       fields: _fields,
       action: _updateModelAndPushNext,
-      footer: Center(
-        child: GestureDetector(
-          onTap: () => Navigator.pushReplacementNamed(
-              context, TkForgotPasswordScreen.id),
-          child: Text(
-            S.of(context).kForgotPassword,
-            style: kLinkStyle,
+      footer: Column(
+        children: [
+          Center(
+            child: GestureDetector(
+              onTap: () => Navigator.pushReplacementNamed(
+                  context, TkForgotPasswordScreen.id),
+              child: Text(
+                S.of(context).kForgotPassword,
+                style: kLinkStyle,
+              ),
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(S.of(context).kNotRegisteredYet + ' '),
+                GestureDetector(
+                  onTap: () => Navigator.pushReplacementNamed(
+                      context, TkRegisterScreen.id),
+                  child: Text(
+                    S.of(context).kSignUpExclamation,
+                    style: kRegularStyle[kSmallSize].copyWith(
+                      color: kPrimaryColor,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
       isLoading: account.isLoading,
       child: TkError(message: account.loginError),
-    );
-  }
-
-  Widget _createLoginOptions() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(S.of(context).kNotRegisteredYet),
-            GestureDetector(
-              onTap: () =>
-                  Navigator.pushReplacementNamed(context, TkRegisterScreen.id),
-              child: Text(
-                S.of(context).kSignUpExclamation,
-                style: kRegularStyle[kSmallSize].copyWith(
-                  color: kPrimaryColor,
-                ),
-              ),
-            )
-          ],
-        ),
-        TkSocialLogin(),
-      ],
     );
   }
 
@@ -116,7 +115,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
             Column(children: [
               TkLogoBox(),
               _createForm(),
-              _createLoginOptions(),
+              TkSocialLogin(),
             ])
           ],
         ),

@@ -19,6 +19,7 @@ enum TkInfoFieldType {
   DropDown, // 11
   ConfirmPassword, // 12
   OTP,
+  Name,
 }
 
 /// Info fields subtype enum

@@ -38,7 +38,7 @@ Map<String, dynamic> kRegisterFieldsJson = {
       kIFTitle: 'Full Name',
       kIFTitleAR: 'الاسم بالكامل',
       kIFRequired: true,
-      kIFType: TkInfoFieldType.AlphaNum.index,
+      kIFType: TkInfoFieldType.Name.index,
     },
     {
       kIFName: kUserEmailTag,
@@ -90,11 +90,11 @@ Map<String, dynamic> kResetFieldsJson = {
   kFormAction: {'en': 'Reset Password', 'ar': 'تأكيد'},
   kInfoFieldsTag: [
     {
-      kIFName: kUserPhoneTag,
-      kIFTitle: 'Phone',
-      kIFTitleAR: 'رقم الهاتف',
+      kIFName: kUserEmailTag,
+      kIFTitle: 'Email',
+      kIFTitleAR: 'البريد الالكتروني',
       kIFRequired: true,
-      kIFType: TkInfoFieldType.Phone.index,
+      kIFType: TkInfoFieldType.Email.index,
     },
   ]
 };
@@ -109,6 +109,20 @@ Map<String, dynamic> kOTPFieldsJson = {
       kIFTitleAR: 'الكود',
       kIFRequired: true,
       kIFType: TkInfoFieldType.OTP.index,
+    },
+    {
+      kIFName: kUserPasswordTag,
+      kIFTitle: 'Password',
+      kIFTitleAR: 'كلمة المرور',
+      kIFRequired: true,
+      kIFType: TkInfoFieldType.Password.index,
+    },
+    {
+      kIFName: kUserConfirmPasswordTag,
+      kIFTitle: 'Confirm Password',
+      kIFTitleAR: 'تأكيد كلمة المرور',
+      kIFRequired: true,
+      kIFType: TkInfoFieldType.ConfirmPassword.index,
     },
   ]
 };
@@ -125,7 +139,7 @@ Map<String, dynamic> kEditProfileFieldsJson = {
       kIFTitle: 'Full Name',
       kIFTitleAR: 'الاسم بالكامل',
       kIFRequired: true,
-      kIFType: TkInfoFieldType.AlphaNum.index,
+      kIFType: TkInfoFieldType.Name.index,
     },
     {
       kIFName: kUserEmailTag,
@@ -177,7 +191,7 @@ Map<String, dynamic> kResidentPermitFieldsJson = {
       kIFTitle: 'Full Name',
       kIFTitleAR: 'الاسم بالكامل',
       kIFRequired: true,
-      kIFType: TkInfoFieldType.AlphaNum.index,
+      kIFType: TkInfoFieldType.Name.index,
     },
     {
       kIFName: kUserEmailTag,

@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
@@ -41,10 +43,40 @@ class TkBooker extends ChangeNotifier {
   TkTicket _newTicket;
   TkTicket get newTicket => _newTicket;
 
+  bool creditMode = false;
+
+  TkCredit _selectedCard;
+  TkCredit get selectedCard => _selectedCard;
+  set selectedCard(TkCredit card) {
+    _selectedCard = card;
+    _validationPaymentError = null;
+    notifyListeners();
+  }
+
+  String _cvv;
+  String get cvv => _cvv;
+  set cvv(String value) {
+    _cvv = value;
+    notifyListeners();
+  }
+
+  // Validation
+  String _validationPaymentError;
+  String get validationPaymentError => _validationPaymentError;
+  bool validatePayment(BuildContext context) {
+    if (_selectedCard == null) {
+      _validationPaymentError = S.of(context).kSelectPaymentToProceed;
+      notifyListeners();
+      return false;
+    }
+    return true;
+  }
+
   void clearBooking() {
     _bookNow = true;
     _bookDate = null;
     _bookDuration = 1;
+    creditMode = false;
   }
 
   // Loading variables
@@ -195,6 +227,7 @@ class TkBooker extends ChangeNotifier {
       car: selectedCar,
       dateTime: _bookNow ? null : _bookDate,
       duration: _bookDuration,
+      card: _selectedCard,
     );
 
     // Clear model

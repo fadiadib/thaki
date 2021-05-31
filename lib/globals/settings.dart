@@ -16,7 +16,12 @@ const bool kShowEditBtnInProfile = false;
 const bool kShowSubscriptionBtInDashboard = false;
 const bool kShowCreditType = true;
 const bool kShowOtherCarAsButton = true;
+const double kBallsTransparency = 1.0;
+const bool kSaveCardMode = false;
 
 /// URLs
-const String kPrivacyPolicyURL = 'https://aura-demo.com/thaki/privacy-policy/';
+const String kPrivacyPolicyURL =
+    'http://thaki.aurasystems.xyz/thaki/public/privacy-policy/';
+const String kTermsConditionsURL =
+    'http://thaki.aurasystems.xyz/thaki/public/terms/';
 const String kSupportURL = 'https://aura-demo.com/thaki/contact/';

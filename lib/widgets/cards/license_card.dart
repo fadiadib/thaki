@@ -20,7 +20,7 @@ class TkLicenseCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    RegExp(r"[A-Z]{3}").stringMatch(car.plateEN) ?? '-',
+                    RegExp(r"[A-Z]{2,3}").stringMatch(car.plateEN) ?? '-',
                     style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),
                   ),
                 ),
@@ -31,10 +31,14 @@ class TkLicenseCard extends StatelessWidget {
                 decoration: BoxDecoration(),
                 child: Center(
                   child: Text(
-                    RegExp(r"[\u0621-\u064A]{3}", unicode: true)
+                    RegExp(r"([\u0621-\u064A]\s){2,3}", unicode: true)
+                            .stringMatch(car.plateAR) ??
+                        RegExp(r"[\u0621-\u064A]{2,3}", unicode: true)
+                            .stringMatch(car.plateAR) ??
+                        RegExp(r"[A-Z]{2,3}", unicode: true)
                             .stringMatch(car.plateAR) ??
                         '-',
-                    style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),
+                    style: kBoldStyle[kSmallSize].copyWith(fontSize: 10),
                   ),
                 ),
               ),
@@ -65,7 +69,7 @@ class TkLicenseCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    RegExp(r"[\u0660-\u0669]+", unicode: true)
+                    RegExp(r"[\u0660-\u0669\d]+", unicode: true)
                             .stringMatch(car.plateAR) ??
                         '-',
                     style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),

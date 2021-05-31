@@ -78,10 +78,13 @@ class _TkFormFrameState extends State<TkFormFrame>
       case TkInfoFieldType.Double:
       case TkInfoFieldType.Radio:
       case TkInfoFieldType.DropDown:
-      case TkInfoFieldType.Password:
       case TkInfoFieldType.ConfirmPassword:
       case TkInfoFieldType.OTP:
         return TkValidationHelper.validateNotEmpty(field.value);
+      case TkInfoFieldType.Password:
+        return TkValidationHelper.validatePassword(field.value);
+      case TkInfoFieldType.Name:
+        return TkValidationHelper.validateName(field.value);
     }
     return false;
   }
@@ -125,6 +128,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
         );
         break;
+      case TkInfoFieldType.Name:
       case TkInfoFieldType.AlphaNum:
         // AlphaNum type
         widget = TkFormBuilder.createTextField(

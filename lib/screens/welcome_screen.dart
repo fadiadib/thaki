@@ -32,11 +32,12 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
 
         // Purple Ball
         TkDrawHelper.drawBall(
-            diameter: 783.0,
-            x: -217,
-            y: 684,
-            tag: 'purple_ball',
-            color: kLightPurpleColor),
+          diameter: 783.0,
+          x: -217,
+          y: 684,
+          tag: 'purple_ball',
+          color: kLightPurpleColor.withOpacity(kBallsTransparency),
+        ),
 
         Align(
           alignment: Alignment.topCenter,

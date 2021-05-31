@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/car.dart';
+import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/widgets/cards/license_card.dart';
 import 'package:thaki/widgets/general/ribbon.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
+
+import '../../providers/lang_controller.dart';
 
 class TkCarTile extends StatelessWidget {
   TkCarTile({
@@ -67,13 +71,19 @@ class TkCarTile extends StatelessWidget {
                                 .copyWith(color: kBlackColor),
                           ),
                         ),
-                        Text((langCode == 'en'
-                                ? car.plateEN ?? '-'
-                                : car.plateAR ?? '-') +
-                            ' - ' +
-                            car.make +
-                            ' ' +
-                            car.model),
+                        Text(
+                          (langCode == 'en'
+                                  ? car.plateEN ?? '-'
+                                  : car.plateAR ?? '-') +
+                              ' - ' +
+                              (Provider.of<TkAttributesController>(context,
+                                          listen: false)
+                                      .makeName(
+                                          car.make,
+                                          Provider.of<TkLangController>(context,
+                                              listen: false)) ??
+                                  ''),
+                        ),
                       ],
                     ),
                   ],

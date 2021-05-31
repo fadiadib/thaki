@@ -75,6 +75,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
       )) {
         // Server is not alive
         setState(() => _startupError = S.of(context).kServerError);
+
         _loadingNextScreen = false;
       } else if (server.needUpgrade) {
         // Server is alive but needs the app to upgrade
@@ -164,16 +165,17 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
           x: _blueBallCoords[0],
           y: _blueBallCoords[1],
           tag: 'blue_ball',
-          color: kCyanColor,
+          color: kCyanColor.withOpacity(kBallsTransparency),
         ),
 
         // Purple Ball
         TkDrawHelper.drawBall(
-            diameter: 783.0,
-            x: _purpleBallCoords[0],
-            y: _purpleBallCoords[1],
-            tag: 'purple_ball',
-            color: kLightPurpleColor),
+          diameter: 783.0,
+          x: _purpleBallCoords[0],
+          y: _purpleBallCoords[1],
+          tag: 'purple_ball',
+          color: kLightPurpleColor.withOpacity(kBallsTransparency),
+        ),
 
         // Orange Ball 1
         TweenAnimationBuilder(

@@ -6,7 +6,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
-import 'package:thaki/providers/state_controller.dart';
+import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/utilities/form_builder.dart';
 import 'package:thaki/utilities/formfield_validator.dart';
 import 'package:thaki/utilities/index.dart';
@@ -41,7 +41,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
     switch (field) {
       case TkFormField.carName:
-        return TkValidationHelper.validateNotEmpty(_car.name);
+        return TkValidationHelper.validateAlphaNum(_car.name);
       case TkFormField.carState:
         return TkValidationHelper.validateNotEmpty(_car.state.toString());
       case TkFormField.carPlateEN:
@@ -53,17 +53,27 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
             TkValidationHelper.validateLicense(
                 _car.plateAR, _car.state, langController.lang.languageCode);
       case TkFormField.carMake:
-        return TkValidationHelper.validateNotEmpty(_car.make.toString());
+        return TkValidationHelper.validateNotEmpty(_car.make?.toString());
       case TkFormField.carModel:
-        return TkValidationHelper.validateNotEmpty(_car.model);
+        return TkValidationHelper.validateNotEmpty(_car.model?.toString());
       default:
         return true;
     }
   }
 
+  List<String> _getYears() {
+    List<String> years = [];
+    int currentYear = DateTime.now().year + 1;
+
+    for (int year = currentYear; year >= 1886; year--)
+      years.add(year.toString());
+
+    return years;
+  }
+
   Widget _createForm(TkAccount account) {
-    TkStateController states =
-        Provider.of<TkStateController>(context, listen: false);
+    TkAttributesController states =
+        Provider.of<TkAttributesController>(context, listen: true);
     TkUser user = Provider.of<TkAccount>(context, listen: false).user;
     TkLangController langController =
         Provider.of<TkLangController>(context, listen: false);
@@ -96,11 +106,11 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
           child: TkDropDownField(
             context: context,
-            values: states.stateNames(user),
-            value: states.stateName(_car.state, user),
+            values: states.stateNames(langController),
+            value: states.stateName(_car.state, langController),
             hintText: S.of(context).kCarState,
             onChanged: (value) =>
-                setState(() => _car.state = states.stateId(value, user)),
+                setState(() => _car.state = states.stateId(value)),
             validator: getValidationCallback(TkFormField.carState),
             validate: isValidating,
             errorMessage: S.of(context).kPleaseChoose + S.of(context).kCarState,
@@ -118,7 +128,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                     vertical: 10.0, horizontal: 30.0),
                 child: TkTextField(
                   enabled: !account.isLoading,
-                  hintText: S.of(context).kCarPlateEN,
+                  hintText:
+                      S.of(context).kCarPlateEN + S.of(context).kCarPlateHint,
                   initialValue: _car?.plateEN,
                   onChanged: (value) => setState(() => _car.plateEN = value),
                   validator: getValidationCallback(TkFormField.carPlateEN),
@@ -135,14 +146,14 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           Column(
             children: [
               TkSectionTitle(
-                  title: S.of(context).kCarPlateAR + S.of(context).kNoSpaces,
-                  uppercase: false),
+                  title: S.of(context).kCarPlateAR, uppercase: false),
               Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 30.0),
                 child: TkTextField(
                   enabled: !account.isLoading,
-                  hintText: S.of(context).kCarPlateAR,
+                  hintText:
+                      S.of(context).kCarPlateAR + S.of(context).kCarPlateHint,
                   initialValue: _car?.plateAR,
                   onChanged: (value) => setState(() => _car.plateAR = value),
                   validator: getValidationCallback(TkFormField.carPlateAR),
@@ -166,29 +177,23 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         30.0, 10.0, 5.0, 10.0),
-                    child: TkTextField(
-                      enabled: !account.isLoading,
+                    child: TkDropDownField(
+                      context: context,
                       hintText: S.of(context).kCarMake,
-                      initialValue: _car?.make,
-                      onChanged: (value) => setState(() => _car.make = value),
+                      value: states.makeName(_car.make, langController),
+                      values: states.makeNames(langController),
+                      onChanged: (value) {
+                        setState(() {
+                          _car.make = states.makeId(value);
+                          _car.model = null;
+                        });
+                        states.loadModels(user, _car.make);
+                      },
                       validator: getValidationCallback(TkFormField.carMake),
                       validate: isValidating,
                       errorMessage:
-                          S.of(context).kPleaseEnter + S.of(context).kCarMake,
+                          S.of(context).kPleaseChoose + S.of(context).kCarMake,
                     ),
-                    // child: TkDropDownField(
-                    //   context: context,
-                    //   enabled: !account.isLoading,
-                    //   hintText: S.of(context).kCarMake,
-                    //   value: states.makeName(_car.make, user),
-                    //   values: states.makeNames(user),
-                    //   onChanged: (value) => setState(
-                    //       () => _car.make = states.makeId(value, user)),
-                    //   validator: getValidationCallback(TkFormField.carMake),
-                    //   validate: isValidating,
-                    //   errorMessage:
-                    //       S.of(context).kPleaseChoose + S.of(context).kCarMake,
-                    // ),
                   ),
                 ],
               ),
@@ -206,15 +211,17 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
-                    child: TkTextField(
-                      enabled: !account.isLoading,
+                    child: TkDropDownField(
+                      context: context,
                       hintText: S.of(context).kCarModel,
-                      initialValue: _car?.model,
-                      onChanged: (value) => setState(() => _car.model = value),
+                      value: states.modelName(_car.model, langController),
+                      values: states.modelNames(langController),
+                      onChanged: (value) =>
+                          setState(() => _car.model = states.modelId(value)),
                       validator: getValidationCallback(TkFormField.carModel),
                       validate: isValidating,
                       errorMessage:
-                          S.of(context).kPleaseEnter + S.of(context).kCarModel,
+                          S.of(context).kPleaseChoose + S.of(context).kCarModel,
                     ),
                   ),
                 ],
@@ -235,11 +242,13 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         30.0, 10.0, 5.0, 10.0),
-                    child: TkTextField(
-                      enabled: !account.isLoading,
+                    child: TkDropDownField(
+                      context: context,
                       hintText: S.of(context).kCarColor,
-                      initialValue: _car?.color,
-                      onChanged: (value) => setState(() => _car.color = value),
+                      value: states.colorName(_car.color, langController),
+                      values: states.colorNames(langController),
+                      onChanged: (value) =>
+                          setState(() => _car.color = states.colorId(value)),
                     ),
                   ),
                 ],
@@ -258,11 +267,11 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
-                    child: TkTextField(
-                      keyboardType: TextInputType.number,
-                      enabled: !account.isLoading,
+                    child: TkDropDownField(
+                      context: context,
                       hintText: S.of(context).kCarYear,
-                      initialValue: _car?.year?.toString(),
+                      value: _car.year,
+                      values: _getYears(),
                       onChanged: (value) => setState(() => _car.year = value),
                     ),
                   ),
@@ -325,6 +334,11 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     } else {
       _car = TkCar.fromJson({});
     }
+
+    TkAttributesController states =
+        Provider.of<TkAttributesController>(context, listen: false);
+    TkUser user = Provider.of<TkAccount>(context, listen: false).user;
+    states.loadModels(user, _car?.make, init: true);
   }
 
   @override

@@ -9,7 +9,7 @@ import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/messenger.dart';
 import 'package:thaki/providers/purchaser.dart';
-import 'package:thaki/providers/state_controller.dart';
+import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/screens/notification_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
@@ -46,15 +46,14 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     TkBooker booker = Provider.of<TkBooker>(context, listen: false);
     TkPurchaser purchaser = Provider.of<TkPurchaser>(context, listen: false);
-    TkStateController states =
-        Provider.of<TkStateController>(context, listen: false);
+    TkAttributesController attributes =
+        Provider.of<TkAttributesController>(context, listen: false);
 
     await booker.loadTickets(account.user);
     await purchaser.loadBalance(account.user);
     await account.loadCars();
     await account.loadCards();
-    await states.loadStates(account.user);
-    await states.loadMakes(account.user);
+    await attributes.load(account.user);
   }
 
   @override

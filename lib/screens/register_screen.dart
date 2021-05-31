@@ -36,7 +36,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
 
     account.clearErrors();
-    if (account.user != null) _fields = account.user.toInfoFields(_fields);
+    //if (account.user != null) _fields = account.user.toInfoFields(_fields);
   }
 
   Future<void> _updateModelAndPushNext(TkInfoFieldsList results) async {
@@ -78,13 +78,27 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
       validatePasswordMatch: _validatePasswordMatch,
       action: _updateModelAndPushNext,
       isLoading: account.isLoading,
+      footer: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(S.of(context).kAlreadyRegistered),
+          GestureDetector(
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, TkLoginScreen.id),
+            child: Text(
+              S.of(context).kLoginExclamation,
+              style: kRegularStyle[kSmallSize].copyWith(color: kPrimaryColor),
+            ),
+          )
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: () => TkURLLauncher.launch(kPrivacyPolicyURL),
+              onTap: () => TkURLLauncher.launch(kTermsConditionsURL),
               child: TkFormBuilder.createCheckBox(
                   label: S.of(context).kAcceptTerms,
                   value: terms,
@@ -98,27 +112,9 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
   }
 
   Widget _createLoginOptions() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(S.of(context).kAlreadyRegistered),
-            GestureDetector(
-              onTap: () =>
-                  Navigator.pushReplacementNamed(context, TkLoginScreen.id),
-              child: Text(
-                S.of(context).kLoginExclamation,
-                style: kRegularStyle[kSmallSize].copyWith(color: kPrimaryColor),
-              ),
-            )
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 50.0),
-          child: TkSocialLogin(),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: TkSocialLogin(),
     );
   }
 

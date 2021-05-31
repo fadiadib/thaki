@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
 
+import '../../globals/colors.dart';
+import '../../globals/index.dart';
+
 enum TkCardSide { topLeft, topRight, bottomLeft, bottomRight }
 
 class TkCard extends StatelessWidget {
@@ -40,7 +43,7 @@ class TkCard extends StatelessWidget {
           (details != null && details.isNotEmpty)
               ? Text(
                   details,
-                  style: kBoldStyle[kNormalSize].copyWith(color: textColor),
+                  style: kBoldStyle[kSmallSize].copyWith(color: textColor),
                 )
               : Container(),
         ],

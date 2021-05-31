@@ -8,6 +8,8 @@ import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/scaffold_body.dart';
 
+import '../globals/index.dart';
+
 class TkOnBoardingScreen extends StatefulWidget {
   static const String id = 'on_boarding_screen';
 
@@ -68,19 +70,21 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
 
           // Blue ball
           TkDrawHelper.drawBall(
-              diameter: 473.0,
-              x: kCyanBallLocations[index * 2],
-              y: kCyanBallLocations[index * 2 + 1],
-              tag: 'blue_ball',
-              color: kCyanColor),
+            diameter: 473.0,
+            x: kCyanBallLocations[index * 2],
+            y: kCyanBallLocations[index * 2 + 1],
+            tag: 'blue_ball',
+            color: kCyanColor.withOpacity(kBallsTransparency),
+          ),
 
           // Purple Ball
           TkDrawHelper.drawBall(
-              diameter: 783.0,
-              x: kMagentaBallLocations[index * 2],
-              y: kMagentaBallLocations[index * 2 + 1],
-              tag: 'purple_ball',
-              color: kLightPurpleColor),
+            diameter: 783.0,
+            x: kMagentaBallLocations[index * 2],
+            y: kMagentaBallLocations[index * 2 + 1],
+            tag: 'purple_ball',
+            color: kLightPurpleColor.withOpacity(kBallsTransparency),
+          ),
 
           Align(
               alignment: Alignment.center,
@@ -151,8 +155,7 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                       context, TkWelcomeScreen.id),
                   child: Text(
                     S.of(context).kSkip,
-                    style:
-                        kRegularStyle[kSmallSize].copyWith(color: kWhiteColor),
+                    style: kBoldStyle[kSmallSize].copyWith(color: kWhiteColor),
                   ),
                 ),
               ),
@@ -168,8 +171,7 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                   onTap: _updateCurrent,
                   child: Text(
                     S.of(context).kNext,
-                    style:
-                        kRegularStyle[kSmallSize].copyWith(color: kWhiteColor),
+                    style: kBoldStyle[kSmallSize].copyWith(color: kWhiteColor),
                   ),
                 ),
               ),

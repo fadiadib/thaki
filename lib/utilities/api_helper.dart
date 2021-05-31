@@ -43,10 +43,18 @@ class TkAPIHelper {
     );
   }
 
-  /// Load states API
-  Future<Map> loadStates({@required TkUser user}) async {
+  /// Load attributes API
+  Future<Map> loadAttributes({@required TkUser user}) async {
     return await _network.getData(
       url: kLoadStatesAPI,
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Load models API
+  Future<Map> loadModels({@required TkUser user, @required int makeId}) async {
+    return await _network.getData(
+      url: kLoadModelsAPI + '?$kMakeIdTag=${makeId.toString()}',
       headers: user.toHeader(),
     );
   }
@@ -60,13 +68,45 @@ class TkAPIHelper {
     );
   }
 
+  /// Load documents API
+  Future<Map> initTransaction({
+    @required TkUser user,
+    @required String type,
+    int id,
+    TkCar car,
+    DateTime dateTime,
+    int duration,
+  }) async {
+    Map<String, dynamic> params = {kTransactionTypeTag: type};
+    if (id != null) params[kTransactionIdTag] = id.toString();
+    if (car != null) params[kTransactionCarIdTag] = car.id.toString();
+    if (dateTime != null)
+      params[kTransactionDateTimeTag] = dateTime.toString().split('.').first;
+    if (duration != null) params[kTransactionDurationTag] = duration.toString();
+
+    return await _network.postData(
+      url: kTransactionAPI,
+      params: params,
+      headers: user.toHeader(),
+    );
+  }
+
   /////////////////////////////////////////////////////////////
   /////////////////////////// USER  ///////////////////////////
   /// User register API
   Future<Map> register({@required TkUser user}) async {
     return await _network.postData(
       url: kRegisterAPI,
-      params: user.toJson(),
+      params: await user.toJson(),
+      headers: user.toHeader(),
+    );
+  }
+
+  /// User update profile API
+  Future<Map> edit({@required TkUser user}) async {
+    return await _network.putData(
+      url: kEditAPI,
+      params: await user.toJson(),
       headers: user.toHeader(),
     );
   }
@@ -76,7 +116,16 @@ class TkAPIHelper {
   Future<Map> login({@required TkUser user}) async {
     return await _network.postData(
       url: kLoginAPI,
-      params: user.toLoginJson(),
+      params: await user.toLoginJson(),
+      headers: user.toHeader(),
+    );
+  }
+
+  /// User load profile API
+  Future<Map> load({@required TkUser user}) async {
+    return await _network.postData(
+      url: KLoadAPI,
+      params: await user.toLoadJson(),
       headers: user.toHeader(),
     );
   }
@@ -89,19 +138,22 @@ class TkAPIHelper {
     );
   }
 
-  /// User load profile API
-  Future<Map> load({@required TkUser user}) async {
+  /// Forgot password API - Sends OTP
+  /// Returns success or failure
+  Future<Map> forgotPassword({@required TkUser user}) async {
     return await _network.postData(
-      url: KLoadAPI,
+      url: kForgotPasswordAPI,
+      params: await user.toForgotPasswordJson(),
       headers: user.toHeader(),
     );
   }
 
-  /// User update profile API
-  Future<Map> edit({@required TkUser user}) async {
-    return await _network.putData(
-      url: kEditAPI,
-      params: user.toJson(),
+  /// Reset password API - Confirm OTP
+  /// Returns success or failure
+  Future<Map> resetPassword({@required TkUser user}) async {
+    return await _network.postData(
+      url: kResetPasswordAPI,
+      params: await user.toOTPJson(),
       headers: user.toHeader(),
     );
   }
@@ -304,17 +356,20 @@ class TkAPIHelper {
   }
 
   /// Reserve parking API
-  Future<Map> reserveParking(
-      {@required TkUser user,
-      @required TkCar car,
-      @required DateTime dateTime,
-      @required int duration}) async {
+  Future<Map> reserveParking({
+    @required TkUser user,
+    @required TkCar car,
+    @required DateTime dateTime,
+    @required int duration,
+    TkCredit card,
+  }) async {
     Map<String, dynamic> params = {
       kCarIdIdTad: car.id.toString(),
       kTicketDurationTag: duration.toString(),
     };
     if (dateTime != null)
       params[kTicketStartTag] = dateTime.toString().split('.').first;
+    if (card != null) params[kCardCardIdTag] = card.id.toString();
 
     return await _network.postData(
       url: kReserveParkingAPI,

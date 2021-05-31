@@ -66,6 +66,26 @@ class TkNotificationTile extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(bottom: 5.0),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    TkDateTimeHelper.formatDate(
+                                            notification.date.toString()) +
+                                        ' - ',
+                                    style: kBoldStyle[kSmallSize]
+                                        .copyWith(color: kSemiGreyColor),
+                                  ),
+                                  Text(
+                                    TkDateTimeHelper.formatTime(
+                                        context, notification.date.toString()),
+                                    style: kBoldStyle[kSmallSize]
+                                        .copyWith(color: kSemiGreyColor),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5.0),
                               child: Text(
                                 notification.title,
                                 style: kBoldStyle[kSmallSize]

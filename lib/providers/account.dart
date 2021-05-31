@@ -19,8 +19,8 @@ class TkAccount extends ChangeNotifier {
   // Error variables
   void clearErrors() {
     _registerError = loginError = logoutError = loadError = editError =
-        loadCarsError = addCarError = updateCarError = deleteCarError =
-            addCardError =
+        forgotPasswordError = resetPasswordError = loadCarsError = addCarError =
+            updateCarError = deleteCarError = addCardError =
                 loadCardsError = updateCardError = deleteCardError = null;
   }
 
@@ -35,6 +35,8 @@ class TkAccount extends ChangeNotifier {
   String logoutError;
   String loadError;
   String editError;
+  String forgotPasswordError;
+  String resetPasswordError;
   String loadCarsError;
   String addCarError;
   String updateCarError;
@@ -207,6 +209,48 @@ class TkAccount extends ChangeNotifier {
     notifyListeners();
 
     return (editError == null);
+  }
+
+  /// Forgot password
+  Future<bool> forgotPassword() async {
+    // Start any loading indicators
+    _isLoading = true;
+    forgotPasswordError = null;
+
+    notifyListeners();
+
+    Map result = await _apis.forgotPassword(user: user);
+    if (result[kStatusTag] != kSuccessCode) {
+      // an error happened
+      forgotPasswordError = _apis.normalizeError(result);
+    }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (forgotPasswordError == null);
+  }
+
+  /// Reset password and confirm OTP
+  Future<bool> resetPassword() async {
+    // Start any loading indicators
+    _isLoading = true;
+    resetPasswordError = null;
+
+    notifyListeners();
+
+    Map result = await _apis.resetPassword(user: user);
+    if (result[kStatusTag] != kSuccessCreationCode) {
+      // an error happened
+      resetPasswordError = _apis.normalizeError(result);
+    }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (resetPasswordError == null);
   }
 
   /// Get user cars, calls API and loads user model

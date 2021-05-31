@@ -33,12 +33,21 @@ class TkMultiStepPageState extends State<TkMultiStepPage> {
 
   /// Loads the next pane in the list - Must be called in
   /// the onDone callback for all child panes
-  void loadNextPane({bool forcePop = false}) {
-    if (!forcePop && _paneIndex < _panes.length - 1) {
-      setState(() => _paneIndex++);
+  void loadNextPane({bool advance = false}) {
+    if (advance) {
+      if (_paneIndex < _panes.length - 2) {
+        setState(() => _paneIndex += 2);
+      } else {
+        _paneIndex = 0;
+        Navigator.pop(context);
+      }
     } else {
-      _paneIndex = 0;
-      Navigator.pop(context);
+      if (_paneIndex < _panes.length - 1) {
+        setState(() => _paneIndex++);
+      } else {
+        _paneIndex = 0;
+        Navigator.pop(context);
+      }
     }
   }
 

@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/lang_controller.dart';
 
+import '../../globals/colors.dart';
+
 /// AppBar subclass that removes elevation, bg color and leading widget
 /// adds a close button that does a navigation pop
 class TkAppBar extends AppBar {
@@ -60,7 +62,7 @@ class TkAppBar extends AppBar {
                                   : null,
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: kRedAccentColor,
+                                    color: kTertiaryColor,
                                     shape: BoxShape.circle),
                                 child:
                                     Padding(padding: const EdgeInsets.all(5)),

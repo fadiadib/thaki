@@ -1,6 +1,6 @@
 /// URIs
 // Root API uri
-const String kRootURL = 'http://thaki.aurasystems.xyz/backend/public/api';
+const String kRootURL = 'https://thaki.aurasystems.xyz/backend/public/api';
 // APIs URIs
 // Authentication
 const String kCheckAPI = '$kRootURL/check';
@@ -9,15 +9,15 @@ const String kLogoutAPI = '$kRootURL/auth/logout';
 const String kRegisterAPI = '$kRootURL/auth/register';
 const String KLoadAPI = '$kRootURL/auth/validate';
 const String kEditAPI = '$kRootURL/update_profile';
+const String kForgotPasswordAPI = '$kRootURL/auth/forgot_password';
+const String kResetPasswordAPI = '$kRootURL/auth/reset_password';
 // Cars
 const String kLoadCarsAPI = '$kRootURL/cars';
 const String kAddCarAPI = '$kRootURL/cars';
 const String kDeleteCarAPI = '$kRootURL/cars';
 const String kUpdateCarAPI = '$kRootURL/cars';
-const String kLoadStatesAPI = '$kRootURL/states';
-const String kLoadMakesAPI = '$kRootURL/make';
-const String kLoadModelsAPI = '$kRootURL/model';
-const String kLoadColorsAPI = '$kRootURL/color';
+const String kLoadStatesAPI = '$kRootURL/attributes';
+const String kLoadModelsAPI = '$kRootURL/attributes/model';
 // Cards
 const String kLoadCardsAPI = '$kRootURL/cards';
 const String kAddCardAPI = '$kRootURL/cards';
@@ -42,14 +42,18 @@ const String kReserveParkingAPI = '$kRootURL/booking';
 // Violations
 const String kLoadViolationsAPI = '$kRootURL/violations'; // 200, 404: empty
 const String kPayViolationsAPI = '$kRootURL/violations/pay'; // 201
+// Transactions
+const String kTransactionAPI = '$kRootURL/transaction';
 
-/// Network Codes and tags
+/// Network Codes
 // Codes
 const int kSuccessCode = 200;
 const int kSuccessCreationCode = 201;
 const int kPendingCode = 202;
 const int kDelayedSuccessCode = 203;
 const int kErrorCode = 401;
+
+/// JSON tags
 // General tags
 const String kStatusTag = 'status';
 const String kErrorMessageTag = 'errors';
@@ -58,11 +62,11 @@ const String kDataTag = 'data';
 // Header tags
 const String kAuthTag = 'Authorization';
 const String kLangTag = 'X-localization';
+const String kFBTokenTag = 'fb_token';
 // Check server tags
 const String kVersionTag = 'version';
 const String kPlatformTag = 'platform';
 const String kUpgradeTag = 'upgrade';
-// Info fields
 // Info fields tags
 const String kFormName = 'form_name';
 const String kFormNameAR = 'form_name_ar';
@@ -94,7 +98,7 @@ const String kUserRememberTag = 'remember_me';
 const String kUserFbTokenTag = 'fb_token';
 const String kUserCarsTag = 'cars_list';
 const String kUserCardsTag = 'card_list';
-const String kUserOTPTag = 'user_otp';
+const String kUserOTPTag = 'otp';
 const String kUserApprovedTag = 'is_approved';
 const String kUserLangTag = 'lang';
 // Notifications tags
@@ -198,10 +202,19 @@ const String kViolationLocationTag = 'location';
 const String kViolationFineTag = 'fine';
 // Attributes tags
 const String kAttributeIdTag = 'id';
-const String kAttributeEName = 'name_en';
-const String kAttributeAName = 'name_ar';
+const String kAttributeENameTag = 'name_en';
+const String kAttributeANameTag = 'name_ar';
 const String kColorHexTag = 'hex';
+const String kMakeIdTag = 'make_id';
 const String kStatesTag = 'state_list';
-const String kMakeTag = 'make_list';
-const String kModelTag = 'model_list';
-const String kColorTag = 'color_list';
+const String kMakesTag = 'make_list';
+const String kModelsTag = 'model_list';
+const String kColorsTag = 'color_list';
+// Transactions
+const String kTransactionIdTag = 'transactable_id';
+const String kTransactionTypeTag = 'transactable_type';
+const String kTransactionCarIdTag = 'car_id';
+const String kTransactionDateTimeTag = 'datetime';
+const String kTransactionDurationTag = 'duration';
+const String kPaymentLinkTag = 'payment_link';
+const String kRedirectLinkTag = 'redirect_link';

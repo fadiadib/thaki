@@ -24,7 +24,6 @@ class TkNotification {
     title = dataJson[kNotificationTitleTag] ?? '';
     short = dataJson[kNotificationMessageTag] ?? '';
     body = dataJson[kNotificationBodyTag] ?? '';
-    print('id: $id, title: $title, short: $short, body: $body');
 
     // Additional data: Type and details
     dataType = dataJson[kNotificationDataTypeTag];

@@ -105,6 +105,7 @@
   "kCarNickname": "Car nickname",
   "kCarPlateEN": "Car license plate (EN)",
   "kCarPlateAR": "Car license plate (AR)",
+  "kCarPlateHint": " - Example: 1234ABC",
   "kCarMake": "Make",
   "kCarModel": "Model",
   "kCarIsPreferred": "Preferred",
@@ -182,5 +183,10 @@
   "kRejected": "Rejected",
   "kNoNotifications": "No Notifications",
   "kMyNotifications": "Notifications",
-  "kUpdateSeen": "Seen"
+  "kUpdateSeen": "Seen",
+  "kPurchaseParking": "Purchase Parking",
+  "kBookUsingBalance": "Book with Balance",
+  "kBookUsingCard": "Book with Payment",
+  "kEnterPaymentDetails": "Enter Payment Details",
+  "kTermsConditions": "Terms and Conditions"
 }

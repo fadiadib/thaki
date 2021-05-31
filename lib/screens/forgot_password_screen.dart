@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/login_screen.dart';
 import 'package:thaki/screens/otp_screen.dart';
@@ -11,6 +12,7 @@ import 'package:thaki/screens/otp_screen.dart';
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/form_frame.dart';
+import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 
 class TkForgotPasswordScreen extends StatefulWidget {
@@ -28,22 +30,29 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
     super.initState();
 
     _fields = TkInfoFieldsList.fromJson(data: kResetFieldsJson);
+
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    account.clearErrors();
+
+    if (account.user != null) _fields = account.user.toInfoFields(_fields);
   }
 
   Future<void> _updateModel(TkInfoFieldsList results) async {
     _fields = results;
 
-    // TODO: Call Login in Account Provider
-    // TODO: Update user model with result from API
-    // TODO: If Remember me is checked, save model to prefs
-    // TODO: Encrypt password before sending it
-    Navigator.pushNamed(context, TkOTPScreen.id);
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    account.user = TkUser.fromInfoFields(results);
+
+    if (await account.forgotPassword())
+      Navigator.pushNamed(context, TkOTPScreen.id);
   }
 
   Widget _createForm() {
+    TkAccount account = Provider.of<TkAccount>(context);
     TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
+      isLoading: account.isLoading,
       langCode: controller.lang.languageCode,
       formTitle: kResetFieldsJson[kFormName][controller.lang.languageCode],
       actionTitle: kResetFieldsJson[kFormAction][controller.lang.languageCode],
@@ -52,29 +61,23 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
       action: (TkInfoFieldsList results) async {
         await _updateModel(results);
       },
-    );
-  }
-
-  Widget _createLoginOptions() {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(S.of(context).kBackTo),
-            GestureDetector(
-              onTap: () =>
-                  Navigator.pushReplacementNamed(context, TkLoginScreen.id),
-              child: Text(
-                S.of(context).kLoginExclamation,
-                style: kRegularStyle[kSmallSize].copyWith(
-                  color: kPrimaryColor,
-                ),
+      footer: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(S.of(context).kBackTo),
+          GestureDetector(
+            onTap: () =>
+                Navigator.pushReplacementNamed(context, TkLoginScreen.id),
+            child: Text(
+              S.of(context).kLoginExclamation,
+              style: kRegularStyle[kSmallSize].copyWith(
+                color: kPrimaryColor,
               ),
-            )
-          ],
-        ),
-      ],
+            ),
+          )
+        ],
+      ),
+      child: TkError(message: account.forgotPasswordError),
     );
   }
 
@@ -95,7 +98,6 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
               children: [
                 TkLogoBox(),
                 _createForm(),
-                _createLoginOptions(),
               ],
             ),
           ],

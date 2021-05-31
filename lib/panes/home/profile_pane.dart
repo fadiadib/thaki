@@ -7,7 +7,7 @@ import 'package:thaki/models/car.dart';
 import 'package:thaki/models/credit.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
-import 'package:thaki/providers/state_controller.dart';
+import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/screens/add_car_screen.dart';
 import 'package:thaki/screens/add_card_screen.dart';
 import 'package:thaki/screens/cars_list_screen.dart';
@@ -24,6 +24,8 @@ import 'package:thaki/widgets/general/card.dart';
 import 'package:thaki/widgets/general/carousel.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/cards/user_info_card.dart';
+
+import '../../providers/lang_controller.dart';
 
 class TkProfilePane extends TkPane {
   TkProfilePane({onDone, onSelect})
@@ -107,8 +109,10 @@ class TkProfilePane extends TkPane {
                             'en'
                         ? car.plateEN
                         : car.plateAR,
-                TkCardSide.bottomRight: Provider.of<TkStateController>(context)
-                    .stateName(car.state, Provider.of<TkAccount>(context).user)
+                TkCardSide.bottomRight:
+                    Provider.of<TkAttributesController>(context).stateName(
+                        car.state,
+                        Provider.of<TkLangController>(context, listen: false))
               },
             ),
           ),
@@ -136,7 +140,7 @@ class TkProfilePane extends TkPane {
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: TkCarousel(
-            height: 150,
+            height: 130,
             dotColor: kPrimaryColor.withOpacity(0.5),
             selectedDotColor: kPrimaryColor,
             emptyMessage: S.of(context).kNoCars,

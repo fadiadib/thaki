@@ -17,7 +17,7 @@ import 'package:thaki/widgets/general/card.dart';
 import 'package:thaki/widgets/general/carousel.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
-import 'package:thaki/screens/purchase_package_screen.dart';
+import 'package:thaki/screens/buy_package_screen.dart';
 import 'package:thaki/screens/apply_subscription_screen.dart';
 
 class TkDashboardPane extends TkPane {
@@ -35,6 +35,7 @@ class TkDashboardPane extends TkPane {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: TkCard(
+              borderRadius: 20,
               onTap: () =>
                   TkQRHelper.showQRCode(context: context, ticket: ticket),
               bgColor: kPrimaryColor.withOpacity(0.15),
@@ -135,6 +136,7 @@ class TkDashboardPane extends TkPane {
         Padding(
           padding: const EdgeInsets.only(top: 20.0, left: 30.0, right: 30.0),
           child: TkCard(
+            borderRadius: 20,
             bgColor: kPrimaryColor.withOpacity(0.15),
             textColor: kDarkGreyColor,
             titles: {
@@ -156,9 +158,8 @@ class TkDashboardPane extends TkPane {
           padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
           child: TkButton(
             title: S.of(context).kRechargeBalance,
-            onPressed: () => Navigator.of(context).pushNamed(
-              TkPurchasePackageScreen.id,
-            ),
+            onPressed: () =>
+                Navigator.of(context).pushNamed(TkBuyPackageScreen.id),
           ),
         ),
 

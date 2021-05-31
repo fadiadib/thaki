@@ -7,14 +7,16 @@ import 'package:thaki/app.dart';
 
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/firebase_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/messenger.dart';
 import 'package:thaki/providers/payer.dart';
-import 'package:thaki/providers/state_controller.dart';
+import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/providers/subscriber.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/server.dart';
 import 'package:thaki/providers/tab_selector.dart';
+import 'package:thaki/providers/transactor.dart';
 import 'package:thaki/providers/versioner.dart';
 
 void main() => runApp(ThankiMain());
@@ -35,8 +37,11 @@ class ThankiMain extends StatelessWidget {
         ChangeNotifierProvider<TkLangController>(
           create: (context) => new TkLangController(),
         ),
-        ChangeNotifierProvider<TkStateController>(
-          create: (context) => new TkStateController(),
+        ChangeNotifierProvider<TkFirebaseController>(
+          create: (context) => new TkFirebaseController(),
+        ),
+        ChangeNotifierProvider<TkAttributesController>(
+          create: (context) => new TkAttributesController(),
         ),
         ChangeNotifierProvider<TkTabSelector>(
           create: (context) => new TkTabSelector(),
@@ -61,6 +66,9 @@ class ThankiMain extends StatelessWidget {
         ),
         ChangeNotifierProvider<TkPayer>(
           create: (context) => new TkPayer(),
+        ),
+        ChangeNotifierProvider<TkTransactor>(
+          create: (context) => new TkTransactor(),
         ),
       ],
 

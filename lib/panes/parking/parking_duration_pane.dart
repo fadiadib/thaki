@@ -13,15 +13,34 @@ import 'package:thaki/widgets/general/section_title.dart';
 class TkParkingDurationPane extends TkPane {
   TkParkingDurationPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _createConfirmButton(TkBooker booker, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
-      child: TkButton(
-        title: S.of(context).kConfirm,
-        onPressed: onDone,
-        btnColor: kSecondaryColor,
-        btnBorderColor: kSecondaryColor,
-      ),
+  Widget _createConfirmButtons(TkBooker booker, BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
+          child: TkButton(
+            title: S.of(context).kBookUsingBalance,
+            onPressed: () {
+              booker.creditMode = true;
+              onDone();
+            },
+            btnColor: kPrimaryColor,
+            btnBorderColor: kPrimaryColor,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
+          child: TkButton(
+            title: S.of(context).kBookUsingCard,
+            onPressed: () {
+              booker.creditMode = false;
+              onDone();
+            },
+            btnColor: kSecondaryColor,
+            btnBorderColor: kSecondaryColor,
+          ),
+        ),
+      ],
     );
   }
 
@@ -80,7 +99,7 @@ class TkParkingDurationPane extends TkPane {
                         TkSectionTitle(title: S.of(context).kPickParkingTime),
                   ),
                   _createDurationPicker(booker, context),
-                  _createConfirmButton(booker, context),
+                  _createConfirmButtons(booker, context),
                 ],
               );
       },

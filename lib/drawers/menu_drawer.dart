@@ -3,17 +3,18 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/utilities/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/versioner.dart';
 import 'package:thaki/screens/subscription_screen.dart';
-import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/general/list_menu_item.dart';
 
-/// Home Side drawer
-/// Has two parts, a header that shows basic profile information
-/// and a list of menu items such as settings..etc.
+/// Home Side drawer -  used in the HomeScreen Scaffold
+/// Shows a a logo box, a sett of menu items and the copyright
+/// Takes one argument: popParentCallback which is used as a
+/// callback method to pop the caller
 class TkMenuDrawer extends StatelessWidget {
   TkMenuDrawer({this.popParentCallback});
   final Function popParentCallback;
@@ -24,10 +25,13 @@ class TkMenuDrawer extends StatelessWidget {
       builder: (context, versioner, account, _) {
         return Drawer(
           child: Container(
+            // Decoration: gradient and a footer image
             decoration: BoxDecoration(
               gradient: kWhiteBgLinearGradient,
               image: DecorationImage(
-                  image: AssetImage(kFooter), fit: BoxFit.cover),
+                image: AssetImage(kFooter),
+                fit: BoxFit.cover,
+              ),
             ),
 
             // Create a list view, to allow for scrolling
@@ -35,11 +39,9 @@ class TkMenuDrawer extends StatelessWidget {
               // Remove any padding the drawer
               padding: EdgeInsets.only(top: 0.0),
               children: <Widget>[
-                // Create the header (shows basic profile info)
+                // Create the header (shows a logo box)
                 DrawerHeader(
-                  decoration: BoxDecoration(
-                    gradient: kWhiteBgLinearGradient,
-                  ),
+                  decoration: BoxDecoration(gradient: kWhiteBgLinearGradient),
                   child: Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
@@ -48,6 +50,8 @@ class TkMenuDrawer extends StatelessWidget {
                         boxShadow: kTileShadow,
                         borderRadius: BorderRadius.circular(10.0),
                       ),
+
+                      // Create the logo image
                       child: Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Image(width: 200, image: AssetImage(kLogoPath)),
@@ -56,6 +60,8 @@ class TkMenuDrawer extends StatelessWidget {
                   ),
                 ),
 
+                // Single line divider separates the drawer header
+                // and the menu items
                 Divider(thickness: 0.5, height: 1),
 
                 // Switch language menu item
@@ -78,6 +84,7 @@ class TkMenuDrawer extends StatelessWidget {
                     Provider.of<TkBooker>(context, listen: false)
                         .loadTickets(account.user);
 
+                    // Language successfully changed so pop drawer
                     Navigator.of(context).pop();
                   },
                 ),
@@ -122,6 +129,14 @@ class TkMenuDrawer extends StatelessWidget {
                       color: kMediumGreyColor, size: 10),
                   textStyle: kRegularStyle[kNormalSize],
                   action: () => TkURLLauncher.launch(kPrivacyPolicyURL),
+                ),
+
+                TkListMenuItem(
+                  title: S.of(context).kTermsConditions,
+                  child: Icon(kCarouselForwardBtnIcon,
+                      color: kMediumGreyColor, size: 10),
+                  textStyle: kRegularStyle[kNormalSize],
+                  action: () => TkURLLauncher.launch(kTermsConditionsURL),
                 ),
 
                 // Copyright and version

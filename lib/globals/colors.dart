@@ -74,7 +74,7 @@ const List<BoxShadow> kTileShadow = [
 
 /// Carousel Colors
 const Color kCarouselSelectedDotColor = kWhiteColor;
-const Color kCarouselUnselectedDotColor = kGreenAccentColor;
+const Color kCarouselUnselectedDotColor = kDarkPurpleColor;
 const Color kCarouselArrowColor = kWhiteColor;
 const Color kCarouselArrowBgColor = kTransparentColor;
 

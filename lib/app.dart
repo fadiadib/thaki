@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/providers/firebase_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/versioner.dart';
 import 'package:thaki/screens/buy_subscription_screen.dart';
@@ -15,7 +16,7 @@ import 'package:thaki/screens/notification_screen.dart';
 import 'package:thaki/screens/onboarding_screen.dart';
 import 'package:thaki/screens/otp_screen.dart';
 import 'package:thaki/screens/pay_violation_screen.dart';
-import 'package:thaki/screens/purchase_package_screen.dart';
+import 'package:thaki/screens/buy_package_screen.dart';
 import 'package:thaki/screens/register_screen.dart';
 import 'package:thaki/screens/apply_subscription_screen.dart';
 import 'package:thaki/screens/splash_screen.dart';
@@ -34,10 +35,16 @@ class TkThakiApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<TkLangController>(
       builder: (context, controller, _) {
-        // Initialize language and version
+        // Initialize language
         if (controller.lang == null) controller.initLang();
+
+        // Initialize version
         if (Provider.of<TkVersioner>(context, listen: false).version == null)
           Provider.of<TkVersioner>(context, listen: false).initVersion();
+
+        // Initialize FlutterFire
+        Provider.of<TkFirebaseController>(context, listen: false)
+            .initializeFlutterFire();
 
         return MaterialApp(
           locale: controller.lang,
@@ -98,7 +105,7 @@ class TkThakiApp extends StatelessWidget {
             TkCreditCardsListScreen.id: (context) => TkCreditCardsListScreen(),
             TkAddCarScreen.id: (context) => TkAddCarScreen(),
             TkCarsListScreen.id: (context) => TkCarsListScreen(),
-            TkPurchasePackageScreen.id: (context) => TkPurchasePackageScreen(),
+            TkBuyPackageScreen.id: (context) => TkBuyPackageScreen(),
             TkApplyForSubscriptionScreen.id: (context) =>
                 TkApplyForSubscriptionScreen(),
             TkBuySubscriptionScreen.id: (context) => TkBuySubscriptionScreen(),

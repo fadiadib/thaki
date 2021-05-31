@@ -1075,6 +1075,16 @@ class S {
     );
   }
 
+  /// ` - Example: 1234ABC`
+  String get kCarPlateHint {
+    return Intl.message(
+      ' - Example: 1234ABC',
+      name: 'kCarPlateHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Make`
   String get kCarMake {
     return Intl.message(
@@ -1850,6 +1860,56 @@ class S {
     return Intl.message(
       'Seen',
       name: 'kUpdateSeen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purchase Parking`
+  String get kPurchaseParking {
+    return Intl.message(
+      'Purchase Parking',
+      name: 'kPurchaseParking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book with Balance`
+  String get kBookUsingBalance {
+    return Intl.message(
+      'Book with Balance',
+      name: 'kBookUsingBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book with Payment`
+  String get kBookUsingCard {
+    return Intl.message(
+      'Book with Payment',
+      name: 'kBookUsingCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Payment Details`
+  String get kEnterPaymentDetails {
+    return Intl.message(
+      'Enter Payment Details',
+      name: 'kEnterPaymentDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms and Conditions`
+  String get kTermsConditions {
+    return Intl.message(
+      'Terms and Conditions',
+      name: 'kTermsConditions',
       desc: '',
       args: [],
     );

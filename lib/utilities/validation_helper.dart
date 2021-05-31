@@ -2,6 +2,31 @@ import 'package:email_validator/email_validator.dart';
 import 'package:credit_card_validator/credit_card_validator.dart';
 
 class TkValidationHelper {
+  static bool validateName(String value) {
+    if (value == null || value.isEmpty || value.trim().isEmpty) return false;
+
+    final RegExp exp =
+        RegExp(r'([a-zA-Z\u0621-\u064A]{1,20}[ ]{0,1})+$', unicode: true);
+
+    return (exp.stringMatch(value) != null);
+  }
+
+  static bool validateAlphaNum(String value) {
+    if (value == null || value.isEmpty || value.trim().isEmpty) return false;
+
+    final RegExp exp = RegExp(
+        r'([a-zA-Z0-9\u0621-\u064A\u0660-\u0669]{1,100}[ ]{0,1})+$',
+        unicode: true);
+
+    return (exp.stringMatch(value) != null);
+  }
+
+  static bool validatePassword(String value) {
+    if (value == null || value.length < 6 || value.length > 20) return false;
+
+    return true;
+  }
+
   static bool validateNotEmpty(String value) {
     return (value != null && value.isNotEmpty && value.trim().isNotEmpty);
   }
@@ -52,15 +77,16 @@ class TkValidationHelper {
 
     if (state == 1) {
       if (langCode == 'en') {
-        RegExp exp = RegExp(r"\d{1,4}[A-Z]{3}");
+        RegExp exp = RegExp(r"\d{1,4}[A-Z]{2,3}");
         return exp.stringMatch(value) == value;
       } else {
-        RegExp exp =
-            RegExp(r"[\u0621-\u064A]{3}[\u0660-\u0669]{1,4}", unicode: true);
+        RegExp exp = RegExp(r"([\u0621-\u064A]\s){2,3}[\u0660-\u0669\d]{1,4}",
+            unicode: true);
         return exp.stringMatch(value) == value;
       }
     } else {
-      return (value.length >= 1 && value.length <= 7);
+      RegExp exp = RegExp(r"[\u0660-\u0669\d]{1,7}", unicode: true);
+      return exp.stringMatch(value) == value;
     }
   }
 

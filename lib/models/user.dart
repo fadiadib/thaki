@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:thaki/globals/index.dart';
 
 import 'index.dart';
@@ -17,7 +18,12 @@ class TkUser {
       if (field.name == kUserPasswordTag) password = field.value;
       if (field.name == kUserConfirmPasswordTag) confirmPassword = field.value;
       if (field.name == kUserRememberTag) rememberMe = field.value == 'true';
+      if (field.name == kUserOTPTag) otp = field.value;
     }
+  }
+
+  TkUser.fromInfoFields(TkInfoFieldsList fields) {
+    updateModelFromInfoFields(fields);
   }
 
   void updateModelFromJson(Map<String, dynamic> json) {
@@ -31,6 +37,7 @@ class TkUser {
           DateTime.tryParse(json[kUserTag][kUserBirthDateTag].toString());
       isApproved = int.tryParse(json[kUserTag][kUserApprovedTag].toString());
     }
+    lang = Locale('ar', '');
     if (json[kUserLangTag] != null) {
       String langCode = json[kUserLangTag];
       if (langCode == null) {
@@ -72,17 +79,18 @@ class TkUser {
 
   Map<String, String> toHeader() {
     return {
-      kLangTag: lang.languageCode,
+      kLangTag: lang?.languageCode,
       kAuthTag: '$tokenType $token',
     };
   }
 
-  Map<String, dynamic> toJson() {
+  Future<Map<String, dynamic>> toJson() async {
     Map<String, dynamic> result = {
       kUserNameTag: name,
       kUserEmailTag: email,
       kUserPhoneTag: phone,
       kUserBirthDateTag: birthDate.toString().split('.').first,
+      kFBTokenTag: await FirebaseMessaging().getToken(),
     };
     if (password != null)
       result[kUserPasswordTag] = TkCryptoHelper.hashSha256(password);
@@ -90,20 +98,34 @@ class TkUser {
       result[kUserConfirmPasswordTag] =
           TkCryptoHelper.hashSha256(confirmPassword);
 
-    // TODO: add firebase token
     return result;
   }
 
-  Map<String, dynamic> toLoginJson() {
-    // TODO: add firebase token
+  Future<Map<String, dynamic>> toLoginJson() async {
     return {
       kUserEmailTag: email,
       kUserPasswordTag: TkCryptoHelper.hashSha256(password),
+      kFBTokenTag: await FirebaseMessaging().getToken(),
     };
   }
 
-  TkUser.fromInfoFields(TkInfoFieldsList fields) {
-    updateModelFromInfoFields(fields);
+  Future<Map<String, dynamic>> toForgotPasswordJson() async {
+    return {kUserEmailTag: email};
+  }
+
+  Future<Map<String, dynamic>> toOTPJson() async {
+    return {
+      kUserEmailTag: email,
+      kUserOTPTag: otp,
+      kUserPasswordTag: TkCryptoHelper.hashSha256(password),
+      kUserConfirmPasswordTag: TkCryptoHelper.hashSha256(confirmPassword),
+    };
+  }
+
+  Future<Map<String, dynamic>> toLoadJson() async {
+    return {
+      kFBTokenTag: await FirebaseMessaging().getToken(),
+    };
   }
 
   TkInfoFieldsList toInfoFields(TkInfoFieldsList fields) {
@@ -123,6 +145,7 @@ class TkUser {
   String tokenType;
   String name;
   String email;
+  String otp;
   DateTime birthDate;
   String password;
   String confirmPassword;
