@@ -6,6 +6,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/utilities/index.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -66,9 +67,14 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen> {
   void initState() {
     super.initState();
 
-    // Load info fields from model
-    _fields = TkInfoFieldsList.fromJson(data: kEditProfileFieldsJson);
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
+
+    // Load info fields from model
+    if (account.user.isSocial) {
+      _fields = TkInfoFieldsList.fromJson(data: kEditSocialProfileFieldsJson);
+    } else {
+      _fields = TkInfoFieldsList.fromJson(data: kEditProfileFieldsJson);
+    }
 
     account.clearErrors();
     if (account.user != null) _fields = account.user.toInfoFields(_fields);

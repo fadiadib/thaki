@@ -17,6 +17,7 @@ class TkUser {
         birthDate = DateTime.tryParse(field.value.toString());
       if (field.name == kUserPasswordTag) password = field.value;
       if (field.name == kUserConfirmPasswordTag) confirmPassword = field.value;
+      if (field.name == kUserOldPasswordTag) oldPassword = field.value;
       if (field.name == kUserRememberTag) rememberMe = field.value == 'true';
       if (field.name == kUserOTPTag) otp = field.value;
     }
@@ -36,7 +37,11 @@ class TkUser {
       birthDate =
           DateTime.tryParse(json[kUserTag][kUserBirthDateTag].toString());
       isApproved = int.tryParse(json[kUserTag][kUserApprovedTag].toString());
+      isSocial = json[kUserTag][kUserSocialTag] == true;
+      socialToken = json[kUserTag][kUserSocialTokenTag];
+      loginType = json[kUserTag][kUserLoginTypeTag];
     }
+
     lang = Locale('ar', '');
     if (json[kUserLangTag] != null) {
       String langCode = json[kUserLangTag];
@@ -97,6 +102,8 @@ class TkUser {
     if (confirmPassword != null)
       result[kUserConfirmPasswordTag] =
           TkCryptoHelper.hashSha256(confirmPassword);
+    if (oldPassword != null)
+      result[kUserOldPasswordTag] = TkCryptoHelper.hashSha256(oldPassword);
 
     return result;
   }
@@ -106,6 +113,19 @@ class TkUser {
       kUserEmailTag: email,
       kUserPasswordTag: TkCryptoHelper.hashSha256(password),
       kFBTokenTag: await FirebaseMessaging().getToken(),
+    };
+  }
+
+  Future<Map<String, dynamic>> toSocialLoginJson() async {
+    return {
+      kUserNameTag: name,
+      kUserEmailTag: email ?? '',
+      kUserPhoneTag: phone ?? '',
+      kUserBirthDateTag:
+          birthDate != null ? birthDate.toString().split('.').first : '',
+      kFBTokenTag: await FirebaseMessaging().getToken(),
+      kUserSocialTokenTag: socialToken,
+      kUserLoginTypeTag: loginType,
     };
   }
 
@@ -134,8 +154,9 @@ class TkUser {
       if (field.name == kUserEmailTag) field.value = email;
       if (field.name == kUserPhoneTag) field.value = phone;
       if (field.name == kUserBirthDateTag) field.value = birthDate?.toString();
-      if (field.name == kUserPasswordTag) field.value = password;
-      if (field.name == kUserConfirmPasswordTag) field.value = confirmPassword;
+      // if (field.name == kUserPasswordTag) field.value = password;
+      // if (field.name == kUserConfirmPasswordTag) field.value = confirmPassword;
+      // if (field.name == kUserOldPasswordTag) field.value = oldPassword;
     }
     return fields;
   }
@@ -149,7 +170,11 @@ class TkUser {
   DateTime birthDate;
   String password;
   String confirmPassword;
+  String oldPassword;
   String phone;
+  String socialToken;
+  String loginType;
+  bool isSocial;
   bool rememberMe;
   int isApproved;
   List<TkCar> cars;

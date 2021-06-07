@@ -8,6 +8,7 @@ class TkUserInfoCard extends StatelessWidget {
   final TkUser user;
 
   Widget _getInfoRow({IconData iconData, String title}) {
+    if (title == null) return Container();
     return Row(children: [
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5.0),

@@ -25,3 +25,16 @@ const String kPrivacyPolicyURL =
 const String kTermsConditionsURL =
     'http://thaki.aurasystems.xyz/thaki/public/terms/';
 const String kSupportURL = 'https://aura-demo.com/thaki/contact/';
+
+/// Twitter App
+const kTwitterAPIKey = 'MuhgQ5FLpMULCoRKBsJQm9qfc';
+const kTwitterAPISecretKey =
+    'T6XcOlBty9siRwQ533yMf1SywiZ3HmasfoHXklMssgCYhHLurn';
+const kTwitterBearerToken =
+    'AAAAAAAAAAAAAAAAAAAAAJk7QQEAAAAANkftrWjcEWEc4bdHSyKzC1obp78%3D7KdQjzRPqQ1maucetGwoG1Ou0El1J7c2aXr8YoYu5tHLpU6ltd';
+const kTwitterAppID = '21052313';
+const kTwitterRedirectURI = 'thaki://';
+const kTwitterRedirectURI2 =
+    'https://thaki-ceab4.firebaseapp.com/__/auth/handler';
+const kTwitterRedirectURI3 = 'com.aurasys.thaki://';
+const kTwitterRedirectURI4 = 'https://www.example.com';

@@ -49,8 +49,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
       Navigator.pushNamed(context, TkHomeScreen.id);
   }
 
-  Widget _createForm() {
-    TkAccount account = Provider.of<TkAccount>(context);
+  Widget _createForm(TkAccount account) {
     TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
@@ -95,31 +94,51 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
         ],
       ),
       isLoading: account.isLoading,
-      child: TkError(message: account.loginError),
+      child: Column(
+        children: [
+          TkError(message: account.loginError),
+          TkError(message: account.socialError),
+        ],
+      ),
+    );
+  }
+
+  Widget _createSocialLogin(TkAccount account) {
+    return TkSocialLogin(
+      callback: () async {
+        if (await account.social()) {
+          if (account.user != null)
+            Navigator.pushNamed(context, TkHomeScreen.id);
+        }
+      },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TkAppBar(
-        context: context,
-        enableNotifications: false,
-        enableClose: false,
-        removeLeading: false,
-      ),
-      body: TkScaffoldBody(
-        image: AssetImage(kFooter),
-        child: ListView(
-          children: [
-            Column(children: [
-              TkLogoBox(),
-              _createForm(),
-              TkSocialLogin(),
-            ])
-          ],
-        ),
-      ),
+    return Consumer<TkAccount>(
+      builder: (context, account, _) {
+        return Scaffold(
+          appBar: TkAppBar(
+            context: context,
+            enableNotifications: false,
+            enableClose: false,
+            removeLeading: false,
+          ),
+          body: TkScaffoldBody(
+            image: AssetImage(kFooter),
+            child: ListView(
+              children: [
+                Column(children: [
+                  TkLogoBox(),
+                  _createForm(account),
+                  _createSocialLogin(account),
+                ])
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

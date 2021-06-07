@@ -36,6 +36,8 @@ class TkPurchaser extends ChangeNotifier {
 
   TkBalance _balance;
   TkBalance get balance => _balance;
+  List<TkPackage> _userPackages = [];
+  List<TkPackage> get userPackages => _userPackages;
 
   // Loading variables
   bool _isLoading = false;
@@ -69,12 +71,15 @@ class TkPurchaser extends ChangeNotifier {
 
     // Clear model
     loadBalanceError = null;
+    _userPackages.clear();
     _balance = null;
 
     Map result = await _apis.loadUserPackages(user: user);
     if (result[kStatusTag] == kSuccessCode) {
       // Load user data
       _balance = TkBalance.fromJson(result[kDataTag]);
+      for (Map data in result[kDataTag][kClientPackagesTag])
+        _userPackages.add(TkPackage.fromUserPackageJson(data));
     } else {
       // an error happened
       loadBalanceError = _apis.normalizeError(result);
@@ -120,12 +125,15 @@ class TkPurchaser extends ChangeNotifier {
     // Start any loading indicators
     _isLoading = true;
     purchaseError = null;
+    _userPackages.clear();
     notifyListeners();
 
     Map result = await _apis.purchasePackage(
         user: user, package: selectedPackage, card: selectedCard, cvv: _cvv);
     if (result[kStatusTag] == kSuccessCreationCode) {
       _balance.updateFromJson(result[kDataTag]);
+      for (Map data in result[kDataTag][kClientPackagesTag])
+        _userPackages.add(TkPackage.fromUserPackageJson(data));
     } else {
       purchaseError = _apis.normalizeError(result);
     }

@@ -214,7 +214,7 @@ class TkProfilePane extends TkPane {
               children: [
                 _createPersonalInfo(account, context),
                 _createCars(account, context),
-                _createCards(account, context),
+                if (kSaveCardMode) _createCards(account, context),
               ],
             );
     });

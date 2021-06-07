@@ -121,6 +121,16 @@ class TkAPIHelper {
     );
   }
 
+  /// User login API
+  /// Returns user_token and success or failure
+  Future<Map> social({@required TkUser user}) async {
+    return await _network.postData(
+      url: kSocialAPI,
+      params: await user.toSocialLoginJson(),
+      headers: user.toHeader(),
+    );
+  }
+
   /// User load profile API
   Future<Map> load({@required TkUser user}) async {
     return await _network.postData(

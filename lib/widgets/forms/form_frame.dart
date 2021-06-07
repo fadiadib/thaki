@@ -19,6 +19,7 @@ class TkFormFrame extends StatefulWidget {
     this.buttonTag = 'action',
     this.footer,
     this.validatePasswordMatch,
+    this.validatePassword,
     this.child,
     this.isLoading = false,
     this.langCode = 'en',
@@ -32,6 +33,7 @@ class TkFormFrame extends StatefulWidget {
   final String buttonTag;
   final Widget footer;
   final Function validatePasswordMatch;
+  final Function validatePassword;
   final Widget child;
   final bool isLoading;
   final String langCode;
@@ -170,7 +172,12 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) => setState(() => field.value = value),
           obscured: true,
           isValidating: isValidating,
-          validator: () => validateInfoField(field),
+          validator: () {
+            if (this.widget.validatePassword != null) {
+              return this.widget.validatePassword(field);
+            } else
+              return validateInfoField(field);
+          },
           errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
         );
         break;

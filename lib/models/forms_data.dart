@@ -163,9 +163,16 @@ Map<String, dynamic> kEditProfileFieldsJson = {
       kIFType: TkInfoFieldType.Date.index,
     },
     {
+      kIFName: kUserOldPasswordTag,
+      kIFTitle: 'Old Password',
+      kIFTitleAR: 'كلمة المرور القديمة',
+      kIFRequired: false,
+      kIFType: TkInfoFieldType.Password.index,
+    },
+    {
       kIFName: kUserPasswordTag,
-      kIFTitle: 'Password',
-      kIFTitleAR: 'كلمة المرور',
+      kIFTitle: 'New Password',
+      kIFTitleAR: 'كلمة المرور الجديدة',
       kIFRequired: false,
       kIFType: TkInfoFieldType.Password.index,
     },
@@ -175,6 +182,44 @@ Map<String, dynamic> kEditProfileFieldsJson = {
       kIFTitleAR: 'تأكيد كلمة المرور',
       kIFRequired: false,
       kIFType: TkInfoFieldType.ConfirmPassword.index,
+    },
+  ]
+};
+
+Map<String, dynamic> kEditSocialProfileFieldsJson = {
+  kFormName: {
+    'en': 'Edit Personal Information',
+    'ar': 'تحديث معلومات المستخدم'
+  },
+  kFormAction: {'en': 'Update', 'ar': 'تحديث'},
+  kInfoFieldsTag: [
+    {
+      kIFName: kUserNameTag,
+      kIFTitle: 'Full Name',
+      kIFTitleAR: 'الاسم بالكامل',
+      kIFRequired: true,
+      kIFType: TkInfoFieldType.Name.index,
+    },
+    {
+      kIFName: kUserEmailTag,
+      kIFTitle: 'Email',
+      kIFTitleAR: 'البريد الالكتروني',
+      kIFRequired: true,
+      kIFType: TkInfoFieldType.Email.index,
+    },
+    {
+      kIFName: kUserPhoneTag,
+      kIFTitle: 'Phone',
+      kIFTitleAR: 'رقم الهاتف',
+      kIFRequired: true,
+      kIFType: TkInfoFieldType.Phone.index,
+    },
+    {
+      kIFName: kUserBirthDateTag,
+      kIFTitle: 'Birth date',
+      kIFTitleAR: 'تاريخ الميلاد',
+      kIFRequired: true,
+      kIFType: TkInfoFieldType.Date.index,
     },
   ]
 };

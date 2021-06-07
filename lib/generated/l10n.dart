@@ -1914,6 +1914,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Purchased on`
+  String get kPurchaseDate {
+    return Intl.message(
+      'Purchased on',
+      name: 'kPurchaseDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid until`
+  String get kExpiryDate {
+    return Intl.message(
+      'Valid until',
+      name: 'kExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Packages`
+  String get kMyPackages {
+    return Intl.message(
+      'My Packages',
+      name: 'kMyPackages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Social login cancelled by user`
+  String get kLoginCancelledByUser {
+    return Intl.message(
+      'Social login cancelled by user',
+      name: 'kLoginCancelledByUser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

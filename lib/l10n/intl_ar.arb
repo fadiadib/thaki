@@ -187,5 +187,9 @@
   "kBookUsingBalance": "احجز باستخدام رصيدك",
   "kBookUsingCard": "احجز باستخدام بطاقة",
   "kEnterPaymentDetails": "أدخل تفاصيل الدفع",
-  "kTermsConditions": "الشروط والأحكام"
+  "kTermsConditions": "الشروط والأحكام",
+  "kPurchaseDate": "تاريخ الشراء",
+  "kExpiryDate": "صالحة حتى",
+  "kMyPackages": "باقاتي",
+  "kLoginCancelledByUser": "تم إلغاء تسجيل الدخول الاجتماعي من قبل المستخدم"
 }

@@ -8,6 +8,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/firebase_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/versioner.dart';
+import 'package:thaki/screens/balance_screen.dart';
 import 'package:thaki/screens/buy_subscription_screen.dart';
 
 import 'package:thaki/screens/home_screen.dart';
@@ -113,6 +114,7 @@ class TkThakiApp extends StatelessWidget {
             TkBookParkingScreen.id: (context) => TkBookParkingScreen(),
             TkSubscriptionScreen.id: (context) => TkSubscriptionScreen(),
             TkNotificationScreen.id: (context) => TkNotificationScreen(),
+            TkBalanceScreen.id: (context) => TkBalanceScreen(),
           },
 
           // Push the splash screen

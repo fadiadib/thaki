@@ -11,6 +11,7 @@ const String KLoadAPI = '$kRootURL/auth/validate';
 const String kEditAPI = '$kRootURL/update_profile';
 const String kForgotPasswordAPI = '$kRootURL/auth/forgot_password';
 const String kResetPasswordAPI = '$kRootURL/auth/reset_password';
+const String kSocialAPI = '$kRootURL/auth/social';
 // Cars
 const String kLoadCarsAPI = '$kRootURL/cars';
 const String kAddCarAPI = '$kRootURL/cars';
@@ -94,6 +95,7 @@ const String kUserBirthDateTag = 'birth_date';
 const String kUserPhoneTag = 'phone';
 const String kUserPasswordTag = 'password';
 const String kUserConfirmPasswordTag = 'password_confirmation';
+const String kUserOldPasswordTag = 'old_password';
 const String kUserRememberTag = 'remember_me';
 const String kUserFbTokenTag = 'fb_token';
 const String kUserCarsTag = 'cars_list';
@@ -101,6 +103,9 @@ const String kUserCardsTag = 'card_list';
 const String kUserOTPTag = 'otp';
 const String kUserApprovedTag = 'is_approved';
 const String kUserLangTag = 'lang';
+const String kUserSocialTag = 'social';
+const String kUserSocialTokenTag = 'social_token';
+const String kUserLoginTypeTag = 'login_type';
 // Notifications tags
 const String kNotificationTag = 'notification';
 const String kNotificationIdTag = 'id';
@@ -164,13 +169,17 @@ const String kBalancePointsTag = 'balance_points';
 const String kBalanceValidityTag = 'balance_validity';
 // Package tags
 const String kPackagesTag = 'packages_list';
+const String kClientPackagesTag = 'client_packages_list';
 const String kPackageIdTag = 'id';
 const String kPackagePkgIdTag = 'package_id';
 const String kPackagePointsTag = 'amount_of_hours';
+const String kUserPackagePoints = 'hours';
 const String kPackageRemainingTag = 'remaining_hours';
 const String kPackagePriceTag = 'price';
 const String kPackageValidityTag = 'expiry_after';
 const String kPackageDetailsTag = 'description';
+const String kUserPackageStartDateTag = 'start_date';
+const String kUserPackageEndDateTag = 'end_date';
 // Documents tags
 const String kDocumentsTag = 'document_list';
 const String kDocumentNameTag = 'name';

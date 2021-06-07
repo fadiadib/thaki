@@ -9,6 +9,7 @@ import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/tab_selector.dart';
+import 'package:thaki/screens/balance_screen.dart';
 import 'package:thaki/screens/buy_subscription_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -132,7 +133,6 @@ class TkDashboardPane extends TkPane {
           child: TkSectionTitle(title: S.of(context).kMyBalance),
         ),
 
-        // Add bookings carousel
         Padding(
           padding: const EdgeInsets.only(top: 20.0, left: 30.0, right: 30.0),
           child: TkCard(
@@ -150,6 +150,7 @@ class TkDashboardPane extends TkPane {
               TkCardSide.topRight: TkDateTimeHelper.formatDate(
                   purchaser.balance?.validity.toString()),
             },
+            onTap: () => Navigator.of(context).pushNamed(TkBalanceScreen.id),
           ),
         ),
 

@@ -10,7 +10,12 @@ class TkAccount extends ChangeNotifier {
   static TkSharedPrefHelper _prefs = new TkSharedPrefHelper();
 
   // Model variables
-  TkUser user;
+  TkUser _user;
+  TkUser get user => _user;
+  set user(TkUser u) {
+    _user = u;
+    notifyListeners();
+  }
 
   // Loading variables
   bool _isLoading = false;
@@ -18,9 +23,9 @@ class TkAccount extends ChangeNotifier {
 
   // Error variables
   void clearErrors() {
-    _registerError = loginError = logoutError = loadError = editError =
-        forgotPasswordError = resetPasswordError = loadCarsError = addCarError =
-            updateCarError = deleteCarError = addCardError =
+    _registerError = _socialError = loginError = logoutError = loadError =
+        editError = forgotPasswordError = resetPasswordError = loadCarsError =
+            addCarError = updateCarError = deleteCarError = addCardError =
                 loadCardsError = updateCardError = deleteCardError = null;
   }
 
@@ -28,6 +33,13 @@ class TkAccount extends ChangeNotifier {
   String get registerError => _registerError;
   set registerError(String message) {
     _registerError = message;
+    notifyListeners();
+  }
+
+  String _socialError;
+  String get socialError => _socialError;
+  set socialError(String message) {
+    _socialError = message;
     notifyListeners();
   }
 
@@ -140,6 +152,39 @@ class TkAccount extends ChangeNotifier {
     return (loginError == null);
   }
 
+  /// User login, calls API and loads user model
+  Future<bool> social() async {
+    // Start any loading indicators
+    _isLoading = true;
+    _socialError = null;
+
+    notifyListeners();
+
+    // Update user language
+    String lang = await _prefs.get(tag: kLangTag);
+    user.updateModelFromJson({kUserLangTag: lang});
+
+    Map result = await _apis.social(user: user);
+    if (result[kStatusTag] == kSuccessCode) {
+      // Load user data
+      user = TkUser.fromJson(result[kDataTag]);
+      user.updateModelFromJson({kUserLangTag: lang});
+
+      // Save token
+      _prefs.store(tag: kUserTokenTag, data: user.token);
+      _prefs.store(tag: kUserTokenTypeTag, data: user.tokenType);
+    } else {
+      // an error happened
+      _socialError = _apis.normalizeError(result);
+    }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (_socialError == null);
+  }
+
   /// User logout, calls API and loads user model
   Future<bool> logout() async {
     // Start any loading indicators
@@ -175,6 +220,10 @@ class TkAccount extends ChangeNotifier {
     if (result[kStatusTag] == kSuccessCreationCode) {
       // Load user data
       user.updateModelFromJson(result[kDataTag]);
+
+      // Update user language
+      String lang = await _prefs.get(tag: kLangTag);
+      user.updateModelFromJson({kUserLangTag: lang});
     } else {
       // an error happened
       loadError = _apis.normalizeError(result);
@@ -199,6 +248,10 @@ class TkAccount extends ChangeNotifier {
     if (result[kStatusTag] == kSuccessCode) {
       // Load user data
       user.updateModelFromJson(result[kDataTag]);
+
+      // Update user language
+      String lang = await _prefs.get(tag: kLangTag);
+      user.updateModelFromJson({kUserLangTag: lang});
     } else {
       // an error happened
       editError = _apis.normalizeError(result);
@@ -218,6 +271,10 @@ class TkAccount extends ChangeNotifier {
     forgotPasswordError = null;
 
     notifyListeners();
+
+    // Update user language
+    String lang = await _prefs.get(tag: kLangTag);
+    user.updateModelFromJson({kUserLangTag: lang});
 
     Map result = await _apis.forgotPassword(user: user);
     if (result[kStatusTag] != kSuccessCode) {
@@ -239,6 +296,10 @@ class TkAccount extends ChangeNotifier {
     resetPasswordError = null;
 
     notifyListeners();
+
+    // Update user language
+    String lang = await _prefs.get(tag: kLangTag);
+    user.updateModelFromJson({kUserLangTag: lang});
 
     Map result = await _apis.resetPassword(user: user);
     if (result[kStatusTag] != kSuccessCreationCode) {

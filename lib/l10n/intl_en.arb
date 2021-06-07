@@ -188,5 +188,9 @@
   "kBookUsingBalance": "Book with Balance",
   "kBookUsingCard": "Book with Payment",
   "kEnterPaymentDetails": "Enter Payment Details",
-  "kTermsConditions": "Terms and Conditions"
+  "kTermsConditions": "Terms and Conditions",
+  "kPurchaseDate": "Purchased on",
+  "kExpiryDate": "Valid until",
+  "kMyPackages": "My Packages",
+  "kLoginCancelledByUser": "Social login cancelled by user"
 }

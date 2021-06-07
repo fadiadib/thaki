@@ -23,6 +23,15 @@ class TkPackage {
     color = getTileColor();
   }
 
+  TkPackage.fromUserPackageJson(Map<String, dynamic> json) {
+    id = int.tryParse(json[kPackageIdTag].toString());
+    points = json[kUserPackagePoints];
+    remaining = json[kPackageRemainingTag];
+    startDate = json[kUserPackageStartDateTag];
+    endDate = json[kUserPackageEndDateTag];
+    color = getTileColor();
+  }
+
   int id;
   int points;
   int remaining;
@@ -30,4 +39,6 @@ class TkPackage {
   int validity; // in days
   String details;
   Color color;
+  String startDate;
+  String endDate;
 }

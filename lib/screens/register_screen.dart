@@ -64,8 +64,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
     return false;
   }
 
-  Widget _createForm() {
-    TkAccount account = Provider.of<TkAccount>(context);
+  Widget _createForm(TkAccount account) {
     TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
@@ -104,43 +103,57 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
                   value: terms,
                   onChanged: (value) => setState(() => terms = value)),
             ),
-            TkError(message: account.registerError),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _createLoginOptions() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 50.0),
-      child: TkSocialLogin(),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TkAppBar(
-        context: context,
-        enableNotifications: false,
-        enableClose: false,
-        removeLeading: false,
-      ),
-      body: TkScaffoldBody(
-        image: AssetImage(kFooter),
-        child: ListView(
-          children: [
             Column(
               children: [
-                TkLogoBox(),
-                _createForm(),
-                _createLoginOptions(),
+                TkError(message: account.registerError),
+                TkError(message: account.socialError),
               ],
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _createLoginOptions(TkAccount account) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 50.0),
+      child: TkSocialLogin(
+        callback: () async {
+          if (await account.social())
+            Navigator.pushNamed(context, TkHomeScreen.id);
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<TkAccount>(
+      builder: (context, account, _) {
+        return Scaffold(
+          appBar: TkAppBar(
+            context: context,
+            enableNotifications: false,
+            enableClose: false,
+            removeLeading: false,
+          ),
+          body: TkScaffoldBody(
+            image: AssetImage(kFooter),
+            child: ListView(
+              children: [
+                Column(
+                  children: [
+                    TkLogoBox(),
+                    _createForm(account),
+                    _createLoginOptions(account),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
