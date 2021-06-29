@@ -7,13 +7,11 @@ import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/attributes_controller.dart';
-import 'package:thaki/utilities/form_builder.dart';
-import 'package:thaki/utilities/formfield_validator.dart';
 import 'package:thaki/utilities/index.dart';
 
-import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
+import 'package:thaki/widgets/forms/license_field.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
 import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
@@ -33,6 +31,7 @@ class TkAddCarScreen extends StatefulWidget {
 class _TkAddCarScreenState extends State<TkAddCarScreen>
     with TkFormFieldValidatorMixin {
   TkCar _car;
+  ScrollController _scrollController = ScrollController();
 
   @override
   bool validateField(TkFormField field, dynamic value) {
@@ -69,6 +68,94 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
       years.add(year.toString());
 
     return years;
+  }
+
+  List<String> _getInitialValuesEN() {
+    if (_car == null || _car.plateEN == null || _car.plateEN.isEmpty)
+      return ['', ''];
+
+    final RegExp nExp = RegExp(r"\d{1,4}");
+    final String nums = nExp.stringMatch(_car.plateEN);
+
+    final RegExp cExp = RegExp(r"[A-Z]{2,3}");
+    final String chars = cExp.stringMatch(_car.plateEN);
+
+    return [nums, chars];
+  }
+
+  List<String> _getInitialValuesAR() {
+    if (_car == null || _car.plateAR == null || _car.plateAR.isEmpty)
+      return ['', ''];
+
+    final RegExp nExp = RegExp(r"[\u0660-\u0669\d]{1,4}", unicode: true);
+    final String nums = nExp.stringMatch(_car.plateAR);
+
+    final RegExp cExp = RegExp(r"[\u0621-\u064A]{2,3}", unicode: true);
+    final String chars = cExp.stringMatch(_car.plateAR);
+
+    return [nums, chars];
+  }
+
+  Widget getLicensePlateWidgetEN(
+      TkLangController langController, TkAccount account) {
+    if (_car.state == 1)
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+        child: TkLicenseField(
+          langCode: langController.lang.languageCode,
+          enabled: !account.isLoading,
+          onChanged: (value) => setState(() => _car.plateEN = value),
+          values: _getInitialValuesEN(),
+          validator: getValidationCallback(TkFormField.carPlateEN),
+          validate: isValidating,
+          errorMessage:
+              S.of(context).kPleaseEnterAValid + S.of(context).kCarPlateEN,
+        ),
+      );
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+      child: TkTextField(
+        enabled: !account.isLoading,
+        hintText: S.of(context).kCarPlateEN + S.of(context).kCarPlateHint,
+        initialValue: _car?.plateEN,
+        onChanged: (value) => setState(() => _car.plateEN = value),
+        validator: getValidationCallback(TkFormField.carPlateEN),
+        validate: isValidating,
+        errorMessage:
+            S.of(context).kPleaseEnterAValid + S.of(context).kCarPlateEN,
+      ),
+    );
+  }
+
+  Widget getLicensePlateWidgetAR(
+      TkLangController langController, TkAccount account) {
+    if (_car.state == 1)
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+        child: TkLicenseField(
+          enabled: !account.isLoading,
+          langCode: langController.lang.languageCode,
+          onChanged: (value) => setState(() => _car.plateAR = value),
+          values: _getInitialValuesAR(),
+          validator: getValidationCallback(TkFormField.carPlateAR),
+          validate: isValidating,
+          errorMessage:
+              S.of(context).kPleaseEnterAValid + S.of(context).kCarPlateAR,
+        ),
+      );
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+      child: TkTextField(
+        enabled: !account.isLoading,
+        hintText: S.of(context).kCarPlateAR + S.of(context).kCarPlateHint,
+        initialValue: _car?.plateAR,
+        onChanged: (value) => setState(() => _car.plateAR = value),
+        validator: getValidationCallback(TkFormField.carPlateAR),
+        validate: isValidating,
+        errorMessage:
+            S.of(context).kPleaseEnterAValid + S.of(context).kCarPlateAR,
+      ),
+    );
   }
 
   Widget _createForm(TkAccount account) {
@@ -122,22 +209,10 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           Column(
             children: [
               TkSectionTitle(
-                  title: S.of(context).kCarPlateEN, uppercase: false),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 30.0),
-                child: TkTextField(
-                  enabled: !account.isLoading,
-                  hintText:
+                  title:
                       S.of(context).kCarPlateEN + S.of(context).kCarPlateHint,
-                  initialValue: _car?.plateEN,
-                  onChanged: (value) => setState(() => _car.plateEN = value),
-                  validator: getValidationCallback(TkFormField.carPlateEN),
-                  validate: isValidating,
-                  errorMessage: S.of(context).kPleaseEnterAValid +
-                      S.of(context).kCarPlateEN,
-                ),
-              ),
+                  uppercase: false),
+              getLicensePlateWidgetEN(langController, account),
             ],
           ),
 
@@ -146,22 +221,10 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           Column(
             children: [
               TkSectionTitle(
-                  title: S.of(context).kCarPlateAR, uppercase: false),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 10.0, horizontal: 30.0),
-                child: TkTextField(
-                  enabled: !account.isLoading,
-                  hintText:
+                  title:
                       S.of(context).kCarPlateAR + S.of(context).kCarPlateHint,
-                  initialValue: _car?.plateAR,
-                  onChanged: (value) => setState(() => _car.plateAR = value),
-                  validator: getValidationCallback(TkFormField.carPlateAR),
-                  validate: isValidating,
-                  errorMessage: S.of(context).kPleaseEnterAValid +
-                      S.of(context).kCarPlateAR,
-                ),
-              ),
+                  uppercase: false),
+              getLicensePlateWidgetAR(langController, account),
             ],
           ),
 
@@ -316,7 +379,12 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
               }
             } else {
               // Call API to add car
-              if (await account.addCar(_car)) Navigator.of(context).pop();
+              if (await account.addCar(_car))
+                Navigator.of(context).pop();
+              else
+                _scrollController.animateTo(0,
+                    duration: Duration(milliseconds: 600),
+                    curve: Curves.easeOut);
             }
           }
         },
@@ -353,14 +421,21 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           title: TkLogoBox(),
         ),
         body: TkScaffoldBody(
-          child: ListView(
+          child: Column(
             children: [
-              _createForm(account),
-              _createFormButton(account),
-              TkError(
-                  message: widget.editMode
-                      ? account.updateCarError
-                      : account.addCarError),
+              ListView(
+                shrinkWrap: true,
+                controller: _scrollController,
+                reverse: true,
+                children: [
+                  TkError(
+                      message: widget.editMode
+                          ? account.updateCarError
+                          : account.addCarError),
+                  _createFormButton(account),
+                  _createForm(account),
+                ],
+              ),
             ],
           ),
         ),

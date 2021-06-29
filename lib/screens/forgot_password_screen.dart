@@ -94,12 +94,7 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
         image: AssetImage(kFooter),
         child: ListView(
           children: [
-            Column(
-              children: [
-                TkLogoBox(),
-                _createForm(),
-              ],
-            ),
+            Column(children: [TkLogoBox(), _createForm()]),
           ],
         ),
       ),

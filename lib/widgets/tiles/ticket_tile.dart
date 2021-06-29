@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/attributes_controller.dart';
@@ -81,6 +82,14 @@ class _TkTicketTileState extends State<TkTicketTile> {
                         attributesController.makeName(
                             widget.ticket.car.make, langController)),
                   ],
+                ),
+                Text(
+                  widget.ticket.duration.toString() +
+                      ' ' +
+                      (widget.ticket.duration == 1
+                          ? S.of(context).kHour
+                          : S.of(context).kHours),
+                  style: kBoldStyle[kSmallSize],
                 ),
                 SizedBox(height: 5),
                 Padding(

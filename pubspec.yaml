@@ -1,5 +1,5 @@
 name: thaki
-description: Thanki Mobile Parking
+description: Thaki Mobile Parking
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+16
+version: 1.0.0+18
 
 environment:
   sdk: ">=2.9.0 <3.0.0"
@@ -50,6 +50,7 @@ dependencies:
   package_info: ^0.4.1
   carousel_slider: ^3.0.0
   firebase_messaging: ^7.0.0
+  firebase_analytics: ^6.0.1
   flutter_slidable: ^0.5.7
   qr_flutter: ^3.2.0
   image_cropper: ^1.2.2
@@ -62,6 +63,7 @@ dependencies:
   twitter_login: ^2.1.4
   flutter_inappwebview: ^4.0.0
   flutter_facebook_auth: ^2.0.2
+  pin_code_fields: ^5.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,3 +1,5 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_analytics/observer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -30,6 +32,7 @@ import 'package:thaki/screens/add_car_screen.dart';
 import 'package:thaki/screens/cars_list_screen.dart';
 import 'package:thaki/screens/credit_cards_list_screen.dart';
 import 'package:thaki/screens/book_parking_screen.dart';
+import 'package:thaki/utilities/analytics_helper.dart';
 
 class TkThakiApp extends StatelessWidget {
   @override
@@ -48,6 +51,7 @@ class TkThakiApp extends StatelessWidget {
             .initializeFlutterFire();
 
         return MaterialApp(
+          navigatorObservers: [TkAnalyticsHelper.getAnalyticsObserver()],
           locale: controller.lang,
           localizationsDelegates: [
             S.delegate,

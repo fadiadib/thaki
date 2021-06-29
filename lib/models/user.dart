@@ -42,7 +42,6 @@ class TkUser {
       loginType = json[kUserTag][kUserLoginTypeTag];
     }
 
-    lang = Locale('ar', '');
     if (json[kUserLangTag] != null) {
       String langCode = json[kUserLangTag];
       if (langCode == null) {

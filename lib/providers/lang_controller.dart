@@ -44,4 +44,10 @@ class TkLangController extends ChangeNotifier {
     _prefs.store(tag: kLangTag, data: lang.languageCode);
     notifyListeners();
   }
+
+  Map<String, String> toHeader() {
+    return {
+      kLangTag: lang?.languageCode,
+    };
+  }
 }

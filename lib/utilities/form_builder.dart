@@ -160,6 +160,7 @@ class TkFormBuilder {
 
   /// Create a checkbox
   static Widget createOTP({
+    @required BuildContext context,
     @required bool enabled,
     @required String label,
     @required String initialValue,
@@ -172,7 +173,8 @@ class TkFormBuilder {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         createLabel(label: label),
-        TkOTPField(
+        TkOTPField2(
+          context: context,
           enabled: enabled,
           values: initialValue?.split('') ?? [],
           onChanged: onChanged,

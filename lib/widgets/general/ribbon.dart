@@ -24,9 +24,9 @@ class TkCardRibbon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: side == TkCardRibbonSide.right ? -36 : null,
-      left: side == TkCardRibbonSide.left ? -36 : null,
-      top: -4,
+      right: side == TkCardRibbonSide.right ? -32 : null,
+      left: side == TkCardRibbonSide.left ? -32 : null,
+      top: 5,
 
       // Rotate the ribbon 45 or -45 degrees according
       // to on which side it is shown
@@ -45,7 +45,7 @@ class TkCardRibbon extends StatelessWidget {
               child: Text(
                 title.toUpperCase(),
                 style: kBoldStyle[kSmallSize]
-                    .copyWith(color: kWhiteColor, fontSize: 8.0),
+                    .copyWith(color: kWhiteColor, fontSize: 10.0),
                 textAlign: TextAlign.center,
               ),
             ),

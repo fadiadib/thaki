@@ -4,11 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/car.dart';
 import 'package:thaki/providers/attributes_controller.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/widgets/cards/license_card.dart';
 import 'package:thaki/widgets/general/ribbon.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
-
-import '../../providers/lang_controller.dart';
 
 class TkCarTile extends StatelessWidget {
   TkCarTile({
@@ -72,17 +71,13 @@ class TkCarTile extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          (langCode == 'en'
-                                  ? car.plateEN ?? '-'
-                                  : car.plateAR ?? '-') +
-                              ' - ' +
-                              (Provider.of<TkAttributesController>(context,
-                                          listen: false)
-                                      .makeName(
-                                          car.make,
-                                          Provider.of<TkLangController>(context,
-                                              listen: false)) ??
-                                  ''),
+                          Provider.of<TkAttributesController>(context,
+                                      listen: false)
+                                  .makeName(
+                                      car.make,
+                                      Provider.of<TkLangController>(context,
+                                          listen: false)) ??
+                              '',
                         ),
                       ],
                     ),

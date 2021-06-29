@@ -4,15 +4,17 @@ import 'package:provider/provider.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/utilities/index.dart';
+
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/versioner.dart';
+
 import 'package:thaki/screens/subscription_screen.dart';
 import 'package:thaki/widgets/general/list_menu_item.dart';
 
-/// Home Side drawer -  used in the HomeScreen Scaffold
-/// Shows a a logo box, a sett of menu items and the copyright
+/// Home Side drawer - used in the HomeScreen Scaffold
+/// Shows a a logo box, a set of menu items and the copyright
 /// Takes one argument: popParentCallback which is used as a
 /// callback method to pop the caller
 class TkMenuDrawer extends StatelessWidget {
@@ -100,6 +102,25 @@ class TkMenuDrawer extends StatelessWidget {
                   },
                 ),
 
+                if (account.user.isSocial)
+                  // Delete account menu item
+                  TkListMenuItem(
+                    pop: false,
+                    title: S.of(context).kDeleteAccount,
+                    textStyle: kRegularStyle[kNormalSize],
+                    action: () async {
+                      if (await TkDialogHelper.gShowConfirmationDialog(
+                            context: context,
+                            message: S.of(context).kAreYouSureUser,
+                            type: gDialogType.yesNo,
+                          ) ??
+                          false) {
+                        await account.deleteSocial();
+                        popParentCallback();
+                      }
+                    },
+                  ),
+
                 // Subscription menu item
                 TkListMenuItem(
                   pop: true,
@@ -114,13 +135,14 @@ class TkMenuDrawer extends StatelessWidget {
                 ),
 
                 // Support menu item
-                TkListMenuItem(
-                  title: S.of(context).kSupport,
-                  child: Icon(kCarouselForwardBtnIcon,
-                      color: kMediumGreyColor, size: 10),
-                  textStyle: kRegularStyle[kNormalSize],
-                  action: () => TkURLLauncher.launch(kSupportURL),
-                ),
+                if (kShowContact)
+                  TkListMenuItem(
+                    title: S.of(context).kSupport,
+                    child: Icon(kCarouselForwardBtnIcon,
+                        color: kMediumGreyColor, size: 10),
+                    textStyle: kRegularStyle[kNormalSize],
+                    action: () => TkURLLauncher.launch(kSupportURL),
+                  ),
 
                 // Privacy menu item
                 TkListMenuItem(
@@ -128,7 +150,8 @@ class TkMenuDrawer extends StatelessWidget {
                   child: Icon(kCarouselForwardBtnIcon,
                       color: kMediumGreyColor, size: 10),
                   textStyle: kRegularStyle[kNormalSize],
-                  action: () => TkURLLauncher.launch(kPrivacyPolicyURL),
+                  action: () => TkURLLauncher.launch(
+                      kBaseURL + S.of(context).kLocale + kPrivacyPolicyURL),
                 ),
 
                 TkListMenuItem(
@@ -136,7 +159,8 @@ class TkMenuDrawer extends StatelessWidget {
                   child: Icon(kCarouselForwardBtnIcon,
                       color: kMediumGreyColor, size: 10),
                   textStyle: kRegularStyle[kNormalSize],
-                  action: () => TkURLLauncher.launch(kTermsConditionsURL),
+                  action: () => TkURLLauncher.launch(
+                      kBaseURL + S.of(context).kLocale + kTermsConditionsURL),
                 ),
 
                 // Copyright and version

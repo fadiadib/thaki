@@ -35,6 +35,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `en`
+  String get kLocale {
+    return Intl.message(
+      'en',
+      name: 'kLocale',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Thaki`
   String get kAppTitle {
     return Intl.message(
@@ -895,6 +905,16 @@ class S {
     );
   }
 
+  /// `Hour`
+  String get kHour {
+    return Intl.message(
+      'Hour',
+      name: 'kHour',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Continue`
   String get kContinue {
     return Intl.message(
@@ -1075,10 +1095,10 @@ class S {
     );
   }
 
-  /// ` - Example: 1234ABC`
+  /// ` - Example: 1234ABD`
   String get kCarPlateHint {
     return Intl.message(
-      ' - Example: 1234ABC',
+      ' - Example: 1234ABD',
       name: 'kCarPlateHint',
       desc: '',
       args: [],
@@ -1445,10 +1465,10 @@ class S {
     );
   }
 
-  /// `Parking Confirmed, QR code will be available 15 minutes before parking time`
+  /// `Parking Confirmed, QR code will be available before parking time`
   String get kParkSuccess {
     return Intl.message(
-      'Parking Confirmed, QR code will be available 15 minutes before parking time',
+      'Parking Confirmed, QR code will be available before parking time',
       name: 'kParkSuccess',
       desc: '',
       args: [],
@@ -1650,6 +1670,16 @@ class S {
     return Intl.message(
       'Are you sure you want to clear notifications?',
       name: 'kAreYouSureAllNotification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete your account?\nAll your data including subscriptions, packages and cars will be permanently deleted.`
+  String get kAreYouSureUser {
+    return Intl.message(
+      'Are you sure you want to delete your account?\nAll your data including subscriptions, packages and cars will be permanently deleted.',
+      name: 'kAreYouSureUser',
       desc: '',
       args: [],
     );
@@ -1950,6 +1980,76 @@ class S {
     return Intl.message(
       'Social login cancelled by user',
       name: 'kLoginCancelledByUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User profile updated successfully`
+  String get kUserProfileUpdated {
+    return Intl.message(
+      'User profile updated successfully',
+      name: 'kUserProfileUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click for Details`
+  String get kClickForDetails {
+    return Intl.message(
+      'Click for Details',
+      name: 'kClickForDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Digits`
+  String get kDigits {
+    return Intl.message(
+      'Digits',
+      name: 'kDigits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Characters`
+  String get kCharacters {
+    return Intl.message(
+      'Characters',
+      name: 'kCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to paste `
+  String get kConfirmPasteDetails {
+    return Intl.message(
+      'Are you sure you want to paste ',
+      name: 'kConfirmPasteDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Paste`
+  String get kConfirmPaste {
+    return Intl.message(
+      'Confirm Paste',
+      name: 'kConfirmPaste',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get kDeleteAccount {
+    return Intl.message(
+      'Delete Account',
+      name: 'kDeleteAccount',
       desc: '',
       args: [],
     );

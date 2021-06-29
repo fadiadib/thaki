@@ -4,11 +4,10 @@ import 'package:provider/provider.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/providers/onboarding_controller.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/scaffold_body.dart';
-
-import '../globals/index.dart';
 
 class TkOnBoardingScreen extends StatefulWidget {
   static const String id = 'on_boarding_screen';
@@ -54,16 +53,18 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
     return indicators;
   }
 
-  void _updateCurrent() {
-    if (_current < _count - 1)
+  void _updateCurrent(TkOnBoardingController controller) {
+    if (_current < controller.onBoardingList.length - 1)
       setState(() => _current++);
     else
       Navigator.pushReplacementNamed(context, TkWelcomeScreen.id);
   }
 
-  Widget _drawStack(int index) {
+  Widget _drawStack(TkOnBoardingController controller) {
+    int index = _current % 3;
+
     return GestureDetector(
-      onTap: _updateCurrent,
+      onTap: () => _updateCurrent(controller),
       child: Stack(
         children: [
           Positioned.fill(child: Container(color: kTransparentColor)),
@@ -93,23 +94,23 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      _current == 0
-                          ? S.of(context).kOnBoardingMessage1
-                          : _current == 1
-                              ? S.of(context).kOnBoardingMessage2
-                              : S.of(context).kOnBoardingMessage3,
-                      style: kBoldStyle[kBigSize].copyWith(
-                        color: kWhiteColor,
-                        fontFamily: kRTLFontFamily,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    if (_current == 0)
+                    controller.isLoading
+                        ? Container()
+                        : Text(
+                            controller.onBoardingList[_current].title,
+                            style: kBoldStyle[kBigSize].copyWith(
+                              color: kWhiteColor,
+                              fontFamily: kRTLFontFamily,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                    if (_current == 0 && !controller.isLoading)
                       GestureDetector(
                         onTap: () {
                           Provider.of<TkLangController>(context, listen: false)
                               .switchLang();
+                          controller.load(Provider.of<TkLangController>(context,
+                              listen: false));
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(top: 20.0),
@@ -168,7 +169,7 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 20.0, bottom: 10.0),
                 child: GestureDetector(
-                  onTap: _updateCurrent,
+                  onTap: () => _updateCurrent(controller),
                   child: Text(
                     S.of(context).kNext,
                     style: kBoldStyle[kSmallSize].copyWith(color: kWhiteColor),
@@ -184,14 +185,22 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: TkScaffoldBody(
-        image: AssetImage(kOBBg),
-        colorOverlay: kPrimaryColor,
-        overlayOpacity: 0.5,
-        enableSafeArea: false,
-        child: _drawStack(_current),
-      ),
+    return Consumer<TkOnBoardingController>(
+      builder: (context, controller, _) {
+        return Scaffold(
+          body: TkScaffoldBody(
+            image: !controller.isLoading
+                ? controller.onBoardingList[_current].image != null
+                    ? NetworkImage(controller.onBoardingList[_current].image)
+                    : AssetImage(kOBBg)
+                : AssetImage(kOBBg),
+            colorOverlay: kPrimaryColor,
+            overlayOpacity: 0.5,
+            enableSafeArea: false,
+            child: _drawStack(controller),
+          ),
+        );
+      },
     );
   }
 }

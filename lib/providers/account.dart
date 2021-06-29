@@ -185,6 +185,31 @@ class TkAccount extends ChangeNotifier {
     return (_socialError == null);
   }
 
+  /// User delete social, calls API and loads user model
+  Future<bool> deleteSocial() async {
+    // Start any loading indicators
+    _isLoading = true;
+    _socialError = null;
+
+    notifyListeners();
+
+    // Update user language
+    String lang = await _prefs.get(tag: kLangTag);
+    user.updateModelFromJson({kUserLangTag: lang});
+
+    Map result = await _apis.deleteSocial(user: user);
+    if (result[kStatusTag] != kSuccessCode) {
+      // an error happened
+      _socialError = _apis.normalizeError(result);
+    }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (_socialError == null);
+  }
+
   /// User logout, calls API and loads user model
   Future<bool> logout() async {
     // Start any loading indicators
@@ -393,6 +418,12 @@ class TkAccount extends ChangeNotifier {
     if (result[kStatusTag] != kSuccessCode) {
       // an error happened
       updateCarError = _apis.normalizeError(result);
+    } else {
+      TkCar replacement = TkCar.fromJson(result[kDataTag][kCarTag]);
+      TkCar updatedCar =
+          _user.cars.firstWhere((element) => car.id == element.id);
+      _user.cars.replaceRange(_user.cars.indexOf(updatedCar),
+          _user.cars.indexOf(updatedCar) + 1, [replacement]);
     }
 
     // Stop any listening loading indicators

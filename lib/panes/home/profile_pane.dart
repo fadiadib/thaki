@@ -28,11 +28,13 @@ import 'package:thaki/widgets/cards/user_info_card.dart';
 import '../../providers/lang_controller.dart';
 
 class TkProfilePane extends TkPane {
-  TkProfilePane({onDone, onSelect})
+  TkProfilePane({@required this.scaffoldKey, onDone, onSelect})
       : super(
             paneTitle: '',
             navIconData: TkNavIconData(icon: AssetImage(kProfileIcon)),
             onSelect: onSelect);
+
+  final Function scaffoldKey;
 
   Widget _createPersonalInfo(TkAccount account, BuildContext context) {
     return Column(
@@ -43,8 +45,29 @@ class TkProfilePane extends TkPane {
           child: TkSectionTitle(
             title: S.of(context).kPersonalInfo, icon: kEditCircleBtnIcon,
             // Open add car screen
-            action: () =>
-                Navigator.of(context).pushNamed(TkEditProfileScreen.id),
+            action: () async {
+              if (await Navigator.of(context)
+                      .pushNamed(TkEditProfileScreen.id) ==
+                  true) {
+                GlobalKey<ScaffoldState> scaffoldKey = this.scaffoldKey();
+                scaffoldKey.currentState.showSnackBar(
+                  SnackBar(
+                    content: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        S.of(context).kUserProfileUpdated,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: kRTLFontFamily,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    backgroundColor: kGreenAccentColor,
+                  ),
+                );
+              }
+            },
           ),
         ),
         Padding(
@@ -58,7 +81,7 @@ class TkProfilePane extends TkPane {
               title: S.of(context).kEditPersonalInfo,
               onPressed: () {
                 // Push edit profile page
-                Navigator.pushNamed(context, TkEditProfileScreen.id);
+                Navigator.of(context).pushNamed(TkEditProfileScreen.id);
               },
             ),
           ),

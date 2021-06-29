@@ -32,9 +32,11 @@ class TkAttributesController extends ChangeNotifier {
     TkAttribute attribute =
         data.firstWhere((element) => element.id == id, orElse: () => null);
     if (attribute != null) {
-      return langController.lang.languageCode == 'en'
-          ? attribute.nameEN
-          : attribute.nameAR;
+      if ((langController.lang.languageCode == 'en' ||
+              attribute.nameAR == null) &&
+          attribute.nameEN != null)
+        return attribute.nameEN;
+      else if (attribute.nameAR != null) return attribute.nameAR;
     }
     return null;
   }
@@ -51,10 +53,17 @@ class TkAttributesController extends ChangeNotifier {
   List<String> getAttributeNames(
       TkLangController langController, List<TkAttribute> data) {
     List<String> names = [];
-    for (TkAttribute attribute in data)
-      names.add(langController.lang.languageCode == 'en'
-          ? attribute.nameEN
-          : attribute.nameAR);
+    for (TkAttribute attribute in data) {
+      if (names.firstWhere(
+              (element) =>
+                  (element == attribute.nameAR || element == attribute.nameEN),
+              orElse: () => null) ==
+          null) if ((langController.lang.languageCode == 'en' ||
+              attribute.nameAR == null) &&
+          attribute.nameEN != null)
+        names.add(attribute.nameEN);
+      else if (attribute.nameAR != null) names.add(attribute.nameAR);
+    }
     return names;
   }
 

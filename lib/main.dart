@@ -10,6 +10,7 @@ import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/firebase_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/messenger.dart';
+import 'package:thaki/providers/onboarding_controller.dart';
 import 'package:thaki/providers/payer.dart';
 import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/providers/subscriber.dart';
@@ -42,6 +43,9 @@ class ThankiMain extends StatelessWidget {
         ),
         ChangeNotifierProvider<TkAttributesController>(
           create: (context) => new TkAttributesController(),
+        ),
+        ChangeNotifierProvider<TkOnBoardingController>(
+          create: (context) => new TkOnBoardingController(),
         ),
         ChangeNotifierProvider<TkTabSelector>(
           create: (context) => new TkTabSelector(),

@@ -6,6 +6,16 @@ class TkLicenseCard extends StatelessWidget {
   TkLicenseCard({this.car});
   final TkCar car;
 
+  String _getARLetterPlate() {
+    String result = RegExp(r"([\u0621-\u064A]\s){2,3}", unicode: true)
+            .stringMatch(car.plateAR) ??
+        RegExp(r"[\u0621-\u064A]{2,3}", unicode: true)
+            .stringMatch(car.plateAR) ??
+        RegExp(r"[A-Z]{2,3}", unicode: true).stringMatch(car.plateAR) ??
+        '-';
+    return result.split('').join(' ');
+  }
+
   Widget _getWidget() {
     if (car.state == 1) {
       return Row(
@@ -30,16 +40,8 @@ class TkLicenseCard extends StatelessWidget {
                 width: 40,
                 decoration: BoxDecoration(),
                 child: Center(
-                  child: Text(
-                    RegExp(r"([\u0621-\u064A]\s){2,3}", unicode: true)
-                            .stringMatch(car.plateAR) ??
-                        RegExp(r"[\u0621-\u064A]{2,3}", unicode: true)
-                            .stringMatch(car.plateAR) ??
-                        RegExp(r"[A-Z]{2,3}", unicode: true)
-                            .stringMatch(car.plateAR) ??
-                        '-',
-                    style: kBoldStyle[kSmallSize].copyWith(fontSize: 10),
-                  ),
+                  child: Text(_getARLetterPlate(),
+                      style: kBoldStyle[kSmallSize].copyWith(fontSize: 10)),
                 ),
               ),
             ],

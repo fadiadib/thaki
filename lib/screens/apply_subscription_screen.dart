@@ -27,13 +27,15 @@ class _TkApplyForSubscriptionScreenState extends TkMultiStepPageState {
     return [
       TkPermitDisclaimerPane(onDone: () => loadNextPane()),
       TkPermitFormPane(onDone: () => loadNextPane()),
-      TkPermitDocumentsPane(onDone: () {
-        TkAccount account = Provider.of<TkAccount>(context, listen: false);
-        Provider.of<TkSubscriber>(context, listen: false)
-            .applyForSubscription(account.user);
+      TkPermitDocumentsPane(
+        onDone: () {
+          TkAccount account = Provider.of<TkAccount>(context, listen: false);
+          Provider.of<TkSubscriber>(context, listen: false)
+              .applyForSubscription(account.user);
 
-        loadNextPane();
-      }),
+          loadNextPane();
+        },
+      ),
       TkPermitSuccessPane(onDone: () {
         loadNextPane();
       }),

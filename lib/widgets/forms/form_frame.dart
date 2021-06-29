@@ -96,7 +96,8 @@ class _TkFormFrameState extends State<TkFormFrame>
   }
 
   /// Loops the visible info fields and creates a form with all the widgets
-  List<Widget> _createInfoFieldsWidgets(TkInfoFieldsList fields) {
+  List<Widget> _createInfoFieldsWidgets(
+      TkInfoFieldsList fields, BuildContext context) {
     List<Widget> widgets = [];
 
     // Loop on the fields and create corresponding widgets
@@ -106,7 +107,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           Padding(
               padding: EdgeInsets.symmetric(
                   vertical: field.type == TkInfoFieldType.Boolean ? 0.0 : 5.0),
-              child: _createFormFieldWidget(field)),
+              child: _createFormFieldWidget(field, context)),
         );
     }
 
@@ -114,7 +115,7 @@ class _TkFormFrameState extends State<TkFormFrame>
   }
 
   /// Checks the info field type and creates the corresponding widget
-  Widget _createFormFieldWidget(TkInfoField field) {
+  Widget _createFormFieldWidget(TkInfoField field, BuildContext context) {
     Widget widget;
     switch (field.type) {
       case TkInfoFieldType.NationalId:
@@ -274,6 +275,7 @@ class _TkFormFrameState extends State<TkFormFrame>
       case TkInfoFieldType.OTP:
         // OTP
         widget = TkFormBuilder.createOTP(
+          context: context,
           enabled: !this.widget.isLoading,
           label: _getLabel(field),
           initialValue: field.value,
@@ -342,7 +344,7 @@ class _TkFormFrameState extends State<TkFormFrame>
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: _createInfoFieldsWidgets(widget.fields),
+                  children: _createInfoFieldsWidgets(widget.fields, context),
                 ),
               ),
 

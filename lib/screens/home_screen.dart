@@ -25,6 +25,7 @@ class TkHomeScreen extends StatefulWidget {
 
 class _TkHomeScreenState extends State<TkHomeScreen> {
   List<TkPane> _panes = [];
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   List<Image> _getIcons() {
     List<Image> icons = [];
@@ -66,7 +67,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
       TkParkingPane(),
       TkDashboardPane(),
       TkTicketsPane(),
-      TkProfilePane(),
+      TkProfilePane(scaffoldKey: () => scaffoldKey),
     ];
   }
 
@@ -82,6 +83,8 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
               return false;
             },
             child: Scaffold(
+              key: scaffoldKey,
+
               /// Appbar
               appBar: TkAppBar(
                 context: context,

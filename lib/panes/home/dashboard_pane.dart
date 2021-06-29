@@ -135,28 +135,44 @@ class TkDashboardPane extends TkPane {
 
         Padding(
           padding: const EdgeInsets.only(top: 20.0, left: 30.0, right: 30.0),
-          child: TkCard(
-            borderRadius: 20,
-            bgColor: kPrimaryColor.withOpacity(0.15),
-            textColor: kDarkGreyColor,
-            titles: {
-              TkCardSide.topLeft: S.of(context).kCurrentBalance,
-              TkCardSide.topRight: S.of(context).kValidTill,
-            },
-            data: {
-              TkCardSide.topLeft: purchaser.balance?.points.toString() +
-                  ' ' +
-                  S.of(context).kHours,
-              TkCardSide.topRight: TkDateTimeHelper.formatDate(
-                  purchaser.balance?.validity.toString()),
-            },
-            onTap: () => Navigator.of(context).pushNamed(TkBalanceScreen.id),
+          child: Column(
+            children: [
+              TkCard(
+                borderRadius: 20,
+                bgColor: kPrimaryColor.withOpacity(0.15),
+                textColor: kDarkGreyColor,
+                titles: {
+                  TkCardSide.topLeft: S.of(context).kCurrentBalance,
+                  TkCardSide.topRight: purchaser.balance.points != 0
+                      ? S.of(context).kValidTill
+                      : null,
+                },
+                data: {
+                  TkCardSide.topLeft: purchaser.balance?.points.toString() +
+                      ' ' +
+                      S.of(context).kHours,
+                  TkCardSide.topRight: purchaser.balance.points != 0
+                      ? TkDateTimeHelper.formatDate(
+                          purchaser.balance?.validity.toString())
+                      : null,
+                },
+                onTap: () =>
+                    Navigator.of(context).pushNamed(TkBalanceScreen.id),
+              ),
+              GestureDetector(
+                child: Text(S.of(context).kClickForDetails,
+                    style: kHintStyle.copyWith(fontSize: 12.0)),
+                onTap: () =>
+                    Navigator.of(context).pushNamed(TkBalanceScreen.id),
+              )
+            ],
           ),
         ),
 
         // Recharge button
         Padding(
-          padding: const EdgeInsets.only(top: 20, left: 50, right: 50),
+          padding:
+              const EdgeInsets.only(top: 20, left: 50, right: 50, bottom: 20),
           child: TkButton(
             title: S.of(context).kRechargeBalance,
             onPressed: () =>
@@ -168,7 +184,7 @@ class TkDashboardPane extends TkPane {
         if (kShowSubscriptionBtInDashboard)
           Padding(
             padding:
-                const EdgeInsets.only(top: 20, left: 50, right: 50, bottom: 20),
+                const EdgeInsets.only(top: 0, left: 50, right: 50, bottom: 20),
             child: TkButton(
               title: _getSubscriptionBtnTitle(user, context),
               btnBorderColor: kSecondaryColor,

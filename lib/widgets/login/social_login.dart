@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
@@ -16,6 +19,7 @@ class TkSocialLogin extends StatelessWidget {
   TkSocialLogin({this.callback});
   final Function callback;
 
+  /// Google login
   Future<void> signInWithGoogle(BuildContext context) async {
     // Trigger the authentication flow
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
@@ -36,45 +40,70 @@ class TkSocialLogin extends StatelessWidget {
     }
   }
 
+  /// Facebook login
   Future<void> signInWithFacebook(BuildContext context) async {
-    final AccessToken result = await FacebookAuth.instance.login();
-  }
-
-  Future<void> signInWithTwitter(BuildContext context) async {
-    // Create a TwitterLogin instance
-    final TwitterLogin twitterLogin = new TwitterLogin(
-      apiKey: kTwitterAPIKey,
-      apiSecretKey: kTwitterAPISecretKey,
-      redirectURI: kTwitterRedirectURI3,
-    );
-
-    final authResult = await twitterLogin.login();
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.socialError = null;
 
-    switch (authResult.status) {
-      case TwitterLoginStatus.loggedIn:
-        // success
-        print(authResult.user.name);
-        print(authResult.user.email);
-        account.user = TkUser.fromJson({
-          kUserTag: {
-            kUserNameTag: authResult.user.name,
-            kUserEmailTag: authResult.user.email,
-            kUserSocialTokenTag: authResult.user.hashCode.toString(),
-            kUserLoginTypeTag: 'Twitter',
-          }
-        });
-        callback();
-        return;
-      case TwitterLoginStatus.cancelledByUser:
-        // Cancelled
-        account.socialError = S.of(context).kLoginCancelledByUser;
-        return;
-      case TwitterLoginStatus.error:
-        // error
-        account.socialError = authResult.errorMessage;
-        return;
+    try {
+      final AccessToken result = await FacebookAuth.instance.login();
+      final token = result.token;
+      final graphResponse = await http.get(
+          'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=$token');
+      final profile = json.decode(graphResponse.body);
+
+      account.user = TkUser.fromJson({
+        kUserTag: {
+          kUserNameTag: profile['name'],
+          kUserEmailTag: profile['email'],
+          kUserSocialTokenTag: result.userId,
+          kUserLoginTypeTag: 'Facebook',
+        }
+      });
+      callback();
+    } catch (error) {
+      account.socialError = error.message;
+    }
+  }
+
+  /// Twitter login
+  Future<void> signInWithTwitter(BuildContext context) async {
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    account.socialError = null;
+
+    try {
+      // Create a TwitterLogin instance
+      final TwitterLogin twitterLogin = new TwitterLogin(
+        apiKey: kTwitterAPIKey,
+        apiSecretKey: kTwitterAPISecretKey,
+        redirectURI: kTwitterRedirectURI,
+      );
+
+      final authResult = await twitterLogin.login();
+      switch (authResult.status) {
+        case TwitterLoginStatus.loggedIn:
+          // success
+          account.user = TkUser.fromJson({
+            kUserTag: {
+              kUserNameTag: authResult.user.name,
+              kUserEmailTag: authResult.user.email,
+              kUserSocialTokenTag: authResult.authToken,
+              kUserLoginTypeTag: 'Twitter',
+            }
+          });
+          callback();
+          return;
+        case TwitterLoginStatus.cancelledByUser:
+          // Cancelled
+          account.socialError = S.of(context).kLoginCancelledByUser;
+          return;
+        case TwitterLoginStatus.error:
+          // error
+          account.socialError = authResult.errorMessage;
+          return;
+      }
+    } catch (error) {
+      account.socialError = error.message;
     }
   }
 

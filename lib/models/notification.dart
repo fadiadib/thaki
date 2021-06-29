@@ -7,10 +7,10 @@ class TkNotification {
     // Notification data can be inside a 'data'
     // ag or 'notification' tag
     Map<dynamic, dynamic> dataJson = json;
-    if (json[kNotificationTag] != null) {
-      dataJson = json[kNotificationTag];
-    } else if (json[kNotificationDataTag] != null) {
+    if (json[kNotificationDataTag] != null) {
       dataJson = json[kNotificationDataTag];
+    } else if (json[kNotificationTag] != null) {
+      dataJson = json[kNotificationTag];
     }
 
     // Get the id

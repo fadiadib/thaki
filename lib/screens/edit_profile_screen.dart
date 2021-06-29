@@ -6,7 +6,6 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
-import 'package:thaki/utilities/index.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -30,7 +29,9 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen> {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.user.updateModelFromInfoFields(results);
 
-    if (await account.edit()) Navigator.pop(context);
+    if (await account.edit()) {
+      Navigator.pop(context, true);
+    }
   }
 
   bool _validatePasswordMatch(TkInfoField confirmField) {
@@ -58,7 +59,9 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen> {
       fields: _fields,
       action: _updateModelAndPushNext,
       isLoading: account.isLoading,
-      footer: Center(child: Text(S.of(context).kPasswordWontChange)),
+      footer: account.user.isSocial
+          ? Container()
+          : Center(child: Text(S.of(context).kPasswordWontChange)),
       child: TkError(message: account.editError),
     );
   }

@@ -2,6 +2,7 @@ import 'package:meta/meta.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/lang_controller.dart';
 
 import 'package:thaki/utilities/network_helper.dart';
 
@@ -31,6 +32,15 @@ class TkAPIHelper {
       {@required String platform, @required String version}) async {
     return await _network.getData(
       url: kCheckAPI + '?$kVersionTag=$version&$kPlatformTag=$platform',
+    );
+  }
+
+  /// O boarding messages and images
+  Future<Map> loadOnboarding(
+      {@required TkLangController langController}) async {
+    return await _network.getData(
+      url: kOnBoardingAPI,
+      headers: langController.toHeader(),
     );
   }
 
@@ -121,12 +131,20 @@ class TkAPIHelper {
     );
   }
 
-  /// User login API
+  /// User social login API
   /// Returns user_token and success or failure
   Future<Map> social({@required TkUser user}) async {
     return await _network.postData(
       url: kSocialAPI,
       params: await user.toSocialLoginJson(),
+      headers: user.toHeader(),
+    );
+  }
+
+  /// User delete social login API
+  Future<Map> deleteSocial({@required TkUser user}) async {
+    return await _network.deleteData(
+      url: kSocialAPI,
       headers: user.toHeader(),
     );
   }

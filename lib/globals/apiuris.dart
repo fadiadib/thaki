@@ -45,6 +45,8 @@ const String kLoadViolationsAPI = '$kRootURL/violations'; // 200, 404: empty
 const String kPayViolationsAPI = '$kRootURL/violations/pay'; // 201
 // Transactions
 const String kTransactionAPI = '$kRootURL/transaction';
+// On boarding
+const String kOnBoardingAPI = '$kRootURL/onboarding';
 
 /// Network Codes
 // Codes
@@ -227,3 +229,7 @@ const String kTransactionDateTimeTag = 'datetime';
 const String kTransactionDurationTag = 'duration';
 const String kPaymentLinkTag = 'payment_link';
 const String kRedirectLinkTag = 'redirect_link';
+// On boarding screens
+const String kOnBoardingTag = 'onboarding';
+const String kScreenMessageTag = 'message';
+const String kScreenImageTag = 'image';

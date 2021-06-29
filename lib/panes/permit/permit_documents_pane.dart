@@ -29,7 +29,7 @@ class TkPermitDocumentsPane extends TkPane {
             image: doc.image,
             callback: (File imageFile) =>
                 subscriber.updateDocument(doc.tag, imageFile),
-            cancelCallback: () => doc.image = null,
+            cancelCallback: () => subscriber.updateDocument(doc.tag, null),
           ),
         ),
       );

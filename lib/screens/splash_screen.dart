@@ -6,6 +6,9 @@ import 'package:connectivity/connectivity.dart';
 import 'package:package_info/package_info.dart';
 
 import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/providers/onboarding_controller.dart';
+import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/globals/index.dart';
@@ -93,8 +96,19 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
           await Navigator.pushReplacementNamed(context, TkHomeScreen.id);
           _loadingNextScreen = false;
         } else {
-          // No login session, display on-boarding
-          await Navigator.pushReplacementNamed(context, TkOnBoardingScreen.id);
+          TkOnBoardingController onBoardingController =
+              Provider.of<TkOnBoardingController>(context, listen: false);
+          await onBoardingController
+              .load(Provider.of<TkLangController>(context, listen: false));
+
+          if (onBoardingController.onBoardingList.isEmpty) {
+            // No login session, display on-boarding
+            await Navigator.pushReplacementNamed(context, TkWelcomeScreen.id);
+          } else {
+            // No login session, display on-boarding
+            await Navigator.pushReplacementNamed(
+                context, TkOnBoardingScreen.id);
+          }
           _loadingNextScreen = false;
         }
       }
