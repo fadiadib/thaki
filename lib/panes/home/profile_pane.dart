@@ -57,10 +57,8 @@ class TkProfilePane extends TkPane {
                       child: Text(
                         S.of(context).kUserProfileUpdated,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontFamily: kRTLFontFamily,
-                          fontSize: 14,
-                        ),
+                        style:
+                            TextStyle(fontFamily: kRTLFontFamily, fontSize: 14),
                       ),
                     ),
                     backgroundColor: kGreenAccentColor,

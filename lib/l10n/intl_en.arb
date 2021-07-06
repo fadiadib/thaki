@@ -137,7 +137,7 @@
   "kFinePaymentSuccess": "Fine paid successfully, please allow 30 minutes for updates on CivicSmart system",
   "kSelectViolationToProceed": "Please select at least one violation to proceed to payment",
   "kSelectPaymentToProceed": "Please select a payment method to proceed",
-  "kSelectCardToProceed": "Please enter your car license plate to proceed",
+  "kSelectCardToProceed": "Please enter a valid car license plate to proceed",
   "kPickParkingTime": "Pick parking time",
   "kBookParkingNow": "Book parking now",
   "kSelectDateTime": "Select date and time",
@@ -203,5 +203,7 @@
   "kCharacters": "Characters",
   "kConfirmPasteDetails": "Are you sure you want to paste ",
   "kConfirmPaste": "Confirm Paste",
-  "kDeleteAccount": "Delete Account"
+  "kDeleteAccount": "Delete Account",
+  "kTransactionSuccess": "Transaction was successful",
+  "kTransactionFailure": "Transaction was not successful"
 }

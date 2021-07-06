@@ -79,6 +79,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
         builder: (context, selector, account, messenger, _) {
           return WillPopScope(
             onWillPop: () async {
+              if (selector.activeTab == 2) return true;
               selector.activeTab = 2;
               return false;
             },

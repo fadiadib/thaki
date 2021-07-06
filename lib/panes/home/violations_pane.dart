@@ -43,7 +43,7 @@ class TkViolationsPane extends TkPane {
                   onTap: (TkCar car) {
                     // Select the car in the payer provider
                     Provider.of<TkPayer>(context, listen: false).selectedCar =
-                        car.plateEN;
+                        car;
 
                     // Push the pay violations screen
                     Navigator.of(context).pushNamed(TkPayViolationScreen.id);
@@ -96,6 +96,10 @@ class TkViolationsPane extends TkPane {
                     child: TkButton(
                       title: S.of(context).kCheckForLPR,
                       onPressed: () {
+                        // Select the car in the payer provider
+                        Provider.of<TkPayer>(context, listen: false)
+                            .selectedCar = null;
+
                         // Push the pay violations screen
                         Navigator.of(context)
                             .pushNamed(TkPayViolationScreen.id);

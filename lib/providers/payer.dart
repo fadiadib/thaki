@@ -13,9 +13,9 @@ class TkPayer extends ChangeNotifier {
   // Model
   List<TkViolation> _violations = [];
   List<TkViolation> get violations => _violations;
-  String _selectedCar;
-  String get selectedCar => _selectedCar;
-  set selectedCar(String car) {
+  TkCar _selectedCar;
+  TkCar get selectedCar => _selectedCar;
+  set selectedCar(TkCar car) {
     _selectedCar = car;
     _validationCarError = null;
 
@@ -98,7 +98,11 @@ class TkPayer extends ChangeNotifier {
   String _validationCarError;
   String get validationCarError => _validationCarError;
   bool validateCar(BuildContext context) {
-    if (_selectedCar == null || _selectedCar.isEmpty) {
+    if (_selectedCar == null ||
+        _selectedCar.plateEN == null ||
+        _selectedCar.plateEN.isEmpty ||
+        !TkValidationHelper.validateLicense(
+            _selectedCar.plateEN, _selectedCar.state, 'en')) {
       _validationCarError = S.of(context).kSelectCardToProceed;
       notifyListeners();
       return false;
@@ -119,7 +123,7 @@ class TkPayer extends ChangeNotifier {
     _selectedViolations.clear();
     _cvv = null;
 
-    Map result = await _apis.loadViolations(selectedCar);
+    Map result = await _apis.loadViolations(selectedCar.plateEN);
     if (result[kStatusTag] == kSuccessCode) {
       for (Map<String, dynamic> json in result[kDataTag][kViolationsTag]) {
         _violations.add(TkViolation.fromJson(json));

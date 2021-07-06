@@ -187,17 +187,20 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
   Widget build(BuildContext context) {
     return Consumer<TkOnBoardingController>(
       builder: (context, controller, _) {
-        return Scaffold(
-          body: TkScaffoldBody(
-            image: !controller.isLoading
-                ? controller.onBoardingList[_current].image != null
-                    ? NetworkImage(controller.onBoardingList[_current].image)
-                    : AssetImage(kOBBg)
-                : AssetImage(kOBBg),
-            colorOverlay: kPrimaryColor,
-            overlayOpacity: 0.5,
-            enableSafeArea: false,
-            child: _drawStack(controller),
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: Scaffold(
+            body: TkScaffoldBody(
+              image: !controller.isLoading
+                  ? controller.onBoardingList[_current].image != null
+                      ? NetworkImage(controller.onBoardingList[_current].image)
+                      : AssetImage(kOBBg)
+                  : AssetImage(kOBBg),
+              colorOverlay: kPrimaryColor,
+              overlayOpacity: 0.5,
+              enableSafeArea: false,
+              child: _drawStack(controller),
+            ),
           ),
         );
       },

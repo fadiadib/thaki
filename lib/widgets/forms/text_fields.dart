@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/info_fields.dart';
@@ -469,3 +470,85 @@ class TkDropDownField extends TkTextField {
     );
   }
 }
+
+// /// Dropdown selection field
+// class TkSearchableDropDownField extends TkTextField {
+//   TkSearchableDropDownField({
+//     isLoading = false,
+//     enabled = true,
+//     onChanged,
+//     keyboardType,
+//     obscureText = false,
+//     hintText,
+//     halfSize = false,
+//     validator,
+//     validate = false,
+//     errorMessage,
+//     borderRadius = kDefaultTextEditRadius,
+//     width,
+//     height = kDefaultTextEditHeight,
+//     internalHPadding = kDefaultTextEditInternalPadding,
+//     internalVPadding = kDefaultTextEditInternalPadding,
+//     raised = false,
+//     align = TextAlign.start,
+//     focusNode,
+//     autoFocus = false,
+//     style,
+//     showCursor = true,
+//     this.value,
+//     @required this.values,
+//     @required this.context,
+//   }) : super(
+//           isLoading: isLoading,
+//           enabled: enabled,
+//           onChanged: onChanged,
+//           keyboardType: keyboardType,
+//           obscureText: obscureText,
+//           hintText: hintText,
+//           halfSize: halfSize,
+//           validator: validator,
+//           validate: validate,
+//           errorMessage: errorMessage,
+//           borderRadius: borderRadius,
+//           width: width,
+//           height: height,
+//           internalHPadding: internalHPadding,
+//           internalVPadding: internalVPadding,
+//           raised: raised,
+//           align: align,
+//           focusNode: focusNode,
+//           autoFocus: autoFocus,
+//           style: style,
+//           showCursor: showCursor,
+//         );
+//
+//   final String value;
+//   final List<String> values;
+//   final BuildContext context;
+//
+//   @override
+//   Widget getField() {
+//     return Container(
+//       // Create the surrounding box with
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(borderRadius),
+//         border: Border.all(color: kAccentGreyColor, width: 1),
+//       ),
+//       height: kDefaultTextEditHeight,
+//       padding: EdgeInsetsDirectional.fromSTEB(10.0, 0, 10.0, 0),
+//
+//       child: Theme(
+//         data: Theme.of(context).copyWith(canvasColor: kWhiteColor),
+//         child: DropdownSearch<String>(
+//             mode: Mode.MENU,
+//             showSelectedItem: true,
+//             items: ["Brazil", "Italia (Disabled)", "Tunisia", 'Canada'],
+//             label: "Menu mode",
+//             hint: "country in menu mode",
+//             popupItemDisabled: (String s) => s.startsWith('I'),
+//             onChanged: print,
+//             selectedItem: "Brazil"),
+//       ),
+//     );
+//   }
+// }

@@ -5,6 +5,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/panes/parking/index.dart';
 import 'package:thaki/panes/transaction/transaction_pane.dart';
+import 'package:thaki/panes/transaction/transaction_success_pane.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/transactor.dart';
@@ -82,7 +83,7 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
           }
         },
       ));
-      panes.add(TkParkingSuccessPane(onDone: () => loadNextPane()));
+      panes.add(TkTransactionSuccessPane(onDone: () => loadNextPane()));
     }
 
     return panes;

@@ -13,6 +13,7 @@ class TkTransactor extends ChangeNotifier {
   String transactionPage;
   String callbackPage;
   String transactionId;
+  bool transactionResult;
 
   // Timer
   Timer _timer;
@@ -99,12 +100,14 @@ class TkTransactor extends ChangeNotifier {
     if (_timer != null) return;
 
     // Start a new timer
+    transactionResult = null;
     _timer = Timer.periodic(Duration(seconds: 10), (t) async {
       // Check payment status
       int result = await checkTransaction(user: user);
       if (result == 0 || result == 2) {
         // Success or failure
         stopTransactionChecker();
+        transactionResult = result == 0;
         callback(result == 0);
       }
     });

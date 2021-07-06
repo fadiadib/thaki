@@ -136,25 +136,28 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
   Widget build(BuildContext context) {
     return Consumer<TkAccount>(
       builder: (context, account, _) {
-        return Scaffold(
-          appBar: TkAppBar(
-            context: context,
-            enableNotifications: false,
-            enableClose: false,
-            removeLeading: false,
-          ),
-          body: TkScaffoldBody(
-            image: AssetImage(kFooter),
-            child: ListView(
-              children: [
-                Column(
-                  children: [
-                    TkLogoBox(),
-                    _createForm(account),
-                    _createLoginOptions(account),
-                  ],
-                ),
-              ],
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: Scaffold(
+            appBar: TkAppBar(
+              context: context,
+              enableNotifications: false,
+              enableClose: false,
+              removeLeading: false,
+            ),
+            body: TkScaffoldBody(
+              image: AssetImage(kFooter),
+              child: ListView(
+                children: [
+                  Column(
+                    children: [
+                      TkLogoBox(),
+                      _createForm(account),
+                      _createLoginOptions(account),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );

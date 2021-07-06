@@ -78,9 +78,12 @@ class _TkTicketTileState extends State<TkTicketTile> {
                             ? widget.ticket.car.plateEN
                             : widget.ticket.car.plateAR,
                         style: kBoldStyle[kNormalSize]),
-                    Text(' - ' +
-                        attributesController.makeName(
-                            widget.ticket.car.make, langController)),
+                    if (attributesController.makeName(
+                            widget.ticket.car.make, langController) !=
+                        null)
+                      Text(' - ' +
+                          attributesController.makeName(
+                              widget.ticket.car.make, langController)),
                   ],
                 ),
                 Text(

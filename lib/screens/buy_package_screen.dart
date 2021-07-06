@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/panes/transaction/transaction_pane.dart';
+import 'package:thaki/panes/transaction/transaction_success_pane.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/transactor.dart';
@@ -91,6 +92,7 @@ class _TkBuyPackageScreenState extends TkMultiStepPageState {
           },
         ),
       );
+      panes.add(TkTransactionSuccessPane(onDone: () => loadNextPane()));
     }
 
     return panes;

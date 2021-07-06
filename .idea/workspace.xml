@@ -13,30 +13,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="905d3c98-3b62-48e2-b2c9-ce7991e6688f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lib/panes/transaction/transaction_success_pane.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/generated/intl/messages_ar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/intl/messages_ar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/generated/intl/messages_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/intl/messages_en.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/generated/l10n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/l10n.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/globals/apiuris.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/apiuris.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/globals/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/settings.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/l10n/intl_ar.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/intl_ar.arb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/l10n/intl_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/intl_en.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/parking/parking_duration_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/parking/parking_duration_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/transaction/transaction_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/transaction/transaction_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/panes/home/profile_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/profile_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/panes/home/violations_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/violations_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/panes/violation/violation_car_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/violation/violation_car_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/payer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/payer.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/providers/transactor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/transactor.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/add_car_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/add_car_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/book_parking_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/book_parking_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/buy_package_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/buy_package_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/buy_subscription_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/buy_subscription_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/edit_profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/edit_profile_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/forgot_password_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/forgot_password_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/onboarding_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/onboarding_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/otp_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/otp_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/register_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/register_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities/api_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/api_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities/formfield_validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/formfield_validator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/splash_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/welcome_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/welcome_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/utilities/validation_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/validation_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/login/social_login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/login/social_login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/base/multi_step_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/base/multi_step_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/cards/license_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/cards/license_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/text_fields.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/text_fields.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/ticket_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/ticket_tile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/thaki.iml" beforeDir="false" afterPath="$PROJECT_DIR$/thaki.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -299,7 +306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624960195348</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="+ Build 19.">
+      <created>1625569846430</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1625569846430</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,7 +347,8 @@
     <MESSAGE value="+ Updated version." />
     <MESSAGE value="+ Social login.&#10;+ Old password." />
     <MESSAGE value="+ Build 18." />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Build 18." />
+    <MESSAGE value="+ Build 19." />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Build 19." />
   </component>
   <component name="WindowStateProjectService">
     <state x="693" y="371" key="#Notifications" timestamp="1624407044834">
@@ -363,73 +378,73 @@
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="362" y="23" key="#thaki/0.23.1920.1126@0.23.1920.1126" timestamp="1624406086648" />
-    <state x="425" y="175" width="1419" height="882" key="AVDManager" timestamp="1625491997236">
+    <state x="425" y="175" width="1419" height="882" key="AVDManager" timestamp="1625574186474">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="300" y="139" width="1419" height="882" key="AVDManager/0.23.1920.1126@0.23.1920.1126" timestamp="1624446269849" />
     <state x="425" y="175" width="1419" height="882" key="AVDManager/0.23.1920.1127@0.23.1920.1127" timestamp="1624442125008" />
-    <state x="425" y="175" width="1419" height="882" key="AVDManager/0.23.1920.1128@0.23.1920.1128" timestamp="1625491997236" />
+    <state x="425" y="175" width="1419" height="882" key="AVDManager/0.23.1920.1128@0.23.1920.1128" timestamp="1625574186474" />
     <state x="605" y="334" key="AndroidProcessChooserDialog" timestamp="1624399129206">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="605" y="334" key="AndroidProcessChooserDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1624399129206" />
     <state x="606" y="334" key="AndroidProcessChooserDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1617258842680" />
     <state x="605" y="335" key="AndroidProcessChooserDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1624393649210" />
-    <state x="271" y="23" key="CommitChangelistDialog2" timestamp="1624960194874">
+    <state x="271" y="23" key="CommitChangelistDialog2" timestamp="1625569846127">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="271" y="57" key="CommitChangelistDialog2/0.23.1920.1126@0.23.1920.1126" timestamp="1624397103721" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1127@0.23.1920.1127" timestamp="1619913023122" />
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1128@0.23.1920.1128" timestamp="1624960194874" />
+    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1128@0.23.1920.1128" timestamp="1625569846127" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1129@0.23.1920.1129" timestamp="1623077131600" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1130@0.23.1920.1130" timestamp="1617425983875" />
-    <state x="158" y="123" width="1085" height="925" key="DiffContextDialog" timestamp="1625569610499">
+    <state x="158" y="123" width="1570" height="925" key="DiffContextDialog" timestamp="1625600535868">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="158" y="123" width="1085" height="924" key="DiffContextDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1624401850408" />
     <state x="158" y="123" width="1085" height="925" key="DiffContextDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1623594919388" />
-    <state x="158" y="123" width="1085" height="925" key="DiffContextDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610499" />
+    <state x="158" y="123" width="1570" height="925" key="DiffContextDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1625600535868" />
     <state x="757" y="171" width="1085" height="927" key="DiffContextDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1624301774845" />
     <state x="757" y="171" width="1085" height="927" key="DiffContextDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1623325644616" />
     <state x="158" y="123" width="1085" height="930" key="DiffContextDialog/0.23.1920.1132@0.23.1920.1132" timestamp="1622633524206" />
-    <state width="1109" height="185" key="GridCell.Tab.0.bottom" timestamp="1625569610290">
+    <state width="1527" height="347" key="GridCell.Tab.0.bottom" timestamp="1625601239943">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.bottom/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221225" />
     <state width="1350" height="317" key="GridCell.Tab.0.bottom/0.23.1920.1127@0.23.1920.1127" timestamp="1625073030123" />
-    <state width="1109" height="185" key="GridCell.Tab.0.bottom/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610290" />
-    <state width="1335" height="300" key="GridCell.Tab.0.bottom/0.23.1920.1129@0.23.1920.1129" timestamp="1624396495449" />
-    <state width="1335" height="300" key="GridCell.Tab.0.bottom/0.23.1920.1130@0.23.1920.1130" timestamp="1624396460632" />
+    <state width="1527" height="347" key="GridCell.Tab.0.bottom/0.23.1920.1128@0.23.1920.1128" timestamp="1625601239943" />
+    <state width="1074" height="407" key="GridCell.Tab.0.bottom/0.23.1920.1129@0.23.1920.1129" timestamp="1625577123281" />
+    <state width="1108" height="218" key="GridCell.Tab.0.bottom/0.23.1920.1130@0.23.1920.1130" timestamp="1625571451092" />
     <state width="1457" height="307" key="GridCell.Tab.0.bottom/0.23.1920.1131@0.23.1920.1131" timestamp="1622984135470" />
     <state width="1361" height="307" key="GridCell.Tab.0.bottom/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state width="1109" height="185" key="GridCell.Tab.0.center" timestamp="1625569610290">
+    <state width="1527" height="347" key="GridCell.Tab.0.center" timestamp="1625601239942">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.center/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221224" />
     <state width="1350" height="317" key="GridCell.Tab.0.center/0.23.1920.1127@0.23.1920.1127" timestamp="1625073030121" />
-    <state width="1109" height="185" key="GridCell.Tab.0.center/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610290" />
-    <state width="1335" height="300" key="GridCell.Tab.0.center/0.23.1920.1129@0.23.1920.1129" timestamp="1624396495449" />
-    <state width="1335" height="300" key="GridCell.Tab.0.center/0.23.1920.1130@0.23.1920.1130" timestamp="1624396460632" />
+    <state width="1527" height="347" key="GridCell.Tab.0.center/0.23.1920.1128@0.23.1920.1128" timestamp="1625601239942" />
+    <state width="1074" height="407" key="GridCell.Tab.0.center/0.23.1920.1129@0.23.1920.1129" timestamp="1625577123280" />
+    <state width="1108" height="218" key="GridCell.Tab.0.center/0.23.1920.1130@0.23.1920.1130" timestamp="1625571451091" />
     <state width="1457" height="307" key="GridCell.Tab.0.center/0.23.1920.1131@0.23.1920.1131" timestamp="1622984135469" />
     <state width="1361" height="307" key="GridCell.Tab.0.center/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state width="1109" height="185" key="GridCell.Tab.0.left" timestamp="1625569610289">
+    <state width="1527" height="347" key="GridCell.Tab.0.left" timestamp="1625601239942">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.left/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221205" />
     <state width="1350" height="317" key="GridCell.Tab.0.left/0.23.1920.1127@0.23.1920.1127" timestamp="1625073030120" />
-    <state width="1109" height="185" key="GridCell.Tab.0.left/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610289" />
-    <state width="1335" height="300" key="GridCell.Tab.0.left/0.23.1920.1129@0.23.1920.1129" timestamp="1624396495449" />
-    <state width="1335" height="300" key="GridCell.Tab.0.left/0.23.1920.1130@0.23.1920.1130" timestamp="1624396460631" />
+    <state width="1527" height="347" key="GridCell.Tab.0.left/0.23.1920.1128@0.23.1920.1128" timestamp="1625601239942" />
+    <state width="1074" height="407" key="GridCell.Tab.0.left/0.23.1920.1129@0.23.1920.1129" timestamp="1625577123279" />
+    <state width="1108" height="218" key="GridCell.Tab.0.left/0.23.1920.1130@0.23.1920.1130" timestamp="1625571451090" />
     <state width="1457" height="307" key="GridCell.Tab.0.left/0.23.1920.1131@0.23.1920.1131" timestamp="1622984135469" />
     <state width="1361" height="307" key="GridCell.Tab.0.left/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state width="1109" height="185" key="GridCell.Tab.0.right" timestamp="1625569610290">
+    <state width="1527" height="347" key="GridCell.Tab.0.right" timestamp="1625601239942">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.right/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221225" />
     <state width="1350" height="317" key="GridCell.Tab.0.right/0.23.1920.1127@0.23.1920.1127" timestamp="1625073030122" />
-    <state width="1109" height="185" key="GridCell.Tab.0.right/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610290" />
-    <state width="1335" height="300" key="GridCell.Tab.0.right/0.23.1920.1129@0.23.1920.1129" timestamp="1624396495449" />
-    <state width="1335" height="300" key="GridCell.Tab.0.right/0.23.1920.1130@0.23.1920.1130" timestamp="1624396460632" />
+    <state width="1527" height="347" key="GridCell.Tab.0.right/0.23.1920.1128@0.23.1920.1128" timestamp="1625601239942" />
+    <state width="1074" height="407" key="GridCell.Tab.0.right/0.23.1920.1129@0.23.1920.1129" timestamp="1625577123280" />
+    <state width="1108" height="218" key="GridCell.Tab.0.right/0.23.1920.1130@0.23.1920.1130" timestamp="1625571451091" />
     <state width="1457" height="307" key="GridCell.Tab.0.right/0.23.1920.1131@0.23.1920.1131" timestamp="1622984135470" />
     <state width="1361" height="307" key="GridCell.Tab.0.right/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
     <state x="111" y="78" key="SettingsEditor" timestamp="1625492881783">
@@ -438,20 +453,20 @@
     <state x="111" y="23" key="SettingsEditor/0.23.1920.1126@0.23.1920.1126" timestamp="1624441401745" />
     <state x="111" y="78" key="SettingsEditor/0.23.1920.1127@0.23.1920.1127" timestamp="1625492881783" />
     <state x="111" y="79" key="SettingsEditor/0.23.1920.1128@0.23.1920.1128" timestamp="1624398921735" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1624960197385">
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1625569848604">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1126@0.23.1920.1126" timestamp="1624399901581" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1127@0.23.1920.1127" timestamp="1619913025869" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1128@0.23.1920.1128" timestamp="1624960197385" />
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1128@0.23.1920.1128" timestamp="1625569848604" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1129@0.23.1920.1129" timestamp="1623075605183" />
     <state x="209" y="264" key="Vcs.Push.Dialog.v2/0.23.1920.1130@0.23.1920.1130" timestamp="1617425986334" />
-    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog" timestamp="1624960161482">
+    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog" timestamp="1625599924429">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1624401002405" />
     <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1620344748788" />
-    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1624960161482" />
+    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1625599924429" />
     <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1623075562418" />
     <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1622991744996" />
     <state x="165" y="123" width="1222" height="925" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1624397142780">
@@ -473,24 +488,24 @@
     </state>
     <state x="391" y="492" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1127@0.23.1920.1127" timestamp="1617134749892" />
     <state x="391" y="492" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1128@0.23.1920.1128" timestamp="1625569570848" />
-    <state x="492" y="23" width="986" height="1129" key="find.popup" timestamp="1623341846576">
+    <state x="492" y="23" width="986" height="1129" key="find.popup" timestamp="1625572796399">
       <screen x="0" y="23" width="1920" height="1129" />
     </state>
     <state x="492" y="294" width="986" height="752" key="find.popup/0.23.1920.1126@0.23.1920.1126" timestamp="1618604148613" />
     <state x="492" y="23" width="1015" height="1127" key="find.popup/0.23.1920.1127@0.23.1920.1127" timestamp="1618896998379" />
     <state x="492" y="294" width="986" height="752" key="find.popup/0.23.1920.1128@0.23.1920.1128" timestamp="1618095649430" />
-    <state x="492" y="23" width="986" height="1129" key="find.popup/0.23.1920.1129@0.23.1920.1129" timestamp="1623341846576" />
+    <state x="492" y="23" width="986" height="1129" key="find.popup/0.23.1920.1129@0.23.1920.1129" timestamp="1625572796399" />
     <state x="492" y="23" width="1015" height="1132" key="find.popup/0.23.1920.1132@0.23.1920.1132" timestamp="1622629648258" />
     <state x="201" y="265" key="run.anything.popup" timestamp="1618429715341">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="201" y="265" key="run.anything.popup/0.23.1920.1126@0.23.1920.1126" timestamp="1618429715341" />
-    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup" timestamp="1625065145850">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup" timestamp="1625585274257">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="323" y="117" width="1005" height="1032" key="search.everywhere.popup/0.23.1920.1126@0.23.1920.1126" timestamp="1618430577112" />
     <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1127@0.23.1920.1127" timestamp="1625065145850" />
-    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1128@0.23.1920.1128" timestamp="1619919671050" />
+    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1128@0.23.1920.1128" timestamp="1625585274257" />
     <state x="323" y="117" width="1005" height="1035" key="search.everywhere.popup/0.23.1920.1129@0.23.1920.1129" timestamp="1624301366087" />
     <state x="323" y="117" width="1005" height="1036" key="search.everywhere.popup/0.23.1920.1130@0.23.1920.1130" timestamp="1624395950362" />
     <state x="323" y="117" width="1005" height="1038" key="search.everywhere.popup/0.23.1920.1131@0.23.1920.1131" timestamp="1622735202563" />

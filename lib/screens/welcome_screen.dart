@@ -70,8 +70,8 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
                           btnColor: kWhiteColor,
                           titleColor: kLightPurpleColor,
                           btnWidth: 140.0,
-                          onPressed: () =>
-                              Navigator.pushNamed(context, TkRegisterScreen.id),
+                          onPressed: () => Navigator.pushReplacementNamed(
+                              context, TkRegisterScreen.id),
                         ),
                       ),
                     ),
@@ -84,8 +84,8 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
                           btnColor: kTransparentColor,
                           btnBorderColor: kWhiteColor,
                           btnWidth: 140.0,
-                          onPressed: () =>
-                              Navigator.pushNamed(context, TkLoginScreen.id),
+                          onPressed: () => Navigator.pushReplacementNamed(
+                              context, TkLoginScreen.id),
                         ),
                       ),
                     ),

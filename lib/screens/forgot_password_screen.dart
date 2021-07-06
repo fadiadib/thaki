@@ -83,19 +83,22 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: TkAppBar(
-        context: context,
-        enableNotifications: false,
-        enableClose: false,
-        removeLeading: false,
-      ),
-      body: TkScaffoldBody(
-        image: AssetImage(kFooter),
-        child: ListView(
-          children: [
-            Column(children: [TkLogoBox(), _createForm()]),
-          ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: TkAppBar(
+          context: context,
+          enableNotifications: false,
+          enableClose: false,
+          removeLeading: false,
+        ),
+        body: TkScaffoldBody(
+          image: AssetImage(kFooter),
+          child: ListView(
+            children: [
+              Column(children: [TkLogoBox(), _createForm()]),
+            ],
+          ),
         ),
       ),
     );

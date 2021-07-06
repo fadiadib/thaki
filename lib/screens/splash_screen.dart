@@ -297,12 +297,15 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: TkScaffoldBody(
-        image: AssetImage(kSplashBg),
-        colorOverlay: kPrimaryColor,
-        enableSafeArea: false,
-        child: _drawStack(),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        body: TkScaffoldBody(
+          image: AssetImage(kSplashBg),
+          colorOverlay: kPrimaryColor,
+          enableSafeArea: false,
+          child: _drawStack(),
+        ),
       ),
     );
   }

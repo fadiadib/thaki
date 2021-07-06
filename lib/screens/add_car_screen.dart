@@ -33,33 +33,43 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
   TkCar _car;
   ScrollController _scrollController = ScrollController();
 
+  /// Override mandatory validate field method from form field validator
+  /// validate each field according to its type.
   @override
   bool validateField(TkFormField field, dynamic value) {
     TkLangController langController =
         Provider.of<TkLangController>(context, listen: false);
 
+    // check the type of the field
     switch (field) {
       case TkFormField.carName:
         return TkValidationHelper.validateAlphaNum(_car.name);
+
       case TkFormField.carState:
         return TkValidationHelper.validateNotEmpty(_car.state.toString());
+
       case TkFormField.carPlateEN:
-        return langController.lang.languageCode == 'ar' ||
+        return langController.isRTL ||
             TkValidationHelper.validateLicense(
                 _car.plateEN, _car.state, langController.lang.languageCode);
+
       case TkFormField.carPlateAR:
-        return langController.lang.languageCode == 'en' ||
+        return !langController.isRTL ||
             TkValidationHelper.validateLicense(
                 _car.plateAR, _car.state, langController.lang.languageCode);
+
       case TkFormField.carMake:
         return TkValidationHelper.validateNotEmpty(_car.make?.toString());
+
       case TkFormField.carModel:
         return TkValidationHelper.validateNotEmpty(_car.model?.toString());
+
       default:
         return true;
     }
   }
 
+  /// Returns a list of years Strings starting from 1986 to current year
   List<String> _getYears() {
     List<String> years = [];
     int currentYear = DateTime.now().year + 1;
@@ -83,6 +93,22 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     return [nums, chars];
   }
 
+  /// Finds the letters part in the car arabic license plate
+  String _getARLetterPlate() {
+    // First check for letters without spaces
+    String result = RegExp(r"([\u0621-\u064A]){2,3}", unicode: true)
+        .stringMatch(_car.plateAR);
+
+    // If found split them and join with space
+    if (result != null) return result.split('').join(' ');
+
+    // If no match, try to find letters with spaces and return it
+    result = RegExp(r"([\u0621-\u064A]\s*){2,3}", unicode: true)
+            .stringMatch(_car.plateAR) ??
+        '-';
+    return result;
+  }
+
   List<String> _getInitialValuesAR() {
     if (_car == null || _car.plateAR == null || _car.plateAR.isEmpty)
       return ['', ''];
@@ -90,10 +116,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     final RegExp nExp = RegExp(r"[\u0660-\u0669\d]{1,4}", unicode: true);
     final String nums = nExp.stringMatch(_car.plateAR);
 
-    final RegExp cExp = RegExp(r"[\u0621-\u064A]{2,3}", unicode: true);
-    final String chars = cExp.stringMatch(_car.plateAR);
-
-    return [nums, chars];
+    return [nums, _getARLetterPlate()];
   }
 
   Widget getLicensePlateWidgetEN(
@@ -205,7 +228,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
         ),
 
         // Car license number (EN)
-        if (langController.lang.languageCode == 'en')
+        if (!langController.isRTL)
           Column(
             children: [
               TkSectionTitle(
@@ -217,7 +240,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           ),
 
         // Car license number (AR)
-        if (langController.lang.languageCode == 'ar')
+        if (langController.isRTL)
           Column(
             children: [
               TkSectionTitle(
@@ -369,6 +392,9 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
           if (validate()) {
             stopValidating();
+
+            // Remove the spaces in the car plate Arabic
+            _car.plateAR = _car.plateAR.split(' ').join();
 
             if (widget.editMode) {
               // Call API to add car

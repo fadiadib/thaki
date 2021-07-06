@@ -6,14 +6,20 @@ class TkLicenseCard extends StatelessWidget {
   TkLicenseCard({this.car});
   final TkCar car;
 
+  /// Finds the letters part in the car arabic license plate
   String _getARLetterPlate() {
-    String result = RegExp(r"([\u0621-\u064A]\s){2,3}", unicode: true)
+    // First check for letters without spaces
+    String result = RegExp(r"([\u0621-\u064A]){2,3}", unicode: true)
+        .stringMatch(car.plateAR);
+
+    // If found split them and join with space
+    if (result != null) return result.split('').join(' ');
+
+    // If no match, try to find letters with spaces and return it
+    result = RegExp(r"([\u0621-\u064A]\s*){2,3}", unicode: true)
             .stringMatch(car.plateAR) ??
-        RegExp(r"[\u0621-\u064A]{2,3}", unicode: true)
-            .stringMatch(car.plateAR) ??
-        RegExp(r"[A-Z]{2,3}", unicode: true).stringMatch(car.plateAR) ??
         '-';
-    return result.split('').join(' ');
+    return result;
   }
 
   Widget _getWidget() {

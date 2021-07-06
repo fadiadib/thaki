@@ -7,6 +7,7 @@ import 'package:thaki/panes/subscription/index.dart';
 import 'package:thaki/panes/subscription/subscription_list_pane.dart';
 import 'package:thaki/panes/subscription/subscription_payment_pane.dart';
 import 'package:thaki/panes/transaction/transaction_pane.dart';
+import 'package:thaki/panes/transaction/transaction_success_pane.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/subscriber.dart';
 import 'package:thaki/providers/transactor.dart';
@@ -73,22 +74,25 @@ class _TkBuySubscriptionScreenState extends TkMultiStepPageState {
       );
       panes.add(TkSubscriptionSuccessPane(onDone: () => loadNextPane()));
     } else {
-      panes.add(TkTransactionPane(
-        onDone: () => loadNextPane(),
-        onClose: () async {
-          if (await TkDialogHelper.gShowConfirmationDialog(
-                context: context,
-                message: S.of(context).kAreYouSureTransaction,
-                type: gDialogType.yesNo,
-              ) ??
-              false) {
-            Provider.of<TkTransactor>(context, listen: false)
-                .stopTransactionChecker();
+      panes.add(
+        TkTransactionPane(
+          onDone: () => loadNextPane(),
+          onClose: () async {
+            if (await TkDialogHelper.gShowConfirmationDialog(
+                  context: context,
+                  message: S.of(context).kAreYouSureTransaction,
+                  type: gDialogType.yesNo,
+                ) ??
+                false) {
+              Provider.of<TkTransactor>(context, listen: false)
+                  .stopTransactionChecker();
 
-            Navigator.of(context).pop();
-          }
-        },
-      ));
+              Navigator.of(context).pop();
+            }
+          },
+        ),
+      );
+      panes.add(TkTransactionSuccessPane(onDone: () => loadNextPane()));
     }
     return panes;
   }

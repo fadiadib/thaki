@@ -1395,10 +1395,10 @@ class S {
     );
   }
 
-  /// `Please enter your car license plate to proceed`
+  /// `Please enter a valid car license plate to proceed`
   String get kSelectCardToProceed {
     return Intl.message(
-      'Please enter your car license plate to proceed',
+      'Please enter a valid car license plate to proceed',
       name: 'kSelectCardToProceed',
       desc: '',
       args: [],
@@ -2060,6 +2060,26 @@ class S {
     return Intl.message(
       'Delete Account',
       name: 'kDeleteAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction was successful`
+  String get kTransactionSuccess {
+    return Intl.message(
+      'Transaction was successful',
+      name: 'kTransactionSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction was not successful`
+  String get kTransactionFailure {
+    return Intl.message(
+      'Transaction was not successful',
+      name: 'kTransactionFailure',
       desc: '',
       args: [],
     );

@@ -86,7 +86,7 @@ class TkValidationHelper {
         RegExp exp = RegExp(r"\d{1,4}[A-Z]{2,3}");
         return exp.stringMatch(value) == value;
       } else {
-        RegExp exp = RegExp(r"[\u0660-\u0669\d]{1,4}[\u0621-\u064A]{2,3}",
+        RegExp exp = RegExp(r"[\u0660-\u0669\d]{1,4}([\u0621-\u064A]\s*){2,3}",
             unicode: true);
         return exp.stringMatch(value) == value;
       }
