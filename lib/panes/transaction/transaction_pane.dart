@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thaki/providers/account.dart';
 import 'package:thaki/widgets/general/error.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -12,8 +13,16 @@ import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/base/index.dart';
 
 class TkTransactionPane extends TkPane {
-  TkTransactionPane({onDone})
-      : super(paneTitle: '', onDone: onDone, allowNavigation: true);
+  TkTransactionPane({onDone, onClose})
+      : super(
+          paneTitle: '',
+          onDone: onDone,
+          onClose: onClose,
+          allowNavigation: false,
+        );
+  void _paymentCallback(bool result) {
+    onDone();
+  }
 
   /// Takes the context and user object and creates a web view
   /// widget showing the payment page
@@ -36,9 +45,19 @@ class TkTransactionPane extends TkPane {
           navigationDelegate: (NavigationRequest request) {
             return NavigationDecision.navigate;
           },
-          onPageStarted: (String url) {},
+          onPageStarted: (String url) {
+            if (url == transactor.transactionPage) {
+              transactor.startTransactionChecker(
+                user: Provider.of<TkAccount>(context, listen: false).user,
+                callback: _paymentCallback,
+              );
+            }
+          },
           onPageFinished: (String url) async {
-            if (url == transactor.callbackPage) onDone();
+            if (url == transactor.callbackPage) {
+              transactor.stopTransactionChecker();
+              onDone();
+            }
           },
         ),
       ),

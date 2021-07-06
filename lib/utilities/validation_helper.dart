@@ -1,5 +1,5 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:credit_card_validator/credit_card_validator.dart';
+import 'package:regexed_validator/regexed_validator.dart';
 
 class TkValidationHelper {
   static bool validateName(String value) {
@@ -27,12 +27,18 @@ class TkValidationHelper {
     return true;
   }
 
+  static bool validateStrongPassword(String value) {
+    if (value == null || value.length < 8 || value.length > 20) return false;
+
+    return validator.password(value);
+  }
+
   static bool validateNotEmpty(String value) {
     return (value != null && value.isNotEmpty && value.trim().isNotEmpty);
   }
 
   static bool validateEmail(String value) {
-    return (value != null && EmailValidator.validate(value));
+    return (value != null && validator.email(value));
   }
 
   static bool validatePhone(String value) {

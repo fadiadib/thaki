@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
@@ -10,6 +12,10 @@ class TkTransactor extends ChangeNotifier {
   // Model
   String transactionPage;
   String callbackPage;
+  String transactionId;
+
+  // Timer
+  Timer _timer;
 
   // Loading variables
   bool _isLoading = false;
@@ -22,7 +28,7 @@ class TkTransactor extends ChangeNotifier {
   // Error
   String transactionError;
 
-  /// Reserve Parking
+  /// Initialize transaction
   Future<bool> initTransaction({
     TkUser user,
     String type,
@@ -52,6 +58,7 @@ class TkTransactor extends ChangeNotifier {
     } else {
       transactionPage = result[kDataTag][kPaymentLinkTag];
       callbackPage = result[kDataTag][kRedirectLinkTag];
+      transactionId = result[kDataTag][kSessionIdTag];
     }
 
     // Stop any listening loading indicators
@@ -59,5 +66,54 @@ class TkTransactor extends ChangeNotifier {
     notifyListeners();
 
     return (transactionError == null);
+  }
+
+  /// Check transaction
+  Future<int> checkTransaction({@required TkUser user}) async {
+    // Start any loading indicators
+    transactionError = null;
+
+    notifyListeners();
+
+    Map result =
+        await _apis.checkTransaction(user: user, transactionId: transactionId);
+
+    int status = 1; // 1 means pending
+    if (result[kStatusTag] == kTransErrorCode) {
+      transactionError = _apis.normalizeError(result);
+      status = 2;
+    } else if (result[kStatusTag] == kSuccessCode) status = 0;
+
+    // Stop any listening loading indicators
+    notifyListeners();
+
+    return status;
+  }
+
+  void startTransactionChecker(
+      {@required TkUser user, @required Function callback}) {
+    // Check if there is an active payment request
+    if (transactionId == null) return;
+
+    // Cancel any old timer
+    if (_timer != null) return;
+
+    // Start a new timer
+    _timer = Timer.periodic(Duration(seconds: 10), (t) async {
+      // Check payment status
+      int result = await checkTransaction(user: user);
+      if (result == 0 || result == 2) {
+        // Success or failure
+        stopTransactionChecker();
+        callback(result == 0);
+      }
+    });
+  }
+
+  void stopTransactionChecker() {
+    if (_timer != null) {
+      _timer.cancel();
+      _timer = null;
+    }
   }
 }

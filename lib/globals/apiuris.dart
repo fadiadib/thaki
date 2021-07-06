@@ -45,6 +45,7 @@ const String kLoadViolationsAPI = '$kRootURL/violations'; // 200, 404: empty
 const String kPayViolationsAPI = '$kRootURL/violations/pay'; // 201
 // Transactions
 const String kTransactionAPI = '$kRootURL/transaction';
+const String kTransactionStatusAPI = '$kRootURL/trans/status';
 // On boarding
 const String kOnBoardingAPI = '$kRootURL/onboarding';
 
@@ -55,6 +56,8 @@ const int kSuccessCreationCode = 201;
 const int kPendingCode = 202;
 const int kDelayedSuccessCode = 203;
 const int kErrorCode = 401;
+const int kTransErrorCode = 422;
+const int kNotFoundErrorCode = 404;
 
 /// JSON tags
 // General tags
@@ -229,6 +232,7 @@ const String kTransactionDateTimeTag = 'datetime';
 const String kTransactionDurationTag = 'duration';
 const String kPaymentLinkTag = 'payment_link';
 const String kRedirectLinkTag = 'redirect_link';
+const String kSessionIdTag = 'session_id';
 // On boarding screens
 const String kOnBoardingTag = 'onboarding';
 const String kScreenMessageTag = 'message';

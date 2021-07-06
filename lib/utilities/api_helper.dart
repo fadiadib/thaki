@@ -10,6 +10,8 @@ import 'package:thaki/utilities/network_helper.dart';
 class TkAPIHelper {
   static TkNetworkHelper _network = new TkNetworkHelper();
 
+  /// Normalize error method, takes a result json and finds the
+  /// error strings and groups them into a paragraph.
   String normalizeError(Map result) {
     String errorMessage = '';
     if (result[kErrorMessageTag] != null) {
@@ -35,7 +37,7 @@ class TkAPIHelper {
     );
   }
 
-  /// O boarding messages and images
+  /// Loads on boarding messages and images
   Future<Map> loadOnboarding(
       {@required TkLangController langController}) async {
     return await _network.getData(
@@ -78,7 +80,9 @@ class TkAPIHelper {
     );
   }
 
-  /// Load documents API
+  /////////////////////////////////////////////////////////////
+  /////////////////////// TRANSACTIONS  ///////////////////////
+  /// Initialize payment transaction API
   Future<Map> initTransaction({
     @required TkUser user,
     @required String type,
@@ -97,6 +101,16 @@ class TkAPIHelper {
     return await _network.postData(
       url: kTransactionAPI,
       params: params,
+      headers: user.toHeader(),
+    );
+  }
+
+  /// Check payment transaction status API
+  Future<Map> checkTransaction(
+      {@required TkUser user, @required String transactionId}) async {
+    return await _network.postData(
+      url: kTransactionStatusAPI,
+      params: {kSessionIdTag: transactionId},
       headers: user.toHeader(),
     );
   }

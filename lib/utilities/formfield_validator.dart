@@ -18,19 +18,13 @@ abstract class TkFormFieldValidatorMixin {
   bool _validating = false;
 
   // Call this, when you want your screen to start validating its fields
-  void startValidating() {
-    _validating = true;
-  }
+  void startValidating() => _validating = true;
 
   // Call this, when you want your screen to stop validating its fields
-  void stopValidating() {
-    _validating = false;
-  }
+  void stopValidating() => _validating = false;
 
   // Check if you are currently validating
-  bool get isValidating {
-    return _validating;
-  }
+  bool get isValidating => _validating;
 
   // Abstract function to do the actual validations per type of field
   // This has to be implemented in the child class

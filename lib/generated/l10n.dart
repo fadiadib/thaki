@@ -1685,6 +1685,16 @@ class S {
     );
   }
 
+  /// `Are you sure you want to cancel this transaction?`
+  String get kAreYouSureTransaction {
+    return Intl.message(
+      'Are you sure you want to cancel this transaction?',
+      name: 'kAreYouSureTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add car`
   String get kAddCar {
     return Intl.message(

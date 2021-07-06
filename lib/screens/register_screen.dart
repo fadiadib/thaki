@@ -50,7 +50,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
       account.user = TkUser.fromInfoFields(results);
 
       if (await account.register(store: account.user.rememberMe))
-        Navigator.pushNamed(context, TkHomeScreen.id);
+        Navigator.pushReplacementNamed(context, TkHomeScreen.id);
     }
   }
 
@@ -64,6 +64,9 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
     return false;
   }
 
+  bool _validatePassword(TkInfoField passwordField) =>
+      TkValidationHelper.validateStrongPassword(passwordField.value);
+
   Widget _createForm(TkAccount account) {
     TkLangController controller = Provider.of<TkLangController>(context);
 
@@ -75,6 +78,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
       buttonTag: kSignUpTag,
       fields: _fields,
       validatePasswordMatch: _validatePasswordMatch,
+      validatePassword: _validatePassword,
       action: _updateModelAndPushNext,
       isLoading: account.isLoading,
       footer: Row(
@@ -122,7 +126,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
       child: TkSocialLogin(
         callback: () async {
           if (await account.social())
-            Navigator.pushNamed(context, TkHomeScreen.id);
+            Navigator.pushReplacementNamed(context, TkHomeScreen.id);
         },
       ),
     );

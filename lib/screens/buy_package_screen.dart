@@ -1,10 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/panes/transaction/transaction_pane.dart';
 import 'package:thaki/providers/account.dart';
-
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/transactor.dart';
+import 'package:thaki/utilities/dialog_helper.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/panes/package/index.dart';
 
@@ -65,12 +68,29 @@ class _TkBuyPackageScreenState extends TkMultiStepPageState {
       );
       panes.add(TkPackageSuccessPane(onDone: () => loadNextPane()));
     } else {
-      panes.add(TkTransactionPane(onDone: () {
-        // Update balance
-        Provider.of<TkPurchaser>(context, listen: false)
-            .loadBalance(Provider.of<TkAccount>(context, listen: false).user);
-        loadNextPane();
-      }));
+      panes.add(
+        TkTransactionPane(
+          onDone: () {
+            // Update balance
+            Provider.of<TkPurchaser>(context, listen: false).loadBalance(
+                Provider.of<TkAccount>(context, listen: false).user);
+            loadNextPane();
+          },
+          onClose: () async {
+            if (await TkDialogHelper.gShowConfirmationDialog(
+                  context: context,
+                  message: S.of(context).kAreYouSureTransaction,
+                  type: gDialogType.yesNo,
+                ) ??
+                false) {
+              Provider.of<TkTransactor>(context, listen: false)
+                  .stopTransactionChecker();
+
+              Navigator.of(context).pop();
+            }
+          },
+        ),
+      );
     }
 
     return panes;

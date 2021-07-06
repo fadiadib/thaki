@@ -12,9 +12,6 @@ import 'package:twitter_login/twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
-// Facebook
-// Key Hash: xSLzBBuLJunOQPB89rtzM54FXx4=
-
 class TkSocialLogin extends StatelessWidget {
   TkSocialLogin({this.callback});
   final Function callback;

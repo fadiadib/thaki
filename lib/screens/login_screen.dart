@@ -46,7 +46,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     account.user = TkUser.fromInfoFields(results);
 
     if (await account.login(store: account.user.rememberMe))
-      Navigator.pushNamed(context, TkHomeScreen.id);
+      Navigator.pushReplacementNamed(context, TkHomeScreen.id);
   }
 
   Widget _createForm(TkAccount account) {
@@ -108,7 +108,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
       callback: () async {
         if (await account.social()) {
           if (account.user != null)
-            Navigator.pushNamed(context, TkHomeScreen.id);
+            Navigator.pushReplacementNamed(context, TkHomeScreen.id);
         }
       },
     );

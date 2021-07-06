@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kAreYouSureCard" : MessageLookupByLibrary.simpleMessage("هل أنت متأكد أنك تريد حذف هذه البطاقة؟"),
     "kAreYouSureNotification" : MessageLookupByLibrary.simpleMessage("هل أنت متأكد أنك تريد حذف هذا الاشعار؟"),
     "kAreYouSureTicket" : MessageLookupByLibrary.simpleMessage("هل أنت متأكد أنك تريد إلغاء هذا الحجز؟"),
+    "kAreYouSureTransaction" : MessageLookupByLibrary.simpleMessage("هل أنت متأكد أنك تريد إلغاء هذه المعاملة؟"),
     "kAreYouSureUser" : MessageLookupByLibrary.simpleMessage("هل أنت متأكد أنك تريد حذف حسابك؟\n سيتم حذف جميع بياناتك بما في ذلك الاشتراكات والباقات والسيارات نهائيًا."),
     "kBackTo" : MessageLookupByLibrary.simpleMessage("العودة الى "),
     "kBookParking" : MessageLookupByLibrary.simpleMessage("احجز سيارتك"),

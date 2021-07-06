@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kAreYouSureCard" : MessageLookupByLibrary.simpleMessage("Are you sure you want to delete this card?"),
     "kAreYouSureNotification" : MessageLookupByLibrary.simpleMessage("Are you sure you want to delete this notification?"),
     "kAreYouSureTicket" : MessageLookupByLibrary.simpleMessage("Are you sure you want to cancel this booking?"),
+    "kAreYouSureTransaction" : MessageLookupByLibrary.simpleMessage("Are you sure you want to cancel this transaction?"),
     "kAreYouSureUser" : MessageLookupByLibrary.simpleMessage("Are you sure you want to delete your account?\nAll your data including subscriptions, packages and cars will be permanently deleted."),
     "kBackTo" : MessageLookupByLibrary.simpleMessage("Back to "),
     "kBookParking" : MessageLookupByLibrary.simpleMessage("Book your parking"),

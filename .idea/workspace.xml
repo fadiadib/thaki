@@ -12,98 +12,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="905d3c98-3b62-48e2-b2c9-ce7991e6688f" name="Default Changelist" comment="+ Social login.&#10;+ Old password.">
-      <change afterPath="$PROJECT_DIR$/lib/models/screen.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/providers/onboarding_controller.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/utilities/analytics_helper.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/widgets/forms/license_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="905d3c98-3b62-48e2-b2c9-ce7991e6688f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/ic_launcher-playstore.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/ic_launcher-playstore.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/android/thaki_android.iml" beforeDir="false" afterPath="$PROJECT_DIR$/android/thaki_android.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/.last_build_id" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/.last_build_id" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/100.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/100.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/1024.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/1024.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/114.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/114.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/120.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/120.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/144.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/144.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/152.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/152.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/167.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/167.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/180.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/180.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/20.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/20.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/29.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/29.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/40.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/40.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/50.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/50.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/57.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/57.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/58.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/58.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/60.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/60.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/72.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/72.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/76.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/76.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/80.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/80.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/87.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/87.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Info.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/drawers/menu_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/drawers/menu_drawer.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/generated/intl/messages_ar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/intl/messages_ar.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/generated/intl/messages_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/intl/messages_en.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/generated/l10n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/l10n.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/globals/apiuris.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/apiuris.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/globals/dimensions.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/dimensions.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/globals/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/settings.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/l10n/intl_ar.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/intl_ar.arb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/l10n/intl_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/intl_en.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/index.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/index.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/notification.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/notification.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/dashboard_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/dashboard_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/profile_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/profile_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/permit/permit_documents_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/permit/permit_documents_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/panes/parking/parking_duration_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/parking/parking_duration_pane.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/panes/transaction/transaction_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/transaction/transaction_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/account.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/account.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/attributes_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/attributes_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/lang_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/lang_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/add_car_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/add_car_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/apply_subscription_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/apply_subscription_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/transactor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/transactor.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/book_parking_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/book_parking_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/buy_package_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/buy_package_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/buy_subscription_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/buy_subscription_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/edit_profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/edit_profile_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/forgot_password_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/forgot_password_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/onboarding_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/onboarding_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/register_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/register_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/splash_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/utilities/api_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/api_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities/form_builder.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/form_builder.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/formfield_validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/formfield_validator.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/utilities/validation_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/validation_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/cards/license_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/cards/license_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/form_frame.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/form_frame.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/otp_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/otp_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/general/card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/general/card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/general/ribbon.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/general/ribbon.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widgets/login/social_login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/login/social_login.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/car_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/car_tile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/ticket_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/ticket_tile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/thaki.iml" beforeDir="false" afterPath="$PROJECT_DIR$/thaki.iml" afterDir="false" />
     </list>
@@ -112,7 +43,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/fadiadib/.android/avd/Pixel_4_API_30.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/fadiadib/.android/avd/Pixel_3a_XL_API_R.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -139,7 +70,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -361,7 +292,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623075603551</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="+ Build 18.">
+      <created>1624960195348</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1624960195348</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -394,7 +332,8 @@
     <MESSAGE value="+ Moved approval to cars instead of user.&#10;+ Violations integration completion." />
     <MESSAGE value="+ Updated version." />
     <MESSAGE value="+ Social login.&#10;+ Old password." />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Social login.&#10;+ Old password." />
+    <MESSAGE value="+ Build 18." />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Build 18." />
   </component>
   <component name="WindowStateProjectService">
     <state x="693" y="371" key="#Notifications" timestamp="1624407044834">
@@ -405,10 +344,6 @@
       <screen x="0" y="23" width="1920" height="1129" />
     </state>
     <state x="0" y="200" key="#PSD/0.23.1920.1129@0.23.1920.1129" timestamp="1619914354699" />
-    <state x="133" y="89" key="#Web_Browsers" timestamp="1616800164162">
-      <screen x="0" y="23" width="1920" height="1128" />
-    </state>
-    <state x="133" y="89" key="#Web_Browsers/0.23.1920.1128@0.23.1920.1128" timestamp="1616800164162" />
     <state x="152" y="23" width="1311" height="1126" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1624400530577">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
@@ -428,87 +363,87 @@
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="362" y="23" key="#thaki/0.23.1920.1126@0.23.1920.1126" timestamp="1624406086648" />
-    <state x="300" y="139" width="1419" height="882" key="AVDManager" timestamp="1624446269849">
-      <screen x="0" y="23" width="1920" height="1126" />
+    <state x="425" y="175" width="1419" height="882" key="AVDManager" timestamp="1625491997236">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="300" y="139" width="1419" height="882" key="AVDManager/0.23.1920.1126@0.23.1920.1126" timestamp="1624446269849" />
     <state x="425" y="175" width="1419" height="882" key="AVDManager/0.23.1920.1127@0.23.1920.1127" timestamp="1624442125008" />
-    <state x="425" y="175" width="1419" height="882" key="AVDManager/0.23.1920.1128@0.23.1920.1128" timestamp="1624442464482" />
+    <state x="425" y="175" width="1419" height="882" key="AVDManager/0.23.1920.1128@0.23.1920.1128" timestamp="1625491997236" />
     <state x="605" y="334" key="AndroidProcessChooserDialog" timestamp="1624399129206">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="605" y="334" key="AndroidProcessChooserDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1624399129206" />
     <state x="606" y="334" key="AndroidProcessChooserDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1617258842680" />
     <state x="605" y="335" key="AndroidProcessChooserDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1624393649210" />
-    <state x="271" y="57" key="CommitChangelistDialog2" timestamp="1624397103721">
-      <screen x="0" y="23" width="1920" height="1126" />
+    <state x="271" y="23" key="CommitChangelistDialog2" timestamp="1624960194874">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="271" y="57" key="CommitChangelistDialog2/0.23.1920.1126@0.23.1920.1126" timestamp="1624397103721" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1127@0.23.1920.1127" timestamp="1619913023122" />
-    <state x="271" y="82" key="CommitChangelistDialog2/0.23.1920.1128@0.23.1920.1128" timestamp="1619069188736" />
+    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1128@0.23.1920.1128" timestamp="1624960194874" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1129@0.23.1920.1129" timestamp="1623077131600" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1130@0.23.1920.1130" timestamp="1617425983875" />
-    <state x="158" y="123" width="1085" height="924" key="DiffContextDialog" timestamp="1624401850408">
-      <screen x="0" y="23" width="1920" height="1126" />
+    <state x="158" y="123" width="1085" height="925" key="DiffContextDialog" timestamp="1625569610499">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="158" y="123" width="1085" height="924" key="DiffContextDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1624401850408" />
     <state x="158" y="123" width="1085" height="925" key="DiffContextDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1623594919388" />
-    <state x="158" y="123" width="1085" height="925" key="DiffContextDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1619074806906" />
+    <state x="158" y="123" width="1085" height="925" key="DiffContextDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610499" />
     <state x="757" y="171" width="1085" height="927" key="DiffContextDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1624301774845" />
     <state x="757" y="171" width="1085" height="927" key="DiffContextDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1623325644616" />
     <state x="158" y="123" width="1085" height="930" key="DiffContextDialog/0.23.1920.1132@0.23.1920.1132" timestamp="1622633524206" />
-    <state width="1350" height="317" key="GridCell.Tab.0.bottom" timestamp="1624959892589">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state width="1109" height="185" key="GridCell.Tab.0.bottom" timestamp="1625569610290">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.bottom/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221225" />
-    <state width="1350" height="317" key="GridCell.Tab.0.bottom/0.23.1920.1127@0.23.1920.1127" timestamp="1624959892589" />
-    <state width="653" height="317" key="GridCell.Tab.0.bottom/0.23.1920.1128@0.23.1920.1128" timestamp="1624453162531" />
+    <state width="1350" height="317" key="GridCell.Tab.0.bottom/0.23.1920.1127@0.23.1920.1127" timestamp="1625073030123" />
+    <state width="1109" height="185" key="GridCell.Tab.0.bottom/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610290" />
     <state width="1335" height="300" key="GridCell.Tab.0.bottom/0.23.1920.1129@0.23.1920.1129" timestamp="1624396495449" />
     <state width="1335" height="300" key="GridCell.Tab.0.bottom/0.23.1920.1130@0.23.1920.1130" timestamp="1624396460632" />
     <state width="1457" height="307" key="GridCell.Tab.0.bottom/0.23.1920.1131@0.23.1920.1131" timestamp="1622984135470" />
     <state width="1361" height="307" key="GridCell.Tab.0.bottom/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state width="1350" height="317" key="GridCell.Tab.0.center" timestamp="1624959892588">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state width="1109" height="185" key="GridCell.Tab.0.center" timestamp="1625569610290">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.center/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221224" />
-    <state width="1350" height="317" key="GridCell.Tab.0.center/0.23.1920.1127@0.23.1920.1127" timestamp="1624959892588" />
-    <state width="653" height="317" key="GridCell.Tab.0.center/0.23.1920.1128@0.23.1920.1128" timestamp="1624453162529" />
+    <state width="1350" height="317" key="GridCell.Tab.0.center/0.23.1920.1127@0.23.1920.1127" timestamp="1625073030121" />
+    <state width="1109" height="185" key="GridCell.Tab.0.center/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610290" />
     <state width="1335" height="300" key="GridCell.Tab.0.center/0.23.1920.1129@0.23.1920.1129" timestamp="1624396495449" />
     <state width="1335" height="300" key="GridCell.Tab.0.center/0.23.1920.1130@0.23.1920.1130" timestamp="1624396460632" />
     <state width="1457" height="307" key="GridCell.Tab.0.center/0.23.1920.1131@0.23.1920.1131" timestamp="1622984135469" />
     <state width="1361" height="307" key="GridCell.Tab.0.center/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state width="1350" height="317" key="GridCell.Tab.0.left" timestamp="1624959892587">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state width="1109" height="185" key="GridCell.Tab.0.left" timestamp="1625569610289">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.left/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221205" />
-    <state width="1350" height="317" key="GridCell.Tab.0.left/0.23.1920.1127@0.23.1920.1127" timestamp="1624959892587" />
-    <state width="653" height="317" key="GridCell.Tab.0.left/0.23.1920.1128@0.23.1920.1128" timestamp="1624453162528" />
+    <state width="1350" height="317" key="GridCell.Tab.0.left/0.23.1920.1127@0.23.1920.1127" timestamp="1625073030120" />
+    <state width="1109" height="185" key="GridCell.Tab.0.left/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610289" />
     <state width="1335" height="300" key="GridCell.Tab.0.left/0.23.1920.1129@0.23.1920.1129" timestamp="1624396495449" />
     <state width="1335" height="300" key="GridCell.Tab.0.left/0.23.1920.1130@0.23.1920.1130" timestamp="1624396460631" />
     <state width="1457" height="307" key="GridCell.Tab.0.left/0.23.1920.1131@0.23.1920.1131" timestamp="1622984135469" />
     <state width="1361" height="307" key="GridCell.Tab.0.left/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state width="1350" height="317" key="GridCell.Tab.0.right" timestamp="1624959892588">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state width="1109" height="185" key="GridCell.Tab.0.right" timestamp="1625569610290">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.right/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221225" />
-    <state width="1350" height="317" key="GridCell.Tab.0.right/0.23.1920.1127@0.23.1920.1127" timestamp="1624959892588" />
-    <state width="653" height="317" key="GridCell.Tab.0.right/0.23.1920.1128@0.23.1920.1128" timestamp="1624453162530" />
+    <state width="1350" height="317" key="GridCell.Tab.0.right/0.23.1920.1127@0.23.1920.1127" timestamp="1625073030122" />
+    <state width="1109" height="185" key="GridCell.Tab.0.right/0.23.1920.1128@0.23.1920.1128" timestamp="1625569610290" />
     <state width="1335" height="300" key="GridCell.Tab.0.right/0.23.1920.1129@0.23.1920.1129" timestamp="1624396495449" />
     <state width="1335" height="300" key="GridCell.Tab.0.right/0.23.1920.1130@0.23.1920.1130" timestamp="1624396460632" />
     <state width="1457" height="307" key="GridCell.Tab.0.right/0.23.1920.1131@0.23.1920.1131" timestamp="1622984135470" />
     <state width="1361" height="307" key="GridCell.Tab.0.right/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state x="111" y="78" key="SettingsEditor" timestamp="1624442124706">
+    <state x="111" y="78" key="SettingsEditor" timestamp="1625492881783">
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state x="111" y="23" key="SettingsEditor/0.23.1920.1126@0.23.1920.1126" timestamp="1624441401745" />
-    <state x="111" y="78" key="SettingsEditor/0.23.1920.1127@0.23.1920.1127" timestamp="1624442124706" />
+    <state x="111" y="78" key="SettingsEditor/0.23.1920.1127@0.23.1920.1127" timestamp="1625492881783" />
     <state x="111" y="79" key="SettingsEditor/0.23.1920.1128@0.23.1920.1128" timestamp="1624398921735" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1624399901581">
-      <screen x="0" y="23" width="1920" height="1126" />
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1624960197385">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1126@0.23.1920.1126" timestamp="1624399901581" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1127@0.23.1920.1127" timestamp="1619913025869" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1128@0.23.1920.1128" timestamp="1619069197869" />
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1128@0.23.1920.1128" timestamp="1624960197385" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1129@0.23.1920.1129" timestamp="1623075605183" />
     <state x="209" y="264" key="Vcs.Push.Dialog.v2/0.23.1920.1130@0.23.1920.1130" timestamp="1617425986334" />
     <state x="464" y="206" key="VcsDiffUtil.ChangesDialog" timestamp="1624960161482">
@@ -528,20 +463,16 @@
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="374" y="302" key="com.android.tools.idea.run.deployment.SelectMultipleDevicesDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1624399002230" />
-    <state x="129" y="125" width="1222" height="926" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1616722591722">
-      <screen x="0" y="23" width="1920" height="1129" />
-    </state>
-    <state x="129" y="125" width="1222" height="926" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1616722591722" />
     <state x="267" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1624401847051">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="267" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1920.1126@0.23.1920.1126" timestamp="1624401847051" />
     <state x="267" y="23" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1920.1130@0.23.1920.1130" timestamp="1622673873509" />
-    <state x="391" y="492" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617134749892">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state x="391" y="492" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1625569570848">
+      <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="391" y="492" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1127@0.23.1920.1127" timestamp="1617134749892" />
-    <state x="391" y="492" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1128@0.23.1920.1128" timestamp="1616653130487" />
+    <state x="391" y="492" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1128@0.23.1920.1128" timestamp="1625569570848" />
     <state x="492" y="23" width="986" height="1129" key="find.popup" timestamp="1623341846576">
       <screen x="0" y="23" width="1920" height="1129" />
     </state>
@@ -554,11 +485,11 @@
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="201" y="265" key="run.anything.popup/0.23.1920.1126@0.23.1920.1126" timestamp="1618429715341" />
-    <state x="323" y="117" width="1005" height="1036" key="search.everywhere.popup" timestamp="1624395950362">
-      <screen x="0" y="23" width="1920" height="1130" />
+    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup" timestamp="1625065145850">
+      <screen x="0" y="23" width="1920" height="1127" />
     </state>
     <state x="323" y="117" width="1005" height="1032" key="search.everywhere.popup/0.23.1920.1126@0.23.1920.1126" timestamp="1618430577112" />
-    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1127@0.23.1920.1127" timestamp="1618897689441" />
+    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1127@0.23.1920.1127" timestamp="1625065145850" />
     <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1128@0.23.1920.1128" timestamp="1619919671050" />
     <state x="323" y="117" width="1005" height="1035" key="search.everywhere.popup/0.23.1920.1129@0.23.1920.1129" timestamp="1624301366087" />
     <state x="323" y="117" width="1005" height="1036" key="search.everywhere.popup/0.23.1920.1130@0.23.1920.1130" timestamp="1624395950362" />

@@ -28,18 +28,19 @@ class TkParkingDurationPane extends TkPane {
             btnBorderColor: kPrimaryColor,
           ),
         ),
-        Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
-          child: TkButton(
-            title: S.of(context).kBookUsingCard,
-            onPressed: () {
-              booker.creditMode = false;
-              onDone();
-            },
-            btnColor: kSecondaryColor,
-            btnBorderColor: kSecondaryColor,
+        if (kAllowOneTimeParking)
+          Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
+            child: TkButton(
+              title: S.of(context).kBookUsingCard,
+              onPressed: () {
+                booker.creditMode = false;
+                onDone();
+              },
+              btnColor: kSecondaryColor,
+              btnBorderColor: kSecondaryColor,
+            ),
           ),
-        ),
       ],
     );
   }

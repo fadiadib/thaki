@@ -166,6 +166,7 @@
   "kAreYouSureNotification": "Are you sure you want to delete this notification?",
   "kAreYouSureAllNotification": "Are you sure you want to clear notifications?",
   "kAreYouSureUser": "Are you sure you want to delete your account?\nAll your data including subscriptions, packages and cars will be permanently deleted.",
+  "kAreYouSureTransaction": "Are you sure you want to cancel this transaction?",
   "kAddCar": "Add car",
   "kAddCard": "Add card",
   "kLoginIntroTitle": "Welcome Back!",

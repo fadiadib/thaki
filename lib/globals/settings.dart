@@ -19,6 +19,7 @@ const bool kShowOtherCarAsButton = true;
 const double kBallsTransparency = 1.0;
 const bool kSaveCardMode = false;
 const bool kShowContact = false;
+const bool kAllowOneTimeParking = false;
 
 /// URLs
 const String kBaseURL = 'http://thaki.aurasystems.xyz/thaki/public/';
@@ -34,7 +35,6 @@ const kTwitterBearerToken =
     'AAAAAAAAAAAAAAAAAAAAAJk7QQEAAAAANkftrWjcEWEc4bdHSyKzC1obp78%3D7KdQjzRPqQ1maucetGwoG1Ou0El1J7c2aXr8YoYu5tHLpU6ltd';
 const kTwitterAppID = '21052313';
 const kTwitterRedirectURI = 'thaki://';
-// const kTwitterRedirectURI2 =
-//     'https://thaki-ceab4.firebaseapp.com/__/auth/handler';
-// const kTwitterRedirectURI3 = 'com.aurasys.thaki://';
-// const kTwitterRedirectURI4 = 'https://www.example.com';
+
+/// Facebook App
+const kFacebookKeyHash = 'xSLzBBuLJunOQPB89rtzM54FXx4=';

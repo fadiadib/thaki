@@ -6,6 +6,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/utilities/index.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -44,6 +45,9 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen> {
     return false;
   }
 
+  bool _validatePassword(TkInfoField passwordField) =>
+      TkValidationHelper.validateStrongPassword(passwordField.value);
+
   Widget _createForm() {
     TkAccount account = Provider.of<TkAccount>(context);
     TkLangController controller = Provider.of<TkLangController>(context);
@@ -55,6 +59,7 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen> {
       actionTitle: kEditProfileFieldsJson[kFormAction]
           [controller.lang.languageCode],
       validatePasswordMatch: _validatePasswordMatch,
+      validatePassword: _validatePassword,
       buttonTag: kSignUpTag,
       fields: _fields,
       action: _updateModelAndPushNext,

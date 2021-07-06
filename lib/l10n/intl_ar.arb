@@ -165,6 +165,7 @@
   "kAreYouSureNotification": "هل أنت متأكد أنك تريد حذف هذا الاشعار؟",
   "kAreYouSureAllNotification": "هل أنت متأكد أنك تريد حذف الاشعارات؟",
   "kAreYouSureUser": "هل أنت متأكد أنك تريد حذف حسابك؟\n سيتم حذف جميع بياناتك بما في ذلك الاشتراكات والباقات والسيارات نهائيًا.",
+  "kAreYouSureTransaction": "هل أنت متأكد أنك تريد إلغاء هذه المعاملة؟",
   "kAddCar": "أضف سيارة",
   "kAddCard": "أضف بطاقة",
   "kLoginIntroTitle": "مرحبا!",
