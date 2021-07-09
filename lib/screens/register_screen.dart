@@ -79,6 +79,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen> {
       fields: _fields,
       validatePasswordMatch: _validatePasswordMatch,
       validatePassword: _validatePassword,
+      passwordError: S.of(context).kStrongPasswordError,
       action: _updateModelAndPushNext,
       isLoading: account.isLoading,
       footer: Row(

@@ -2084,6 +2084,16 @@ class S {
       args: [],
     );
   }
+
+  /// `* Please enter a valid password that contains 8-20 characters, must contain at least one lowercase and one uppercase character, one digit and one special character`
+  String get kStrongPasswordError {
+    return Intl.message(
+      '* Please enter a valid password that contains 8-20 characters, must contain at least one lowercase and one uppercase character, one digit and one special character',
+      name: 'kStrongPasswordError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

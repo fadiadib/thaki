@@ -204,5 +204,6 @@
   "kConfirmPaste": "تأكيد اللصق",
   "kDeleteAccount": "مسح الحساب",
   "kTransactionSuccess": "تمت المعاملة بنجاح",
-  "kTransactionFailure": "حدث خطأ في المعاملة"
+  "kTransactionFailure": "حدث خطأ في المعاملة",
+  "kStrongPasswordError": "* الرجاء إدخال كلمة مرور صالحة مكونة من ٨-٢٠ حروف، ويجب أن تحتوي على حرف صغير وحرف كبير ورقم وحرف خاص"
 }

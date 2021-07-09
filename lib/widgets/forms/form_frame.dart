@@ -20,6 +20,7 @@ class TkFormFrame extends StatefulWidget {
     this.footer,
     this.validatePasswordMatch,
     this.validatePassword,
+    this.passwordError,
     this.child,
     this.isLoading = false,
     this.langCode = 'en',
@@ -34,6 +35,7 @@ class TkFormFrame extends StatefulWidget {
   final Widget footer;
   final Function validatePasswordMatch;
   final Function validatePassword;
+  final String passwordError;
   final Widget child;
   final bool isLoading;
   final String langCode;
@@ -179,7 +181,8 @@ class _TkFormFrameState extends State<TkFormFrame>
             } else
               return validateInfoField(field);
           },
-          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
+          errorMessage: this.widget.passwordError ??
+              S.of(context).kPleaseEnter + _getLabel(field),
         );
         break;
       case TkInfoFieldType.ConfirmPassword:

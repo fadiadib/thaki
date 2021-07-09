@@ -184,6 +184,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kSignUp" : MessageLookupByLibrary.simpleMessage("Sign Up"),
     "kSignUpExclamation" : MessageLookupByLibrary.simpleMessage("Sign up!"),
     "kSkip" : MessageLookupByLibrary.simpleMessage("Skip"),
+    "kStrongPasswordError" : MessageLookupByLibrary.simpleMessage("* Please enter a valid password that contains 8-20 characters, must contain at least one lowercase and one uppercase character, one digit and one special character"),
     "kSubscriptionSuccess" : MessageLookupByLibrary.simpleMessage("Subscription purchased successfully"),
     "kSubscriptions" : MessageLookupByLibrary.simpleMessage("Subscriptions"),
     "kSuccess" : MessageLookupByLibrary.simpleMessage("Success!"),

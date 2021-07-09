@@ -205,5 +205,6 @@
   "kConfirmPaste": "Confirm Paste",
   "kDeleteAccount": "Delete Account",
   "kTransactionSuccess": "Transaction was successful",
-  "kTransactionFailure": "Transaction was not successful"
+  "kTransactionFailure": "Transaction was not successful",
+  "kStrongPasswordError": "* Please enter a valid password that contains 8-20 characters, must contain at least one lowercase and one uppercase character, one digit and one special character"
 }

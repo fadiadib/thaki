@@ -32,6 +32,10 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     with TkFormFieldValidatorMixin {
   TkCar _car;
   ScrollController _scrollController = ScrollController();
+  TextEditingController _modelController = TextEditingController();
+  TextEditingController _makeController = TextEditingController();
+  TextEditingController _colorController = TextEditingController();
+  TextEditingController _yearController = TextEditingController();
 
   /// Override mandatory validate field method from form field validator
   /// validate each field according to its type.
@@ -263,7 +267,9 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         30.0, 10.0, 5.0, 10.0),
-                    child: TkDropDownField(
+                    child: TkSearchableDropDownField(
+                      controller: _makeController,
+                      style: kRegularStyle[kSmallSize],
                       context: context,
                       hintText: S.of(context).kCarMake,
                       value: states.makeName(_car.make, langController),
@@ -272,6 +278,9 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                         setState(() {
                           _car.make = states.makeId(value);
                           _car.model = null;
+                          _modelController.clear();
+                          _modelController.clearComposing();
+                          _makeController.clearComposing();
                         });
                         states.loadModels(user, _car.make);
                       },
@@ -297,13 +306,17 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
-                    child: TkDropDownField(
+                    child: TkSearchableDropDownField(
+                      controller: _modelController,
+                      style: kRegularStyle[kSmallSize],
                       context: context,
                       hintText: S.of(context).kCarModel,
                       value: states.modelName(_car.model, langController),
                       values: states.modelNames(langController),
-                      onChanged: (value) =>
-                          setState(() => _car.model = states.modelId(value)),
+                      onChanged: (value) {
+                        setState(() => _car.model = states.modelId(value));
+                        _modelController.clearComposing();
+                      },
                       validator: getValidationCallback(TkFormField.carModel),
                       validate: isValidating,
                       errorMessage:
@@ -328,13 +341,17 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         30.0, 10.0, 5.0, 10.0),
-                    child: TkDropDownField(
+                    child: TkSearchableDropDownField(
+                      controller: _colorController,
+                      style: kRegularStyle[kSmallSize],
                       context: context,
                       hintText: S.of(context).kCarColor,
                       value: states.colorName(_car.color, langController),
                       values: states.colorNames(langController),
-                      onChanged: (value) =>
-                          setState(() => _car.color = states.colorId(value)),
+                      onChanged: (value) {
+                        setState(() => _car.color = states.colorId(value));
+                        _colorController.clearComposing();
+                      },
                     ),
                   ),
                 ],
@@ -353,12 +370,17 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
-                    child: TkDropDownField(
+                    child: TkSearchableDropDownField(
+                      controller: _yearController,
+                      style: kRegularStyle[kSmallSize],
                       context: context,
                       hintText: S.of(context).kCarYear,
                       value: _car.year,
                       values: _getYears(),
-                      onChanged: (value) => setState(() => _car.year = value),
+                      onChanged: (value) {
+                        setState(() => _car.year = value);
+                        _yearController.clearComposing();
+                      },
                     ),
                   ),
                 ],
@@ -394,7 +416,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
             stopValidating();
 
             // Remove the spaces in the car plate Arabic
-            _car.plateAR = _car.plateAR.split(' ').join();
+            if (_car.plateAR != null)
+              _car.plateAR = _car.plateAR.split(' ').join();
 
             if (widget.editMode) {
               // Call API to add car
@@ -433,11 +456,19 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
         Provider.of<TkAttributesController>(context, listen: false);
     TkUser user = Provider.of<TkAccount>(context, listen: false).user;
     states.loadModels(user, _car?.make, init: true);
+
+    TkLangController langController =
+        Provider.of<TkLangController>(context, listen: false);
+
+    _makeController.text = states.makeName(_car.make, langController);
+    _colorController.text = states.colorName(_car.color, langController);
+    _yearController.text = _car.year;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TkAccount>(builder: (context, account, _) {
+    return Consumer2<TkAccount, TkAttributesController>(
+        builder: (context, account, attributes, _) {
       return Scaffold(
         appBar: TkAppBar(
           context: context,
@@ -447,21 +478,17 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           title: TkLogoBox(),
         ),
         body: TkScaffoldBody(
-          child: Column(
+          child: ListView(
+            shrinkWrap: true,
+            controller: _scrollController,
+            reverse: true,
             children: [
-              ListView(
-                shrinkWrap: true,
-                controller: _scrollController,
-                reverse: true,
-                children: [
-                  TkError(
-                      message: widget.editMode
-                          ? account.updateCarError
-                          : account.addCarError),
-                  _createFormButton(account),
-                  _createForm(account),
-                ],
-              ),
+              TkError(
+                  message: widget.editMode
+                      ? account.updateCarError
+                      : account.addCarError),
+              _createFormButton(account),
+              _createForm(account),
             ],
           ),
         ),
