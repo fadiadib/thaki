@@ -77,6 +77,7 @@ class TkViolationListPane extends TkPane {
                   _getTotalFine(payer, context),
                   _getPaySelectionButton(payer, context),
                   TkError(message: payer.validationViolationsError),
+                  TkError(message: payer.loadError)
                 ],
               );
       },

@@ -66,7 +66,10 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
       TkViolationsPane(),
       TkParkingPane(),
       TkDashboardPane(),
-      TkTicketsPane(),
+      TkTicketsPane(
+        onSelect: () =>
+            Provider.of<TkBooker>(context, listen: false).cancelError = null,
+      ),
       TkProfilePane(scaffoldKey: () => scaffoldKey),
     ];
   }
@@ -106,7 +109,10 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
                 buttonBackgroundColor: kSecondaryColor,
                 height: 60.0,
                 items: _getIcons(),
-                onTap: (index) => setState(() => selector.activeTab = index),
+                onTap: (index) {
+                  setState(() => selector.activeTab = index);
+                  if (_panes[index].onSelect != null) _panes[index].onSelect();
+                },
               ),
 
               /// Scaffold body: Active pane

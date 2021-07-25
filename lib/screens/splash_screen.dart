@@ -8,6 +8,7 @@ import 'package:package_info/package_info.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/onboarding_controller.dart';
+import 'package:thaki/providers/user_attributes_controller.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -91,6 +92,10 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
 
         // Check for logged session
         bool loggedIn = await account.isLoggedIn();
+
+        // Load user attributes
+        await Provider.of<TkUserAttributesController>(context, listen: false)
+            .load();
 
         if (loggedIn && await account.load()) {
           await Navigator.pushReplacementNamed(context, TkHomeScreen.id);
@@ -282,9 +287,6 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
   @override
   void initState() {
     super.initState();
-
-    // TODO: enable messenger to receive notifications
-    // TkMessenger messenger = Provider.of<TkMessenger>(context, listen: false);
 
     // Update the logo radius
     _updateGraphics();

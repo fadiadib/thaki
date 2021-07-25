@@ -7,6 +7,7 @@ import 'package:thaki/panes/parking/index.dart';
 import 'package:thaki/panes/transaction/transaction_pane.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/transactor.dart';
 import 'package:thaki/utilities/dialog_helper.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -64,25 +65,43 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
         // Load next screen
         loadNextPane();
       }));
-      panes.add(TkParkingSuccessPane(onDone: () => loadNextPane()));
+      panes.add(
+        TkParkingSuccessPane(
+          onDone: () {
+            Provider.of<TkPurchaser>(context, listen: false).loadBalance(
+                Provider.of<TkAccount>(context, listen: false).user);
+            loadNextPane();
+          },
+        ),
+      );
     } else {
-      panes.add(TkTransactionPane(
-        onDone: () => loadNextPane(),
-        onClose: () async {
-          if (await TkDialogHelper.gShowConfirmationDialog(
-                context: context,
-                message: S.of(context).kAreYouSureTransaction,
-                type: gDialogType.yesNo,
-              ) ??
-              false) {
-            Provider.of<TkTransactor>(context, listen: false)
-                .stopTransactionChecker();
+      panes.add(
+        TkTransactionPane(
+          onDone: () => loadNextPane(),
+          onClose: () async {
+            if (await TkDialogHelper.gShowConfirmationDialog(
+                  context: context,
+                  message: S.of(context).kAreYouSureTransaction,
+                  type: gDialogType.yesNo,
+                ) ??
+                false) {
+              Provider.of<TkTransactor>(context, listen: false)
+                  .stopTransactionChecker();
 
-            Navigator.of(context).pop();
-          }
-        },
-      ));
-      panes.add(TkParkingSuccessPane(onDone: () => loadNextPane()));
+              Navigator.of(context).pop();
+            }
+          },
+        ),
+      );
+      panes.add(
+        TkParkingSuccessPane(
+          onDone: () {
+            Provider.of<TkPurchaser>(context, listen: false).loadBalance(
+                Provider.of<TkAccount>(context, listen: false).user);
+            loadNextPane();
+          },
+        ),
+      );
     }
 
     return panes;

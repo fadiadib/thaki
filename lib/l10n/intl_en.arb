@@ -48,8 +48,7 @@
   "kPleaseChoose": "* Please Choose ",
   "kPasswordMismatch": "* Password Mismatch",
   "kConnectionError": "Your phone doesn\"t have an Internet connection,\nplease check connection and ",
-  "kTryAgain": 
-  "try again",
+  "kTryAgain": "try again",
   "kServerError": "Thaki server unreachable.\nPlease ",
   "kVersionError": "App upgrade is required,\nplease upgrade to the latest version\nand ",
   "kSkip": "Skip",
@@ -206,5 +205,13 @@
   "kDeleteAccount": "Delete Account",
   "kTransactionSuccess": "Transaction was successful",
   "kTransactionFailure": "Transaction was not successful",
-  "kStrongPasswordError": "* Please enter a valid password that contains 8-20 characters, must contain at least one lowercase and one uppercase character, one digit and one special character"
+  "kStrongPasswordError": "* Please enter a valid password that contains 8-20 characters, must contain at least one lowercase and one uppercase character, one digit and one special character",
+  "kFirstName": "First Name",
+  "kMiddleName": "Middle Name",
+  "kLastName": "Last Name",
+  "kNationality": "Nationality",
+  "kDriverType": "Driver Type",
+  "kGender": "Gender",
+  "kMale": "Male",
+  "kFemale": "Female"
 }

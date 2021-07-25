@@ -102,25 +102,6 @@ class TkMenuDrawer extends StatelessWidget {
                   },
                 ),
 
-                if (account.user.isSocial)
-                  // Delete account menu item
-                  TkListMenuItem(
-                    pop: false,
-                    title: S.of(context).kDeleteAccount,
-                    textStyle: kRegularStyle[kNormalSize],
-                    action: () async {
-                      if (await TkDialogHelper.gShowConfirmationDialog(
-                            context: context,
-                            message: S.of(context).kAreYouSureUser,
-                            type: gDialogType.yesNo,
-                          ) ??
-                          false) {
-                        await account.deleteSocial();
-                        popParentCallback();
-                      }
-                    },
-                  ),
-
                 // Subscription menu item
                 TkListMenuItem(
                   pop: true,
@@ -162,6 +143,32 @@ class TkMenuDrawer extends StatelessWidget {
                   action: () => TkURLLauncher.launch(
                       kBaseURL + S.of(context).kLocale + kTermsConditionsURL),
                 ),
+
+                if (account.user.isSocial)
+                  // Delete account menu item
+                  GestureDetector(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      child: Center(
+                        child: Text(
+                          S.of(context).kDeleteAccount,
+                          style: kBoldStyle[kSmallSize]
+                              .copyWith(color: kLightPurpleColor),
+                        ),
+                      ),
+                    ),
+                    onTap: () async {
+                      if (await TkDialogHelper.gShowConfirmationDialog(
+                            context: context,
+                            message: S.of(context).kAreYouSureUser,
+                            type: gDialogType.yesNo,
+                          ) ??
+                          false) {
+                        await account.deleteSocial();
+                        popParentCallback();
+                      }
+                    },
+                  ),
 
                 // Copyright and version
                 if (versioner.version != null && versioner.build != null)

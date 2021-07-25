@@ -18,8 +18,9 @@ class TkParkingTypeList extends StatelessWidget {
           isSelected: parkNow,
           onTap: onTap,
           parkingType: TkParkingType(
-              title: S.of(context).kImmediateParking,
-              subTitle: S.of(context).kParkNow),
+            title: S.of(context).kImmediateParking,
+            // subTitle: S.of(context).kParkNow,
+          ),
         ),
       ),
       Padding(
@@ -28,8 +29,9 @@ class TkParkingTypeList extends StatelessWidget {
           isSelected: !parkNow,
           onTap: onTap,
           parkingType: TkParkingType(
-              title: S.of(context).kScheduleParking,
-              subTitle: S.of(context).kScheduleYourParking),
+            title: S.of(context).kScheduleParking,
+            // subTitle: S.of(context).kScheduleYourParking,
+          ),
         ),
       ),
     ]);

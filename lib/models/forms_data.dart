@@ -30,16 +30,16 @@ Map<String, dynamic> kLoginFieldsJson = {
 };
 
 Map<String, dynamic> kRegisterFieldsJson = {
-  kFormName: {'en': 'Register', 'ar': 'إشترك'},
-  kFormAction: {'en': 'Register', 'ar': 'إشترك'},
+  kFormName: {'en': 'Register', 'ar': 'إنشاء حساب'},
+  kFormAction: {'en': 'Register', 'ar': 'إنشاء حساب'},
   kInfoFieldsTag: [
-    {
-      kIFName: kUserNameTag,
-      kIFTitle: 'Full Name',
-      kIFTitleAR: 'الاسم بالكامل',
-      kIFRequired: true,
-      kIFType: TkInfoFieldType.Name.index,
-    },
+    // {
+    //   kIFName: kUserNameTag,
+    //   kIFTitle: 'Full Name',
+    //   kIFTitleAR: 'الاسم بالكامل',
+    //   kIFRequired: true,
+    //   kIFType: TkInfoFieldType.Name.index,
+    // },
     {
       kIFName: kUserEmailTag,
       kIFTitle: 'Email',
@@ -51,7 +51,7 @@ Map<String, dynamic> kRegisterFieldsJson = {
       kIFName: kUserBirthDateTag,
       kIFTitle: 'Birth date',
       kIFTitleAR: 'تاريخ الميلاد',
-      kIFRequired: true,
+      kIFRequired: false,
       kIFType: TkInfoFieldType.Date.index,
     },
     {
@@ -134,13 +134,13 @@ Map<String, dynamic> kEditProfileFieldsJson = {
   },
   kFormAction: {'en': 'Update', 'ar': 'تحديث'},
   kInfoFieldsTag: [
-    {
-      kIFName: kUserNameTag,
-      kIFTitle: 'Full Name',
-      kIFTitleAR: 'الاسم بالكامل',
-      kIFRequired: true,
-      kIFType: TkInfoFieldType.Name.index,
-    },
+    // {
+    //   kIFName: kUserNameTag,
+    //   kIFTitle: 'Full Name',
+    //   kIFTitleAR: 'الاسم بالكامل',
+    //   kIFRequired: true,
+    //   kIFType: TkInfoFieldType.Name.index,
+    // },
     {
       kIFName: kUserEmailTag,
       kIFTitle: 'Email',
@@ -159,7 +159,7 @@ Map<String, dynamic> kEditProfileFieldsJson = {
       kIFName: kUserBirthDateTag,
       kIFTitle: 'Birth date',
       kIFTitleAR: 'تاريخ الميلاد',
-      kIFRequired: true,
+      kIFRequired: false,
       kIFType: TkInfoFieldType.Date.index,
     },
     {
@@ -193,13 +193,13 @@ Map<String, dynamic> kEditSocialProfileFieldsJson = {
   },
   kFormAction: {'en': 'Update', 'ar': 'تحديث'},
   kInfoFieldsTag: [
-    {
-      kIFName: kUserNameTag,
-      kIFTitle: 'Full Name',
-      kIFTitleAR: 'الاسم بالكامل',
-      kIFRequired: true,
-      kIFType: TkInfoFieldType.Name.index,
-    },
+    // {
+    //   kIFName: kUserNameTag,
+    //   kIFTitle: 'Full Name',
+    //   kIFTitleAR: 'الاسم بالكامل',
+    //   kIFRequired: true,
+    //   kIFType: TkInfoFieldType.Name.index,
+    // },
     {
       kIFName: kUserEmailTag,
       kIFTitle: 'Email',

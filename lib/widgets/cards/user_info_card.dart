@@ -22,7 +22,10 @@ class TkUserInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _getInfoRow(iconData: kProfileOutlineBtnIcon, title: user.name),
+        _getInfoRow(
+            iconData: kProfileOutlineBtnIcon,
+            title:
+                '${user.firstName} ${user.middleName ?? ''} ${user.lastName}'),
         _getInfoRow(iconData: kEmailOutlineBtnIcon, title: user.email),
         _getInfoRow(iconData: kPhoneBtnIcon, title: user.phone),
       ],

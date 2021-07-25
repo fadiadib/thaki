@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,21 +13,89 @@ import 'package:thaki/providers/account.dart';
 import 'package:twitter_login/twitter_login.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:crypto/crypto.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class TkSocialLogin extends StatelessWidget {
   TkSocialLogin({this.callback});
   final Function callback;
 
+  /// Generates a cryptographically secure random nonce, to be included in a
+  /// credential request.
+  String generateNonce([int length = 64]) {
+    final charset =
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+    final random = Random.secure();
+    return List.generate(length, (_) => charset[random.nextInt(charset.length)])
+        .join();
+  }
+
+  /// Returns the sha256 hash of [input] in hex notation.
+  String sha256ofString(String input) {
+    final bytes = utf8.encode(input);
+    final digest = sha256.convert(bytes);
+    return digest.toString();
+  }
+
+  /// Apple login
+  Future<void> signInWithApple(BuildContext context) async {
+    TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    account.socialError = null;
+
+    try {
+      // To prevent replay attacks with the credential returned from Apple, we
+      // include a nonce in the credential request. When signing in with
+      // Firebase, the nonce in the id token returned by Apple, is expected to
+      // match the sha256 hash of `rawNonce`.
+      final rawNonce = generateNonce();
+
+      // Request credential for the currently signed in Apple account.
+      final appleCredential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
+        // nonce: nonce,
+      );
+
+      // Create an `OAuthCredential` from the credential returned by Apple.
+      final oauthCredential = OAuthProvider("apple.com").credential(
+        idToken: appleCredential.identityToken,
+        rawNonce: rawNonce,
+      );
+      UserCredential credential =
+          await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+
+      account.user = TkUser.fromJson({
+        kUserTag: {
+          kUserFirstNameTag: credential.user.displayName?.split(' ')?.first,
+          kUserLastNameTag: credential.user.displayName?.split(' ')?.last,
+          kUserEmailTag: credential.user.email,
+          kUserSocialTokenTag: appleCredential.identityToken,
+          kUserLoginTypeTag: 'Apple',
+        }
+      });
+
+      callback();
+    } catch (error) {
+      account.socialError = error.toString();
+    }
+  }
+
   /// Google login
   Future<void> signInWithGoogle(BuildContext context) async {
     // Trigger the authentication flow
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.socialError = null;
     try {
+      if (googleUser == null) throw 'Social Login was cancelled';
       account.user = TkUser.fromJson({
         kUserTag: {
-          kUserNameTag: googleUser.displayName,
+          kUserFirstNameTag: googleUser.displayName.split(' ').first,
+          kUserLastNameTag: googleUser.displayName.split(' ').last,
           kUserEmailTag: googleUser.email,
           kUserSocialTokenTag: googleUser.id,
           kUserLoginTypeTag: 'Google',
@@ -33,7 +103,7 @@ class TkSocialLogin extends StatelessWidget {
       });
       callback();
     } catch (error) {
-      account.socialError = error;
+      account.socialError = error.toString();
     }
   }
 
@@ -46,12 +116,14 @@ class TkSocialLogin extends StatelessWidget {
       final AccessToken result = await FacebookAuth.instance.login();
       final token = result.token;
       final graphResponse = await http.get(
-          'https://graph.facebook.com/v2.12/me?fields=name,first_name,last_name,email&access_token=$token');
+          'https://graph.facebook.com/v2.12/me?fields=name,first_name,middle_name,last_name,email&access_token=$token');
       final profile = json.decode(graphResponse.body);
 
       account.user = TkUser.fromJson({
         kUserTag: {
-          kUserNameTag: profile['name'],
+          kUserFirstNameTag: profile['first_name'],
+          kUserMiddleNameTag: profile['middle_name'],
+          kUserLastNameTag: profile['last_name'],
           kUserEmailTag: profile['email'],
           kUserSocialTokenTag: result.userId,
           kUserLoginTypeTag: 'Facebook',
@@ -59,7 +131,8 @@ class TkSocialLogin extends StatelessWidget {
       });
       callback();
     } catch (error) {
-      account.socialError = error.message;
+      FacebookAuthException e = error;
+      account.socialError = e.message;
     }
   }
 
@@ -82,7 +155,8 @@ class TkSocialLogin extends StatelessWidget {
           // success
           account.user = TkUser.fromJson({
             kUserTag: {
-              kUserNameTag: authResult.user.name,
+              kUserFirstNameTag: authResult.user.name.split(' ').first,
+              kUserLastNameTag: authResult.user.name.split(' ').last,
               kUserEmailTag: authResult.user.email,
               kUserSocialTokenTag: authResult.authToken,
               kUserLoginTypeTag: 'Twitter',
@@ -115,6 +189,13 @@ class TkSocialLogin extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              if (Platform.isIOS)
+                GestureDetector(
+                  child: Image.asset(kAppleBtn, height: 52.0),
+                  onTap: () async {
+                    await signInWithApple(context);
+                  },
+                ),
               GestureDetector(
                 child: Image.asset(kFacebookBtn, height: 52.0),
                 onTap: () async {
@@ -132,7 +213,7 @@ class TkSocialLogin extends StatelessWidget {
                 onTap: () async {
                   await signInWithGoogle(context);
                 },
-              )
+              ),
             ],
           ),
         )

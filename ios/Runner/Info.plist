@@ -31,7 +31,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb1483018842077689</string>
-				<string>com.googleusercontent.apps.307293462691-hi0moehk31ri8b3r8ttnjhdc13dg2obr</string>
+				<string>com.googleusercontent.apps.603220167751-qpb4j7rrre78sgjeaee24p7kuitup830</string>
 				<string>thaki</string>
 			</array>
 		</dict>
@@ -67,6 +67,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Access to camera to scan credit cards and ID cards</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Access to location allows the user to specify the closest parking zone</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Access to image gallery allows the user to upload images of their documents such as their IDs</string>
 	<key>UIBackgroundModes</key>

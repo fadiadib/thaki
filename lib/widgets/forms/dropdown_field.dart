@@ -275,7 +275,7 @@ class DropDownFieldState extends FormFieldState<String> {
         childItems.add(_getListTile(item));
       }
     }
-    _isSearching ? childItems : List();
+
     return childItems;
   }
 
@@ -317,7 +317,7 @@ class DropDownFieldState extends FormFieldState<String> {
       setState(() {
         _isSearching = true;
         _searchText = _effectiveController.text;
-        _showdropdown = true;
+        _showdropdown = false;
       });
     }
   }

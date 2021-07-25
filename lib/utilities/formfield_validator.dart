@@ -11,6 +11,12 @@ enum TkFormField {
   cardNumber,
   cardExpiry,
   cardCVV,
+  firstName,
+  middleName,
+  lastName,
+  nationality,
+  userType,
+  gender,
 }
 
 /// Mixin class to implement form validations

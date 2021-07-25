@@ -3,8 +3,8 @@ const bool kVerboseNetworkMessages = false;
 const bool kDemoMode = true;
 
 /// App ID
-const String kAndroidAppId = 'com.aurasys.thaki';
-const String kIOSAppId = '1562619162';
+const String kAndroidAppId = 'com.scscsa.thaki';
+const String kIOSAppId = '1576005384';
 
 /// Settings
 const int kSplashDelay = 2;

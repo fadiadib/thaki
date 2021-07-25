@@ -1,49 +1,49 @@
 {
   "project_info": {
-    "project_number": "307293462691",
-    "project_id": "thaki-ceab4",
-    "storage_bucket": "thaki-ceab4.appspot.com"
+    "project_number": "603220167751",
+    "project_id": "thaki-scsc",
+    "storage_bucket": "thaki-scsc.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:307293462691:android:df4ff0d670ca7c04af1f16",
+        "mobilesdk_app_id": "1:603220167751:android:47deff3de988ac84f4b562",
         "android_client_info": {
-          "package_name": "com.aurasys.thaki"
+          "package_name": "com.scscsa.thaki"
         }
       },
       "oauth_client": [
         {
-          "client_id": "307293462691-36jfprupqv1n238c6rtrumtf3ini1kj0.apps.googleusercontent.com",
+          "client_id": "603220167751-6hqq2up3k8q9dmmqmvbtd1jg2gvkihj9.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.aurasys.thaki",
+            "package_name": "com.scscsa.thaki",
             "certificate_hash": "884dc90e79a3ee302beb1cf297561dbb93f7c17b"
           }
         },
         {
-          "client_id": "307293462691-o84t7gckqkuvnmif1p0gqvnu9b05fj91.apps.googleusercontent.com",
+          "client_id": "603220167751-r3nj9hvb16em07vnqvc43b3922h420lg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA2wMoHCGXr7sV8ljGmQNRQabAbrCRU_CY"
+          "current_key": "AIzaSyBI5TWMUroQkVixL4LghktcTEhOTPixhpw"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "307293462691-o84t7gckqkuvnmif1p0gqvnu9b05fj91.apps.googleusercontent.com",
+              "client_id": "603220167751-r3nj9hvb16em07vnqvc43b3922h420lg.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "307293462691-hi0moehk31ri8b3r8ttnjhdc13dg2obr.apps.googleusercontent.com",
+              "client_id": "603220167751-qpb4j7rrre78sgjeaee24p7kuitup830.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.aurasys.thaki",
-                "app_store_id": "1562619162"
+                "bundle_id": "com.scscsa.thaki",
+                "app_store_id": "1576005384"
               }
             }
           ]

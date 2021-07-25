@@ -195,7 +195,7 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                   ? controller.onBoardingList[_current].image != null
                       ? NetworkImage(controller.onBoardingList[_current].image)
                       : AssetImage(kOBBg)
-                  : AssetImage(kOBBg),
+                  : null,
               colorOverlay: kPrimaryColor,
               overlayOpacity: 0.5,
               enableSafeArea: false,

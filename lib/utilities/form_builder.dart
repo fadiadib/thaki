@@ -16,6 +16,7 @@ class TkFormBuilder {
     EdgeInsets padding,
     bool noComma = false,
     bool forceLabel = false,
+    TextStyle style,
   }) {
     if (forceLabel || enableLabels)
       return Padding(
@@ -24,7 +25,7 @@ class TkFormBuilder {
             : const EdgeInsetsDirectional.fromSTEB(5, 0, 0, 8),
         child: Text(
           label,
-          style: kBoldStyle[kSmallSize],
+          style: style ?? kBoldStyle[kSmallSize],
           textAlign: TextAlign.start,
         ),
       );
@@ -140,6 +141,7 @@ class TkFormBuilder {
     @required String label,
     @required bool value,
     @required Function onChanged,
+    TextStyle style,
   }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -153,7 +155,8 @@ class TkFormBuilder {
             onChanged: onChanged,
           ),
         ),
-        createLabel(label: label, noComma: true, forceLabel: true),
+        createLabel(
+            label: label, noComma: true, forceLabel: true, style: style),
       ],
     );
   }

@@ -2094,6 +2094,86 @@ class S {
       args: [],
     );
   }
+
+  /// `First Name`
+  String get kFirstName {
+    return Intl.message(
+      'First Name',
+      name: 'kFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Middle Name`
+  String get kMiddleName {
+    return Intl.message(
+      'Middle Name',
+      name: 'kMiddleName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name`
+  String get kLastName {
+    return Intl.message(
+      'Last Name',
+      name: 'kLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nationality`
+  String get kNationality {
+    return Intl.message(
+      'Nationality',
+      name: 'kNationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Driver Type`
+  String get kDriverType {
+    return Intl.message(
+      'Driver Type',
+      name: 'kDriverType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get kGender {
+    return Intl.message(
+      'Gender',
+      name: 'kGender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Male`
+  String get kMale {
+    return Intl.message(
+      'Male',
+      name: 'kMale',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Female`
+  String get kFemale {
+    return Intl.message(
+      'Female',
+      name: 'kFemale',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

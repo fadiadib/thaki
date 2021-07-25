@@ -37,6 +37,7 @@ class TkTransactor extends ChangeNotifier {
     TkCar car,
     DateTime dateTime,
     int duration,
+    List<int> ids,
   }) async {
     // Start any loading indicators
     _isLoading = true;
@@ -51,6 +52,7 @@ class TkTransactor extends ChangeNotifier {
       car: car,
       dateTime: dateTime,
       duration: duration,
+      ids: ids,
     );
 
     // Clear model

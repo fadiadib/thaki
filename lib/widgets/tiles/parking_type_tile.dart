@@ -44,7 +44,7 @@ class TkParkingTypeTile extends StatelessWidget {
                           kBoldStyle[kNormalSize].copyWith(color: kBlackColor),
                     ),
                   ),
-                  Text(parkingType.subTitle),
+                  if (parkingType.subTitle != null) Text(parkingType.subTitle),
                 ],
               ),
 

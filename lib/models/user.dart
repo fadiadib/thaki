@@ -10,7 +10,7 @@ import 'package:thaki/utilities/index.dart';
 class TkUser {
   void updateModelFromInfoFields(TkInfoFieldsList fields) {
     for (TkInfoField field in fields.fields) {
-      if (field.name == kUserNameTag) name = field.value;
+      // if (field.name == kUserNameTag) name = field.value;
       if (field.name == kUserEmailTag) email = field.value;
       if (field.name == kUserPhoneTag) phone = field.value;
       if (field.name == kUserBirthDateTag)
@@ -31,7 +31,15 @@ class TkUser {
     if (json[kUserTokenTag] != null) token = json[kUserTokenTag];
     if (json[kUserTokenTypeTag] != null) tokenType = json[kUserTokenTypeTag];
     if (json[kUserTag] != null) {
-      name = json[kUserTag][kUserNameTag];
+      // name = json[kUserTag][kUserNameTag];
+      firstName = json[kUserTag][kUserFirstNameTag];
+      middleName = json[kUserTag][kUserMiddleNameTag];
+      lastName = json[kUserTag][kUserLastNameTag];
+      gender = json[kUserTag][kUserGenderTag];
+      nationality =
+          int.tryParse(json[kUserTag][kUserNationalityTag].toString());
+      userType = int.tryParse(json[kUserTag][kUserDriverTypeTag].toString());
+
       email = json[kUserTag][kUserEmailTag];
       phone = json[kUserTag][kUserPhoneTag];
       birthDate =
@@ -90,10 +98,16 @@ class TkUser {
 
   Future<Map<String, dynamic>> toJson() async {
     Map<String, dynamic> result = {
-      kUserNameTag: name,
+      // kUserNameTag: name,
+      kUserFirstNameTag: firstName,
+      kUserMiddleNameTag: middleName,
+      kUserLastNameTag: lastName,
+      kUserGenderTag: gender,
+      kUserNationalityTag: nationality.toString(),
+      kUserDriverTypeTag: userType.toString(),
       kUserEmailTag: email,
       kUserPhoneTag: phone,
-      kUserBirthDateTag: birthDate.toString().split('.').first,
+      kUserBirthDateTag: birthDate.toString().split(' ').first,
       kFBTokenTag: await FirebaseMessaging().getToken(),
     };
     if (password != null)
@@ -117,7 +131,10 @@ class TkUser {
 
   Future<Map<String, dynamic>> toSocialLoginJson() async {
     return {
-      kUserNameTag: name,
+      kUserFirstNameTag: firstName ?? '',
+      kUserMiddleNameTag: middleName ?? '',
+      kUserLastNameTag: lastName ?? '',
+      kUserGenderTag: gender ?? '',
       kUserEmailTag: email ?? '',
       kUserPhoneTag: phone ?? '',
       kUserBirthDateTag:
@@ -148,14 +165,15 @@ class TkUser {
   }
 
   TkInfoFieldsList toInfoFields(TkInfoFieldsList fields) {
+    String fullName = firstName;
+    if (middleName != null) fullName += ' $middleName';
+    if (lastName != null) fullName += ' $lastName';
+
     for (TkInfoField field in fields.fields) {
-      if (field.name == kUserNameTag) field.value = name;
+      if (field.name == kUserNameTag) field.value = fullName;
       if (field.name == kUserEmailTag) field.value = email;
       if (field.name == kUserPhoneTag) field.value = phone;
       if (field.name == kUserBirthDateTag) field.value = birthDate?.toString();
-      // if (field.name == kUserPasswordTag) field.value = password;
-      // if (field.name == kUserConfirmPasswordTag) field.value = confirmPassword;
-      // if (field.name == kUserOldPasswordTag) field.value = oldPassword;
     }
     return fields;
   }
@@ -163,7 +181,7 @@ class TkUser {
   Locale lang;
   String token;
   String tokenType;
-  String name;
+  // String name;
   String email;
   String otp;
   DateTime birthDate;
@@ -178,4 +196,11 @@ class TkUser {
   int isApproved;
   List<TkCar> cars;
   List<TkCredit> cards;
+
+  int nationality;
+  int userType;
+  String gender;
+  String firstName;
+  String middleName;
+  String lastName;
 }

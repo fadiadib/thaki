@@ -98,7 +98,7 @@ class TkViolationsPane extends TkPane {
                       onPressed: () {
                         // Select the car in the payer provider
                         Provider.of<TkPayer>(context, listen: false)
-                            .selectedCar = null;
+                            .selectedCar = TkCar.fromJson({});
 
                         // Push the pay violations screen
                         Navigator.of(context)

@@ -18,6 +18,7 @@ import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/providers/server.dart';
 import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/providers/transactor.dart';
+import 'package:thaki/providers/user_attributes_controller.dart';
 import 'package:thaki/providers/versioner.dart';
 
 void main() => runApp(ThankiMain());
@@ -43,6 +44,9 @@ class ThankiMain extends StatelessWidget {
         ),
         ChangeNotifierProvider<TkAttributesController>(
           create: (context) => new TkAttributesController(),
+        ),
+        ChangeNotifierProvider<TkUserAttributesController>(
+          create: (context) => new TkUserAttributesController(),
         ),
         ChangeNotifierProvider<TkOnBoardingController>(
           create: (context) => new TkOnBoardingController(),

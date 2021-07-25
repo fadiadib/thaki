@@ -143,7 +143,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
       child: TkTextField(
         enabled: !account.isLoading,
-        hintText: S.of(context).kCarPlateEN + S.of(context).kCarPlateHint,
+        hintText: S.of(context).kCarPlateEN,
         initialValue: _car?.plateEN,
         onChanged: (value) => setState(() => _car.plateEN = value),
         validator: getValidationCallback(TkFormField.carPlateEN),
@@ -174,7 +174,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
       child: TkTextField(
         enabled: !account.isLoading,
-        hintText: S.of(context).kCarPlateAR + S.of(context).kCarPlateHint,
+        hintText: S.of(context).kCarPlateAR,
         initialValue: _car?.plateAR,
         onChanged: (value) => setState(() => _car.plateAR = value),
         validator: getValidationCallback(TkFormField.carPlateAR),
@@ -236,8 +236,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           Column(
             children: [
               TkSectionTitle(
-                  title:
-                      S.of(context).kCarPlateEN + S.of(context).kCarPlateHint,
+                  title: S.of(context).kCarPlateEN +
+                      (_car.state == 1 ? S.of(context).kCarPlateHint : ''),
                   uppercase: false),
               getLicensePlateWidgetEN(langController, account),
             ],
@@ -248,8 +248,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
           Column(
             children: [
               TkSectionTitle(
-                  title:
-                      S.of(context).kCarPlateAR + S.of(context).kCarPlateHint,
+                  title: S.of(context).kCarPlateAR +
+                      (_car.state == 1 ? S.of(context).kCarPlateHint : ''),
                   uppercase: false),
               getLicensePlateWidgetAR(langController, account),
             ],
@@ -461,6 +461,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
         Provider.of<TkLangController>(context, listen: false);
 
     _makeController.text = states.makeName(_car.make, langController);
+    Future.delayed(Duration(seconds: 3)).then((_) =>
+        _modelController.text = states.modelName(_car.model, langController));
     _colorController.text = states.colorName(_car.color, langController);
     _yearController.text = _car.year;
   }

@@ -7,6 +7,7 @@ import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/utilities/dialog_helper.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/general/error.dart';
@@ -18,6 +19,7 @@ class TkTicketsPane extends TkPane {
       : super(
           paneTitle: '',
           navIconData: TkNavIconData(icon: AssetImage(kTicketsIcon)),
+          onSelect: onSelect,
         );
 
   @override
@@ -78,6 +80,10 @@ class TkTicketsPane extends TkPane {
                                     .user,
                                 ticket,
                               );
+                            Provider.of<TkPurchaser>(context, listen: false)
+                                .loadBalance(Provider.of<TkAccount>(context,
+                                        listen: false)
+                                    .user);
                           },
                         ),
                         TkTicketList(

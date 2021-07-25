@@ -98,6 +98,7 @@ class TkPayer extends ChangeNotifier {
   String _validationCarError;
   String get validationCarError => _validationCarError;
   bool validateCar(BuildContext context) {
+    print(_selectedCar.plateEN);
     if (_selectedCar == null ||
         _selectedCar.plateEN == null ||
         _selectedCar.plateEN.isEmpty ||
@@ -111,7 +112,7 @@ class TkPayer extends ChangeNotifier {
   }
 
   /// Load violations
-  Future<bool> loadViolations() async {
+  Future<bool> loadViolations(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
 
@@ -123,7 +124,7 @@ class TkPayer extends ChangeNotifier {
     _selectedViolations.clear();
     _cvv = null;
 
-    Map result = await _apis.loadViolations(selectedCar.plateEN);
+    Map result = await _apis.loadViolations(selectedCar.plateEN, user);
     if (result[kStatusTag] == kSuccessCode) {
       for (Map<String, dynamic> json in result[kDataTag][kViolationsTag]) {
         _violations.add(TkViolation.fromJson(json));

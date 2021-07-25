@@ -1,6 +1,7 @@
 /// URIs
 // Root API uri
-const String kRootURL = 'https://thaki.aurasystems.xyz/backend/public/api';
+const String kRootURL = '';
+const String kRootHandle = 'root_api_url';
 // APIs URIs
 // Authentication
 const String kCheckAPI = '$kRootURL/check';
@@ -12,6 +13,7 @@ const String kEditAPI = '$kRootURL/update_profile';
 const String kForgotPasswordAPI = '$kRootURL/auth/forgot_password';
 const String kResetPasswordAPI = '$kRootURL/auth/reset_password';
 const String kSocialAPI = '$kRootURL/auth/social';
+const String kLoadUserAttributesAPI = '$kRootURL/user_attributes';
 // Cars
 const String kLoadCarsAPI = '$kRootURL/cars';
 const String kAddCarAPI = '$kRootURL/cars';
@@ -95,6 +97,14 @@ const String kUserTag = 'user';
 const String kUserTokenTag = 'access_token';
 const String kUserTokenTypeTag = 'token_type';
 const String kUserNameTag = 'name';
+
+const String kUserFirstNameTag = 'first_name';
+const String kUserMiddleNameTag = 'middle_name';
+const String kUserLastNameTag = 'last_name';
+const String kUserGenderTag = 'gender';
+const String kUserNationalityTag = 'nationality_id';
+const String kUserDriverTypeTag = 'user_type_id';
+
 const String kUserEmailTag = 'email';
 const String kUserBirthDateTag = 'birth_date';
 const String kUserPhoneTag = 'phone';
@@ -224,10 +234,13 @@ const String kStatesTag = 'state_list';
 const String kMakesTag = 'make_list';
 const String kModelsTag = 'model_list';
 const String kColorsTag = 'color_list';
+const String kNationalitiesTag = 'nationalities_list';
+const String kTypesTag = 'user_types_list';
 // Transactions
 const String kTransactionIdTag = 'transactable_id';
 const String kTransactionTypeTag = 'transactable_type';
 const String kTransactionCarIdTag = 'car_id';
+const String kTransactionIdsTag = 'ids';
 const String kTransactionDateTimeTag = 'datetime';
 const String kTransactionDurationTag = 'duration';
 const String kPaymentLinkTag = 'payment_link';

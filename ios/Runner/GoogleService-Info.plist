@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>307293462691-hi0moehk31ri8b3r8ttnjhdc13dg2obr.apps.googleusercontent.com</string>
+	<string>603220167751-qpb4j7rrre78sgjeaee24p7kuitup830.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.307293462691-hi0moehk31ri8b3r8ttnjhdc13dg2obr</string>
+	<string>com.googleusercontent.apps.603220167751-qpb4j7rrre78sgjeaee24p7kuitup830</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>603220167751-6hqq2up3k8q9dmmqmvbtd1jg2gvkihj9.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDytXABq6_ziBzzvPNIZEFAzwE1gIFKpMI</string>
+	<string>AIzaSyAK883tJsJKUNKMmFqHDv1rCPmSM9uggPg</string>
 	<key>GCM_SENDER_ID</key>
-	<string>307293462691</string>
+	<string>603220167751</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.aurasys.thaki</string>
+	<string>com.scscsa.thaki</string>
 	<key>PROJECT_ID</key>
-	<string>thaki-ceab4</string>
+	<string>thaki-scsc</string>
 	<key>STORAGE_BUCKET</key>
-	<string>thaki-ceab4.appspot.com</string>
+	<string>thaki-scsc.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:307293462691:ios:ba0423d407b6eaa3af1f16</string>
+	<string>1:603220167751:ios:67c30dddf8767ff0f4b562</string>
 </dict>
 </plist>

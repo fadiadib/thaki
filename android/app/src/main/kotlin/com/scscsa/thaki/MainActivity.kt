@@ -1,4 +1,4 @@
-package com.aurasys.thaki
+package com.scscsa.thaki
 
 import io.flutter.embedding.android.FlutterActivity
 

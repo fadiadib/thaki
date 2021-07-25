@@ -6,6 +6,7 @@ const String kFooter = 'images/Footer.png';
 const String kFacebookBtn = 'images/Facebook_Button.png';
 const String kTwitterBtn = 'images/Twitter_Button.png';
 const String kGoogleBtn = 'images/Google_Button.png';
+const String kAppleBtn = 'images/Apple_Button.png';
 const String kCardPath1 = 'images/Card_Path_1.png';
 const String kCardPath2 = 'images/Card_Path_2.png';
 const String kCardPath3 = 'images/Card_Path_3.png';

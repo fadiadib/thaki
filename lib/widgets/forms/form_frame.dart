@@ -17,6 +17,7 @@ class TkFormFrame extends StatefulWidget {
     this.introTitle,
     this.fields,
     this.buttonTag = 'action',
+    this.header,
     this.footer,
     this.validatePasswordMatch,
     this.validatePassword,
@@ -24,14 +25,19 @@ class TkFormFrame extends StatefulWidget {
     this.child,
     this.isLoading = false,
     this.langCode = 'en',
+    this.extraValidation,
+    this.startValidationCallback,
   });
 
   final String formTitle;
   final String introTitle;
   final String actionTitle;
   final Function action;
+  final Function extraValidation;
+  final Function startValidationCallback;
   final TkInfoFieldsList fields;
   final String buttonTag;
+  final Widget header;
   final Widget footer;
   final Function validatePasswordMatch;
   final Function validatePassword;
@@ -48,9 +54,14 @@ class _TkFormFrameState extends State<TkFormFrame>
     with TkFormFieldValidatorMixin {
   @override
   bool validate() {
+    if (widget.startValidationCallback != null)
+      widget.startValidationCallback();
+
     for (TkInfoField field in widget.fields.fields) {
       if (!validateInfoField(field)) return false;
     }
+
+    if (widget.extraValidation != null) return widget.extraValidation();
     return true;
   }
 
@@ -342,6 +353,9 @@ class _TkFormFrameState extends State<TkFormFrame>
               if (widget.introTitle != null || widget.formTitle != null)
                 Divider(color: kAccentGreyColor, thickness: 1.0),
 
+              // Header widget
+              if (widget.header != null) widget.header,
+
               // Render info fields
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -367,6 +381,7 @@ class _TkFormFrameState extends State<TkFormFrame>
                       onPressed: () async {
                         // Enable validation
                         setState(() => startValidating());
+
                         // Validate form
                         if (validate()) {
                           // Validation successful
