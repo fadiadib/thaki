@@ -9,6 +9,7 @@ import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/forgot_password_screen.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/register_screen.dart';
+import 'package:thaki/screens/welcome_screen.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -125,7 +126,12 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
               context: context,
               enableNotifications: false,
               enableClose: false,
-              removeLeading: false,
+              removeLeading: true,
+              leading: IconButton(
+                icon: Icon(kBackBtnIcon),
+                onPressed: () => Navigator.of(context)
+                    .pushReplacementNamed(TkWelcomeScreen.id),
+              ),
             ),
             body: TkScaffoldBody(
               image: AssetImage(kFooter),

@@ -9,6 +9,7 @@ import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/user_attributes_controller.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/login_screen.dart';
+import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/utilities/index.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
@@ -194,7 +195,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen>
             hintText: S.of(context).kDriverType,
             onChanged: (value) => setState(
                 () => userType = userAttributesController.userTypeId(value)),
-            validator: getValidationCallback(TkFormField.nationality),
+            validator: getValidationCallback(TkFormField.userType),
             validate: isValidating,
             errorMessage:
                 S.of(context).kPleaseChoose + S.of(context).kDriverType,
@@ -338,7 +339,12 @@ class _TkRegisterScreenState extends State<TkRegisterScreen>
               context: context,
               enableNotifications: false,
               enableClose: false,
-              removeLeading: false,
+              removeLeading: true,
+              leading: IconButton(
+                icon: Icon(kBackBtnIcon),
+                onPressed: () => Navigator.of(context)
+                    .pushReplacementNamed(TkWelcomeScreen.id),
+              ),
             ),
             body: TkScaffoldBody(
               image: AssetImage(kFooter),

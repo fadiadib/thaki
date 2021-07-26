@@ -190,7 +190,7 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen>
             hintText: S.of(context).kDriverType,
             onChanged: (value) => setState(
                 () => userType = userAttributesController.userTypeId(value)),
-            validator: getValidationCallback(TkFormField.nationality),
+            validator: getValidationCallback(TkFormField.userType),
             validate: isValidating,
             errorMessage:
                 S.of(context).kPleaseChoose + S.of(context).kDriverType,

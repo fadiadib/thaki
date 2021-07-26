@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 import 'package:thaki/globals/index.dart';
@@ -76,6 +77,11 @@ class TkTextField extends StatelessWidget {
 
       // Keyboard settings
       keyboardType: lines > 1 ? TextInputType.multiline : keyboardType,
+      inputFormatters: keyboardType == TextInputType.number
+          ? <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly,
+            ]
+          : null,
 
       // Number of lines
       maxLines: lines > 1 ? null : 1,
