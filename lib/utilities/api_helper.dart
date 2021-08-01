@@ -16,6 +16,7 @@ class TkAPIHelper {
   /// if the root urL was already fetched it is returned
   /// through a static member _rootURL
   static Future<String> getRootURL() async {
+    // return 'https://thaki-scsc.com/api';
     if (_rootURL != null) return _rootURL;
 
     final RemoteConfig remoteConfig = await RemoteConfig.instance;

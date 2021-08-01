@@ -37,4 +37,5 @@ const kTwitterAppID = '21052313';
 const kTwitterRedirectURI = 'thaki://';
 
 /// Facebook App
-const kFacebookKeyHash = 'xSLzBBuLJunOQPB89rtzM54FXx4=';
+// const kFacebookKeyHash = 'xSLzBBuLJunOQPB89rtzM54FXx4=';
+const kFacebookKeyHash = 'iE3JDnmj7jAr6xzyl1Ydu5P3wXs=';

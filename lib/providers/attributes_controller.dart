@@ -96,6 +96,7 @@ class TkAttributesController extends ChangeNotifier {
       getAttributeNames(langController, _colors);
 
   Future<bool> load(TkUser user) async {
+    if (_states.isNotEmpty) return true;
     _isLoading = true;
     _loadError = null;
 
@@ -105,7 +106,7 @@ class TkAttributesController extends ChangeNotifier {
     _models.clear();
     _colors.clear();
 
-    notifyListeners();
+    // notifyListeners();
 
     Map result = await _apis.loadAttributes(user: user);
     if (result[kStatusTag] == kSuccessCode) {
@@ -125,7 +126,7 @@ class TkAttributesController extends ChangeNotifier {
     }
 
     _isLoading = false;
-    notifyListeners();
+    // notifyListeners();
 
     return (_loadError == null);
   }

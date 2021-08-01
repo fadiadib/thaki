@@ -7,6 +7,7 @@ import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/screens/login_screen.dart';
+import 'package:thaki/utilities/index.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -56,6 +57,9 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
     return false;
   }
 
+  bool _validatePassword(TkInfoField passwordField) =>
+      TkValidationHelper.validateStrongPassword(passwordField.value);
+
   Widget _createForm() {
     TkAccount account = Provider.of<TkAccount>(context);
     TkLangController controller = Provider.of<TkLangController>(context);
@@ -67,6 +71,8 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
       actionTitle: kOTPFieldsJson[kFormAction][controller.lang.languageCode],
       buttonTag: kLoginTag,
       fields: _fields,
+      validatePassword: _validatePassword,
+      passwordError: S.of(context).kStrongPasswordError,
       validatePasswordMatch: _validatePasswordMatch,
       child: Column(
         children: [
@@ -87,7 +93,7 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => true,
       child: Scaffold(
         appBar: TkAppBar(
           context: context,

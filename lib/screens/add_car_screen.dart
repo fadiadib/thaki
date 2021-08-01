@@ -65,8 +65,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
       case TkFormField.carMake:
         return TkValidationHelper.validateNotEmpty(_car.make?.toString());
 
-      case TkFormField.carModel:
-        return TkValidationHelper.validateNotEmpty(_car.model?.toString());
+      // case TkFormField.carModel:
+      //   return TkValidationHelper.validateNotEmpty(_car.model?.toString());
 
       default:
         return true;

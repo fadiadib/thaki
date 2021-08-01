@@ -84,7 +84,7 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => true,
       child: Scaffold(
         appBar: TkAppBar(
           context: context,

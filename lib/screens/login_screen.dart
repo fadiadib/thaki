@@ -65,8 +65,8 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
         children: [
           Center(
             child: GestureDetector(
-              onTap: () => Navigator.pushReplacementNamed(
-                  context, TkForgotPasswordScreen.id),
+              onTap: () =>
+                  Navigator.pushNamed(context, TkForgotPasswordScreen.id),
               child: Text(
                 S.of(context).kForgotPassword,
                 style: kLinkStyle,
@@ -120,7 +120,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     return Consumer<TkAccount>(
       builder: (context, account, _) {
         return WillPopScope(
-          onWillPop: () async => false,
+          onWillPop: () async => true,
           child: Scaffold(
             appBar: TkAppBar(
               context: context,

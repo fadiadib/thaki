@@ -50,11 +50,11 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
     TkAttributesController attributes =
         Provider.of<TkAttributesController>(context, listen: false);
 
+    await attributes.load(account.user);
     await booker.loadTickets(account.user);
     await purchaser.loadBalance(account.user);
     await account.loadCars();
     await account.loadCards();
-    await attributes.load(account.user);
   }
 
   @override

@@ -104,7 +104,8 @@ class TkProfilePane extends TkPane {
     );
   }
 
-  List<Widget> _getCarCards(TkAccount account, BuildContext context) {
+  List<Widget> _getCarCards(TkAccount account,
+      TkAttributesController attributesController, BuildContext context) {
     List<Widget> widgets = [];
     if (account.user.cars != null)
       for (TkCar car in account.user.cars) {
@@ -130,10 +131,10 @@ class TkProfilePane extends TkPane {
                             'en'
                         ? car.plateEN
                         : car.plateAR,
-                TkCardSide.bottomRight:
-                    Provider.of<TkAttributesController>(context).stateName(
-                        car.state,
-                        Provider.of<TkLangController>(context, listen: false))
+                TkCardSide.bottomRight: attributesController.stateName(
+                  car.state,
+                  Provider.of<TkLangController>(context, listen: false),
+                )
               },
             ),
           ),
@@ -143,7 +144,8 @@ class TkProfilePane extends TkPane {
     return widgets;
   }
 
-  Widget _createCars(TkAccount account, BuildContext context) {
+  Widget _createCars(TkAccount account,
+      TkAttributesController attributesController, BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -165,7 +167,7 @@ class TkProfilePane extends TkPane {
             dotColor: kPrimaryColor.withOpacity(0.5),
             selectedDotColor: kPrimaryColor,
             emptyMessage: S.of(context).kNoCars,
-            children: _getCarCards(account, context),
+            children: _getCarCards(account, attributesController, context),
           ),
         )
       ],
@@ -228,13 +230,14 @@ class TkProfilePane extends TkPane {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<TkAccount>(builder: (context, account, child) {
+    return Consumer2<TkAccount, TkAttributesController>(
+        builder: (context, account, attributesController, child) {
       return account.isLoading
           ? TkProgressIndicator()
           : ListView(
               children: [
                 _createPersonalInfo(account, context),
-                _createCars(account, context),
+                _createCars(account, attributesController, context),
                 if (kSaveCardMode) _createCards(account, context),
               ],
             );

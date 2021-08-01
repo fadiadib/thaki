@@ -144,7 +144,7 @@ class TkDashboardPane extends TkPane {
                   textColor: kDarkGreyColor,
                   titles: {
                     TkCardSide.topLeft: S.of(context).kCurrentBalance,
-                    TkCardSide.topRight: purchaser.balance.points != 0
+                    TkCardSide.topRight: purchaser.balance?.points != 0
                         ? S.of(context).kValidTill
                         : null,
                   },
@@ -152,7 +152,7 @@ class TkDashboardPane extends TkPane {
                     TkCardSide.topLeft: purchaser.balance?.points.toString() +
                         ' ' +
                         S.of(context).kHours,
-                    TkCardSide.topRight: purchaser.balance.points != 0
+                    TkCardSide.topRight: purchaser.balance?.points != 0
                         ? TkDateTimeHelper.formatDate(
                             purchaser.balance?.validity.toString())
                         : null,
