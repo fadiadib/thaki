@@ -20,11 +20,17 @@ const double kBallsTransparency = 1.0;
 const bool kSaveCardMode = false;
 const bool kShowContact = false;
 const bool kAllowOneTimeParking = false;
+const int kTransactionRefreshTimer = 10; // in seconds
+const bool kForceLiveServer = false;
+const bool kForceTestServer = false;
 
 /// URLs
-const String kBaseURL = 'http://thaki.aurasystems.xyz/thaki/public/';
+const String kDefaultBaseURL = 'http://thaki.aurasystems.xyz/thaki/public';
 const String kPrivacyPolicyURL = '/privacy-policy/';
 const String kTermsConditionsURL = '/terms/';
+const String kDefaultLiveServer = 'https://thaki-scsc.com/api';
+const String kDefaultTestServer =
+    'https://thaki.aurasystems.xyz/backend/public/api';
 const String kSupportURL = 'https://aura-demo.com/thaki/contact/';
 
 /// Twitter App

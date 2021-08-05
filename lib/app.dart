@@ -61,7 +61,7 @@ class TkThakiApp extends StatelessWidget {
           supportedLocales: S.delegate.supportedLocales,
 
           // Remove debug banner
-          debugShowCheckedModeBanner: false,
+          debugShowCheckedModeBanner: kForceTestServer,
 
           // Setup the application title
           title: kAppTitle,

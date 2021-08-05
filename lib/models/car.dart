@@ -33,7 +33,7 @@ class TkCar {
       kCarPlateENTag: plateEN ?? '',
       kCarPlateARTag: plateAR ?? '',
       kCarMakeTag: make.toString(),
-      kCarModelTag: model.toString(),
+      kCarModelTag: model == null ? '' : model.toString(),
       kCarStateTag: state.toString(),
       kCarPreferredTag: preferred == true ? '1' : '0',
       kCarColorTag: color == null ? '' : color.toString(),

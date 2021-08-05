@@ -1,7 +1,8 @@
 /// URIs
 // Root API uri
 const String kRootURL = '';
-const String kRootHandle = 'root_api_url';
+const String kRootAPIHandle = 'root_api_url';
+const String kBaseHandle = 'base_url';
 // APIs URIs
 // Authentication
 const String kCheckAPI = '$kRootURL/check';

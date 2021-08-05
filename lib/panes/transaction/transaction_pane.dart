@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/widgets/general/error.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -31,36 +32,50 @@ class TkTransactionPane extends TkPane {
     final Completer<WebViewController> _webViewController =
         Completer<WebViewController>();
 
-    return Container(
-      height: 1000,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-        child: WebView(
-          initialUrl: transactor.transactionPage.replaceAll(' ', '%20'),
-          javascriptMode: JavascriptMode.unrestricted,
-          gestureNavigationEnabled: true,
-          onWebViewCreated: (WebViewController webViewController) {
-            _webViewController.complete(webViewController);
-          },
-          navigationDelegate: (NavigationRequest request) {
-            return NavigationDecision.navigate;
-          },
-          onPageStarted: (String url) {
-            if (url == transactor.transactionPage) {
-              transactor.startTransactionChecker(
-                user: Provider.of<TkAccount>(context, listen: false).user,
-                callback: _paymentCallback,
-              );
-            }
-          },
-          onPageFinished: (String url) async {
-            if (url == transactor.callbackPage) {
-              transactor.stopTransactionChecker();
-              onDone();
-            }
-          },
+    return Stack(
+      children: [
+        Container(
+          height: 1000,
+          // width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: WebView(
+              initialUrl: transactor.transactionPage.replaceAll(' ', '%20'),
+              javascriptMode: JavascriptMode.unrestricted,
+              gestureNavigationEnabled: true,
+              onWebViewCreated: (WebViewController webViewController) {
+                _webViewController.complete(webViewController);
+              },
+              navigationDelegate: (NavigationRequest request) {
+                return NavigationDecision.navigate;
+              },
+              onPageStarted: (String url) {
+                transactor.isTransacting = true;
+
+                if (url == transactor.transactionPage) {
+                  transactor.startTransactionChecker(
+                    user: Provider.of<TkAccount>(context, listen: false).user,
+                    callback: _paymentCallback,
+                  );
+                }
+              },
+              onPageFinished: (String url) async {
+                transactor.isTransacting = false;
+
+                if (url == transactor.callbackPage) {
+                  transactor.stopTransactionChecker();
+                  onDone();
+                }
+              },
+            ),
+          ),
         ),
-      ),
+        if (transactor.isTransacting)
+          Align(
+            alignment: Alignment.center,
+            child: TkProgressIndicator(color: kSecondaryColor.withOpacity(0.5)),
+          )
+      ],
     );
   }
 

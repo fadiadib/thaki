@@ -16,19 +16,19 @@ class TkAPIHelper {
   /// if the root urL was already fetched it is returned
   /// through a static member _rootURL
   static Future<String> getRootURL() async {
-    // return 'https://thaki-scsc.com/api';
+    if (kForceLiveServer) return kDefaultLiveServer;
+    if (kForceTestServer) return kDefaultTestServer;
+
     if (_rootURL != null) return _rootURL;
 
     final RemoteConfig remoteConfig = await RemoteConfig.instance;
-    final defaults = <String, dynamic>{
-      kRootHandle: 'https://thaki.aurasystems.xyz/backend/public/api'
-    };
+    final defaults = <String, dynamic>{kRootAPIHandle: kDefaultTestServer};
     await remoteConfig.setDefaults(defaults);
 
     await remoteConfig.fetch(expiration: const Duration(hours: 12));
     await remoteConfig.activateFetched();
 
-    _rootURL = remoteConfig.getString(kRootHandle);
+    _rootURL = remoteConfig.getString(kRootAPIHandle);
     return _rootURL;
   }
 

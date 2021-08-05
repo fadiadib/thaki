@@ -294,8 +294,8 @@ class _TkRegisterScreenState extends State<TkRegisterScreen>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
-              onTap: () => TkURLLauncher.launch(
-                  kBaseURL + S.of(context).kLocale + kTermsConditionsURL),
+              onTap: () => TkURLLauncher.launchBase(
+                  S.of(context).kLocale + kTermsConditionsURL),
               child: TkFormBuilder.createCheckBox(
                 label: S.of(context).kAcceptTerms,
                 value: terms,

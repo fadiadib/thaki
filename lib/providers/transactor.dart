@@ -26,6 +26,13 @@ class TkTransactor extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool _isTransacting = false;
+  bool get isTransacting => _isTransacting;
+  set isTransacting(bool value) {
+    _isTransacting = value;
+    notifyListeners();
+  }
+
   // Error
   String transactionError;
 
@@ -103,7 +110,8 @@ class TkTransactor extends ChangeNotifier {
 
     // Start a new timer
     transactionResult = null;
-    _timer = Timer.periodic(Duration(seconds: 10), (t) async {
+    _timer =
+        Timer.periodic(Duration(seconds: kTransactionRefreshTimer), (t) async {
       // Check payment status
       int result = await checkTransaction(user: user);
       if (result == 0 || result == 2) {

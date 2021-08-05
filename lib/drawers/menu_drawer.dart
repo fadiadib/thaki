@@ -131,8 +131,8 @@ class TkMenuDrawer extends StatelessWidget {
                   child: Icon(kCarouselForwardBtnIcon,
                       color: kMediumGreyColor, size: 10),
                   textStyle: kRegularStyle[kNormalSize],
-                  action: () => TkURLLauncher.launch(
-                      kBaseURL + S.of(context).kLocale + kPrivacyPolicyURL),
+                  action: () => TkURLLauncher.launchBase(
+                      S.of(context).kLocale + kPrivacyPolicyURL),
                 ),
 
                 TkListMenuItem(
@@ -140,8 +140,8 @@ class TkMenuDrawer extends StatelessWidget {
                   child: Icon(kCarouselForwardBtnIcon,
                       color: kMediumGreyColor, size: 10),
                   textStyle: kRegularStyle[kNormalSize],
-                  action: () => TkURLLauncher.launch(
-                      kBaseURL + S.of(context).kLocale + kTermsConditionsURL),
+                  action: () => TkURLLauncher.launchBase(
+                      S.of(context).kLocale + kTermsConditionsURL),
                 ),
 
                 if (account.user.isSocial)

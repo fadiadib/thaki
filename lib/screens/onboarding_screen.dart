@@ -21,15 +21,16 @@ const List<double> kMagentaBallLocations = [-157, 694, -152, 674, -184, 684];
 
 class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
   int _current = 0;
-  int _count = 3;
 
   /// Create circular navigation indicators
-  List<Widget> _drawDots() {
+  List<Widget> _drawDots(TkOnBoardingController onBoardingController) {
     // Returns a list of circular indicators, one for each slide
     List<Widget> indicators = [];
 
     // Create a dot for each slide
-    for (int slide = 0; slide < _count; slide++) {
+    for (int slide = 0;
+        slide < onBoardingController.onBoardingList.length;
+        slide++) {
       indicators.add(
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 3.0),
@@ -141,7 +142,7 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: _drawDots()),
+                    children: _drawDots(controller)),
               ),
             ),
           ),
