@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,23 +9,57 @@ import 'package:image_cropper/image_cropper.dart';
 
 import 'package:thaki/globals/colors.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/widgets/general/progress_indicator.dart';
 
-class TkIDCard extends StatelessWidget {
+class TkIDCard extends StatefulWidget {
   TkIDCard({this.title, this.image, this.callback, this.cancelCallback});
+
   final String title;
   final File image;
   final Function callback;
   final Function cancelCallback;
 
+  @override
+  _TkIDCardState createState() => _TkIDCardState();
+}
+
+class _TkIDCardState extends State<TkIDCard> {
+  bool isLoading = false;
+
+  Future<File> testCompressAndGetFile(
+      String sourcePath, String targetPath) async {
+    var result = await FlutterImageCompress.compressAndGetFile(
+      sourcePath,
+      targetPath,
+      quality: 88,
+    );
+    return result;
+  }
+
   void updateImage(ImageSource source, BuildContext context) async {
     // Get the image from the camera or gallery according to source
     ImagePicker imagePicker = new ImagePicker();
-    PickedFile image = await imagePicker.getImage(source: source);
+    PickedFile image =
+        await imagePicker.getImage(source: source).catchError((e) {
+      print('Image picker error : ${e.toString()}');
+    });
+
+    setState(() {
+      isLoading = true;
+    });
+
+    Directory tempDir = await getTemporaryDirectory();
+    File temp = new File('${tempDir.path}/temp.jpeg');
+
+    File compressedImage = await testCompressAndGetFile(image.path, temp.path);
 
     if (image != null) {
+      setState(() {
+        isLoading = false;
+      });
       // Allow the user to crop/rotate the picture
       File croppedImage = await ImageCropper.cropImage(
-        sourcePath: image.path,
+        sourcePath: compressedImage.path,
         aspectRatioPresets: [
           CropAspectRatioPreset.square,
           CropAspectRatioPreset.ratio3x2,
@@ -40,12 +76,16 @@ class TkIDCard extends StatelessWidget {
         iosUiSettings: IOSUiSettings(
           minimumAspectRatio: 1.0,
         ),
-      ).catchError((e){
+      ).catchError((e) {
         print(e.toString());
       });
 
+      compressedImage.delete();
+
       // Done, call callback function to update the picture
-      if (croppedImage != null) callback(croppedImage);
+      if (croppedImage != null) widget.callback(croppedImage);
+    } else {
+      print('ERROR LOADING IMAGE');
     }
   }
 
@@ -54,19 +94,20 @@ class TkIDCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (title != null)
+        if (widget.title != null)
           Padding(
               padding: const EdgeInsets.only(bottom: 10.0),
-              child: Text(title, style: kBoldStyle[kSmallSize])),
+              child: Text(widget.title, style: kBoldStyle[kSmallSize])),
         Container(
           height: 164.0,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
             color: kLightGreyColor,
             border: Border.all(color: kSecondaryColor, width: 1.0),
-            image: image == null
+            image: widget.image == null
                 ? null
-                : DecorationImage(image: FileImage(image), fit: BoxFit.cover),
+                : DecorationImage(
+                    image: FileImage(widget.image), fit: BoxFit.cover),
           ),
           child: Stack(
             children: [
@@ -75,7 +116,7 @@ class TkIDCard extends StatelessWidget {
                 top: 10,
                 right: 10,
                 child: GestureDetector(
-                  onTap: cancelCallback,
+                  onTap: widget.cancelCallback,
                   child: Icon(kCloseBtnIcon, color: kDarkGreyColor),
                 ),
               ),
@@ -100,7 +141,13 @@ class TkIDCard extends StatelessWidget {
                   onTap: () => updateImage(ImageSource.camera, context),
                   child: Image.asset(kCameraButton),
                 ),
-              )
+              ),
+              if (isLoading)
+                GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                        color: Colors.black.withOpacity(0.5),
+                        child: Center(child: TkProgressIndicator()))),
             ],
           ),
         ),
