@@ -40,7 +40,9 @@ class TkIDCard extends StatelessWidget {
         iosUiSettings: IOSUiSettings(
           minimumAspectRatio: 1.0,
         ),
-      );
+      ).catchError((e){
+        print(e.toString());
+      });
 
       // Done, call callback function to update the picture
       if (croppedImage != null) callback(croppedImage);

@@ -173,6 +173,9 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
       child: TkTextField(
+        height: kDefaultLicensePlateTextEditHeight,
+        maxLengthEnforced: _car.state != 1,
+        maxLength: _car.state != 1 ? 7 : null,
         enabled: !account.isLoading,
         hintText: S.of(context).kCarPlateAR,
         initialValue: _car?.plateAR,
