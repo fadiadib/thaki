@@ -30,20 +30,20 @@ class TkLicenseCard extends StatelessWidget {
             children: [
               Container(
                 height: 20,
-                width: 40,
+                width: 55,
                 decoration: BoxDecoration(
                   border: Border(bottom: BorderSide(color: kPrimaryColor)),
                 ),
                 child: Center(
                   child: Text(
-                    RegExp(r"[A-Z]{2,3}").stringMatch(car.plateEN) ?? '-',
+                    RegExp(r"[A-Z]{2,3}").stringMatch(car.plateEN).split('').reversed.join() ?? '-',
                     style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),
                   ),
                 ),
               ),
               Container(
                 height: 20,
-                width: 40,
+                width: 55,
                 decoration: BoxDecoration(),
                 child: Center(
                   child: Text(_getARLetterPlate(),
