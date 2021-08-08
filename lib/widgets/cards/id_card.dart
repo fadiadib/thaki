@@ -40,9 +40,7 @@ class _TkIDCardState extends State<TkIDCard> {
     // Get the image from the camera or gallery according to source
     ImagePicker imagePicker = new ImagePicker();
     PickedFile image =
-        await imagePicker.getImage(source: source).catchError((e) {
-      print('Image picker error : ${e.toString()}');
-    });
+        await imagePicker.getImage(source: source);
 
     setState(() {
       isLoading = true;
@@ -84,8 +82,6 @@ class _TkIDCardState extends State<TkIDCard> {
 
       // Done, call callback function to update the picture
       if (croppedImage != null) widget.callback(croppedImage);
-    } else {
-      print('ERROR LOADING IMAGE');
     }
   }
 
