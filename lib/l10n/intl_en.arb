@@ -196,6 +196,7 @@
   "kExpiryDate": "Valid until",
   "kMyPackages": "My Packages",
   "kLoginCancelledByUser": "Social login cancelled by user",
+  "kLoginUnsuccessful": "Social login was unsuccessful",
   "kUserProfileUpdated": "User profile updated successfully",
   "kClickForDetails": "Click for Details",
   "kDigits": "Digits",

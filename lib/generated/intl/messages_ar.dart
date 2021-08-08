@@ -122,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kLoginCancelledByUser" : MessageLookupByLibrary.simpleMessage("تم إلغاء تسجيل الدخول الاجتماعي من قبل المستخدم"),
     "kLoginExclamation" : MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
     "kLoginIntroTitle" : MessageLookupByLibrary.simpleMessage("مرحبا!"),
+    "kLoginUnsuccessful" : MessageLookupByLibrary.simpleMessage("لم ينجح تسجيل الدخول الاجتماعي"),
     "kMale" : MessageLookupByLibrary.simpleMessage("ذكر"),
     "kMiddleName" : MessageLookupByLibrary.simpleMessage("الاسم الأوسط"),
     "kMon" : MessageLookupByLibrary.simpleMessage("الاثنين"),

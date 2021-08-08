@@ -69,17 +69,17 @@ class TkSocialLogin extends StatelessWidget {
 
       account.user = TkUser.fromJson({
         kUserTag: {
-          kUserFirstNameTag: credential.user.displayName?.split(' ')?.first,
-          kUserLastNameTag: credential.user.displayName?.split(' ')?.last,
-          kUserEmailTag: credential.user.email,
-          kUserSocialTokenTag: appleCredential.identityToken,
+          kUserFirstNameTag: appleCredential.givenName,
+          kUserLastNameTag: appleCredential.familyName,
+          kUserEmailTag: appleCredential.email,
+          kUserSocialTokenTag: appleCredential.userIdentifier,
           kUserLoginTypeTag: 'Apple',
         }
       });
 
       callback();
     } catch (error) {
-      account.socialError = error.toString();
+      account.socialError = S.of(context).kLoginUnsuccessful;
     }
   }
 
@@ -103,7 +103,7 @@ class TkSocialLogin extends StatelessWidget {
       });
       callback();
     } catch (error) {
-      account.socialError = error.toString();
+      account.socialError = S.of(context).kLoginUnsuccessful;
     }
   }
 
@@ -131,8 +131,7 @@ class TkSocialLogin extends StatelessWidget {
       });
       callback();
     } catch (error) {
-      FacebookAuthException e = error;
-      account.socialError = e.message;
+      account.socialError = S.of(context).kLoginUnsuccessful;
     }
   }
 
@@ -174,7 +173,7 @@ class TkSocialLogin extends StatelessWidget {
           return;
       }
     } catch (error) {
-      account.socialError = error.message;
+      account.socialError = S.of(context).kLoginUnsuccessful;
     }
   }
 

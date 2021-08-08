@@ -1995,6 +1995,16 @@ class S {
     );
   }
 
+  /// `Social login was unsuccessful`
+  String get kLoginUnsuccessful {
+    return Intl.message(
+      'Social login was unsuccessful',
+      name: 'kLoginUnsuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `User profile updated successfully`
   String get kUserProfileUpdated {
     return Intl.message(

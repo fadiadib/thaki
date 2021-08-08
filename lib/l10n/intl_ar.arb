@@ -196,6 +196,7 @@
   "kExpiryDate": "صالحة حتى",
   "kMyPackages": "باقاتي",
   "kLoginCancelledByUser": "تم إلغاء تسجيل الدخول الاجتماعي من قبل المستخدم",
+  "kLoginUnsuccessful": "لم ينجح تسجيل الدخول الاجتماعي",
   "kUserProfileUpdated": "تم تحديث ملف تعريف المستخدم بنجاح",
   "kClickForDetails": "للاطلاع على التفاصيل",
   "kDigits": "أرقام",

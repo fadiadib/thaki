@@ -149,13 +149,17 @@ class TkDashboardPane extends TkPane {
                         : null,
                   },
                   data: {
-                    TkCardSide.topLeft: purchaser.balance?.points.toString() +
-                        ' ' +
-                        S.of(context).kHours,
-                    TkCardSide.topRight: purchaser.balance?.points != 0
-                        ? TkDateTimeHelper.formatDate(
-                            purchaser.balance?.validity.toString())
-                        : null,
+                    TkCardSide.topLeft: purchaser.balance != null
+                        ? (purchaser.balance?.points.toString() +
+                            ' ' +
+                            S.of(context).kHours)
+                        : '',
+                    TkCardSide.topRight: purchaser.balance != null
+                        ? (purchaser.balance?.points != 0
+                            ? TkDateTimeHelper.formatDate(
+                                purchaser.balance?.validity.toString())
+                            : null)
+                        : '',
                   },
                   onTap: () =>
                       Navigator.of(context).pushNamed(TkBalanceScreen.id),

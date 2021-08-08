@@ -122,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kLoginCancelledByUser" : MessageLookupByLibrary.simpleMessage("Social login cancelled by user"),
     "kLoginExclamation" : MessageLookupByLibrary.simpleMessage("Login!"),
     "kLoginIntroTitle" : MessageLookupByLibrary.simpleMessage("Welcome Back!"),
+    "kLoginUnsuccessful" : MessageLookupByLibrary.simpleMessage("Social login was unsuccessful"),
     "kMale" : MessageLookupByLibrary.simpleMessage("Male"),
     "kMiddleName" : MessageLookupByLibrary.simpleMessage("Middle Name"),
     "kMon" : MessageLookupByLibrary.simpleMessage("Mon"),
