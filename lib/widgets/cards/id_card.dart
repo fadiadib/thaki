@@ -74,9 +74,7 @@ class _TkIDCardState extends State<TkIDCard> {
         iosUiSettings: IOSUiSettings(
           minimumAspectRatio: 1.0,
         ),
-      ).catchError((e) {
-        print(e.toString());
-      });
+      );
 
       compressedImage.delete();
 
