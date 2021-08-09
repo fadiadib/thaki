@@ -33,6 +33,8 @@ class TkSubscriber extends ChangeNotifier {
 
   List<TkSubscription> _subscriptions = [];
   List<TkSubscription> get subscriptions => _subscriptions;
+  List<TkSubscription> _userSubscriptions = [];
+  List<TkSubscription> get userSubscriptions => _userSubscriptions;
   TkSubscription _selectedSubscription;
   TkSubscription get selectedSubscription => _selectedSubscription;
   set selectedSubscription(TkSubscription sub) {
@@ -77,6 +79,8 @@ class TkSubscriber extends ChangeNotifier {
   Map<TkSubscriberError, String> get error => _error;
   void clearErrors() => _error.clear();
 
+  String loadUserSubscriptionsError;
+
   // Validation
   String _validationPaymentError;
   String get validationPaymentError => _validationPaymentError;
@@ -109,7 +113,8 @@ class TkSubscriber extends ChangeNotifier {
     _isLoading = true;
     _error[TkSubscriberError.loadDisclaimer] = null;
 
-    Map result = await _apis.loadDisclaimer(user: user, type: 'subscription');
+    final Map result =
+        await _apis.loadDisclaimer(user: user, type: 'subscription');
 
     // Clear model
     _disclaimer = null;
@@ -134,7 +139,8 @@ class TkSubscriber extends ChangeNotifier {
     _error[TkSubscriberError.loadDocuments] = null;
     _documents.clear();
 
-    Map result = await _apis.loadDocuments(user: user, type: 'subscription');
+    final Map result =
+        await _apis.loadDocuments(user: user, type: 'subscription');
     if (result[kStatusTag] == kSuccessCode) {
       for (Map json in result[kDataTag][kDocumentsTag]) {
         _documents.add(TkDocument.fromJson(json));
@@ -158,7 +164,7 @@ class TkSubscriber extends ChangeNotifier {
     _error[TkSubscriberError.apply] = null;
     _permit.documents = _documents;
 
-    Map result = await _apis.applyForSubscription(
+    final Map result = await _apis.applyForSubscription(
         permit: _permit, user: user, car: selectedCar);
 
     // Clear model
@@ -183,7 +189,7 @@ class TkSubscriber extends ChangeNotifier {
     _error[TkSubscriberError.loadAllSubs] = null;
     _selectedSubscription = null;
 
-    Map result = await _apis.loadSubscriptions(user: user);
+    final Map result = await _apis.loadSubscriptions(user: user);
 
     // Clear model
     _subscriptions.clear();
@@ -212,7 +218,7 @@ class TkSubscriber extends ChangeNotifier {
     _isLoading = true;
     _error[TkSubscriberError.buy] = null;
 
-    Map result = await _apis.buySubscriptions(
+    final Map result = await _apis.buySubscriptions(
       user: user,
       car: selectedCar,
       subscription: _selectedSubscription,
@@ -229,5 +235,31 @@ class TkSubscriber extends ChangeNotifier {
     notifyListeners();
 
     return (_error[TkSubscriberError.buy] == null);
+  }
+
+  /// Load user subscriptions
+  Future<bool> loadUserSubscriptions(TkUser user) async {
+    // Start any loading indicators
+    _isLoading = true;
+    loadUserSubscriptionsError = null;
+
+    final Map result = await _apis.loadUserSubscriptions(user: user);
+
+    // Clear model
+    _userSubscriptions.clear();
+    if (result[kStatusTag] == kSuccessCode) {
+      for (Map data in result[kDataTag][kSubscriptionsClientTag]) {
+        _userSubscriptions.add(TkSubscription.fromUserSubscriptionsJson(data));
+      }
+    } else {
+      // an error happened
+      loadUserSubscriptionsError = _apis.normalizeError(result);
+    }
+
+    // Stop any listening loading indicators
+    _isLoading = false;
+    notifyListeners();
+
+    return (loadUserSubscriptionsError == null);
   }
 }

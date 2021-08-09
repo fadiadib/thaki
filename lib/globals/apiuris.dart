@@ -216,7 +216,11 @@ const String kSubscriptionPriceTag = 'price';
 const String kSubscriptionPeriodTag = 'period';
 const String kSubscriptionIdIdTag = 'subscription_id';
 const String kSubscriptionsTag = 'subscriptions_list';
+const String kSubscriptionsClientTag = 'client_subscriptions_list';
 const String kSubscriberCarId = 'car_id';
+const String kSubscriptionStartDateTag = 'start_date';
+const String kSubscriptionEndDateTag = 'end_date';
+const String kSubscriptionCreatedAtTag = 'created_at';
 // Violations tags
 const String kViolationsTag = 'violations_list';
 const String kViolationIdTag = 'id';
