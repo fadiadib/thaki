@@ -36,7 +36,6 @@ class TkTextField extends StatelessWidget {
     this.showCursor = true,
     this.controller,
     this.lines = 1,
-    this.langCode = 'ar',
   });
 
   final IconData icon;
@@ -64,7 +63,6 @@ class TkTextField extends StatelessWidget {
   final bool showCursor;
   final int lines;
   final TextEditingController controller;
-  final String langCode;
 
   Widget getField() {
     return TextFormField(
