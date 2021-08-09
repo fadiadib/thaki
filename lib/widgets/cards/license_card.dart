@@ -30,7 +30,7 @@ class TkLicenseCard extends StatelessWidget {
             children: [
               Container(
                 height: 20,
-                width: 40,
+                width: 55,
                 decoration: BoxDecoration(
                   border: Border(bottom: BorderSide(color: kPrimaryColor)),
                 ),
@@ -43,7 +43,7 @@ class TkLicenseCard extends StatelessWidget {
               ),
               Container(
                 height: 20,
-                width: 40,
+                width: 55,
                 decoration: BoxDecoration(),
                 child: Center(
                   child: Text(_getARLetterPlate(),

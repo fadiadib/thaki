@@ -40,16 +40,19 @@ class TkPackageTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(package.name, style: kBoldStyle[kNormalSize],),
+                SizedBox(height: 2.5),
                 Text(
                   package.points.toString() + ' ' + S.of(context).kHourPackage,
-                  style: kBoldStyle[kNormalSize],
+                  style: kRegularStyle[kSmallSize],
                 ),
-                SizedBox(height: 15),
+                SizedBox(height: 12.5),
                 Text(S.of(context).kValidFor +
                     ' ' +
                     package.validity.toString() +
                     ' ' +
                     S.of(context).kDays),
+                SizedBox(height: 2.5),
                 Text(
                   S.of(context).kSAR + ' ' + package.price.toString(),
                   style: kBoldStyle[kSmallSize].copyWith(color: kPrimaryColor),

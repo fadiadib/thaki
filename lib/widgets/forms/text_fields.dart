@@ -36,7 +36,8 @@ class TkTextField extends StatelessWidget {
     this.showCursor = true,
     this.controller,
     this.lines = 1,
-    this.langCode = 'ar',
+    this.maxLengthEnforced = false,
+    this.maxLength,
   });
 
   final IconData icon;
@@ -64,7 +65,8 @@ class TkTextField extends StatelessWidget {
   final bool showCursor;
   final int lines;
   final TextEditingController controller;
-  final String langCode;
+  final bool maxLengthEnforced;
+  final int maxLength;
 
   Widget getField() {
     return TextFormField(
@@ -88,6 +90,10 @@ class TkTextField extends StatelessWidget {
       // Number of lines
       maxLines: lines > 1 ? null : 1,
       minLines: lines,
+
+      // Text length
+      maxLengthEnforced: maxLengthEnforced,
+      maxLength: maxLength,
 
       // Focus settings
       focusNode: focusNode ?? null,
