@@ -36,7 +36,7 @@ class TkLicenseCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    RegExp(r"[A-Z]{2,3}").stringMatch(car.plateEN).split('').reversed.join() ?? '-',
+                    RegExp(r"[A-Z]{2,3}").stringMatch(car.plateEN) ?? '-',
                     style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),
                   ),
                 ),
