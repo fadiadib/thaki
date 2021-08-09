@@ -187,6 +187,7 @@ const String kBalanceValidityTag = 'balance_validity';
 const String kPackagesTag = 'packages_list';
 const String kClientPackagesTag = 'client_packages_list';
 const String kPackageIdTag = 'id';
+const String kPackageNameTag = 'name';
 const String kPackagePkgIdTag = 'package_id';
 const String kPackagePointsTag = 'amount_of_hours';
 const String kUserPackagePoints = 'hours';
