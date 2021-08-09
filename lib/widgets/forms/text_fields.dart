@@ -36,6 +36,7 @@ class TkTextField extends StatelessWidget {
     this.showCursor = true,
     this.controller,
     this.lines = 1,
+    this.langCode = 'ar',
   });
 
   final IconData icon;
@@ -63,6 +64,7 @@ class TkTextField extends StatelessWidget {
   final bool showCursor;
   final int lines;
   final TextEditingController controller;
+  final String langCode;
 
   Widget getField() {
     return TextFormField(
@@ -79,7 +81,7 @@ class TkTextField extends StatelessWidget {
       keyboardType: lines > 1 ? TextInputType.multiline : keyboardType,
       inputFormatters: keyboardType == TextInputType.number
           ? <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.allow(RegExp(r"[\u0660-\u0669\d]+", unicode: true)),
             ]
           : null,
 
