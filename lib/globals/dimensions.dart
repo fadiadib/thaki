@@ -11,6 +11,7 @@ const double kDefaultButtonRadius = 18.0;
 
 /// Default TextEdit Dimensions
 const double kDefaultTextEditHeight = 36.0;
+const double kDefaultLicensePlateTextEditHeight = 60.0;
 const double kDefaultTextEditRadius = 18.0;
 const double kDefaultTextEditInternalPadding = 0.0;
 const double kDefaultTextEditIconSize = 14.0;

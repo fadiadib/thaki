@@ -100,7 +100,7 @@ class DropDownField extends FormField<String> {
                     icon: Icon(Icons.arrow_drop_down,
                         size: 12.0, color: Colors.black),
                     onPressed: () {
-                      SystemChannels.textInput.invokeMethod('TextInput.hide');
+                      // SystemChannels.textInput.invokeMethod('TextInput.hide');
                       state.setState(() {
                         state._showdropdown = !state._showdropdown;
                       });
@@ -127,6 +127,7 @@ class DropDownField extends FormField<String> {
                         autofocus: false,
                         obscureText: false,
                         maxLengthEnforced: true,
+                        onChanged: onValueChanged,
                         maxLines: 1,
                         validator: (String newValue) {
                           if (required) {

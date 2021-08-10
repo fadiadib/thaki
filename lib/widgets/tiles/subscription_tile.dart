@@ -5,13 +5,19 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/utilities/date_time_helper.dart';
 
 class TkSubscriptionTile extends StatelessWidget {
-  TkSubscriptionTile(
-      {@required this.subscription, this.isSelected = false, this.onTap});
+  TkSubscriptionTile({
+    @required this.subscription,
+    this.isSelected = false,
+    this.onTap,
+    this.user,
+  });
   final TkSubscription subscription;
   final bool isSelected;
   final Function onTap;
+  final TkUser user;
 
   Widget _getTileImage() {
     return Container(
@@ -38,44 +44,84 @@ class TkSubscriptionTile extends StatelessWidget {
         child: Stack(
           overflow: Overflow.visible,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(subscription.name, style: kBoldStyle[kNormalSize]),
-                SizedBox(height: 15),
-                Text(S.of(context).kValidFor +
-                    ' ' +
-                    subscription.period.toString() +
-                    ' ' +
-                    S.of(context).kDays),
-                Text(
-                  S.of(context).kSAR + ' ' + subscription.price.toString(),
-                  style: kBoldStyle[kSmallSize].copyWith(color: kPrimaryColor),
-                )
-              ],
-            ),
-            Positioned.directional(
-              textDirection:
-                  Provider.of<TkLangController>(context, listen: false)
-                              .lang
-                              .languageCode ==
-                          'ar'
-                      ? TextDirection.rtl
-                      : TextDirection.ltr,
-              end: 10,
-              bottom: -5,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: kMediumGreyColor.withOpacity(0.2)),
-                  borderRadius: BorderRadius.circular(25.0),
+            user != null
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                          user.cars
+                              .firstWhere(
+                                  (element) => element.id == subscription.car)
+                              .name,
+                          style: kBoldStyle[kNormalSize]),
+                      SizedBox(height: 5),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(S.of(context).kValidFrom +
+                              ' ' +
+                              TkDateTimeHelper.formatDate(
+                                  subscription.startDate)),
+                          Text(S.of(context).kToSmall +
+                              ' ' +
+                              TkDateTimeHelper.formatDate(
+                                  subscription.endDate)),
+                        ],
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        S.of(context).kCreatedOn +
+                            ' ' +
+                            TkDateTimeHelper.formatDate(
+                                subscription.createdAt.toString()),
+                        style: kBoldStyle[kSmallSize]
+                            .copyWith(color: kPrimaryColor),
+                      )
+                    ],
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(subscription.name, style: kBoldStyle[kNormalSize]),
+                      SizedBox(height: 15),
+                      Text(S.of(context).kValidFor +
+                          ' ' +
+                          subscription.period.toString() +
+                          ' ' +
+                          S.of(context).kDays),
+                      Text(
+                        S.of(context).kSAR +
+                            ' ' +
+                            subscription.price.toString(),
+                        style: kBoldStyle[kSmallSize]
+                            .copyWith(color: kPrimaryColor),
+                      )
+                    ],
+                  ),
+            if (user == null)
+              Positioned.directional(
+                textDirection:
+                    Provider.of<TkLangController>(context, listen: false)
+                                .lang
+                                .languageCode ==
+                            'ar'
+                        ? TextDirection.rtl
+                        : TextDirection.ltr,
+                end: 10,
+                bottom: -5,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border:
+                        Border.all(color: kMediumGreyColor.withOpacity(0.2)),
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  child: Icon(
+                    kSelectBtnIcon,
+                    size: 20,
+                    color: isSelected ? kSecondaryColor : kTransparentColor,
+                  ),
                 ),
-                child: Icon(
-                  kSelectBtnIcon,
-                  size: 20,
-                  color: isSelected ? kSecondaryColor : kTransparentColor,
-                ),
-              ),
-            )
+              )
           ],
         ),
       ),

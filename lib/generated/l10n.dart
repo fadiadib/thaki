@@ -1155,6 +1155,16 @@ class S {
     );
   }
 
+  /// `to`
+  String get kToSmall {
+    return Intl.message(
+      'to',
+      name: 'kToSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hour Package`
   String get kHourPackage {
     return Intl.message(
@@ -1170,6 +1180,26 @@ class S {
     return Intl.message(
       'Valid for',
       name: 'kValidFor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valid from`
+  String get kValidFrom {
+    return Intl.message(
+      'Valid from',
+      name: 'kValidFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Created on`
+  String get kCreatedOn {
+    return Intl.message(
+      'Created on',
+      name: 'kCreatedOn',
       desc: '',
       args: [],
     );
@@ -1985,11 +2015,31 @@ class S {
     );
   }
 
+  /// `My Subscriptions`
+  String get kMySubscriptions {
+    return Intl.message(
+      'My Subscriptions',
+      name: 'kMySubscriptions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Social login cancelled by user`
   String get kLoginCancelledByUser {
     return Intl.message(
       'Social login cancelled by user',
       name: 'kLoginCancelledByUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Social login was unsuccessful`
+  String get kLoginUnsuccessful {
+    return Intl.message(
+      'Social login was unsuccessful',
+      name: 'kLoginUnsuccessful',
       desc: '',
       args: [],
     );

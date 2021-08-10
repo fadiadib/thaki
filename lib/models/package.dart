@@ -15,6 +15,7 @@ class TkPackage {
 
   TkPackage.fromJson(Map<String, dynamic> json) {
     id = int.tryParse(json[kPackageIdTag].toString());
+    name = json[kPackageNameTag];
     points = json[kPackagePointsTag];
     remaining = json[kPackageRemainingTag];
     price = double.tryParse(json[kPackagePriceTag].toString());
@@ -33,6 +34,7 @@ class TkPackage {
   }
 
   int id;
+  String name;
   int points;
   int remaining;
   double price;
