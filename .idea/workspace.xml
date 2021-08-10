@@ -11,29 +11,36 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="NONE" />
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="905d3c98-3b62-48e2-b2c9-ce7991e6688f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/drawers/menu_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/drawers/menu_drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/globals/apiuris.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/apiuris.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/globals/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/settings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/car.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/car.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/transaction/transaction_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/transaction/transaction_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/transactor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/transactor.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/onboarding_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/onboarding_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/register_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/register_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities/api_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/api_helper.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/utilities/url_launcher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/url_launcher.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/fadiadib/.android/avd/Pixel_3a_XL_API_R.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/minalouis/.android/avd/Pixel_4_API_29.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -43,6 +50,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="152759b6-1d31-46a8-8535-8391d7c4d74e" />
   </component>
   <component name="ProjectId" id="1pJZNtLO2IKCHOhrCJB6ooWdyPZ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -60,7 +70,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -334,7 +344,14 @@
       <option name="project" value="LOCAL" />
       <updated>1627847094027</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Couldn't pay violation for non-saudi cars&#10;. Modified violation_car_pane.dart to have a dropdown text field where the user chooses which country the license plate belongs to">
+      <created>1628593678344</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1628593678344</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -374,24 +391,24 @@
     <MESSAGE value="+ Show picker ltr.&#10;+ Back button for login and register screens." />
     <MESSAGE value="+ Update version." />
     <MESSAGE value="+ build 25 Changes." />
-    <option name="LAST_COMMIT_MESSAGE" value="+ build 25 Changes." />
+    <MESSAGE value="Couldn't pay violation for non-saudi cars&#10;. Modified violation_car_pane.dart to have a dropdown text field where the user chooses which country the license plate belongs to" />
+    <option name="LAST_COMMIT_MESSAGE" value="Couldn't pay violation for non-saudi cars&#10;. Modified violation_car_pane.dart to have a dropdown text field where the user chooses which country the license plate belongs to" />
   </component>
   <component name="WindowStateProjectService">
     <state x="693" y="371" key="#Notifications" timestamp="1624407044834">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="693" y="371" key="#Notifications/0.23.1920.1126@0.23.1920.1126" timestamp="1624407044834" />
-    <state x="0" y="200" key="#PSD" timestamp="1619914354699">
-      <screen x="0" y="23" width="1920" height="1129" />
-    </state>
-    <state x="0" y="200" key="#PSD/0.23.1920.1129@0.23.1920.1129" timestamp="1619914354699" />
     <state x="152" y="23" width="1311" height="1126" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1624400530577">
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="152" y="23" width="1311" height="1126" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1624400530577" />
     <state x="152" y="228" width="1248" height="872" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1624398761665" />
     <state x="152" y="29" width="1248" height="1122" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1624398969083" />
-    <state x="152" y="228" width="1301" height="755" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1619919885953" />
+    <state x="568" y="300" key="#com.intellij.ide.util.MemberChooser" timestamp="1628592924541">
+      <screen x="0" y="25" width="1920" height="1111" />
+    </state>
+    <state x="568" y="300" key="#com.intellij.ide.util.MemberChooser/0.25.1920.1111@0.25.1920.1111" timestamp="1628592924541" />
     <state x="411" y="290" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1624397516624">
       <screen x="0" y="23" width="1920" height="1127" />
     </state>
@@ -408,14 +425,15 @@
       <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="362" y="23" key="#thaki/0.23.1920.1126@0.23.1920.1126" timestamp="1624406086648" />
-    <state x="425" y="174" width="1419" height="882" key="AVDManager" timestamp="1627852502548">
-      <screen x="0" y="23" width="1920" height="1128" />
+    <state x="425" y="174" width="1419" height="869" key="AVDManager" timestamp="1628592123232">
+      <screen x="0" y="25" width="1920" height="1111" />
     </state>
     <state x="300" y="139" width="1419" height="882" key="AVDManager/0.23.1920.1126@0.23.1920.1126" timestamp="1624446269849" />
     <state x="425" y="175" width="1419" height="882" key="AVDManager/0.23.1920.1127@0.23.1920.1127" timestamp="1627740342491" />
     <state x="425" y="174" width="1419" height="882" key="AVDManager/0.23.1920.1128@0.23.1920.1128" timestamp="1627852502548" />
     <state x="425" y="175" width="1419" height="882" key="AVDManager/0.23.1920.1129@0.23.1920.1129" timestamp="1627740951065" />
     <state x="425" y="175" width="1419" height="883" key="AVDManager/0.23.1920.1130@0.23.1920.1130" timestamp="1626026941866" />
+    <state x="425" y="174" width="1419" height="869" key="AVDManager/0.25.1920.1111@0.25.1920.1111" timestamp="1628592123232" />
     <state x="605" y="335" key="AndroidProcessChooserDialog" timestamp="1627840753589">
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
@@ -440,8 +458,12 @@
     <state x="757" y="171" width="1085" height="927" key="DiffContextDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1627908667837" />
     <state x="450" y="116" width="1085" height="927" key="DiffContextDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1628019881849" />
     <state x="158" y="123" width="1085" height="930" key="DiffContextDialog/0.23.1920.1132@0.23.1920.1132" timestamp="1622633524206" />
-    <state width="1478" height="460" key="GridCell.Tab.0.bottom" timestamp="1628161509013">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state x="603" y="497" key="Github.Dialog.Accounts.Choose" timestamp="1628593690268">
+      <screen x="0" y="25" width="1920" height="1111" />
+    </state>
+    <state x="603" y="497" key="Github.Dialog.Accounts.Choose/0.25.1920.1111@0.25.1920.1111" timestamp="1628593690268" />
+    <state width="1468" height="282" key="GridCell.Tab.0.bottom" timestamp="1628592123133">
+      <screen x="0" y="25" width="1920" height="1111" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.bottom/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221225" />
     <state width="1478" height="460" key="GridCell.Tab.0.bottom/0.23.1920.1127@0.23.1920.1127" timestamp="1628161509013" />
@@ -450,8 +472,9 @@
     <state width="1353" height="250" key="GridCell.Tab.0.bottom/0.23.1920.1130@0.23.1920.1130" timestamp="1627391149711" />
     <state width="1314" height="287" key="GridCell.Tab.0.bottom/0.23.1920.1131@0.23.1920.1131" timestamp="1625690800940" />
     <state width="1361" height="307" key="GridCell.Tab.0.bottom/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state width="1478" height="460" key="GridCell.Tab.0.center" timestamp="1628161509012">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state width="1468" height="282" key="GridCell.Tab.0.bottom/0.25.1920.1111@0.25.1920.1111" timestamp="1628592123133" />
+    <state width="1468" height="282" key="GridCell.Tab.0.center" timestamp="1628592123132">
+      <screen x="0" y="25" width="1920" height="1111" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.center/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221224" />
     <state width="1478" height="460" key="GridCell.Tab.0.center/0.23.1920.1127@0.23.1920.1127" timestamp="1628161509012" />
@@ -460,8 +483,9 @@
     <state width="1353" height="250" key="GridCell.Tab.0.center/0.23.1920.1130@0.23.1920.1130" timestamp="1627391149709" />
     <state width="1314" height="287" key="GridCell.Tab.0.center/0.23.1920.1131@0.23.1920.1131" timestamp="1625690800940" />
     <state width="1361" height="307" key="GridCell.Tab.0.center/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state width="1478" height="460" key="GridCell.Tab.0.left" timestamp="1628161509012">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state width="1468" height="282" key="GridCell.Tab.0.center/0.25.1920.1111@0.25.1920.1111" timestamp="1628592123132" />
+    <state width="1468" height="282" key="GridCell.Tab.0.left" timestamp="1628592123132">
+      <screen x="0" y="25" width="1920" height="1111" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.left/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221205" />
     <state width="1478" height="460" key="GridCell.Tab.0.left/0.23.1920.1127@0.23.1920.1127" timestamp="1628161509012" />
@@ -470,8 +494,9 @@
     <state width="1353" height="250" key="GridCell.Tab.0.left/0.23.1920.1130@0.23.1920.1130" timestamp="1627391149709" />
     <state width="1314" height="287" key="GridCell.Tab.0.left/0.23.1920.1131@0.23.1920.1131" timestamp="1625690800939" />
     <state width="1361" height="307" key="GridCell.Tab.0.left/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state width="1478" height="460" key="GridCell.Tab.0.right" timestamp="1628161509013">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state width="1468" height="282" key="GridCell.Tab.0.left/0.25.1920.1111@0.25.1920.1111" timestamp="1628592123132" />
+    <state width="1468" height="282" key="GridCell.Tab.0.right" timestamp="1628592123133">
+      <screen x="0" y="25" width="1920" height="1111" />
     </state>
     <state width="1313" height="317" key="GridCell.Tab.0.right/0.23.1920.1126@0.23.1920.1126" timestamp="1624443221225" />
     <state width="1478" height="460" key="GridCell.Tab.0.right/0.23.1920.1127@0.23.1920.1127" timestamp="1628161509013" />
@@ -480,21 +505,24 @@
     <state width="1353" height="250" key="GridCell.Tab.0.right/0.23.1920.1130@0.23.1920.1130" timestamp="1627391149711" />
     <state width="1314" height="287" key="GridCell.Tab.0.right/0.23.1920.1131@0.23.1920.1131" timestamp="1625690800940" />
     <state width="1361" height="307" key="GridCell.Tab.0.right/0.23.1920.1132@0.23.1920.1132" timestamp="1622670053302" />
-    <state x="111" y="23" key="SettingsEditor" timestamp="1627908143495">
-      <screen x="0" y="23" width="1920" height="1129" />
+    <state width="1468" height="282" key="GridCell.Tab.0.right/0.25.1920.1111@0.25.1920.1111" timestamp="1628592123133" />
+    <state x="111" y="25" key="SettingsEditor" timestamp="1628592019093">
+      <screen x="0" y="25" width="1920" height="1111" />
     </state>
     <state x="111" y="23" key="SettingsEditor/0.23.1920.1126@0.23.1920.1126" timestamp="1624441401745" />
     <state x="111" y="23" key="SettingsEditor/0.23.1920.1127@0.23.1920.1127" timestamp="1626192091322" />
     <state x="111" y="79" key="SettingsEditor/0.23.1920.1128@0.23.1920.1128" timestamp="1624398921735" />
     <state x="111" y="23" key="SettingsEditor/0.23.1920.1129@0.23.1920.1129" timestamp="1627908143495" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1627847103860">
-      <screen x="0" y="23" width="1920" height="1128" />
+    <state x="111" y="25" key="SettingsEditor/0.25.1920.1111@0.25.1920.1111" timestamp="1628592019093" />
+    <state x="209" y="261" key="Vcs.Push.Dialog.v2" timestamp="1628593686578">
+      <screen x="0" y="25" width="1920" height="1111" />
     </state>
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1126@0.23.1920.1126" timestamp="1624399901581" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1127@0.23.1920.1127" timestamp="1627553925690" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1128@0.23.1920.1128" timestamp="1627847103860" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1129@0.23.1920.1129" timestamp="1627255329360" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1130@0.23.1920.1130" timestamp="1627341846177" />
+    <state x="209" y="261" key="Vcs.Push.Dialog.v2/0.25.1920.1111@0.25.1920.1111" timestamp="1628593686578" />
     <state x="464" y="205" key="VcsDiffUtil.ChangesDialog" timestamp="1628021017916">
       <screen x="0" y="23" width="1920" height="1129" />
     </state>
