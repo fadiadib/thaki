@@ -202,6 +202,7 @@ class _CreateFormState extends State<CreateForm> {
               initialValue: payer.selectedCar.plateEN,
               maxLengthEnforced: payer.selectedCar.state != 1,
               maxLength: payer.selectedCar.state != 1 ? 7 : null,
+              keyboardType: TextInputType.number,
               onChanged: (String value) {
                 payer.selectedCar.plateEN = value;
               },
