@@ -1,13 +1,12 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:thaki/generated/l10n.dart';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:image_cropper/image_cropper.dart';
 
-import 'package:thaki/globals/colors.dart';
+import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 
@@ -39,22 +38,18 @@ class _TkIDCardState extends State<TkIDCard> {
   void updateImage(ImageSource source, BuildContext context) async {
     // Get the image from the camera or gallery according to source
     ImagePicker imagePicker = new ImagePicker();
-    PickedFile image =
-        await imagePicker.getImage(source: source);
-
-    setState(() {
-      isLoading = true;
-    });
-
-    Directory tempDir = await getTemporaryDirectory();
-    File temp = new File('${tempDir.path}/temp.jpeg');
-
-    File compressedImage = await testCompressAndGetFile(image.path, temp.path);
+    PickedFile image = await imagePicker.getImage(source: source);
 
     if (image != null) {
-      setState(() {
-        isLoading = false;
-      });
+      setState(() => isLoading = true);
+
+      Directory tempDir = await getTemporaryDirectory();
+      File temp = new File('${tempDir.path}/temp.jpeg');
+      File compressedImage =
+          await testCompressAndGetFile(image.path, temp.path);
+
+      setState(() => isLoading = false);
+
       // Allow the user to crop/rotate the picture
       File croppedImage = await ImageCropper.cropImage(
         sourcePath: compressedImage.path,
@@ -140,8 +135,8 @@ class _TkIDCardState extends State<TkIDCard> {
                 GestureDetector(
                     onTap: () {},
                     child: Container(
-                        color: Colors.black.withOpacity(0.5),
-                        child: Center(child: TkProgressIndicator()))),
+                        color: kBlackColor.withOpacity(0.5),
+                        child: TkProgressIndicator()))
             ],
           ),
         ),

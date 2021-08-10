@@ -317,7 +317,7 @@ class TkDateField extends TkTextField {
         DatePicker.showDateTimePicker(
           context,
           showTitleActions: true,
-          minTime: DateTime(1900, 1, 1),
+          minTime: allowPast ? DateTime(1900, 1, 1) : DateTime.now(),
           maxTime: allowFuture
               ? DateTime.now().add(Duration(days: 365 * 10))
               : DateTime.now(),
