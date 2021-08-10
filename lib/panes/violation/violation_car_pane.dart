@@ -197,8 +197,11 @@ class _CreateFormState extends State<CreateForm> {
             padding:
             const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
             child: TkTextField(
+              height: kDefaultLicensePlateTextEditHeight,
               hintText: S.of(context).kCarPlateEN,
               initialValue: payer.selectedCar.plateEN,
+              maxLengthEnforced: payer.selectedCar.state != 1,
+              maxLength: payer.selectedCar.state != 1 ? 7 : null,
               onChanged: (String value) {
                 payer.selectedCar.plateEN = value;
               },
