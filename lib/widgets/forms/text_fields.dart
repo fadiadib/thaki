@@ -83,7 +83,7 @@ class TkTextField extends StatelessWidget {
       keyboardType: lines > 1 ? TextInputType.multiline : keyboardType,
       inputFormatters: keyboardType == TextInputType.number
           ? <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
+              FilteringTextInputFormatter.allow(RegExp(r"[\u0660-\u0669\d]+", unicode: true)),
             ]
           : null,
 
