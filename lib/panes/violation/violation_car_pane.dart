@@ -143,14 +143,13 @@ class _TkCreateFormState extends State<TkCreateForm> {
           Padding(
             padding:
             const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child: TkLicenseField(
+            child: TkLicenseField2(
               langCode: Provider.of<TkLangController>(context, listen: false)
                   .lang
                   .languageCode,
               onChanged: (value) => payer.selectedCar.plateEN = value,
               values: _getInitialValuesEN(payer),
               validate: false,
-              enabled: true,
             ),
           )
       ],

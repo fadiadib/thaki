@@ -5,6 +5,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
+import 'package:thaki/widgets/general/progress_indicator.dart';
 
 /// A widget that creates digits used for verifying one timer
 /// passwords. It takes the number of digits of the OTP, the
@@ -113,7 +114,7 @@ class TkLicenseField extends StatelessWidget {
 }
 
 
-class TkLicenseField2 extends StatelessWidget {
+class TkLicenseField2 extends StatefulWidget {
   TkLicenseField2({
     this.widthPercentage = 0.4,
     this.characterLength = 3,
@@ -136,11 +137,49 @@ class TkLicenseField2 extends StatelessWidget {
   final bool validate;
   final String errorMessage;
   final String langCode;
+  @override
+  _TkLicenseField2State createState() => _TkLicenseField2State();
+}
+
+class _TkLicenseField2State extends State<TkLicenseField2> {
+  FocusNode _charNode = FocusNode(), _digitNode = FocusNode();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+      _charNode.requestFocus();
+      Future.delayed(Duration(milliseconds: 1),(){
+        _digitNode.requestFocus();
+      }).then((value){
+        Future.delayed(Duration(milliseconds: 1),(){
+          _digitNode.unfocus();
+        });
+      });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          // Build a row with the OTP digits
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: getFields(context),
+        ),
+        if (widget.validate && (widget.values == null || !widget.validator()))
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(widget.errorMessage, style: kErrorStyle),
+          )
+      ],
+    );
+  }
 
   List<Widget> getFields(BuildContext context) {
     // Add digits field
     Widget nWidget = SizedBox(
-      width: MediaQuery.of(context).size.width * widthPercentage,
+      width: MediaQuery.of(context).size.width * widget.widthPercentage,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,6 +187,9 @@ class TkLicenseField2 extends StatelessWidget {
           Text(S.of(context).kDigits),
           SizedBox(height: 10.0,),
           PinCodeTextField(
+            controller: widget.values[0] != null ? TextEditingController(text: widget.values[0].replaceAll(' ', '')) : null,
+            focusNode: _digitNode,
+            autoDismissKeyboard: false,
             appContext: context,
             keyboardType: TextInputType.number,
             inputFormatters: <TextInputFormatter>[
@@ -175,14 +217,14 @@ class TkLicenseField2 extends StatelessWidget {
             animationDuration: Duration(milliseconds: 300),
             backgroundColor: Colors.transparent,
             enableActiveFill: false,
-            length: digitsLength,
+            length: widget.digitsLength,
 
             // Callback
             onChanged: (String value) {
               // Set the value at the index to the updated string
-              values[0] = value;
+              widget.values[0] = value;
 
-              if (onChanged != null) onChanged(values.join());
+              if (widget.onChanged != null) widget.onChanged(widget.values.join());
             },
           ),
         ],
@@ -191,7 +233,7 @@ class TkLicenseField2 extends StatelessWidget {
 
     // Add chars field
     Widget cWidget = SizedBox(
-      width: MediaQuery.of(context).size.width * widthPercentage,
+      width: MediaQuery.of(context).size.width * widget.widthPercentage,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -199,6 +241,9 @@ class TkLicenseField2 extends StatelessWidget {
           Text(S.of(context).kCharacters,),
           SizedBox(height: 10.0,),
           PinCodeTextField(
+            controller: widget.values[1] != null ? TextEditingController(text: widget.values[1].replaceAll(' ', '')) : null,
+            focusNode: _charNode,
+            autoDismissKeyboard: false,
             appContext: context,
             keyboardType: TextInputType.name,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -223,16 +268,16 @@ class TkLicenseField2 extends StatelessWidget {
             animationDuration: Duration(milliseconds: 300),
             backgroundColor: Colors.transparent,
             enableActiveFill: false,
-            length: characterLength,
+            length: widget.characterLength,
 
             // Callback
             onChanged: (String value) {
               // Set the value at the index to the updated string
-              values[1] = value;
+              widget.values[1] = value;
 
-              if (onChanged != null) {
-                if (langCode == 'ar') onChanged(values.reversed.join());
-                onChanged(values.join());
+              if (widget.onChanged != null) {
+                if (widget.langCode == 'ar') widget.onChanged(widget.values.reversed.join());
+                widget.onChanged(widget.values.join());
               }
             },
           ),
@@ -240,27 +285,9 @@ class TkLicenseField2 extends StatelessWidget {
       ),
     );
 
-    if (langCode == 'ar') return [cWidget, nWidget];
+    if (widget.langCode == 'ar') return [cWidget, nWidget];
     // Return the widgets to the caller Row
     return [nWidget, cWidget];
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          // Build a row with the OTP digits
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: getFields(context),
-        ),
-        if (validate && (values == null || !validator()))
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Text(errorMessage, style: kErrorStyle),
-          )
-      ],
-    );
   }
 }
 
