@@ -25,7 +25,6 @@ class TkOTPField2 extends StatelessWidget {
     this.validate,
     this.errorMessage,
     this.context,
-    this.langCode = 'en',
   });
 
   // Attributes
@@ -41,11 +40,10 @@ class TkOTPField2 extends StatelessWidget {
   final bool validate;
   final String errorMessage;
   final BuildContext context;
-  final String langCode;
 
   Widget getDigitsField() {
     return Directionality(
-      textDirection: langCode == 'en' ? TextDirection.ltr : TextDirection.rtl,
+      textDirection: TextDirection.ltr,
       child: PinCodeTextField(
         appContext: context,
         autoFocus: true,
