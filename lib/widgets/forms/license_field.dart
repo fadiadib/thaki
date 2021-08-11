@@ -151,7 +151,6 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     if(widget.isEdit){
       _charNode.requestFocus();
