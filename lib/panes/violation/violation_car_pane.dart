@@ -101,38 +101,42 @@ class _TkCreateFormState extends State<TkCreateForm> {
   @override
   Widget build(BuildContext context) {
     TkAttributesController states =
-    Provider.of<TkAttributesController>(context, listen: true);
+        Provider.of<TkAttributesController>(context, listen: true);
     TkLangController langController =
-    Provider.of<TkLangController>(context, listen: false);
+        Provider.of<TkLangController>(context, listen: false);
 
     return Column(
       children: [
         // Car license number
         TkSectionTitle(title: S.of(context).kCarPlateEN, uppercase: false),
-        if(payer.selectedCar==null)
+        if (payer.selectedCar == null)
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TkSectionTitle(title: S.of(context).kCarState, uppercase: false),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 30.0),
                 child: TkDropDownField(
                   context: context,
                   values: states.stateNames(langController),
-                  value: states.stateName(payer.selectedCar.state, langController),
+                  value:
+                      states.stateName(payer.selectedCar.state, langController),
                   hintText: S.of(context).kCarState,
                   onChanged: (value) {
-                    setState(() => payer.selectedCar.state = states.stateId(value));
+                    setState(
+                        () => payer.selectedCar.state = states.stateId(value));
                   },
-                  errorMessage: S.of(context).kPleaseChoose + S.of(context).kCarState,
+                  errorMessage:
+                      S.of(context).kPleaseChoose + S.of(context).kCarState,
                 ),
               ),
             ],
           ),
-        if (payer.selectedCar != null && payer.selectedCar.state != 1)
+        if (payer.selectedCar.state != 1)
           Padding(
             padding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
             child: TkTextField(
               height: kDefaultLicensePlateTextEditHeight,
               hintText: S.of(context).kCarPlateEN,
@@ -145,18 +149,29 @@ class _TkCreateFormState extends State<TkCreateForm> {
               },
             ),
           ),
-        if (payer.selectedCar == null || payer.selectedCar.state == 1)
+        if (payer.selectedCar.state == 1)
           Padding(
             padding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child: TkLicenseField2(
-              langCode: Provider.of<TkLangController>(context, listen: false)
-                  .lang
-                  .languageCode,
-              onChanged: (value) => payer.selectedCar.plateEN = value,
-              values: _getInitialValuesEN(payer),
-              validate: false,
-            ),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+            child: kOtpLicenseField
+                ? TkLicenseField2(
+                    langCode:
+                        Provider.of<TkLangController>(context, listen: false)
+                            .lang
+                            .languageCode,
+                    onChanged: (value) => payer.selectedCar.plateEN = value,
+                    values: _getInitialValuesEN(payer),
+                    validate: false,
+                  )
+                : TkLicenseField(
+                    langCode:
+                        Provider.of<TkLangController>(context, listen: false)
+                            .lang
+                            .languageCode,
+                    onChanged: (value) => payer.selectedCar.plateEN = value,
+                    values: _getInitialValuesEN(payer),
+                    validate: false,
+                  ),
           )
       ],
     );

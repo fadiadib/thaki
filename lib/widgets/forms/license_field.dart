@@ -125,6 +125,8 @@ class TkLicenseField2 extends StatefulWidget {
     this.errorMessage,
     this.values = const ['', ''],
     this.langCode = 'ar',
+    this.enabled = true,
+    this.isEdit
   });
 
   // Attributes
@@ -137,6 +139,9 @@ class TkLicenseField2 extends StatefulWidget {
   final bool validate;
   final String errorMessage;
   final String langCode;
+  final bool enabled;
+  final bool isEdit;
+
   @override
   _TkLicenseField2State createState() => _TkLicenseField2State();
 }
@@ -148,6 +153,7 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    if(widget.isEdit){
       _charNode.requestFocus();
       Future.delayed(Duration(milliseconds: 1),(){
         _digitNode.requestFocus();
@@ -156,6 +162,7 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
           _digitNode.unfocus();
         });
       });
+    }
   }
 
   @override
@@ -187,6 +194,7 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
           Text(S.of(context).kDigits),
           SizedBox(height: 10.0,),
           PinCodeTextField(
+            enabled: widget.enabled,
             controller: widget.values[0] != null ? TextEditingController(text: widget.values[0].replaceAll(' ', '')) : null,
             focusNode: _digitNode,
             autoDismissKeyboard: false,
@@ -241,6 +249,7 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
           Text(S.of(context).kCharacters,),
           SizedBox(height: 10.0,),
           PinCodeTextField(
+            enabled: widget.enabled,
             controller: widget.values[1] != null ? TextEditingController(text: widget.values[1].replaceAll(' ', '')) : null,
             focusNode: _charNode,
             autoDismissKeyboard: false,
