@@ -22,6 +22,8 @@ class TkPayer extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool allowChange = true;
+
   String _cvv;
   String get cvv => _cvv;
   set cvv(String value) {
@@ -98,7 +100,6 @@ class TkPayer extends ChangeNotifier {
   String _validationCarError;
   String get validationCarError => _validationCarError;
   bool validateCar(BuildContext context) {
-    print(_selectedCar.plateEN);
     if (_selectedCar == null ||
         _selectedCar.plateEN == null ||
         _selectedCar.plateEN.isEmpty ||

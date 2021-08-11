@@ -93,7 +93,6 @@ class _TkCreateFormState extends State<TkCreateForm> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     payer = widget.payer;
   }
@@ -101,39 +100,44 @@ class _TkCreateFormState extends State<TkCreateForm> {
   @override
   Widget build(BuildContext context) {
     TkAttributesController states =
-    Provider.of<TkAttributesController>(context, listen: true);
+        Provider.of<TkAttributesController>(context, listen: true);
     TkLangController langController =
-    Provider.of<TkLangController>(context, listen: false);
+        Provider.of<TkLangController>(context, listen: false);
 
     return Column(
       children: [
         // Car license number
         TkSectionTitle(title: S.of(context).kCarPlateEN, uppercase: false),
-        if(payer.selectedCar==null)
+        if (payer.allowChange)
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TkSectionTitle(title: S.of(context).kCarState, uppercase: false),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 30.0),
                 child: TkDropDownField(
                   context: context,
                   values: states.stateNames(langController),
-                  value: states.stateName(payer.selectedCar.state, langController),
+                  value:
+                      states.stateName(payer.selectedCar.state, langController),
                   hintText: S.of(context).kCarState,
                   onChanged: (value) {
-                    setState(() => payer.selectedCar.state = states.stateId(value));
+                    setState(
+                        () => payer.selectedCar.state = states.stateId(value));
                   },
-                  errorMessage: S.of(context).kPleaseChoose + S.of(context).kCarState,
+                  errorMessage:
+                      S.of(context).kPleaseChoose + S.of(context).kCarState,
                 ),
               ),
             ],
           ),
-        if (payer.selectedCar != null && payer.selectedCar.state != 1)
+        if (payer.selectedCar.state != 1)
           Padding(
             padding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
             child: TkTextField(
+              enabled: payer.allowChange,
               height: kDefaultLicensePlateTextEditHeight,
               hintText: S.of(context).kCarPlateEN,
               initialValue: payer.selectedCar.plateEN,
@@ -145,10 +149,10 @@ class _TkCreateFormState extends State<TkCreateForm> {
               },
             ),
           ),
-        if (payer.selectedCar == null || payer.selectedCar.state == 1)
+        if (payer.selectedCar.state == 1)
           Padding(
             padding:
-            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
             child: TkLicenseField(
               langCode: Provider.of<TkLangController>(context, listen: false)
                   .lang
@@ -156,7 +160,7 @@ class _TkCreateFormState extends State<TkCreateForm> {
               onChanged: (value) => payer.selectedCar.plateEN = value,
               values: _getInitialValuesEN(payer),
               validate: false,
-              enabled: true,
+              enabled: payer.allowChange,
             ),
           )
       ],

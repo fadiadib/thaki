@@ -42,8 +42,10 @@ class TkViolationsPane extends TkPane {
                   cars: account.user.cars,
                   onTap: (TkCar car) {
                     // Select the car in the payer provider
-                    Provider.of<TkPayer>(context, listen: false).selectedCar =
-                        car;
+                    TkPayer payer =
+                        Provider.of<TkPayer>(context, listen: false);
+                    payer.selectedCar = car;
+                    payer.allowChange = false;
 
                     // Push the pay violations screen
                     Navigator.of(context).pushNamed(TkPayViolationScreen.id);
@@ -75,6 +77,12 @@ class TkViolationsPane extends TkPane {
                     padding: const EdgeInsets.symmetric(vertical: 20.0),
                     child: GestureDetector(
                       onTap: () {
+                        // Select the car in the payer provider
+                        TkPayer payer =
+                            Provider.of<TkPayer>(context, listen: false);
+                        payer.selectedCar = TkCar.fromJson({});
+                        payer.allowChange = true;
+
                         // Push the pay violations screen
                         Navigator.of(context)
                             .pushNamed(TkPayViolationScreen.id);
@@ -97,8 +105,10 @@ class TkViolationsPane extends TkPane {
                       title: S.of(context).kCheckForLPR,
                       onPressed: () {
                         // Select the car in the payer provider
-                        Provider.of<TkPayer>(context, listen: false)
-                            .selectedCar = TkCar.fromJson({});
+                        TkPayer payer =
+                            Provider.of<TkPayer>(context, listen: false);
+                        payer.selectedCar = TkCar.fromJson({});
+                        payer.allowChange = true;
 
                         // Push the pay violations screen
                         Navigator.of(context)
