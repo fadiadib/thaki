@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/payer.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -14,55 +15,6 @@ import 'package:thaki/widgets/general/section_title.dart';
 
 class TkViolationCarPane extends TkPane {
   TkViolationCarPane({onDone}) : super(paneTitle: '', onDone: onDone);
-
-  List<String> _getInitialValuesEN(TkPayer payer) {
-    if (payer.selectedCar == null ||
-        payer.selectedCar.plateEN == null ||
-        payer.selectedCar.plateEN.isEmpty) return ['', ''];
-
-    final RegExp nExp = RegExp(r"\d{1,4}");
-    final String nums = nExp.stringMatch(payer.selectedCar.plateEN);
-
-    final RegExp cExp = RegExp(r"[A-Z]{2,3}");
-    final String chars = cExp.stringMatch(payer.selectedCar.plateEN);
-
-    return [nums, chars];
-  }
-
-  Widget _createForm(TkPayer payer, BuildContext context) {
-    return Column(
-      children: [
-        // Car license number
-        TkSectionTitle(title: S.of(context).kCarPlateEN, uppercase: false),
-        if (payer.selectedCar != null && payer.selectedCar.state != 1)
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child: TkTextField(
-              hintText: S.of(context).kCarPlateEN,
-              initialValue: payer.selectedCar.plateEN,
-              onChanged: (String value) {
-                payer.selectedCar.plateEN = value;
-              },
-            ),
-          ),
-        if (payer.selectedCar == null || payer.selectedCar.state == 1)
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-            child: TkLicenseField(
-              langCode: Provider.of<TkLangController>(context, listen: false)
-                  .lang
-                  .languageCode,
-              onChanged: (value) => payer.selectedCar.plateEN = value,
-              values: _getInitialValuesEN(payer),
-              validate: false,
-              enabled: true,
-            ),
-          )
-      ],
-    );
-  }
 
   Widget _createFormButton(TkPayer payer, BuildContext context) {
     return Padding(
@@ -103,12 +55,105 @@ class TkViolationCarPane extends TkPane {
                       title: S.of(context).kEnterLRP,
                     ),
                   ),
-                  _createForm(payer, context),
+                  TkCreateForm(payer),
                   _createFormButton(payer, context),
                   _getErrorMessage(payer),
                 ],
               );
       },
+    );
+  }
+}
+
+class TkCreateForm extends StatefulWidget {
+  final TkPayer payer;
+
+  TkCreateForm(this.payer);
+
+  @override
+  _TkCreateFormState createState() => _TkCreateFormState();
+}
+
+class _TkCreateFormState extends State<TkCreateForm> {
+  TkPayer payer;
+
+  List<String> _getInitialValuesEN(TkPayer payer) {
+    if (payer.selectedCar == null ||
+        payer.selectedCar.plateEN == null ||
+        payer.selectedCar.plateEN.isEmpty) return ['', ''];
+
+    final RegExp nExp = RegExp(r"\d{1,4}");
+    final String nums = nExp.stringMatch(payer.selectedCar.plateEN);
+
+    final RegExp cExp = RegExp(r"[A-Z]{2,3}");
+    final String chars = cExp.stringMatch(payer.selectedCar.plateEN);
+
+    return [nums, chars];
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    payer = widget.payer;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    TkAttributesController states =
+    Provider.of<TkAttributesController>(context, listen: true);
+    TkLangController langController =
+    Provider.of<TkLangController>(context, listen: false);
+
+    return Column(
+      children: [
+        // Car license number
+        TkSectionTitle(title: S.of(context).kCarPlateEN, uppercase: false),
+        TkSectionTitle(title: S.of(context).kCarState, uppercase: false),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+          child: TkDropDownField(
+            context: context,
+            values: states.stateNames(langController),
+            value: states.stateName(payer.selectedCar.state, langController),
+            hintText: S.of(context).kCarState,
+            onChanged: (value) {
+              setState(() => payer.selectedCar.state = states.stateId(value));
+            },
+            errorMessage: S.of(context).kPleaseChoose + S.of(context).kCarState,
+          ),
+        ),
+        if (payer.selectedCar != null && payer.selectedCar.state != 1)
+          Padding(
+            padding:
+            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+            child: TkTextField(
+              height: kDefaultLicensePlateTextEditHeight,
+              hintText: S.of(context).kCarPlateEN,
+              initialValue: payer.selectedCar.plateEN,
+              maxLengthEnforced: payer.selectedCar.state != 1,
+              maxLength: payer.selectedCar.state != 1 ? 7 : null,
+              keyboardType: TextInputType.number,
+              onChanged: (String value) {
+                payer.selectedCar.plateEN = value;
+              },
+            ),
+          ),
+        if (payer.selectedCar == null || payer.selectedCar.state == 1)
+          Padding(
+            padding:
+            const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
+            child: TkLicenseField(
+              langCode: Provider.of<TkLangController>(context, listen: false)
+                  .lang
+                  .languageCode,
+              onChanged: (value) => payer.selectedCar.plateEN = value,
+              values: _getInitialValuesEN(payer),
+              validate: false,
+              enabled: true,
+            ),
+          )
+      ],
     );
   }
 }
