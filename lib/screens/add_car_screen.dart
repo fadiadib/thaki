@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
@@ -12,6 +14,7 @@ import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/forms/license_field.dart';
+import 'package:thaki/widgets/forms/otp_field.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
 import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
@@ -21,6 +24,7 @@ class TkAddCarScreen extends StatefulWidget {
   static const id = 'add_car_screen';
 
   TkAddCarScreen({this.editMode = false, this.car});
+
   final bool editMode;
   final TkCar car;
 
@@ -128,16 +132,27 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     if (_car.state == 1)
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-        child: TkLicenseField(
-          langCode: langController.lang.languageCode,
-          enabled: !account.isLoading,
-          onChanged: (value) => setState(() => _car.plateEN = value),
-          values: _getInitialValuesEN(),
-          validator: getValidationCallback(TkFormField.carPlateEN),
-          validate: isValidating,
-          errorMessage:
-              S.of(context).kPleaseEnterAValid + S.of(context).kCarPlateEN,
-        ),
+        child: kOtpLicenseField
+            ? TkLicenseField2(
+                isEdit: widget.editMode,
+                langCode: langController.lang.languageCode,
+                onChanged: (value) => setState(() => _car.plateEN = value),
+                values: _getInitialValuesEN(),
+                validator: getValidationCallback(TkFormField.carPlateEN),
+                validate: isValidating,
+                errorMessage: S.of(context).kPleaseEnterAValid +
+                    S.of(context).kCarPlateEN,
+              )
+            : TkLicenseField(
+                langCode: langController.lang.languageCode,
+                enabled: !account.isLoading,
+                onChanged: (value) => setState(() => _car.plateEN = value),
+                values: _getInitialValuesEN(),
+                validator: getValidationCallback(TkFormField.carPlateEN),
+                validate: isValidating,
+                errorMessage: S.of(context).kPleaseEnterAValid +
+                    S.of(context).kCarPlateEN,
+              ),
       );
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
@@ -163,16 +178,27 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     if (_car.state == 1)
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-        child: TkLicenseField(
-          enabled: !account.isLoading,
-          langCode: langController.lang.languageCode,
-          onChanged: (value) => setState(() => _car.plateAR = value),
-          values: _getInitialValuesAR(),
-          validator: getValidationCallback(TkFormField.carPlateAR),
-          validate: isValidating,
-          errorMessage:
-              S.of(context).kPleaseEnterAValid + S.of(context).kCarPlateAR,
-        ),
+        child: kOtpLicenseField
+            ? TkLicenseField2(
+                isEdit: widget.editMode,
+                langCode: langController.lang.languageCode,
+                onChanged: (value) => setState(() => _car.plateAR = value),
+                values: _getInitialValuesAR(),
+                validator: getValidationCallback(TkFormField.carPlateAR),
+                validate: isValidating,
+                errorMessage: S.of(context).kPleaseEnterAValid +
+                    S.of(context).kCarPlateAR,
+              )
+            : TkLicenseField(
+                enabled: !account.isLoading,
+                langCode: langController.lang.languageCode,
+                onChanged: (value) => setState(() => _car.plateAR = value),
+                values: _getInitialValuesAR(),
+                validator: getValidationCallback(TkFormField.carPlateAR),
+                validate: isValidating,
+                errorMessage: S.of(context).kPleaseEnterAValid +
+                    S.of(context).kCarPlateAR,
+              ),
       );
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
