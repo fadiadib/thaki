@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
@@ -109,3 +111,156 @@ class TkLicenseField extends StatelessWidget {
     );
   }
 }
+
+
+class TkLicenseField2 extends StatelessWidget {
+  TkLicenseField2({
+    this.widthPercentage = 0.4,
+    this.characterLength = 3,
+    this.digitsLength = 4,
+    this.onChanged,
+    this.validator,
+    this.validate,
+    this.errorMessage,
+    this.values = const ['', ''],
+    this.langCode = 'ar',
+  });
+
+  // Attributes
+  final double widthPercentage;
+  final int characterLength;
+  final int digitsLength;
+  final List<String> values;
+  final Function(String) onChanged;
+  final Function validator;
+  final bool validate;
+  final String errorMessage;
+  final String langCode;
+
+  List<Widget> getFields(BuildContext context) {
+    // Add digits field
+    Widget nWidget = SizedBox(
+      width: MediaQuery.of(context).size.width * widthPercentage,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(S.of(context).kDigits),
+          SizedBox(height: 10.0,),
+          PinCodeTextField(
+            appContext: context,
+            keyboardType: TextInputType.number,
+            inputFormatters: <TextInputFormatter>[
+              FilteringTextInputFormatter.digitsOnly,
+            ],
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            animationType: AnimationType.fade,
+            pinTheme: PinTheme(
+              shape: PinCodeFieldShape.box,
+              activeColor: kSecondaryColor, //123456
+              selectedColor: kPrimaryColor,
+              inactiveColor: kAccentGreyColor,
+              borderRadius: BorderRadius.circular(10),
+              fieldHeight: 50,
+              fieldWidth: 35,
+              activeFillColor: Colors.transparent,
+            ),
+            beforeTextPaste: (text) => true,
+            dialogConfig: DialogConfig(
+              affirmativeText: S.of(context).kOk,
+              negativeText: S.of(context).kCancel,
+              dialogContent: S.of(context).kConfirmPasteDetails,
+              dialogTitle: S.of(context).kConfirmPaste,
+            ),
+            animationDuration: Duration(milliseconds: 300),
+            backgroundColor: Colors.transparent,
+            enableActiveFill: false,
+            length: digitsLength,
+
+            // Callback
+            onChanged: (String value) {
+              // Set the value at the index to the updated string
+              values[0] = value;
+
+              if (onChanged != null) onChanged(values.join());
+            },
+          ),
+        ],
+      ),
+    );
+
+    // Add chars field
+    Widget cWidget = SizedBox(
+      width: MediaQuery.of(context).size.width * widthPercentage,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(S.of(context).kCharacters,),
+          SizedBox(height: 10.0,),
+          PinCodeTextField(
+            appContext: context,
+            keyboardType: TextInputType.name,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            animationType: AnimationType.fade,
+            pinTheme: PinTheme(
+              shape: PinCodeFieldShape.box,
+              activeColor: kSecondaryColor, //123456
+              selectedColor: kPrimaryColor,
+              inactiveColor: kAccentGreyColor,
+              borderRadius: BorderRadius.circular(10),
+              fieldHeight: 50,
+              fieldWidth: 35,
+              activeFillColor: Colors.transparent,
+            ),
+            beforeTextPaste: (text) => true,
+            dialogConfig: DialogConfig(
+              affirmativeText: S.of(context).kOk,
+              negativeText: S.of(context).kCancel,
+              dialogContent: S.of(context).kConfirmPasteDetails,
+              dialogTitle: S.of(context).kConfirmPaste,
+            ),
+            animationDuration: Duration(milliseconds: 300),
+            backgroundColor: Colors.transparent,
+            enableActiveFill: false,
+            length: characterLength,
+
+            // Callback
+            onChanged: (String value) {
+              // Set the value at the index to the updated string
+              values[1] = value;
+
+              if (onChanged != null) {
+                if (langCode == 'ar') onChanged(values.reversed.join());
+                onChanged(values.join());
+              }
+            },
+          ),
+        ],
+      ),
+    );
+
+    if (langCode == 'ar') return [cWidget, nWidget];
+    // Return the widgets to the caller Row
+    return [nWidget, cWidget];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          // Build a row with the OTP digits
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: getFields(context),
+        ),
+        if (validate && (values == null || !validator()))
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(errorMessage, style: kErrorStyle),
+          )
+      ],
+    );
+  }
+}
+
