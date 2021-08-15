@@ -3,12 +3,16 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/providers/payer.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/screens/login_screen.dart';
 import 'package:thaki/screens/register_screen.dart';
+import 'package:thaki/screens/pay_violation_screen.dart';
 
 class TkWelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -117,9 +121,51 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
               ],
             ),
           ),
-        )
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: GestureDetector(
+            onTap: () {
+              // Select the car in the payer provider
+              TkPayer payer = Provider.of<TkPayer>(context, listen: false);
+              payer.selectedCar = TkCar.fromJson({});
+              payer.allowChange = true;
+
+              // Push the pay violations screen
+              // Navigator.of(context).pushNamed(TkPayViolationScreen.id);
+
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => TkPayViolationScreen(guest: true),
+              ));
+            },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 40.0),
+              child: Text(
+                S.of(context).kCheckViolationWithoutRegistration,
+                style: kBoldStyle[kSmallSize].copyWith(color: kWhiteColor),
+              ),
+            ),
+          ),
+        ),
       ],
     );
+  }
+
+  Future<void> initModel() async {
+    // Load user profile here
+    TkLangController langController =
+        Provider.of<TkLangController>(context, listen: false);
+    TkAttributesController attributes =
+        Provider.of<TkAttributesController>(context, listen: false);
+
+    await attributes.load(langController);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    initModel();
   }
 
   @override

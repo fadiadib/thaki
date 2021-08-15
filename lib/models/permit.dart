@@ -23,15 +23,16 @@ class TkPermit {
   List<http.MultipartFile> toFiles() {
     List<http.MultipartFile> files = [];
     for (TkDocument doc in documents) {
-      files.add(
-        http.MultipartFile(
-          doc.tag,
-          doc.image.readAsBytes().asStream(),
-          doc.image.lengthSync(),
-          filename: TkCryptoHelper.hashMD5(
-              Random().toString() + '_' + DateTime.now().toString()),
-        ),
-      );
+      if (doc.image != null)
+        files.add(
+          http.MultipartFile(
+            doc.tag,
+            doc.image.readAsBytes().asStream(),
+            doc.image.lengthSync(),
+            filename: TkCryptoHelper.hashMD5(
+                Random().toString() + '_' + DateTime.now().toString()),
+          ),
+        );
     }
     return files;
   }

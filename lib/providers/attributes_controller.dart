@@ -95,7 +95,7 @@ class TkAttributesController extends ChangeNotifier {
   List<String> colorNames(TkLangController langController) =>
       getAttributeNames(langController, _colors);
 
-  Future<bool> load(TkUser user) async {
+  Future<bool> load(TkLangController langController) async {
     if (_states.isNotEmpty) return true;
     _isLoading = true;
     _loadError = null;
@@ -108,7 +108,7 @@ class TkAttributesController extends ChangeNotifier {
 
     // notifyListeners();
 
-    Map result = await _apis.loadAttributes(user: user);
+    Map result = await _apis.loadAttributes(langController: langController);
     if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kStatesTag]) {
         _states.add(TkState.fromJson(data));

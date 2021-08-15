@@ -40,7 +40,10 @@ class TkPackageTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(package.name, style: kBoldStyle[kNormalSize],),
+                Text(
+                  package.name,
+                  style: kBoldStyle[kNormalSize],
+                ),
                 SizedBox(height: 2.5),
                 Text(
                   package.points.toString() + ' ' + S.of(context).kHourPackage,
@@ -68,7 +71,7 @@ class TkPackageTile extends StatelessWidget {
                       ? TextDirection.rtl
                       : TextDirection.ltr,
               end: 10,
-              bottom: -5,
+              bottom: 5,
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: kMediumGreyColor.withOpacity(0.2)),

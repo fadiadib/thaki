@@ -5,13 +5,12 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/attributes_controller.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/utilities/date_time_helper.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/ribbon.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
-
-import '../../providers/lang_controller.dart';
 
 class TkTicketTile extends StatefulWidget {
   TkTicketTile({

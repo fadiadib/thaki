@@ -25,6 +25,7 @@ class TkPermitDocumentsPane extends TkPane {
         Padding(
           padding: EdgeInsets.only(bottom: 20),
           child: TkIDCard(
+            requiredMark: doc.required,
             title: doc.title,
             image: doc.image,
             callback: (File imageFile) =>

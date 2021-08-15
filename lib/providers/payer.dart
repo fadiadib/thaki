@@ -4,6 +4,7 @@ import 'package:thaki/globals/index.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/utilities/index.dart';
 
 class TkPayer extends ChangeNotifier {
@@ -113,7 +114,8 @@ class TkPayer extends ChangeNotifier {
   }
 
   /// Load violations
-  Future<bool> loadViolations(TkUser user) async {
+  Future<bool> loadViolations(TkUser user, TkLangController langController,
+      {bool guest = false}) async {
     // Start any loading indicators
     _isLoading = true;
 
@@ -125,7 +127,13 @@ class TkPayer extends ChangeNotifier {
     _selectedViolations.clear();
     _cvv = null;
 
-    Map result = await _apis.loadViolations(selectedCar.plateEN, user);
+    Map result = Map();
+    if (!guest)
+      result = await _apis.loadViolations(selectedCar.plateEN, user);
+    else
+      result = await _apis.loadViolationsWithoutToken(
+          selectedCar.plateEN, langController);
+
     if (result[kStatusTag] == kSuccessCode) {
       for (Map<String, dynamic> json in result[kDataTag][kViolationsTag]) {
         _violations.add(TkViolation.fromJson(json));

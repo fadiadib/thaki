@@ -225,6 +225,7 @@ class TkAccount extends ChangeNotifier {
 
     _prefs.delete(tag: kUserTokenTag);
     _prefs.delete(tag: kUserTokenTypeTag);
+    user.token = null;
 
     // Stop any listening loading indicators
     _isLoading = false;

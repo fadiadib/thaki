@@ -2224,6 +2224,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Check violations without registration`
+  String get kCheckViolationWithoutRegistration {
+    return Intl.message(
+      'Check violations without registration',
+      name: 'kCheckViolationWithoutRegistration',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

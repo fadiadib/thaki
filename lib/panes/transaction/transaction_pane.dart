@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/widgets/general/error.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -14,13 +15,14 @@ import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/base/index.dart';
 
 class TkTransactionPane extends TkPane {
-  TkTransactionPane({onDone, onClose})
+  TkTransactionPane({onDone, onClose, this.guest = false})
       : super(
           paneTitle: '',
           onDone: onDone,
           onClose: onClose,
           allowNavigation: false,
         );
+  final bool guest;
   void _paymentCallback(bool result) {
     onDone();
   }
@@ -55,6 +57,9 @@ class TkTransactionPane extends TkPane {
                 if (url == transactor.transactionPage) {
                   transactor.startTransactionChecker(
                     user: Provider.of<TkAccount>(context, listen: false).user,
+                    langController:
+                        Provider.of<TkLangController>(context, listen: false),
+                    guest: guest,
                     callback: _paymentCallback,
                   );
                 }

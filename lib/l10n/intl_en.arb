@@ -218,5 +218,6 @@
   "kDriverType": "Driver Type",
   "kGender": "Gender",
   "kMale": "Male",
-  "kFemale": "Female"
+  "kFemale": "Female",
+  "kCheckViolationWithoutRegistration": "Check violations without registration"
 }

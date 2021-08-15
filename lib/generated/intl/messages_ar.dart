@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kCardNumber" : MessageLookupByLibrary.simpleMessage("رقم بطاقة الائتمان"),
     "kCharacters" : MessageLookupByLibrary.simpleMessage("حروف"),
     "kCheckForLPR" : MessageLookupByLibrary.simpleMessage("للتحقق من مخالفة سيارة أخرى"),
+    "kCheckViolationWithoutRegistration" : MessageLookupByLibrary.simpleMessage("تحقق من المخالفات بدون تسجيل"),
     "kCheckout" : MessageLookupByLibrary.simpleMessage("الدفع"),
     "kChooseCar" : MessageLookupByLibrary.simpleMessage("اختر سيارة"),
     "kChooseCarToBook" : MessageLookupByLibrary.simpleMessage("اختر لوحة السيارة لدفع الموقف"),

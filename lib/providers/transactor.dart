@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/utilities/index.dart';
 
 class TkTransactor extends ChangeNotifier {
@@ -40,11 +41,13 @@ class TkTransactor extends ChangeNotifier {
   Future<bool> initTransaction({
     TkUser user,
     String type,
+    TkLangController langController,
     int id,
     TkCar car,
     DateTime dateTime,
     int duration,
     List<int> ids,
+    bool guest = false,
   }) async {
     // Start any loading indicators
     _isLoading = true;
@@ -52,15 +55,29 @@ class TkTransactor extends ChangeNotifier {
 
     notifyListeners();
 
-    Map result = await _apis.initTransaction(
-      user: user,
-      type: type,
-      id: id,
-      car: car,
-      dateTime: dateTime,
-      duration: duration,
-      ids: ids,
-    );
+    Map result = Map();
+
+    if (!guest) {
+      result = await _apis.initTransaction(
+        user: user,
+        type: type,
+        id: id,
+        car: car,
+        dateTime: dateTime,
+        duration: duration,
+        ids: ids,
+      );
+    } else {
+      result = await _apis.initGuestTransaction(
+        langController: langController,
+        type: type,
+        id: id,
+        car: car,
+        dateTime: dateTime,
+        duration: duration,
+        ids: ids,
+      );
+    }
 
     // Clear model
     if (result[kStatusTag] != kSuccessCreationCode) {
@@ -79,14 +96,22 @@ class TkTransactor extends ChangeNotifier {
   }
 
   /// Check transaction
-  Future<int> checkTransaction({@required TkUser user}) async {
+  Future<int> checkTransaction({
+    @required TkUser user,
+    @required TkLangController langController,
+    bool guest = false,
+  }) async {
     // Start any loading indicators
     transactionError = null;
 
     notifyListeners();
 
-    Map result =
-        await _apis.checkTransaction(user: user, transactionId: transactionId);
+    Map result = await _apis.checkTransaction(
+      user: user,
+      transactionId: transactionId,
+      langController: langController,
+      guest: guest,
+    );
 
     int status = 1; // 1 means pending
     if (result[kStatusTag] == kTransErrorCode) {
@@ -100,8 +125,12 @@ class TkTransactor extends ChangeNotifier {
     return status;
   }
 
-  void startTransactionChecker(
-      {@required TkUser user, @required Function callback}) {
+  void startTransactionChecker({
+    @required TkUser user,
+    @required Function callback,
+    @required TkLangController langController,
+    bool guest = false,
+  }) {
     // Check if there is an active payment request
     if (transactionId == null) return;
 
@@ -113,7 +142,11 @@ class TkTransactor extends ChangeNotifier {
     _timer =
         Timer.periodic(Duration(seconds: kTransactionRefreshTimer), (t) async {
       // Check payment status
-      int result = await checkTransaction(user: user);
+      int result = await checkTransaction(
+        user: user,
+        langController: langController,
+        guest: guest,
+      );
       if (result == 0 || result == 2) {
         // Success or failure
         stopTransactionChecker();

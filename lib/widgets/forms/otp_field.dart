@@ -45,6 +45,7 @@ class TkOTPField2 extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: PinCodeTextField(
+        keyboardType: TextInputType.number,
         appContext: context,
         autoFocus: true,
         length: numDigits,

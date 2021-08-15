@@ -11,10 +11,17 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 
 class TkIDCard extends StatefulWidget {
-  TkIDCard({this.title, this.image, this.callback, this.cancelCallback});
+  TkIDCard({
+    this.title,
+    this.image,
+    this.callback,
+    this.cancelCallback,
+    this.requiredMark = false,
+  });
 
   final String title;
   final File image;
+  final bool requiredMark;
   final Function callback;
   final Function cancelCallback;
 
@@ -84,9 +91,20 @@ class _TkIDCardState extends State<TkIDCard> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.title != null)
-          Padding(
-              padding: const EdgeInsets.only(bottom: 10.0),
-              child: Text(widget.title, style: kBoldStyle[kSmallSize])),
+          Row(
+            children: [
+              Padding(
+                  padding: const EdgeInsets.only(bottom: 10.0),
+                  child: Text(widget.title, style: kBoldStyle[kSmallSize])),
+              if (widget.requiredMark)
+                Padding(
+                    padding: const EdgeInsetsDirectional.only(
+                        bottom: 5.0, start: 5.0),
+                    child: Text('*',
+                        style: kBoldStyle[kBigSize]
+                            .copyWith(color: kTertiaryColor))),
+            ],
+          ),
         Container(
           height: 164.0,
           decoration: BoxDecoration(

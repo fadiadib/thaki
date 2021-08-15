@@ -6,10 +6,11 @@ import 'package:thaki/drawers/menu_drawer.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/panes/home/index.dart';
 import 'package:thaki/providers/account.dart';
+import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/messenger.dart';
 import 'package:thaki/providers/purchaser.dart';
-import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/screens/notification_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
@@ -47,10 +48,12 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     TkBooker booker = Provider.of<TkBooker>(context, listen: false);
     TkPurchaser purchaser = Provider.of<TkPurchaser>(context, listen: false);
+    TkLangController langController =
+        Provider.of<TkLangController>(context, listen: false);
     TkAttributesController attributes =
         Provider.of<TkAttributesController>(context, listen: false);
 
-    await attributes.load(account.user);
+    await attributes.load(langController);
     await booker.loadTickets(account.user);
     await purchaser.loadBalance(account.user);
     await account.loadCars();

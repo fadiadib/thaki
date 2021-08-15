@@ -5,7 +5,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
-import 'package:thaki/widgets/general/progress_indicator.dart';
 
 /// A widget that creates digits used for verifying one timer
 /// passwords. It takes the number of digits of the OTP, the
@@ -113,7 +112,6 @@ class TkLicenseField extends StatelessWidget {
   }
 }
 
-
 class TkLicenseField2 extends StatefulWidget {
   TkLicenseField2({
     this.widthPercentage = 0.4,
@@ -126,7 +124,7 @@ class TkLicenseField2 extends StatefulWidget {
     this.values = const ['', ''],
     this.langCode = 'ar',
     this.enabled = true,
-    this.isEdit
+    this.isEdit,
   });
 
   // Attributes
@@ -152,12 +150,12 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
   @override
   void initState() {
     super.initState();
-    if(widget.isEdit){
+    if (widget.isEdit) {
       _charNode.requestFocus();
-      Future.delayed(Duration(milliseconds: 1),(){
+      Future.delayed(Duration(milliseconds: 1), () {
         _digitNode.requestFocus();
-      }).then((value){
-        Future.delayed(Duration(milliseconds: 1),(){
+      }).then((value) {
+        Future.delayed(Duration(milliseconds: 1), () {
           _digitNode.unfocus();
         });
       });
@@ -191,10 +189,13 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(S.of(context).kDigits),
-          SizedBox(height: 10.0,),
+          SizedBox(height: 10.0),
           PinCodeTextField(
             enabled: widget.enabled,
-            controller: widget.values[0] != null ? TextEditingController(text: widget.values[0].replaceAll(' ', '')) : null,
+            controller: widget.values[0] != null
+                ? TextEditingController(
+                    text: widget.values[0].replaceAll(' ', ''))
+                : null,
             focusNode: _digitNode,
             autoDismissKeyboard: false,
             appContext: context,
@@ -231,7 +232,8 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
               // Set the value at the index to the updated string
               widget.values[0] = value;
 
-              if (widget.onChanged != null) widget.onChanged(widget.values.join());
+              if (widget.onChanged != null)
+                widget.onChanged(widget.values.join());
             },
           ),
         ],
@@ -245,11 +247,14 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(S.of(context).kCharacters,),
-          SizedBox(height: 10.0,),
+          Text(S.of(context).kCharacters),
+          SizedBox(height: 10.0),
           PinCodeTextField(
             enabled: widget.enabled,
-            controller: widget.values[1] != null ? TextEditingController(text: widget.values[1].replaceAll(' ', '')) : null,
+            controller: widget.values[1] != null
+                ? TextEditingController(
+                    text: widget.values[1].replaceAll(' ', ''))
+                : null,
             focusNode: _charNode,
             autoDismissKeyboard: false,
             appContext: context,
@@ -284,7 +289,8 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
               widget.values[1] = value;
 
               if (widget.onChanged != null) {
-                if (widget.langCode == 'ar') widget.onChanged(widget.values.reversed.join());
+                if (widget.langCode == 'ar')
+                  widget.onChanged(widget.values.reversed.join());
                 widget.onChanged(widget.values.join());
               }
             },
@@ -298,4 +304,3 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
     return [nWidget, cWidget];
   }
 }
-

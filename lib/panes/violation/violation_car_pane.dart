@@ -107,7 +107,6 @@ class _TkCreateFormState extends State<TkCreateForm> {
     return Column(
       children: [
         // Car license number
-        TkSectionTitle(title: S.of(context).kCarPlateEN, uppercase: false),
         if (payer.allowChange)
           Column(
             mainAxisSize: MainAxisSize.min,
@@ -132,6 +131,9 @@ class _TkCreateFormState extends State<TkCreateForm> {
               ),
             ],
           ),
+
+        TkSectionTitle(title: S.of(context).kCarPlateEN, uppercase: false),
+
         if (payer.selectedCar.state != 1)
           Padding(
             padding:

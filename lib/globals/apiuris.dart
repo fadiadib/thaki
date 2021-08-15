@@ -46,9 +46,11 @@ const String kReserveParkingAPI = '$kRootURL/booking';
 // Violations
 const String kLoadViolationsAPI = '$kRootURL/violations'; // 200, 404: empty
 const String kPayViolationsAPI = '$kRootURL/violations/pay'; // 201
+const String kLoadGuestViolationsAPI = '$kRootURL/violations/guest';
 // Transactions
 const String kTransactionAPI = '$kRootURL/transaction';
 const String kTransactionStatusAPI = '$kRootURL/trans/status';
+const String kGuestTransactionAPI = '$kRootURL/transaction/guest';
 // On boarding
 const String kOnBoardingAPI = '$kRootURL/onboarding';
 

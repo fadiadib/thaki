@@ -218,5 +218,6 @@
   "kDriverType": "نوع قائد المركبة",
   "kGender": "الجنس",
   "kMale": "ذكر",
-  "kFemale": "أنثى"
+  "kFemale": "أنثى",
+  "kCheckViolationWithoutRegistration": "تحقق من المخالفات بدون تسجيل"
 }

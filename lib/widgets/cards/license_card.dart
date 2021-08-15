@@ -72,9 +72,7 @@ class TkLicenseCard extends StatelessWidget {
               Container(
                 height: 20,
                 width: 40,
-                decoration: BoxDecoration(
-                  border: Border(),
-                ),
+                decoration: BoxDecoration(border: Border()),
                 child: Center(
                   child: Text(
                     RegExp(r"[\u0660-\u0669\d]+", unicode: true)

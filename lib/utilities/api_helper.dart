@@ -80,10 +80,11 @@ class TkAPIHelper {
   }
 
   /// Load attributes API
-  Future<Map> loadAttributes({@required TkUser user}) async {
+  Future<Map> loadAttributes(
+      {@required TkLangController langController}) async {
     return await _network.getData(
       url: await getRootURL() + kLoadStatesAPI,
-      headers: user.toHeader(),
+      headers: langController.toHeader(),
     );
   }
 
@@ -133,13 +134,41 @@ class TkAPIHelper {
     );
   }
 
+  Future<Map> initGuestTransaction({
+    @required String type,
+    TkLangController langController,
+    int id,
+    TkCar car,
+    DateTime dateTime,
+    int duration,
+    List<int> ids,
+  }) async {
+    Map<String, dynamic> params = {kTransactionTypeTag: type};
+    if (id != null) params[kTransactionIdTag] = id.toString();
+    if (car != null) params[kTransactionCarIdTag] = car.id.toString();
+    if (dateTime != null)
+      params[kTransactionDateTimeTag] = dateTime.toString().split('.').first;
+    if (duration != null) params[kTransactionDurationTag] = duration.toString();
+    if (ids != null) params[kTransactionIdTag] = ids.join(',');
+
+    return await _network.postData(
+      url: await getRootURL() + kGuestTransactionAPI,
+      params: params,
+      headers: langController.toHeader(),
+    );
+  }
+
   /// Check payment transaction status API
-  Future<Map> checkTransaction(
-      {@required TkUser user, @required String transactionId}) async {
+  Future<Map> checkTransaction({
+    @required TkUser user,
+    @required String transactionId,
+    @required TkLangController langController,
+    bool guest = false,
+  }) async {
     return await _network.postData(
       url: await getRootURL() + kTransactionStatusAPI,
       params: {kSessionIdTag: transactionId},
-      headers: user.toHeader(),
+      headers: guest ? langController.toHeader() : user.toHeader(),
     );
   }
 
@@ -469,6 +498,22 @@ class TkAPIHelper {
         kCarPlateENTag: car,
       },
       headers: user.toHeader(),
+    );
+  }
+
+  /// Load violations API without user token
+  // TODO: Get the new API url
+  Future<Map> loadViolationsWithoutToken(
+      String car, TkLangController langController) async {
+    return await _network.getData(
+      url: await getRootURL() +
+          kLoadGuestViolationsAPI +
+          '?' +
+          kCarPlateENTag +
+          '=' +
+          car,
+      params: {kCarPlateENTag: car},
+      headers: langController.toHeader(),
     );
   }
 
