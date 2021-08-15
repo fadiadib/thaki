@@ -68,23 +68,30 @@ class TkTicketsPane extends TkPane {
                               .lang
                               .languageCode,
                           tickets: booker.upcomingTickets,
-                          onDelete: (TkTicket ticket) async {
-                            if (await TkDialogHelper.gShowConfirmationDialog(
-                                  context: context,
-                                  message: S.of(context).kAreYouSureTicket,
-                                  type: gDialogType.yesNo,
-                                ) ??
-                                false)
-                              booker.cancelTicket(
-                                Provider.of<TkAccount>(context, listen: false)
-                                    .user,
-                                ticket,
-                              );
-                            Provider.of<TkPurchaser>(context, listen: false)
-                                .loadBalance(Provider.of<TkAccount>(context,
-                                        listen: false)
-                                    .user);
-                          },
+                          onDelete: !kAllowDeleteTicket
+                              ? null
+                              : (TkTicket ticket) async {
+                                  if (await TkDialogHelper
+                                          .gShowConfirmationDialog(
+                                        context: context,
+                                        message:
+                                            S.of(context).kAreYouSureTicket,
+                                        type: gDialogType.yesNo,
+                                      ) ??
+                                      false)
+                                    booker.cancelTicket(
+                                      Provider.of<TkAccount>(context,
+                                              listen: false)
+                                          .user,
+                                      ticket,
+                                    );
+                                  Provider.of<TkPurchaser>(context,
+                                          listen: false)
+                                      .loadBalance(Provider.of<TkAccount>(
+                                              context,
+                                              listen: false)
+                                          .user);
+                                },
                         ),
                         TkTicketList(
                             langCode: Provider.of<TkLangController>(context,

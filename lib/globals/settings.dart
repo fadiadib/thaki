@@ -24,6 +24,7 @@ const int kTransactionRefreshTimer = 10; // in seconds
 const bool kForceLiveServer = false;
 const bool kForceTestServer = false;
 const bool kOtpLicenseField = false;
+const bool kAllowDeleteTicket = false;
 
 /// URLs
 const String kDefaultBaseURL = 'http://thaki.aurasystems.xyz/thaki/public';
