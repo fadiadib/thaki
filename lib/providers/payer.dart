@@ -105,7 +105,7 @@ class TkPayer extends ChangeNotifier {
         _selectedCar.plateEN == null ||
         _selectedCar.plateEN.isEmpty ||
         !TkValidationHelper.validateLicense(
-            _selectedCar.plateEN, _selectedCar.state, 'en')) {
+            _selectedCar.plateEN.toUpperCase(), _selectedCar.state, 'en')) {
       _validationCarError = S.of(context).kSelectCardToProceed;
       notifyListeners();
       return false;
@@ -129,10 +129,11 @@ class TkPayer extends ChangeNotifier {
 
     Map result = Map();
     if (!guest)
-      result = await _apis.loadViolations(selectedCar.plateEN, user);
+      result =
+          await _apis.loadViolations(selectedCar.plateEN.toUpperCase(), user);
     else
       result = await _apis.loadViolationsWithoutToken(
-          selectedCar.plateEN, langController);
+          selectedCar.plateEN.toUpperCase(), langController);
 
     if (result[kStatusTag] == kSuccessCode) {
       for (Map<String, dynamic> json in result[kDataTag][kViolationsTag]) {

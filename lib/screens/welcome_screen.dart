@@ -96,10 +96,9 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Provider.of<TkLangController>(context, listen: false)
-                        .switchLang();
-                  },
+                  onTap: () =>
+                      Provider.of<TkLangController>(context, listen: false)
+                          .switchLang(),
                   child: Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Text(
@@ -122,31 +121,32 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
             ),
           ),
         ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: GestureDetector(
-            onTap: () {
-              // Select the car in the payer provider
-              TkPayer payer = Provider.of<TkPayer>(context, listen: false);
-              payer.selectedCar = TkCar.fromJson({});
-              payer.allowChange = true;
 
-              // Push the pay violations screen
-              // Navigator.of(context).pushNamed(TkPayViolationScreen.id);
+        // Check violations without registration
+        if (kAllowGuestViolations)
+          Positioned(
+            bottom: 60,
+            left: (MediaQuery.of(context).size.width - 300) / 2,
+            child: Hero(
+              tag: kViolationsTag,
+              child: TkButton(
+                title: S.of(context).kCheckViolationWithoutRegistration,
+                btnColor: kTransparentColor,
+                btnBorderColor: kWhiteColor,
+                btnWidth: 300.0,
+                onPressed: () {
+                  // Select an empty car in the payer provider
+                  TkPayer payer = Provider.of<TkPayer>(context, listen: false);
+                  payer.selectedCar = TkCar.fromJson({});
+                  payer.allowChange = true;
 
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => TkPayViolationScreen(guest: true),
-              ));
-            },
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40.0),
-              child: Text(
-                S.of(context).kCheckViolationWithoutRegistration,
-                style: kBoldStyle[kSmallSize].copyWith(color: kWhiteColor),
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => TkPayViolationScreen(guest: true),
+                  ));
+                },
               ),
             ),
           ),
-        ),
       ],
     );
   }

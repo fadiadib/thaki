@@ -30,30 +30,33 @@ class _TkPayViolationScreenState extends TkMultiStepPageState {
   @override
   void initData() async {
     // Load available packages
+    final TkPayer payer = Provider.of<TkPayer>(context, listen: false);
+
+    if (!payer.allowChange)
+      payer.loadViolations(Provider.of<TkAccount>(context, listen: false).user,
+          Provider.of<TkLangController>(context, listen: false),
+          guest: guest);
   }
 
   @override
   List<TkPane> getPanes() {
-    final user = Provider.of<TkAccount>(context, listen: false).user;
-    final langController =
+    final TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    final TkLangController langController =
         Provider.of<TkLangController>(context, listen: false);
+    final TkPayer payer = Provider.of<TkPayer>(context, listen: false);
+    final TkTransactor transactor =
+        Provider.of<TkTransactor>(context, listen: false);
 
     return [
-      TkViolationCarPane(onDone: () {
-        Provider.of<TkPayer>(context, listen: false)
-            .loadViolations(user, langController, guest: guest);
+      if (payer.allowChange)
+        TkViolationCarPane(onDone: () {
+          payer.loadViolations(account.user, langController, guest: guest);
 
-        loadNextPane();
-      }),
+          loadNextPane();
+        }),
       TkViolationListPane(onDone: () {
-        TkAccount account = Provider.of<TkAccount>(context, listen: false);
-        TkTransactor transactor =
-            Provider.of<TkTransactor>(context, listen: false);
-
         List<int> ids = [];
-        for (TkViolation violation
-            in Provider.of<TkPayer>(context, listen: false)
-                .selectedViolations) {
+        for (TkViolation violation in payer.selectedViolations) {
           ids.add(violation.id);
         }
         transactor.initTransaction(
@@ -76,8 +79,7 @@ class _TkPayViolationScreenState extends TkMultiStepPageState {
                 type: gDialogType.yesNo,
               ) ??
               false) {
-            Provider.of<TkTransactor>(context, listen: false)
-                .stopTransactionChecker();
+            transactor.stopTransactionChecker();
 
             Navigator.of(context).pop();
           }

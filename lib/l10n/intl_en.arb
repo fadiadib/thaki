@@ -219,5 +219,5 @@
   "kGender": "Gender",
   "kMale": "Male",
   "kFemale": "Female",
-  "kCheckViolationWithoutRegistration": "Check violations without registration"
+  "kCheckViolationWithoutRegistration": "Check violations without sign up"
 }

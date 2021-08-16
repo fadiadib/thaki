@@ -486,33 +486,30 @@ class TkAPIHelper {
   /////////////////////////////////////////////////////////////
   ///////////////////////// VIOLATIONS ////////////////////////
   /// Load violations API
-  Future<Map> loadViolations(String car, TkUser user) async {
+  Future<Map> loadViolations(String licensePlate, TkUser user) async {
     return await _network.getData(
       url: await getRootURL() +
           kLoadViolationsAPI +
           '?' +
           kCarPlateENTag +
           '=' +
-          car,
-      params: {
-        kCarPlateENTag: car,
-      },
+          licensePlate,
+      params: {kCarPlateENTag: licensePlate},
       headers: user.toHeader(),
     );
   }
 
   /// Load violations API without user token
-  // TODO: Get the new API url
   Future<Map> loadViolationsWithoutToken(
-      String car, TkLangController langController) async {
+      String licensePlate, TkLangController langController) async {
     return await _network.getData(
       url: await getRootURL() +
           kLoadGuestViolationsAPI +
           '?' +
           kCarPlateENTag +
           '=' +
-          car,
-      params: {kCarPlateENTag: car},
+          licensePlate,
+      params: {kCarPlateENTag: licensePlate},
       headers: langController.toHeader(),
     );
   }

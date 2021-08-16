@@ -126,7 +126,7 @@ class TkAttributesController extends ChangeNotifier {
     }
 
     _isLoading = false;
-    // notifyListeners();
+    notifyListeners();
 
     return (_loadError == null);
   }

@@ -28,7 +28,7 @@ class TkTicketsPane extends TkPane {
       return booker.isLoading
           ? TkProgressIndicator()
           : DefaultTabController(
-              length: 4,
+              length: kAllowDeleteTicket ? 4 : 3,
               child: Column(
                 children: [
                   SizedBox(
@@ -54,7 +54,8 @@ class TkTicketsPane extends TkPane {
                           Tab(text: S.of(context).kUpcoming.toUpperCase()),
                           Tab(text: S.of(context).kCompleted.toUpperCase()),
                           Tab(text: S.of(context).kPending.toUpperCase()),
-                          Tab(text: S.of(context).kCancelled.toUpperCase()),
+                          if (kAllowDeleteTicket)
+                            Tab(text: S.of(context).kCancelled.toUpperCase()),
                         ],
                       ),
                     ),
@@ -110,14 +111,15 @@ class TkTicketsPane extends TkPane {
                           ribbon: S.of(context).kPending,
                           ribbonColor: kSecondaryColor,
                         ),
-                        TkTicketList(
-                            langCode: Provider.of<TkLangController>(context,
-                                    listen: false)
-                                .lang
-                                .languageCode,
-                            tickets: booker.cancelledTickets,
-                            ribbon: S.of(context).kCancelled,
-                            ribbonColor: kTertiaryColor),
+                        if (kAllowDeleteTicket)
+                          TkTicketList(
+                              langCode: Provider.of<TkLangController>(context,
+                                      listen: false)
+                                  .lang
+                                  .languageCode,
+                              tickets: booker.cancelledTickets,
+                              ribbon: S.of(context).kCancelled,
+                              ribbonColor: kTertiaryColor),
                       ],
                     ),
                   ),

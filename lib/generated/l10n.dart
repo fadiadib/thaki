@@ -2225,10 +2225,10 @@ class S {
     );
   }
 
-  /// `Check violations without registration`
+  /// `Check violations without sign up`
   String get kCheckViolationWithoutRegistration {
     return Intl.message(
-      'Check violations without registration',
+      'Check violations without sign up',
       name: 'kCheckViolationWithoutRegistration',
       desc: '',
       args: [],

@@ -112,9 +112,8 @@ class TkLicenseField extends StatelessWidget {
   }
 }
 
-class TkLicenseField2 extends StatefulWidget {
-  TkLicenseField2({
-    this.widthPercentage = 0.4,
+class TkSeparatedLicenseField extends StatefulWidget {
+  TkSeparatedLicenseField({
     this.characterLength = 3,
     this.digitsLength = 4,
     this.onChanged,
@@ -125,10 +124,10 @@ class TkLicenseField2 extends StatefulWidget {
     this.langCode = 'ar',
     this.enabled = true,
     this.isEdit,
+    this.reverseLabelAlign = false,
   });
 
   // Attributes
-  final double widthPercentage;
   final int characterLength;
   final int digitsLength;
   final List<String> values;
@@ -139,27 +138,33 @@ class TkLicenseField2 extends StatefulWidget {
   final String langCode;
   final bool enabled;
   final bool isEdit;
+  final bool reverseLabelAlign;
 
   @override
-  _TkLicenseField2State createState() => _TkLicenseField2State();
+  _TkSeparatedLicenseFieldState createState() =>
+      _TkSeparatedLicenseFieldState();
 }
 
-class _TkLicenseField2State extends State<TkLicenseField2> {
+class _TkSeparatedLicenseFieldState extends State<TkSeparatedLicenseField> {
   FocusNode _charNode = FocusNode(), _digitNode = FocusNode();
+  TextEditingController _charController = TextEditingController();
+  TextEditingController _digitsController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    if (widget.isEdit) {
-      _charNode.requestFocus();
-      Future.delayed(Duration(milliseconds: 1), () {
-        _digitNode.requestFocus();
-      }).then((value) {
-        Future.delayed(Duration(milliseconds: 1), () {
-          _digitNode.unfocus();
-        });
-      });
-    }
+
+    initModel();
+  }
+
+  Future<void> initModel() async {
+    Future.delayed(
+      Duration(microseconds: 100),
+      () => setState(() {
+        _charController.text = widget.values[1];
+        _digitsController.text = widget.values[0];
+      }),
+    );
   }
 
   @override
@@ -168,7 +173,7 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
       children: [
         Row(
           // Build a row with the OTP digits
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: getFields(context),
         ),
         if (widget.validate && (widget.values == null || !widget.validator()))
@@ -183,58 +188,61 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
   List<Widget> getFields(BuildContext context) {
     // Add digits field
     Widget nWidget = SizedBox(
-      width: MediaQuery.of(context).size.width * widget.widthPercentage,
+      width: MediaQuery.of(context).size.width * 0.4,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: widget.reverseLabelAlign
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
         children: [
           Text(S.of(context).kDigits),
           SizedBox(height: 10.0),
-          PinCodeTextField(
-            enabled: widget.enabled,
-            controller: widget.values[0] != null
-                ? TextEditingController(
-                    text: widget.values[0].replaceAll(' ', ''))
-                : null,
-            focusNode: _digitNode,
-            autoDismissKeyboard: false,
-            appContext: context,
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[
-              FilteringTextInputFormatter.digitsOnly,
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            animationType: AnimationType.fade,
-            pinTheme: PinTheme(
-              shape: PinCodeFieldShape.box,
-              activeColor: kSecondaryColor, //123456
-              selectedColor: kPrimaryColor,
-              inactiveColor: kAccentGreyColor,
-              borderRadius: BorderRadius.circular(10),
-              fieldHeight: 50,
-              fieldWidth: 35,
-              activeFillColor: Colors.transparent,
-            ),
-            beforeTextPaste: (text) => true,
-            dialogConfig: DialogConfig(
-              affirmativeText: S.of(context).kOk,
-              negativeText: S.of(context).kCancel,
-              dialogContent: S.of(context).kConfirmPasteDetails,
-              dialogTitle: S.of(context).kConfirmPaste,
-            ),
-            animationDuration: Duration(milliseconds: 300),
-            backgroundColor: Colors.transparent,
-            enableActiveFill: false,
-            length: widget.digitsLength,
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: PinCodeTextField(
+              enabled: widget.enabled,
+              controller: _digitsController,
+              focusNode: _digitNode,
+              autoDismissKeyboard: false,
+              appContext: context,
+              keyboardType: TextInputType.number,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.allow(
+                    RegExp(r"[\u0660-\u0669\d]+", unicode: true)),
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              animationType: AnimationType.fade,
+              pinTheme: PinTheme(
+                shape: PinCodeFieldShape.box,
+                activeColor: kSecondaryColor, //123456
+                selectedColor: kPrimaryColor,
+                inactiveColor: kAccentGreyColor,
+                borderRadius: BorderRadius.circular(10),
+                fieldHeight: 50,
+                fieldWidth: 35,
+                activeFillColor: Colors.transparent,
+              ),
+              beforeTextPaste: (text) => true,
+              dialogConfig: DialogConfig(
+                affirmativeText: S.of(context).kOk,
+                negativeText: S.of(context).kCancel,
+                dialogContent: S.of(context).kConfirmPasteDetails,
+                dialogTitle: S.of(context).kConfirmPaste,
+              ),
+              animationDuration: Duration(milliseconds: 300),
+              backgroundColor: Colors.transparent,
+              enableActiveFill: false,
+              length: widget.digitsLength,
 
-            // Callback
-            onChanged: (String value) {
-              // Set the value at the index to the updated string
-              widget.values[0] = value;
+              // Callback
+              onChanged: (String value) {
+                // Set the value at the index to the updated string
+                widget.values[0] = value;
 
-              if (widget.onChanged != null)
-                widget.onChanged(widget.values.join());
-            },
+                if (widget.onChanged != null)
+                  widget.onChanged(widget.values.join());
+              },
+            ),
           ),
         ],
       ),
@@ -242,19 +250,18 @@ class _TkLicenseField2State extends State<TkLicenseField2> {
 
     // Add chars field
     Widget cWidget = SizedBox(
-      width: MediaQuery.of(context).size.width * widget.widthPercentage,
+      width: MediaQuery.of(context).size.width * 0.3,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: widget.reverseLabelAlign
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
         children: [
           Text(S.of(context).kCharacters),
           SizedBox(height: 10.0),
           PinCodeTextField(
             enabled: widget.enabled,
-            controller: widget.values[1] != null
-                ? TextEditingController(
-                    text: widget.values[1].replaceAll(' ', ''))
-                : null,
+            controller: _charController,
             focusNode: _charNode,
             autoDismissKeyboard: false,
             appContext: context,

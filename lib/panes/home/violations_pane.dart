@@ -59,11 +59,7 @@ class TkViolationsPane extends TkPane {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
-                          kAddCircleBtnIcon,
-                          size: 16,
-                          color: kPrimaryColor,
-                        ),
+                        Icon(kAddCircleBtnIcon, size: 16, color: kPrimaryColor),
                         SizedBox(width: 5),
                         Text(S.of(context).kAddCar,
                             style: kBoldStyle[kSmallSize]
@@ -72,50 +68,23 @@ class TkViolationsPane extends TkPane {
                     ),
                   ),
                 ),
-                if (!kShowOtherCarAsButton)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        // Select the car in the payer provider
-                        TkPayer payer =
-                            Provider.of<TkPayer>(context, listen: false);
-                        payer.selectedCar = TkCar.fromJson({});
-                        payer.allowChange = true;
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 50.0, vertical: 20.0),
+                  child: TkButton(
+                    title: S.of(context).kCheckForLPR,
+                    onPressed: () {
+                      // Select an empty car in the payer provider
+                      TkPayer payer =
+                          Provider.of<TkPayer>(context, listen: false);
+                      payer.selectedCar = TkCar.fromJson({});
+                      payer.allowChange = true;
 
-                        // Push the pay violations screen
-                        Navigator.of(context)
-                            .pushNamed(TkPayViolationScreen.id);
-                      },
-                      child: Center(
-                        child: Text(
-                          S.of(context).kCheckForLPR,
-                          style: kRegularStyle[kNormalSize].copyWith(
-                            color: kPrimaryColor,
-                          ),
-                        ),
-                      ),
-                    ),
+                      // Push the pay violations screen
+                      Navigator.of(context).pushNamed(TkPayViolationScreen.id);
+                    },
                   ),
-                if (kShowOtherCarAsButton)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 50.0, vertical: 20.0),
-                    child: TkButton(
-                      title: S.of(context).kCheckForLPR,
-                      onPressed: () {
-                        // Select the car in the payer provider
-                        TkPayer payer =
-                            Provider.of<TkPayer>(context, listen: false);
-                        payer.selectedCar = TkCar.fromJson({});
-                        payer.allowChange = true;
-
-                        // Push the pay violations screen
-                        Navigator.of(context)
-                            .pushNamed(TkPayViolationScreen.id);
-                      },
-                    ),
-                  ),
+                ),
               ],
             );
     });

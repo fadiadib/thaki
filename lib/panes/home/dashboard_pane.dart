@@ -12,6 +12,7 @@ import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/screens/balance_screen.dart';
 import 'package:thaki/screens/buy_subscription_screen.dart';
 import 'package:thaki/utilities/index.dart';
+import 'package:thaki/utilities/license_helper.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/general/card.dart';
@@ -47,10 +48,11 @@ class TkDashboardPane extends TkPane {
                 TkCardSide.bottomRight: S.of(context).kTo
               },
               data: {
-                TkCardSide.topLeft:
-                    Provider.of<TkLangController>(context, listen: false).isRTL
-                        ? ticket.car.plateAR
-                        : ticket.car.plateEN,
+                TkCardSide.topLeft: Provider.of<TkLangController>(context,
+                            listen: false)
+                        .isRTL
+                    ? TkLicenseHelper.formatARLicensePlate(ticket.car.plateAR)
+                    : ticket.car.plateEN,
                 TkCardSide.bottomLeft:
                     TkDateTimeHelper.formatDate(ticket.start.toString()) +
                         '\n' +

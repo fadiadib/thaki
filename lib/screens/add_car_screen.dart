@@ -56,8 +56,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
       case TkFormField.carPlateEN:
         return langController.isRTL ||
-            TkValidationHelper.validateLicense(
-                _car.plateEN, _car.state, langController.lang.languageCode);
+            TkValidationHelper.validateLicense(_car.plateEN.toUpperCase(),
+                _car.state, langController.lang.languageCode);
 
       case TkFormField.carPlateAR:
         return !langController.isRTL ||
@@ -66,9 +66,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
       case TkFormField.carMake:
         return TkValidationHelper.validateNotEmpty(_car.make?.toString());
-
-      // case TkFormField.carModel:
-      //   return TkValidationHelper.validateNotEmpty(_car.model?.toString());
 
       default:
         return true;
@@ -93,7 +90,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     final RegExp nExp = RegExp(r"\d{1,4}");
     final String nums = nExp.stringMatch(_car.plateEN);
 
-    final RegExp cExp = RegExp(r"[A-Z]{2,3}");
+    final RegExp cExp = RegExp(r"[A-Za-z]{2,3}");
     final String chars = cExp.stringMatch(_car.plateEN);
 
     return [nums, chars];
@@ -105,13 +102,10 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     String result = RegExp(r"([\u0621-\u064A]){2,3}", unicode: true)
         .stringMatch(_car.plateAR);
 
-    // If found split them and join with space
-    if (result != null) return result.split('').join(' ');
-
     // If no match, try to find letters with spaces and return it
     result = RegExp(r"([\u0621-\u064A]\s*){2,3}", unicode: true)
             .stringMatch(_car.plateAR) ??
-        '-';
+        '';
     return result;
   }
 
@@ -130,10 +124,11 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     if (_car.state == 1)
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-        child: kOtpLicenseField
-            ? TkLicenseField2(
+        child: kSeparatedLicenseField
+            ? TkSeparatedLicenseField(
                 isEdit: widget.editMode,
                 langCode: langController.lang.languageCode,
+                enabled: !account.isLoading,
                 onChanged: (value) => setState(() => _car.plateEN = value),
                 values: _getInitialValuesEN(),
                 validator: getValidationCallback(TkFormField.carPlateEN),
@@ -176,10 +171,11 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     if (_car.state == 1)
       return Padding(
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
-        child: kOtpLicenseField
-            ? TkLicenseField2(
+        child: kSeparatedLicenseField
+            ? TkSeparatedLicenseField(
                 isEdit: widget.editMode,
                 langCode: langController.lang.languageCode,
+                enabled: !account.isLoading,
                 onChanged: (value) => setState(() => _car.plateAR = value),
                 values: _getInitialValuesAR(),
                 validator: getValidationCallback(TkFormField.carPlateAR),

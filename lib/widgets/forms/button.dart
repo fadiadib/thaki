@@ -46,6 +46,8 @@ class TkButton extends StatelessWidget {
     // Add a text widget inside the button
     return Text(
       uppercaseTitle ? title.toUpperCase() : title,
+      textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
       style: kBoldStyle[kNormalSize].copyWith(
         color: isLoading || !enabled ? disabledTitleColor : titleColor,
         fontSize: titleSize,

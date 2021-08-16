@@ -15,7 +15,6 @@ const bool kShowLogoutInProfile = false;
 const bool kShowEditBtnInProfile = false;
 const bool kShowSubscriptionBtInDashboard = false;
 const bool kShowCreditType = true;
-const bool kShowOtherCarAsButton = true;
 const double kBallsTransparency = 1.0;
 const bool kSaveCardMode = false;
 const bool kShowContact = false;
@@ -23,8 +22,9 @@ const bool kAllowOneTimeParking = false;
 const int kTransactionRefreshTimer = 10; // in seconds
 const bool kForceLiveServer = false;
 const bool kForceTestServer = false;
-const bool kOtpLicenseField = false;
+const bool kSeparatedLicenseField = true;
 const bool kAllowDeleteTicket = false;
+const bool kAllowGuestViolations = false;
 
 /// URLs
 const String kDefaultBaseURL = 'http://thaki.aurasystems.xyz/thaki/public';

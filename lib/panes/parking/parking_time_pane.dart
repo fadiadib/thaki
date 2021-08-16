@@ -50,7 +50,11 @@ class TkParkingTimePane extends TkPane {
                   Provider.of<TkLangController>(context, listen: false).isRTL
                       ? LocaleType.ar
                       : LocaleType.en,
-              value: booker.bookDate,
+              value: booker.bookDate == null
+                  ? null
+                  : booker.bookDate.isBefore(DateTime.now())
+                      ? DateTime.now().add(Duration(minutes: 1))
+                      : booker.bookDate,
               context: context,
               type: TkInfoFieldType.DateTime,
               allowFuture: true,

@@ -69,7 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "kCardNumber" : MessageLookupByLibrary.simpleMessage("Credit card number"),
     "kCharacters" : MessageLookupByLibrary.simpleMessage("Characters"),
     "kCheckForLPR" : MessageLookupByLibrary.simpleMessage("Enter another LPR"),
-    "kCheckViolationWithoutRegistration" : MessageLookupByLibrary.simpleMessage("Check violations without registration"),
+    "kCheckViolationWithoutRegistration" : MessageLookupByLibrary.simpleMessage("Check violations without sign up"),
     "kCheckout" : MessageLookupByLibrary.simpleMessage("Checkout"),
     "kChooseCar" : MessageLookupByLibrary.simpleMessage("Choose Car"),
     "kChooseCarToBook" : MessageLookupByLibrary.simpleMessage("Choose car to book parking"),

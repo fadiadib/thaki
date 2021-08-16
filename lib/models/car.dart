@@ -30,7 +30,7 @@ class TkCar {
   Map<String, dynamic> toJson() {
     return {
       kCarNameTag: name,
-      kCarPlateENTag: plateEN ?? '',
+      kCarPlateENTag: plateEN?.toUpperCase() ?? '',
       kCarPlateARTag: plateAR ?? '',
       kCarMakeTag: make.toString(),
       kCarModelTag: model == null ? '' : model.toString(),

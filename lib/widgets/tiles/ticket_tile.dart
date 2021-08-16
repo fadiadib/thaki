@@ -8,6 +8,7 @@ import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/utilities/date_time_helper.dart';
 import 'package:thaki/utilities/index.dart';
+import 'package:thaki/utilities/license_helper.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/ribbon.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
@@ -75,7 +76,8 @@ class _TkTicketTileState extends State<TkTicketTile> {
                     Text(
                         widget.langCode == 'en'
                             ? widget.ticket.car.plateEN
-                            : widget.ticket.car.plateAR,
+                            : TkLicenseHelper.formatARLicensePlate(
+                                widget.ticket.car.plateAR),
                         style: kBoldStyle[kNormalSize]),
                     if (attributesController.makeName(
                             widget.ticket.car.make, langController) !=

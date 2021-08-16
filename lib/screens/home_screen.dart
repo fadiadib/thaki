@@ -57,7 +57,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
     await booker.loadTickets(account.user);
     await purchaser.loadBalance(account.user);
     await account.loadCars();
-    await account.loadCards();
+    if (kSaveCardMode) await account.loadCards();
   }
 
   @override
@@ -119,9 +119,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
               ),
 
               /// Scaffold body: Active pane
-              body: TkScaffoldBody(
-                child: _panes[selector.activeTab],
-              ),
+              body: TkScaffoldBody(child: _panes[selector.activeTab]),
 
               // Create the side drawer
               drawer: TkMenuDrawer(
