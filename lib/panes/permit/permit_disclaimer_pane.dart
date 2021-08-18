@@ -36,7 +36,11 @@ class TkPermitDisclaimerPane extends TkPane {
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: TkTitleTextCard(
                     title: S.of(context).kApplyForResidentPermit,
-                    message: error == null ? subscriber.disclaimer : error,
+                    message: error == null
+                        ? subscriber.disclaimer
+                            .replaceAll('\\n', '\n')
+                            .replaceAll('\\r', '\r')
+                        : error,
                     messageColor: error == null ? null : kErrorTextColor,
                     child:
                         error != null ? Container() : _getAgreeButton(context),

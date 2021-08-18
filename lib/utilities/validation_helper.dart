@@ -91,8 +91,13 @@ class TkValidationHelper {
         return exp.stringMatch(value) == value;
       }
     } else {
-      RegExp exp = RegExp(r"[\u0660-\u0669\d]{1,7}", unicode: true);
-      return exp.stringMatch(value) == value;
+      if (langCode == 'en') {
+        RegExp exp = RegExp(r"[\d]{1,7}");
+        return exp.stringMatch(value) == value;
+      } else {
+        RegExp exp = RegExp(r"[\u0660-\u0669\d]{1,7}", unicode: true);
+        return exp.stringMatch(value) == value;
+      }
     }
   }
 

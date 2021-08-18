@@ -237,10 +237,14 @@ class _TkSeparatedLicenseFieldState extends State<TkSeparatedLicenseField> {
               // Callback
               onChanged: (String value) {
                 // Set the value at the index to the updated string
-                widget.values[0] = value;
+                widget.values[0] = value ?? '';
 
-                if (widget.onChanged != null)
-                  widget.onChanged(widget.values.join());
+                if (widget.onChanged != null) {
+                  if (widget.values[1] == null)
+                    widget.onChanged(widget.values[0]);
+                  else
+                    widget.onChanged(widget.values.join());
+                }
               },
             ),
           ),
@@ -293,12 +297,13 @@ class _TkSeparatedLicenseFieldState extends State<TkSeparatedLicenseField> {
             // Callback
             onChanged: (String value) {
               // Set the value at the index to the updated string
-              widget.values[1] = value;
+              widget.values[1] = value ?? '';
 
               if (widget.onChanged != null) {
-                if (widget.langCode == 'ar')
-                  widget.onChanged(widget.values.reversed.join());
-                widget.onChanged(widget.values.join());
+                if (widget.values[0] == null)
+                  widget.onChanged(widget.values[1]);
+                else
+                  widget.onChanged(widget.values.join());
               }
             },
           ),

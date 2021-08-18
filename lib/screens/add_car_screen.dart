@@ -56,8 +56,9 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
 
       case TkFormField.carPlateEN:
         return langController.isRTL ||
-            TkValidationHelper.validateLicense(_car.plateEN.toUpperCase(),
-                _car.state, langController.lang.languageCode);
+            (_car.plateEN != null &&
+                TkValidationHelper.validateLicense(_car.plateEN?.toUpperCase(),
+                    _car.state, langController.lang.languageCode));
 
       case TkFormField.carPlateAR:
         return !langController.isRTL ||

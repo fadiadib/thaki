@@ -105,7 +105,6 @@ class _TkViolationCarFormState extends State<TkViolationCarForm> {
                   padding: const EdgeInsets.symmetric(
                       vertical: 10.0, horizontal: 30.0),
                   child: TkDropDownField(
-                    isLoading: states.isLoading,
                     context: context,
                     values: states.stateNames(langController),
                     value: states.stateName(

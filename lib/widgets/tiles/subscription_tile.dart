@@ -50,9 +50,12 @@ class TkSubscriptionTile extends StatelessWidget {
                     children: [
                       Text(
                           user.cars
-                              .firstWhere(
-                                  (element) => element.id == subscription.car)
-                              .name,
+                                  ?.firstWhere(
+                                      (element) =>
+                                          element.id == subscription.car,
+                                      orElse: () => null)
+                                  ?.name ??
+                              '',
                           style: kBoldStyle[kNormalSize]),
                       SizedBox(height: 5),
                       Column(
