@@ -248,6 +248,7 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
           child: TkDropDownField(
+            enabled: !account.isLoading,
             context: context,
             values: states.stateNames(langController),
             value: states.stateName(_car.state, langController),
@@ -296,7 +297,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         30.0, 10.0, 5.0, 10.0),
-                    child: TkSearchableDropDownField(
+                    child: TkExpandedSearchDropDownField(
+                      enabled: !account.isLoading,
                       controller: _makeController,
                       style: kRegularStyle[kSmallSize],
                       context: context,
@@ -335,8 +337,12 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
-                    child: TkSearchableDropDownField(
+                    child: TkExpandedSearchDropDownField(
                       controller: _modelController,
+                      isLoading: _car.make != null && states.isLoading,
+                      enabled: !account.isLoading ||
+                          _car.make == null ||
+                          !states.isLoading,
                       style: kRegularStyle[kSmallSize],
                       context: context,
                       hintText: S.of(context).kCarModel,
@@ -370,7 +376,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         30.0, 10.0, 5.0, 10.0),
-                    child: TkSearchableDropDownField(
+                    child: TkExpandedSearchDropDownField(
+                      enabled: !account.isLoading,
                       controller: _colorController,
                       style: kRegularStyle[kSmallSize],
                       context: context,
@@ -399,7 +406,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
-                    child: TkSearchableDropDownField(
+                    child: TkExpandedSearchDropDownField(
+                      enabled: !account.isLoading,
                       controller: _yearController,
                       style: kRegularStyle[kSmallSize],
                       context: context,

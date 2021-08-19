@@ -6,6 +6,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/info_fields.dart';
 import 'package:thaki/utilities/date_time_helper.dart';
 import 'package:thaki/widgets/forms/dropdown_field.dart';
+import 'package:thaki/widgets/forms/dropdown_search/dropdown_search.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 
 /// Text field widget
@@ -437,7 +438,7 @@ class TkDropDownField extends TkTextField {
             child: Text(
               value,
               style:
-                  enabled ? style : style.copyWith(color: kDisabledTextColor),
+                  enabled ? style : style?.copyWith(color: kDisabledTextColor),
               textAlign: align,
             ),
           ),
@@ -469,7 +470,6 @@ class TkDropDownField extends TkTextField {
           isExpanded: true,
           itemHeight: kDefaultTextEditTitleSize,
           underline: Container(),
-
           hint: Text(hintText, style: kHintStyle),
 
           // Get the items
@@ -624,6 +624,91 @@ class TkSearchableDropDownField extends TkTextField {
               )
             : Container(),
       ],
+    );
+  }
+}
+
+/// Dropdown selection field
+class TkExpandedSearchDropDownField extends TkTextField {
+  TkExpandedSearchDropDownField({
+    isLoading = false,
+    enabled = true,
+    onChanged,
+    keyboardType,
+    obscureText = false,
+    hintText,
+    halfSize = false,
+    validator,
+    validate = false,
+    errorMessage,
+    borderRadius = kDefaultTextEditRadius,
+    width,
+    height = kDefaultTextEditHeight,
+    internalHPadding = kDefaultTextEditInternalPadding,
+    internalVPadding = kDefaultTextEditInternalPadding,
+    raised = false,
+    align = TextAlign.start,
+    focusNode,
+    autoFocus = false,
+    style,
+    showCursor = true,
+    this.value,
+    @required this.values,
+    @required this.context,
+    this.controller,
+  }) : super(
+          isLoading: isLoading,
+          enabled: enabled,
+          onChanged: onChanged,
+          keyboardType: keyboardType,
+          obscureText: obscureText,
+          hintText: hintText,
+          halfSize: halfSize,
+          validator: validator,
+          validate: validate,
+          errorMessage: errorMessage,
+          borderRadius: borderRadius,
+          width: width,
+          height: height,
+          internalHPadding: internalHPadding,
+          internalVPadding: internalVPadding,
+          raised: raised,
+          align: align,
+          focusNode: focusNode,
+          autoFocus: autoFocus,
+          style: style,
+          showCursor: showCursor,
+        );
+
+  final String value;
+  final List<String> values;
+  final BuildContext context;
+  final TextEditingController controller;
+
+  @override
+  Widget getField() {
+    return Container(
+      // Create the surrounding box with
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(borderRadius),
+        border: Border.all(color: kAccentGreyColor, width: 1),
+      ),
+      // padding: EdgeInsetsDirectional.fromSTEB(10.0, 0, 10.0, 0),
+
+      child: Theme(
+        data: Theme.of(context).copyWith(canvasColor: kWhiteColor),
+        child: DropdownSearch<String>(
+          mode: Mode.BOTTOM_SHEET,
+          enabled: enabled,
+          showSelectedItem: true,
+          items: values,
+          hint: hintText,
+          autoFocusSearchBox: true,
+          showSearchBox: true,
+          onChanged: onChanged,
+          selectedItem: value,
+        ),
+      ),
     );
   }
 }
