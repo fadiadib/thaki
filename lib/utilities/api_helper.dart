@@ -172,6 +172,14 @@ class TkAPIHelper {
     );
   }
 
+  /// Get transactions API
+  Future<Map> getTransactions({@required TkUser user}) async {
+    return await _network.getData(
+      url: await getRootURL() + kGetTransactionsAPI,
+      headers: user.toHeader(),
+    );
+  }
+
   /////////////////////////////////////////////////////////////
   /////////////////////////// USER  ///////////////////////////
   /// Load user attributes API

@@ -67,3 +67,5 @@ const IconData kEditBtIcon = Icons.edit;
 const IconData kEditCircleBtnIcon = FlutterIcons.circle_edit_outline_mco;
 const IconData kSecuredBtnIcon = MaterialCommunityIcons.shield_check;
 const IconData kSeenBtnIcon = MaterialCommunityIcons.eye;
+const IconData kExpandBtnIcon = MaterialIcons.expand_more;
+const IconData kCollapseBtnIcon = MaterialIcons.expand_less;

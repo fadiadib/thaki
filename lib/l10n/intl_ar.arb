@@ -219,5 +219,16 @@
   "kGender": "الجنس",
   "kMale": "ذكر",
   "kFemale": "أنثى",
-  "kCheckViolationWithoutRegistration": "تحقق من المخالفات بدون تسجيل"
+  "kCheckViolationWithoutRegistration": "تحقق من المخالفات بدون تسجيل",
+  "kTransactions": "معاملات",
+  "kPackage": "باقة",
+  "kPackages": "باقات",
+  "kSubscription": "إشتراك",
+  "kViolation": "مخالفة",
+  "kViolations": "مخالفات",
+  "kNoData": "لا توجد بيانات",
+  "kNoTransactions": "لا يوجد معاملات",
+  "kCannotUploadDocument": "خطأ في تحميل الصورة، الملف بتنسيق غير متوافق",
+  "kFileIsTooLarge": "حجم الملف كبير جدًا، يرجى إختيار صورة أصغر",
+  "kNoPackages": "لا يوجد رصيد"
 }

@@ -49,8 +49,9 @@ const String kPayViolationsAPI = '$kRootURL/violations/pay'; // 201
 const String kLoadGuestViolationsAPI = '$kRootURL/violations/guest';
 // Transactions
 const String kTransactionAPI = '$kRootURL/transaction';
-const String kTransactionStatusAPI = '$kRootURL/trans/status';
 const String kGuestTransactionAPI = '$kRootURL/transaction/guest';
+const String kTransactionStatusAPI = '$kRootURL/trans/status';
+const String kGetTransactionsAPI = '$kRootURL/transactions_details';
 // On boarding
 const String kOnBoardingAPI = '$kRootURL/onboarding';
 
@@ -70,6 +71,9 @@ const String kStatusTag = 'status';
 const String kErrorMessageTag = 'errors';
 const String kMessageTag = 'message';
 const String kDataTag = 'data';
+const String kIdTag = 'id';
+const String kAmountTag = 'amount';
+const String kCreatedAtTag = 'created_at';
 // Header tags
 const String kAuthTag = 'Authorization';
 const String kLangTag = 'X-localization';
@@ -186,7 +190,8 @@ const String kClientPackage = 'client_package';
 const String kBalancePointsTag = 'balance_points';
 const String kBalanceValidityTag = 'balance_validity';
 // Package tags
-const String kPackagesTag = 'packages_list';
+const String kPackagesListTag = 'packages_list';
+const String kPackagesTag = 'packages';
 const String kClientPackagesTag = 'client_packages_list';
 const String kPackageIdTag = 'id';
 const String kPackageNameTag = 'name';
@@ -218,20 +223,25 @@ const String kSubscriptionNameTag = 'name';
 const String kSubscriptionPriceTag = 'price';
 const String kSubscriptionPeriodTag = 'period';
 const String kSubscriptionIdIdTag = 'subscription_id';
-const String kSubscriptionsTag = 'subscriptions_list';
+const String kSubscriptionsListTag = 'subscriptions_list';
+const String kSubscriptionsTag = 'subscription';
 const String kSubscriptionsClientTag = 'client_subscriptions_list';
 const String kSubscriberCarId = 'car_id';
 const String kSubscriptionStartDateTag = 'start_date';
 const String kSubscriptionEndDateTag = 'end_date';
 const String kSubscriptionCreatedAtTag = 'created_at';
 // Violations tags
-const String kViolationsTag = 'violations_list';
+const String kViolationsListTag = 'violations_list';
+const String kViolationsTag = 'violations';
 const String kViolationIdTag = 'id';
 const String kViolationIdsTag = 'ids';
-const String kViolationDescTag = 'name';
+const String kViolationNameTag = 'name';
 const String kViolationDateTimeTag = 'datetime';
 const String kViolationLocationTag = 'location';
 const String kViolationFineTag = 'fine';
+const String kViolationCarTag = 'car_plate';
+const String kViolationIssueTag = 'issue_no';
+const String kViolationsDetailsTag = 'violations_details';
 // Attributes tags
 const String kAttributeIdTag = 'id';
 const String kAttributeENameTag = 'name_en';
@@ -254,6 +264,7 @@ const String kTransactionDurationTag = 'duration';
 const String kPaymentLinkTag = 'payment_link';
 const String kRedirectLinkTag = 'redirect_link';
 const String kSessionIdTag = 'session_id';
+const String kTransactionsTag = 'transactions';
 // On boarding screens
 const String kOnBoardingTag = 'onboarding';
 const String kScreenMessageTag = 'message';

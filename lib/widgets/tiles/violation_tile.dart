@@ -36,10 +36,7 @@ class TkViolationTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      violation.description,
-                      style: kBoldStyle[kNormalSize],
-                    ),
+                    Text(violation.name, style: kBoldStyle[kNormalSize]),
                     Text(
                       TkDateTimeHelper.formatDate(
                               violation.dateTime.toString()) +

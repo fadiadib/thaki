@@ -128,7 +128,7 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
             bottom: 60,
             left: (MediaQuery.of(context).size.width - 300) / 2,
             child: Hero(
-              tag: kViolationsTag,
+              tag: kViolationsListTag,
               child: TkButton(
                 title: S.of(context).kCheckViolationWithoutRegistration,
                 btnColor: kTransparentColor,

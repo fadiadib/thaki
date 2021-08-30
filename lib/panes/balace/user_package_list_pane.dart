@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/globals/theme.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/purchaser.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -13,15 +14,22 @@ import 'package:thaki/widgets/tiles/user_package_tile.dart';
 class TkUserPackageListPane extends TkPane {
   TkUserPackageListPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _getPackageTiles(TkPurchaser purchaser) {
+  Widget _getPackageTiles(TkPurchaser purchaser, BuildContext context) {
     List<Widget> tiles = [];
-    for (TkPackage package in purchaser.userPackages) {
+
+    if (purchaser.userPackages.isEmpty) {
       tiles.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7.0),
-          child: TkUserPackageTile(package: package),
-        ),
-      );
+          Center(child: Text(S.of(context).kNoPackages, style: kHintStyle)));
+    } else {
+      for (TkPackage package in purchaser.userPackages) {
+        tiles.add(
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7.0),
+            child: TkUserPackageTile(package: package),
+          ),
+        );
+      }
     }
     return Column(children: tiles);
   }
@@ -44,7 +52,7 @@ class TkUserPackageListPane extends TkPane {
                   padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
                   child: TkSectionTitle(title: S.of(context).kMyPackages),
                 ),
-                _getPackageTiles(purchaser),
+                _getPackageTiles(purchaser, context),
                 _getCCloseButton(context),
               ],
             );

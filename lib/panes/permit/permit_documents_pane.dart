@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+
 import 'package:thaki/providers/subscriber.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/cards/id_card.dart';
@@ -18,7 +19,8 @@ import 'package:thaki/widgets/general/section_title.dart';
 class TkPermitDocumentsPane extends TkPane {
   TkPermitDocumentsPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _getDocumentsWidgets(BuildContext context, TkSubscriber subscriber) {
+  Widget _getDocumentsWidgets(BuildContext context, TkSubscriber subscriber,
+      ScrollController scrollController) {
     List<Widget> widgets = [];
     for (TkDocument doc in subscriber.documents) {
       widgets.add(
@@ -28,9 +30,19 @@ class TkPermitDocumentsPane extends TkPane {
             requiredMark: doc.required,
             title: doc.title,
             image: doc.image,
-            callback: (File imageFile) =>
-                subscriber.updateDocument(doc.tag, imageFile),
-            cancelCallback: () => subscriber.updateDocument(doc.tag, null),
+            callback: (File imageFile) {
+              subscriber.validationDocumentsError = null;
+              subscriber.updateDocument(doc.tag, imageFile);
+            },
+            cancelCallback: () {
+              subscriber.validationDocumentsError = null;
+              subscriber.updateDocument(doc.tag, null);
+            },
+            errorCallback: (error) {
+              subscriber.validationDocumentsError = error;
+              scrollController
+                  .jumpTo(scrollController.position.maxScrollExtent);
+            },
           ),
         ),
       );
@@ -52,7 +64,7 @@ class TkPermitDocumentsPane extends TkPane {
             if (subscriber.validateDocuments(context))
               onDone();
             else
-              scrollController.animateTo(0,
+              scrollController.animateTo(scrollController.position.pixels + 80,
                   duration: Duration(milliseconds: 600), curve: Curves.easeOut);
           }),
     );
@@ -67,12 +79,10 @@ class TkPermitDocumentsPane extends TkPane {
             ? TkProgressIndicator()
             : ListView(
                 controller: scrollController,
-                reverse: true,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                    child:
-                        TkError(message: subscriber.validationDocumentsError),
+                    child: TkSectionTitle(title: S.of(context).kResidentPermit),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -82,7 +92,8 @@ class TkPermitDocumentsPane extends TkPane {
                       icon: kSecuredBtnIcon,
                       child: Column(
                         children: [
-                          _getDocumentsWidgets(context, subscriber),
+                          _getDocumentsWidgets(
+                              context, subscriber, scrollController),
                           _getAgreeButton(
                               subscriber, context, scrollController),
                         ],
@@ -91,7 +102,8 @@ class TkPermitDocumentsPane extends TkPane {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                    child: TkSectionTitle(title: S.of(context).kResidentPermit),
+                    child:
+                        TkError(message: subscriber.validationDocumentsError),
                   ),
                 ],
               );

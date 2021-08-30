@@ -33,13 +33,6 @@ Map<String, dynamic> kRegisterFieldsJson = {
   kFormName: {'en': 'Register', 'ar': 'إنشاء حساب'},
   kFormAction: {'en': 'Register', 'ar': 'إنشاء حساب'},
   kInfoFieldsTag: [
-    // {
-    //   kIFName: kUserNameTag,
-    //   kIFTitle: 'Full Name',
-    //   kIFTitleAR: 'الاسم بالكامل',
-    //   kIFRequired: true,
-    //   kIFType: TkInfoFieldType.Name.index,
-    // },
     {
       kIFName: kUserEmailTag,
       kIFTitle: 'Email',
@@ -135,19 +128,12 @@ Map<String, dynamic> kEditProfileFieldsJson = {
   kFormAction: {'en': 'Update', 'ar': 'تحديث'},
   kInfoFieldsTag: [
     // {
-    //   kIFName: kUserNameTag,
-    //   kIFTitle: 'Full Name',
-    //   kIFTitleAR: 'الاسم بالكامل',
+    //   kIFName: kUserEmailTag,
+    //   kIFTitle: 'Email',
+    //   kIFTitleAR: 'البريد الالكتروني',
     //   kIFRequired: true,
-    //   kIFType: TkInfoFieldType.Name.index,
+    //   kIFType: TkInfoFieldType.Email.index,
     // },
-    {
-      kIFName: kUserEmailTag,
-      kIFTitle: 'Email',
-      kIFTitleAR: 'البريد الالكتروني',
-      kIFRequired: true,
-      kIFType: TkInfoFieldType.Email.index,
-    },
     {
       kIFName: kUserPhoneTag,
       kIFTitle: 'Phone',
@@ -194,19 +180,12 @@ Map<String, dynamic> kEditSocialProfileFieldsJson = {
   kFormAction: {'en': 'Update', 'ar': 'تحديث'},
   kInfoFieldsTag: [
     // {
-    //   kIFName: kUserNameTag,
-    //   kIFTitle: 'Full Name',
-    //   kIFTitleAR: 'الاسم بالكامل',
+    //   kIFName: kUserEmailTag,
+    //   kIFTitle: 'Email',
+    //   kIFTitleAR: 'البريد الالكتروني',
     //   kIFRequired: true,
-    //   kIFType: TkInfoFieldType.Name.index,
+    //   kIFType: TkInfoFieldType.Email.index,
     // },
-    {
-      kIFName: kUserEmailTag,
-      kIFTitle: 'Email',
-      kIFTitleAR: 'البريد الالكتروني',
-      kIFRequired: true,
-      kIFType: TkInfoFieldType.Email.index,
-    },
     {
       kIFName: kUserPhoneTag,
       kIFTitle: 'Phone',

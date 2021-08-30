@@ -43,7 +43,9 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
 
     if (await account.resetPassword()) {
       Navigator.of(context).pop();
-      Navigator.of(context).pushReplacementNamed(TkLoginScreen.id);
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (context) => TkLoginScreen(showPasswordSuccess: true),
+      ));
     }
   }
 
@@ -74,7 +76,7 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
       validatePassword: _validatePassword,
       passwordError: S.of(context).kStrongPasswordError,
       validatePasswordMatch: _validatePasswordMatch,
-      child: Column(
+      header: Column(
         children: [
           Padding(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),

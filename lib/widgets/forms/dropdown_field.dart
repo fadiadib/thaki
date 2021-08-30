@@ -101,9 +101,9 @@ class DropDownField extends FormField<String> {
                         size: 12.0, color: Colors.black),
                     onPressed: () {
                       // SystemChannels.textInput.invokeMethod('TextInput.hide');
-                      state.setState(() {
-                        state._showdropdown = !state._showdropdown;
-                      });
+                      // state.setState(() {
+                      //   state._showdropdown = !state._showdropdown;
+                      // });
                     }),
                 hintStyle: hintStyle,
                 labelStyle: labelStyle,
@@ -203,7 +203,6 @@ class DropDownField extends FormField<String> {
 class DropDownFieldState extends FormFieldState<String> {
   TextEditingController _controller;
   bool _showdropdown = false;
-  bool _isSearching = true;
   String _searchText = "";
 
   @override
@@ -248,7 +247,6 @@ class DropDownFieldState extends FormFieldState<String> {
   @override
   void initState() {
     super.initState();
-    _isSearching = false;
     if (widget.controller == null) {
       _controller = TextEditingController(text: widget.initialValue);
     }
@@ -291,7 +289,6 @@ class DropDownFieldState extends FormFieldState<String> {
           _effectiveController.text = text;
           _handleControllerChanged();
           _showdropdown = false;
-          _isSearching = false;
           if (widget.onValueChanged != null) widget.onValueChanged(text);
         });
       },
@@ -311,12 +308,10 @@ class DropDownFieldState extends FormFieldState<String> {
 
     if (_effectiveController.text.isEmpty) {
       setState(() {
-        _isSearching = false;
         _searchText = "";
       });
     } else {
       setState(() {
-        _isSearching = true;
         _searchText = _effectiveController.text;
         _showdropdown = false;
       });

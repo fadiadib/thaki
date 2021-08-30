@@ -64,8 +64,7 @@ class TkSocialLogin extends StatelessWidget {
         idToken: appleCredential.identityToken,
         rawNonce: rawNonce,
       );
-      UserCredential credential =
-          await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+      await FirebaseAuth.instance.signInWithCredential(oauthCredential);
 
       account.user = TkUser.fromJson({
         kUserTag: {

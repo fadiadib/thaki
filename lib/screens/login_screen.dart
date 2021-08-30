@@ -10,6 +10,7 @@ import 'package:thaki/screens/forgot_password_screen.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/register_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
+import 'package:thaki/utilities/index.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -20,6 +21,8 @@ import 'package:thaki/widgets/general/logo_box.dart';
 
 class TkLoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
+  TkLoginScreen({this.showPasswordSuccess = false});
+  final bool showPasswordSuccess;
 
   @override
   _TkLoginScreenState createState() => _TkLoginScreenState();
@@ -27,6 +30,7 @@ class TkLoginScreen extends StatefulWidget {
 
 class _TkLoginScreenState extends State<TkLoginScreen> {
   TkInfoFieldsList _fields;
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   void initState() {
@@ -38,6 +42,12 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     account.clearErrors();
 
     if (account.user != null) _fields = account.user.toInfoFields(_fields);
+
+    if (widget.showPasswordSuccess)
+      Future.delayed(Duration(milliseconds: 100)).then(
+        (value) => TkSnackBarHelper.show(
+            _scaffoldKey, context, S.of(context).kUserProfileUpdated),
+      );
   }
 
   Future<void> _updateModelAndPushNext(TkInfoFieldsList results) async {
@@ -122,6 +132,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
         return WillPopScope(
           onWillPop: () async => true,
           child: Scaffold(
+            key: _scaffoldKey,
             appBar: TkAppBar(
               context: context,
               enableNotifications: false,

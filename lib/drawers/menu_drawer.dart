@@ -11,6 +11,8 @@ import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/versioner.dart';
 
 import 'package:thaki/screens/subscription_screen.dart';
+import 'package:thaki/screens/transactions_screen.dart';
+
 import 'package:thaki/widgets/general/list_menu_item.dart';
 
 /// Home Side drawer - used in the HomeScreen Scaffold
@@ -114,6 +116,20 @@ class TkMenuDrawer extends StatelessWidget {
                         .pushNamed(TkSubscriptionScreen.id);
                   },
                 ),
+
+                // Transactions menu item
+                if (kShowTransactions)
+                  TkListMenuItem(
+                    pop: true,
+                    title: S.of(context).kTransactions,
+                    child: Icon(kCarouselForwardBtnIcon,
+                        color: kMediumGreyColor, size: 10),
+                    textStyle: kRegularStyle[kNormalSize],
+                    action: () async {
+                      await Navigator.of(context)
+                          .pushNamed(TkTransactionsScreen.id);
+                    },
+                  ),
 
                 // Support menu item
                 if (kShowContact)

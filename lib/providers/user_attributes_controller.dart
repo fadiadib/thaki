@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
-import 'package:thaki/models/nationality.dart';
-import 'package:thaki/models/user_type.dart';
-import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/utilities/index.dart';
+
+import 'package:thaki/providers/lang_controller.dart';
 
 class TkUserAttributesController extends ChangeNotifier {
   // Helpers

@@ -1,6 +1,6 @@
 /// Network settings
 const bool kVerboseNetworkMessages = false;
-const bool kDemoMode = true;
+const bool kDemoMode = true; // Don't change this!
 
 /// App ID
 const String kAndroidAppId = 'com.scscsa.thaki';
@@ -11,8 +11,6 @@ const int kSplashDelay = 2;
 const int kAnimationInterval = 200; // in milliseconds
 const int kOTPDigits = 6;
 const bool kDefaultToAR = true;
-const bool kShowLogoutInProfile = false;
-const bool kShowEditBtnInProfile = false;
 const bool kShowSubscriptionBtInDashboard = false;
 const bool kShowCreditType = true;
 const double kBallsTransparency = 1.0;
@@ -24,7 +22,11 @@ const bool kForceLiveServer = false;
 const bool kForceTestServer = false;
 const bool kSeparatedLicenseField = true;
 const bool kAllowDeleteTicket = false;
+const bool kAllowPendingTicket = false;
 const bool kAllowGuestViolations = false;
+const bool kCheckFileSize = false;
+const double kMaxImageSie = 5.0; // in megabytes
+const bool kShowTransactions = false;
 
 /// URLs
 const String kDefaultBaseURL = 'http://thaki.aurasystems.xyz/thaki/public';

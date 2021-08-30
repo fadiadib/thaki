@@ -687,17 +687,21 @@ class TkExpandedSearchDropDownField extends TkTextField {
 
   @override
   Widget getField() {
+    Size deviceSize = MediaQuery.of(context).size;
+    bool isTablet = deviceSize.width > deviceSize.height;
+    double maxHeight = deviceSize.height * (isTablet ? .8 : .4);
+
     return Container(
       // Create the surrounding box with
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
         border: Border.all(color: kAccentGreyColor, width: 1),
       ),
-      // padding: EdgeInsetsDirectional.fromSTEB(10.0, 0, 10.0, 0),
 
       child: Theme(
         data: Theme.of(context).copyWith(canvasColor: kWhiteColor),
         child: DropdownSearch<String>(
+          maxHeight: maxHeight,
           mode: Mode.BOTTOM_SHEET,
           enabled: enabled,
           showSelectedItem: true,

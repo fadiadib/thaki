@@ -17,6 +17,7 @@ class TkIDCard extends StatefulWidget {
     this.callback,
     this.cancelCallback,
     this.requiredMark = false,
+    this.errorCallback,
   });
 
   final String title;
@@ -24,6 +25,7 @@ class TkIDCard extends StatefulWidget {
   final bool requiredMark;
   final Function callback;
   final Function cancelCallback;
+  final Function errorCallback;
 
   @override
   _TkIDCardState createState() => _TkIDCardState();
@@ -32,56 +34,71 @@ class TkIDCard extends StatefulWidget {
 class _TkIDCardState extends State<TkIDCard> {
   bool isLoading = false;
 
-  Future<File> testCompressAndGetFile(
-      String sourcePath, String targetPath) async {
+  Future<File> compressAndGetFile(String sourcePath, String targetPath) async {
     var result = await FlutterImageCompress.compressAndGetFile(
-      sourcePath,
-      targetPath,
-      quality: 88,
-    );
+        sourcePath, targetPath,
+        quality: 88);
     return result;
   }
 
   void updateImage(ImageSource source, BuildContext context) async {
     // Get the image from the camera or gallery according to source
-    ImagePicker imagePicker = new ImagePicker();
-    PickedFile image = await imagePicker.getImage(source: source);
+    try {
+      ImagePicker imagePicker = new ImagePicker();
+      PickedFile image = await imagePicker.getImage(source: source);
 
-    if (image != null) {
-      setState(() => isLoading = true);
+      if (image != null) {
+        setState(() => isLoading = true);
 
-      Directory tempDir = await getTemporaryDirectory();
-      File temp = new File('${tempDir.path}/temp.jpeg');
-      File compressedImage =
-          await testCompressAndGetFile(image.path, temp.path);
+        // Check file size
+        File original = File(image.path);
+        final double size = (await original.length() / (1024 * 1024));
+        if (kCheckFileSize && size >= kMaxImageSie) {
+          if (widget.errorCallback != null)
+            widget.errorCallback(S.of(context).kFileIsTooLarge);
+          setState(() => isLoading = false);
+          return;
+        }
 
+        // Compress file
+        Directory tempDir = await getTemporaryDirectory();
+        File temp = new File('${tempDir.path}/temp.jpeg');
+        File compressedImage = await compressAndGetFile(image.path, temp.path);
+        setState(() => isLoading = false);
+
+        // Allow the user to crop/rotate the picture
+        File croppedImage = await ImageCropper.cropImage(
+          sourcePath: compressedImage.path,
+          aspectRatioPresets: [
+            CropAspectRatioPreset.square,
+            CropAspectRatioPreset.ratio3x2,
+            CropAspectRatioPreset.original,
+            CropAspectRatioPreset.ratio4x3,
+            CropAspectRatioPreset.ratio16x9
+          ],
+          androidUiSettings: AndroidUiSettings(
+              toolbarTitle: S.of(context).kUploadImage,
+              toolbarColor: kPrimaryBgColor,
+              toolbarWidgetColor: kPrimaryColor,
+              initAspectRatio: CropAspectRatioPreset.original,
+              lockAspectRatio: false),
+          iosUiSettings: IOSUiSettings(
+            minimumAspectRatio: 1.0,
+          ),
+        );
+
+        // Clean up the temp file
+        compressedImage.delete();
+
+        // Done, call callback function to update the picture
+        if (croppedImage != null) widget.callback(croppedImage);
+      }
+    } catch (e) {
       setState(() => isLoading = false);
 
-      // Allow the user to crop/rotate the picture
-      File croppedImage = await ImageCropper.cropImage(
-        sourcePath: compressedImage.path,
-        aspectRatioPresets: [
-          CropAspectRatioPreset.square,
-          CropAspectRatioPreset.ratio3x2,
-          CropAspectRatioPreset.original,
-          CropAspectRatioPreset.ratio4x3,
-          CropAspectRatioPreset.ratio16x9
-        ],
-        androidUiSettings: AndroidUiSettings(
-            toolbarTitle: S.of(context).kUploadImage,
-            toolbarColor: kPrimaryBgColor,
-            toolbarWidgetColor: kPrimaryColor,
-            initAspectRatio: CropAspectRatioPreset.original,
-            lockAspectRatio: false),
-        iosUiSettings: IOSUiSettings(
-          minimumAspectRatio: 1.0,
-        ),
-      );
-
-      compressedImage.delete();
-
-      // Done, call callback function to update the picture
-      if (croppedImage != null) widget.callback(croppedImage);
+      if (widget.errorCallback != null) {
+        widget.errorCallback(S.of(context).kCannotUploadDocument);
+      }
     }
   }
 
@@ -151,10 +168,15 @@ class _TkIDCardState extends State<TkIDCard> {
               ),
               if (isLoading)
                 GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                        color: kBlackColor.withOpacity(0.5),
-                        child: TkProgressIndicator()))
+                  onTap: () {},
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: kBlackColor.withOpacity(0.5),
+                    ),
+                    child: TkProgressIndicator(),
+                  ),
+                )
             ],
           ),
         ),

@@ -28,7 +28,9 @@ class TkTicketsPane extends TkPane {
       return booker.isLoading
           ? TkProgressIndicator()
           : DefaultTabController(
-              length: kAllowDeleteTicket ? 4 : 3,
+              length: kAllowDeleteTicket
+                  ? kAllowPendingTicket ? 4 : 3
+                  : kAllowPendingTicket ? 3 : 2,
               child: Column(
                 children: [
                   SizedBox(
@@ -53,7 +55,8 @@ class TkTicketsPane extends TkPane {
                         tabs: [
                           Tab(text: S.of(context).kUpcoming.toUpperCase()),
                           Tab(text: S.of(context).kCompleted.toUpperCase()),
-                          Tab(text: S.of(context).kPending.toUpperCase()),
+                          if (kAllowPendingTicket)
+                            Tab(text: S.of(context).kPending.toUpperCase()),
                           if (kAllowDeleteTicket)
                             Tab(text: S.of(context).kCancelled.toUpperCase()),
                         ],
@@ -102,15 +105,16 @@ class TkTicketsPane extends TkPane {
                             tickets: booker.completedTickets,
                             ribbon: S.of(context).kCompleted,
                             ribbonColor: kGreenAccentColor),
-                        TkTicketList(
-                          langCode: Provider.of<TkLangController>(context,
-                                  listen: false)
-                              .lang
-                              .languageCode,
-                          tickets: booker.pendingTickets,
-                          ribbon: S.of(context).kPending,
-                          ribbonColor: kSecondaryColor,
-                        ),
+                        if (kAllowPendingTicket)
+                          TkTicketList(
+                            langCode: Provider.of<TkLangController>(context,
+                                    listen: false)
+                                .lang
+                                .languageCode,
+                            tickets: booker.pendingTickets,
+                            ribbon: S.of(context).kPending,
+                            ribbonColor: kSecondaryColor,
+                          ),
                         if (kAllowDeleteTicket)
                           TkTicketList(
                               langCode: Provider.of<TkLangController>(context,

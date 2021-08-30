@@ -18,3 +18,6 @@ export 'make.dart';
 export 'model.dart';
 export 'attribute.dart';
 export 'screen.dart';
+export 'transaction.dart';
+export 'nationality.dart';
+export 'user_type.dart';

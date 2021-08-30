@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:thaki/globals/index.dart';
 
 import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
-import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/utilities/index.dart';
+
+import 'package:thaki/providers/lang_controller.dart';
 
 class TkPayer extends ChangeNotifier {
   // Helpers
@@ -136,7 +137,7 @@ class TkPayer extends ChangeNotifier {
           selectedCar.plateEN.toUpperCase(), langController);
 
     if (result[kStatusTag] == kSuccessCode) {
-      for (Map<String, dynamic> json in result[kDataTag][kViolationsTag]) {
+      for (Map<String, dynamic> json in result[kDataTag][kViolationsListTag]) {
         _violations.add(TkViolation.fromJson(json));
       }
     } else {

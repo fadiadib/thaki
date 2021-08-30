@@ -3,29 +3,26 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/models/car.dart';
-import 'package:thaki/models/credit.dart';
+import 'package:thaki/models/index.dart';
+import 'package:thaki/utilities/index.dart';
+
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/attributes_controller.dart';
+
 import 'package:thaki/screens/add_car_screen.dart';
 import 'package:thaki/screens/add_card_screen.dart';
 import 'package:thaki/screens/cars_list_screen.dart';
 import 'package:thaki/screens/credit_cards_list_screen.dart';
 import 'package:thaki/screens/edit_profile_screen.dart';
-import 'package:thaki/screens/welcome_screen.dart';
 
 import 'package:thaki/widgets/base/index.dart';
-import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/cards/credit_card.dart';
-import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/general/card.dart';
 import 'package:thaki/widgets/general/carousel.dart';
 import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/cards/user_info_card.dart';
-
-import '../../providers/lang_controller.dart';
 
 class TkProfilePane extends TkPane {
   TkProfilePane({@required this.scaffoldKey, onDone, onSelect})
@@ -49,21 +46,8 @@ class TkProfilePane extends TkPane {
               if (await Navigator.of(context)
                       .pushNamed(TkEditProfileScreen.id) ==
                   true) {
-                GlobalKey<ScaffoldState> scaffoldKey = this.scaffoldKey();
-                scaffoldKey.currentState.showSnackBar(
-                  SnackBar(
-                    content: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        S.of(context).kUserProfileUpdated,
-                        textAlign: TextAlign.center,
-                        style:
-                            TextStyle(fontFamily: kRTLFontFamily, fontSize: 14),
-                      ),
-                    ),
-                    backgroundColor: kGreenAccentColor,
-                  ),
-                );
+                TkSnackBarHelper.show(this.scaffoldKey(), context,
+                    S.of(context).kUserProfileUpdated);
               }
             },
           ),
@@ -72,34 +56,6 @@ class TkProfilePane extends TkPane {
           padding: const EdgeInsets.all(20.0),
           child: TkUserInfoCard(user: account.user),
         ),
-        if (kShowEditBtnInProfile)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50.0),
-            child: TkButton(
-              title: S.of(context).kEditPersonalInfo,
-              onPressed: () {
-                // Push edit profile page
-                Navigator.of(context).pushNamed(TkEditProfileScreen.id);
-              },
-            ),
-          ),
-        if (kShowLogoutInProfile)
-          Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: GestureDetector(
-                    onTap: () async {
-                      if (await account.logout())
-                        Navigator.pushReplacementNamed(
-                            context, TkWelcomeScreen.id);
-                    },
-                    child: Text(S.of(context).kLogOut,
-                        style: kMediumStyle[kSmallSize])),
-              ),
-              TkError(message: account.logoutError)
-            ],
-          ),
       ],
     );
   }
@@ -115,7 +71,7 @@ class TkProfilePane extends TkPane {
             child: TkCard(
               onTap: () async {
                 await Navigator.of(context).pushNamed(TkCarsListScreen.id);
-                account.load();
+                //account.load();
               },
               titles: {
                 TkCardSide.topLeft: S.of(context).kCarName,
@@ -130,7 +86,7 @@ class TkProfilePane extends TkPane {
                                 .languageCode ==
                             'en'
                         ? car.plateEN
-                        : car.plateAR,
+                        : TkLicenseHelper.formatARLicensePlate(car.plateAR),
                 TkCardSide.bottomRight: attributesController.stateName(
                   car.state,
                   Provider.of<TkLangController>(context, listen: false),
@@ -155,7 +111,7 @@ class TkProfilePane extends TkPane {
           // Open add car screen
           action: () async {
             await Navigator.of(context).pushNamed(TkAddCarScreen.id);
-            account.load();
+            //account.load();
           },
         ),
 
@@ -190,7 +146,7 @@ class TkProfilePane extends TkPane {
               onTap: () async {
                 await Navigator.of(context)
                     .pushNamed(TkCreditCardsListScreen.id);
-                account.load();
+                //account.load();
               },
             ),
           ),
@@ -209,7 +165,7 @@ class TkProfilePane extends TkPane {
           // Open add card screen
           action: () async {
             await Navigator.pushNamed(context, TkAddCardScreen.id);
-            account.load();
+            //account.load();
           },
         ),
 

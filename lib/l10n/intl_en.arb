@@ -219,5 +219,16 @@
   "kGender": "Gender",
   "kMale": "Male",
   "kFemale": "Female",
-  "kCheckViolationWithoutRegistration": "Check violations without sign up"
+  "kCheckViolationWithoutRegistration": "Check violations without sign up",
+  "kTransactions": "Transactions",
+  "kPackage": "Package",
+  "kPackages": "Packages",
+  "kSubscription": "Subscription",
+  "kViolation": "Violation",
+  "kViolations": "Violations",
+  "kNoData": "No data found",
+  "kNoTransactions": "No transactions",
+  "kCannotUploadDocument": "Error uploading image, the file is of incompatible format",
+  "kFileIsTooLarge": "File size is too large, please select a smaller image",
+  "kNoPackages": "You do not have any credit"
 }

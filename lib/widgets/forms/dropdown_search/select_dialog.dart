@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import 'package:thaki/generated/l10n.dart';
 import 'dropdown_search.dart';
 
 class SelectDialog<T> extends StatefulWidget {
@@ -111,49 +112,49 @@ class _SelectDialogState<T> extends State<SelectDialog<T>> {
     double maxHeight = deviceSize.height * (isTablet ? .8 : .6);
     double maxWidth = deviceSize.width * (isTablet ? .7 : .9);
 
-    return Container(
-      width: widget.dialogMaxWidth ?? maxWidth,
-      constraints: BoxConstraints(maxHeight: widget.maxHeight ?? maxHeight),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          _searchField(),
-          Expanded(
-            child: Stack(
-              children: <Widget>[
-                StreamBuilder<List<T>>(
-                  stream: _itemsStream.stream,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return _errorWidget(snapshot?.error);
-                    } else if (!snapshot.hasData) {
-                      return _loadingWidget();
-                    } else if (snapshot.data.isEmpty) {
-                      if (widget.emptyBuilder != null)
-                        return widget.emptyBuilder(
-                            context, widget.searchBoxController?.text);
-                      else
-                        return const Center(
-                          child: const Text("No data found"),
-                        );
-                    }
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      padding: EdgeInsets.symmetric(vertical: 0),
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, index) {
-                        var item = snapshot.data[index];
-                        return _itemWidget(item);
-                      },
-                    );
-                  },
-                ),
-                _loadingWidget()
-              ],
+    return SafeArea(
+      child: Container(
+        width: widget.dialogMaxWidth ?? maxWidth,
+        constraints: BoxConstraints(maxHeight: widget.maxHeight ?? maxHeight),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            _searchField(),
+            Expanded(
+              child: Stack(
+                children: <Widget>[
+                  StreamBuilder<List<T>>(
+                    stream: _itemsStream.stream,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasError) {
+                        return _errorWidget(snapshot?.error);
+                      } else if (!snapshot.hasData) {
+                        return _loadingWidget();
+                      } else if (snapshot.data.isEmpty) {
+                        if (widget.emptyBuilder != null)
+                          return widget.emptyBuilder(
+                              context, widget.searchBoxController?.text);
+                        else
+                          return Center(child: Text(S.of(context).kNoData));
+                      }
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.symmetric(vertical: 0),
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, index) {
+                          var item = snapshot.data[index];
+                          return _itemWidget(item);
+                        },
+                      );
+                    },
+                  ),
+                  _loadingWidget()
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

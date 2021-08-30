@@ -71,6 +71,13 @@ const List<BoxShadow> kTileShadow = [
     blurRadius: 10.0,
   ),
 ];
+const List<BoxShadow> kSmallTileShadow = [
+  BoxShadow(
+    color: Color(0x18000000),
+    offset: Offset(0.0, 1.0),
+    blurRadius: 5.0,
+  ),
+];
 
 /// Carousel Colors
 const Color kCarouselSelectedDotColor = kWhiteColor;

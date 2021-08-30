@@ -372,7 +372,12 @@ class TkAccount extends ChangeNotifier {
     Map result = await _apis.addCar(user: user, car: car);
     if (result[kStatusTag] == kSuccessCreationCode) {
       // Load user data
-      user.cars.add(TkCar.fromJson(result[kDataTag][kCarTag]));
+      final TkCar newCar = TkCar.fromJson(result[kDataTag][kCarTag]);
+      if (newCar.preferred) {
+        for (TkCar otherCar in user.cars) otherCar.preferred = false;
+        user.cars.insert(0, newCar);
+      } else
+        user.cars.add(newCar);
     } else {
       // an error happened
       addCarError = _apis.normalizeError(result);
@@ -423,8 +428,14 @@ class TkAccount extends ChangeNotifier {
       TkCar replacement = TkCar.fromJson(result[kDataTag][kCarTag]);
       TkCar updatedCar =
           _user.cars.firstWhere((element) => car.id == element.id);
-      _user.cars.replaceRange(_user.cars.indexOf(updatedCar),
-          _user.cars.indexOf(updatedCar) + 1, [replacement]);
+
+      if (replacement.preferred) {
+        user.cars.remove(updatedCar);
+        for (TkCar otherCar in user.cars) otherCar.preferred = false;
+        user.cars.insert(0, replacement);
+      } else
+        _user.cars.replaceRange(_user.cars.indexOf(updatedCar),
+            _user.cars.indexOf(updatedCar) + 1, [replacement]);
     }
 
     // Stop any listening loading indicators

@@ -34,10 +34,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
     with TkFormFieldValidatorMixin {
   TkCar _car;
   ScrollController _scrollController = ScrollController();
-  TextEditingController _modelController = TextEditingController();
-  TextEditingController _makeController = TextEditingController();
-  TextEditingController _colorController = TextEditingController();
-  TextEditingController _yearController = TextEditingController();
 
   /// Override mandatory validate field method from form field validator
   /// validate each field according to its type.
@@ -299,7 +295,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                         30.0, 10.0, 5.0, 10.0),
                     child: TkExpandedSearchDropDownField(
                       enabled: !account.isLoading,
-                      controller: _makeController,
                       style: kRegularStyle[kSmallSize],
                       context: context,
                       hintText: S.of(context).kCarMake,
@@ -309,9 +304,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                         setState(() {
                           _car.make = states.makeId(value);
                           _car.model = null;
-                          _modelController.clear();
-                          _modelController.clearComposing();
-                          _makeController.clearComposing();
                         });
                         states.loadModels(user, _car.make);
                       },
@@ -338,7 +330,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                     padding: const EdgeInsetsDirectional.fromSTEB(
                         5.0, 10.0, 30, 10.0),
                     child: TkExpandedSearchDropDownField(
-                      controller: _modelController,
                       isLoading: _car.make != null && states.isLoading,
                       enabled: !account.isLoading ||
                           _car.make == null ||
@@ -350,7 +341,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                       values: states.modelNames(langController),
                       onChanged: (value) {
                         setState(() => _car.model = states.modelId(value));
-                        _modelController.clearComposing();
                       },
                       validator: getValidationCallback(TkFormField.carModel),
                       validate: isValidating,
@@ -378,7 +368,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                         30.0, 10.0, 5.0, 10.0),
                     child: TkExpandedSearchDropDownField(
                       enabled: !account.isLoading,
-                      controller: _colorController,
                       style: kRegularStyle[kSmallSize],
                       context: context,
                       hintText: S.of(context).kCarColor,
@@ -386,7 +375,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                       values: states.colorNames(langController),
                       onChanged: (value) {
                         setState(() => _car.color = states.colorId(value));
-                        _colorController.clearComposing();
                       },
                     ),
                   ),
@@ -408,7 +396,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                         5.0, 10.0, 30, 10.0),
                     child: TkExpandedSearchDropDownField(
                       enabled: !account.isLoading,
-                      controller: _yearController,
                       style: kRegularStyle[kSmallSize],
                       context: context,
                       hintText: S.of(context).kCarYear,
@@ -416,7 +403,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
                       values: _getYears(),
                       onChanged: (value) {
                         setState(() => _car.year = value);
-                        _yearController.clearComposing();
                       },
                     ),
                   ),
@@ -468,7 +454,8 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
               if (await account.addCar(_car))
                 Navigator.of(context).pop();
               else
-                _scrollController.animateTo(0,
+                _scrollController.animateTo(
+                    _scrollController.position.pixels + 80,
                     duration: Duration(milliseconds: 600),
                     curve: Curves.easeOut);
             }
@@ -493,15 +480,6 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
         Provider.of<TkAttributesController>(context, listen: false);
     TkUser user = Provider.of<TkAccount>(context, listen: false).user;
     states.loadModels(user, _car?.make, init: true);
-
-    TkLangController langController =
-        Provider.of<TkLangController>(context, listen: false);
-
-    _makeController.text = states.makeName(_car.make, langController);
-    Future.delayed(Duration(seconds: 3)).then((_) =>
-        _modelController.text = states.modelName(_car.model, langController));
-    _colorController.text = states.colorName(_car.color, langController);
-    _yearController.text = _car.year;
   }
 
   @override
@@ -518,16 +496,14 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
         ),
         body: TkScaffoldBody(
           child: ListView(
-            shrinkWrap: true,
             controller: _scrollController,
-            reverse: true,
             children: [
+              _createForm(account),
+              _createFormButton(account),
               TkError(
                   message: widget.editMode
                       ? account.updateCarError
                       : account.addCarError),
-              _createFormButton(account),
-              _createForm(account),
             ],
           ),
         ),

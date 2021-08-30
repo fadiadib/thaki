@@ -5,6 +5,6 @@ class TkLicenseHelper {
     final String digits =
         RegExp(r"[\u0660-\u0669\d]+", unicode: true).stringMatch(licensePlate);
 
-    return chars.split('').join(' ') + ' ' + digits;
+    return chars == null ? digits : chars.split('').join(' ') + ' ' + digits;
   }
 }

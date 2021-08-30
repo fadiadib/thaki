@@ -21,7 +21,7 @@ class TkViolationCarPane extends TkPane {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
       child: Hero(
-        tag: kViolationsTag,
+        tag: kViolationsListTag,
         child: TkButton(
           title: S.of(context).kContinue,
           onPressed: () {

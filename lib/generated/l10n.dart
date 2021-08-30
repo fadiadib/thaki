@@ -2234,6 +2234,116 @@ class S {
       args: [],
     );
   }
+
+  /// `Transactions`
+  String get kTransactions {
+    return Intl.message(
+      'Transactions',
+      name: 'kTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Package`
+  String get kPackage {
+    return Intl.message(
+      'Package',
+      name: 'kPackage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Packages`
+  String get kPackages {
+    return Intl.message(
+      'Packages',
+      name: 'kPackages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subscription`
+  String get kSubscription {
+    return Intl.message(
+      'Subscription',
+      name: 'kSubscription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Violation`
+  String get kViolation {
+    return Intl.message(
+      'Violation',
+      name: 'kViolation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Violations`
+  String get kViolations {
+    return Intl.message(
+      'Violations',
+      name: 'kViolations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No data found`
+  String get kNoData {
+    return Intl.message(
+      'No data found',
+      name: 'kNoData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No transactions`
+  String get kNoTransactions {
+    return Intl.message(
+      'No transactions',
+      name: 'kNoTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error uploading image, the file is of incompatible format`
+  String get kCannotUploadDocument {
+    return Intl.message(
+      'Error uploading image, the file is of incompatible format',
+      name: 'kCannotUploadDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `File size is too large, please select a smaller image`
+  String get kFileIsTooLarge {
+    return Intl.message(
+      'File size is too large, please select a smaller image',
+      name: 'kFileIsTooLarge',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You do not have any credit`
+  String get kNoPackages {
+    return Intl.message(
+      'You do not have any credit',
+      name: 'kNoPackages',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

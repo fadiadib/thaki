@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:thaki/globals/index.dart';
 
 import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/utilities/index.dart';
 
@@ -96,6 +96,11 @@ class TkSubscriber extends ChangeNotifier {
   // Validation
   String _validationDocumentsError;
   String get validationDocumentsError => _validationDocumentsError;
+  set validationDocumentsError(String error) {
+    _validationDocumentsError = error;
+    notifyListeners();
+  }
+
   bool validateDocuments(BuildContext context) {
     for (TkDocument doc in _documents) {
       if (doc.required && doc.image == null) {
@@ -195,7 +200,7 @@ class TkSubscriber extends ChangeNotifier {
     _subscriptions.clear();
     _cvv = null;
     if (result[kStatusTag] == kSuccessCode) {
-      for (Map data in result[kDataTag][kSubscriptionsTag]) {
+      for (Map data in result[kDataTag][kSubscriptionsListTag]) {
         _subscriptions.add(TkSubscription.fromJson(data));
       }
       if (_subscriptions.isNotEmpty)

@@ -105,7 +105,7 @@ class TkPurchaser extends ChangeNotifier {
 
     Map result = await _apis.loadPackages(user: user);
     if (result[kStatusTag] == kSuccessCode) {
-      for (Map data in result[kDataTag][kPackagesTag])
+      for (Map data in result[kDataTag][kPackagesListTag])
         _packages.add(TkPackage.fromJson(data));
       if (_packages.isNotEmpty) _selectedPackage = _packages.first;
     } else {
