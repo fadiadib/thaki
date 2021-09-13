@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
-import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 
 import 'package:thaki/providers/account.dart';
-import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/transactor.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
@@ -14,6 +12,7 @@ import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
+import 'package:thaki/widgets/general/tabs.dart';
 import 'package:thaki/widgets/lists/transaction_list.dart';
 
 class TkTransactionsScreen extends StatefulWidget {
@@ -33,56 +32,21 @@ class _TkTransactionsScreenState extends State<TkTransactionsScreen> {
   }
 
   Widget _createTabs(TkTransactor transactor) {
-    return DefaultTabController(
+    return TkTabs(
       length: 3,
-      child: Column(
-        children: [
-          SizedBox(
-            height: 100,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20),
-              child: TabBar(
-                isScrollable: true,
-                labelStyle: kBoldStyle[kSmallSize].copyWith(
-                    fontFamily:
-                        Provider.of<TkLangController>(context, listen: false)
-                            .fontFamily,
-                    fontSize:
-                        Provider.of<TkLangController>(context, listen: false)
-                                .isRTL
-                            ? 18.0
-                            : 12.0),
-                indicatorWeight: 4.0,
-                labelColor: kPrimaryColor,
-                indicatorColor: kPrimaryColor,
-                unselectedLabelColor: kMediumGreyColor.withOpacity(0.5),
-                tabs: [
-                  Tab(text: S.of(context).kPackages.toUpperCase()),
-                  Tab(text: S.of(context).kSubscriptions.toUpperCase()),
-                  Tab(text: S.of(context).kViolations.toUpperCase()),
-                ],
-              ),
-            ),
-          ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                TkTransactionList(
-                  transactions: transactor.transactions<TkPackageTransaction>(),
-                ),
-                TkTransactionList(
-                  transactions:
-                      transactor.transactions<TkSubscriptionTransaction>(),
-                ),
-                TkTransactionList(
-                  transactions:
-                      transactor.transactions<TkViolationTransaction>(),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      titles: [
+        S.of(context).kPackages.toUpperCase(),
+        S.of(context).kSubscriptions.toUpperCase(),
+        S.of(context).kViolations.toUpperCase()
+      ],
+      children: [
+        TkTransactionList(
+            transactions: transactor.transactions<TkPackageTransaction>()),
+        TkTransactionList(
+            transactions: transactor.transactions<TkSubscriptionTransaction>()),
+        TkTransactionList(
+            transactions: transactor.transactions<TkViolationTransaction>()),
+      ],
     );
   }
 

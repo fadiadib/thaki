@@ -82,6 +82,8 @@ class TkBooker extends ChangeNotifier {
   // Loading variables
   bool _isLoading = false;
   bool get isLoading => _isLoading;
+  bool _isQRLoading = false;
+  bool get isQRLoading => _isQRLoading;
 
   // Errors
   void clearErrors() {
@@ -96,8 +98,9 @@ class TkBooker extends ChangeNotifier {
 
   Future<bool> loadQR(TkUser user, TkTicket ticket) async {
     // Start any loading indicators
-    _isLoading = true;
+    _isQRLoading = true;
     loadQRError = null;
+    notifyListeners();
 
     Map result = await _apis.loadQR(user: user, ticket: ticket);
     if (result[kStatusTag] == kSuccessCode) {
@@ -138,7 +141,7 @@ class TkBooker extends ChangeNotifier {
     }
 
     // Stop any listening loading indicators
-    _isLoading = false;
+    _isQRLoading = false;
     notifyListeners();
 
     return (loadQRError == null);

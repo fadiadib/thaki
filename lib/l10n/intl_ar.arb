@@ -134,6 +134,8 @@
   "kCheckForLPR": "للتحقق من مخالفة سيارة أخرى",
   "kEnterLRP": "ادخل رقم السيارة",
   "kCurrentViolations": "المخالفات الحالية",
+  "kPaidViolations": "المخالفات المدفوعة",
+  "kCancelledViolations": "المخالفات الملغاه",
   "kTotal": "المجموع",
   "kPaySelected": "إدفع",
   "kFinePaymentSuccess": "تم دفع الغرامة بنجاح، يرجى الإنتظار ٣٠ دقيقة للحصول على تحديثات نظام CivicSmart",
@@ -147,10 +149,13 @@
   "kParkingDuration": "مدة وقوف السيارة",
   "kParkFor": "وقوف السيارة لمدة",
   "kParkSuccess": "تم تأكيد وقوف السيارة، سيكون رمز الاستجابة السريعة متاحًا قبل وقت وقوف السيارة",
+  "kParkInstructions": "١. قم بتنشيط جهاز المواقف بالضغط على زر التشغيل.\n٢. اضغط علامة +\n٣. امسح الباركود من خلال القارئ في الجهاز.\n٤. استلم التذكرة وضعها على طبلون السيارة بشكل صحيح.",
   "kUpcoming": "قادمة",
   "kCompleted": "مكتملة",
   "kPending": "معلقة",
   "kCancelled": "ملغاة",
+  "kPaid": "مدفوعة",
+  "kCurrent": "حالية",
   "kImmediateParking": "دفع الموقف الآن",
   "kParkNow": "قف ألان",
   "kScheduleParking": "دفع الموقف لوقت آخر",
@@ -230,5 +235,6 @@
   "kNoTransactions": "لا يوجد معاملات",
   "kCannotUploadDocument": "خطأ في تحميل الصورة، الملف بتنسيق غير متوافق",
   "kFileIsTooLarge": "حجم الملف كبير جدًا، يرجى إختيار صورة أصغر",
-  "kNoPackages": "لا يوجد رصيد"
+  "kNoPackages": "لا يوجد رصيد",
+  "kTicketNumber": "رقم التذكرة"
 }

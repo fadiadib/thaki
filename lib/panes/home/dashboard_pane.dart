@@ -43,12 +43,14 @@ class TkDashboardPane extends TkPane {
               bgColor: kPrimaryColor.withOpacity(0.15),
               textColor: kDarkGreyColor,
               titles: {
-                TkCardSide.topLeft: S.of(context).kCarPlate,
+                TkCardSide.topLeft: S.of(context).kTicketNumber,
+                TkCardSide.topRight: S.of(context).kCarPlate,
                 TkCardSide.bottomLeft: S.of(context).kFrom,
                 TkCardSide.bottomRight: S.of(context).kTo
               },
               data: {
-                TkCardSide.topLeft: Provider.of<TkLangController>(context,
+                TkCardSide.topLeft: ticket.identifier + ticket.id.toString(),
+                TkCardSide.topRight: Provider.of<TkLangController>(context,
                             listen: false)
                         .isRTL
                     ? TkLicenseHelper.formatARLicensePlate(ticket.car.plateAR)
@@ -63,6 +65,21 @@ class TkDashboardPane extends TkPane {
                     '\n' +
                     TkDateTimeHelper.formatTime(context, ticket.end.toString()),
               },
+              child: Align(
+                alignment:
+                    Provider.of<TkLangController>(context, listen: false).isRTL
+                        ? Alignment.bottomLeft
+                        : Alignment.bottomRight,
+                child: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                      color: kWhiteColor,
+                      borderRadius: BorderRadius.circular(15)),
+                  margin: EdgeInsets.all(5),
+                  child: Image.asset(kQRIcon, color: kPrimaryColor, scale: 4.5),
+                ),
+              ),
             ),
           ),
         );
@@ -83,12 +100,22 @@ class TkDashboardPane extends TkPane {
         // Add bookings carousel
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
-          child: TkCarousel(
-            height: 150,
-            dotColor: kPrimaryColor.withOpacity(0.5),
-            selectedDotColor: kPrimaryColor,
-            emptyMessage: S.of(context).kNoBookingsYet,
-            children: _getTicketCards(booker, context),
+          child: Stack(
+            children: [
+              TkCarousel(
+                height: 140,
+                dotColor: kPrimaryColor.withOpacity(0.5),
+                selectedDotColor: kPrimaryColor,
+                emptyMessage: S.of(context).kNoBookingsYet,
+                children: _getTicketCards(booker, context),
+              ),
+              if (booker.isQRLoading)
+                Positioned(
+                  top: 60,
+                  left: (MediaQuery.of(context).size.width / 2) - 20,
+                  child: TkProgressIndicator(color: kWhiteColor),
+                )
+            ],
           ),
         ),
 

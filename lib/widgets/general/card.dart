@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
 
-import '../../globals/colors.dart';
-import '../../globals/index.dart';
-
 enum TkCardSide { topLeft, topRight, bottomLeft, bottomRight }
 
 class TkCard extends StatelessWidget {
@@ -16,6 +13,7 @@ class TkCard extends StatelessWidget {
     this.titles,
     this.data,
     this.onTap,
+    this.child,
   });
   final Color bgColor;
   final Color borderColor;
@@ -24,6 +22,7 @@ class TkCard extends StatelessWidget {
   final Map<TkCardSide, String> titles;
   final Map<TkCardSide, String> data;
   final Function onTap;
+  final Widget child;
 
   Widget _getSideWidget(TkCardSide side) {
     String title = titles == null ? null : titles[side];
@@ -39,13 +38,17 @@ class TkCard extends StatelessWidget {
                   title,
                   style: kLightStyle[kSmallSize].copyWith(color: textColor),
                 )
-              : Container(),
+              : side == TkCardSide.topRight || side == TkCardSide.topLeft
+                  ? Text('')
+                  : Container(),
           (details != null && details.isNotEmpty)
               ? Text(
                   details,
                   style: kBoldStyle[kSmallSize].copyWith(color: textColor),
                 )
-              : Container(),
+              : side == TkCardSide.topRight || side == TkCardSide.topLeft
+                  ? Text('')
+                  : Container(),
         ],
       ),
     );
@@ -55,41 +58,46 @@ class TkCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        width: 800,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderRadius),
-          color: bgColor,
-          border: Border.all(color: borderColor, width: 1.0),
-        ),
-        padding: EdgeInsets.symmetric(vertical: kCardPadding / 2),
+      child: Stack(
+        children: [
+          Container(
+            width: 800,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(borderRadius),
+              color: bgColor,
+              border: Border.all(color: borderColor, width: 1.0),
+            ),
+            padding: EdgeInsets.symmetric(vertical: kCardPadding / 2),
 
-        // Two quadrants
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FittedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _getSideWidget(TkCardSide.topLeft),
-                  _getSideWidget(TkCardSide.topRight)
-                ],
-              ),
+            // Two quadrants
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FittedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _getSideWidget(TkCardSide.topLeft),
+                      _getSideWidget(TkCardSide.topRight)
+                    ],
+                  ),
+                ),
+                FittedBox(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _getSideWidget(TkCardSide.bottomLeft),
+                      _getSideWidget(TkCardSide.bottomRight)
+                    ],
+                  ),
+                ),
+              ],
             ),
-            FittedBox(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _getSideWidget(TkCardSide.bottomLeft),
-                  _getSideWidget(TkCardSide.bottomRight)
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+          if (child != null) child
+        ],
       ),
     );
   }

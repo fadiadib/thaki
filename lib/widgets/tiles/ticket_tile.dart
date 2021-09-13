@@ -6,9 +6,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/attributes_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
-import 'package:thaki/utilities/date_time_helper.dart';
 import 'package:thaki/utilities/index.dart';
-import 'package:thaki/utilities/license_helper.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/ribbon.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
@@ -37,22 +35,48 @@ class _TkTicketTileState extends State<TkTicketTile> {
   bool isLoading = false;
 
   Widget _getTileImage() {
-    return Container(
-      height: 100,
-      width: 100,
-      padding: EdgeInsets.all(10),
-      child: Container(
-        decoration: BoxDecoration(
-          color: kPrimaryColor.withOpacity(0.08),
-          borderRadius: BorderRadius.circular(100.0),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          height: 100,
+          width: 100,
+          padding: EdgeInsets.all(10),
+          child: Container(
+            decoration: BoxDecoration(
+              color: kPrimaryColor.withOpacity(0.08),
+              borderRadius: BorderRadius.circular(100.0),
+            ),
+            child: isLoading
+                ? TkProgressIndicator()
+                : Image.asset(
+                    kQRIcon,
+                    color: kPrimaryColor,
+                    scale: 3,
+                  ),
+          ),
         ),
-        child: isLoading
-            ? TkProgressIndicator()
-            : Image.asset(
-                kPackageIcon,
-                color: kPrimaryColor,
-              ),
-      ),
+
+        // Ticket number
+        if (widget.ticket.identifier != null && widget.ticket.id != null)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Column(
+              children: [
+                Text(
+                  S.of(context).kTicketNumber,
+                  style: kRegularStyle[kTinySize]
+                      .copyWith(color: kMediumGreyColor),
+                ),
+                Text(
+                  widget.ticket.identifier + widget.ticket.id.toString(),
+                  style:
+                      kBoldStyle[kTinySize].copyWith(color: kMediumGreyColor),
+                ),
+              ],
+            ),
+          ),
+      ],
     );
   }
 

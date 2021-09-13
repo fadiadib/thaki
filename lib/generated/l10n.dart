@@ -1375,6 +1375,26 @@ class S {
     );
   }
 
+  /// `Paid Violations`
+  String get kPaidViolations {
+    return Intl.message(
+      'Paid Violations',
+      name: 'kPaidViolations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelled Violations`
+  String get kCancelledViolations {
+    return Intl.message(
+      'Cancelled Violations',
+      name: 'kCancelledViolations',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Total`
   String get kTotal {
     return Intl.message(
@@ -1505,6 +1525,16 @@ class S {
     );
   }
 
+  /// `1. Activate the Parking Meter by pressing Power on.\n2. Press button on the Meter.\n3. Scan your ticket QR Code using Meter Scanner.\n4. Receive the ticket from Meter and place it on your dashboard correctly.`
+  String get kParkInstructions {
+    return Intl.message(
+      '1. Activate the Parking Meter by pressing Power on.\n2. Press button on the Meter.\n3. Scan your ticket QR Code using Meter Scanner.\n4. Receive the ticket from Meter and place it on your dashboard correctly.',
+      name: 'kParkInstructions',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Upcoming`
   String get kUpcoming {
     return Intl.message(
@@ -1540,6 +1570,26 @@ class S {
     return Intl.message(
       'Cancelled',
       name: 'kCancelled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paid`
+  String get kPaid {
+    return Intl.message(
+      'Paid',
+      name: 'kPaid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current`
+  String get kCurrent {
+    return Intl.message(
+      'Current',
+      name: 'kCurrent',
       desc: '',
       args: [],
     );
@@ -2340,6 +2390,16 @@ class S {
     return Intl.message(
       'You do not have any credit',
       name: 'kNoPackages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ticket Number`
+  String get kTicketNumber {
+    return Intl.message(
+      'Ticket Number',
+      name: 'kTicketNumber',
       desc: '',
       args: [],
     );

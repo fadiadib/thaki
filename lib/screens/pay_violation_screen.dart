@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/panes/transaction/transaction_pane.dart';
 import 'package:thaki/panes/transaction/transaction_success_pane.dart';
@@ -29,13 +30,12 @@ class _TkPayViolationScreenState extends TkMultiStepPageState {
 
   @override
   void initData() async {
-    // Load available packages
     final TkPayer payer = Provider.of<TkPayer>(context, listen: false);
 
     if (!payer.allowChange)
       payer.loadViolations(Provider.of<TkAccount>(context, listen: false).user,
           Provider.of<TkLangController>(context, listen: false),
-          guest: guest);
+          guest: guest, all: kShowAllViolations);
   }
 
   @override
@@ -50,7 +50,8 @@ class _TkPayViolationScreenState extends TkMultiStepPageState {
     return [
       if (payer.allowChange)
         TkViolationCarPane(onDone: () {
-          payer.loadViolations(account.user, langController, guest: guest);
+          payer.loadViolations(account.user, langController,
+              guest: guest, all: kShowAllViolations);
 
           loadNextPane();
         }),

@@ -27,6 +27,7 @@ const bool kAllowGuestViolations = false;
 const bool kCheckFileSize = false;
 const double kMaxImageSie = 5.0; // in megabytes
 const bool kShowTransactions = false;
+const bool kShowAllViolations = true;
 
 /// URLs
 const String kDefaultBaseURL = 'http://thaki.aurasystems.xyz/thaki/public';

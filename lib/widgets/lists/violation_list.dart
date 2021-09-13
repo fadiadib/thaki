@@ -16,7 +16,7 @@ class TkViolationList extends StatelessWidget {
 
     if (violations != null && violations.isNotEmpty)
       for (TkViolation violation in violations) {
-        TkViolation found = selection.firstWhere(
+        TkViolation found = selection?.firstWhere(
             (element) => element.id == violation.id,
             orElse: () => null);
 

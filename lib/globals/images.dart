@@ -28,3 +28,4 @@ const String kProfileIcon = 'images/profile.png';
 const String kParkingIcon = 'images/parking.png';
 const String kTicketsIcon = 'images/tickets.png';
 const String kViolationsIcon = 'images/violations.png';
+const String kQRIcon = 'images/QR.png';

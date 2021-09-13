@@ -9,17 +9,21 @@ import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/general/error.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
-import 'package:thaki/widgets/general/section_title.dart';
+import 'package:thaki/widgets/general/tabs.dart';
 import 'package:thaki/widgets/lists/violation_list.dart';
 
 class TkViolationListPane extends TkPane {
   TkViolationListPane({onDone}) : super(paneTitle: '', onDone: onDone);
 
-  Widget _getViolationList(TkPayer payer) {
+  Widget _getUnpaidViolationList(TkPayer payer) {
     return TkViolationList(
-        violations: payer.violations,
-        selection: payer.selectedViolations,
-        onTap: (TkViolation violation) => payer.toggleSelection(violation));
+      violations: payer.violations,
+      selection: payer.selectedViolations,
+      onTap: (TkViolation violation) {
+        // Only allow selection of unpaid violations
+        if (violation.isUnpaid) payer.toggleSelection(violation);
+      },
+    );
   }
 
   Widget _getTotalFine(TkPayer payer, BuildContext context) {
@@ -60,26 +64,80 @@ class TkViolationListPane extends TkPane {
     );
   }
 
+  Widget _buildUnpaidViolationsPane(BuildContext context, TkPayer payer) {
+    return ListView(
+      children: [
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 20.0),
+        //   child: TkSectionTitle(title: S.of(context).kCurrentViolations),
+        // ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: _getUnpaidViolationList(payer),
+        ),
+        _getTotalFine(payer, context),
+        _getPaySelectionButton(payer, context),
+        TkError(message: payer.validationViolationsError),
+        TkError(message: payer.loadError)
+      ],
+    );
+  }
+
+  Widget _buildPaidViolationsPane(BuildContext context, TkPayer payer) {
+    return ListView(
+      children: [
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 20.0),
+        //   child: TkSectionTitle(title: S.of(context).kPaidViolations),
+        // ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: TkViolationList(violations: payer.paidViolations),
+        ),
+        TkError(message: payer.loadError)
+      ],
+    );
+  }
+
+  Widget _buildCancelledViolationsPane(BuildContext context, TkPayer payer) {
+    return ListView(
+      children: [
+        // Padding(
+        //   padding: const EdgeInsets.only(top: 20.0),
+        //   child: TkSectionTitle(title: S.of(context).kPaidViolations),
+        // ),
+        Padding(
+          padding: const EdgeInsets.only(top: 20.0),
+          child: TkViolationList(violations: payer.cancelledViolations),
+        ),
+        TkError(message: payer.loadError)
+      ],
+    );
+  }
+
+  Widget _buildTabs(BuildContext context, TkPayer payer) {
+    return TkTabs(
+      length: 3,
+      titles: [
+        S.of(context).kCurrent.toUpperCase(),
+        S.of(context).kPaid.toUpperCase(),
+        S.of(context).kCancelled.toUpperCase()
+      ],
+      children: [
+        _buildUnpaidViolationsPane(context, payer),
+        _buildPaidViolationsPane(context, payer),
+        _buildCancelledViolationsPane(context, payer),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<TkPayer>(
       builder: (context, payer, _) {
         return payer.isLoading
             ? TkProgressIndicator()
-            : ListView(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child:
-                        TkSectionTitle(title: S.of(context).kCurrentViolations),
-                  ),
-                  _getViolationList(payer),
-                  _getTotalFine(payer, context),
-                  _getPaySelectionButton(payer, context),
-                  TkError(message: payer.validationViolationsError),
-                  TkError(message: payer.loadError)
-                ],
-              );
+            : _buildTabs(context, payer);
       },
     );
   }

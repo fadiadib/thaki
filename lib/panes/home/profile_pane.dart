@@ -119,7 +119,7 @@ class TkProfilePane extends TkPane {
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: TkCarousel(
-            height: 130,
+            height: 120,
             dotColor: kPrimaryColor.withOpacity(0.5),
             selectedDotColor: kPrimaryColor,
             emptyMessage: S.of(context).kNoCars,

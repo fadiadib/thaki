@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:thaki/drawers/menu_drawer.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/panes/home/index.dart';
@@ -16,6 +15,7 @@ import 'package:thaki/screens/notification_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/general/logo_box.dart';
+import 'package:thaki/drawers/menu_drawer.dart';
 
 class TkHomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -54,6 +54,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
         Provider.of<TkAttributesController>(context, listen: false);
 
     await attributes.load(langController);
+    await account.load();
     await booker.loadTickets(account.user);
     await purchaser.loadBalance(account.user);
     await account.loadCars();

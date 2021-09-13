@@ -134,6 +134,8 @@
   "kCheckForLPR": "Enter another LPR",
   "kEnterLRP": "Enter one time car LPR",
   "kCurrentViolations": "Current Violations",
+  "kPaidViolations": "Paid Violations",
+  "kCancelledViolations": "Cancelled Violations",
   "kTotal": "Total",
   "kPaySelected": "Pay Selected",
   "kFinePaymentSuccess": "Fine paid successfully, please allow 30 minutes for updates on CivicSmart system",
@@ -147,10 +149,13 @@
   "kParkingDuration": "Parking Duration",
   "kParkFor": "Park for",
   "kParkSuccess": "Parking Confirmed, QR code will be available before parking time",
+  "kParkInstructions": "1. Activate the Parking Meter by pressing Power on.\n2. Press button on the Meter.\n3. Scan your ticket QR Code using Meter Scanner.\n4. Receive the ticket from Meter and place it on your dashboard correctly.",
   "kUpcoming": "Upcoming",
   "kCompleted": "Completed",
   "kPending": "Pending",
   "kCancelled": "Cancelled",
+  "kPaid": "Paid",
+  "kCurrent": "Current",
   "kImmediateParking": "Immediate Parking",
   "kParkNow": "Park now",
   "kScheduleParking": "Schedule Parking",
@@ -230,5 +235,6 @@
   "kNoTransactions": "No transactions",
   "kCannotUploadDocument": "Error uploading image, the file is of incompatible format",
   "kFileIsTooLarge": "File size is too large, please select a smaller image",
-  "kNoPackages": "You do not have any credit"
+  "kNoPackages": "You do not have any credit",
+  "kTicketNumber": "Ticket Number"
 }

@@ -12,7 +12,7 @@ class TkCardRibbon extends StatelessWidget {
     this.color,
     this.side = TkCardRibbonSide.right,
     this.height = 20.0,
-    this.width = 100.0,
+    this.width = 115.0,
   });
 
   final Color color;
@@ -24,9 +24,9 @@ class TkCardRibbon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: side == TkCardRibbonSide.right ? -32 : null,
-      left: side == TkCardRibbonSide.left ? -32 : null,
-      top: 5,
+      right: side == TkCardRibbonSide.right ? -34 : null,
+      left: side == TkCardRibbonSide.left ? -34 : null,
+      top: -5,
 
       // Rotate the ribbon 45 or -45 degrees according
       // to on which side it is shown
@@ -80,31 +80,38 @@ class TkMarker extends StatelessWidget {
     this.title,
     this.color,
     this.side = TkCardRibbonSide.right,
+    this.isStack = true,
   });
 
   final Color color;
   final String title;
   final TkCardRibbonSide side;
+  final bool isStack;
+
+  Widget _buildMarker() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: Text(
+        title.toUpperCase(),
+        style:
+            kBoldStyle[kSmallSize].copyWith(color: kWhiteColor, fontSize: 10),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      right: side == TkCardRibbonSide.right ? -5 : null,
-      left: side == TkCardRibbonSide.left ? -5 : null,
-      top: 10,
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.all(Radius.circular(10)),
-        ),
-        child: Text(
-          title.toUpperCase(),
-          style:
-              kBoldStyle[kSmallSize].copyWith(color: kWhiteColor, fontSize: 10),
-          textAlign: TextAlign.center,
-        ),
-      ),
-    );
+    return isStack
+        ? Positioned(
+            right: side == TkCardRibbonSide.right ? -5 : null,
+            left: side == TkCardRibbonSide.left ? -5 : null,
+            top: 10,
+            child: _buildMarker())
+        : _buildMarker();
   }
 }

@@ -494,14 +494,22 @@ class TkAPIHelper {
   /////////////////////////////////////////////////////////////
   ///////////////////////// VIOLATIONS ////////////////////////
   /// Load violations API
-  Future<Map> loadViolations(String licensePlate, TkUser user) async {
+  Future<Map> loadViolations(String licensePlate, TkUser user,
+      {bool all = false}) async {
     return await _network.getData(
-      url: await getRootURL() +
-          kLoadViolationsAPI +
-          '?' +
-          kCarPlateENTag +
-          '=' +
-          licensePlate,
+      url: !all
+          ? await getRootURL() +
+              kLoadViolationsAPI +
+              '?' +
+              kCarPlateENTag +
+              '=' +
+              licensePlate
+          : await getRootURL() +
+              kLoadAllViolationsAPI +
+              '?' +
+              kCarPlateENTag +
+              '=' +
+              licensePlate,
       params: {kCarPlateENTag: licensePlate},
       headers: user.toHeader(),
     );

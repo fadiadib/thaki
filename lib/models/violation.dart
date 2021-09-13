@@ -9,7 +9,13 @@ class TkViolation {
     fine = double.tryParse(json[kViolationFineTag].toString());
     carPlate = json[kViolationCarTag];
     issueNumber = int.tryParse(json[kViolationIssueTag].toString());
+    if (json[kViolationStatusTag] != null)
+      status = int.tryParse(json[kViolationStatusTag].toString()) ?? 0;
   }
+
+  bool get isUnpaid => status == 0;
+  bool get isPaid => status == 1;
+  bool get isCancelled => status == 2;
 
   int id;
   String name;
@@ -18,4 +24,5 @@ class TkViolation {
   double fine;
   String carPlate;
   int issueNumber;
+  int status = 0;
 }

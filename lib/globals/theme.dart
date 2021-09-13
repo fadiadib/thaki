@@ -9,6 +9,8 @@ const String kMainFontFamily = kLTRFontFamily;
 
 /// Special text styles (not included in the theme)
 /// 1. Normal text styles
+const kTinySize = 10.0;
+const kSmallerSize = 12.0;
 const kSmallSize = 14.0;
 const kNormalSize = 16.0;
 const kBigSize = 24.0;
@@ -68,6 +70,16 @@ Map<double, TextStyle> kLightStyle = {
 };
 
 Map<double, TextStyle> kRegularStyle = {
+  kTinySize: TextStyle(
+    color: kPrimaryTextColor,
+    fontWeight: FontWeight.w400,
+    fontSize: kTinySize,
+  ),
+  kSmallerSize: TextStyle(
+    color: kPrimaryTextColor,
+    fontWeight: FontWeight.w400,
+    fontSize: kTinySize,
+  ),
   kSmallSize: TextStyle(
     color: kPrimaryTextColor,
     fontWeight: FontWeight.w400,
@@ -104,6 +116,11 @@ Map<double, TextStyle> kMediumStyle = {
 };
 
 Map<double, TextStyle> kBoldStyle = {
+  kTinySize: TextStyle(
+    color: kPrimaryTextColor,
+    fontWeight: FontWeight.w600,
+    fontSize: kTinySize,
+  ),
   kSmallSize: TextStyle(
     color: kPrimaryTextColor,
     fontWeight: FontWeight.w600,

@@ -4,6 +4,7 @@ import 'package:thaki/models/car.dart';
 class TkTicket {
   TkTicket.fromJson(Map<String, dynamic> json) {
     id = int.tryParse(json[kTicketIdTag].toString());
+    identifier = json[kTicketIdentifierTag] ?? '';
     start = DateTime.tryParse(json[kTicketStartTag].toString());
     duration = int.tryParse(json[kTicketDurationTag].toString());
     end = start.add(Duration(hours: duration));
@@ -18,6 +19,7 @@ class TkTicket {
   }
 
   int id;
+  String identifier;
   TkCar car;
   DateTime start;
   DateTime end;

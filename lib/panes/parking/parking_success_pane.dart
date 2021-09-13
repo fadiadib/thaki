@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/providers/booker.dart';
+import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/cards/success_card.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
-import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/tiles/ticket_tile.dart';
 
 class TkParkingSuccessPane extends TkPane {
@@ -16,7 +16,7 @@ class TkParkingSuccessPane extends TkPane {
 
   Widget _getCloseButton(BuildContext context) {
     return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
+      padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 20.0),
       child: TkButton(title: S.of(context).kClose, onPressed: onDone),
     );
   }
@@ -29,14 +29,17 @@ class TkParkingSuccessPane extends TkPane {
             ? TkProgressIndicator()
             : ListView(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
-                    child: TkSectionTitle(title: ''),
-                  ),
+                  SizedBox(height: 20),
                   if (booker.parkError == null)
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                      child: TkTicketTile(ticket: booker.newTicket),
+                      child: TkTicketTile(
+                        ticket: booker.newTicket,
+                        langCode: Provider.of<TkLangController>(context,
+                                listen: false)
+                            .lang
+                            .languageCode,
+                      ),
                     ),
 
                   // Result is dependent on the booker result
@@ -46,6 +49,9 @@ class TkParkingSuccessPane extends TkPane {
                       message: booker.parkError == null
                           ? S.of(context).kParkSuccess
                           : booker.parkError,
+                      subMessage: booker.parkError == null
+                          ? S.of(context).kParkInstructions
+                          : null,
                       result: booker.parkError == null,
                     ),
                   ),

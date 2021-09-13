@@ -15,6 +15,11 @@ class TkPayer extends ChangeNotifier {
   // Model
   List<TkViolation> _violations = [];
   List<TkViolation> get violations => _violations;
+  List<TkViolation> _paidViolations = [];
+  List<TkViolation> get paidViolations => _paidViolations;
+  List<TkViolation> _cancelledViolations = [];
+  List<TkViolation> get cancelledViolations => _cancelledViolations;
+
   TkCar _selectedCar;
   TkCar get selectedCar => _selectedCar;
   set selectedCar(TkCar car) {
@@ -116,7 +121,7 @@ class TkPayer extends ChangeNotifier {
 
   /// Load violations
   Future<bool> loadViolations(TkUser user, TkLangController langController,
-      {bool guest = false}) async {
+      {bool guest = false, bool all = false}) async {
     // Start any loading indicators
     _isLoading = true;
 
@@ -126,19 +131,42 @@ class TkPayer extends ChangeNotifier {
     _validationCarError = null;
     _violations.clear();
     _selectedViolations.clear();
+    _paidViolations.clear();
+    _cancelledViolations.clear();
     _cvv = null;
 
     Map result = Map();
-    if (!guest)
-      result =
-          await _apis.loadViolations(selectedCar.plateEN.toUpperCase(), user);
-    else
+    if (guest)
       result = await _apis.loadViolationsWithoutToken(
           selectedCar.plateEN.toUpperCase(), langController);
+    else
+      result = await _apis
+          .loadViolations(selectedCar.plateEN.toUpperCase(), user, all: all);
 
     if (result[kStatusTag] == kSuccessCode) {
-      for (Map<String, dynamic> json in result[kDataTag][kViolationsListTag]) {
-        _violations.add(TkViolation.fromJson(json));
+      if (all) {
+        if (result[kDataTag][kViolationsListTag] is Map) {
+          final Map violationsMap = result[kDataTag][kViolationsListTag];
+
+          if (violationsMap[kViolationUnpaidTag] != null)
+            for (Map<String, dynamic> json
+                in violationsMap[kViolationUnpaidTag])
+              _violations.add(TkViolation.fromJson(json));
+
+          if (violationsMap[kViolationPaidTag] != null)
+            for (Map<String, dynamic> json in violationsMap[kViolationPaidTag])
+              _paidViolations.add(TkViolation.fromJson(json));
+
+          if (violationsMap[kViolationCancelledTag] != null)
+            for (Map<String, dynamic> json
+                in violationsMap[kViolationCancelledTag])
+              _cancelledViolations.add(TkViolation.fromJson(json));
+        }
+      } else {
+        for (Map<String, dynamic> json in result[kDataTag]
+            [kViolationsListTag]) {
+          _violations.add(TkViolation.fromJson(json));
+        }
       }
     } else {
       // an error happened

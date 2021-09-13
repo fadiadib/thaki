@@ -6,6 +6,7 @@ class TkTitleTextCard extends StatelessWidget {
   TkTitleTextCard({
     @required this.title,
     this.message,
+    this.subMessage,
     this.child,
     this.titleColor = kPrimaryColor,
     this.messageColor,
@@ -13,6 +14,7 @@ class TkTitleTextCard extends StatelessWidget {
   });
   final String title;
   final String message;
+  final String subMessage;
   final Color titleColor;
   final Color messageColor;
   final Widget child;
@@ -49,10 +51,31 @@ class TkTitleTextCard extends StatelessWidget {
                         child: Icon(icon, color: titleColor),
                       ),
                     Expanded(
-                      child: Text(
-                        message != null ? message : title,
-                        style: kRegularStyle[kSmallSize]
-                            .copyWith(color: messageColor ?? kDarkGreyColor),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            message != null ? message : title,
+                            style: kRegularStyle[kSmallSize].copyWith(
+                                color: messageColor ?? kDarkGreyColor),
+                          ),
+                          if (subMessage != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: kPrimaryColor.withOpacity(0.08),
+                                  borderRadius: BorderRadius.circular(4.0),
+                                ),
+                                padding: EdgeInsets.all(10.0),
+                                child: Text(
+                                  subMessage,
+                                  style: kRegularStyle[kSmallSize].copyWith(
+                                      color: messageColor ?? kDarkGreyColor),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
                   ],

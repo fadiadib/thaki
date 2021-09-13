@@ -47,6 +47,7 @@ const String kReserveParkingAPI = '$kRootURL/booking';
 const String kLoadViolationsAPI = '$kRootURL/violations'; // 200, 404: empty
 const String kPayViolationsAPI = '$kRootURL/violations/pay'; // 201
 const String kLoadGuestViolationsAPI = '$kRootURL/violations/guest';
+const String kLoadAllViolationsAPI = '$kRootURL/violations/list';
 // Transactions
 const String kTransactionAPI = '$kRootURL/transaction';
 const String kGuestTransactionAPI = '$kRootURL/transaction/guest';
@@ -174,6 +175,7 @@ const String kCancelledTicketsTag = 'cancelled';
 const String kPendingTicketsTag = 'pending';
 const String kTicketTag = 'ticket';
 const String kTicketIdTag = 'id';
+const String kTicketIdentifierTag = 'identifier';
 const String kTicketNameTag = 'ticket_name';
 const String kTicketStartTag = 'datetime';
 const String kTicketEndTag = 'ticket_end';
@@ -241,7 +243,11 @@ const String kViolationLocationTag = 'location';
 const String kViolationFineTag = 'fine';
 const String kViolationCarTag = 'car_plate';
 const String kViolationIssueTag = 'issue_no';
+const String kViolationStatusTag = 'status'; // 0: Unpaid, 1: Paid, 2: Cancelled
 const String kViolationsDetailsTag = 'violations_details';
+const String kViolationUnpaidTag = 'unpaid';
+const String kViolationPaidTag = 'paid';
+const String kViolationCancelledTag = 'cancelled';
 // Attributes tags
 const String kAttributeIdTag = 'id';
 const String kAttributeENameTag = 'name_en';
