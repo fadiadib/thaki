@@ -2,14 +2,18 @@ import 'package:flutter/foundation.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/utilities/analytics_helper.dart';
 import 'package:thaki/utilities/index.dart';
 
+/// [TkAccount]
+/// Manages users registration, login and validation
+/// manages creation, update and deletion of user cars and cards
 class TkAccount extends ChangeNotifier {
   // Helpers
   static TkAPIHelper _apis = new TkAPIHelper();
   static TkSharedPrefHelper _prefs = new TkSharedPrefHelper();
 
-  // Model variables
+  // User model
   TkUser _user;
   TkUser get user => _user;
   set user(TkUser u) {
@@ -58,7 +62,9 @@ class TkAccount extends ChangeNotifier {
   String updateCardError;
   String deleteCardError;
 
-  /// Checks for an active login session using user_token
+  /// [isLoggedIn]
+  /// Checks for an active login session using [user_token]
+  /// loaded from the shared prefs
   Future<bool> isLoggedIn() async {
     // Check if user token is stored
     String token = await _prefs.get(tag: kUserTokenTag);
@@ -82,7 +88,10 @@ class TkAccount extends ChangeNotifier {
     return false;
   }
 
-  /// User register, calls API and loads user model
+  /// [register]
+  /// User register, calls registration API and loads user model
+  /// saves the token in shared preference
+  /// [store] boolean that informs whether to save the token to the shared prefs or not
   Future<bool> register({bool store = false}) async {
     // Start any loading indicators
     _isLoading = true;
@@ -99,6 +108,10 @@ class TkAccount extends ChangeNotifier {
       // Load user data
       user = TkUser.fromJson(result[kDataTag]);
       user.updateModelFromJson({kUserLangTag: lang});
+
+      // Update firebase analytics
+      await TkAnalyticsHelper.setUserProperties(user);
+      await TkAnalyticsHelper.logSignUp('email');
 
       // Save token
       if (store) {
@@ -117,7 +130,10 @@ class TkAccount extends ChangeNotifier {
     return (_registerError == null);
   }
 
-  /// User login, calls API and loads user model
+  /// [login]
+  /// User login, calls login API and loads user model
+  /// saves the token in shared preference
+  /// [store] boolean that informs whether to save the token to the shared prefs or not
   Future<bool> login({bool store = false}) async {
     // Start any loading indicators
     _isLoading = true;
@@ -134,6 +150,10 @@ class TkAccount extends ChangeNotifier {
       // Load user data
       user = TkUser.fromJson(result[kDataTag]);
       user.updateModelFromJson({kUserLangTag: lang});
+
+      // Update firebase analytics
+      await TkAnalyticsHelper.setUserProperties(user);
+      await TkAnalyticsHelper.logLogin('email');
 
       // Save token
       if (store) {
@@ -152,8 +172,9 @@ class TkAccount extends ChangeNotifier {
     return (loginError == null);
   }
 
-  /// User login, calls API and loads user model
-  Future<bool> social() async {
+  /// [social]
+  /// User login using social account, calls API and loads user model
+  Future<bool> social({bool isSignUp = false}) async {
     // Start any loading indicators
     _isLoading = true;
     _socialError = null;
@@ -170,6 +191,13 @@ class TkAccount extends ChangeNotifier {
       user = TkUser.fromJson(result[kDataTag]);
       user.updateModelFromJson({kUserLangTag: lang});
 
+      // Update firebase analytics
+      await TkAnalyticsHelper.setUserProperties(user);
+      if (isSignUp)
+        await TkAnalyticsHelper.logSignUp(user.loginType);
+      else
+        await TkAnalyticsHelper.logLogin(user.loginType);
+
       // Save token
       _prefs.store(tag: kUserTokenTag, data: user.token);
       _prefs.store(tag: kUserTokenTypeTag, data: user.tokenType);
@@ -185,7 +213,8 @@ class TkAccount extends ChangeNotifier {
     return (_socialError == null);
   }
 
-  /// User delete social, calls API and loads user model
+  /// [deleteSocial]
+  /// Calls API to delete account for a user who logged in using social account
   Future<bool> deleteSocial() async {
     // Start any loading indicators
     _isLoading = true;
@@ -210,7 +239,9 @@ class TkAccount extends ChangeNotifier {
     return (_socialError == null);
   }
 
-  /// User logout, calls API and loads user model
+  /// [logout]
+  /// Calls API to sign out a logged user
+  /// removes the user token from the shared prefs
   Future<bool> logout() async {
     // Start any loading indicators
     _isLoading = true;
@@ -234,7 +265,8 @@ class TkAccount extends ChangeNotifier {
     return (logoutError == null);
   }
 
-  /// Load user profile, calls API and loads user model
+  /// [load]
+  /// Call API to load a user profile
   Future<bool> load() async {
     // Start any loading indicators
     _isLoading = true;
@@ -250,6 +282,9 @@ class TkAccount extends ChangeNotifier {
       // Update user language
       String lang = await _prefs.get(tag: kLangTag);
       user.updateModelFromJson({kUserLangTag: lang});
+
+      // Update firebase analytics with the user token
+      await TkAnalyticsHelper.setUserProperties(user);
     } else {
       // an error happened
       loadError = _apis.normalizeError(result);
@@ -262,7 +297,9 @@ class TkAccount extends ChangeNotifier {
     return (loadError == null);
   }
 
-  /// User register, calls API and loads user model
+  /// [edit]
+  /// Used to edit a user profile, calls edit profile API
+  /// and reloads the user model after the API returns
   Future<bool> edit() async {
     // Start any loading indicators
     _isLoading = true;
@@ -290,7 +327,8 @@ class TkAccount extends ChangeNotifier {
     return (editError == null);
   }
 
-  /// Forgot password
+  /// [forgotPassword]
+  /// Called when a user asks to reset password, calls forgot password API
   Future<bool> forgotPassword() async {
     // Start any loading indicators
     _isLoading = true;
@@ -315,7 +353,8 @@ class TkAccount extends ChangeNotifier {
     return (forgotPasswordError == null);
   }
 
-  /// Reset password and confirm OTP
+  /// [resetPassword]
+  /// Reset password and confirm OTP, calls reset password API
   Future<bool> resetPassword() async {
     // Start any loading indicators
     _isLoading = true;
@@ -340,7 +379,8 @@ class TkAccount extends ChangeNotifier {
     return (resetPasswordError == null);
   }
 
-  /// Get user cars, calls API and loads user model
+  /// [loadCars]
+  /// Get user cars, calls API and populates user model with cars
   Future<bool> loadCars() async {
     // Start any loading indicators
     _isLoading = true;
@@ -362,7 +402,9 @@ class TkAccount extends ChangeNotifier {
     return (loadCarsError == null);
   }
 
-  /// Get user cars, calls API and loads user model
+  /// [addCar]
+  /// Calls API to add a new car
+  /// [car] TkCar object of the new car
   Future<bool> addCar(TkCar car) async {
     // Start any loading indicators
     _isLoading = true;
@@ -378,6 +420,9 @@ class TkAccount extends ChangeNotifier {
         user.cars.insert(0, newCar);
       } else
         user.cars.add(newCar);
+
+      // Update firebase analytics with the user event
+      await TkAnalyticsHelper.logAddCar();
     } else {
       // an error happened
       addCarError = _apis.normalizeError(result);
@@ -390,7 +435,9 @@ class TkAccount extends ChangeNotifier {
     return (addCarError == null);
   }
 
-  /// Get user cars, calls API and loads user model
+  /// [deleteCar]
+  /// Calls API to delete an old car
+  /// [car] TkCar object of the car to be deleted
   Future<bool> deleteCar(TkCar car) async {
     // Start any loading indicators
     _isLoading = true;
@@ -413,7 +460,9 @@ class TkAccount extends ChangeNotifier {
     return (deleteCarError == null);
   }
 
-  /// Get user cars, calls API and loads user model
+  /// [updateCar]
+  /// Calls API to update a car properties
+  /// [car] TkCar object to update
   Future<bool> updateCar(TkCar car) async {
     // Start any loading indicators
     _isLoading = true;
@@ -445,7 +494,8 @@ class TkAccount extends ChangeNotifier {
     return (updateCarError == null);
   }
 
-  /// Get user cars, calls API and loads user model
+  /// [loadCards]
+  /// Get user cards, calls API and populates user model with cards
   Future<bool> loadCards() async {
     // Start any loading indicators
     _isLoading = true;
@@ -467,7 +517,9 @@ class TkAccount extends ChangeNotifier {
     return (loadCardsError == null);
   }
 
-  /// Get user cars, calls API and loads user model
+  /// [addCard]
+  /// Calls API to add a new card
+  /// [card] TkCard object of the new card
   Future<bool> addCard(TkCredit card) async {
     // Start any loading indicators
     _isLoading = true;
@@ -494,7 +546,9 @@ class TkAccount extends ChangeNotifier {
     return (addCardError == null);
   }
 
-  /// Get user cars, calls API and loads user model
+  /// [deleteCard]
+  /// Calls API to delete an old card
+  /// [card] TkCard object of the card to be deleted
   Future<bool> deleteCard(TkCredit card) async {
     // Start any loading indicators
     _isLoading = true;
@@ -517,7 +571,9 @@ class TkAccount extends ChangeNotifier {
     return (deleteCardError == null);
   }
 
-  /// Get user cars, calls API and loads user model
+  /// [updateCard]
+  /// Calls API to update a card properties
+  /// [card] TkCard object to update
   Future<bool> updateCard(TkCredit card) async {
     // Start any loading indicators
     _isLoading = true;

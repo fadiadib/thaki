@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/utilities/analytics_helper.dart';
 import 'package:thaki/utilities/index.dart';
 
 class TkBooker extends ChangeNotifier {
@@ -96,6 +97,10 @@ class TkBooker extends ChangeNotifier {
   String cancelError;
   String balanceError;
 
+  /// [loadQR]
+  /// Calls API to load the ticket QR code if available
+  /// [user] the user object
+  /// [ticket] the ticket used to get teh QR code
   Future<bool> loadQR(TkUser user, TkTicket ticket) async {
     // Start any loading indicators
     _isQRLoading = true;
@@ -112,27 +117,28 @@ class TkBooker extends ChangeNotifier {
             (element) => element.id == ticket.id,
             orElse: () => null);
         if (theTicket != null) {
-          theTicket.updateModel({
-            kTicketCodeTag: result[kDataTag][kBookingQRData],
-          });
+          theTicket
+              .updateModel({kTicketCodeTag: result[kDataTag][kBookingQRData]});
         } else {
           theTicket = _tickets[kCompletedTicketsTag].firstWhere(
               (element) => element.id == ticket.id,
               orElse: () => null);
           if (theTicket != null) {
-            theTicket.updateModel({
-              kTicketCodeTag: result[kDataTag][kBookingQRData],
-            });
+            theTicket.updateModel(
+                {kTicketCodeTag: result[kDataTag][kBookingQRData]});
           } else {
             theTicket = _tickets[kPendingTicketsTag].firstWhere(
                 (element) => element.id == ticket.id,
                 orElse: () => null);
             if (theTicket != null) {
-              theTicket.updateModel({
-                kTicketCodeTag: result[kDataTag][kBookingQRData],
-              });
+              theTicket.updateModel(
+                  {kTicketCodeTag: result[kDataTag][kBookingQRData]});
             }
           }
+
+          // Update firebase analytics that the user successfully
+          // loaded the QR code for the selected ticket
+          await TkAnalyticsHelper.logLoadQR();
         }
       }
     } else {
@@ -147,7 +153,9 @@ class TkBooker extends ChangeNotifier {
     return (loadQRError == null);
   }
 
-  /// Load user tickets method
+  /// [loadTickets]
+  /// Calls the API to load user upcoming, and completed tickets
+  /// [user] the user object
   Future<bool> loadTickets(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
@@ -188,7 +196,10 @@ class TkBooker extends ChangeNotifier {
     return (loadError == null);
   }
 
-  /// Cancel ticket method
+  /// [cancelTicket]
+  /// Calls API to cancel a ticket for the user
+  /// [user] the user object
+  /// [ticket] the ticket object to be cancelled
   Future<bool> cancelTicket(TkUser user, TkTicket ticket) async {
     // Start any loading indicators
     _isLoading = true;
@@ -217,7 +228,9 @@ class TkBooker extends ChangeNotifier {
     return (cancelError == null);
   }
 
-  /// Reserve Parking
+  /// [reserveParking]
+  /// Calls API to reserve parking for the selected car using the selected date and interval
+  /// [user] the user object
   Future<bool> reserveParking(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
@@ -242,6 +255,10 @@ class TkBooker extends ChangeNotifier {
       _newTicket = TkTicket.fromJson(result[kDataTag][kBookingInfoTag]);
       _tickets[kUpcomingTicketsTag].add(_newTicket);
       _tickets[kUpcomingTicketsTag].sort((a, b) => a.start.compareTo(b.start));
+
+      // Update firebase analytics that the user successfully
+      // booked a new ticket
+      await TkAnalyticsHelper.logBookTicket();
     }
 
     // Stop any listening loading indicators

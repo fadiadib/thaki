@@ -76,6 +76,7 @@ class _TkBuySubscriptionScreenState extends TkMultiStepPageState {
     } else {
       panes.add(
         TkTransactionPane(
+          type: TkTransactionType.subscription,
           onDone: () => loadNextPane(),
           onClose: () async {
             if (await TkDialogHelper.gShowConfirmationDialog(

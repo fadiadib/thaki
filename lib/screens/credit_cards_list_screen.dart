@@ -56,6 +56,7 @@ class _TkCreditCardsListScreenState extends State<TkCreditCardsListScreen> {
                   onTap: (TkCredit card) async {
                     Navigator.of(context).push(
                       MaterialPageRoute(
+                        settings: RouteSettings(name: TkAddCardScreen.id),
                         builder: (context) =>
                             TkAddCardScreen(editMode: true, card: card),
                       ),
@@ -72,6 +73,7 @@ class _TkCreditCardsListScreenState extends State<TkCreditCardsListScreen> {
                   onEdit: (TkCredit card) async {
                     Navigator.of(context).push(
                       MaterialPageRoute(
+                        settings: RouteSettings(name: TkAddCardScreen.id),
                         builder: (context) =>
                             TkAddCardScreen(editMode: true, card: card),
                       ),

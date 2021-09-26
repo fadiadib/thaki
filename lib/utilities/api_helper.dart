@@ -18,6 +18,7 @@ class TkAPIHelper {
   static Future<String> getRootURL() async {
     if (kForceLiveServer) return kDefaultLiveServer;
     if (kForceTestServer) return kDefaultTestServer;
+    if (kForceDataCenter) return kDefaultDataCenter;
 
     if (_rootURL != null) return _rootURL;
 
@@ -531,10 +532,11 @@ class TkAPIHelper {
   }
 
   /// Purchase package API
-  Future<Map> payViolations(
-      {@required List<TkViolation> violations,
-      @required TkCredit card,
-      @required String cvv}) async {
+  Future<Map> payViolations({
+    @required List<TkViolation> violations,
+    @required TkCredit card,
+    @required String cvv,
+  }) async {
     List<int> ids = [];
     for (TkViolation violation in violations) {
       ids.add(violation.id);

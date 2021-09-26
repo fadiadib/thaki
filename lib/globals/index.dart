@@ -8,3 +8,4 @@ export 'dimensions.dart';
 export 'images.dart';
 export 'heroes.dart';
 export 'db_commands.dart';
+export 'events.dart';

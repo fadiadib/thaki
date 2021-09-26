@@ -71,6 +71,7 @@ class _TkPayViolationScreenState extends TkMultiStepPageState {
         loadNextPane();
       }),
       TkTransactionPane(
+        type: TkTransactionType.violation,
         guest: guest,
         onDone: () => loadNextPane(),
         onClose: () async {

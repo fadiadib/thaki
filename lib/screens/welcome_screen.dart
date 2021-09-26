@@ -141,6 +141,7 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
                   payer.allowChange = true;
 
                   Navigator.of(context).push(MaterialPageRoute(
+                    settings: RouteSettings(name: TkPayViolationScreen.id),
                     builder: (context) => TkPayViolationScreen(guest: true),
                   ));
                 },

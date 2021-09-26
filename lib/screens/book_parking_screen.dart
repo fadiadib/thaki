@@ -77,6 +77,7 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
     } else {
       panes.add(
         TkTransactionPane(
+          type: TkTransactionType.booking,
           onDone: () => loadNextPane(),
           onClose: () async {
             if (await TkDialogHelper.gShowConfirmationDialog(

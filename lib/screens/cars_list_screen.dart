@@ -57,6 +57,7 @@ class _TkCarsListScreenState extends State<TkCarsListScreen> {
                         onTap: (TkCar car) {
                           Navigator.of(context).push(
                             MaterialPageRoute(
+                              settings: RouteSettings(name: TkAddCarScreen.id),
                               builder: (context) =>
                                   TkAddCarScreen(editMode: true, car: car),
                             ),
@@ -73,6 +74,7 @@ class _TkCarsListScreenState extends State<TkCarsListScreen> {
                         onEdit: (TkCar car) async {
                           Navigator.of(context).push(
                             MaterialPageRoute(
+                              settings: RouteSettings(name: TkAddCarScreen.id),
                               builder: (context) =>
                                   TkAddCarScreen(editMode: true, car: car),
                             ),

@@ -44,6 +44,7 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
     if (await account.resetPassword()) {
       Navigator.of(context).pop();
       Navigator.of(context).pushReplacement(MaterialPageRoute(
+        settings: RouteSettings(name: TkLoginScreen.id),
         builder: (context) => TkLoginScreen(showPasswordSuccess: true),
       ));
     }

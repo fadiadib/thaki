@@ -3,9 +3,12 @@ import 'package:flutter/foundation.dart';
 
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/utilities/analytics_helper.dart';
 import 'package:thaki/utilities/index.dart';
 
 import 'package:thaki/providers/lang_controller.dart';
+
+enum TkTransactionType { booking, package, subscription, violation }
 
 class TkTransactor extends ChangeNotifier {
   // Helpers
@@ -49,7 +52,8 @@ class TkTransactor extends ChangeNotifier {
   String transactionError;
   String loadTransactionsError;
 
-  /// Initialize transaction
+  /// [initTransaction]
+  /// Initialize transaction method
   Future<bool> initTransaction({
     TkUser user,
     String type,
@@ -107,7 +111,12 @@ class TkTransactor extends ChangeNotifier {
     return (transactionError == null);
   }
 
-  /// Check transaction
+  /// [checkTransaction]
+  /// Calls an API that checks the transaction result
+  /// returns status: 1 => pending, 2 => Error, 0 => success
+  /// [user] the user object
+  /// [langController] language controller provider, used in case of guest checkout
+  /// [guest] boolean to control whether it is a guest or logged in user
   Future<int> checkTransaction({
     @required TkUser user,
     @required TkLangController langController,
@@ -137,10 +146,17 @@ class TkTransactor extends ChangeNotifier {
     return status;
   }
 
+  /// [startTransactionChecker]
+  /// Start a timer that periodically calls the transaction check API
+  /// [user] the user object
+  /// [callback] method to call when a result is success or failure is returned
+  /// [langController] the language controller provider (used in case of guest login)
+  /// [guest] boolean whether to pay as guest or as logged in user
   void startTransactionChecker({
     @required TkUser user,
     @required Function callback,
     @required TkLangController langController,
+    @required TkTransactionType type,
     bool guest = false,
   }) {
     // Check if there is an active payment request
@@ -166,14 +182,41 @@ class TkTransactor extends ChangeNotifier {
         });
         if (result == 0 || result == 2) {
           // Success or failure
+          // Stop the transaction checker
           stopTransactionChecker();
+
+          // Check if the result is success
           transactionResult = result == 0;
-          callback(result == 0);
+
+          // Update firebase analytics in case of success
+          if (transactionResult) {
+            switch (type) {
+              case TkTransactionType.violation:
+                TkAnalyticsHelper.logPayViolation();
+                break;
+              case TkTransactionType.package:
+                TkAnalyticsHelper.logPurchasePackage();
+                break;
+              case TkTransactionType.subscription:
+                TkAnalyticsHelper.logPurchaseSubscription();
+                break;
+              case TkTransactionType.booking:
+                break;
+            }
+          } else {
+            // Log purchase failure
+            TkAnalyticsHelper.logPurchaseFailure();
+          }
+
+          // Call callback with result as bool
+          callback(transactionResult);
         }
       }
     });
   }
 
+  /// [stopTransactionChecker]
+  /// Stops the transaction checker timer
   void stopTransactionChecker() {
     _avoidConcurrency = false;
 
@@ -183,8 +226,10 @@ class TkTransactor extends ChangeNotifier {
     }
   }
 
+  /// [loadTransactionsModel]
   /// Loads the packages transactions, subscriptions transactions
   /// and violations transactions
+  /// [data] map containing the transactions data
   void loadTransactionsModel(Map<String, dynamic> data) {
     // Load packages
     _transactions.clear();
@@ -201,7 +246,9 @@ class TkTransactor extends ChangeNotifier {
       _transactions.insert(0, TkViolationTransaction.fromJson(json));
   }
 
-  /// Get user transactions
+  /// [loadTransactions]
+  /// Calls API to retrieve user transactions
+  /// [user] the user object
   Future<bool> loadTransactions({TkUser user}) async {
     // Start any loading indicators
     _isLoading = true;

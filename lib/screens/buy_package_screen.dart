@@ -71,6 +71,7 @@ class _TkBuyPackageScreenState extends TkMultiStepPageState {
     } else {
       panes.add(
         TkTransactionPane(
+          type: TkTransactionType.package,
           onDone: () {
             // Update balance
             Provider.of<TkPurchaser>(context, listen: false).loadBalance(

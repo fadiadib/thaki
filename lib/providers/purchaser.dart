@@ -44,9 +44,7 @@ class TkPurchaser extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   // Errors
-  void clearErrors() {
-    loadError = purchaseError = loadBalanceError = null;
-  }
+  void clearErrors() => loadError = purchaseError = loadBalanceError = null;
 
   String loadError;
   String purchaseError;
@@ -64,6 +62,7 @@ class TkPurchaser extends ChangeNotifier {
     return true;
   }
 
+  /// [loadBalance]
   /// Load user balance method
   Future<bool> loadBalance(TkUser user) async {
     // Start any loading indicators
@@ -92,6 +91,7 @@ class TkPurchaser extends ChangeNotifier {
     return (loadBalanceError == null);
   }
 
+  /// [loadPackages]
   /// Load available packages to purchase
   Future<bool> loadPackages(TkUser user) async {
     // Start any loading indicators
@@ -120,7 +120,9 @@ class TkPurchaser extends ChangeNotifier {
     return (loadError == null);
   }
 
-  /// Purchase package method
+  /// [purchaseSelectedPackage]
+  /// Purchase the selected package, only used in save cards mode,
+  /// transactions mode uses the TkTransactor provider
   Future<bool> purchaseSelectedPackage(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;

@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
+import 'package:thaki/utilities/analytics_helper.dart';
 import 'package:thaki/utilities/index.dart';
 
 enum TkSubscriberError {
@@ -17,6 +18,8 @@ enum TkSubscriberError {
   loadDocuments
 }
 
+/// [TkSubscriber]
+/// Provider class that manages permit requests and subscriptions
 class TkSubscriber extends ChangeNotifier {
   // Helpers
   static TkAPIHelper _apis = new TkAPIHelper();
@@ -77,9 +80,8 @@ class TkSubscriber extends ChangeNotifier {
   // Errors
   Map<TkSubscriberError, String> _error = Map();
   Map<TkSubscriberError, String> get error => _error;
-  void clearErrors() => _error.clear();
-
   String loadUserSubscriptionsError;
+  void clearErrors() => _error.clear();
 
   // Validation
   String _validationPaymentError;
@@ -93,7 +95,7 @@ class TkSubscriber extends ChangeNotifier {
     return true;
   }
 
-  // Validation
+  // Documents validation error
   String _validationDocumentsError;
   String get validationDocumentsError => _validationDocumentsError;
   set validationDocumentsError(String error) {
@@ -101,6 +103,9 @@ class TkSubscriber extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// [validateDocuments]
+  /// Loops on the provided documents and makes sure that all the required
+  /// documents are uploaded correctly
   bool validateDocuments(BuildContext context) {
     for (TkDocument doc in _documents) {
       if (doc.required && doc.image == null) {
@@ -112,7 +117,9 @@ class TkSubscriber extends ChangeNotifier {
     return true;
   }
 
-  /// Load disclaimer
+  /// [loadDisclaimer]
+  /// Calls API to load the permit disclaimer
+  /// [user] the user object
   Future<bool> loadDisclaimer(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
@@ -137,7 +144,9 @@ class TkSubscriber extends ChangeNotifier {
     return (_error[TkSubscriberError.loadDisclaimer] == null);
   }
 
-  /// Load documents
+  /// [loadDocuments]
+  /// Calls API to load the permit required documents
+  /// [user] the user object
   Future<bool> loadDocuments(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
@@ -162,7 +171,9 @@ class TkSubscriber extends ChangeNotifier {
     return (_error[TkSubscriberError.loadDocuments] == null);
   }
 
-  /// Apply for resident permit method
+  /// [applyForSubscription]
+  /// Calls API to apply for resident permit
+  /// [user] the user object
   Future<bool> applyForSubscription(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
@@ -171,13 +182,15 @@ class TkSubscriber extends ChangeNotifier {
 
     final Map result = await _apis.applyForSubscription(
         permit: _permit, user: user, car: selectedCar);
-
-    // Clear model
     if (result[kStatusTag] != kSuccessCreationCode) {
       // an error happened
       _error[TkSubscriberError.apply] = _apis.normalizeError(result);
     } else {
       selectedCar.isApproved = 3;
+
+      // Update firebase analytics that the user successfully
+      // applied for a resident permit
+      await TkAnalyticsHelper.logApplyPermit();
     }
 
     // Stop any listening loading indicators
@@ -187,7 +200,9 @@ class TkSubscriber extends ChangeNotifier {
     return (_error[TkSubscriberError.apply] == null);
   }
 
-  /// Load disclaimer
+  /// [loadSubscriptions]
+  /// Calls API to load all types of subscriptions for the user to purchase
+  /// [user] the user object
   Future<bool> loadSubscriptions(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
@@ -217,7 +232,11 @@ class TkSubscriber extends ChangeNotifier {
     return (_error[TkSubscriberError.loadAllSubs] == null);
   }
 
-  /// Purchase subscription
+  /// [purchaseSelectedSubscription]
+  /// Calls API to purchase the selected subscription, this method
+  /// is only called in save cards mode, for transaction mode, the
+  /// transactor provider is used instead
+  /// [user] the user object
   Future<bool> purchaseSelectedSubscription(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
@@ -242,7 +261,9 @@ class TkSubscriber extends ChangeNotifier {
     return (_error[TkSubscriberError.buy] == null);
   }
 
-  /// Load user subscriptions
+  /// [loadUserSubscriptions]
+  /// Calls API to load user subscriptions
+  /// [user] the user object
   Future<bool> loadUserSubscriptions(TkUser user) async {
     // Start any loading indicators
     _isLoading = true;
