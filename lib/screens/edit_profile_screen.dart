@@ -7,6 +7,7 @@ import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/user_attributes_controller.dart';
+import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/utilities/index.dart';
 
 import 'package:thaki/widgets/base/appbar.dart';
@@ -19,6 +20,8 @@ import 'package:thaki/widgets/general/section_title.dart';
 
 class TkEditProfileScreen extends StatefulWidget {
   static const String id = 'edit_profile_screen';
+  TkEditProfileScreen({this.pushHomeMode = false});
+  final bool pushHomeMode;
 
   @override
   _TkEditProfileScreenState createState() => _TkEditProfileScreenState();
@@ -214,6 +217,10 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen>
 
     if (await account.edit()) {
       Navigator.pop(context, true);
+
+      if (widget.pushHomeMode) {
+        await Navigator.pushReplacementNamed(context, TkHomeScreen.id);
+      }
     }
   }
 

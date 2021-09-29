@@ -6,6 +6,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/screens/edit_profile_screen.dart';
 import 'package:thaki/screens/forgot_password_screen.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/register_screen.dart';
@@ -118,8 +119,18 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     return TkSocialLogin(
       callback: () async {
         if (await account.social()) {
-          if (account.user != null)
-            Navigator.pushReplacementNamed(context, TkHomeScreen.id);
+          if (account.user != null) {
+            if (account.user.needsUpdate) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  settings: RouteSettings(name: TkEditProfileScreen.id),
+                  builder: (context) => TkEditProfileScreen(pushHomeMode: true),
+                ),
+              );
+            } else {
+              await Navigator.pushReplacementNamed(context, TkHomeScreen.id);
+            }
+          }
         }
       },
     );

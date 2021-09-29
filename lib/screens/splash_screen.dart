@@ -9,6 +9,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/onboarding_controller.dart';
 import 'package:thaki/providers/user_attributes_controller.dart';
+import 'package:thaki/screens/edit_profile_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
 import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/base/index.dart';
@@ -98,16 +99,33 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
             .load();
 
         if (loggedIn && await account.load()) {
-          await Navigator.pushReplacementNamed(context, TkHomeScreen.id);
-          _loadingNextScreen = false;
+          // User has a saved session, check if it needs an update
+          if (account.user.needsUpdate) {
+            // Push welcome first
+            Navigator.pushReplacementNamed(context, TkWelcomeScreen.id);
+
+            // Push edit profile screen
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                settings: RouteSettings(name: TkEditProfileScreen.id),
+                builder: (context) => TkEditProfileScreen(pushHomeMode: true),
+              ),
+            );
+            _loadingNextScreen = false;
+          } else {
+            // User logged in and no need for update, push home
+            await Navigator.pushReplacementNamed(context, TkHomeScreen.id);
+            _loadingNextScreen = false;
+          }
         } else {
+          // No login session
           TkOnBoardingController onBoardingController =
               Provider.of<TkOnBoardingController>(context, listen: false);
           await onBoardingController
               .load(Provider.of<TkLangController>(context, listen: false));
 
           if (onBoardingController.onBoardingList.isEmpty) {
-            // No login session, display on-boarding
+            // No login session and no on-boarding, display welcome
             await Navigator.pushReplacementNamed(context, TkWelcomeScreen.id);
           } else {
             // No login session, display on-boarding

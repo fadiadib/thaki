@@ -7,6 +7,7 @@ import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
 import 'package:thaki/providers/user_attributes_controller.dart';
+import 'package:thaki/screens/edit_profile_screen.dart';
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/login_screen.dart';
 import 'package:thaki/screens/welcome_screen.dart';
@@ -321,8 +322,21 @@ class _TkRegisterScreenState extends State<TkRegisterScreen>
       padding: const EdgeInsets.only(bottom: 50.0),
       child: TkSocialLogin(
         callback: () async {
-          if (await account.social())
-            Navigator.pushReplacementNamed(context, TkHomeScreen.id);
+          if (await account.social()) {
+            if (account.user != null) {
+              if (account.user.needsUpdate) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    settings: RouteSettings(name: TkEditProfileScreen.id),
+                    builder: (context) =>
+                        TkEditProfileScreen(pushHomeMode: true),
+                  ),
+                );
+              } else {
+                await Navigator.pushReplacementNamed(context, TkHomeScreen.id);
+              }
+            }
+          }
         },
       ),
     );

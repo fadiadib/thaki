@@ -178,10 +178,18 @@ class TkUser {
     return fields;
   }
 
+  bool get needsUpdate {
+    return email == null ||
+        phone == null ||
+        firstName == null ||
+        middleName == null ||
+        lastName == null;
+  }
+
   Locale lang;
   String token;
   String tokenType;
-  // String name;
+
   String email;
   String otp;
   DateTime birthDate;
