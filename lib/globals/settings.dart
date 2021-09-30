@@ -1,5 +1,5 @@
 // Network settings
-const bool kVerboseNetworkMessages = true;
+const bool kVerboseNetworkMessages = false;
 const bool kDemoMode = true; // Don't change this!
 
 // App ID

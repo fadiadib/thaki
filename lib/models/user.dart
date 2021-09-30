@@ -105,7 +105,7 @@ class TkUser {
       kUserGenderTag: gender,
       kUserNationalityTag: nationality.toString(),
       kUserDriverTypeTag: userType.toString(),
-      kUserEmailTag: email,
+      kUserEmailTag: email ?? '',
       kUserPhoneTag: phone,
       kUserBirthDateTag: birthDate.toString().split(' ').first,
       kFBTokenTag: await FirebaseMessaging().getToken(),
