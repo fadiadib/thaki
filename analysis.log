@@ -1,0 +1,347 @@
+[ +113 ms] executing: [/Users/fadiadib/Development/flutter/] git -c log.showSignature=false log -n 1 --pretty=format:%H
+[  +30 ms] Exit code 0 from: git -c log.showSignature=false log -n 1 --pretty=format:%H
+[        ] 216dee60c0cc9449f0b29bcf922974d612263e24
+[        ] executing: [/Users/fadiadib/Development/flutter/] git tag --contains HEAD
+[ +232 ms] Exit code 0 from: git tag --contains HEAD
+[        ] 1.20.3
+           1.20.4
+[   +9 ms] executing: [/Users/fadiadib/Development/flutter/] git rev-parse --abbrev-ref --symbolic @{u}
+[   +5 ms] Exit code 0 from: git rev-parse --abbrev-ref --symbolic @{u}
+[        ] origin/stable
+[        ] executing: [/Users/fadiadib/Development/flutter/] git ls-remote --get-url origin
+[   +5 ms] Exit code 0 from: git ls-remote --get-url origin
+[        ] https://github.com/flutter/flutter.git
+[  +52 ms] executing: [/Users/fadiadib/Development/flutter/] git rev-parse --abbrev-ref HEAD
+[   +6 ms] Exit code 0 from: git rev-parse --abbrev-ref HEAD
+[        ] stable
+[   +5 ms] executing: sw_vers -productName
+[  +14 ms] Exit code 0 from: sw_vers -productName
+[        ] Mac OS X
+[        ] executing: sw_vers -productVersion
+[  +14 ms] Exit code 0 from: sw_vers -productVersion
+[        ] 10.15.4
+[        ] executing: sw_vers -buildVersion
+[  +14 ms] Exit code 0 from: sw_vers -buildVersion
+[        ] 19E287
+[  +37 ms] Artifact Instance of 'AndroidMavenArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[   +2 ms] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[  +11 ms] Artifact Instance of 'MaterialFonts' is not required, skipping update.
+[        ] Artifact Instance of 'GradleWrapper' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidMavenArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidGenSnapshotArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'AndroidInternalBuildArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterWebSdk' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterSdk' is not required, skipping update.
+[        ] Artifact Instance of 'WindowsEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxEngineArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'LinuxFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'MacOSFuchsiaSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerSDKArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FlutterRunnerDebugSymbols' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'IosUsbArtifacts' is not required, skipping update.
+[        ] Artifact Instance of 'FontSubsetArtifacts' is not required, skipping update.
+[ +107 ms] Found plugin connectivity at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity-1.0.0/
+[   +5 ms] Found plugin connectivity_for_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_for_web-0.3.1+4/
+[   +1 ms] Found plugin connectivity_macos at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_macos-0.1.0+7/
+[  +13 ms] Found plugin firebase_analytics at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-6.3.0/
+[   +2 ms] Found plugin firebase_analytics_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics_web-0.1.1/
+[   +1 ms] Found plugin firebase_auth at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.18.4+1/
+[   +2 ms] Found plugin firebase_auth_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-0.3.2+3/
+[   +3 ms] Found plugin firebase_core at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.3/
+[   +1 ms] Found plugin firebase_core_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.2.1+1/
+[   +1 ms] Found plugin firebase_messaging at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-7.0.3/
+[   +1 ms] Found plugin firebase_remote_config at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_remote_config-0.4.3/
+[   +1 ms] Found plugin flutter_facebook_auth at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_auth-2.0.2+1/
+[   +1 ms] Found plugin flutter_facebook_auth_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_auth_web-1.0.6/
+[   +6 ms] Found plugin flutter_image_compress at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_image_compress-0.7.0/
+[   +2 ms] Found plugin flutter_inappwebview at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-4.0.0+4/
+[   +1 ms] Found plugin flutter_plugin_android_lifecycle at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.11/
+[   +3 ms] Found plugin google_sign_in at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-4.5.9/
+[   +2 ms] Found plugin google_sign_in_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_web-0.9.2/
+[   +2 ms] Found plugin image_cropper at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/image_cropper-1.3.1/
+[   +1 ms] Found plugin image_picker at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.7+22/
+[   +5 ms] Found plugin package_info at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/package_info-0.4.3+4/
+[   +1 ms] Found plugin path_provider at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.28/
+[        ] Found plugin path_provider_linux at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+2/
+[   +1 ms] Found plugin path_provider_macos at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+8/
+[   +1 ms] Found plugin path_provider_windows at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-0.0.4+3/
+[   +6 ms] Found plugin searchable_dropdown at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/searchable_dropdown-1.1.3/
+[        ] Found plugin shared_preferences at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.7+3/
+[        ] Found plugin shared_preferences_macos at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+11/
+[   +1 ms] Found plugin shared_preferences_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+7/
+[        ] Found plugin sign_in_with_apple at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/sign_in_with_apple-2.5.4/
+[   +1 ms] Found plugin sqflite at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.3.1+2/
+[   +1 ms] Found plugin store_redirect at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/store_redirect-1.0.2/
+[   +3 ms] Found plugin twitter_login at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/twitter_login-2.1.4/
+[   +1 ms] Found plugin url_launcher at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.6/
+[        ] Found plugin url_launcher_linux at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-0.0.1+4/
+[   +1 ms] Found plugin url_launcher_macos at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+9/
+[   +1 ms] Found plugin url_launcher_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.4+1/
+[        ] Found plugin url_launcher_windows at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-0.0.1+3/
+[   +1 ms] Found plugin webview_flutter at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.24/
+[  +37 ms] Found plugin connectivity at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity-1.0.0/
+[        ] Found plugin connectivity_for_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_for_web-0.3.1+4/
+[        ] Found plugin connectivity_macos at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_macos-0.1.0+7/
+[   +6 ms] Found plugin firebase_analytics at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics-6.3.0/
+[   +1 ms] Found plugin firebase_analytics_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_analytics_web-0.1.1/
+[   +1 ms] Found plugin firebase_auth at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-0.18.4+1/
+[   +1 ms] Found plugin firebase_auth_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth_web-0.3.2+3/
+[        ] Found plugin firebase_core at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core-0.5.3/
+[   +1 ms] Found plugin firebase_core_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_core_web-0.2.1+1/
+[        ] Found plugin firebase_messaging at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_messaging-7.0.3/
+[        ] Found plugin firebase_remote_config at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_remote_config-0.4.3/
+[        ] Found plugin flutter_facebook_auth at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_auth-2.0.2+1/
+[        ] Found plugin flutter_facebook_auth_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_facebook_auth_web-1.0.6/
+[   +1 ms] Found plugin flutter_image_compress at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_image_compress-0.7.0/
+[        ] Found plugin flutter_inappwebview at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-4.0.0+4/
+[   +1 ms] Found plugin flutter_plugin_android_lifecycle at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.11/
+[   +1 ms] Found plugin google_sign_in at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in-4.5.9/
+[   +1 ms] Found plugin google_sign_in_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/google_sign_in_web-0.9.2/
+[   +1 ms] Found plugin image_cropper at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/image_cropper-1.3.1/
+[        ] Found plugin image_picker at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.7+22/
+[   +3 ms] Found plugin package_info at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/package_info-0.4.3+4/
+[   +1 ms] Found plugin path_provider at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.6.28/
+[        ] Found plugin path_provider_linux at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_linux-0.0.1+2/
+[        ] Found plugin path_provider_macos at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_macos-0.0.4+8/
+[        ] Found plugin path_provider_windows at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_windows-0.0.4+3/
+[   +4 ms] Found plugin searchable_dropdown at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/searchable_dropdown-1.1.3/
+[        ] Found plugin shared_preferences at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.7+3/
+[   +1 ms] Found plugin shared_preferences_macos at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+11/
+[        ] Found plugin shared_preferences_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+7/
+[        ] Found plugin sign_in_with_apple at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/sign_in_with_apple-2.5.4/
+[        ] Found plugin sqflite at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/sqflite-1.3.1+2/
+[   +1 ms] Found plugin store_redirect at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/store_redirect-1.0.2/
+[   +2 ms] Found plugin twitter_login at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/twitter_login-2.1.4/
+[        ] Found plugin url_launcher at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-5.7.6/
+[        ] Found plugin url_launcher_linux at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-0.0.1+4/
+[        ] Found plugin url_launcher_macos at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-0.0.1+9/
+[        ] Found plugin url_launcher_web at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-0.1.4+1/
+[        ] Found plugin url_launcher_windows at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-0.0.1+3/
+[   +1 ms] Found plugin webview_flutter at /Users/fadiadib/Development/flutter/.pub-cache/hosted/pub.dartlang.org/webview_flutter-0.3.24/
+[  +53 ms] Generating /Users/fadiadib/AndroidStudioProjects/thaki.release/android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+[  +19 ms] executing: /usr/bin/xcodebuild -version
+[ +434 ms] Exit code 0 from: /usr/bin/xcodebuild -version
+[        ] Xcode 12.4
+           Build version 12D4e
+[ +348 ms] dart --disable-dart-dev /Users/fadiadib/Development/flutter/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot --disable-server-feature-completion --disable-server-feature-search --sdk /Users/fadiadib/Development/flutter/bin/cache/dart-sdk
+[  +13 ms] ==> {"id":"1","method":"server.setSubscriptions","params":{"subscriptions":["STATUS"]}}
+[        ] ==> {"id":"2","method":"analysis.setAnalysisRoots","params":{"included":["/Users/fadiadib/AndroidStudioProjects/thaki.release"],"excluded":[]}}
+[   +1 ms] Analyzing thaki.release...
+[ +318 ms] <== {"event":"server.connected","params":{"version":"1.28.0","pid":38051}}
+[  +19 ms] <== {"id":"1"}
+[ +528 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/analysis_options.yaml","errors":[]}}
+[   +8 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/pubspec.yaml","errors":[]}}
+[  +50 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/android/app/src/profile/AndroidManifest.xml","errors":[]}}
+[   +1 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/android/app/src/main/AndroidManifest.xml","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/android/app/src/debug/AndroidManifest.xml","errors":[]}}
+[ +926 ms] <== {"id":"2"}
+[+1893 ms] <== {"event":"server.status","params":{"analysis":{"isAnalyzing":true}}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/test/widget_test.dart","errors":[]}}
+[  +23 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/generated/intl/messages_ar.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/generated/intl/messages_all.dart","errors":[]}}
+[   +1 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/generated/intl/messages_en.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/generated/l10n.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/apiuris.dart","errors":[]}}
+[   +8 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/index.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/colors.dart","errors":[]}}
+[   +1 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/dimensions.dart","errors":[]}}
+[   +7 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/strings.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/heroes.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/db_commands.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/images.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/icons.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/events.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/theme.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/globals/settings.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/subscriber.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/user_attributes_controller.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/payer.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/account.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/onboarding_controller.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/lang_controller.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/firebase_controller.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/versioner.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/booker.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/purchaser.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/transactor.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/messenger.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/tab_selector.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/attributes_controller.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/providers/server.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/credit.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/index.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/nationality.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/parking_type.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/permit.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/document.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/user.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/violation.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/package.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/info_fields.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/notification.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/forms_data.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/ticket.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/user_type.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/car.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/subscription.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/transaction.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/color.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/model.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/make.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/balance.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/attribute.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/models/state.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/apply_subscription_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/book_parking_screen.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/buy_package_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/credit_cards_list_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/register_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/onboarding_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/pay_violation_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/balance_screen.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/subscription_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/login_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/forgot_password_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/transactions_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/add_car_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/buy_subscription_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/edit_profile_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/welcome_screen.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/cars_list_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/otp_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/home_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/add_card_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/splash_screen.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/screens/notification_screen.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/main.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/location_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/connectivity_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/db_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/index.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/draw_helper.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/credit_card_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/form_builder.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/qr_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/license_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/url_launcher.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/formfield_validator.dart","errors":[]}}
+[   +6 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/validation_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/date_time_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/shared_pref_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/network_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/crypto_helper.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/dialog_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/snackbar_helper.dart","errors":[]}}
+[   +9 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/analytics_helper.dart","errors":[]}}
+[   +5 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/utilities/api_helper.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/transaction/transaction_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/transaction/transaction_success_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/home/index.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/home/dashboard_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/home/violations_pane.dart","errors":[]}}
+[   +5 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/home/profile_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/home/parking_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/home/tickets_pane.dart","errors":[]}}
+[  +26 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/permit/permit_form_pane.dart","errors":[{"severity":"INFO","type":"TODO","location":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/permit/permit_form_pane.dart","offset":1490,"length":68,"startLine":34,"startColumn":12},"message":"TODO: a permit model and then update the info fields from the permit","code":"todo","hasFix":false},{"severity":"INFO","type":"TODO","location":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/permit/permit_form_pane.dart","offset":1414,"length":64,"startLine":33,"startColumn":12},"message":"TODO: It is better to first move the data from the user model to","code":"todo","hasFix":false}]}}
+[   +5 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/permit/index.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/permit/permit_success_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/permit/permit_documents_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/permit/permit_disclaimer_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/subscription/index.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/subscription/subscription_success_pane.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/subscription/subscription_list_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/subscription/subscription_payment_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/parking/index.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/parking/parking_success_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/parking/parking_duration_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/parking/parking_time_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/parking/parking_payment_pane.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/violation/index.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/violation/violation_list_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/violation/violation_payment_pane.dart","errors":[]}}
+[   +1 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/violation/violation_car_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/violation/violation_success_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/package/index.dart","errors":[]}}
+[   +5 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/package/package_details_pane.dart","errors":[]}}
+[   +1 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/package/package_payment_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/package/package_success_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/package/package_list_pane.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/panes/balace/user_package_list_pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/drawers/menu_drawer.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/app.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/forms/button.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/forms/dropdown_search/popup_menu.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/forms/dropdown_search/select_dialog.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/forms/dropdown_search/dropdown_search.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/forms/dropdown_field.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/forms/otp_field.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/forms/text_fields.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/forms/form_frame.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/forms/license_field.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/lists/notification_list.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/lists/violation_list.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/lists/transaction_list.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/lists/parking_type_list.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/lists/car_list.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/lists/ticket_list.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/lists/payment_list.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/list_menu_item.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/edit_action.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/seen_action.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/delete_actiion.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/logo_box.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/carousel.dart","errors":[]}}
+[   +5 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/ribbon.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/card.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/tabs.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/section_title.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/sliddable.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/progress_indicator.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/general/error.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/cards/license_card.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/cards/success_card.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/cards/user_info_card.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/cards/title_text_card.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/cards/package_card.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/cards/id_card.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/cards/credit_card.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/violation_tile.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/notification_tile.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/credit_card_tile.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/subscription_tile.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/package_tile.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/user_package_tile.dart","errors":[]}}
+[   +3 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/ticket_tile.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/parking_type_tile.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/car_tile.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/tiles/transaction_tile.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/login/social_login.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/base/index.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/base/multi_step_page.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/base/scaffold_body.dart","errors":[]}}
+[   +4 ms] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/base/pane.dart","errors":[]}}
+[        ] <== {"event":"analysis.errors","params":{"file":"/Users/fadiadib/AndroidStudioProjects/thaki.release/lib/widgets/base/appbar.dart","errors":[]}}
+[   +1 ms] <== {"event":"server.status","params":{"analysis":{"isAnalyzing":false}}}
+[  +12 ms] Analyzing thaki.release... (completed in 4.0s)
+[   +1 ms] No issues found! (ran in 4.0s)
+[   +1 ms] "flutter analyze" took 5,236ms.
+[   +5 ms] Running shutdown hooks
+[        ] Shutdown hooks complete
+[        ] exiting with code 0

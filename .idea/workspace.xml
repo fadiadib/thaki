@@ -13,24 +13,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="905d3c98-3b62-48e2-b2c9-ce7991e6688f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/images/QR.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/analysis.log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/settings_aar.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fonts alias" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/upload_certificate.pem" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/Flutter/.last_build_id" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/.last_build_id" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/drawers/menu_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/drawers/menu_drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/globals/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/settings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/widget_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/fadiadib/.android/avd/Pixel_2_XL_API_R.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -439,7 +435,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632998574752</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="+ Fix for Apple profile update.&#10;+ Some comments.">
+      <created>1633436770093</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1633436770093</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -455,7 +458,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="+ UAT group 4." />
     <MESSAGE value="+ Moved approval to cars instead of user.&#10;+ Violations integration completion." />
     <MESSAGE value="+ Updated version." />
     <MESSAGE value="+ Social login.&#10;+ Old password." />
@@ -480,7 +482,8 @@
     <MESSAGE value="+ Build 33 Changes&#10;+ Added firebase analytics events." />
     <MESSAGE value="+ Build 34 Changes&#10;+ Complete user profile for social login." />
     <MESSAGE value="+ Fix for Apple update profile." />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Fix for Apple update profile." />
+    <MESSAGE value="+ Fix for Apple profile update.&#10;+ Some comments." />
+    <option name="LAST_COMMIT_MESSAGE" value="+ Fix for Apple profile update.&#10;+ Some comments." />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1609" y="477" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1629543485342">
@@ -510,19 +513,19 @@
     </state>
     <state x="605" y="335" key="AndroidProcessChooserDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1632657278781" />
     <state x="605" y="335" key="AndroidProcessChooserDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1626573949529" />
-    <state x="271" y="23" key="CommitChangelistDialog2" timestamp="1632998574582">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state x="271" y="23" key="CommitChangelistDialog2" timestamp="1633436769903">
+      <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1009@0.23.1920.1009" timestamp="1628469061691" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1125@0.23.1920.1125" timestamp="1629130294612" />
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1126@0.23.1920.1126" timestamp="1629275130635" />
+    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1126@0.23.1920.1126" timestamp="1633436769903" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1127@0.23.1920.1127" timestamp="1632998574582" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1128@0.23.1920.1128" timestamp="1632656038436" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1129@0.23.1920.1129" timestamp="1630323991509" />
     <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1130@0.23.1920.1130" timestamp="1627341844475" />
     <state x="1951" y="23" key="CommitChangelistDialog2/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631557629411" />
-    <state x="379" y="165" width="1085" height="927" key="DiffContextDialog" timestamp="1633352854931">
-      <screen x="0" y="23" width="1920" height="1129" />
+    <state x="157" y="107" width="1085" height="985" key="DiffContextDialog" timestamp="1633437011879">
+      <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="151" y="113" width="1481" height="825" key="DiffContextDialog/-1920.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1629143070884" />
     <state x="-1541" y="156" width="1085" height="868" key="DiffContextDialog/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629569397122" />
@@ -532,7 +535,7 @@
     <state x="151" y="113" width="1481" height="825" key="DiffContextDialog/0.23.1920.1005@0.23.1920.1005" timestamp="1629142599069" />
     <state x="158" y="112" width="1085" height="828" key="DiffContextDialog/0.23.1920.1009@0.23.1920.1009" timestamp="1628469227775" />
     <state x="157" y="107" width="1085" height="985" key="DiffContextDialog/0.23.1920.1125@0.23.1920.1125" timestamp="1632833917993" />
-    <state x="157" y="107" width="1085" height="985" key="DiffContextDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1632831626429" />
+    <state x="157" y="107" width="1085" height="985" key="DiffContextDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1633437011879" />
     <state x="158" y="123" width="1085" height="924" key="DiffContextDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1632998538279" />
     <state x="158" y="123" width="1085" height="924" key="DiffContextDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1632659435452" />
     <state x="379" y="165" width="1085" height="927" key="DiffContextDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1633352854931" />
@@ -665,19 +668,19 @@
       <screen x="0" y="23" width="1920" height="1128" />
     </state>
     <state x="160" y="168" width="1229" height="777" key="ShowDiffWithBranchDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1628431983216" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1632998576445">
-      <screen x="0" y="23" width="1920" height="1127" />
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1633436771713">
+      <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="209" y="238" key="Vcs.Push.Dialog.v2/0.23.1920.1009@0.23.1920.1009" timestamp="1628469081262" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1125@0.23.1920.1125" timestamp="1629130296362" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1126@0.23.1920.1126" timestamp="1629275133127" />
+    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1126@0.23.1920.1126" timestamp="1633436771713" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1127@0.23.1920.1127" timestamp="1632998576445" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1128@0.23.1920.1128" timestamp="1632656040156" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1129@0.23.1920.1129" timestamp="1630323993512" />
     <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1130@0.23.1920.1130" timestamp="1627341846177" />
     <state x="1889" y="237" key="Vcs.Push.Dialog.v2/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631557631678" />
-    <state x="464" y="205" key="VcsDiffUtil.ChangesDialog" timestamp="1633352798988">
-      <screen x="0" y="23" width="1920" height="1129" />
+    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog" timestamp="1633436894494">
+      <screen x="0" y="23" width="1920" height="1126" />
     </state>
     <state x="-1456" y="193" key="VcsDiffUtil.ChangesDialog/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629569401253" />
     <state x="-1456" y="195" key="VcsDiffUtil.ChangesDialog/-3036.347.1116.733/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629761799954" />
@@ -685,7 +688,7 @@
     <state x="491" y="262" key="VcsDiffUtil.ChangesDialog/0.23.1920.1005@0.23.1920.1005" timestamp="1629142602732" />
     <state x="464" y="187" key="VcsDiffUtil.ChangesDialog/0.23.1920.1009@0.23.1920.1009" timestamp="1628469049652" />
     <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1125@0.23.1920.1125" timestamp="1632833864229" />
-    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1631611159761" />
+    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1633436894494" />
     <state x="113" y="334" key="VcsDiffUtil.ChangesDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1632998523601" />
     <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1632659338796" />
     <state x="464" y="205" key="VcsDiffUtil.ChangesDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1633352798988" />
