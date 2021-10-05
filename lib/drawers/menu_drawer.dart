@@ -17,7 +17,8 @@ import 'package:thaki/widgets/general/list_menu_item.dart';
 
 /// Home Side drawer - used in the HomeScreen Scaffold
 /// Shows a a logo box, a set of menu items and the copyright
-/// Takes one argument: popParentCallback which is used as a
+/// Takes one argument:
+/// [popParentCallback] which is used as a
 /// callback method to pop the caller
 class TkMenuDrawer extends StatelessWidget {
   TkMenuDrawer({this.popParentCallback});

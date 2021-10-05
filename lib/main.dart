@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-import 'package:thaki/app.dart';
-
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
 import 'package:thaki/providers/firebase_controller.dart';
@@ -20,10 +18,12 @@ import 'package:thaki/providers/tab_selector.dart';
 import 'package:thaki/providers/transactor.dart';
 import 'package:thaki/providers/user_attributes_controller.dart';
 import 'package:thaki/providers/versioner.dart';
+import 'package:thaki/app.dart';
 
-void main() => runApp(ThankiMain());
+void main() => runApp(ThakiMain());
 
-class ThankiMain extends StatelessWidget {
+/// Main application
+class ThakiMain extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Restrict orientation for Android devices

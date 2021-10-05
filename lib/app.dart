@@ -33,6 +33,8 @@ import 'package:thaki/screens/credit_cards_list_screen.dart';
 import 'package:thaki/screens/book_parking_screen.dart';
 import 'package:thaki/utilities/analytics_helper.dart';
 
+/// Child app for main, it sets up versioning, language
+/// the app theme, and material routes
 class TkThakiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

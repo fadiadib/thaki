@@ -1,5 +1,5 @@
 // Network settings
-const bool kVerboseNetworkMessages = false;
+const bool kVerboseNetworkMessages = true;
 const bool kDemoMode = true; // Don't change this!
 
 // App ID
@@ -36,7 +36,7 @@ const bool kForceDataCenter = false;
 const String kDefaultLiveServer = 'https://thaki-scsc.com/api';
 const String kDefaultTestServer =
     'https://thaki.aurasystems.xyz/backend/public/api';
-const String kDefaultDataCenter = 'http://dc.scsc.sa:8033/api';
+const String kDefaultDataCenter = 'https://dc.scsc.sa/api';
 
 // URLs
 const String kDefaultBaseURL = 'http://thaki.aurasystems.xyz/thaki/public';

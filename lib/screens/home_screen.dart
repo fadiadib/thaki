@@ -93,7 +93,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
             child: Scaffold(
               key: scaffoldKey,
 
-              /// Appbar
+              // Appbar
               appBar: TkAppBar(
                 context: context,
                 enableClose: false,
@@ -104,7 +104,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
                 title: TkLogoBox(),
               ),
 
-              /// Bottom Navigation Menu Bar
+              // Bottom Navigation Menu Bar
               bottomNavigationBar: CurvedNavigationBar(
                 index: selector.activeTab,
                 animationDuration: Duration(milliseconds: 300),
@@ -119,7 +119,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
                 },
               ),
 
-              /// Scaffold body: Active pane
+              // Scaffold body: Active pane
               body: TkScaffoldBody(child: _panes[selector.activeTab]),
 
               // Create the side drawer
