@@ -183,9 +183,13 @@ class _TkTicketTileState extends State<TkTicketTile> {
       onDelete:
           widget.onDelete == null ? null : () => widget.onDelete(widget.ticket),
       child: GestureDetector(
-        onTap: widget.onTap ??
-            () => TkQRHelper.showQRCode(
-                context: context, ticket: widget.ticket, loadCallback: load),
+        onTap: isLoading
+            ? null
+            : widget.onTap ??
+                () => TkQRHelper.showQRCode(
+                    context: context,
+                    ticket: widget.ticket,
+                    loadCallback: load),
         child: Container(
           decoration: BoxDecoration(
             color: kTileBgColor,

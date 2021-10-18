@@ -10,6 +10,7 @@ class TkTicketList extends StatelessWidget {
       {this.tickets,
       this.onTap,
       this.onDelete,
+      this.onRefresh,
       this.ribbon,
       this.ribbonColor,
       this.langCode = 'en'});
@@ -19,6 +20,7 @@ class TkTicketList extends StatelessWidget {
   final String ribbon;
   final Color ribbonColor;
   final String langCode;
+  final Function onRefresh;
 
   List<Widget> _getTicketTiles(BuildContext context) {
     List<Widget> tiles = [];
@@ -56,6 +58,12 @@ class TkTicketList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(children: _getTicketTiles(context));
+    final Widget tickets = ListView(
+      children: _getTicketTiles(context),
+    );
+    return onRefresh == null
+        ? tickets
+        : RefreshIndicator(
+            backgroundColor: kWhiteColor, onRefresh: onRefresh, child: tickets);
   }
 }

@@ -236,5 +236,8 @@
   "kCannotUploadDocument": "خطأ في تحميل الصورة، الملف بتنسيق غير متوافق",
   "kFileIsTooLarge": "حجم الملف كبير جدًا، يرجى إختيار صورة أصغر",
   "kNoPackages": "لا يوجد رصيد",
-  "kTicketNumber": "رقم التذكرة"
+  "kTicketNumber": "رقم التذكرة",
+  "kLoggingOut": "جاري تسجيل الخروج",
+  "kDeletingAccount": "جاري حذف الحساب",
+  "kBookingDisclaimer": "تنبيه, الرجاء طباعة التذكرة ووضعها على طبلون المركبة خلال 15 دقيقة من وقت الحجز."
 }

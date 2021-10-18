@@ -476,9 +476,9 @@ class _TkAddCarScreenState extends State<TkAddCarScreen>
       _car = TkCar.fromJson({});
     }
 
-    TkAttributesController states =
+    final TkAttributesController states =
         Provider.of<TkAttributesController>(context, listen: false);
-    TkUser user = Provider.of<TkAccount>(context, listen: false).user;
+    final TkUser user = Provider.of<TkAccount>(context, listen: false).user;
     states.loadModels(user, _car?.make, init: true);
   }
 

@@ -149,7 +149,7 @@
   "kParkingDuration": "Parking Duration",
   "kParkFor": "Park for",
   "kParkSuccess": "Parking Confirmed, QR code will be available before parking time",
-  "kParkInstructions": "1. Activate the Parking Meter by pressing Power on.\n2. Press button on the Meter.\n3. Scan your ticket QR Code using Meter Scanner.\n4. Receive the ticket from Meter and place it on your dashboard correctly.",
+  "kParkInstructions": "1. Activate the Parking Meter by pressing Power on.\n2. Press + button on the Meter.\n3. Scan your ticket QR Code using Meter Scanner.\n4. Receive the ticket from Meter and place it on your dashboard correctly.",
   "kUpcoming": "Upcoming",
   "kCompleted": "Completed",
   "kPending": "Pending",
@@ -236,5 +236,8 @@
   "kCannotUploadDocument": "Error uploading image, the file is of incompatible format",
   "kFileIsTooLarge": "File size is too large, please select a smaller image",
   "kNoPackages": "You do not have any credit",
-  "kTicketNumber": "Ticket Number"
+  "kTicketNumber": "Ticket Number",
+  "kLoggingOut": "Logging Out",
+  "kDeletingAccount": "Deleting Account",
+  "kBookingDisclaimer": "Attention, Ticket must be printed and placed on the vehicle’s dashboard within 15 minutes from booking time."
 }

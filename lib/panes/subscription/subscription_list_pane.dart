@@ -33,10 +33,14 @@ class TkSubscriptionListPane extends TkPane {
     return Column(children: tiles);
   }
 
-  Widget _getContinueButton(BuildContext context) {
+  Widget _getContinueButton(BuildContext context, TkSubscriber subscriber) {
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(50.0, 20.0, 50.0, 0),
-      child: TkButton(title: S.of(context).kContinue, onPressed: onDone),
+      child: TkButton(
+        title: S.of(context).kContinue,
+        onPressed: onDone,
+        enabled: subscriber.selectedSubscription != null,
+      ),
     );
   }
 
@@ -52,7 +56,7 @@ class TkSubscriptionListPane extends TkPane {
                   child: TkSectionTitle(title: S.of(context).kBuySubscription),
                 ),
                 _getSubscriptionTiles(subscriber),
-                _getContinueButton(context),
+                _getContinueButton(context, subscriber),
               ],
             );
     });

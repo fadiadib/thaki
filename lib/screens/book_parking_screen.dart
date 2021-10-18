@@ -69,7 +69,8 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
         TkParkingSuccessPane(
           onDone: () {
             Provider.of<TkPurchaser>(context, listen: false).loadBalance(
-                Provider.of<TkAccount>(context, listen: false).user);
+                Provider.of<TkAccount>(context, listen: false).user,
+                notify: false);
             loadNextPane();
           },
         ),
@@ -98,7 +99,8 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
         TkParkingSuccessPane(
           onDone: () {
             Provider.of<TkPurchaser>(context, listen: false).loadBalance(
-                Provider.of<TkAccount>(context, listen: false).user);
+                Provider.of<TkAccount>(context, listen: false).user,
+                notify: false);
             loadNextPane();
           },
         ),

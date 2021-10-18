@@ -126,7 +126,8 @@ class TkDashboardPane extends TkPane {
             title: S.of(context).kBookParkingNow,
             onPressed: () {
               // Open booking page
-              Provider.of<TkTabSelector>(context, listen: false).activeTab = 1;
+              Provider.of<TkTabSelector>(context, listen: false)
+                  .selectBooking();
             },
           ),
         )

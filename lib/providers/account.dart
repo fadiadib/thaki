@@ -381,10 +381,13 @@ class TkAccount extends ChangeNotifier {
 
   /// [loadCars]
   /// Get user cars, calls API and populates user model with cars
-  Future<bool> loadCars() async {
+  Future<bool> loadCars({bool notify = true}) async {
     // Start any loading indicators
     _isLoading = true;
     loadCarsError = null;
+
+    // Notify listeners
+    if (notify) notifyListeners();
 
     Map result = await _apis.loadCars(user: user);
     if (result[kStatusTag] == kSuccessCode) {

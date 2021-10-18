@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/globals/colors.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/lang_controller.dart';
@@ -28,7 +29,8 @@ class _TkSubscriptionScreenState extends State<TkSubscriptionScreen> {
     final TkSubscriber subscriber =
         Provider.of<TkSubscriber>(context, listen: false);
 
-    await subscriber.loadUserSubscriptions(account.user);
+    subscriber.loadUserSubscriptions(account.user);
+    account.loadCars(notify: false);
   }
 
   Widget _getSubscriptionTiles(TkAccount account, TkSubscriber subscriber) {
@@ -57,6 +59,7 @@ class _TkSubscriptionScreenState extends State<TkSubscriptionScreen> {
     return Consumer2<TkAccount, TkSubscriber>(
       builder: (context, account, subscriber, _) {
         return RefreshIndicator(
+          backgroundColor: kWhiteColor,
           onRefresh: _loadUserSubscriptions,
           child: Scaffold(
             appBar: TkAppBar(
@@ -69,48 +72,50 @@ class _TkSubscriptionScreenState extends State<TkSubscriptionScreen> {
             body: TkScaffoldBody(
               child: subscriber.isLoading
                   ? TkProgressIndicator()
-                  : ListView(children: [
-                      if (subscriber.userSubscriptions.isNotEmpty)
-                        Column(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 20.0),
-                              child: TkSectionTitle(
-                                  title: S.of(context).kMySubscriptions),
-                            ),
-                            _getSubscriptionTiles(account, subscriber),
-                          ],
+                  : ListView(
+                      children: [
+                        if (subscriber.userSubscriptions.isNotEmpty)
+                          Column(
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 20.0),
+                                child: TkSectionTitle(
+                                    title: S.of(context).kMySubscriptions),
+                              ),
+                              _getSubscriptionTiles(account, subscriber),
+                            ],
+                          ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20.0),
+                          child: TkSectionTitle(
+                              title: S.of(context).kChooseCarToSubscribe),
                         ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 20.0),
-                        child: TkSectionTitle(
-                            title: S.of(context).kChooseCarToSubscribe),
-                      ),
-                      TkCarList(
-                        showRibbon: true,
-                        langCode: Provider.of<TkLangController>(context,
-                                listen: false)
-                            .lang
-                            .languageCode,
-                        cars: account.user.cars,
-                        onTap: (TkCar car) async {
-                          if (car.isApproved == 0) {
-                            // No subscription, so apply
-                            subscriber.selectedCar = car;
-                            await Navigator.pushNamed(
-                                context, TkApplyForSubscriptionScreen.id);
-                            Navigator.of(context).pop();
-                          } else if (car.isApproved == 1) {
-                            // Subscription approved, so buy
-                            subscriber.selectedCar = car;
-                            await Navigator.pushNamed(
-                                context, TkBuySubscriptionScreen.id);
-                            Navigator.of(context).pop();
-                          }
-                        },
-                      ),
-                    ]),
+                        TkCarList(
+                          showRibbon: true,
+                          langCode: Provider.of<TkLangController>(context,
+                                  listen: false)
+                              .lang
+                              .languageCode,
+                          cars: account.user.cars,
+                          onTap: (TkCar car) async {
+                            if (car.isApproved == 0) {
+                              // No subscription, so apply
+                              subscriber.selectedCar = car;
+                              await Navigator.pushNamed(
+                                  context, TkApplyForSubscriptionScreen.id);
+                              Navigator.of(context).pop();
+                            } else if (car.isApproved == 1) {
+                              // Subscription approved, so buy
+                              subscriber.selectedCar = car;
+                              await Navigator.pushNamed(
+                                  context, TkBuySubscriptionScreen.id);
+                              Navigator.of(context).pop();
+                            }
+                          },
+                        ),
+                      ],
+                    ),
             ),
           ),
         );

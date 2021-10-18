@@ -64,7 +64,7 @@ class TkPurchaser extends ChangeNotifier {
 
   /// [loadBalance]
   /// Load user balance method
-  Future<bool> loadBalance(TkUser user) async {
+  Future<bool> loadBalance(TkUser user, {bool notify = true}) async {
     // Start any loading indicators
     _isLoading = true;
 
@@ -72,6 +72,9 @@ class TkPurchaser extends ChangeNotifier {
     loadBalanceError = null;
     _userPackages.clear();
     _balance = null;
+
+    // Notify listeners
+    if (notify) notifyListeners();
 
     Map result = await _apis.loadUserPackages(user: user);
     if (result[kStatusTag] == kSuccessCode) {

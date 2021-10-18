@@ -10,7 +10,6 @@ import 'package:thaki/utilities/index.dart';
 class TkUser {
   void updateModelFromInfoFields(TkInfoFieldsList fields) {
     for (TkInfoField field in fields.fields) {
-      // if (field.name == kUserNameTag) name = field.value;
       if (field.name == kUserEmailTag) email = field.value;
       if (field.name == kUserPhoneTag) phone = field.value;
       if (field.name == kUserBirthDateTag)
@@ -98,16 +97,16 @@ class TkUser {
 
   Future<Map<String, dynamic>> toJson() async {
     Map<String, dynamic> result = {
-      // kUserNameTag: name,
       kUserFirstNameTag: firstName,
       kUserMiddleNameTag: middleName,
       kUserLastNameTag: lastName,
-      kUserGenderTag: gender,
-      kUserNationalityTag: nationality.toString(),
+      kUserGenderTag: gender ?? '',
+      kUserNationalityTag: nationality == null ? '' : nationality.toString(),
       kUserDriverTypeTag: userType.toString(),
       kUserEmailTag: email ?? '',
       kUserPhoneTag: phone,
-      kUserBirthDateTag: birthDate.toString().split(' ').first,
+      kUserBirthDateTag:
+          birthDate == null ? '' : birthDate.toString().split(' ').first,
       kFBTokenTag: await FirebaseMessaging().getToken(),
     };
     if (password != null)
@@ -179,6 +178,8 @@ class TkUser {
   }
 
   bool get needsUpdate {
+    if (!kCheckProfileComplete) return false;
+
     return email == null ||
         phone == null ||
         firstName == null ||

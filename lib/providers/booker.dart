@@ -169,6 +169,9 @@ class TkBooker extends ChangeNotifier {
     _tickets[kCompletedTicketsTag] = [];
     _tickets[kPendingTicketsTag] = [];
 
+    // Notify listeners
+    notifyListeners();
+
     if (result[kStatusTag] == kSuccessCode) {
       // Load user data
       for (String groupTag in [

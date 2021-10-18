@@ -12,6 +12,7 @@ import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/forms/text_fields.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
+import 'package:thaki/widgets/general/warning.dart';
 import 'package:thaki/widgets/lists/parking_type_list.dart';
 
 class TkParkingTimePane extends TkPane {
@@ -81,8 +82,9 @@ class TkParkingTimePane extends TkPane {
             ? TkProgressIndicator()
             : ListView(
                 children: [
+                  TkWarning(message: S.of(context).kBookingDisclaimer),
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
+                    padding: const EdgeInsets.only(bottom: 20.0),
                     child:
                         TkSectionTitle(title: S.of(context).kPickParkingTime),
                   ),

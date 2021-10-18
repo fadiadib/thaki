@@ -21,8 +21,14 @@ import 'package:thaki/widgets/general/list_menu_item.dart';
 /// [popParentCallback] which is used as a
 /// callback method to pop the caller
 class TkMenuDrawer extends StatelessWidget {
-  TkMenuDrawer({this.popParentCallback});
+  TkMenuDrawer({
+    this.popParentCallback,
+    this.startLoadingCallback,
+    this.stopLoadingCallback,
+  });
   final Function popParentCallback;
+  final Function startLoadingCallback;
+  final Function stopLoadingCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +84,7 @@ class TkMenuDrawer extends StatelessWidget {
                   textStyle: kRegularStyle[kNormalSize]
                       .copyWith(fontFamily: kRTLFontFamily),
                   action: () {
-                    TkAccount account =
+                    final TkAccount account =
                         Provider.of<TkAccount>(context, listen: false);
                     Provider.of<TkLangController>(context, listen: false)
                         .switchLang();
@@ -100,8 +106,17 @@ class TkMenuDrawer extends StatelessWidget {
                   title: S.of(context).kLogOut,
                   textStyle: kRegularStyle[kNormalSize],
                   action: () async {
-                    await account.logout();
-                    popParentCallback();
+                    // Start loading
+                    if (startLoadingCallback != null)
+                      startLoadingCallback(S.of(context).kLoggingOut);
+
+                    // Perform logout
+                    await account.logout().then((value) {
+                      if (stopLoadingCallback != null) stopLoadingCallback();
+                    });
+
+                    // Pop parent
+                    if (popParentCallback != null) popParentCallback();
                   },
                 ),
 
@@ -181,8 +196,17 @@ class TkMenuDrawer extends StatelessWidget {
                             type: gDialogType.yesNo,
                           ) ??
                           false) {
-                        await account.deleteSocial();
-                        popParentCallback();
+                        // Start loading
+                        if (startLoadingCallback != null)
+                          startLoadingCallback(S.of(context).kDeletingAccount);
+
+                        await account.deleteSocial().then((value) {
+                          if (stopLoadingCallback != null)
+                            stopLoadingCallback();
+                        });
+
+                        // Pop parent
+                        if (popParentCallback != null) popParentCallback();
                       }
                     },
                   ),

@@ -1525,10 +1525,10 @@ class S {
     );
   }
 
-  /// `1. Activate the Parking Meter by pressing Power on.\n2. Press button on the Meter.\n3. Scan your ticket QR Code using Meter Scanner.\n4. Receive the ticket from Meter and place it on your dashboard correctly.`
+  /// `1. Activate the Parking Meter by pressing Power on.\n2. Press + button on the Meter.\n3. Scan your ticket QR Code using Meter Scanner.\n4. Receive the ticket from Meter and place it on your dashboard correctly.`
   String get kParkInstructions {
     return Intl.message(
-      '1. Activate the Parking Meter by pressing Power on.\n2. Press button on the Meter.\n3. Scan your ticket QR Code using Meter Scanner.\n4. Receive the ticket from Meter and place it on your dashboard correctly.',
+      '1. Activate the Parking Meter by pressing Power on.\n2. Press + button on the Meter.\n3. Scan your ticket QR Code using Meter Scanner.\n4. Receive the ticket from Meter and place it on your dashboard correctly.',
       name: 'kParkInstructions',
       desc: '',
       args: [],
@@ -2400,6 +2400,36 @@ class S {
     return Intl.message(
       'Ticket Number',
       name: 'kTicketNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logging Out`
+  String get kLoggingOut {
+    return Intl.message(
+      'Logging Out',
+      name: 'kLoggingOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deleting Account`
+  String get kDeletingAccount {
+    return Intl.message(
+      'Deleting Account',
+      name: 'kDeletingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Attention, Ticket must be printed and placed on the vehicle’s dashboard within 15 minutes from booking time.`
+  String get kBookingDisclaimer {
+    return Intl.message(
+      'Attention, Ticket must be printed and placed on the vehicle’s dashboard within 15 minutes from booking time.',
+      name: 'kBookingDisclaimer',
       desc: '',
       args: [],
     );

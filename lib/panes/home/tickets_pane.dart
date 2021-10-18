@@ -38,6 +38,7 @@ class TkTicketsPane extends TkPane {
       ],
       children: [
         TkTicketList(
+          onRefresh: () => refreshModel(context),
           langCode: langController.lang.languageCode,
           tickets: booker.upcomingTickets,
           onDelete: !kAllowDeleteTicket
@@ -58,10 +59,11 @@ class TkTicketsPane extends TkPane {
                       account.user,
                       ticket,
                     );
-                  purchaser.loadBalance(account.user);
+                  purchaser.loadBalance(account.user, notify: false);
                 },
         ),
         TkTicketList(
+          onRefresh: () => refreshModel(context),
           langCode: langController.lang.languageCode,
           tickets: booker.completedTickets,
           ribbon: S.of(context).kCompleted,
@@ -69,6 +71,7 @@ class TkTicketsPane extends TkPane {
         ),
         if (kAllowPendingTicket)
           TkTicketList(
+            onRefresh: () => refreshModel(context),
             langCode: langController.lang.languageCode,
             tickets: booker.pendingTickets,
             ribbon: S.of(context).kPending,
@@ -76,6 +79,7 @@ class TkTicketsPane extends TkPane {
           ),
         if (kAllowDeleteTicket)
           TkTicketList(
+            onRefresh: () => refreshModel(context),
             langCode: langController.lang.languageCode,
             tickets: booker.cancelledTickets,
             ribbon: S.of(context).kCancelled,
@@ -83,6 +87,13 @@ class TkTicketsPane extends TkPane {
           ),
       ],
     );
+  }
+
+  Future<void> refreshModel(BuildContext context) async {
+    // Load user profile here
+    final TkAccount account = Provider.of<TkAccount>(context, listen: false);
+    final TkBooker booker = Provider.of<TkBooker>(context, listen: false);
+    await booker.loadTickets(account.user);
   }
 
   @override

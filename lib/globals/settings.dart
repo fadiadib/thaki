@@ -1,5 +1,5 @@
 // Network settings
-const bool kVerboseNetworkMessages = true;
+const bool kVerboseNetworkMessages = false;
 const bool kDemoMode = true; // Don't change this!
 
 // App ID
@@ -26,6 +26,7 @@ const bool kCheckFileSize = false;
 const double kMaxImageSie = 5.0; // in megabytes
 const bool kShowTransactions = false;
 const bool kShowAllViolations = true;
+const bool kCheckProfileComplete = false;
 
 // Force server flags (for testing purposes only)
 const bool kForceLiveServer = false;

@@ -9,6 +9,7 @@ import 'package:thaki/widgets/base/index.dart';
 import 'package:thaki/widgets/forms/button.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 import 'package:thaki/widgets/general/section_title.dart';
+import 'package:thaki/widgets/general/warning.dart';
 
 class TkParkingDurationPane extends TkPane {
   TkParkingDurationPane({onDone}) : super(paneTitle: '', onDone: onDone);
@@ -94,11 +95,8 @@ class TkParkingDurationPane extends TkPane {
             ? TkProgressIndicator()
             : ListView(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child:
-                        TkSectionTitle(title: S.of(context).kPickParkingTime),
-                  ),
+                  TkWarning(message: S.of(context).kBookingDisclaimer),
+                  TkSectionTitle(title: S.of(context).kPickParkingTime),
                   _createDurationPicker(booker, context),
                   _createConfirmButtons(booker, context),
                 ],
