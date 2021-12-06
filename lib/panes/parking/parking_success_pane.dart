@@ -37,7 +37,7 @@ class TkParkingSuccessPane extends TkPane {
                         ticket: booker.newTicket,
                         langCode: Provider.of<TkLangController>(context,
                                 listen: false)
-                            .lang
+                            .lang!
                             .languageCode,
                       ),
                     ),

@@ -3,7 +3,7 @@ import 'package:thaki/globals/index.dart';
 
 class TkSectionTitle extends StatelessWidget {
   TkSectionTitle({
-    @required this.title,
+    required this.title,
     this.icon,
     this.action,
     this.uppercase = true,
@@ -11,8 +11,8 @@ class TkSectionTitle extends StatelessWidget {
     this.noPadding = false,
   });
   final String title;
-  final IconData icon;
-  final Function action;
+  final IconData? icon;
+  final Function? action;
   final bool uppercase;
   final bool start;
   final bool noPadding;
@@ -36,7 +36,7 @@ class TkSectionTitle extends StatelessWidget {
           ),
           if (icon != null)
             GestureDetector(
-                onTap: action,
+                onTap: action as void Function()?,
                 child: Icon(
                   icon,
                   color: kSecondaryColor,

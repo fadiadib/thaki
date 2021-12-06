@@ -1,0 +1,567 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d5bdc727-5f77-4a8d-aae2-23f3256d83d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle_______build_app_intermediates_flutter_debug_libs_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_2_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_annotation_annotation_experimental_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_resources_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_common_2_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_browser_browser_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_browser_browser_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_browser_browser_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_collection_collection_1_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_3_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_5_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_ktx_1_3_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_3_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_3_4_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_heifwriter_heifwriter_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_2_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_common_java8_2_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_3_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_3_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_3_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_savedstate_2_3_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_savedstate_savedstate_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_core_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_2_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_3_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_4_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_webkit_webkit_1_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__backport_util_concurrent_backport_util_concurrent_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__classworlds_classworlds_1_1_alpha_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_almworks_sqlite4java_sqlite4java_0_282.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_installreferrer_installreferrer_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_common_12_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_core_12_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_android_facebook_login_12_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_yalantis_ucrop_2_2_7_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_apps_common_testing_accessibility_framework_accessibility_test_framework_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_datatransport_transport_api_3_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_datatransport_transport_backend_cct_3_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_datatransport_transport_runtime_3_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_ads_identifier_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_16_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_api_phone_16_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_api_phone_17_4_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_auth_base_16_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_16_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_17_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_16_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_17_2_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_cloud_messaging_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_18_0_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_18_0_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_api_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_base_18_0_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_base_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_18_0_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_impl_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_18_0_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_api_18_0_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_measurement_sdk_api_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_safetynet_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_stats_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_17_0_2_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_auto_common_0_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_auto_service_auto_service_1_0_rc4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_abt_21_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_18_0_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_ktx_18_0_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_analytics_ktx_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_annotations_16_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_21_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_19_5_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_ktx_19_5_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_ktx_20_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_components_16_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_components_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_config_21_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_datatransport_18_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_encoders_17_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_encoders_json_18_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_iid_interop_17_1_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_16_3_5_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_interop_16_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_installations_interop_17_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_18_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_measurement_connector_19_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_messaging_23_0_0_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_20_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_27_0_1_jre.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_guava_28_1_android.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_protobuf_protobuf_java_2_6_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_zxing_core_3_3_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_ibm_icu_icu4j_53_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_threetenabp_threetenabp_1_2_3_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_12_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_15_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_io_commons_io_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_flutter_arm64_v8a_debug_1_0_0_d3ea636dc5d16b56819f3266241e1f708979c233.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_flutter_armeabi_v7a_debug_1_0_0_d3ea636dc5d16b56819f3266241e1f708979c233.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_flutter_flutter_embedding_debug_1_0_0_d3ea636dc5d16b56819f3266241e1f708979c233.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_flutter_x86_64_debug_1_0_0_d3ea636dc5d16b56819f3266241e1f708979c233.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__io_flutter_x86_debug_1_0_0_d3ea636dc5d16b56819f3266241e1f708979c233.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_annotation_javax_annotation_api_1_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_13_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__nekohtml_nekohtml_1_9_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__nekohtml_xercesMinimal_1_9_6_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_10_20.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_10_20.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__net_bytebuddy_byte_buddy_agent_1_11_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_ant_ant_1_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_ant_ant_launcher_1_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_ant_tasks_2_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_artifact_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_artifact_manager_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_error_diagnostics_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_model_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_plugin_registry_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_profile_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_project_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_repository_metadata_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_maven_settings_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_wagon_wagon_file_1_0_beta_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_wagon_wagon_http_lightweight_1_0_beta_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_wagon_wagon_http_shared_1_0_beta_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_maven_wagon_wagon_provider_api_1_0_beta_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_bouncycastle_bcprov_jdk15on_1_52.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_compat_qual_2_5_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_checkerframework_checker_qual_2_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_17.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_18.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_plexus_plexus_container_default_1_0_alpha_9_stable_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_plexus_plexus_interpolation_1_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_codehaus_plexus_plexus_utils_1_5_15.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_library_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_annotations_13_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_72.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_5_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_72.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_5_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_3_72.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_5_10.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_3_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_core_1_10_19.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_core_3_10_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_core_3_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_core_3_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_inline_3_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_mockito_mockito_inline_3_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_objenesis_objenesis_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_analysis_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_commons_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_tree_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_ow2_asm_asm_util_7_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_annotations_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_annotations_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_junit_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_junit_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_pluginapi_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_pluginapi_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_plugins_maven_dependency_resolver_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_plugins_maven_dependency_resolver_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_resources_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_resources_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_robolectric_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_robolectric_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_sandbox_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_sandbox_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_shadowapi_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_shadowapi_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_shadows_framework_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_shadows_framework_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_utils_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_utils_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_utils_reflector_4_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_robolectric_utils_reflector_4_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_threeten_threetenbp_1_4_2_no_tzdb.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-1052068691/android.flutter_image_compress.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-1268885781/android.firebase_messaging.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-1321605998/android.path_provider_android.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-1327282707/android.sqflite.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-1363276879/android.firebase_auth.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-1412013185/android.firebase_analytics.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-1570150454/android.url_launcher_android.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-2030302453/android.flutter_local_notifications.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-446882910/android.connectivity.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/-71178229/android.google_sign_in.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/1075653050/android.flutter_plugin_android_lifecycle.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/1443192891/android.image_cropper.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/1476078496/android.flutter_facebook_auth.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/177128984/android.webview_flutter_android.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/1796353889/android.sign_in_with_apple.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/1809389230/android.twitter_login.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/2066428475/android.shared_preferences_android.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/218990701/android.package_info.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/270697182/android.store_redirect.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/314122121/android.image_picker.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/59908399/android.firebase_core.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/943917782/android.firebase_remote_config.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/android.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/app/android.app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Flutter/AppFrameworkInfo.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Podfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/drawers/menu_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/drawers/menu_drawer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/generated/intl/messages_all.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/generated/intl/messages_all.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/generated/intl/messages_ar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/generated/intl/messages_ar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/generated/intl/messages_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/generated/intl/messages_en.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/generated/l10n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/generated/l10n.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/globals/apiuris.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/globals/apiuris.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/globals/icons.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/globals/icons.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/globals/theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/globals/theme.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/attribute.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/attribute.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/balance.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/balance.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/car.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/car.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/color.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/color.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/credit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/credit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/document.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/document.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/info_fields.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/info_fields.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/notification.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/notification.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/package.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/package.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/parking_type.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/parking_type.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/permit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/permit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/subscription.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/subscription.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/ticket.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/ticket.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/transaction.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/transaction.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/models/violation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/models/violation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/home/dashboard_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/home/dashboard_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/home/parking_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/home/parking_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/home/profile_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/home/profile_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/home/tickets_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/home/tickets_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/home/violations_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/home/violations_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/package/package_payment_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/package/package_payment_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/parking/parking_duration_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/parking/parking_duration_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/parking/parking_payment_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/parking/parking_payment_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/parking/parking_success_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/parking/parking_success_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/parking/parking_time_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/parking/parking_time_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/permit/permit_disclaimer_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/permit/permit_disclaimer_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/permit/permit_documents_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/permit/permit_documents_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/permit/permit_form_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/permit/permit_form_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/subscription/subscription_payment_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/subscription/subscription_payment_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/transaction/transaction_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/transaction/transaction_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/violation/violation_car_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/violation/violation_car_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/violation/violation_list_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/violation/violation_list_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/panes/violation/violation_payment_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/panes/violation/violation_payment_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/account.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/account.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/attributes_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/attributes_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/booker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/booker.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/lang_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/lang_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/messenger.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/messenger.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/onboarding_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/onboarding_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/payer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/payer.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/purchaser.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/purchaser.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/server.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/server.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/subscriber.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/subscriber.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/transactor.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/transactor.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/user_attributes_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/user_attributes_controller.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/providers/versioner.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/providers/versioner.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/add_car_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/add_car_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/add_card_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/add_card_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/apply_subscription_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/apply_subscription_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/balance_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/balance_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/book_parking_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/book_parking_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/buy_package_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/buy_package_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/buy_subscription_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/buy_subscription_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/cars_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/cars_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/credit_cards_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/credit_cards_list_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/edit_profile_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/edit_profile_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/forgot_password_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/forgot_password_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/onboarding_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/onboarding_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/otp_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/otp_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/pay_violation_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/pay_violation_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/register_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/register_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/splash_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/subscription_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/subscription_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/transactions_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/transactions_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/welcome_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/welcome_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/analytics_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/analytics_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/api_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/api_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/credit_card_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/credit_card_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/crypto_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/crypto_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/date_time_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/date_time_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/db_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/db_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/dialog_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/dialog_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/draw_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/draw_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/form_builder.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/form_builder.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/formfield_validator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/formfield_validator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/license_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/license_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/network_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/network_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/qr_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/qr_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/shared_pref_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/shared_pref_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/snackbar_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/snackbar_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/url_launcher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/url_launcher.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utilities/validation_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utilities/validation_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/base/appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/base/appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/base/multi_step_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/base/multi_step_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/base/pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/base/pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/base/scaffold_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/base/scaffold_body.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/cards/credit_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/cards/credit_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/cards/id_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/cards/id_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/cards/license_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/cards/license_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/cards/package_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/cards/package_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/cards/success_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/cards/success_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/cards/title_text_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/cards/title_text_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/cards/user_info_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/cards/user_info_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/forms/button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/forms/button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/forms/dropdown_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/forms/dropdown_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/forms/dropdown_search/dropdown_search.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/forms/dropdown_search/dropdown_search.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/forms/dropdown_search/popup_menu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/forms/dropdown_search/popup_menu.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/forms/dropdown_search/select_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/forms/dropdown_search/select_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/forms/form_frame.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/forms/form_frame.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/forms/license_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/forms/license_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/forms/otp_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/forms/otp_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/forms/text_fields.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/forms/text_fields.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/carousel.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/carousel.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/delete_actiion.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/delete_actiion.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/edit_action.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/edit_action.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/error.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/error.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/list_menu_item.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/list_menu_item.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/progress_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/progress_indicator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/ribbon.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/ribbon.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/section_title.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/section_title.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/seen_action.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/seen_action.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/sliddable.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/sliddable.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/tabs.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/tabs.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/general/warning.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/general/warning.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/lists/car_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/lists/car_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/lists/notification_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/lists/notification_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/lists/parking_type_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/lists/parking_type_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/lists/payment_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/lists/payment_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/lists/ticket_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/lists/ticket_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/lists/transaction_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/lists/transaction_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/lists/violation_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/lists/violation_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/login/social_login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/login/social_login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/car_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/car_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/credit_card_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/credit_card_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/notification_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/notification_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/package_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/package_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/parking_type_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/parking_type_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/subscription_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/subscription_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/ticket_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/ticket_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/transaction_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/transaction_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/user_package_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/user_package_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/widgets/tiles/violation_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/widgets/tiles/violation_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../thaki.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../thaki.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/minalouis/.android/avd/Sasmung_S21_Ultra_API_29.avd]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="21jVbpTnUN4Xb05u9Dv3sP3BfK1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="memory.settings.postsync.last.time.stamp" value="1638454855851" />
+    <property name="recommended.upgrade.last.time.stamp" value="1638454887414" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="android.app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d5bdc727-5f77-4a8d-aae2-23f3256d83d2" name="Default Changelist" comment="" />
+      <created>1638454558469</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638454558469</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

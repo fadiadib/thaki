@@ -6,6 +6,6 @@ class TkScreen {
     image = json[kScreenImageTag];
   }
 
-  String title;
-  String image;
+  String? title;
+  String? image;
 }

@@ -3,13 +3,13 @@ import 'package:thaki/globals/index.dart';
 
 class TkDrawHelper {
   static Widget drawBall({
-    double diameter,
-    double x,
-    double y,
-    String tag,
-    Color color,
-    Color borderColor,
-    Widget child,
+    required double diameter,
+    double? x,
+    double? y,
+    String? tag,
+    Color? color,
+    Color? borderColor,
+    Widget? child,
   }) {
     Widget ball = AnimatedContainer(
       duration: Duration(milliseconds: 900),

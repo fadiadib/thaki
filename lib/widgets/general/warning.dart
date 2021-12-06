@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:thaki/globals/index.dart';
 
 class TkWarning extends StatelessWidget {
-  TkWarning({@required this.message});
+  TkWarning({required this.message});
   final String message;
 
   @override
@@ -16,7 +16,7 @@ class TkWarning extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Text(
         message,
-        style: kBoldStyle[kSmallSize].copyWith(color: kRedAccentColor),
+        style: kBoldStyle[kSmallSize]!.copyWith(color: kRedAccentColor),
       ),
     );
   }

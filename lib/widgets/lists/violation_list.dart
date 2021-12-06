@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 
 import 'package:thaki/generated/l10n.dart';
@@ -6,19 +7,18 @@ import 'package:thaki/models/index.dart';
 import 'package:thaki/widgets/tiles/violation_tile.dart';
 
 class TkViolationList extends StatelessWidget {
-  TkViolationList({@required this.violations, this.onTap, this.selection});
+  TkViolationList({required this.violations, this.onTap, this.selection});
   final List<TkViolation> violations;
-  final List<TkViolation> selection;
-  final Function onTap;
+  final List<TkViolation>? selection;
+  final Function? onTap;
 
   List<Widget> _getViolationTiles(BuildContext context) {
     List<Widget> tiles = [];
 
     if (violations != null && violations.isNotEmpty)
       for (TkViolation violation in violations) {
-        TkViolation found = selection?.firstWhere(
-            (element) => element.id == violation.id,
-            orElse: () => null);
+        TkViolation? found = selection?.firstWhereOrNull(
+            (element) => element.id == violation.id);
 
         tiles.add(
           Padding(

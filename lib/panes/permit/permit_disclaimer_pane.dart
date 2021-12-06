@@ -23,7 +23,7 @@ class TkPermitDisclaimerPane extends TkPane {
   @override
   Widget build(BuildContext context) {
     return Consumer<TkSubscriber>(builder: (context, subscriber, _) {
-      String error = subscriber.error[TkSubscriberError.loadDisclaimer];
+      String? error = subscriber.error[TkSubscriberError.loadDisclaimer];
       return subscriber.isLoading
           ? TkProgressIndicator()
           : ListView(
@@ -37,7 +37,7 @@ class TkPermitDisclaimerPane extends TkPane {
                   child: TkTitleTextCard(
                     title: S.of(context).kApplyForResidentPermit,
                     message: error == null
-                        ? subscriber.disclaimer
+                        ? subscriber.disclaimer!
                             .replaceAll('\\n', '\n')
                             .replaceAll('\\r', '\r')
                         : error,

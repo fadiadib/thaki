@@ -4,7 +4,7 @@ import 'package:thaki/globals/index.dart';
 
 class TkScaffoldBody extends StatelessWidget {
   TkScaffoldBody({
-    @required this.child,
+    required this.child,
     this.image,
     this.colorOverlay,
     this.overlayOpacity = 0.83,
@@ -12,8 +12,8 @@ class TkScaffoldBody extends StatelessWidget {
   });
 
   final Widget child;
-  final ImageProvider image;
-  final Color colorOverlay;
+  final ImageProvider? image;
+  final Color? colorOverlay;
   final double overlayOpacity;
   final bool enableSafeArea;
 
@@ -27,7 +27,7 @@ class TkScaffoldBody extends StatelessWidget {
           gradient: kWhiteBgLinearGradient,
           image: image == null
               ? null
-              : DecorationImage(image: image, fit: BoxFit.cover),
+              : DecorationImage(image: image!, fit: BoxFit.cover),
         ),
 
         // Encapsulate the child widget into a safe area

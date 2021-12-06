@@ -17,11 +17,11 @@ class TkPaymentList extends StatelessWidget {
     this.langCode = 'en',
   });
   final bool enableTitle;
-  final TkCredit selected;
-  final List<TkCredit> cards;
-  final Function onTap;
-  final Function onDelete;
-  final Function onEdit;
+  final TkCredit? selected;
+  final List<TkCredit>? cards;
+  final Function? onTap;
+  final Function? onDelete;
+  final Function? onEdit;
   final String langCode;
 
   Widget _getPaymentList(BuildContext context) {
@@ -36,11 +36,11 @@ class TkPaymentList extends StatelessWidget {
       );
     }
 
-    if (cards == null || cards.isEmpty) {
+    if (cards == null || cards!.isEmpty) {
       tiles.add(Center(
           child: Text(S.of(context).kNoPaymentCards, style: kHintStyle)));
     } else {
-      for (TkCredit creditCard in cards) {
+      for (TkCredit creditCard in cards!) {
         tiles.add(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),

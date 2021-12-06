@@ -10,9 +10,9 @@ import 'package:thaki/widgets/general/ribbon.dart';
 
 class TkViolationTile extends StatelessWidget {
   TkViolationTile(
-      {@required this.violation, this.onTap, this.isSelected = false});
+      {required this.violation, this.onTap, this.isSelected = false});
   final TkViolation violation;
-  final Function onTap;
+  final Function? onTap;
   final bool isSelected;
 
   Widget _buildViolationDetails(BuildContext context) {
@@ -20,12 +20,12 @@ class TkViolationTile extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(violation.name, style: kBoldStyle[kNormalSize]),
+          Text(violation.name!, style: kBoldStyle[kNormalSize]),
           Text(
-            TkDateTimeHelper.formatDate(violation.dateTime.toString()) +
+            TkDateTimeHelper.formatDate(violation.dateTime.toString())! +
                 ' ' +
                 TkDateTimeHelper.formatTime(
-                    context, violation.dateTime.toString()),
+                    context, violation.dateTime.toString())!,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 10),
@@ -73,7 +73,7 @@ class TkViolationTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (onTap != null) onTap(violation);
+        if (onTap != null) onTap!(violation);
       },
       child: Container(
         decoration: BoxDecoration(

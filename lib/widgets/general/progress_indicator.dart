@@ -6,7 +6,7 @@ class TkProgressIndicator extends StatelessWidget {
       {this.strokeWidth = 4.0, this.size, this.color = kSecondaryColor});
 
   final double strokeWidth;
-  final double size;
+  final double? size;
   final Color color;
 
   @override
@@ -16,7 +16,7 @@ class TkProgressIndicator extends StatelessWidget {
         height: size,
         width: size,
         child: Theme(
-          data: Theme.of(context).copyWith(accentColor: color),
+          data: Theme.of(context).copyWith(colorScheme: ColorScheme.fromSwatch().copyWith(secondary: color)),
           child: CircularProgressIndicator(
             strokeWidth: strokeWidth,
           ),

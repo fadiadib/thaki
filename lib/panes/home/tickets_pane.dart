@@ -39,7 +39,7 @@ class TkTicketsPane extends TkPane {
       children: [
         TkTicketList(
           onRefresh: () => refreshModel(context),
-          langCode: langController.lang.languageCode,
+          langCode: langController.lang!.languageCode,
           tickets: booker.upcomingTickets,
           onDelete: !kAllowDeleteTicket
               ? null
@@ -56,15 +56,15 @@ class TkTicketsPane extends TkPane {
                       ) ??
                       false)
                     booker.cancelTicket(
-                      account.user,
+                      account.user!,
                       ticket,
                     );
-                  purchaser.loadBalance(account.user, notify: false);
+                  purchaser.loadBalance(account.user!, notify: false);
                 },
         ),
         TkTicketList(
           onRefresh: () => refreshModel(context),
-          langCode: langController.lang.languageCode,
+          langCode: langController.lang!.languageCode,
           tickets: booker.completedTickets,
           ribbon: S.of(context).kCompleted,
           ribbonColor: kGreenAccentColor,
@@ -72,7 +72,7 @@ class TkTicketsPane extends TkPane {
         if (kAllowPendingTicket)
           TkTicketList(
             onRefresh: () => refreshModel(context),
-            langCode: langController.lang.languageCode,
+            langCode: langController.lang!.languageCode,
             tickets: booker.pendingTickets,
             ribbon: S.of(context).kPending,
             ribbonColor: kSecondaryColor,
@@ -80,7 +80,7 @@ class TkTicketsPane extends TkPane {
         if (kAllowDeleteTicket)
           TkTicketList(
             onRefresh: () => refreshModel(context),
-            langCode: langController.lang.languageCode,
+            langCode: langController.lang!.languageCode,
             tickets: booker.cancelledTickets,
             ribbon: S.of(context).kCancelled,
             ribbonColor: kTertiaryColor,
@@ -93,7 +93,7 @@ class TkTicketsPane extends TkPane {
     // Load user profile here
     final TkAccount account = Provider.of<TkAccount>(context, listen: false);
     final TkBooker booker = Provider.of<TkBooker>(context, listen: false);
-    await booker.loadTickets(account.user);
+    await booker.loadTickets(account.user!);
   }
 
   @override

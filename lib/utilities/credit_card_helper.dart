@@ -1,5 +1,5 @@
 class TkCreditCardHelper {
-  static String obscure(String number, String langCode) {
+  static String? obscure(String? number, String langCode) {
     if (number == null) return number;
     return fix(number, langCode);
     // return number.substring(0, 4) + ' XXXX XXXX ' + number.substring(12);

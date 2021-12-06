@@ -4,7 +4,7 @@ import 'package:thaki/globals/index.dart';
 
 class TkTitleTextCard extends StatelessWidget {
   TkTitleTextCard({
-    @required this.title,
+    required this.title,
     this.message,
     this.subMessage,
     this.child,
@@ -13,12 +13,12 @@ class TkTitleTextCard extends StatelessWidget {
     this.icon,
   });
   final String title;
-  final String message;
-  final String subMessage;
+  final String? message;
+  final String? subMessage;
   final Color titleColor;
-  final Color messageColor;
-  final Widget child;
-  final IconData icon;
+  final Color? messageColor;
+  final Widget? child;
+  final IconData? icon;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class TkTitleTextCard extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: Text(
                   title,
-                  style: kBoldStyle[kBigSize].copyWith(color: titleColor),
+                  style: kBoldStyle[kBigSize]!.copyWith(color: titleColor),
                 ),
               ),
               Divider(color: kAccentGreyColor, thickness: 1.0),
@@ -55,8 +55,8 @@ class TkTitleTextCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            message != null ? message : title,
-                            style: kRegularStyle[kSmallSize].copyWith(
+                            message != null ? message! : title,
+                            style: kRegularStyle[kSmallSize]!.copyWith(
                                 color: messageColor ?? kDarkGreyColor),
                           ),
                           if (subMessage != null)
@@ -69,8 +69,8 @@ class TkTitleTextCard extends StatelessWidget {
                                 ),
                                 padding: EdgeInsets.all(10.0),
                                 child: Text(
-                                  subMessage,
-                                  style: kRegularStyle[kSmallSize].copyWith(
+                                  subMessage!,
+                                  style: kRegularStyle[kSmallSize]!.copyWith(
                                       color: messageColor ?? kDarkGreyColor),
                                 ),
                               ),
@@ -81,7 +81,7 @@ class TkTitleTextCard extends StatelessWidget {
                   ],
                 ),
               ),
-              if (child != null) child,
+              if (child != null) child!,
             ],
           ),
         )

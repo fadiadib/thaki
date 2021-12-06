@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,15 +10,16 @@ import 'package:thaki/utilities/date_time_helper.dart';
 
 class TkSubscriptionTile extends StatelessWidget {
   TkSubscriptionTile({
-    @required this.subscription,
+    required this.subscription,
     this.isSelected = false,
     this.onTap,
     this.user,
   });
-  final TkSubscription subscription;
+
+  final TkSubscription? subscription;
   final bool isSelected;
-  final Function onTap;
-  final TkUser user;
+  final Function? onTap;
+  final TkUser? user;
 
   Widget _getTileImage() {
     return Container(
@@ -26,12 +28,12 @@ class TkSubscriptionTile extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Container(
         decoration: BoxDecoration(
-          color: subscription.color.withOpacity(0.08),
+          color: subscription!.color!.withOpacity(0.08),
           borderRadius: BorderRadius.circular(100.0),
         ),
         child: Image.asset(
           kPackageIcon,
-          color: subscription.color,
+          color: subscription!.color,
         ),
       ),
     );
@@ -42,18 +44,16 @@ class TkSubscriptionTile extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsetsDirectional.only(start: 10),
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: [
             user != null
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                          user.cars
-                                  ?.firstWhere(
-                                      (element) =>
-                                          element.id == subscription.car,
-                                      orElse: () => null)
+                          user!.cars
+                                  ?.firstWhereOrNull((element) =>
+                                      element.id == subscription!.car)
                                   ?.name ??
                               '',
                           style: kBoldStyle[kNormalSize]),
@@ -64,11 +64,11 @@ class TkSubscriptionTile extends StatelessWidget {
                           Text(S.of(context).kValidFrom +
                               ' ' +
                               TkDateTimeHelper.formatDate(
-                                  subscription.startDate)),
+                                  subscription!.startDate)!),
                           Text(S.of(context).kToSmall +
                               ' ' +
                               TkDateTimeHelper.formatDate(
-                                  subscription.endDate)),
+                                  subscription!.endDate)!),
                         ],
                       ),
                       SizedBox(height: 5),
@@ -76,8 +76,8 @@ class TkSubscriptionTile extends StatelessWidget {
                         S.of(context).kCreatedOn +
                             ' ' +
                             TkDateTimeHelper.formatDate(
-                                subscription.createdAt.toString()),
-                        style: kBoldStyle[kSmallSize]
+                                subscription!.createdAt.toString())!,
+                        style: kBoldStyle[kSmallSize]!
                             .copyWith(color: kPrimaryColor),
                       )
                     ],
@@ -85,18 +85,18 @@ class TkSubscriptionTile extends StatelessWidget {
                 : Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(subscription.name, style: kBoldStyle[kNormalSize]),
+                      Text(subscription!.name!, style: kBoldStyle[kNormalSize]),
                       SizedBox(height: 15),
                       Text(S.of(context).kValidFor +
                           ' ' +
-                          subscription.period.toString() +
+                          subscription!.period.toString() +
                           ' ' +
                           S.of(context).kDays),
                       Text(
                         S.of(context).kSAR +
                             ' ' +
-                            subscription.price.toString(),
-                        style: kBoldStyle[kSmallSize]
+                            subscription!.price.toString(),
+                        style: kBoldStyle[kSmallSize]!
                             .copyWith(color: kPrimaryColor),
                       )
                     ],
@@ -105,7 +105,7 @@ class TkSubscriptionTile extends StatelessWidget {
               Positioned.directional(
                 textDirection:
                     Provider.of<TkLangController>(context, listen: false)
-                                .lang
+                                .lang!
                                 .languageCode ==
                             'ar'
                         ? TextDirection.rtl
@@ -134,7 +134,7 @@ class TkSubscriptionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Container(
         decoration: BoxDecoration(
           color: kTileBgColor,

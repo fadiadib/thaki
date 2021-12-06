@@ -12,7 +12,7 @@ import 'dialog_helper.dart';
 
 class TkQRHelper {
   static void showQRCode(
-      {BuildContext context, TkTicket ticket, Function loadCallback}) async {
+      {required BuildContext context, required TkTicket ticket, Function? loadCallback}) async {
     TkBooker booker = Provider.of<TkBooker>(context, listen: false);
     if (ticket.cancelled == false) {
       booker.loadQRError = null;
@@ -20,7 +20,7 @@ class TkQRHelper {
       if (ticket.code == null) {
         if (loadCallback != null) loadCallback(true);
         await booker.loadQR(
-            Provider.of<TkAccount>(context, listen: false).user, ticket);
+            Provider.of<TkAccount>(context, listen: false).user!, ticket);
         if (loadCallback != null) loadCallback(false);
       }
 
@@ -52,7 +52,7 @@ class TkQRHelper {
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             child: QrImage(
-                              data: ticket.code,
+                              data: ticket.code!,
                               version: QrVersions.auto,
                               size: 380.0,
                             ),

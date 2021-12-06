@@ -9,7 +9,7 @@ import 'package:thaki/utilities/index.dart';
 import 'package:thaki/widgets/general/sliddable.dart';
 
 class TkNotificationTile extends StatelessWidget {
-  TkNotificationTile({@required this.notification, this.langCode = 'en'});
+  TkNotificationTile({required this.notification, this.langCode = 'en'});
   final TkNotification notification;
   final String langCode;
 
@@ -26,7 +26,7 @@ class TkNotificationTile extends StatelessWidget {
                 false) messenger.deleteNotification(notification);
           },
           onSeen: () {
-            messenger.updateSeen(notification, !notification.isSeen);
+            messenger.updateSeen(notification, !notification.isSeen!);
             messenger.showBody(notification, value: false);
           },
           child: GestureDetector(
@@ -44,7 +44,7 @@ class TkNotificationTile extends StatelessWidget {
                 boxShadow: kTileShadow,
                 borderRadius: BorderRadius.circular(4.0),
                 border: Border.all(
-                    color: !notification.isSeen
+                    color: !notification.isSeen!
                         ? kSecondaryColor
                         : kTransparentColor),
               ),
@@ -70,15 +70,15 @@ class TkNotificationTile extends StatelessWidget {
                                 children: [
                                   Text(
                                     TkDateTimeHelper.formatDate(
-                                            notification.date.toString()) +
+                                            notification.date.toString())! +
                                         ' - ',
-                                    style: kBoldStyle[kSmallSize]
+                                    style: kBoldStyle[kSmallSize]!
                                         .copyWith(color: kSemiGreyColor),
                                   ),
                                   Text(
                                     TkDateTimeHelper.formatTime(
-                                        context, notification.date.toString()),
-                                    style: kBoldStyle[kSmallSize]
+                                        context, notification.date.toString())!,
+                                    style: kBoldStyle[kSmallSize]!
                                         .copyWith(color: kSemiGreyColor),
                                   ),
                                 ],
@@ -87,23 +87,23 @@ class TkNotificationTile extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(bottom: 5.0),
                               child: Text(
-                                notification.title,
-                                style: kBoldStyle[kSmallSize]
+                                notification.title!,
+                                style: kBoldStyle[kSmallSize]!
                                     .copyWith(color: kBlackColor),
                               ),
                             ),
                             Text(
-                              notification.short,
-                              style: kBoldStyle[kSmallSize]
+                              notification.short!,
+                              style: kBoldStyle[kSmallSize]!
                                   .copyWith(color: kSemiGreyColor),
                             ),
                             if (notification.showBody &&
-                                notification.body.isNotEmpty)
+                                notification.body!.isNotEmpty)
                               Divider(color: kAccentGreyColor, thickness: 1.0),
                             if (notification.showBody &&
-                                notification.body.isNotEmpty)
+                                notification.body!.isNotEmpty)
                               Text(
-                                notification.body,
+                                notification.body!,
                                 style: kBoldStyle[kSmallSize],
                               )
                           ],

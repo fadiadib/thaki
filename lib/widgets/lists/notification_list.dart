@@ -11,14 +11,14 @@ import 'package:thaki/widgets/tiles/notification_tile.dart';
 
 class TkNotificationList extends StatelessWidget {
   TkNotificationList({this.notifications, this.langCode = 'en'});
-  final List<TkNotification> notifications;
+  final List<TkNotification>? notifications;
   final String langCode;
 
   Widget _getNotificationsList(BuildContext context) {
     List<Widget> tiles = [];
     TkMessenger messenger = Provider.of<TkMessenger>(context, listen: false);
 
-    if (notifications == null || notifications.isEmpty) {
+    if (notifications == null || notifications!.isEmpty) {
       return Center(
         child: Text(S.of(context).kNoNotifications, style: kHintStyle),
       );
@@ -40,7 +40,7 @@ class TkNotificationList extends StatelessWidget {
           ),
         ),
       );
-      for (TkNotification notification in notifications) {
+      for (TkNotification notification in notifications!) {
         tiles.add(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),

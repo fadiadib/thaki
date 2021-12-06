@@ -11,14 +11,14 @@ class TkCar {
     plateAR = json[kCarPlateARTag] ?? json[kCarPlateENTag];
 
     // Temporary solution
-    if (plateAR == null || plateAR.isEmpty) plateAR = plateEN;
-    if (plateEN == null || plateEN.isEmpty) plateEN = plateAR;
+    if (plateAR == null || plateAR!.isEmpty) plateAR = plateEN;
+    if (plateEN == null || plateEN!.isEmpty) plateEN = plateAR;
 
     make = int.tryParse(json[kCarMakeTag].toString());
     model = int.tryParse(json[kCarModelTag].toString());
     state = int.tryParse(json[kCarStateTag].toString()) == null
         ? 1
-        : int.tryParse(json[kCarStateTag]?.toString()) ?? 1;
+        : int.tryParse(json[kCarStateTag].toString()) ?? 1;
     preferred = json[kCarPreferredTag].toString() == '1';
     if (json[kCarColorTag] != null)
       color = int.tryParse(json[kCarColorTag].toString());
@@ -84,15 +84,15 @@ class TkCar {
     return kTransparentColor;
   }
 
-  int id;
-  String name;
-  String plateEN;
-  String plateAR;
-  int make;
-  int model;
-  int color;
-  String year;
-  int state;
-  bool preferred;
-  int isApproved = 0;
+  int? id;
+  String? name;
+  String? plateEN;
+  String? plateAR;
+  int? make;
+  int? model;
+  int? color;
+  String? year;
+  int? state;
+  bool? preferred;
+  int? isApproved = 0;
 }

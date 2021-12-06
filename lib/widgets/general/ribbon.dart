@@ -15,8 +15,8 @@ class TkCardRibbon extends StatelessWidget {
     this.width = 115.0,
   });
 
-  final Color color;
-  final String title;
+  final Color? color;
+  final String? title;
   final TkCardRibbonSide side;
   final double height;
   final double width;
@@ -43,8 +43,8 @@ class TkCardRibbon extends StatelessWidget {
             color: color,
             child: Center(
               child: Text(
-                title.toUpperCase(),
-                style: kBoldStyle[kSmallSize]
+                title!.toUpperCase(),
+                style: kBoldStyle[kSmallSize]!
                     .copyWith(color: kWhiteColor, fontSize: 10.0),
                 textAlign: TextAlign.center,
               ),
@@ -83,8 +83,8 @@ class TkMarker extends StatelessWidget {
     this.isStack = true,
   });
 
-  final Color color;
-  final String title;
+  final Color? color;
+  final String? title;
   final TkCardRibbonSide side;
   final bool isStack;
 
@@ -96,9 +96,9 @@ class TkMarker extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Text(
-        title.toUpperCase(),
+        title!.toUpperCase(),
         style:
-            kBoldStyle[kSmallSize].copyWith(color: kWhiteColor, fontSize: 10),
+            kBoldStyle[kSmallSize]!.copyWith(color: kWhiteColor, fontSize: 10),
         textAlign: TextAlign.center,
       ),
     );

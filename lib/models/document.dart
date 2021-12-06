@@ -9,8 +9,8 @@ class TkDocument {
     required = json[kDocumentRequiredTag] == true;
   }
 
-  String tag;
-  String title;
-  bool required;
-  File image;
+  String? tag;
+  String? title;
+  bool? required;
+  File? image;
 }

@@ -8,7 +8,7 @@ import 'package:thaki/widgets/general/sliddable.dart';
 
 class TkCreditCardTile extends StatelessWidget {
   TkCreditCardTile({
-    @required this.creditCard,
+    required this.creditCard,
     this.onTap,
     this.isSelected,
     this.onEdit,
@@ -16,20 +16,20 @@ class TkCreditCardTile extends StatelessWidget {
     this.langCode = 'en',
   });
   final TkCredit creditCard;
-  final Function onTap;
-  final Function onDelete;
-  final Function onEdit;
-  final bool isSelected;
+  final Function? onTap;
+  final Function? onDelete;
+  final Function? onEdit;
+  final bool? isSelected;
   final String langCode;
 
   @override
   Widget build(BuildContext context) {
     return TkSlidableTile(
-      onDelete: onDelete == null ? null : () => onDelete(creditCard),
-      onEdit: onEdit == null ? null : () => onEdit(creditCard),
+      onDelete: onDelete == null ? null : () => onDelete!(creditCard),
+      onEdit: onEdit == null ? null : () => onEdit!(creditCard),
       child: GestureDetector(
         onTap: () {
-          if (onTap != null) onTap(creditCard);
+          if (onTap != null) onTap!(creditCard);
         },
         child: Container(
           height: kTileHeight,
@@ -40,8 +40,8 @@ class TkCreditCardTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(4.0),
             border: Border.all(
                 color: isSelected != null
-                    ? isSelected ? kSecondaryColor : kTransparentColor
-                    : creditCard.preferred
+                    ? isSelected! ? kSecondaryColor : kTransparentColor
+                    : creditCard.preferred!
                         ? kSecondaryColor
                         : kTransparentColor),
           ),
@@ -55,7 +55,7 @@ class TkCreditCardTile extends StatelessWidget {
                 creditCard.type != null
                     ? Expanded(
                         child:
-                            Image.asset(kCCLogos[creditCard.type], height: 30))
+                            Image.asset(kCCLogos[creditCard.type!], height: 30))
                     : Expanded(child: Container()),
 
                 // Card number/expiration
@@ -71,14 +71,14 @@ class TkCreditCardTile extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 5.0),
                           child: Text(
                             TkCreditCardHelper.obscure(
-                                creditCard.number, langCode),
-                            style: kBoldStyle[kNormalSize]
+                                creditCard.number, langCode)!,
+                            style: kBoldStyle[kNormalSize]!
                                 .copyWith(color: kBlackColor),
                           ),
                         ),
                         Text(S.of(context).kCardExpires +
                             ' ' +
-                            creditCard.expiry),
+                            creditCard.expiry!),
                       ],
                     ),
                   ),
@@ -88,8 +88,8 @@ class TkCreditCardTile extends StatelessWidget {
                 Icon(
                   isSelected != null ? kSelectBtnIcon : kStarCircleBtnIcon,
                   color: isSelected != null
-                      ? isSelected ? kSecondaryColor : kTransparentColor
-                      : creditCard.preferred
+                      ? isSelected! ? kSecondaryColor : kTransparentColor
+                      : creditCard.preferred!
                           ? kSecondaryColor
                           : kTransparentColor,
                 )

@@ -31,8 +31,6 @@ class TkDialogHelper {
       case gDialogType.agreeDisagree:
         return idx == 0 ? S.of(context).kAgree : S.of(context).kDisagree;
     }
-
-    return '';
   }
 
   static List<Widget> _getButtons(BuildContext context, gDialogType type) {
@@ -42,7 +40,7 @@ class TkDialogHelper {
       widgets.add(
         MaterialButton(
           child: Text(S.of(context).kUpgradeNow,
-              style: kRegularStyle[kNormalSize].copyWith(color: kBlackColor)),
+              style: kRegularStyle[kNormalSize]!.copyWith(color: kBlackColor)),
           onPressed: () {
             Navigator.pop(context, true);
             StoreRedirect.redirect(
@@ -65,7 +63,7 @@ class TkDialogHelper {
       widgets.add(
         MaterialButton(
           child: Text(_getButtonText(context, type, 0),
-              style: kRegularStyle[kNormalSize].copyWith(color: kBlackColor)),
+              style: kRegularStyle[kNormalSize]!.copyWith(color: kBlackColor)),
           onPressed: () => Navigator.pop(context, true),
         ),
       );
@@ -74,7 +72,7 @@ class TkDialogHelper {
         widgets.add(
           MaterialButton(
             child: Text(_getButtonText(context, type, 1),
-                style: kRegularStyle[kNormalSize].copyWith(color: kBlackColor)),
+                style: kRegularStyle[kNormalSize]!.copyWith(color: kBlackColor)),
             onPressed: () => Navigator.pop(context, false),
           ),
         );
@@ -84,10 +82,10 @@ class TkDialogHelper {
     return widgets;
   }
 
-  static Future<bool> gShowConfirmationDialog({
-    @required BuildContext context,
-    @required String message,
-    String content,
+  static Future<bool?> gShowConfirmationDialog({
+    required BuildContext context,
+    required String message,
+    String? content,
     gDialogType type = gDialogType.confirmCancel,
     TextAlign align = TextAlign.center,
     bool barrierDismissible = true,
@@ -101,7 +99,7 @@ class TkDialogHelper {
           title: Center(
             child: Text(
               message,
-              style: kBoldStyle[kNormalSize].copyWith(
+              style: kBoldStyle[kNormalSize]!.copyWith(
                   fontFamily:
                       Provider.of<TkLangController>(context, listen: false)
                           .fontFamily),
@@ -113,7 +111,7 @@ class TkDialogHelper {
               ? Padding(
                   padding: const EdgeInsets.only(top: 10.0),
                   child: Text(content,
-                      style: kRegularStyle[kSmallSize].copyWith(
+                      style: kRegularStyle[kSmallSize]!.copyWith(
                           fontFamily: Provider.of<TkLangController>(context,
                                   listen: false)
                               .fontFamily),
@@ -128,8 +126,8 @@ class TkDialogHelper {
     );
   }
 
-  static Future<bool> gShowUpgradeDialog(
-      {@required BuildContext context}) async {
+  static Future<bool?> gShowUpgradeDialog(
+      {required BuildContext context}) async {
     return gShowConfirmationDialog(
       context: context,
       message: S.of(context).kUnsupportedVersion,
@@ -139,9 +137,9 @@ class TkDialogHelper {
     );
   }
 
-  static Future<bool> gOpenDrawer({
-    @required BuildContext context,
-    @required Widget drawer,
+  static Future<bool?> gOpenDrawer({
+    required BuildContext context,
+    required Widget drawer,
   }) async {
     // Create a modal bottom sheet
     return showModalBottomSheet(

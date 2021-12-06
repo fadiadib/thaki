@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
@@ -20,9 +21,9 @@ class TkPayer extends ChangeNotifier {
   List<TkViolation> _cancelledViolations = [];
   List<TkViolation> get cancelledViolations => _cancelledViolations;
 
-  TkCar _selectedCar;
-  TkCar get selectedCar => _selectedCar;
-  set selectedCar(TkCar car) {
+  TkCar? _selectedCar;
+  TkCar? get selectedCar => _selectedCar;
+  set selectedCar(TkCar? car) {
     _selectedCar = car;
     _validationCarError = null;
 
@@ -31,9 +32,9 @@ class TkPayer extends ChangeNotifier {
 
   bool allowChange = true;
 
-  String _cvv;
-  String get cvv => _cvv;
-  set cvv(String value) {
+  String? _cvv;
+  String? get cvv => _cvv;
+  set cvv(String? value) {
     _cvv = value;
     notifyListeners();
   }
@@ -41,9 +42,8 @@ class TkPayer extends ChangeNotifier {
   List<TkViolation> _selectedViolations = [];
   List<TkViolation> get selectedViolations => _selectedViolations;
   void toggleSelection(TkViolation violation) {
-    TkViolation found = _selectedViolations.firstWhere(
-        (element) => element.id == violation.id,
-        orElse: () => null);
+    TkViolation? found = _selectedViolations.firstWhereOrNull(
+        (element) => element.id == violation.id);
     if (found != null) {
       // Violation found, remove it
       _selectedViolations.remove(found);
@@ -55,9 +55,9 @@ class TkPayer extends ChangeNotifier {
     notifyListeners();
   }
 
-  TkCredit _selectedCard;
-  TkCredit get selectedCard => _selectedCard;
-  set selectedCard(TkCredit card) {
+  TkCredit? _selectedCard;
+  TkCredit? get selectedCard => _selectedCard;
+  set selectedCard(TkCredit? card) {
     _selectedCard = card;
     _validationPaymentError = null;
 
@@ -65,8 +65,8 @@ class TkPayer extends ChangeNotifier {
   }
 
   // Validation
-  String _validationPaymentError;
-  String get validationPaymentError => _validationPaymentError;
+  String? _validationPaymentError;
+  String? get validationPaymentError => _validationPaymentError;
   bool validatePayment(BuildContext context) {
     if (_selectedCard == null) {
       _validationPaymentError = S.of(context).kSelectPaymentToProceed;
@@ -79,7 +79,7 @@ class TkPayer extends ChangeNotifier {
   double getSelectedViolationsFine() {
     double fine = 0;
     for (TkViolation violation in _selectedViolations) {
-      fine += violation.fine;
+      fine += violation.fine!;
     }
     return fine;
   }
@@ -89,12 +89,12 @@ class TkPayer extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   // Errors
-  String loadError;
-  String payError;
+  String? loadError;
+  String? payError;
 
   // Validation
-  String _validationViolationsError;
-  String get validationViolationsError => _validationViolationsError;
+  String? _validationViolationsError;
+  String? get validationViolationsError => _validationViolationsError;
   bool validateViolations(BuildContext context) {
     if (_selectedViolations == null || _selectedViolations.isEmpty) {
       _validationViolationsError = S.of(context).kSelectViolationToProceed;
@@ -104,14 +104,14 @@ class TkPayer extends ChangeNotifier {
     return true;
   }
 
-  String _validationCarError;
-  String get validationCarError => _validationCarError;
+  String? _validationCarError;
+  String? get validationCarError => _validationCarError;
   bool validateCar(BuildContext context) {
     if (_selectedCar == null ||
-        _selectedCar.plateEN == null ||
-        _selectedCar.plateEN.isEmpty ||
+        _selectedCar!.plateEN == null ||
+        _selectedCar!.plateEN!.isEmpty ||
         !TkValidationHelper.validateLicense(
-            _selectedCar.plateEN.toUpperCase(), _selectedCar.state, 'en')) {
+            _selectedCar!.plateEN!.toUpperCase(), _selectedCar!.state, 'en')) {
       _validationCarError = S.of(context).kSelectCardToProceed;
       notifyListeners();
       return false;
@@ -120,7 +120,7 @@ class TkPayer extends ChangeNotifier {
   }
 
   /// Load violations
-  Future<bool> loadViolations(TkUser user, TkLangController langController,
+  Future<bool> loadViolations(TkUser? user, TkLangController langController,
       {bool guest = false, bool all = false}) async {
     // Start any loading indicators
     _isLoading = true;
@@ -138,10 +138,10 @@ class TkPayer extends ChangeNotifier {
     Map result = Map();
     if (guest)
       result = await _apis.loadViolationsWithoutToken(
-          selectedCar.plateEN.toUpperCase(), langController);
+          selectedCar!.plateEN!.toUpperCase(), langController);
     else
       result = await _apis
-          .loadViolations(selectedCar.plateEN.toUpperCase(), user, all: all);
+          .loadViolations(selectedCar!.plateEN!.toUpperCase(), user!, all: all);
 
     if (result[kStatusTag] == kSuccessCode) {
       if (all) {
@@ -189,7 +189,7 @@ class TkPayer extends ChangeNotifier {
     notifyListeners();
 
     Map result = await _apis.payViolations(
-        violations: selectedViolations, card: selectedCard, cvv: _cvv);
+        violations: selectedViolations, card: selectedCard!, cvv: _cvv);
 
     if (result[kStatusTag] != kSuccessCreationCode) {
       payError = _apis.normalizeError(result);

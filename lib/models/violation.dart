@@ -17,12 +17,12 @@ class TkViolation {
   bool get isPaid => status == 1;
   bool get isCancelled => status == 2;
 
-  int id;
-  String name;
-  DateTime dateTime;
-  String location;
-  double fine;
-  String carPlate;
-  int issueNumber;
+  int? id;
+  String? name;
+  DateTime? dateTime;
+  late String location;
+  double? fine;
+  String? carPlate;
+  int? issueNumber;
   int status = 0;
 }

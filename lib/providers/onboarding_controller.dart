@@ -18,8 +18,8 @@ class TkOnBoardingController extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   // Error variables
-  String _error;
-  String get error => _error;
+  String? _error;
+  String? get error => _error;
 
   /// Checks that the server is alive
   Future<bool> load(TkLangController langController) async {
@@ -33,7 +33,7 @@ class TkOnBoardingController extends ChangeNotifier {
 
     if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kOnBoardingTag]) {
-        _onBoardingList.add(TkScreen.fromJson(data));
+        _onBoardingList.add(TkScreen.fromJson(data as Map<String, dynamic>));
       }
     } else {
       // an error happened

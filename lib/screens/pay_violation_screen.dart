@@ -56,7 +56,7 @@ class _TkPayViolationScreenState extends TkMultiStepPageState {
           loadNextPane();
         }),
       TkViolationListPane(onDone: () {
-        List<int> ids = [];
+        List<int?> ids = [];
         for (TkViolation violation in payer.selectedViolations) {
           ids.add(violation.id);
         }

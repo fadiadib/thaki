@@ -29,20 +29,20 @@ class TkFormFrame extends StatefulWidget {
     this.startValidationCallback,
   });
 
-  final String formTitle;
-  final String introTitle;
-  final String actionTitle;
-  final Function action;
-  final Function extraValidation;
-  final Function startValidationCallback;
-  final TkInfoFieldsList fields;
+  final String? formTitle;
+  final String? introTitle;
+  final String? actionTitle;
+  final Function? action;
+  final Function? extraValidation;
+  final Function? startValidationCallback;
+  final TkInfoFieldsList? fields;
   final String buttonTag;
-  final Widget header;
-  final Widget footer;
-  final Function validatePasswordMatch;
-  final Function validatePassword;
-  final String passwordError;
-  final Widget child;
+  final Widget? header;
+  final Widget? footer;
+  final Function? validatePasswordMatch;
+  final Function? validatePassword;
+  final String? passwordError;
+  final Widget? child;
   final bool isLoading;
   final String langCode;
 
@@ -53,15 +53,15 @@ class TkFormFrame extends StatefulWidget {
 class _TkFormFrameState extends State<TkFormFrame>
     with TkFormFieldValidatorMixin {
   @override
-  bool validate() {
+  bool? validate() {
     if (widget.startValidationCallback != null)
-      widget.startValidationCallback();
+      widget.startValidationCallback!();
 
-    for (TkInfoField field in widget.fields.fields) {
+    for (TkInfoField field in widget.fields!.fields) {
       if (!validateInfoField(field)) return false;
     }
 
-    if (widget.extraValidation != null) return widget.extraValidation();
+    if (widget.extraValidation != null) return widget.extraValidation!();
     return true;
   }
 
@@ -104,7 +104,7 @@ class _TkFormFrameState extends State<TkFormFrame>
     return false;
   }
 
-  String _getLabel(TkInfoField field) {
+  String? _getLabel(TkInfoField field) {
     return widget.langCode == 'en' ? field.label : field.labelAR ?? field.label;
   }
 
@@ -128,8 +128,8 @@ class _TkFormFrameState extends State<TkFormFrame>
   }
 
   /// Checks the info field type and creates the corresponding widget
-  Widget _createFormFieldWidget(TkInfoField field, BuildContext context) {
-    Widget widget;
+  Widget? _createFormFieldWidget(TkInfoField field, BuildContext context) {
+    Widget? widget;
     switch (field.type) {
       case TkInfoFieldType.NationalId:
         // National ID type
@@ -141,7 +141,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
+          errorMessage: S.of(context).kPleaseEnter + _getLabel(field)!,
         );
         break;
       case TkInfoFieldType.Name:
@@ -157,7 +157,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
+          errorMessage: S.of(context).kPleaseEnter + _getLabel(field)!,
           lines: field.numLines,
         );
         break;
@@ -171,7 +171,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
+          errorMessage: S.of(context).kPleaseEnter + _getLabel(field)!,
         );
         break;
       case TkInfoFieldType.Password:
@@ -188,12 +188,12 @@ class _TkFormFrameState extends State<TkFormFrame>
           isValidating: isValidating,
           validator: () {
             if (this.widget.validatePassword != null) {
-              return this.widget.validatePassword(field);
+              return this.widget.validatePassword!(field);
             } else
               return validateInfoField(field);
           },
           errorMessage: this.widget.passwordError ??
-              S.of(context).kPleaseEnter + _getLabel(field),
+              S.of(context).kPleaseEnter + _getLabel(field)!,
         );
         break;
       case TkInfoFieldType.ConfirmPassword:
@@ -210,7 +210,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           isValidating: true,
           validator: () {
             if (this.widget.validatePasswordMatch != null) {
-              return this.widget.validatePasswordMatch(field);
+              return this.widget.validatePasswordMatch!(field);
             } else
               return validateInfoField(field);
           },
@@ -227,7 +227,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnterAValid + _getLabel(field),
+          errorMessage: S.of(context).kPleaseEnterAValid + _getLabel(field)!,
         );
         break;
       case TkInfoFieldType.Phone:
@@ -240,7 +240,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) => setState(() => field.value = value),
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          errorMessage: S.of(context).kPleaseEnterAValid + _getLabel(field),
+          errorMessage: S.of(context).kPleaseEnterAValid + _getLabel(field)!,
         );
         break;
       case TkInfoFieldType.Date:
@@ -255,7 +255,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) {
             setState(() => field.value = value.toString());
           },
-          errorMessage: S.of(context).kPleaseChoose + _getLabel(field),
+          errorMessage: S.of(context).kPleaseChoose + _getLabel(field)!,
           isValidating: isValidating,
           validator: () => validateInfoField(field),
           locale: this.widget.langCode == 'en' ? LocaleType.en : LocaleType.ar,
@@ -280,10 +280,10 @@ class _TkFormFrameState extends State<TkFormFrame>
           label: _getLabel(field),
           initialValue: field.value,
           onChanged: (value) => setState(() => field.value = value),
-          errorMessage: S.of(context).kPleaseChoose + _getLabel(field),
+          errorMessage: S.of(context).kPleaseChoose + _getLabel(field)!,
           isValidating: isValidating,
           validator: () => validateInfoField(field),
-          values: field.valueOptions,
+          values: field.valueOptions!,
         );
         break;
       case TkInfoFieldType.OTP:
@@ -296,7 +296,7 @@ class _TkFormFrameState extends State<TkFormFrame>
           onChanged: (value) {
             setState(() => field.value = value);
           },
-          errorMessage: S.of(context).kPleaseEnter + _getLabel(field),
+          errorMessage: S.of(context).kPleaseEnter + _getLabel(field)!,
           isValidating: isValidating,
           validator: () => validateInfoField(field),
         );
@@ -334,7 +334,7 @@ class _TkFormFrameState extends State<TkFormFrame>
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
-                    widget.introTitle,
+                    widget.introTitle!,
                     style: kBoldStyle[kSmallSize],
                   ),
                 ),
@@ -344,8 +344,8 @@ class _TkFormFrameState extends State<TkFormFrame>
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                   child: Text(
-                    widget.formTitle,
-                    style: kBoldStyle[kBigSize].copyWith(color: kPrimaryColor),
+                    widget.formTitle!,
+                    style: kBoldStyle[kBigSize]!.copyWith(color: kPrimaryColor),
                   ),
                 ),
 
@@ -354,19 +354,19 @@ class _TkFormFrameState extends State<TkFormFrame>
                 Divider(color: kAccentGreyColor, thickness: 1.0),
 
               // Header widget
-              if (widget.header != null) widget.header,
+              if (widget.header != null) widget.header!,
 
               // Render info fields
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: _createInfoFieldsWidgets(widget.fields, context),
+                  children: _createInfoFieldsWidgets(widget.fields!, context),
                 ),
               ),
 
               // Footer widget
-              if (widget.child != null) widget.child,
+              if (widget.child != null) widget.child!,
 
               // Action button
               if (widget.action != null)
@@ -383,12 +383,12 @@ class _TkFormFrameState extends State<TkFormFrame>
                         setState(() => startValidating());
 
                         // Validate form
-                        if (validate()) {
+                        if (validate()!) {
                           // Validation successful
                           stopValidating();
 
                           // Callback
-                          widget.action(widget.fields);
+                          widget.action!(widget.fields);
                         }
                       },
                     ),
@@ -396,7 +396,7 @@ class _TkFormFrameState extends State<TkFormFrame>
                 ),
 
               // Footer widget
-              if (widget.footer != null) widget.footer,
+              if (widget.footer != null) widget.footer!,
             ],
           ),
         ),

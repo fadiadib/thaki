@@ -20,13 +20,13 @@ class TkPermitFormPane extends TkPane {
     TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
-      langCode: controller.lang.languageCode,
+      langCode: controller.lang!.languageCode,
       formTitle: kResidentPermitFieldsJson[kFormName]
-          [controller.lang.languageCode],
+          [controller.lang!.languageCode],
       actionTitle: kResidentPermitFieldsJson[kFormAction]
-          [controller.lang.languageCode],
+          [controller.lang!.languageCode],
       buttonTag: kLoginTag,
-      fields: account.user.toInfoFields(
+      fields: account.user!.toInfoFields(
           TkInfoFieldsList.fromJson(data: kResidentPermitFieldsJson)),
       action: (TkInfoFieldsList results) async {
         // Save data into model
@@ -34,7 +34,7 @@ class TkPermitFormPane extends TkPane {
         // TODO: a permit model and then update the info fields from the permit
         subscriber.permit = TkPermit.fromInfoFields(results);
 
-        onDone();
+        onDone!();
       },
     );
   }

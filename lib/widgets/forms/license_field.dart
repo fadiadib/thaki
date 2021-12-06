@@ -33,13 +33,13 @@ class TkLicenseField extends StatelessWidget {
   final double spaceWidth;
   final int numDigits;
   final List<FocusNode> focusNodes = [];
-  final List<String> values;
-  final Function(String) onChanged;
-  final FocusNode finalFocusNode;
-  final bool enabled;
-  final Function validator;
-  final bool validate;
-  final String errorMessage;
+  final List<String?> values;
+  final Function(String)? onChanged;
+  final FocusNode? finalFocusNode;
+  final bool? enabled;
+  final Function? validator;
+  final bool? validate;
+  final String? errorMessage;
   final String langCode;
 
   List<TkTextField> getFields(BuildContext context) {
@@ -60,7 +60,7 @@ class TkLicenseField extends StatelessWidget {
         // Set the value at the index to the updated string
         values[0] = value;
 
-        if (onChanged != null) onChanged(values.join());
+        if (onChanged != null) onChanged!(values.join());
       },
     );
 
@@ -82,8 +82,8 @@ class TkLicenseField extends StatelessWidget {
         values[1] = value;
 
         if (onChanged != null) {
-          if (langCode == 'ar') onChanged(values.reversed.join());
-          onChanged(values.join());
+          if (langCode == 'ar') onChanged!(values.reversed.join());
+          onChanged!(values.join());
         }
       },
     );
@@ -102,10 +102,10 @@ class TkLicenseField extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: getFields(context),
         ),
-        if (validate && (values == null || !validator()))
+        if (validate! && (values == null || !validator!()))
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
-            child: Text(errorMessage, style: kErrorStyle),
+            child: Text(errorMessage!, style: kErrorStyle),
           )
       ],
     );
@@ -130,14 +130,14 @@ class TkSeparatedLicenseField extends StatefulWidget {
   // Attributes
   final int characterLength;
   final int digitsLength;
-  final List<String> values;
-  final Function(String) onChanged;
-  final Function validator;
-  final bool validate;
-  final String errorMessage;
+  final List<String?> values;
+  final Function(String?)? onChanged;
+  final Function? validator;
+  final bool? validate;
+  final String? errorMessage;
   final String langCode;
   final bool enabled;
-  final bool isEdit;
+  final bool? isEdit;
   final bool reverseLabelAlign;
 
   @override
@@ -161,8 +161,8 @@ class _TkSeparatedLicenseFieldState extends State<TkSeparatedLicenseField> {
     Future.delayed(
       Duration(microseconds: 100),
       () => setState(() {
-        _charController.text = widget.values[1];
-        _digitsController.text = widget.values[0];
+        _charController.text = widget.values[1]!;
+        _digitsController.text = widget.values[0]!;
       }),
     );
   }
@@ -176,10 +176,10 @@ class _TkSeparatedLicenseFieldState extends State<TkSeparatedLicenseField> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: getFields(context),
         ),
-        if (widget.validate && (widget.values == null || !widget.validator()))
+        if (widget.validate! && (widget.values == null || !widget.validator!()))
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
-            child: Text(widget.errorMessage, style: kErrorStyle),
+            child: Text(widget.errorMessage!, style: kErrorStyle),
           )
       ],
     );
@@ -235,15 +235,15 @@ class _TkSeparatedLicenseFieldState extends State<TkSeparatedLicenseField> {
               length: widget.digitsLength,
 
               // Callback
-              onChanged: (String value) {
+              onChanged: (String? value) {
                 // Set the value at the index to the updated string
                 widget.values[0] = value ?? '';
 
                 if (widget.onChanged != null) {
                   if (widget.values[1] == null)
-                    widget.onChanged(widget.values[0]);
+                    widget.onChanged!(widget.values[0]);
                   else
-                    widget.onChanged(widget.values.join());
+                    widget.onChanged!(widget.values.join());
                 }
               },
             ),
@@ -295,15 +295,15 @@ class _TkSeparatedLicenseFieldState extends State<TkSeparatedLicenseField> {
             length: widget.characterLength,
 
             // Callback
-            onChanged: (String value) {
+            onChanged: (String? value) {
               // Set the value at the index to the updated string
               widget.values[1] = value ?? '';
 
               if (widget.onChanged != null) {
                 if (widget.values[0] == null)
-                  widget.onChanged(widget.values[1]);
+                  widget.onChanged!(widget.values[1]);
                 else
-                  widget.onChanged(widget.values.join());
+                  widget.onChanged!(widget.values.join());
               }
             },
           ),

@@ -23,7 +23,7 @@ class TkParkingDurationPane extends TkPane {
             title: S.of(context).kBookUsingBalance,
             onPressed: () {
               booker.creditMode = true;
-              onDone();
+              onDone!();
             },
             btnColor: kPrimaryColor,
             btnBorderColor: kPrimaryColor,
@@ -36,7 +36,7 @@ class TkParkingDurationPane extends TkPane {
               title: S.of(context).kBookUsingCard,
               onPressed: () {
                 booker.creditMode = false;
-                onDone();
+                onDone!();
               },
               btnColor: kSecondaryColor,
               btnBorderColor: kSecondaryColor,

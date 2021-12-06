@@ -12,30 +12,30 @@ class TkPurchaser extends ChangeNotifier {
   // Model
   List<TkPackage> _packages = [];
   List<TkPackage> get packages => _packages;
-  TkPackage _selectedPackage;
-  TkPackage get selectedPackage => _selectedPackage;
-  set selectedPackage(TkPackage package) {
+  TkPackage? _selectedPackage;
+  TkPackage? get selectedPackage => _selectedPackage;
+  set selectedPackage(TkPackage? package) {
     _selectedPackage = package;
     notifyListeners();
   }
 
-  TkCredit _selectedCard;
-  TkCredit get selectedCard => _selectedCard;
-  set selectedCard(TkCredit card) {
+  TkCredit? _selectedCard;
+  TkCredit? get selectedCard => _selectedCard;
+  set selectedCard(TkCredit? card) {
     _selectedCard = card;
     _validationPaymentError = null;
     notifyListeners();
   }
 
-  String _cvv;
-  String get cvv => _cvv;
-  set cvv(String value) {
+  String? _cvv;
+  String? get cvv => _cvv;
+  set cvv(String? value) {
     _cvv = value;
     notifyListeners();
   }
 
-  TkBalance _balance;
-  TkBalance get balance => _balance;
+  TkBalance? _balance;
+  TkBalance? get balance => _balance;
   List<TkPackage> _userPackages = [];
   List<TkPackage> get userPackages => _userPackages;
 
@@ -46,13 +46,13 @@ class TkPurchaser extends ChangeNotifier {
   // Errors
   void clearErrors() => loadError = purchaseError = loadBalanceError = null;
 
-  String loadError;
-  String purchaseError;
-  String loadBalanceError;
+  String? loadError;
+  String? purchaseError;
+  String? loadBalanceError;
 
   // Validation
-  String _validationPaymentError;
-  String get validationPaymentError => _validationPaymentError;
+  String? _validationPaymentError;
+  String? get validationPaymentError => _validationPaymentError;
   bool validatePayment(BuildContext context) {
     if (_selectedCard == null) {
       _validationPaymentError = S.of(context).kSelectPaymentToProceed;
@@ -81,7 +81,7 @@ class TkPurchaser extends ChangeNotifier {
       // Load user data
       _balance = TkBalance.fromJson(result[kDataTag]);
       for (Map data in result[kDataTag][kClientPackagesTag])
-        _userPackages.add(TkPackage.fromUserPackageJson(data));
+        _userPackages.add(TkPackage.fromUserPackageJson(data as Map<String, dynamic>));
     } else {
       // an error happened
       loadBalanceError = _apis.normalizeError(result);
@@ -109,7 +109,7 @@ class TkPurchaser extends ChangeNotifier {
     Map result = await _apis.loadPackages(user: user);
     if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kPackagesListTag])
-        _packages.add(TkPackage.fromJson(data));
+        _packages.add(TkPackage.fromJson(data as Map<String, dynamic>));
       if (_packages.isNotEmpty) _selectedPackage = _packages.first;
     } else {
       // an error happened
@@ -134,11 +134,11 @@ class TkPurchaser extends ChangeNotifier {
     notifyListeners();
 
     Map result = await _apis.purchasePackage(
-        user: user, package: selectedPackage, card: selectedCard, cvv: _cvv);
+        user: user, package: selectedPackage!, card: selectedCard!, cvv: _cvv);
     if (result[kStatusTag] == kSuccessCreationCode) {
-      _balance.updateFromJson(result[kDataTag]);
+      _balance!.updateFromJson(result[kDataTag]);
       for (Map data in result[kDataTag][kClientPackagesTag])
-        _userPackages.add(TkPackage.fromUserPackageJson(data));
+        _userPackages.add(TkPackage.fromUserPackageJson(data as Map<String, dynamic>));
     } else {
       purchaseError = _apis.normalizeError(result);
     }

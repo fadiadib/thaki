@@ -176,23 +176,23 @@ Map<double, TextStyle> kBlackStyle = {
 
 /// 4. Specific styles
 TextStyle kHintStyle =
-    kRegularStyle[kSmallSize].copyWith(color: kHintTextColor);
-TextStyle kTextEditStyle = kRegularStyle[kNormalSize];
-TextStyle kOTPEditStyle = kBoldStyle[kNormalSize];
+    kRegularStyle[kSmallSize]!.copyWith(color: kHintTextColor);
+TextStyle? kTextEditStyle = kRegularStyle[kNormalSize];
+TextStyle? kOTPEditStyle = kBoldStyle[kNormalSize];
 TextStyle kDisabledTextEditStyle =
-    kMediumStyle[kNormalSize].copyWith(color: kDisabledTextColor);
-TextStyle kDisclaimerStyle = kLightStyle[kSmallSize];
+    kMediumStyle[kNormalSize]!.copyWith(color: kDisabledTextColor);
+TextStyle? kDisclaimerStyle = kLightStyle[kSmallSize];
 TextStyle kErrorStyle =
-    kMediumStyle[kSmallSize].copyWith(color: kErrorTextColor);
+    kMediumStyle[kSmallSize]!.copyWith(color: kErrorTextColor);
 TextStyle kSuccessStyle =
-    kRegularStyle[kNormalSize].copyWith(color: kGreenAccentColor);
+    kRegularStyle[kNormalSize]!.copyWith(color: kGreenAccentColor);
 TextStyle kLinkStyle =
-    kRegularStyle[kSmallSize].copyWith(decoration: TextDecoration.underline);
+    kRegularStyle[kSmallSize]!.copyWith(decoration: TextDecoration.underline);
 TextStyle kDisabledLinkStyle = kLinkStyle.copyWith(color: kDisabledTextColor);
 TextStyle kRibbonTextStyle =
-    kVeryBoldStyle[kSmallSize].copyWith(color: kWhiteColor);
-TextStyle kEmphasisStyle = kBlackStyle[kNormalSize];
-TextStyle kPageTitleStyle = kBoldStyle[kBigSize];
+    kVeryBoldStyle[kSmallSize]!.copyWith(color: kWhiteColor);
+TextStyle? kEmphasisStyle = kBlackStyle[kNormalSize];
+TextStyle? kPageTitleStyle = kBoldStyle[kBigSize];
 
 /// Styling theme for the application
 final ThemeData gThemeData = ThemeData(
@@ -205,9 +205,6 @@ final ThemeData gThemeData = ThemeData(
   backgroundColor: kPrimaryBgColor,
   scaffoldBackgroundColor: kPrimaryBgColor,
   primaryColor: kPrimaryColor,
-  accentColor: kSecondaryColor,
-  textSelectionColor: kSecondaryColor,
-  textSelectionHandleColor: kPrimaryColor,
 
   inputDecorationTheme: InputDecorationTheme(
     enabledBorder: OutlineInputBorder(
@@ -218,5 +215,10 @@ final ThemeData gThemeData = ThemeData(
       borderSide: BorderSide(color: kPrimaryColor),
       borderRadius: BorderRadius.circular(kDefaultTextEditRadius),
     ),
+  ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: kSecondaryColor),
+  textSelectionTheme: TextSelectionThemeData(
+    selectionColor: kSecondaryColor,
+    selectionHandleColor: kPrimaryColor,
   ),
 );

@@ -62,7 +62,7 @@ class TkPermitDocumentsPane extends TkPane {
           title: S.of(context).kContinue,
           onPressed: () {
             if (subscriber.validateDocuments(context))
-              onDone();
+              onDone!();
             else
               scrollController.animateTo(scrollController.position.pixels + 80,
                   duration: Duration(milliseconds: 600), curve: Curves.easeOut);

@@ -103,12 +103,12 @@ class _TkWelcomeScreenState extends State<TkWelcomeScreen> {
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Text(
                       S.of(context).kSwitchLanguage,
-                      style: kBoldStyle[kSmallSize].copyWith(
+                      style: kBoldStyle[kSmallSize]!.copyWith(
                         color: kWhiteColor,
                         decoration: TextDecoration.underline,
                         fontFamily: Provider.of<TkLangController>(context,
                                         listen: false)
-                                    .lang
+                                    .lang!
                                     .languageCode ==
                                 'ar'
                             ? kLTRFontFamily

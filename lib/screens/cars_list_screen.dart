@@ -51,9 +51,9 @@ class _TkCarsListScreenState extends State<TkCarsListScreen> {
                       TkCarList(
                         langCode: Provider.of<TkLangController>(context,
                                 listen: false)
-                            .lang
+                            .lang!
                             .languageCode,
-                        cars: account.user.cars,
+                        cars: account.user!.cars,
                         onTap: (TkCar car) {
                           Navigator.of(context).push(
                             MaterialPageRoute(

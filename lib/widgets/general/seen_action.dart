@@ -5,16 +5,16 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 
 class TkSeenAction extends StatelessWidget {
-  TkSeenAction({@required this.onTap});
+  TkSeenAction({required this.onTap});
   final Function onTap;
 
   @override
   Widget build(BuildContext context) {
-    return IconSlideAction(
-      caption: S.of(context).kUpdateSeen,
-      color: kSecondaryColor,
+    return SlidableAction(
+      label: S.of(context).kUpdateSeen,
+      backgroundColor: kSecondaryColor,
       icon: kSeenBtnIcon,
-      onTap: onTap,
+      onPressed: onTap as void Function(BuildContext)?,
       foregroundColor: kWhiteColor,
     );
   }

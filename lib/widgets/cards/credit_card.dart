@@ -10,7 +10,7 @@ class TkCreditCard extends StatelessWidget {
       this.bgColor = kCardBgColor,
       this.borderColor = kCardBorderColor,
       this.borderRadius = kCardBorderRadius,
-      @required this.creditCard,
+      required this.creditCard,
       this.onTap,
       this.langCode = 'en'});
   final Color bgColor;
@@ -18,13 +18,13 @@ class TkCreditCard extends StatelessWidget {
   final Color textColor;
   final double borderRadius;
   final TkCredit creditCard;
-  final Function onTap;
+  final Function? onTap;
   final String langCode;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(borderRadius),
@@ -49,16 +49,16 @@ class TkCreditCard extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  TkCreditCardHelper.obscure(creditCard.number, langCode),
-                  style: kMediumStyle[kBigSize].copyWith(color: textColor),
+                  TkCreditCardHelper.obscure(creditCard.number, langCode)!,
+                  style: kMediumStyle[kBigSize]!.copyWith(color: textColor),
                 ),
               ),
               Positioned(
                 bottom: 30.0,
                 left: 30.0,
                 child: Text(
-                  creditCard.expiry,
-                  style: kMediumStyle[kNormalSize].copyWith(color: textColor),
+                  creditCard.expiry!,
+                  style: kMediumStyle[kNormalSize]!.copyWith(color: textColor),
                 ),
               ),
               if (kShowCreditType && creditCard.type != null)
@@ -66,7 +66,7 @@ class TkCreditCard extends StatelessWidget {
                   bottom: 20.0,
                   right: 30.0,
                   child: Image.asset(
-                    kCCLogos[creditCard.type],
+                    kCCLogos[creditCard.type!],
                     height: 30.0,
                   ),
                 ),

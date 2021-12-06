@@ -12,13 +12,13 @@ class TkBooker extends ChangeNotifier {
   static TkAPIHelper _apis = new TkAPIHelper();
 
   // Model
-  Map<String, List<TkTicket>> _tickets = Map();
-  List<TkTicket> get upcomingTickets => _tickets[kUpcomingTicketsTag];
-  List<TkTicket> get completedTickets => _tickets[kCompletedTicketsTag];
-  List<TkTicket> get cancelledTickets => _tickets[kCancelledTicketsTag];
-  List<TkTicket> get pendingTickets => _tickets[kPendingTicketsTag];
+  Map<String, List<TkTicket?>> _tickets = Map();
+  List<TkTicket?>? get upcomingTickets => _tickets[kUpcomingTicketsTag];
+  List<TkTicket?>? get completedTickets => _tickets[kCompletedTicketsTag];
+  List<TkTicket?>? get cancelledTickets => _tickets[kCancelledTicketsTag];
+  List<TkTicket?>? get pendingTickets => _tickets[kPendingTicketsTag];
 
-  TkCar selectedCar;
+  TkCar? selectedCar;
 
   bool _bookNow = true;
   bool get bookNow => _bookNow;
@@ -27,43 +27,43 @@ class TkBooker extends ChangeNotifier {
     notifyListeners();
   }
 
-  DateTime _bookDate;
-  DateTime get bookDate => _bookDate;
-  set bookDate(DateTime value) {
+  DateTime? _bookDate;
+  DateTime? get bookDate => _bookDate;
+  set bookDate(DateTime? value) {
     _bookDate = value;
     notifyListeners();
   }
 
-  int _bookDuration;
-  int get bookDuration => _bookDuration;
-  set bookDuration(int value) {
+  int? _bookDuration;
+  int? get bookDuration => _bookDuration;
+  set bookDuration(int? value) {
     _bookDuration = value;
     notifyListeners();
   }
 
-  TkTicket _newTicket;
-  TkTicket get newTicket => _newTicket;
+  TkTicket? _newTicket;
+  TkTicket? get newTicket => _newTicket;
 
   bool creditMode = false;
 
-  TkCredit _selectedCard;
-  TkCredit get selectedCard => _selectedCard;
-  set selectedCard(TkCredit card) {
+  TkCredit? _selectedCard;
+  TkCredit? get selectedCard => _selectedCard;
+  set selectedCard(TkCredit? card) {
     _selectedCard = card;
     _validationPaymentError = null;
     notifyListeners();
   }
 
-  String _cvv;
-  String get cvv => _cvv;
-  set cvv(String value) {
+  String? _cvv;
+  String? get cvv => _cvv;
+  set cvv(String? value) {
     _cvv = value;
     notifyListeners();
   }
 
   // Validation
-  String _validationPaymentError;
-  String get validationPaymentError => _validationPaymentError;
+  String? _validationPaymentError;
+  String? get validationPaymentError => _validationPaymentError;
   bool validatePayment(BuildContext context) {
     if (_selectedCard == null) {
       _validationPaymentError = S.of(context).kSelectPaymentToProceed;
@@ -91,11 +91,11 @@ class TkBooker extends ChangeNotifier {
     loadError = parkError = cancelError = balanceError = loadQRError = null;
   }
 
-  String loadQRError;
-  String loadError;
-  String parkError;
-  String cancelError;
-  String balanceError;
+  String? loadQRError;
+  String? loadError;
+  String? parkError;
+  String? cancelError;
+  String? balanceError;
 
   /// [loadQR]
   /// Calls API to load the ticket QR code if available
@@ -113,22 +113,22 @@ class TkBooker extends ChangeNotifier {
         loadQRError = result[kDataTag][kBookingQRMessage];
       } else {
         // Load user data
-        TkTicket theTicket = _tickets[kUpcomingTicketsTag].firstWhere(
-            (element) => element.id == ticket.id,
+        TkTicket? theTicket = _tickets[kUpcomingTicketsTag]!.firstWhere(
+            (element) => element!.id == ticket.id,
             orElse: () => null);
         if (theTicket != null) {
           theTicket
               .updateModel({kTicketCodeTag: result[kDataTag][kBookingQRData]});
         } else {
-          theTicket = _tickets[kCompletedTicketsTag].firstWhere(
-              (element) => element.id == ticket.id,
+          theTicket = _tickets[kCompletedTicketsTag]!.firstWhere(
+              (element) => element!.id == ticket.id,
               orElse: () => null);
           if (theTicket != null) {
             theTicket.updateModel(
                 {kTicketCodeTag: result[kDataTag][kBookingQRData]});
           } else {
-            theTicket = _tickets[kPendingTicketsTag].firstWhere(
-                (element) => element.id == ticket.id,
+            theTicket = _tickets[kPendingTicketsTag]!.firstWhere(
+                (element) => element!.id == ticket.id,
                 orElse: () => null);
             if (theTicket != null) {
               theTicket.updateModel(
@@ -183,7 +183,7 @@ class TkBooker extends ChangeNotifier {
         if (result[kDataTag][kBookingsTag].isNotEmpty) {
           if (result[kDataTag][kBookingsTag][groupTag] != null) {
             for (Map ticketData in result[kDataTag][kBookingsTag][groupTag])
-              _tickets[groupTag].add(TkTicket.fromJson(ticketData));
+              _tickets[groupTag]!.add(TkTicket.fromJson(ticketData as Map<String, dynamic>));
           }
         }
       }
@@ -213,11 +213,11 @@ class TkBooker extends ChangeNotifier {
     Map result = await _apis.cancelTicket(user: user, ticket: ticket);
     if (result[kStatusTag] == kSuccessCreationCode) {
       // Load user data
-      TkTicket theTicket = _tickets[kUpcomingTicketsTag]
-          .firstWhere((element) => element.id == ticket.id, orElse: () => null);
+      TkTicket? theTicket = _tickets[kUpcomingTicketsTag]!
+          .firstWhere((element) => element!.id == ticket.id, orElse: () => null);
       if (theTicket != null) {
-        _tickets[kUpcomingTicketsTag].remove(theTicket);
-        _tickets[kCancelledTicketsTag].add(theTicket);
+        _tickets[kUpcomingTicketsTag]!.remove(theTicket);
+        _tickets[kCancelledTicketsTag]!.add(theTicket);
       }
     } else {
       // an error happened
@@ -243,7 +243,7 @@ class TkBooker extends ChangeNotifier {
 
     Map result = await _apis.reserveParking(
       user: user,
-      car: selectedCar,
+      car: selectedCar!,
       dateTime: _bookNow ? null : _bookDate,
       duration: _bookDuration,
       card: _selectedCard,
@@ -256,8 +256,8 @@ class TkBooker extends ChangeNotifier {
       parkError = _apis.normalizeError(result);
     } else {
       _newTicket = TkTicket.fromJson(result[kDataTag][kBookingInfoTag]);
-      _tickets[kUpcomingTicketsTag].add(_newTicket);
-      _tickets[kUpcomingTicketsTag].sort((a, b) => a.start.compareTo(b.start));
+      _tickets[kUpcomingTicketsTag]!.add(_newTicket);
+      _tickets[kUpcomingTicketsTag]!.sort((a, b) => a!.start!.compareTo(b!.start!));
 
       // Update firebase analytics that the user successfully
       // booked a new ticket

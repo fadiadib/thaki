@@ -56,9 +56,9 @@ class TkParkingPaymentPane extends TkPane {
                 child: TkButton(
                   title: S.of(context).kCheckout,
                   onPressed: () {
-                    if (booker.cvv != null && booker.cvv.isNotEmpty) {
+                    if (booker.cvv != null && booker.cvv!.isNotEmpty) {
                       Navigator.of(context).pop();
-                      onDone();
+                      onDone!();
                     }
                   },
                 ),
@@ -95,9 +95,9 @@ class TkParkingPaymentPane extends TkPane {
                 TkPaymentList(
                   langCode:
                       Provider.of<TkLangController>(context, listen: false)
-                          .lang
+                          .lang!
                           .languageCode,
-                  cards: account.user.cards,
+                  cards: account.user!.cards,
                   onTap: (TkCredit card) => booker.selectedCard = card,
                   selected: booker.selectedCard,
                 ),
@@ -112,7 +112,7 @@ class TkParkingPaymentPane extends TkPane {
                         Icon(kAddCircleBtnIcon, size: 16, color: kPrimaryColor),
                         SizedBox(width: 5),
                         Text(S.of(context).kAddCard,
-                            style: kBoldStyle[kSmallSize]
+                            style: kBoldStyle[kSmallSize]!
                                 .copyWith(color: kPrimaryColor)),
                       ],
                     ),

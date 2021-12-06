@@ -7,10 +7,10 @@ import 'package:thaki/models/info_fields.dart';
 import 'package:thaki/utilities/crypto_helper.dart';
 
 class TkPermit {
-  String name;
-  String phone;
-  String email;
-  List<TkDocument> documents;
+  String? name;
+  String? phone;
+  String? email;
+  late List<TkDocument> documents;
 
   void updateModelFromInfoFields(TkInfoFieldsList fields) {
     for (TkInfoField field in fields.fields) {
@@ -26,9 +26,9 @@ class TkPermit {
       if (doc.image != null)
         files.add(
           http.MultipartFile(
-            doc.tag,
-            doc.image.readAsBytes().asStream(),
-            doc.image.lengthSync(),
+            doc.tag!,
+            doc.image!.readAsBytes().asStream(),
+            doc.image!.lengthSync(),
             filename: TkCryptoHelper.hashMD5(
                 Random().toString() + '_' + DateTime.now().toString()),
           ),

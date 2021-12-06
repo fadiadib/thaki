@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -20,12 +21,12 @@ class TkIDCard extends StatefulWidget {
     this.errorCallback,
   });
 
-  final String title;
-  final File image;
-  final bool requiredMark;
-  final Function callback;
-  final Function cancelCallback;
-  final Function errorCallback;
+  final String? title;
+  final File? image;
+  final bool? requiredMark;
+  final Function? callback;
+  final Function? cancelCallback;
+  final Function? errorCallback;
 
   @override
   _TkIDCardState createState() => _TkIDCardState();
@@ -34,7 +35,7 @@ class TkIDCard extends StatefulWidget {
 class _TkIDCardState extends State<TkIDCard> {
   bool isLoading = false;
 
-  Future<File> compressAndGetFile(String sourcePath, String targetPath) async {
+  Future<File?> compressAndGetFile(String sourcePath, String targetPath) async {
     var result = await FlutterImageCompress.compressAndGetFile(
         sourcePath, targetPath,
         quality: 88);
@@ -45,7 +46,7 @@ class _TkIDCardState extends State<TkIDCard> {
     // Get the image from the camera or gallery according to source
     try {
       ImagePicker imagePicker = new ImagePicker();
-      PickedFile image = await imagePicker.getImage(source: source);
+      XFile? image = await imagePicker.pickImage(source: source);
 
       if (image != null) {
         setState(() => isLoading = true);
@@ -55,7 +56,7 @@ class _TkIDCardState extends State<TkIDCard> {
         final double size = (await original.length() / (1024 * 1024));
         if (kCheckFileSize && size >= kMaxImageSie) {
           if (widget.errorCallback != null)
-            widget.errorCallback(S.of(context).kFileIsTooLarge);
+            widget.errorCallback!(S.of(context).kFileIsTooLarge);
           setState(() => isLoading = false);
           return;
         }
@@ -63,11 +64,11 @@ class _TkIDCardState extends State<TkIDCard> {
         // Compress file
         Directory tempDir = await getTemporaryDirectory();
         File temp = new File('${tempDir.path}/temp.jpeg');
-        File compressedImage = await compressAndGetFile(image.path, temp.path);
+        File compressedImage = await (compressAndGetFile(image.path, temp.path) as FutureOr<File>);
         setState(() => isLoading = false);
 
         // Allow the user to crop/rotate the picture
-        File croppedImage = await ImageCropper.cropImage(
+        File? croppedImage = await ImageCropper.cropImage(
           sourcePath: compressedImage.path,
           aspectRatioPresets: [
             CropAspectRatioPreset.square,
@@ -91,13 +92,13 @@ class _TkIDCardState extends State<TkIDCard> {
         compressedImage.delete();
 
         // Done, call callback function to update the picture
-        if (croppedImage != null) widget.callback(croppedImage);
+        if (croppedImage != null) widget.callback!(croppedImage);
       }
     } catch (e) {
       setState(() => isLoading = false);
 
       if (widget.errorCallback != null) {
-        widget.errorCallback(S.of(context).kCannotUploadDocument);
+        widget.errorCallback!(S.of(context).kCannotUploadDocument);
       }
     }
   }
@@ -112,13 +113,13 @@ class _TkIDCardState extends State<TkIDCard> {
             children: [
               Padding(
                   padding: const EdgeInsets.only(bottom: 10.0),
-                  child: Text(widget.title, style: kBoldStyle[kSmallSize])),
-              if (widget.requiredMark)
+                  child: Text(widget.title!, style: kBoldStyle[kSmallSize])),
+              if (widget.requiredMark!)
                 Padding(
                     padding: const EdgeInsetsDirectional.only(
                         bottom: 5.0, start: 5.0),
                     child: Text('*',
-                        style: kBoldStyle[kBigSize]
+                        style: kBoldStyle[kBigSize]!
                             .copyWith(color: kTertiaryColor))),
             ],
           ),
@@ -131,7 +132,7 @@ class _TkIDCardState extends State<TkIDCard> {
             image: widget.image == null
                 ? null
                 : DecorationImage(
-                    image: FileImage(widget.image), fit: BoxFit.cover),
+                    image: FileImage(widget.image!), fit: BoxFit.cover),
           ),
           child: Stack(
             children: [
@@ -140,7 +141,7 @@ class _TkIDCardState extends State<TkIDCard> {
                 top: 10,
                 right: 10,
                 child: GestureDetector(
-                  onTap: widget.cancelCallback,
+                  onTap: widget.cancelCallback as void Function()?,
                   child: Icon(kCloseBtnIcon, color: kDarkGreyColor),
                 ),
               ),

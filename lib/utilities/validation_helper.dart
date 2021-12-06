@@ -1,8 +1,10 @@
 import 'package:credit_card_validator/credit_card_validator.dart';
-import 'package:regexed_validator/regexed_validator.dart';
+import 'package:fzregex/fzregex.dart';
+import 'package:fzregex/utils/pattern.dart';
+// import 'package:regexed_validator/regexed_validator.dart';
 
 class TkValidationHelper {
-  static bool validateName(String value) {
+  static bool validateName(String? value) {
     if (value == null || value.isEmpty || value.trim().isEmpty) return false;
 
     final RegExp exp =
@@ -11,7 +13,7 @@ class TkValidationHelper {
     return (exp.stringMatch(value) != null);
   }
 
-  static bool validateAlphaNum(String value) {
+  static bool validateAlphaNum(String? value) {
     if (value == null || value.isEmpty || value.trim().isEmpty) return false;
 
     final RegExp exp = RegExp(
@@ -21,27 +23,29 @@ class TkValidationHelper {
     return (exp.stringMatch(value) != null);
   }
 
-  static bool validatePassword(String value) {
+  static bool validatePassword(String? value) {
     if (value == null || value.length < 6 || value.length > 20) return false;
 
     return true;
   }
 
-  static bool validateStrongPassword(String value) {
+  static bool validateStrongPassword(String? value) {
     if (value == null || value.length < 8 || value.length > 20) return false;
 
-    return validator.password(value);
+    return Fzregex.hasMatch(value, FzPattern.passwordHard);
+    // return validator.password(value);
   }
 
-  static bool validateNotEmpty(String value) {
+  static bool validateNotEmpty(String? value) {
     return (value != null && value.isNotEmpty && value.trim().isNotEmpty);
   }
 
-  static bool validateEmail(String value) {
-    return (value != null && validator.email(value));
+  static bool validateEmail(String? value) {
+    return (value != null && Fzregex.hasMatch(value, FzPattern.email));
+    // return (value != null && validator.email(value));
   }
 
-  static bool validatePhone(String value) {
+  static bool validatePhone(String? value) {
     if (value == null) return false;
 
     // Mach 10 or 11 numeric digits
@@ -61,23 +65,23 @@ class TkValidationHelper {
 
   static bool validatePastDate(String date) {
     if (date == null) return false;
-    DateTime dateTime = DateTime.tryParse(date);
+    DateTime? dateTime = DateTime.tryParse(date);
     return (dateTime != null &&
         dateTime.isBefore(DateTime.now().add(Duration(days: 1))));
   }
 
-  static bool validateNationalID(String value) {
+  static bool validateNationalID(String? value) {
     if (value == null) return false;
     String converted = int.tryParse(value).toString();
     if (converted != null && converted.length == 14) {
-      if (int.tryParse(converted[0]) <= 3 &&
-          int.tryParse(converted.substring(3, 4)) <= 12 &&
-          int.tryParse(converted.substring(5, 6)) <= 31) return true;
+      if (int.tryParse(converted[0])! <= 3 &&
+          int.tryParse(converted.substring(3, 4))! <= 12 &&
+          int.tryParse(converted.substring(5, 6))! <= 31) return true;
     }
     return false;
   }
 
-  static bool validateLicense(String value, int state, String langCode) {
+  static bool validateLicense(String? value, int? state, String langCode) {
     if (value == null) return false;
     if (state == null) return true;
 
@@ -101,7 +105,7 @@ class TkValidationHelper {
     }
   }
 
-  static bool validateCreditCard(String value) {
+  static bool validateCreditCard(String? value) {
     if (value == null) return false;
 
     CreditCardValidator _ccValidator = CreditCardValidator();

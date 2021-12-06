@@ -33,20 +33,20 @@ class TkOTPField2 extends StatelessWidget {
   final int numDigits;
   final List<FocusNode> focusNodes = [];
   final List<String> values;
-  final Function(String) onChanged;
-  final FocusNode finalFocusNode;
-  final bool enabled;
-  final Function validator;
-  final bool validate;
-  final String errorMessage;
-  final BuildContext context;
+  final Function(String)? onChanged;
+  final FocusNode? finalFocusNode;
+  final bool? enabled;
+  final Function? validator;
+  final bool? validate;
+  final String? errorMessage;
+  final BuildContext? context;
 
   Widget getDigitsField() {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: PinCodeTextField(
         keyboardType: TextInputType.number,
-        appContext: context,
+        appContext: context!,
         autoFocus: true,
         length: numDigits,
         obscureText: false,
@@ -67,13 +67,13 @@ class TkOTPField2 extends StatelessWidget {
         // errorAnimationController: errorController,
         // controller: textEditingController,
         onCompleted: onChanged,
-        onChanged: onChanged,
+        onChanged: onChanged!,
         beforeTextPaste: (text) => true,
         dialogConfig: DialogConfig(
-          affirmativeText: S.of(context).kOk,
-          negativeText: S.of(context).kCancel,
-          dialogContent: S.of(context).kConfirmPasteDetails,
-          dialogTitle: S.of(context).kConfirmPaste,
+          affirmativeText: S.of(context!).kOk,
+          negativeText: S.of(context!).kCancel,
+          dialogContent: S.of(context!).kConfirmPasteDetails,
+          dialogTitle: S.of(context!).kConfirmPaste,
         ),
       ),
     );
@@ -84,10 +84,10 @@ class TkOTPField2 extends StatelessWidget {
     return Column(
       children: [
         getDigitsField(),
-        if (validate && (values == null || !validator()))
+        if (validate! && (values == null || !validator!()))
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
-            child: Text(errorMessage, style: kErrorStyle),
+            child: Text(errorMessage!, style: kErrorStyle),
           )
       ],
     );

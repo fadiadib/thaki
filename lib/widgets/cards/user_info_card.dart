@@ -5,9 +5,9 @@ import 'package:thaki/models/index.dart';
 
 class TkUserInfoCard extends StatelessWidget {
   TkUserInfoCard({this.user});
-  final TkUser user;
+  final TkUser? user;
 
-  Widget _getInfoRow({IconData iconData, String title}) {
+  Widget _getInfoRow({IconData? iconData, String? title}) {
     if (title == null) return Container();
     return Row(children: [
       Padding(
@@ -25,9 +25,9 @@ class TkUserInfoCard extends StatelessWidget {
         _getInfoRow(
             iconData: kProfileOutlineBtnIcon,
             title:
-                '${user.firstName} ${user.middleName ?? ''} ${user.lastName}'),
-        _getInfoRow(iconData: kEmailOutlineBtnIcon, title: user.email),
-        _getInfoRow(iconData: kPhoneBtnIcon, title: user.phone),
+                '${user!.firstName} ${user!.middleName ?? ''} ${user!.lastName}'),
+        _getInfoRow(iconData: kEmailOutlineBtnIcon, title: user!.email),
+        _getInfoRow(iconData: kPhoneBtnIcon, title: user!.phone),
       ],
     );
   }

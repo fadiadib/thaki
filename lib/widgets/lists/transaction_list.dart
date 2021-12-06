@@ -7,15 +7,15 @@ import 'package:thaki/widgets/tiles/transaction_tile.dart';
 
 class TkTransactionList extends StatelessWidget {
   TkTransactionList({this.transactions});
-  final List<TkTransaction> transactions;
+  final List<TkTransaction>? transactions;
 
   List<Widget> _getTiles(BuildContext context) {
     List<Widget> tiles = [];
 
     tiles.add(SizedBox(height: 20));
 
-    if (transactions != null && transactions.isNotEmpty) {
-      for (TkTransaction transaction in transactions) {
+    if (transactions != null && transactions!.isNotEmpty) {
+      for (TkTransaction transaction in transactions!) {
         tiles.add(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5),

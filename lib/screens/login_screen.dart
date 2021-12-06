@@ -30,7 +30,7 @@ class TkLoginScreen extends StatefulWidget {
 }
 
 class _TkLoginScreenState extends State<TkLoginScreen> {
-  TkInfoFieldsList _fields;
+  TkInfoFieldsList? _fields;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
@@ -42,7 +42,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.clearErrors();
 
-    if (account.user != null) _fields = account.user.toInfoFields(_fields);
+    if (account.user != null) _fields = account.user!.toInfoFields(_fields!);
 
     if (widget.showPasswordSuccess)
       Future.delayed(Duration(milliseconds: 100)).then(
@@ -57,7 +57,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.user = TkUser.fromInfoFields(results);
 
-    if (await account.login(store: account.user.rememberMe))
+    if (await account.login(store: account.user!.rememberMe))
       Navigator.pushReplacementNamed(context, TkHomeScreen.id);
   }
 
@@ -65,10 +65,10 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
-      langCode: controller.lang.languageCode,
+      langCode: controller.lang!.languageCode,
       // introTitle: S.of(context).kLoginIntroTitle,
-      formTitle: kLoginFieldsJson[kFormName][controller.lang.languageCode],
-      actionTitle: kLoginFieldsJson[kFormAction][controller.lang.languageCode],
+      formTitle: kLoginFieldsJson[kFormName][controller.lang!.languageCode],
+      actionTitle: kLoginFieldsJson[kFormAction][controller.lang!.languageCode],
       buttonTag: kLoginTag,
       fields: _fields,
       action: _updateModelAndPushNext,
@@ -95,7 +95,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
                       context, TkRegisterScreen.id),
                   child: Text(
                     S.of(context).kSignUpExclamation,
-                    style: kRegularStyle[kSmallSize].copyWith(
+                    style: kRegularStyle[kSmallSize]!.copyWith(
                       color: kPrimaryColor,
                     ),
                   ),
@@ -120,7 +120,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
       callback: () async {
         if (await account.social()) {
           if (account.user != null) {
-            if (account.user.needsUpdate) {
+            if (account.user!.needsUpdate) {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   settings: RouteSettings(name: TkEditProfileScreen.id),

@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/lang_controller.dart';
@@ -10,12 +8,12 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 /// Thaki API methods return json maps
 class TkAPIHelper {
   static TkNetworkHelper _network = new TkNetworkHelper();
-  static String _rootURL;
+  static String? _rootURL;
 
   /// Gets the root URL from firebase Remote Config,
   /// if the root urL was already fetched it is returned
   /// through a static member _rootURL
-  static Future<String> getRootURL() async {
+  static Future<String?> getRootURL() async {
     if (kForceLiveServer) return kDefaultLiveServer;
     if (kForceTestServer) return kDefaultTestServer;
     if (kForceDataCenter) return kDefaultDataCenter;
@@ -25,9 +23,12 @@ class TkAPIHelper {
     final RemoteConfig remoteConfig = await RemoteConfig.instance;
     final defaults = <String, dynamic>{kRootAPIHandle: kDefaultTestServer};
     await remoteConfig.setDefaults(defaults);
+    await remoteConfig.setConfigSettings(RemoteConfigSettings(
+      fetchTimeout: const Duration(seconds: 10), // a fetch will wait up to 10 seconds before timing out
+      minimumFetchInterval: const Duration(hours: 12), // fetch parameters will be cached for a maximum of 1 hour
+    ));
 
-    await remoteConfig.fetch(expiration: const Duration(hours: 12));
-    await remoteConfig.activateFetched();
+    await remoteConfig.fetchAndActivate();
 
     _rootURL = remoteConfig.getString(kRootAPIHandle);
     return _rootURL;
@@ -35,11 +36,11 @@ class TkAPIHelper {
 
   /// Normalize error method, takes a result json and finds the
   /// error strings and groups them into a paragraph.
-  String normalizeError(Map result) {
+  String? normalizeError(Map result) {
     String errorMessage = '';
     if (result[kErrorMessageTag] != null) {
       Map errors = result[kErrorMessageTag];
-      for (String key in errors.keys) {
+      for (String key in errors.keys as Iterable<String>) {
         for (String value in errors[key]) errorMessage += value + '\n';
       }
     } else if (result[kMessageTag] != null) {
@@ -54,9 +55,9 @@ class TkAPIHelper {
   /// Check server API
   /// Returns user_token and success or failure
   Future<Map> checkServer(
-      {@required String platform, @required String version}) async {
+      {required String platform, required String version}) async {
     return await _network.getData(
-      url: await getRootURL() +
+      url: (await getRootURL())! +
           kCheckAPI +
           '?$kVersionTag=$version&$kPlatformTag=$platform',
     );
@@ -64,35 +65,35 @@ class TkAPIHelper {
 
   /// Loads on boarding messages and images
   Future<Map> loadOnboarding(
-      {@required TkLangController langController}) async {
+      {required TkLangController langController}) async {
     return await _network.getData(
-      url: await getRootURL() + kOnBoardingAPI,
+      url: (await getRootURL())! + kOnBoardingAPI,
       headers: langController.toHeader(),
     );
   }
 
   /// Load disclaimer API
   Future<Map> loadDisclaimer(
-      {@required TkUser user, @required String type}) async {
+      {required TkUser user, required String type}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadDisclaimerAPI + '?$kDisclaimerType=$type',
+      url: (await getRootURL())! + kLoadDisclaimerAPI + '?$kDisclaimerType=$type',
       headers: user.toHeader(),
     );
   }
 
   /// Load attributes API
   Future<Map> loadAttributes(
-      {@required TkLangController langController}) async {
+      {required TkLangController langController}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadStatesAPI,
+      url: (await getRootURL())! + kLoadStatesAPI,
       headers: langController.toHeader(),
     );
   }
 
   /// Load models API
-  Future<Map> loadModels({@required TkUser user, @required int makeId}) async {
+  Future<Map> loadModels({required TkUser user, required int makeId}) async {
     return await _network.getData(
-      url: await getRootURL() +
+      url: (await getRootURL())! +
           kLoadModelsAPI +
           '?$kMakeIdTag=${makeId.toString()}',
       headers: user.toHeader(),
@@ -101,9 +102,9 @@ class TkAPIHelper {
 
   /// Load documents API
   Future<Map> loadDocuments(
-      {@required TkUser user, @required String type}) async {
+      {required TkUser user, required String type}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadDocumentsAPI + '?$kDocumentType=$type',
+      url: (await getRootURL())! + kLoadDocumentsAPI + '?$kDocumentType=$type',
       headers: user.toHeader(),
     );
   }
@@ -112,13 +113,13 @@ class TkAPIHelper {
   /////////////////////// TRANSACTIONS  ///////////////////////
   /// Initialize payment transaction API
   Future<Map> initTransaction({
-    @required TkUser user,
-    @required String type,
-    int id,
-    TkCar car,
-    DateTime dateTime,
-    int duration,
-    List<int> ids,
+    required TkUser user,
+    required String? type,
+    int? id,
+    TkCar? car,
+    DateTime? dateTime,
+    int? duration,
+    List<int?>? ids,
   }) async {
     Map<String, dynamic> params = {kTransactionTypeTag: type};
     if (id != null) params[kTransactionIdTag] = id.toString();
@@ -129,20 +130,20 @@ class TkAPIHelper {
     if (ids != null) params[kTransactionIdTag] = ids.join(',');
 
     return await _network.postData(
-      url: await getRootURL() + kTransactionAPI,
+      url: (await getRootURL())! + kTransactionAPI,
       params: params,
       headers: user.toHeader(),
     );
   }
 
   Future<Map> initGuestTransaction({
-    @required String type,
-    TkLangController langController,
-    int id,
-    TkCar car,
-    DateTime dateTime,
-    int duration,
-    List<int> ids,
+    required String? type,
+    required TkLangController langController,
+    int? id,
+    TkCar? car,
+    DateTime? dateTime,
+    int? duration,
+    List<int?>? ids,
   }) async {
     Map<String, dynamic> params = {kTransactionTypeTag: type};
     if (id != null) params[kTransactionIdTag] = id.toString();
@@ -153,7 +154,7 @@ class TkAPIHelper {
     if (ids != null) params[kTransactionIdTag] = ids.join(',');
 
     return await _network.postData(
-      url: await getRootURL() + kGuestTransactionAPI,
+      url: (await getRootURL())! + kGuestTransactionAPI,
       params: params,
       headers: langController.toHeader(),
     );
@@ -161,22 +162,22 @@ class TkAPIHelper {
 
   /// Check payment transaction status API
   Future<Map> checkTransaction({
-    @required TkUser user,
-    @required String transactionId,
-    @required TkLangController langController,
+    required TkUser? user,
+    required String? transactionId,
+    required TkLangController langController,
     bool guest = false,
   }) async {
     return await _network.postData(
-      url: await getRootURL() + kTransactionStatusAPI,
+      url: (await getRootURL())! + kTransactionStatusAPI,
       params: {kSessionIdTag: transactionId},
-      headers: guest ? langController.toHeader() : user.toHeader(),
+      headers: guest ? langController.toHeader() : user!.toHeader(),
     );
   }
 
   /// Get transactions API
-  Future<Map> getTransactions({@required TkUser user}) async {
+  Future<Map> getTransactions({required TkUser user}) async {
     return await _network.getData(
-      url: await getRootURL() + kGetTransactionsAPI,
+      url: (await getRootURL())! + kGetTransactionsAPI,
       headers: user.toHeader(),
     );
   }
@@ -186,22 +187,22 @@ class TkAPIHelper {
   /// Load user attributes API
   Future<Map> loadUserAttributes() async {
     return await _network.getData(
-        url: await getRootURL() + kLoadUserAttributesAPI);
+        url: (await getRootURL())! + kLoadUserAttributesAPI);
   }
 
   /// User register API
-  Future<Map> register({@required TkUser user}) async {
+  Future<Map> register({required TkUser user}) async {
     return await _network.postData(
-      url: await getRootURL() + kRegisterAPI,
+      url: (await getRootURL())! + kRegisterAPI,
       params: await user.toJson(),
       headers: user.toHeader(),
     );
   }
 
   /// User update profile API
-  Future<Map> edit({@required TkUser user}) async {
+  Future<Map> edit({required TkUser user}) async {
     return await _network.putData(
-      url: await getRootURL() + kEditAPI,
+      url: (await getRootURL())! + kEditAPI,
       params: await user.toJson(),
       headers: user.toHeader(),
     );
@@ -209,9 +210,9 @@ class TkAPIHelper {
 
   /// User login API
   /// Returns user_token and success or failure
-  Future<Map> login({@required TkUser user}) async {
+  Future<Map> login({required TkUser user}) async {
     return await _network.postData(
-      url: await getRootURL() + kLoginAPI,
+      url: (await getRootURL())! + kLoginAPI,
       params: await user.toLoginJson(),
       headers: user.toHeader(),
     );
@@ -219,44 +220,44 @@ class TkAPIHelper {
 
   /// User social login API
   /// Returns user_token and success or failure
-  Future<Map> social({@required TkUser user}) async {
+  Future<Map> social({required TkUser user}) async {
     return await _network.postData(
-      url: await getRootURL() + kSocialAPI,
+      url: (await getRootURL())! + kSocialAPI,
       params: await user.toSocialLoginJson(),
       headers: user.toHeader(),
     );
   }
 
   /// User delete social login API
-  Future<Map> deleteSocial({@required TkUser user}) async {
+  Future<Map> deleteSocial({required TkUser user}) async {
     return await _network.deleteData(
-      url: await getRootURL() + kSocialAPI,
+      url: (await getRootURL())! + kSocialAPI,
       headers: user.toHeader(),
     );
   }
 
   /// User load profile API
-  Future<Map> load({@required TkUser user}) async {
+  Future<Map> load({required TkUser user}) async {
     return await _network.postData(
-      url: await getRootURL() + KLoadAPI,
+      url: (await getRootURL())! + KLoadAPI,
       params: await user.toLoadJson(),
       headers: user.toHeader(),
     );
   }
 
   /// User logout API
-  Future<Map> logout({@required TkUser user}) async {
+  Future<Map> logout({required TkUser user}) async {
     return await _network.postData(
-      url: await getRootURL() + kLogoutAPI,
+      url: (await getRootURL())! + kLogoutAPI,
       headers: user.toHeader(),
     );
   }
 
   /// Forgot password API - Sends OTP
   /// Returns success or failure
-  Future<Map> forgotPassword({@required TkUser user}) async {
+  Future<Map> forgotPassword({required TkUser user}) async {
     return await _network.postData(
-      url: await getRootURL() + kForgotPasswordAPI,
+      url: (await getRootURL())! + kForgotPasswordAPI,
       params: await user.toForgotPasswordJson(),
       headers: user.toHeader(),
     );
@@ -264,9 +265,9 @@ class TkAPIHelper {
 
   /// Reset password API - Confirm OTP
   /// Returns success or failure
-  Future<Map> resetPassword({@required TkUser user}) async {
+  Future<Map> resetPassword({required TkUser user}) async {
     return await _network.postData(
-      url: await getRootURL() + kResetPasswordAPI,
+      url: (await getRootURL())! + kResetPasswordAPI,
       params: await user.toOTPJson(),
       headers: user.toHeader(),
     );
@@ -275,34 +276,34 @@ class TkAPIHelper {
   /////////////////////////////////////////////////////////////
   /////////////////////////// CARS  ///////////////////////////
   /// Get user cars API
-  Future<Map> loadCars({@required TkUser user}) async {
+  Future<Map> loadCars({required TkUser user}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadCarsAPI,
+      url: (await getRootURL())! + kLoadCarsAPI,
       headers: user.toHeader(),
     );
   }
 
   /// Add car API
-  Future<Map> addCar({@required TkUser user, @required TkCar car}) async {
+  Future<Map> addCar({required TkUser user, required TkCar car}) async {
     return await _network.postData(
-      url: await getRootURL() + kAddCarAPI,
+      url: (await getRootURL())! + kAddCarAPI,
       params: car.toJson(),
       headers: user.toHeader(),
     );
   }
 
   /// Delete car API
-  Future<Map> deleteCar({@required TkUser user, @required TkCar car}) async {
+  Future<Map> deleteCar({required TkUser user, required TkCar car}) async {
     return await _network.deleteData(
-      url: await getRootURL() + kDeleteCarAPI + '/${car.id}',
+      url: (await getRootURL())! + kDeleteCarAPI + '/${car.id}',
       headers: user.toHeader(),
     );
   }
 
   /// Update car API
-  Future<Map> updateCar({@required TkUser user, @required TkCar car}) async {
+  Future<Map> updateCar({required TkUser user, required TkCar car}) async {
     return await _network.putData(
-      url: await getRootURL() + kUpdateCarAPI + '/${car.id}',
+      url: (await getRootURL())! + kUpdateCarAPI + '/${car.id}',
       params: car.toJson(),
       headers: user.toHeader(),
     );
@@ -311,17 +312,17 @@ class TkAPIHelper {
   /////////////////////////////////////////////////////////////
   /////////////////////////// CARDS ///////////////////////////
   /// Get user cards API
-  Future<Map> loadCards({@required TkUser user}) async {
+  Future<Map> loadCards({required TkUser user}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadCardsAPI,
+      url: (await getRootURL())! + kLoadCardsAPI,
       headers: user.toHeader(),
     );
   }
 
   /// Add card API
-  Future<Map> addCard({@required TkUser user, @required TkCredit card}) async {
+  Future<Map> addCard({required TkUser user, required TkCredit card}) async {
     return await _network.postData(
-      url: await getRootURL() + kAddCardAPI,
+      url: (await getRootURL())! + kAddCardAPI,
       params: card.toJson(),
       headers: user.toHeader(),
     );
@@ -329,18 +330,18 @@ class TkAPIHelper {
 
   /// Delete card API
   Future<Map> deleteCard(
-      {@required TkUser user, @required TkCredit card}) async {
+      {required TkUser user, required TkCredit card}) async {
     return await _network.deleteData(
-      url: await getRootURL() + kDeleteCardAPI + '/${card.id}',
+      url: (await getRootURL())! + kDeleteCardAPI + '/${card.id}',
       headers: user.toHeader(),
     );
   }
 
   /// Update card API
   Future<Map> updateCard(
-      {@required TkUser user, @required TkCredit card}) async {
+      {required TkUser user, required TkCredit card}) async {
     return await _network.putData(
-      url: await getRootURL() + kUpdateCardAPI + '/${card.id}',
+      url: (await getRootURL())! + kUpdateCardAPI + '/${card.id}',
       params: card.toJson(),
       headers: user.toHeader(),
     );
@@ -349,22 +350,22 @@ class TkAPIHelper {
   /////////////////////////////////////////////////////////////
   ////////////////////////// Packages /////////////////////////
   /// Load packages API
-  Future<Map> loadPackages({@required TkUser user}) async {
+  Future<Map> loadPackages({required TkUser user}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadPackagesAPI,
+      url: (await getRootURL())! + kLoadPackagesAPI,
       headers: user.toHeader(),
     );
   }
 
   /// Purchase package API
   Future<Map> purchasePackage({
-    @required TkUser user,
-    @required TkPackage package,
-    @required TkCredit card,
-    @required String cvv,
+    required TkUser user,
+    required TkPackage package,
+    required TkCredit card,
+    required String? cvv,
   }) async {
     return await _network.postData(
-      url: await getRootURL() + kPurchasePackageAPI,
+      url: (await getRootURL())! + kPurchasePackageAPI,
       params: {
         kPackagePkgIdTag: package.id.toString(),
         kCardCardIdTag: card.id.toString(),
@@ -375,9 +376,9 @@ class TkAPIHelper {
   }
 
   /// Load user balance API
-  Future<Map> loadUserPackages({@required TkUser user}) async {
+  Future<Map> loadUserPackages({required TkUser user}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadUserPackagesAPI,
+      url: (await getRootURL())! + kLoadUserPackagesAPI,
       headers: user.toHeader(),
     );
   }
@@ -386,12 +387,12 @@ class TkAPIHelper {
   /////////////////////// SUBSCRIPTIONS ///////////////////////
   /// Apply for resident permit API
   Future<Map> applyForSubscription({
-    @required TkUser user,
-    @required TkPermit permit,
-    @required TkCar car,
+    required TkUser user,
+    required TkPermit permit,
+    required TkCar car,
   }) async {
     return await _network.postData(
-      url: await getRootURL() + kApplySubscriptionPermitAPI,
+      url: (await getRootURL())! + kApplySubscriptionPermitAPI,
       params: {
         kSubscriberName: permit.name,
         kSubscriberPhone: permit.phone,
@@ -404,22 +405,22 @@ class TkAPIHelper {
   }
 
   /// Load all subscriptions API
-  Future<Map> loadSubscriptions({@required TkUser user}) async {
+  Future<Map> loadSubscriptions({required TkUser user}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadSubscriptions,
+      url: (await getRootURL())! + kLoadSubscriptions,
       headers: user.toHeader(),
     );
   }
 
   /// Load all subscriptions API
   Future<Map> buySubscriptions(
-      {@required TkUser user,
-      @required TkSubscription subscription,
-      @required TkCredit card,
-      @required TkCar car,
-      @required String cvv}) async {
+      {required TkUser user,
+      required TkSubscription subscription,
+      required TkCredit card,
+      required TkCar car,
+      required String? cvv}) async {
     return await _network.postData(
-      url: await getRootURL() + kBuySubscription,
+      url: (await getRootURL())! + kBuySubscription,
       params: {
         kSubscriptionIdIdTag: subscription.id.toString(),
         kCardCardIdTag: card.id.toString(),
@@ -431,9 +432,9 @@ class TkAPIHelper {
   }
 
   /// Load user subscriptions API
-  Future<Map> loadUserSubscriptions({@required TkUser user}) async {
+  Future<Map> loadUserSubscriptions({required TkUser user}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadUserSubscriptions,
+      url: (await getRootURL())! + kLoadUserSubscriptions,
       headers: user.toHeader(),
     );
   }
@@ -441,17 +442,17 @@ class TkAPIHelper {
   /////////////////////////////////////////////////////////////
   ////////////////////////// TICKETS //////////////////////////
   /// Load tickets API
-  Future<Map> loadTickets({@required TkUser user}) async {
+  Future<Map> loadTickets({required TkUser user}) async {
     return await _network.getData(
-      url: await getRootURL() + kLoadTicketsAPI,
+      url: (await getRootURL())! + kLoadTicketsAPI,
       headers: user.toHeader(),
     );
   }
 
   /// Load tickets QR
-  Future<Map> loadQR({@required TkUser user, @required TkTicket ticket}) async {
+  Future<Map> loadQR({required TkUser user, required TkTicket ticket}) async {
     return await _network.postData(
-      url: await getRootURL() + kGetParkingQRAPI,
+      url: (await getRootURL())! + kGetParkingQRAPI,
       params: {
         kBookingIdTag: ticket.id.toString(),
         kBookingQRData: '1',
@@ -462,20 +463,20 @@ class TkAPIHelper {
 
   /// Cancel ticket
   Future<Map> cancelTicket(
-      {@required TkUser user, @required TkTicket ticket}) async {
+      {required TkUser user, required TkTicket ticket}) async {
     return await _network.deleteData(
-      url: await getRootURL() + kCancelTicketAPI + '/${ticket.id}',
+      url: (await getRootURL())! + kCancelTicketAPI + '/${ticket.id}',
       headers: user.toHeader(),
     );
   }
 
   /// Reserve parking API
   Future<Map> reserveParking({
-    @required TkUser user,
-    @required TkCar car,
-    @required DateTime dateTime,
-    @required int duration,
-    TkCredit card,
+    required TkUser user,
+    required TkCar car,
+    required DateTime? dateTime,
+    required int? duration,
+    TkCredit? card,
   }) async {
     Map<String, dynamic> params = {
       kCarIdIdTad: car.id.toString(),
@@ -486,7 +487,7 @@ class TkAPIHelper {
     if (card != null) params[kCardCardIdTag] = card.id.toString();
 
     return await _network.postData(
-      url: await getRootURL() + kReserveParkingAPI,
+      url: (await getRootURL())! + kReserveParkingAPI,
       params: params,
       headers: user.toHeader(),
     );
@@ -499,13 +500,13 @@ class TkAPIHelper {
       {bool all = false}) async {
     return await _network.getData(
       url: !all
-          ? await getRootURL() +
+          ? (await getRootURL())! +
               kLoadViolationsAPI +
               '?' +
               kCarPlateENTag +
               '=' +
               licensePlate
-          : await getRootURL() +
+          : (await getRootURL())! +
               kLoadAllViolationsAPI +
               '?' +
               kCarPlateENTag +
@@ -520,7 +521,7 @@ class TkAPIHelper {
   Future<Map> loadViolationsWithoutToken(
       String licensePlate, TkLangController langController) async {
     return await _network.getData(
-      url: await getRootURL() +
+      url: (await getRootURL())! +
           kLoadGuestViolationsAPI +
           '?' +
           kCarPlateENTag +
@@ -533,17 +534,17 @@ class TkAPIHelper {
 
   /// Purchase package API
   Future<Map> payViolations({
-    @required List<TkViolation> violations,
-    @required TkCredit card,
-    @required String cvv,
+    required List<TkViolation> violations,
+    required TkCredit card,
+    required String? cvv,
   }) async {
-    List<int> ids = [];
+    List<int?> ids = [];
     for (TkViolation violation in violations) {
       ids.add(violation.id);
     }
 
     return await _network.postData(
-      url: await getRootURL() + kPayViolationsAPI,
+      url: (await getRootURL())! + kPayViolationsAPI,
       params: {
         kViolationIdsTag: ids,
         kCardCardIdTag: card.id,

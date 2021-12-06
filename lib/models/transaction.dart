@@ -10,10 +10,10 @@ class TkTransaction {
     created = DateTime.tryParse(json[kCreatedAtTag].toString());
   }
 
-  int id;
-  double amount;
-  int status;
-  DateTime created;
+  int? id;
+  double? amount;
+  int? status;
+  DateTime? created;
 }
 
 class TkPackageTransaction extends TkTransaction {
@@ -30,11 +30,11 @@ class TkPackageTransaction extends TkTransaction {
     hours = int.tryParse(json[kUserPackagePoints].toString());
   }
 
-  int packageId;
-  String name;
-  String description;
-  int price;
-  int hours;
+  int? packageId;
+  String? name;
+  String? description;
+  int? price;
+  int? hours;
 }
 
 class TkSubscriptionTransaction extends TkTransaction {
@@ -50,10 +50,10 @@ class TkSubscriptionTransaction extends TkTransaction {
     period = int.tryParse(json[kSubscriptionPeriodTag].toString());
   }
 
-  int subscriptionId;
-  String name;
-  int price;
-  int period;
+  int? subscriptionId;
+  String? name;
+  int? price;
+  int? period;
 }
 
 class TkViolationTransaction extends TkTransaction {
@@ -65,7 +65,7 @@ class TkViolationTransaction extends TkTransaction {
 
     violations.clear();
     for (Map violationJson in json[kViolationsDetailsTag])
-      violations.add(TkViolation.fromJson(violationJson));
+      violations.add(TkViolation.fromJson(violationJson as Map<String, dynamic>));
   }
 
   List<TkViolation> violations = [];

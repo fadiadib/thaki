@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:thaki/globals/index.dart';
@@ -8,7 +9,7 @@ import 'package:thaki/providers/lang_controller.dart';
 /// adds a close button that does a navigation pop
 class TkAppBar extends AppBar {
   TkAppBar({
-    @required this.context,
+    required this.context,
     this.enableNotifications = true,
     this.hasNotifications = false,
     this.enableClose = true,
@@ -19,11 +20,12 @@ class TkAppBar extends AppBar {
     this.onNotificationClick,
   }) : super(
           centerTitle: true,
-          brightness: Brightness.light,
+          systemOverlayStyle: SystemUiOverlayStyle.dark,
           backgroundColor: kTransparentColor,
           title: title,
           elevation: 0,
           automaticallyImplyLeading: !removeLeading,
+          iconTheme: IconThemeData(color: kPrimaryIconColor),
           leading:
               !removeLeading ? null : leading == null ? Container() : leading,
           actions: <Widget>[
@@ -32,7 +34,7 @@ class TkAppBar extends AppBar {
                     icon: Icon(kCloseBtnIcon),
                     color: kPrimaryIconColor,
                     iconSize: kAppbarIconsSize,
-                    onPressed: closeCallback ?? () => Navigator.pop(context),
+                    onPressed: closeCallback as void Function()? ?? () => Navigator.pop(context),
                   )
                 : Container(),
             enableNotifications
@@ -42,7 +44,7 @@ class TkAppBar extends AppBar {
                         icon: Icon(kNotificationBtnIcon),
                         color: kPrimaryIconColor,
                         iconSize: kAppbarIconsSize,
-                        onPressed: onNotificationClick,
+                        onPressed: onNotificationClick as void Function()?,
                       ),
                       hasNotifications
                           ? Positioned(
@@ -78,8 +80,8 @@ class TkAppBar extends AppBar {
   final bool enableNotifications;
   final bool hasNotifications;
   final bool removeLeading;
-  final Function closeCallback;
-  final Widget leading;
-  final Widget title;
-  final Function onNotificationClick;
+  final Function? closeCallback;
+  final Widget? leading;
+  final Widget? title;
+  final Function? onNotificationClick;
 }

@@ -19,7 +19,7 @@ class TkAddCardScreen extends StatefulWidget {
 
   TkAddCardScreen({this.editMode = false, this.card});
   final bool editMode;
-  final TkCredit card;
+  final TkCredit? card;
 
   @override
   _TkAddCardScreenState createState() => _TkAddCardScreenState();
@@ -27,19 +27,19 @@ class TkAddCardScreen extends StatefulWidget {
 
 class _TkAddCardScreenState extends State<TkAddCardScreen>
     with TkFormFieldValidatorMixin {
-  TkCredit _card;
+  TkCredit? _card;
 
   @override
   bool validateField(TkFormField field, dynamic value) {
     switch (field) {
       case TkFormField.cardHolder:
-        return TkValidationHelper.validateNotEmpty(_card.holder);
+        return TkValidationHelper.validateNotEmpty(_card!.holder);
       case TkFormField.cardNumber:
-        return TkValidationHelper.validateCreditCard(_card.number);
+        return TkValidationHelper.validateCreditCard(_card!.number);
       case TkFormField.cardExpiry:
-        return TkValidationHelper.validateNotEmpty(_card.expiry);
+        return TkValidationHelper.validateNotEmpty(_card!.expiry);
       case TkFormField.cardCVV:
-        return TkValidationHelper.validateNotEmpty(_card.cvv);
+        return TkValidationHelper.validateNotEmpty(_card!.cvv);
       default:
         return true;
     }
@@ -60,7 +60,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
             enabled: !account.isLoading,
             hintText: S.of(context).kCardHolderName,
             initialValue: _card?.holder,
-            onChanged: (value) => setState(() => _card.holder = value),
+            onChanged: (value) => setState(() => _card!.holder = value),
             validator: getValidationCallback(TkFormField.cardHolder),
             validate: isValidating,
             errorMessage:
@@ -79,9 +79,9 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
             initialValue: TkCreditCardHelper.obscure(
                 _card?.number,
                 Provider.of<TkLangController>(context, listen: false)
-                    .lang
+                    .lang!
                     .languageCode),
-            onChanged: (value) => setState(() => _card.number = value),
+            onChanged: (value) => setState(() => _card!.number = value),
             validator: getValidationCallback(TkFormField.cardNumber),
             validate: isValidating,
             errorMessage:
@@ -107,7 +107,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
                       keyboardType: TextInputType.datetime,
                       initialValue: _card?.expiry,
                       onChanged: (value) =>
-                          setState(() => _card.expiry = value),
+                          setState(() => _card!.expiry = value),
                       validator: getValidationCallback(TkFormField.cardExpiry),
                       validate: isValidating,
                       errorMessage: S.of(context).kPleaseEnter +
@@ -135,7 +135,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
                       hintText: S.of(context).kCardCVV,
                       keyboardType: TextInputType.number,
                       initialValue: _card?.cvv,
-                      onChanged: (value) => setState(() => _card.cvv = value),
+                      onChanged: (value) => setState(() => _card!.cvv = value),
                       validator: getValidationCallback(TkFormField.cardCVV),
                       validate: isValidating,
                       errorMessage:
@@ -154,7 +154,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
           child: TkFormBuilder.createCheckBox(
               label: S.of(context).kCarIsPreferred,
               value: _card?.preferred,
-              onChanged: (value) => setState(() => _card.preferred = value)),
+              onChanged: (value) => setState(() => _card!.preferred = value)),
         ),
       ],
     );
@@ -187,19 +187,19 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
           // Call API to add/update card
           setState(() => startValidating());
 
-          if (validate()) {
+          if (validate()!) {
             stopValidating();
 
             if (widget.editMode) {
               // Call API to add car
-              if (await account.updateCard(_card)) {
-                widget.card.copyValue(_card);
+              if (await account.updateCard(_card!)) {
+                widget.card!.copyValue(_card!);
                 account.loadCards();
                 Navigator.of(context).pop();
               }
             } else {
               // Call API to add car
-              if (await account.addCard(_card)) Navigator.of(context).pop();
+              if (await account.addCard(_card!)) Navigator.of(context).pop();
             }
           }
         },
@@ -212,7 +212,7 @@ class _TkAddCardScreenState extends State<TkAddCardScreen>
     super.initState();
 
     if (widget.editMode) {
-      _card = widget.card.createCopy();
+      _card = widget.card!.createCopy();
     } else {
       _card = TkCredit.fromJson({});
     }

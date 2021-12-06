@@ -8,7 +8,7 @@ import 'package:thaki/utilities/index.dart';
 class TkTransactionTile extends StatefulWidget {
   TkTransactionTile({this.transaction});
 
-  final TkTransaction transaction;
+  final TkTransaction? transaction;
 
   @override
   _TkTransactionTileState createState() => _TkTransactionTileState();
@@ -35,8 +35,8 @@ class _TkTransactionTileState extends State<TkTransactionTile> {
         ),
         child: Center(
           child: Text(
-            S.of(context).kSAR + ' ' + widget.transaction.amount.toString(),
-            style: kBoldStyle[kNormalSize].copyWith(color: color),
+            S.of(context).kSAR + ' ' + widget.transaction!.amount.toString(),
+            style: kBoldStyle[kNormalSize]!.copyWith(color: color),
           ),
         ),
       ),
@@ -54,16 +54,16 @@ class _TkTransactionTileState extends State<TkTransactionTile> {
               children: [
                 Text(
                   TkDateTimeHelper.formatDate(
-                      widget.transaction.created.toString()),
+                      widget.transaction!.created.toString())!,
                   style:
-                      kBoldStyle[kSmallSize].copyWith(color: kMediumGreyColor),
+                      kBoldStyle[kSmallSize]!.copyWith(color: kMediumGreyColor),
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(start: 4.0),
                   child: Text(
                     TkDateTimeHelper.formatTime(
-                        context, widget.transaction.created.toString()),
-                    style: kRegularStyle[kSmallSize]
+                        context, widget.transaction!.created.toString())!,
+                    style: kRegularStyle[kSmallSize]!
                         .copyWith(color: kMediumGreyColor),
                   ),
                 ),
@@ -74,9 +74,9 @@ class _TkTransactionTileState extends State<TkTransactionTile> {
                   ? S.of(context).kPackage
                   : widget.transaction is TkSubscriptionTransaction
                       ? S.of(context).kSubscription
-                      : _getFirstViolationTitle(),
+                      : _getFirstViolationTitle()!,
               style:
-                  kRegularStyle[kSmallSize].copyWith(color: kMediumGreyColor),
+                  kRegularStyle[kSmallSize]!.copyWith(color: kMediumGreyColor),
             ),
           ],
         ),
@@ -84,10 +84,10 @@ class _TkTransactionTileState extends State<TkTransactionTile> {
     );
   }
 
-  String _getFirstViolationTitle() {
-    String result = S.of(context).kViolations;
+  String? _getFirstViolationTitle() {
+    String? result = S.of(context).kViolations;
     if (widget.transaction is TkViolationTransaction) {
-      final TkViolationTransaction violationTransaction = widget.transaction;
+      final TkViolationTransaction violationTransaction = widget.transaction as TkViolationTransaction;
 
       if (violationTransaction.violations.isNotEmpty)
         result = violationTransaction.violations.first.name;
@@ -97,35 +97,35 @@ class _TkTransactionTileState extends State<TkTransactionTile> {
 
   Widget _getTileDetails() {
     if (widget.transaction is TkPackageTransaction) {
-      final TkPackageTransaction packageTransaction = widget.transaction;
+      final TkPackageTransaction packageTransaction = widget.transaction as TkPackageTransaction;
       return Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              packageTransaction.name,
-              style: kBoldStyle[kSmallSize].copyWith(color: kMediumGreyColor),
+              packageTransaction.name!,
+              style: kBoldStyle[kSmallSize]!.copyWith(color: kMediumGreyColor),
             ),
             Text(
-              packageTransaction.description,
+              packageTransaction.description!,
               style:
-                  kRegularStyle[kSmallSize].copyWith(color: kMediumGreyColor),
+                  kRegularStyle[kSmallSize]!.copyWith(color: kMediumGreyColor),
             ),
           ],
         ),
       );
     } else if (widget.transaction is TkSubscriptionTransaction) {
       final TkSubscriptionTransaction subscriptionTransaction =
-          widget.transaction;
+          widget.transaction as TkSubscriptionTransaction;
       return Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              subscriptionTransaction.name,
-              style: kBoldStyle[kSmallSize].copyWith(color: kMediumGreyColor),
+              subscriptionTransaction.name!,
+              style: kBoldStyle[kSmallSize]!.copyWith(color: kMediumGreyColor),
             ),
             Text(
               S.of(context).kValidFor +
@@ -134,13 +134,13 @@ class _TkTransactionTileState extends State<TkTransactionTile> {
                   ' ' +
                   S.of(context).kDays,
               style:
-                  kRegularStyle[kSmallSize].copyWith(color: kMediumGreyColor),
+                  kRegularStyle[kSmallSize]!.copyWith(color: kMediumGreyColor),
             ),
           ],
         ),
       );
     } else if (widget.transaction is TkViolationTransaction) {
-      final TkViolationTransaction violationTransaction = widget.transaction;
+      final TkViolationTransaction violationTransaction = widget.transaction as TkViolationTransaction;
 
       List<Widget> widgets = [];
       for (TkViolation violation in violationTransaction.violations) {
@@ -154,36 +154,36 @@ class _TkTransactionTileState extends State<TkTransactionTile> {
                   children: [
                     Text(
                       violation.issueNumber.toString(),
-                      style: kBoldStyle[kSmallSize]
+                      style: kBoldStyle[kSmallSize]!
                           .copyWith(color: kMediumGreyColor),
                     ),
                     SizedBox(width: 5),
                     Text(
-                      violation.carPlate,
-                      style: kRegularStyle[kSmallSize]
+                      violation.carPlate!,
+                      style: kRegularStyle[kSmallSize]!
                           .copyWith(color: kMediumGreyColor),
                     ),
                   ],
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4.0),
-                  child: Text(violation.name,
-                      style: kBoldStyle[kSmallSize]
+                  child: Text(violation.name!,
+                      style: kBoldStyle[kSmallSize]!
                           .copyWith(color: kMediumGreyColor)),
                 ),
                 Text(
-                  TkDateTimeHelper.formatDate(violation.dateTime.toString()) +
+                  TkDateTimeHelper.formatDate(violation.dateTime.toString())! +
                       ' ' +
                       TkDateTimeHelper.formatTime(
-                          context, violation.dateTime.toString()),
-                  style: kRegularStyle[kSmallSize]
+                          context, violation.dateTime.toString())!,
+                  style: kRegularStyle[kSmallSize]!
                       .copyWith(color: kMediumGreyColor),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: Text(
                     violation.location,
-                    style: kBoldStyle[kSmallSize]
+                    style: kBoldStyle[kSmallSize]!
                         .copyWith(color: kMediumGreyColor),
                   ),
                 ),

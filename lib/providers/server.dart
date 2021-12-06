@@ -16,8 +16,8 @@ class TkServer extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   // Error variables
-  String _error;
-  String get error => _error;
+  String? _error;
+  String? get error => _error;
 
   /// Checks that the server is alive
   Future<bool> check(String version, String platform) async {

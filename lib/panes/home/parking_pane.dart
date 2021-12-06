@@ -35,9 +35,9 @@ class TkParkingPane extends TkPane {
                 TkCarList(
                   langCode:
                       Provider.of<TkLangController>(context, listen: false)
-                          .lang
+                          .lang!
                           .languageCode,
-                  cars: account.user.cars,
+                  cars: account.user!.cars,
                   onTap: (TkCar car) {
                     // Select the car in the payer provider
                     Provider.of<TkBooker>(context, listen: false).selectedCar =
@@ -62,7 +62,7 @@ class TkParkingPane extends TkPane {
                         ),
                         SizedBox(width: 5),
                         Text(S.of(context).kAddCar,
-                            style: kBoldStyle[kSmallSize]
+                            style: kBoldStyle[kSmallSize]!
                                 .copyWith(color: kPrimaryColor)),
                       ],
                     ),

@@ -80,9 +80,6 @@ class TkThakiApp extends StatelessWidget {
             backgroundColor: kPrimaryBgColor,
             scaffoldBackgroundColor: kPrimaryBgColor,
             primaryColor: kPrimaryColor,
-            accentColor: kSecondaryColor,
-            textSelectionColor: kSecondaryColor,
-            textSelectionHandleColor: kPrimaryColor,
 
             inputDecorationTheme: InputDecorationTheme(
               enabledBorder: OutlineInputBorder(
@@ -93,6 +90,12 @@ class TkThakiApp extends StatelessWidget {
                 borderSide: BorderSide(color: kPrimaryColor),
                 borderRadius: BorderRadius.circular(kDefaultTextEditRadius),
               ),
+            ),
+            colorScheme:
+                ColorScheme.fromSwatch().copyWith(secondary: kSecondaryColor),
+            textSelectionTheme: TextSelectionThemeData(
+              selectionColor: kSecondaryColor,
+              selectionHandleColor: kPrimaryColor,
             ),
           ),
 

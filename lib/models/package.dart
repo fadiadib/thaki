@@ -33,14 +33,14 @@ class TkPackage {
     color = getTileColor();
   }
 
-  int id;
-  String name;
-  int points;
-  int remaining;
-  double price;
-  int validity; // in days
-  String details;
-  Color color;
-  String startDate;
-  String endDate;
+  int? id;
+  String? name;
+  int? points;
+  int? remaining;
+  double? price;
+  int? validity; // in days
+  String? details;
+  Color? color;
+  String? startDate;
+  String? endDate;
 }

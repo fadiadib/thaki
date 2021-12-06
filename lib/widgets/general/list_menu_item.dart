@@ -9,10 +9,10 @@ class TkListMenuItem extends StatelessWidget {
   TkListMenuItem(
       {this.title, this.action, this.child, this.textStyle, this.pop = true});
 
-  final String title;
-  final TextStyle textStyle;
-  final Widget child;
-  final Function action;
+  final String? title;
+  final TextStyle? textStyle;
+  final Widget? child;
+  final Function? action;
   final bool pop;
 
   @override
@@ -30,20 +30,20 @@ class TkListMenuItem extends StatelessWidget {
               SizedBox(
                 width: 200,
                 child: Text(
-                  title,
+                  title!,
                   style: textStyle ?? kRegularStyle[kSmallSize],
                 ),
               ),
 
               // And additional widget
-              if (child != null) child,
+              if (child != null) child!,
             ],
           ),
 
           // On tap action, pop menu and call action callback
           onTap: () {
             if (pop) Navigator.pop(context);
-            action();
+            action!();
           },
         ),
 

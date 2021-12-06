@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,13 +30,13 @@ class TkEditProfileScreen extends StatefulWidget {
 
 class _TkEditProfileScreenState extends State<TkEditProfileScreen>
     with TkFormFieldValidatorMixin {
-  TkInfoFieldsList _fields;
-  String firstName;
-  String middleName;
-  String lastName;
-  String gender;
-  int nationality;
-  int userType;
+  TkInfoFieldsList? _fields;
+  String? firstName;
+  String? middleName;
+  String? lastName;
+  String? gender;
+  int? nationality;
+  int? userType;
 
   /// Override mandatory validate field method from form field validator
   /// validate each field according to its type.
@@ -207,13 +208,13 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen>
     _fields = results;
 
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
-    account.user.updateModelFromInfoFields(results);
-    account.user.firstName = firstName;
-    account.user.middleName = middleName;
-    account.user.lastName = lastName;
-    account.user.gender = gender;
-    account.user.nationality = nationality;
-    account.user.userType = userType;
+    account.user!.updateModelFromInfoFields(results);
+    account.user!.firstName = firstName;
+    account.user!.middleName = middleName;
+    account.user!.lastName = lastName;
+    account.user!.gender = gender;
+    account.user!.nationality = nationality;
+    account.user!.userType = userType;
 
     if (await account.edit()) {
       Navigator.pop(context, true);
@@ -226,9 +227,8 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen>
 
   bool _validatePasswordMatch(TkInfoField confirmField) {
     // Search for the password field in fields
-    TkInfoField passwordField = _fields.fields.firstWhere(
-        (element) => element.name == kUserPasswordTag,
-        orElse: () => null);
+    TkInfoField? passwordField = _fields!.fields.firstWhereOrNull(
+        (element) => element.name == kUserPasswordTag);
     if (passwordField != null && passwordField.value == confirmField.value)
       return true;
     return false;
@@ -242,11 +242,11 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen>
     TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
-      langCode: controller.lang.languageCode,
+      langCode: controller.lang!.languageCode,
       formTitle: kEditProfileFieldsJson[kFormName]
-          [controller.lang.languageCode],
+          [controller.lang!.languageCode],
       actionTitle: kEditProfileFieldsJson[kFormAction]
-          [controller.lang.languageCode],
+          [controller.lang!.languageCode],
       validatePasswordMatch: _validatePasswordMatch,
       validatePassword: _validatePassword,
       buttonTag: kSignUpTag,
@@ -256,16 +256,16 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen>
       extraValidation: _extraValidation,
       startValidationCallback: _extraValidation,
       header: _createUserPersonalData(account, userAttributesController),
-      footer: account.user.isSocial
+      footer: account.user!.isSocial
           ? Container()
           : Center(child: Text(S.of(context).kPasswordWontChange)),
       child: TkError(message: account.editError),
     );
   }
 
-  bool _extraValidation() {
+  bool? _extraValidation() {
     setState(() => startValidating());
-    bool result = validate();
+    bool? result = validate();
     return result;
   }
 
@@ -276,7 +276,7 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen>
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
 
     // Load info fields from model
-    if (account.user.isSocial) {
+    if (account.user!.isSocial) {
       _fields = TkInfoFieldsList.fromJson(data: kEditSocialProfileFieldsJson);
     } else {
       _fields = TkInfoFieldsList.fromJson(data: kEditProfileFieldsJson);
@@ -284,13 +284,13 @@ class _TkEditProfileScreenState extends State<TkEditProfileScreen>
 
     account.clearErrors();
     if (account.user != null) {
-      _fields = account.user.toInfoFields(_fields);
-      firstName = account.user.firstName;
-      middleName = account.user.middleName;
-      lastName = account.user.lastName;
-      gender = account.user.gender;
-      nationality = account.user.nationality;
-      userType = account.user.userType;
+      _fields = account.user!.toInfoFields(_fields!);
+      firstName = account.user!.firstName;
+      middleName = account.user!.middleName;
+      lastName = account.user!.lastName;
+      gender = account.user!.gender;
+      nationality = account.user!.nationality;
+      userType = account.user!.userType;
     }
   }
 

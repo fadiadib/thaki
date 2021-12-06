@@ -19,14 +19,14 @@ class TkCard extends StatelessWidget {
   final Color borderColor;
   final Color textColor;
   final double borderRadius;
-  final Map<TkCardSide, String> titles;
-  final Map<TkCardSide, String> data;
-  final Function onTap;
-  final Widget child;
+  final Map<TkCardSide, String?>? titles;
+  final Map<TkCardSide, String?>? data;
+  final Function? onTap;
+  final Widget? child;
 
   Widget _getSideWidget(TkCardSide side) {
-    String title = titles == null ? null : titles[side];
-    String details = data == null ? null : data[side];
+    String? title = titles == null ? null : titles![side];
+    String? details = data == null ? null : data![side];
     return Padding(
       padding: const EdgeInsetsDirectional.fromSTEB(kCardPadding * 2,
           kCardPadding / 2, kCardPadding * 2, kCardPadding / 2),
@@ -36,7 +36,7 @@ class TkCard extends StatelessWidget {
           (title != null && title.isNotEmpty)
               ? Text(
                   title,
-                  style: kLightStyle[kSmallSize].copyWith(color: textColor),
+                  style: kLightStyle[kSmallSize]!.copyWith(color: textColor),
                 )
               : side == TkCardSide.topRight || side == TkCardSide.topLeft
                   ? Text('')
@@ -44,7 +44,7 @@ class TkCard extends StatelessWidget {
           (details != null && details.isNotEmpty)
               ? Text(
                   details,
-                  style: kBoldStyle[kSmallSize].copyWith(color: textColor),
+                  style: kBoldStyle[kSmallSize]!.copyWith(color: textColor),
                 )
               : side == TkCardSide.topRight || side == TkCardSide.topLeft
                   ? Text('')
@@ -57,7 +57,7 @@ class TkCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Stack(
         children: [
           Container(
@@ -96,7 +96,7 @@ class TkCard extends StatelessWidget {
               ],
             ),
           ),
-          if (child != null) child
+          if (child != null) child!
         ],
       ),
     );

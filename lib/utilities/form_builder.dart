@@ -12,11 +12,11 @@ class TkFormBuilder {
 
   /// Creates the widget label
   static Widget createLabel({
-    @required String label,
-    EdgeInsets padding,
+    required String? label,
+    EdgeInsets? padding,
     bool noComma = false,
     bool forceLabel = false,
-    TextStyle style,
+    TextStyle? style,
   }) {
     if (forceLabel || enableLabels)
       return Padding(
@@ -24,7 +24,7 @@ class TkFormBuilder {
             ? const EdgeInsets.all(0)
             : const EdgeInsetsDirectional.fromSTEB(5, 0, 0, 8),
         child: Text(
-          label,
+          label!,
           style: style ?? kBoldStyle[kSmallSize],
           textAlign: TextAlign.start,
         ),
@@ -34,18 +34,18 @@ class TkFormBuilder {
 
   /// Create a drop down widget
   static Widget createDropDownField({
-    @required BuildContext context,
-    @required String label,
-    @required String initialValue,
-    @required Function onChanged,
-    @required bool enabled,
-    @required Function validator,
-    @required bool isValidating,
-    @required String errorMessage,
-    @required List<TkInfoFieldValueOption> values,
+    required BuildContext context,
+    required String? label,
+    required String? initialValue,
+    required Function onChanged,
+    required bool enabled,
+    required Function validator,
+    required bool isValidating,
+    required String errorMessage,
+    required List<TkInfoFieldValueOption> values,
   }) {
     // Convert values to strings
-    List<String> stringValues = [];
+    List<String?> stringValues = [];
     for (TkInfoFieldValueOption value in values) {
       stringValues.add(value.title);
     }
@@ -59,7 +59,7 @@ class TkFormBuilder {
           value: initialValue,
           enabled: enabled,
           hintText: label,
-          values: stringValues ?? [],
+          values: stringValues,
           onChanged: onChanged,
           validator: validator,
           validate: isValidating,
@@ -71,17 +71,17 @@ class TkFormBuilder {
 
   /// Create a date, time or datetime widget
   static Widget createDateTimeField({
-    @required BuildContext context,
-    @required TkInfoFieldType type,
-    @required String label,
-    String initialValue,
-    @required String value,
-    @required Function onChanged,
-    @required Function validator,
-    @required bool isValidating,
-    @required String errorMessage,
-    @required bool enabled,
-    @required LocaleType locale,
+    required BuildContext context,
+    required TkInfoFieldType? type,
+    required String? label,
+    String? initialValue,
+    required String? value,
+    required Function onChanged,
+    required Function validator,
+    required bool isValidating,
+    required String errorMessage,
+    required bool enabled,
+    required LocaleType locale,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -105,16 +105,16 @@ class TkFormBuilder {
 
   /// Create a text field
   static Widget createTextField({
-    @required bool enabled,
-    @required String label,
-    @required String initialValue,
-    @required TextInputType keyboardType,
-    @required Function onChanged,
-    @required Function validator,
-    @required bool isValidating,
-    @required String errorMessage,
+    required bool enabled,
+    required String? label,
+    required String? initialValue,
+    required TextInputType keyboardType,
+    required Function onChanged,
+    required Function validator,
+    required bool isValidating,
+    required String errorMessage,
     bool obscured = false,
-    int lines = 1,
+    int? lines = 1,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,10 +138,10 @@ class TkFormBuilder {
 
   /// Create a checkbox
   static Widget createCheckBox({
-    @required String label,
-    @required bool value,
-    @required Function onChanged,
-    TextStyle style,
+    required String? label,
+    required bool? value,
+    required Function onChanged,
+    TextStyle? style,
   }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -152,7 +152,7 @@ class TkFormBuilder {
             value: value ?? false,
             checkColor: kWhiteColor,
             activeColor: kSecondaryColor,
-            onChanged: onChanged,
+            onChanged: onChanged as void Function(bool?)?,
           ),
         ),
         createLabel(
@@ -163,14 +163,14 @@ class TkFormBuilder {
 
   /// Create a checkbox
   static Widget createOTP({
-    @required BuildContext context,
-    @required bool enabled,
-    @required String label,
-    @required String initialValue,
-    @required Function onChanged,
-    @required Function validator,
-    @required bool isValidating,
-    @required String errorMessage,
+    required BuildContext context,
+    required bool enabled,
+    required String? label,
+    required String? initialValue,
+    required Function onChanged,
+    required Function validator,
+    required bool isValidating,
+    required String errorMessage,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,7 +180,7 @@ class TkFormBuilder {
           context: context,
           enabled: enabled,
           values: initialValue?.split('') ?? [],
-          onChanged: onChanged,
+          onChanged: onChanged as dynamic Function(String)?,
           validator: validator,
           validate: isValidating,
           errorMessage: errorMessage,

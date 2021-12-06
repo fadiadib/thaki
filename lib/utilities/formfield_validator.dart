@@ -42,7 +42,7 @@ abstract class TkFormFieldValidatorMixin {
   }
 
   // Should be called in the form button to return the validation result
-  bool validate() {
+  bool? validate() {
     for (TkFormField field in TkFormField.values) {
       if (!validateField(field, null)) return false;
     }

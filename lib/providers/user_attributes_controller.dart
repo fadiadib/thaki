@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 
 import 'package:thaki/globals/index.dart';
@@ -15,19 +16,19 @@ class TkUserAttributesController extends ChangeNotifier {
   List<TkUserType> types = [];
 
   // Error handling
-  String _loadError;
-  String get loadError => _loadError;
+  String? _loadError;
+  String? get loadError => _loadError;
 
   // Loading
-  bool _isLoading;
-  bool get isLoading => _isLoading;
+  bool? _isLoading;
+  bool? get isLoading => _isLoading;
 
-  String getAttributeName(
-      int id, TkLangController langController, List<TkAttribute> data) {
-    TkAttribute attribute =
-        data.firstWhere((element) => element.id == id, orElse: () => null);
+  String? getAttributeName(
+      int? id, TkLangController langController, List<TkAttribute> data) {
+    TkAttribute? attribute =
+        data.firstWhereOrNull((element) => element.id == id);
     if (attribute != null) {
-      if ((langController.lang.languageCode == 'en' ||
+      if ((langController.lang!.languageCode == 'en' ||
               attribute.nameAR == null) &&
           attribute.nameEN != null)
         return attribute.nameEN;
@@ -36,24 +37,23 @@ class TkUserAttributesController extends ChangeNotifier {
     return null;
   }
 
-  int getAttributeId(String name, List<TkAttribute> data) {
-    TkAttribute attribute = data.firstWhere(
-        (element) => element.nameEN == name || element.nameAR == name,
-        orElse: () => null);
+  int? getAttributeId(String name, List<TkAttribute> data) {
+    TkAttribute? attribute = data.firstWhereOrNull(
+        (element) => element.nameEN == name || element.nameAR == name);
     if (attribute != null) return attribute.id;
 
     return null;
   }
 
-  List<String> getAttributeNames(
+  List<String?> getAttributeNames(
       TkLangController langController, List<TkAttribute> data) {
-    List<String> names = [];
+    List<String?> names = [];
     for (TkAttribute attribute in data) {
       if (names.firstWhere(
               (element) =>
                   (element == attribute.nameAR || element == attribute.nameEN),
               orElse: () => null) ==
-          null) if ((langController.lang.languageCode == 'en' ||
+          null) if ((langController.lang!.languageCode == 'en' ||
               attribute.nameAR == null) &&
           attribute.nameEN != null)
         names.add(attribute.nameEN);
@@ -63,17 +63,17 @@ class TkUserAttributesController extends ChangeNotifier {
   }
 
   /// Nationalities
-  String nationalityName(int id, TkLangController langController) =>
+  String? nationalityName(int? id, TkLangController langController) =>
       getAttributeName(id, langController, nationalities);
-  int nationalityId(String name) => getAttributeId(name, nationalities);
-  List<String> nationalityNames(TkLangController langController) =>
+  int? nationalityId(String name) => getAttributeId(name, nationalities);
+  List<String?> nationalityNames(TkLangController langController) =>
       getAttributeNames(langController, nationalities);
 
   /// User types
-  String userTypeName(int id, TkLangController langController) =>
+  String? userTypeName(int? id, TkLangController langController) =>
       getAttributeName(id, langController, types);
-  int userTypeId(String name) => getAttributeId(name, types);
-  List<String> userTypesNames(TkLangController langController) =>
+  int? userTypeId(String name) => getAttributeId(name, types);
+  List<String?> userTypesNames(TkLangController langController) =>
       getAttributeNames(langController, types);
 
   /// Load user attributes
@@ -90,11 +90,11 @@ class TkUserAttributesController extends ChangeNotifier {
     if (result[kStatusTag] == kSuccessCode) {
       // Load nationalities
       for (Map data in result[kDataTag][kNationalitiesTag])
-        nationalities.add(TkNationality.fromJson(data));
+        nationalities.add(TkNationality.fromJson(data as Map<String, dynamic>));
 
       // Load user types
       for (Map data in result[kDataTag][kTypesTag])
-        types.add(TkUserType.fromJson(data));
+        types.add(TkUserType.fromJson(data as Map<String, dynamic>));
     } else {
       _loadError = _apis.normalizeError(result);
     }

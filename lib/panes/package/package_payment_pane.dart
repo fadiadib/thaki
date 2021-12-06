@@ -68,9 +68,9 @@ class TkPackagePaymentPane extends TkPane {
                 child: TkButton(
                   title: S.of(context).kCheckout,
                   onPressed: () {
-                    if (purchaser.cvv != null && purchaser.cvv.isNotEmpty) {
+                    if (purchaser.cvv != null && purchaser.cvv!.isNotEmpty) {
                       Navigator.of(context).pop();
-                      onDone();
+                      onDone!();
                     }
                   },
                 ),
@@ -113,9 +113,9 @@ class TkPackagePaymentPane extends TkPane {
                 TkPaymentList(
                   langCode:
                       Provider.of<TkLangController>(context, listen: false)
-                          .lang
+                          .lang!
                           .languageCode,
-                  cards: account.user.cards,
+                  cards: account.user!.cards,
                   onTap: (TkCredit card) => purchaser.selectedCard = card,
                   selected: purchaser.selectedCard,
                 ),
@@ -130,7 +130,7 @@ class TkPackagePaymentPane extends TkPane {
                         Icon(kAddCircleBtnIcon, size: 16, color: kPrimaryColor),
                         SizedBox(width: 5),
                         Text(S.of(context).kAddCard,
-                            style: kBoldStyle[kSmallSize]
+                            style: kBoldStyle[kSmallSize]!
                                 .copyWith(color: kPrimaryColor)),
                       ],
                     ),

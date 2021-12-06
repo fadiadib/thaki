@@ -5,7 +5,7 @@ import 'package:thaki/providers/lang_controller.dart';
 
 class TkTabs extends StatelessWidget {
   TkTabs(
-      {@required this.length, @required this.titles, @required this.children});
+      {required this.length, required this.titles, required this.children});
   final int length;
   final List<String> titles;
   final List<Widget> children;
@@ -32,7 +32,7 @@ class TkTabs extends StatelessWidget {
               padding: const EdgeInsets.only(top: 20),
               child: TabBar(
                 isScrollable: true,
-                labelStyle: kBoldStyle[kSmallSize].copyWith(
+                labelStyle: kBoldStyle[kSmallSize]!.copyWith(
                     fontFamily:
                         Provider.of<TkLangController>(context, listen: false)
                             .fontFamily,

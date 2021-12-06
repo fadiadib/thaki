@@ -4,7 +4,7 @@ import 'package:thaki/globals/index.dart';
 import 'package:encrypt/encrypt.dart';
 
 class TkCryptoHelper {
-  static String hashSha256(String input) {
+  static String? hashSha256(String? input) {
     if (kDemoMode) return input;
     if (input == null) return input;
     Digest digest = sha256.convert(utf8.encode(input)); // Hashing Process

@@ -26,7 +26,7 @@ class _TkBuySubscriptionScreenState extends TkMultiStepPageState {
   @override
   void initData() async {
     await Provider.of<TkSubscriber>(context, listen: false)
-        .loadSubscriptions(Provider.of<TkAccount>(context, listen: false).user);
+        .loadSubscriptions(Provider.of<TkAccount>(context, listen: false).user!);
   }
 
   @override
@@ -36,10 +36,10 @@ class _TkBuySubscriptionScreenState extends TkMultiStepPageState {
         TkAccount account = Provider.of<TkAccount>(context, listen: false);
 
         if (kSaveCardMode) {
-          if (account.user.cards != null && account.user.cards.isNotEmpty)
+          if (account.user!.cards != null && account.user!.cards!.isNotEmpty)
             Provider.of<TkSubscriber>(context, listen: false).selectedCard =
                 Provider.of<TkAccount>(context, listen: false)
-                    .user
+                    .user!
                     .cards
                     ?.first;
         } else {
@@ -49,7 +49,7 @@ class _TkBuySubscriptionScreenState extends TkMultiStepPageState {
               user: account.user,
               type: 'Subscription',
               id: Provider.of<TkSubscriber>(context, listen: false)
-                  .selectedSubscription
+                  .selectedSubscription!
                   .id,
               car: Provider.of<TkSubscriber>(context, listen: false)
                   .selectedCar);
@@ -65,7 +65,7 @@ class _TkBuySubscriptionScreenState extends TkMultiStepPageState {
             // Perform purchase by calling the API
             Provider.of<TkSubscriber>(context, listen: false)
                 .purchaseSelectedSubscription(
-                    Provider.of<TkAccount>(context, listen: false).user);
+                    Provider.of<TkAccount>(context, listen: false).user!);
 
             // Load next pane
             loadNextPane();

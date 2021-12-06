@@ -38,7 +38,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
   // cause the same screen to be pushed to the navigator multiple
   // times
   bool _loadingNextScreen = false;
-  String _startupError;
+  String? _startupError;
 
   // Animations controllers
   double _logoRadius = 0;
@@ -100,7 +100,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
 
         if (loggedIn && await account.load()) {
           // User has a saved session, check if it needs an update
-          if (account.user.needsUpdate) {
+          if (account.user!.needsUpdate) {
             // Push welcome first
             Navigator.pushReplacementNamed(context, TkWelcomeScreen.id);
 
@@ -176,7 +176,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
                 textAlign: TextAlign.start,
                 text: TextSpan(
                   text: _startupError,
-                  style: kBoldStyle[kSmallSize].copyWith(
+                  style: kBoldStyle[kSmallSize]!.copyWith(
                       color: kLightPurpleColor, fontFamily: kRTLFontFamily),
                   children: [
                     TextSpan(
@@ -219,7 +219,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
           curve: Curves.easeIn,
           tween: Tween<double>(begin: 1, end: 0),
           duration: Duration(milliseconds: 600),
-          builder: (context, angle, child) {
+          builder: (context, dynamic angle, child) {
             return Transform.rotate(
               origin: Offset(268 + 203.0, -600),
               angle: angle,
@@ -245,7 +245,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
           curve: Curves.easeIn,
           tween: Tween<double>(begin: 1, end: 0),
           duration: Duration(milliseconds: 600),
-          builder: (context, angle, child) {
+          builder: (context, dynamic angle, child) {
             return Transform.rotate(
               origin: Offset(-50, 300),
               angle: angle,

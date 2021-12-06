@@ -30,15 +30,15 @@ class TkSubscription {
     color = getTileColor();
   }
 
-  int id;
-  String name;
-  double price;
-  int period; // in days
-  Color color;
+  int? id;
+  String? name;
+  double? price;
+  int? period; // in days
+  Color? color;
 
   // User subscriptions data
-  String startDate;
-  String endDate;
-  DateTime createdAt;
-  int car;
+  String? startDate;
+  String? endDate;
+  DateTime? createdAt;
+  int? car;
 }

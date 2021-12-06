@@ -17,9 +17,9 @@ class _TkApplyForSubscriptionScreenState extends TkMultiStepPageState {
   void initData() async {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     await Provider.of<TkSubscriber>(context, listen: false)
-        .loadDisclaimer(account.user);
+        .loadDisclaimer(account.user!);
     await Provider.of<TkSubscriber>(context, listen: false)
-        .loadDocuments(account.user);
+        .loadDocuments(account.user!);
   }
 
   @override
@@ -35,7 +35,7 @@ class _TkApplyForSubscriptionScreenState extends TkMultiStepPageState {
         onDone: () {
           TkAccount account = Provider.of<TkAccount>(context, listen: false);
           Provider.of<TkSubscriber>(context, listen: false)
-              .applyForSubscription(account.user);
+              .applyForSubscription(account.user!);
 
           loadNextPane();
         },

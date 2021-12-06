@@ -37,9 +37,9 @@ class TkViolationsPane extends TkPane {
                 TkCarList(
                   langCode:
                       Provider.of<TkLangController>(context, listen: false)
-                          .lang
+                          .lang!
                           .languageCode,
-                  cars: account.user.cars,
+                  cars: account.user!.cars,
                   onTap: (TkCar car) {
                     // Select the car in the payer provider
                     TkPayer payer =
@@ -62,7 +62,7 @@ class TkViolationsPane extends TkPane {
                         Icon(kAddCircleBtnIcon, size: 16, color: kPrimaryColor),
                         SizedBox(width: 5),
                         Text(S.of(context).kAddCar,
-                            style: kBoldStyle[kSmallSize]
+                            style: kBoldStyle[kSmallSize]!
                                 .copyWith(color: kPrimaryColor)),
                       ],
                     ),

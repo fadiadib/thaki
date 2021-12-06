@@ -25,7 +25,7 @@ class TkViolationCarPane extends TkPane {
         child: TkButton(
           title: S.of(context).kContinue,
           onPressed: () {
-            if (payer.validateCar(context)) onDone();
+            if (payer.validateCar(context)) onDone!();
           },
         ),
       ),
@@ -64,18 +64,18 @@ class TkViolationCarForm extends StatefulWidget {
 }
 
 class _TkViolationCarFormState extends State<TkViolationCarForm> {
-  TkPayer payer;
+  late TkPayer payer;
 
   List<String> _getInitialValuesEN(TkPayer payer) {
     if (payer.selectedCar == null ||
-        payer.selectedCar.plateEN == null ||
-        payer.selectedCar.plateEN.isEmpty) return ['', ''];
+        payer.selectedCar!.plateEN == null ||
+        payer.selectedCar!.plateEN!.isEmpty) return ['', ''];
 
     final RegExp nExp = RegExp(r"\d{1,4}");
-    final String nums = nExp.stringMatch(payer.selectedCar.plateEN) ?? '';
+    final String nums = nExp.stringMatch(payer.selectedCar!.plateEN!) ?? '';
 
     final RegExp cExp = RegExp(r"[A-Za-z]{2,3}");
-    final String chars = cExp.stringMatch(payer.selectedCar.plateEN) ?? '';
+    final String chars = cExp.stringMatch(payer.selectedCar!.plateEN!) ?? '';
 
     return [nums, chars];
   }
@@ -108,11 +108,11 @@ class _TkViolationCarFormState extends State<TkViolationCarForm> {
                     context: context,
                     values: states.stateNames(langController),
                     value: states.stateName(
-                        payer.selectedCar.state, langController),
+                        payer.selectedCar!.state, langController),
                     hintText: S.of(context).kCarState,
                     onChanged: (value) {
                       setState(() =>
-                          payer.selectedCar.state = states.stateId(value));
+                          payer.selectedCar!.state = states.stateId(value));
                     },
                     errorMessage:
                         S.of(context).kPleaseChoose + S.of(context).kCarState,
@@ -123,7 +123,7 @@ class _TkViolationCarFormState extends State<TkViolationCarForm> {
 
           TkSectionTitle(title: S.of(context).kCarPlateEN, uppercase: false),
 
-          if (payer.selectedCar.state != 1)
+          if (payer.selectedCar!.state != 1)
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
@@ -131,16 +131,16 @@ class _TkViolationCarFormState extends State<TkViolationCarForm> {
                 enabled: payer.allowChange,
                 height: kDefaultLicensePlateTextEditHeight,
                 hintText: S.of(context).kCarPlateEN,
-                initialValue: payer.selectedCar.plateEN,
-                maxLengthEnforced: payer.selectedCar.state != 1,
-                maxLength: payer.selectedCar.state != 1 ? 7 : null,
+                initialValue: payer.selectedCar!.plateEN,
+                maxLengthEnforced: payer.selectedCar!.state != 1,
+                maxLength: payer.selectedCar!.state != 1 ? 7 : null,
                 keyboardType: TextInputType.number,
                 onChanged: (String value) {
-                  payer.selectedCar.plateEN = value;
+                  payer.selectedCar!.plateEN = value;
                 },
               ),
             ),
-          if (payer.selectedCar.state == 1)
+          if (payer.selectedCar!.state == 1)
             Padding(
               padding:
                   const EdgeInsets.symmetric(vertical: 10.0, horizontal: 30.0),
@@ -149,14 +149,14 @@ class _TkViolationCarFormState extends State<TkViolationCarForm> {
                       textDirection: TextDirection.ltr,
                       child: TkSeparatedLicenseField(
                         langCode: 'en',
-                        onChanged: (value) => payer.selectedCar.plateEN = value,
+                        onChanged: (value) => payer.selectedCar!.plateEN = value,
                         values: _getInitialValuesEN(payer),
                         validate: false,
                         enabled: payer.allowChange,
                         reverseLabelAlign: Provider.of<TkLangController>(
                                     context,
                                     listen: false)
-                                .lang
+                                .lang!
                                 .languageCode ==
                             'ar',
                       ),
@@ -164,9 +164,9 @@ class _TkViolationCarFormState extends State<TkViolationCarForm> {
                   : TkLicenseField(
                       langCode:
                           Provider.of<TkLangController>(context, listen: false)
-                              .lang
+                              .lang!
                               .languageCode,
-                      onChanged: (value) => payer.selectedCar.plateEN = value,
+                      onChanged: (value) => payer.selectedCar!.plateEN = value,
                       values: _getInitialValuesEN(payer),
                       validate: false,
                       enabled: payer.allowChange,

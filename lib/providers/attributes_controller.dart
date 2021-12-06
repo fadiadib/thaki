@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/foundation.dart';
 
 import 'package:thaki/globals/index.dart';
@@ -21,19 +22,19 @@ class TkAttributesController extends ChangeNotifier {
   List<TkColor> get colors => _colors;
 
   // Error handling
-  String _loadError;
-  String get loadError => _loadError;
+  String? _loadError;
+  String? get loadError => _loadError;
 
   // Loading
-  bool _isLoading;
-  bool get isLoading => _isLoading;
+  bool? _isLoading;
+  bool? get isLoading => _isLoading;
 
-  String getAttributeName(
-      int id, TkLangController langController, List<TkAttribute> data) {
-    TkAttribute attribute =
-        data.firstWhere((element) => element.id == id, orElse: () => null);
+  String? getAttributeName(
+      int? id, TkLangController langController, List<TkAttribute> data) {
+    TkAttribute? attribute =
+        data.firstWhereOrNull((element) => element.id == id);
     if (attribute != null) {
-      if ((langController.lang.languageCode == 'en' ||
+      if ((langController.lang!.languageCode == 'en' ||
               attribute.nameAR == null) &&
           attribute.nameEN != null)
         return attribute.nameEN;
@@ -42,24 +43,23 @@ class TkAttributesController extends ChangeNotifier {
     return null;
   }
 
-  int getAttributeId(String name, List<TkAttribute> data) {
-    TkAttribute attribute = data.firstWhere(
-        (element) => element.nameEN == name || element.nameAR == name,
-        orElse: () => null);
+  int? getAttributeId(String name, List<TkAttribute> data) {
+    TkAttribute? attribute = data.firstWhereOrNull(
+        (element) => element.nameEN == name || element.nameAR == name);
     if (attribute != null) return attribute.id;
 
     return null;
   }
 
-  List<String> getAttributeNames(
+  List<String?> getAttributeNames(
       TkLangController langController, List<TkAttribute> data) {
-    List<String> names = [];
+    List<String?> names = [];
     for (TkAttribute attribute in data) {
       if (names.firstWhere(
               (element) =>
                   (element == attribute.nameAR || element == attribute.nameEN),
               orElse: () => null) ==
-          null) if ((langController.lang.languageCode == 'en' ||
+          null) if ((langController.lang!.languageCode == 'en' ||
               attribute.nameAR == null) &&
           attribute.nameEN != null)
         names.add(attribute.nameEN);
@@ -69,31 +69,31 @@ class TkAttributesController extends ChangeNotifier {
   }
 
   /// States
-  String stateName(int id, TkLangController langController) =>
+  String? stateName(int? id, TkLangController langController) =>
       getAttributeName(id, langController, _states);
-  int stateId(String name) => getAttributeId(name, _states);
-  List<String> stateNames(TkLangController langController) =>
+  int? stateId(String name) => getAttributeId(name, _states);
+  List<String?> stateNames(TkLangController langController) =>
       getAttributeNames(langController, _states);
 
   /// Makes
-  String makeName(int id, TkLangController langController) =>
+  String? makeName(int? id, TkLangController langController) =>
       getAttributeName(id, langController, _makes);
-  int makeId(String name) => getAttributeId(name, _makes);
-  List<String> makeNames(TkLangController langController) =>
+  int? makeId(String name) => getAttributeId(name, _makes);
+  List<String?> makeNames(TkLangController langController) =>
       getAttributeNames(langController, _makes);
 
   /// Models
-  String modelName(int id, TkLangController langController) =>
+  String? modelName(int? id, TkLangController langController) =>
       getAttributeName(id, langController, _models);
-  int modelId(String name) => getAttributeId(name, _models);
-  List<String> modelNames(TkLangController langController) =>
+  int? modelId(String name) => getAttributeId(name, _models);
+  List<String?> modelNames(TkLangController langController) =>
       getAttributeNames(langController, _models);
 
   /// Colors
-  String colorName(int id, TkLangController langController) =>
+  String? colorName(int? id, TkLangController langController) =>
       getAttributeName(id, langController, _colors);
-  int colorId(String name) => getAttributeId(name, _colors);
-  List<String> colorNames(TkLangController langController) =>
+  int? colorId(String name) => getAttributeId(name, _colors);
+  List<String?> colorNames(TkLangController langController) =>
       getAttributeNames(langController, _colors);
 
   Future<bool> load(TkLangController langController) async {
@@ -112,15 +112,15 @@ class TkAttributesController extends ChangeNotifier {
     Map result = await _apis.loadAttributes(langController: langController);
     if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kStatesTag]) {
-        _states.add(TkState.fromJson(data));
+        _states.add(TkState.fromJson(data as Map<String, dynamic>));
       }
       if (result[kDataTag][kMakesTag] != null)
         for (Map data in result[kDataTag][kMakesTag]) {
-          _makes.add(TkMake.fromJson(data));
+          _makes.add(TkMake.fromJson(data as Map<String, dynamic>));
         }
       if (result[kDataTag][kColorsTag] != null)
         for (Map data in result[kDataTag][kColorsTag]) {
-          _colors.add(TkColor.fromJson(data));
+          _colors.add(TkColor.fromJson(data as Map<String, dynamic>));
         }
     } else {
       _loadError = _apis.normalizeError(result);
@@ -132,7 +132,7 @@ class TkAttributesController extends ChangeNotifier {
     return (_loadError == null);
   }
 
-  Future<bool> loadModels(TkUser user, int makeId, {bool init = false}) async {
+  Future<bool> loadModels(TkUser? user, int? makeId, {bool init = false}) async {
     _isLoading = true;
     _loadError = null;
 
@@ -142,10 +142,10 @@ class TkAttributesController extends ChangeNotifier {
 
     if (!init) notifyListeners();
 
-    Map result = await _apis.loadModels(user: user, makeId: makeId);
+    Map result = await _apis.loadModels(user: user!, makeId: makeId);
     if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kModelsTag]) {
-        _models.add(TkModel.fromJson(data));
+        _models.add(TkModel.fromJson(data as Map<String, dynamic>));
       }
     } else {
       _loadError = _apis.normalizeError(result);

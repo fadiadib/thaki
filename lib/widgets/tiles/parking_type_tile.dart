@@ -4,15 +4,15 @@ import 'package:thaki/models/parking_type.dart';
 
 class TkParkingTypeTile extends StatelessWidget {
   TkParkingTypeTile({this.onTap, this.isSelected = false, this.parkingType});
-  final TkParkingType parkingType;
+  final TkParkingType? parkingType;
   final bool isSelected;
-  final Function onTap;
+  final Function? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (onTap != null) onTap();
+        if (onTap != null) onTap!();
       },
       child: Container(
         height: kTileHeight,
@@ -39,12 +39,12 @@ class TkParkingTypeTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5.0),
                     child: Text(
-                      parkingType.title.toUpperCase(),
+                      parkingType!.title!.toUpperCase(),
                       style:
-                          kBoldStyle[kNormalSize].copyWith(color: kBlackColor),
+                          kBoldStyle[kNormalSize]!.copyWith(color: kBlackColor),
                     ),
                   ),
-                  if (parkingType.subTitle != null) Text(parkingType.subTitle),
+                  if (parkingType!.subTitle != null) Text(parkingType!.subTitle!),
                 ],
               ),
 

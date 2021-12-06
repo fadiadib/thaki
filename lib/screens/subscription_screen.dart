@@ -29,7 +29,7 @@ class _TkSubscriptionScreenState extends State<TkSubscriptionScreen> {
     final TkSubscriber subscriber =
         Provider.of<TkSubscriber>(context, listen: false);
 
-    subscriber.loadUserSubscriptions(account.user);
+    subscriber.loadUserSubscriptions(account.user!);
     account.loadCars(notify: false);
   }
 
@@ -95,9 +95,9 @@ class _TkSubscriptionScreenState extends State<TkSubscriptionScreen> {
                           showRibbon: true,
                           langCode: Provider.of<TkLangController>(context,
                                   listen: false)
-                              .lang
+                              .lang!
                               .languageCode,
-                          cars: account.user.cars,
+                          cars: account.user!.cars,
                           onTap: (TkCar car) async {
                             if (car.isApproved == 0) {
                               // No subscription, so apply

@@ -98,8 +98,8 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                     controller.isLoading
                         ? Container()
                         : Text(
-                            controller.onBoardingList[_current].title,
-                            style: kBoldStyle[kBigSize].copyWith(
+                            controller.onBoardingList[_current].title!,
+                            style: kBoldStyle[kBigSize]!.copyWith(
                               color: kWhiteColor,
                               fontFamily: kRTLFontFamily,
                             ),
@@ -117,12 +117,12 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                           padding: const EdgeInsets.only(top: 20.0),
                           child: Text(
                             S.of(context).kSwitchLanguage,
-                            style: kBoldStyle[kSmallSize].copyWith(
+                            style: kBoldStyle[kSmallSize]!.copyWith(
                               color: kWhiteColor,
                               decoration: TextDecoration.underline,
                               fontFamily: Provider.of<TkLangController>(context,
                                               listen: false)
-                                          .lang
+                                          .lang!
                                           .languageCode ==
                                       'ar'
                                   ? kLTRFontFamily
@@ -157,7 +157,7 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                       context, TkWelcomeScreen.id),
                   child: Text(
                     S.of(context).kSkip,
-                    style: kBoldStyle[kSmallSize].copyWith(color: kWhiteColor),
+                    style: kBoldStyle[kSmallSize]!.copyWith(color: kWhiteColor),
                   ),
                 ),
               ),
@@ -173,7 +173,7 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
                   onTap: () => _updateCurrent(controller),
                   child: Text(
                     S.of(context).kNext,
-                    style: kBoldStyle[kSmallSize].copyWith(color: kWhiteColor),
+                    style: kBoldStyle[kSmallSize]!.copyWith(color: kWhiteColor),
                   ),
                 ),
               ),
@@ -193,9 +193,9 @@ class _TkOnBoardingScreenState extends State<TkOnBoardingScreen> {
           child: Scaffold(
             body: TkScaffoldBody(
               image: !controller.isLoading
-                  ? controller.onBoardingList[_current].image != null
-                      ? NetworkImage(controller.onBoardingList[_current].image)
-                      : AssetImage(kOBBg)
+                  ? (controller.onBoardingList[_current].image != null
+                      ? NetworkImage(controller.onBoardingList[_current].image!)
+                      : AssetImage(kOBBg)) as ImageProvider<Object>?
                   : null,
               colorOverlay: kPrimaryColor,
               overlayOpacity: 0.5,

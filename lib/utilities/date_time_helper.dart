@@ -31,10 +31,10 @@ class TkDateTimeHelper {
 
   /// Function that takes a string date and returns
   /// the weekday number
-  static int getWeekday(String date) {
+  static int? getWeekday(String date) {
     if (date == null) return null;
 
-    DateTime formatted = DateTime.tryParse(date);
+    DateTime? formatted = DateTime.tryParse(date);
     if (formatted == null) {
       // try reversing the date
       date = date.split('-').reversed.join('-');
@@ -55,7 +55,7 @@ class TkDateTimeHelper {
   static String getWeekdayString(BuildContext context, String date) {
     if (date == null) return date;
 
-    DateTime formatted = DateTime.tryParse(date);
+    DateTime? formatted = DateTime.tryParse(date);
     if (formatted == null) {
       // try reversing the date
       date = date.split('-').reversed.join('-');
@@ -77,7 +77,7 @@ class TkDateTimeHelper {
 
   /// Function that takes a string date and returns
   /// a user friendly version
-  static String formatDate(String date) {
+  static String? formatDate(String? date) {
     if (date == null) return date;
 
     try {
@@ -93,7 +93,7 @@ class TkDateTimeHelper {
 
   /// Function that takes a string time and
   /// removes the seconds
-  static String removeSeconds(String time) {
+  static String? removeSeconds(String? time) {
     if (time == null) return null;
 
     // Split the time variable and rejoin the first two substrings
@@ -103,7 +103,7 @@ class TkDateTimeHelper {
 
   /// Function that takes a string time and
   /// removes the seconds and adds am and pm
-  static String formatTime(BuildContext context, String time) {
+  static String? formatTime(BuildContext context, String? time) {
     if (time == null) return time;
     time = time.split(' ').last;
 
@@ -113,7 +113,7 @@ class TkDateTimeHelper {
     String minute;
 
     for (String item in time.split(':')) {
-      timeComponents.add(int.tryParse(item));
+      timeComponents.add(int.parse(item));
     }
     if (timeComponents.length < 2) return time;
 
@@ -144,7 +144,7 @@ class TkDateTimeHelper {
   }
 
   /// Calculates the start and end of a week number for a specific year
-  static List<DateTime> getDatesByWeekNumber({int week, int year}) {
+  static List<DateTime> getDatesByWeekNumber({required int week, required int year}) {
     DateTime startOfaYear = DateTime.utc(year, 1, 1);
     int startOfaYearWeekDay = startOfaYear.weekday;
 

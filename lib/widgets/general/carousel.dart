@@ -23,14 +23,14 @@ class TkCarousel extends StatefulWidget {
   final bool showDots;
   final int initialPage;
   final String emptyMessage;
-  final Function onChanged;
-  final Function onClick;
-  final List<Widget> children;
+  final Function? onChanged;
+  final Function? onClick;
+  final List<Widget>? children;
   final int animationDuration;
   final Color selectedDotColor;
   final Color dotColor;
   final double aspectRatio;
-  final double height;
+  final double? height;
 
   @override
   _TkCarouselState createState() => _TkCarouselState();
@@ -38,8 +38,8 @@ class TkCarousel extends StatefulWidget {
 
 class _TkCarouselState extends State<TkCarousel> {
   int _currentSlide = 0;
-  CarouselSlider _slider;
-  List<Widget> _widgets = [];
+  late CarouselSlider _slider;
+  List<Widget>? _widgets = [];
 
   /// Create circular navigation indicators
   List<Widget> _createDots() {
@@ -47,7 +47,7 @@ class _TkCarouselState extends State<TkCarousel> {
     List<Widget> indicators = [];
 
     // Create a dot for each slide
-    for (int slide = 0; slide < _widgets.length; slide++) {
+    for (int slide = 0; slide < _widgets!.length; slide++) {
       indicators.add(
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 3.0),
@@ -71,8 +71,8 @@ class _TkCarouselState extends State<TkCarousel> {
   /// Creates the slider
   void _createSlider() {
     _slider = CarouselSlider.builder(
-      itemCount: _widgets.length,
-      itemBuilder: (context, idx, _) => _widgets[idx],
+      itemCount: _widgets!.length,
+      itemBuilder: (context, idx, _) => _widgets![idx],
       options: CarouselOptions(
         height: widget.height,
         aspectRatio: widget.aspectRatio,
@@ -81,7 +81,7 @@ class _TkCarouselState extends State<TkCarousel> {
         enableInfiniteScroll: widget.infiniteScroll,
         onPageChanged: (index, _) {
           setState(() => _currentSlide = index);
-          if (widget.onChanged != null) widget.onChanged(index);
+          if (widget.onChanged != null) widget.onChanged!(index);
         },
       ),
     );
@@ -89,9 +89,9 @@ class _TkCarouselState extends State<TkCarousel> {
 
   /// Initializes the _widgets variable
   void _initializeWidgets() {
-    if (widget.children == null || widget.children.isEmpty) {
+    if (widget.children == null || widget.children!.isEmpty) {
       // No widgets found, add a message
-      _widgets.add(
+      _widgets!.add(
         Center(
           child: Text(
             widget.emptyMessage,

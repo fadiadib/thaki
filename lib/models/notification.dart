@@ -3,22 +3,24 @@ import 'dart:math';
 import 'package:thaki/globals/index.dart';
 
 class TkNotification {
-  TkNotification.fromJson(Map<String, dynamic> json) {
+  TkNotification.fromJson(Map<String, dynamic> json, {int? nid, String? tag}) {
     // Notification data can be inside a 'data'
     // ag or 'notification' tag
-    Map<dynamic, dynamic> dataJson = json;
+    Map<dynamic, dynamic>? dataJson = json;
     if (json[kNotificationDataTag] != null) {
       dataJson = json[kNotificationDataTag];
     } else if (json[kNotificationTag] != null) {
-      dataJson = json[kNotificationTag];
+      dataJson = json;
     }
 
     // Get the id
-    id = int.tryParse(dataJson[kNotificationIdTag].toString());
-    if (id == null)
-      id = int.tryParse(
-          dataJson[kNotificationTagTag].toString().split('_').last);
+    id = int.tryParse(dataJson![kNotificationIdTag].toString());
+    // if (id == null)
+    //   id = int.tryParse(
+    //       dataJson[kNotificationTagTag].toString().split('_').last);
     if (id == null) id = Random().nextInt(10000);
+    this.nid = nid ?? int.tryParse(dataJson[kNotificationNIdTag].toString());
+    this.tag = tag ?? dataJson[kNotificationTagTag];
 
     // Get message details: title, short and body
     title = dataJson[kNotificationTitleTag] ?? '';
@@ -48,6 +50,8 @@ class TkNotification {
   Map<String, dynamic> toJson() {
     return {
       kNotificationIdTag: id.toString(),
+      kNotificationNIdTag: nid?.toString(),
+      kNotificationTagTag: tag,
       kNotificationTitleTag: title,
       kNotificationMessageTag: short,
       kNotificationBodyTag: body,
@@ -59,14 +63,16 @@ class TkNotification {
     };
   }
 
-  int id;
-  String title;
-  String short;
-  String body;
-  String dataDetail;
-  String dataType;
-  bool isSeen;
+  int? id;
+  int? nid;
+  String? tag;
+  String? title;
+  String? short;
+  String? body;
+  String? dataDetail;
+  String? dataType;
+  bool? isSeen;
   bool showBody = false;
-  DateTime expiry;
-  DateTime date;
+  DateTime? expiry;
+  DateTime? date;
 }

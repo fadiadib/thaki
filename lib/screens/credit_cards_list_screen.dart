@@ -49,10 +49,10 @@ class _TkCreditCardsListScreenState extends State<TkCreditCardsListScreen> {
                 TkPaymentList(
                   langCode:
                       Provider.of<TkLangController>(context, listen: false)
-                          .lang
+                          .lang!
                           .languageCode,
                   enableTitle: false,
-                  cards: account.user.cards,
+                  cards: account.user!.cards,
                   onTap: (TkCredit card) async {
                     Navigator.of(context).push(
                       MaterialPageRoute(

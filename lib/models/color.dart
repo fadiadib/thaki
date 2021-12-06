@@ -9,5 +9,5 @@ class TkColor extends TkAttribute {
     colorHEX = json[kColorHexTag];
   }
 
-  String colorHEX;
+  String? colorHEX;
 }

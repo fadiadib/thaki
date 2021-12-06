@@ -25,7 +25,7 @@ class TkAnalyticsHelper {
   /// [logLogin]
   /// Records in firebase analytics a user login event
   /// [method] login method either email, or social
-  static Future<void> logLogin(String method) async {
+  static Future<void> logLogin(String? method) async {
     await _analytics.logLogin(loginMethod: method);
   }
 

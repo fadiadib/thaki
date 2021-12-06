@@ -19,7 +19,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class TkSocialLogin extends StatelessWidget {
   TkSocialLogin({this.callback});
-  final Function callback;
+
+  final Function? callback;
 
   /// Generates a cryptographically secure random nonce, to be included in a
   /// credential request.
@@ -76,7 +77,7 @@ class TkSocialLogin extends StatelessWidget {
         }
       });
 
-      callback();
+      callback!();
     } catch (error) {
       account.socialError = S.of(context).kLoginUnsuccessful;
     }
@@ -85,7 +86,7 @@ class TkSocialLogin extends StatelessWidget {
   /// Google login
   Future<void> signInWithGoogle(BuildContext context) async {
     // Trigger the authentication flow
-    final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.socialError = null;
@@ -93,14 +94,14 @@ class TkSocialLogin extends StatelessWidget {
       if (googleUser == null) throw 'Social Login was cancelled';
       account.user = TkUser.fromJson({
         kUserTag: {
-          kUserFirstNameTag: googleUser.displayName.split(' ').first,
-          kUserLastNameTag: googleUser.displayName.split(' ').last,
+          kUserFirstNameTag: googleUser.displayName!.split(' ').first,
+          kUserLastNameTag: googleUser.displayName!.split(' ').last,
           kUserEmailTag: googleUser.email,
           kUserSocialTokenTag: googleUser.id,
           kUserLoginTypeTag: 'Google',
         }
       });
-      callback();
+      callback!();
     } catch (error) {
       account.socialError = S.of(context).kLoginUnsuccessful;
     }
@@ -112,10 +113,11 @@ class TkSocialLogin extends StatelessWidget {
     account.socialError = null;
 
     try {
-      final AccessToken result = await FacebookAuth.instance.login();
-      final token = result.token;
-      final graphResponse = await http.get(
-          'https://graph.facebook.com/v2.12/me?fields=name,first_name,middle_name,last_name,email&access_token=$token');
+      final LoginResult result = await FacebookAuth.instance.login();
+      final AccessToken accessToken = result.accessToken!;
+      final token = accessToken.token;
+      final graphResponse = await http.get(Uri.parse(
+          'https://graph.facebook.com/v2.12/me?fields=name,first_name,middle_name,last_name,email&access_token=$token'));
       final profile = json.decode(graphResponse.body);
 
       account.user = TkUser.fromJson({
@@ -124,11 +126,11 @@ class TkSocialLogin extends StatelessWidget {
           kUserMiddleNameTag: profile['middle_name'],
           kUserLastNameTag: profile['last_name'],
           kUserEmailTag: profile['email'],
-          kUserSocialTokenTag: result.userId,
+          kUserSocialTokenTag: accessToken.userId,
           kUserLoginTypeTag: 'Facebook',
         }
       });
-      callback();
+      callback!();
     } catch (error) {
       account.socialError = S.of(context).kLoginUnsuccessful;
     }
@@ -153,14 +155,14 @@ class TkSocialLogin extends StatelessWidget {
           // success
           account.user = TkUser.fromJson({
             kUserTag: {
-              kUserFirstNameTag: authResult.user.name.split(' ').first,
-              kUserLastNameTag: authResult.user.name.split(' ').last,
-              kUserEmailTag: authResult.user.email,
+              kUserFirstNameTag: authResult.user!.name.split(' ').first,
+              kUserLastNameTag: authResult.user!.name.split(' ').last,
+              kUserEmailTag: authResult.user!.email,
               kUserSocialTokenTag: authResult.authToken,
               kUserLoginTypeTag: 'Twitter',
             }
           });
-          callback();
+          callback!();
           return;
         case TwitterLoginStatus.cancelledByUser:
           // Cancelled

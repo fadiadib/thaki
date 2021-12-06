@@ -15,10 +15,10 @@ class TkTransactor extends ChangeNotifier {
   static TkAPIHelper _apis = new TkAPIHelper();
 
   // Model
-  String transactionPage;
-  String callbackPage;
-  String transactionId;
-  bool transactionResult;
+  String? transactionPage;
+  String? callbackPage;
+  String? transactionId;
+  bool? transactionResult;
   List<TkTransaction> _transactions = [];
   List<TkTransaction> transactions<T>() {
     List<TkTransaction> result = [];
@@ -30,7 +30,7 @@ class TkTransactor extends ChangeNotifier {
   }
 
   // Timer
-  Timer _timer;
+  Timer? _timer;
   bool _avoidConcurrency = false;
 
   // Loading variables
@@ -49,20 +49,20 @@ class TkTransactor extends ChangeNotifier {
   }
 
   // Error
-  String transactionError;
-  String loadTransactionsError;
+  String? transactionError;
+  String? loadTransactionsError;
 
   /// [initTransaction]
   /// Initialize transaction method
   Future<bool> initTransaction({
-    TkUser user,
-    String type,
-    TkLangController langController,
-    int id,
-    TkCar car,
-    DateTime dateTime,
-    int duration,
-    List<int> ids,
+    TkUser? user,
+    String? type,
+    TkLangController? langController,
+    int? id,
+    TkCar? car,
+    DateTime? dateTime,
+    int? duration,
+    List<int?>? ids,
     bool guest = false,
   }) async {
     // Start any loading indicators
@@ -75,7 +75,7 @@ class TkTransactor extends ChangeNotifier {
 
     if (!guest) {
       result = await _apis.initTransaction(
-        user: user,
+        user: user!,
         type: type,
         id: id,
         car: car,
@@ -85,7 +85,7 @@ class TkTransactor extends ChangeNotifier {
       );
     } else {
       result = await _apis.initGuestTransaction(
-        langController: langController,
+        langController: langController!,
         type: type,
         id: id,
         car: car,
@@ -118,8 +118,8 @@ class TkTransactor extends ChangeNotifier {
   /// [langController] language controller provider, used in case of guest checkout
   /// [guest] boolean to control whether it is a guest or logged in user
   Future<int> checkTransaction({
-    @required TkUser user,
-    @required TkLangController langController,
+    required TkUser? user,
+    required TkLangController langController,
     bool guest = false,
   }) async {
     // Start any loading indicators
@@ -153,10 +153,10 @@ class TkTransactor extends ChangeNotifier {
   /// [langController] the language controller provider (used in case of guest login)
   /// [guest] boolean whether to pay as guest or as logged in user
   void startTransactionChecker({
-    @required TkUser user,
-    @required Function callback,
-    @required TkLangController langController,
-    @required TkTransactionType type,
+    required TkUser? user,
+    required Function callback,
+    required TkLangController langController,
+    required TkTransactionType type,
     bool guest = false,
   }) {
     // Check if there is an active payment request
@@ -189,7 +189,7 @@ class TkTransactor extends ChangeNotifier {
           transactionResult = result == 0;
 
           // Update firebase analytics in case of success
-          if (transactionResult) {
+          if (transactionResult!) {
             switch (type) {
               case TkTransactionType.violation:
                 TkAnalyticsHelper.logPayViolation();
@@ -221,7 +221,7 @@ class TkTransactor extends ChangeNotifier {
     _avoidConcurrency = false;
 
     if (_timer != null) {
-      _timer.cancel();
+      _timer!.cancel();
       _timer = null;
     }
   }
@@ -249,7 +249,7 @@ class TkTransactor extends ChangeNotifier {
   /// [loadTransactions]
   /// Calls API to retrieve user transactions
   /// [user] the user object
-  Future<bool> loadTransactions({TkUser user}) async {
+  Future<bool> loadTransactions({required TkUser user}) async {
     // Start any loading indicators
     _isLoading = true;
     loadTransactionsError = null;

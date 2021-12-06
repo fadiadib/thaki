@@ -26,30 +26,30 @@ enum TkInfoFieldType {
 enum TkInfoFieldSubType { String, Numeric }
 
 class TkInfoFieldValueOption {
-  TkInfoFieldValueOption({Map<String, dynamic> data}) {
+  TkInfoFieldValueOption({required Map<String, dynamic> data}) {
     id = data[kIFValueId];
     title = data[kIFValueTitle];
   }
 
-  String id;
-  String title;
+  String? id;
+  String? title;
 }
 
 /// Info field class, holds a single info field: name, label,
 /// required, value, visible, type, subtype and value options
 class TkInfoField {
-  String name;
-  String label;
-  String labelAR;
-  bool required;
+  String? name;
+  String? label;
+  String? labelAR;
+  late bool required;
   dynamic value;
-  bool visible;
-  int numLines;
-  TkInfoFieldType type;
-  TkInfoFieldSubType subType;
-  List<TkInfoFieldValueOption> valueOptions;
+  late bool visible;
+  int? numLines;
+  TkInfoFieldType? type;
+  TkInfoFieldSubType? subType;
+  List<TkInfoFieldValueOption>? valueOptions;
 
-  TkInfoField.fromJson({Map<String, dynamic> data}) {
+  TkInfoField.fromJson({required Map<String, dynamic> data}) {
     if (data[kIFName] != null) name = data[kIFName];
     if (data[kIFTitle] != null) label = data[kIFTitle];
     if (data[kIFTitleAR] != null) labelAR = data[kIFTitleAR];
@@ -63,7 +63,7 @@ class TkInfoField {
     valueOptions = [];
     if (data[kIFValues] != null) {
       for (Map<String, dynamic> option in data[kIFValues]) {
-        valueOptions.add(new TkInfoFieldValueOption(data: option));
+        valueOptions!.add(new TkInfoFieldValueOption(data: option));
       }
     }
 
@@ -72,14 +72,14 @@ class TkInfoField {
     List<String> infoFieldTypeList =
         infoFieldType.split(kInfoFieldTypeDelimiter);
 
-    int first = infoFieldTypeList.length > 0
+    int? first = infoFieldTypeList.length > 0
         ? int.tryParse(infoFieldTypeList[0].toString())
         : 1;
     type = first != null && first >= 0 && first < TkInfoFieldType.values.length
         ? TkInfoFieldType.values[first]
         : TkInfoFieldType.AlphaNum;
 
-    int second = infoFieldTypeList.length > 1
+    int? second = infoFieldTypeList.length > 1
         ? int.tryParse(infoFieldTypeList[1].toString())
         : 0;
     subType = second != null &&
@@ -94,7 +94,7 @@ class TkInfoFieldsList {
   List<TkInfoField> _fields = [];
   List<TkInfoField> get fields => _fields;
 
-  TkInfoFieldsList.fromJson({Map<String, dynamic> data}) {
+  TkInfoFieldsList.fromJson({required Map<String, dynamic> data}) {
     // Info fields
     _fields.clear();
     if (data[kInfoFieldsTag] != null) {
@@ -107,8 +107,8 @@ class TkInfoFieldsList {
     List<Map<String, dynamic>> infoFieldsJsonList = [];
     if (_fields != null && _fields.isNotEmpty) {
       for (TkInfoField field in _fields) {
-        if (field.valueOptions != null && field.valueOptions.isNotEmpty) {
-          field.value = field.valueOptions
+        if (field.valueOptions != null && field.valueOptions!.isNotEmpty) {
+          field.value = field.valueOptions!
               .firstWhere((item) => item.title == field.value)
               .id;
         }

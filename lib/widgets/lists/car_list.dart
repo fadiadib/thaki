@@ -14,20 +14,20 @@ class TkCarList extends StatelessWidget {
     this.langCode,
     this.showRibbon = false,
   });
-  final List<TkCar> cars;
-  final Function onTap;
-  final Function onDelete;
-  final Function onEdit;
-  final String langCode;
+  final List<TkCar>? cars;
+  final Function? onTap;
+  final Function? onDelete;
+  final Function? onEdit;
+  final String? langCode;
   final bool showRibbon;
 
   List<Widget> _getCarTiles(BuildContext context) {
     List<Widget> tiles = [];
 
-    if (cars == null || cars.isEmpty) {
+    if (cars == null || cars!.isEmpty) {
       tiles.add(Center(child: Text(S.of(context).kNoCars, style: kHintStyle)));
     } else {
-      for (TkCar car in cars) {
+      for (TkCar car in cars!) {
         tiles.add(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),

@@ -57,7 +57,7 @@ class TkViolationListPane extends TkPane {
           if ((payer.violations == null || payer.violations.isEmpty))
             Navigator.of(context).pop();
           else {
-            if (payer.validateViolations(context)) onDone();
+            if (payer.validateViolations(context)) onDone!();
           }
         },
       ),

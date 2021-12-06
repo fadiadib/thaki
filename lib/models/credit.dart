@@ -17,7 +17,7 @@ class TkCredit {
       kCardNumberTag: number,
       kCardExpiryTag: expiry,
       kCardCVVTag: cvv,
-      kCardPreferredTag: preferred ? '1' : '0',
+      kCardPreferredTag: preferred! ? '1' : '0',
     };
   }
 
@@ -42,12 +42,12 @@ class TkCredit {
     type = card.type;
   }
 
-  int id;
-  String holder;
-  String number;
-  String expiry;
-  String cvv;
-  bool preferred;
+  int? id;
+  String? holder;
+  String? number;
+  String? expiry;
+  String? cvv;
+  bool? preferred;
 
-  int type; // for internal use
+  int? type; // for internal use
 }

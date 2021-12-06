@@ -9,10 +9,11 @@ import 'package:thaki/utilities/date_time_helper.dart';
 
 class TkUserPackageTile extends StatelessWidget {
   TkUserPackageTile(
-      {@required this.package, this.isSelected = false, this.onTap});
+      {required this.package, this.isSelected = false, this.onTap});
+
   final TkPackage package;
   final bool isSelected;
-  final Function onTap;
+  final Function? onTap;
 
   Widget _getTileImage() {
     return Container(
@@ -21,7 +22,7 @@ class TkUserPackageTile extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Container(
         decoration: BoxDecoration(
-          color: package.color.withOpacity(0.08),
+          color: package.color!.withOpacity(0.08),
           borderRadius: BorderRadius.circular(100.0),
         ),
         child: Image.asset(
@@ -37,7 +38,7 @@ class TkUserPackageTile extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsetsDirectional.only(start: 10),
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,13 +55,13 @@ class TkUserPackageTile extends StatelessWidget {
                 Text(
                     S.of(context).kPurchaseDate +
                         ' ' +
-                        TkDateTimeHelper.formatDate(package.startDate),
+                        TkDateTimeHelper.formatDate(package.startDate)!,
                     style: kRegularStyle[kSmallSize]),
                 Text(
                   S.of(context).kExpiryDate +
                       ' ' +
-                      TkDateTimeHelper.formatDate(package.endDate),
-                  style: kBoldStyle[kSmallSize].copyWith(
+                      TkDateTimeHelper.formatDate(package.endDate)!,
+                  style: kBoldStyle[kSmallSize]!.copyWith(
                     color: kPrimaryColor,
                   ),
                 )
@@ -69,7 +70,7 @@ class TkUserPackageTile extends StatelessWidget {
             Positioned.directional(
               textDirection:
                   Provider.of<TkLangController>(context, listen: false)
-                              .lang
+                              .lang!
                               .languageCode ==
                           'ar'
                       ? TextDirection.rtl
@@ -97,7 +98,7 @@ class TkUserPackageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Container(
         decoration: BoxDecoration(
           color: kTileBgColor,

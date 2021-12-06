@@ -1,10 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TkSharedPrefHelper {
   /// Stores a data using a tag into the shared preferences
   /// Returns success or failure
-  Future<bool> store({@required String tag, @required String data}) async {
+  Future<bool> store({required String tag, required String data}) async {
     // Get shared preference object
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -14,7 +13,7 @@ class TkSharedPrefHelper {
 
   /// Remove a tag from the shared preferences
   /// Returns success or failure
-  Future<bool> delete({@required String tag}) async {
+  Future<bool> delete({required String tag}) async {
     // Get shared preference object
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -24,7 +23,7 @@ class TkSharedPrefHelper {
 
   /// Gets a tag from the shared preferences
   /// Returns success or failure
-  Future<String> get({@required String tag}) async {
+  Future<String?> get({required String tag}) async {
     // Get shared preference object
     SharedPreferences prefs = await SharedPreferences.getInstance();
 

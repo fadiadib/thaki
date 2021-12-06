@@ -35,7 +35,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
     List<Image> icons = [];
     for (TkPane pane in _panes) {
       icons.add(
-        Image(image: pane.navIconData.icon, height: 24, color: kWhiteColor),
+        Image(image: pane.navIconData!.icon!, height: 24, color: kWhiteColor),
       );
     }
 
@@ -59,8 +59,8 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
       // Init mode
       await attributes.load(langController);
       account.load();
-      booker.loadTickets(account.user);
-      purchaser.loadBalance(account.user);
+      booker.loadTickets(account.user!);
+      purchaser.loadBalance(account.user!);
       account.loadCars();
       if (kSaveCardMode) account.loadCards();
     } else {
@@ -76,8 +76,8 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
       }
       if (selector.isDashboard) {
         // Load tickets and balance
-        booker.loadTickets(account.user);
-        purchaser.loadBalance(account.user);
+        booker.loadTickets(account.user!);
+        purchaser.loadBalance(account.user!);
       }
       if (selector.isBooking || selector.isViolations) {
         // Load cars
@@ -100,7 +100,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
                 padding: const EdgeInsets.only(bottom: 15.0),
                 child: Text(
                   message,
-                  style: kBoldStyle[kNormalSize].copyWith(
+                  style: kBoldStyle[kNormalSize]!.copyWith(
                     fontFamily:
                         Provider.of<TkLangController>(context, listen: false)
                             .fontFamily,
@@ -174,7 +174,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
                 items: _getIcons(),
                 onTap: (index) {
                   setState(() => selector.activeTab = index);
-                  if (_panes[index].onSelect != null) _panes[index].onSelect();
+                  if (_panes[index].onSelect != null) _panes[index].onSelect!();
                 },
               ),
 

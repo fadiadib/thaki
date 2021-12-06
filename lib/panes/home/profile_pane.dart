@@ -25,7 +25,7 @@ import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/cards/user_info_card.dart';
 
 class TkProfilePane extends TkPane {
-  TkProfilePane({@required this.scaffoldKey, onDone, onSelect})
+  TkProfilePane({required this.scaffoldKey, onDone, onSelect})
       : super(
             paneTitle: '',
             navIconData: TkNavIconData(icon: AssetImage(kProfileIcon)),
@@ -63,8 +63,8 @@ class TkProfilePane extends TkPane {
   List<Widget> _getCarCards(TkAccount account,
       TkAttributesController attributesController, BuildContext context) {
     List<Widget> widgets = [];
-    if (account.user.cars != null)
-      for (TkCar car in account.user.cars) {
+    if (account.user!.cars != null)
+      for (TkCar car in account.user!.cars!) {
         widgets.add(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -82,11 +82,11 @@ class TkProfilePane extends TkPane {
                 TkCardSide.topLeft: car.name,
                 TkCardSide.bottomLeft:
                     Provider.of<TkLangController>(context, listen: false)
-                                .lang
+                                .lang!
                                 .languageCode ==
                             'en'
                         ? car.plateEN
-                        : TkLicenseHelper.formatARLicensePlate(car.plateAR),
+                        : TkLicenseHelper.formatARLicensePlate(car.plateAR!),
                 TkCardSide.bottomRight: attributesController.stateName(
                   car.state,
                   Provider.of<TkLangController>(context, listen: false),
@@ -132,14 +132,14 @@ class TkProfilePane extends TkPane {
 
   List<Widget> _getCardCards(TkAccount account, BuildContext context) {
     List<Widget> widgets = [];
-    if (account.user.cards != null)
-      for (TkCredit card in account.user.cards) {
+    if (account.user!.cards != null)
+      for (TkCredit card in account.user!.cards!) {
         widgets.add(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: TkCreditCard(
               langCode: Provider.of<TkLangController>(context, listen: false)
-                  .lang
+                  .lang!
                   .languageCode,
               bgColor: kLightPurpleColor,
               creditCard: card,

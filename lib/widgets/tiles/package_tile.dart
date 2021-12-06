@@ -7,10 +7,11 @@ import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/lang_controller.dart';
 
 class TkPackageTile extends StatelessWidget {
-  TkPackageTile({@required this.package, this.isSelected = false, this.onTap});
-  final TkPackage package;
+  TkPackageTile({required this.package, this.isSelected = false, this.onTap});
+
+  final TkPackage? package;
   final bool isSelected;
-  final Function onTap;
+  final Function? onTap;
 
   Widget _getTileImage() {
     return Container(
@@ -19,12 +20,12 @@ class TkPackageTile extends StatelessWidget {
       padding: EdgeInsets.all(10),
       child: Container(
         decoration: BoxDecoration(
-          color: package.color.withOpacity(0.08),
+          color: package!.color!.withOpacity(0.08),
           borderRadius: BorderRadius.circular(100.0),
         ),
         child: Image.asset(
           kPackageIcon,
-          color: package.color,
+          color: package!.color,
         ),
       ),
     );
@@ -35,37 +36,37 @@ class TkPackageTile extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsetsDirectional.only(start: 10),
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  package.name,
+                  package!.name!,
                   style: kBoldStyle[kNormalSize],
                 ),
                 SizedBox(height: 2.5),
                 Text(
-                  package.points.toString() + ' ' + S.of(context).kHourPackage,
+                  package!.points.toString() + ' ' + S.of(context).kHourPackage,
                   style: kRegularStyle[kSmallSize],
                 ),
                 SizedBox(height: 12.5),
                 Text(S.of(context).kValidFor +
                     ' ' +
-                    package.validity.toString() +
+                    package!.validity.toString() +
                     ' ' +
                     S.of(context).kDays),
                 SizedBox(height: 2.5),
                 Text(
-                  S.of(context).kSAR + ' ' + package.price.toString(),
-                  style: kBoldStyle[kSmallSize].copyWith(color: kPrimaryColor),
+                  S.of(context).kSAR + ' ' + package!.price.toString(),
+                  style: kBoldStyle[kSmallSize]!.copyWith(color: kPrimaryColor),
                 )
               ],
             ),
             Positioned.directional(
               textDirection:
                   Provider.of<TkLangController>(context, listen: false)
-                              .lang
+                              .lang!
                               .languageCode ==
                           'ar'
                       ? TextDirection.rtl
@@ -93,7 +94,7 @@ class TkPackageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: onTap as void Function()?,
       child: Container(
         decoration: BoxDecoration(
           color: kTileBgColor,

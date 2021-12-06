@@ -24,7 +24,7 @@ class _TkBuyPackageScreenState extends TkMultiStepPageState {
   void initData() async {
     // Load available packages
     Provider.of<TkPurchaser>(context, listen: false)
-        .loadPackages(Provider.of<TkAccount>(context, listen: false).user);
+        .loadPackages(Provider.of<TkAccount>(context, listen: false).user!);
   }
 
   @override
@@ -35,9 +35,9 @@ class _TkBuyPackageScreenState extends TkMultiStepPageState {
         TkAccount account = Provider.of<TkAccount>(context, listen: false);
 
         if (kSaveCardMode) {
-          if (account.user.cards != null && account.user.cards.isNotEmpty)
+          if (account.user!.cards != null && account.user!.cards!.isNotEmpty)
             Provider.of<TkPurchaser>(context, listen: false).selectedCard =
-                account.user.cards?.first;
+                account.user!.cards?.first;
         } else {
           TkTransactor transactor =
               Provider.of<TkTransactor>(context, listen: false);
@@ -45,7 +45,7 @@ class _TkBuyPackageScreenState extends TkMultiStepPageState {
               user: account.user,
               type: 'Package',
               id: Provider.of<TkPurchaser>(context, listen: false)
-                  .selectedPackage
+                  .selectedPackage!
                   .id);
         }
 
@@ -60,7 +60,7 @@ class _TkBuyPackageScreenState extends TkMultiStepPageState {
             // Perform purchase by calling the API
             Provider.of<TkPurchaser>(context, listen: false)
                 .purchaseSelectedPackage(
-                    Provider.of<TkAccount>(context, listen: false).user);
+                    Provider.of<TkAccount>(context, listen: false).user!);
 
             // Load next pane
             loadNextPane();
@@ -75,7 +75,7 @@ class _TkBuyPackageScreenState extends TkMultiStepPageState {
           onDone: () {
             // Update balance
             Provider.of<TkPurchaser>(context, listen: false).loadBalance(
-                Provider.of<TkAccount>(context, listen: false).user,
+                Provider.of<TkAccount>(context, listen: false).user!,
                 notify: false);
             loadNextPane();
           },

@@ -13,18 +13,19 @@ import 'package:thaki/widgets/general/sliddable.dart';
 
 class TkTicketTile extends StatefulWidget {
   TkTicketTile({
-    @required this.ticket,
+    required this.ticket,
     this.onTap,
     this.onDelete,
     this.ribbon,
     this.ribbonColor,
     this.langCode = 'en',
   });
-  final TkTicket ticket;
-  final Function onTap;
-  final Function onDelete;
-  final String ribbon;
-  final Color ribbonColor;
+
+  final TkTicket? ticket;
+  final Function? onTap;
+  final Function? onDelete;
+  final String? ribbon;
+  final Color? ribbonColor;
   final String langCode;
 
   @override
@@ -58,20 +59,20 @@ class _TkTicketTileState extends State<TkTicketTile> {
         ),
 
         // Ticket number
-        if (widget.ticket.identifier != null && widget.ticket.id != null)
+        if (widget.ticket!.identifier != null && widget.ticket!.id != null)
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Column(
               children: [
                 Text(
                   S.of(context).kTicketNumber,
-                  style: kRegularStyle[kTinySize]
+                  style: kRegularStyle[kTinySize]!
                       .copyWith(color: kMediumGreyColor),
                 ),
                 Text(
-                  widget.ticket.identifier + widget.ticket.id.toString(),
+                  widget.ticket!.identifier! + widget.ticket!.id.toString(),
                   style:
-                      kBoldStyle[kTinySize].copyWith(color: kMediumGreyColor),
+                      kBoldStyle[kTinySize]!.copyWith(color: kMediumGreyColor),
                 ),
               ],
             ),
@@ -90,7 +91,7 @@ class _TkTicketTileState extends State<TkTicketTile> {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -99,22 +100,22 @@ class _TkTicketTileState extends State<TkTicketTile> {
                   children: [
                     Text(
                         widget.langCode == 'en'
-                            ? widget.ticket.car.plateEN
+                            ? widget.ticket!.car.plateEN!
                             : TkLicenseHelper.formatARLicensePlate(
-                                widget.ticket.car.plateAR),
+                                widget.ticket!.car.plateAR!)!,
                         style: kBoldStyle[kNormalSize]),
                     if (attributesController.makeName(
-                            widget.ticket.car.make, langController) !=
+                            widget.ticket!.car.make, langController) !=
                         null)
                       Text(' - ' +
                           attributesController.makeName(
-                              widget.ticket.car.make, langController)),
+                              widget.ticket!.car.make, langController)!),
                   ],
                 ),
                 Text(
-                  widget.ticket.duration.toString() +
+                  widget.ticket!.duration.toString() +
                       ' ' +
-                      (widget.ticket.duration == 1
+                      (widget.ticket!.duration == 1
                           ? S.of(context).kHour
                           : S.of(context).kHours),
                   style: kBoldStyle[kSmallSize],
@@ -129,14 +130,14 @@ class _TkTicketTileState extends State<TkTicketTile> {
                         children: [
                           Text(
                             TkDateTimeHelper.formatDate(
-                                widget.ticket.start.toString()),
-                            style: kBoldStyle[kSmallSize]
+                                widget.ticket!.start.toString())!,
+                            style: kBoldStyle[kSmallSize]!
                                 .copyWith(color: kLightPurpleColor),
                           ),
                           Text(
                             TkDateTimeHelper.formatTime(
-                                context, widget.ticket.start.toString()),
-                            style: kBoldStyle[kNormalSize]
+                                context, widget.ticket!.start.toString())!,
+                            style: kBoldStyle[kNormalSize]!
                                 .copyWith(color: kBlackColor),
                           )
                         ],
@@ -145,14 +146,14 @@ class _TkTicketTileState extends State<TkTicketTile> {
                         children: [
                           Text(
                             TkDateTimeHelper.formatDate(
-                                widget.ticket.end.toString()),
-                            style: kBoldStyle[kSmallSize]
+                                widget.ticket!.end.toString())!,
+                            style: kBoldStyle[kSmallSize]!
                                 .copyWith(color: kLightPurpleColor),
                           ),
                           Text(
                             TkDateTimeHelper.formatTime(
-                                context, widget.ticket.end.toString()),
-                            style: kBoldStyle[kNormalSize]
+                                context, widget.ticket!.end.toString())!,
+                            style: kBoldStyle[kNormalSize]!
                                 .copyWith(color: kBlackColor),
                           )
                         ],
@@ -180,16 +181,17 @@ class _TkTicketTileState extends State<TkTicketTile> {
   @override
   Widget build(BuildContext context) {
     return TkSlidableTile(
-      onDelete:
-          widget.onDelete == null ? null : () => widget.onDelete(widget.ticket),
+      onDelete: widget.onDelete == null
+          ? null
+          : () => widget.onDelete!(widget.ticket),
       child: GestureDetector(
         onTap: isLoading
             ? null
-            : widget.onTap ??
-                () => TkQRHelper.showQRCode(
+            : widget.onTap as void Function()? ??
+                (() => TkQRHelper.showQRCode(
                     context: context,
-                    ticket: widget.ticket,
-                    loadCallback: load),
+                    ticket: widget.ticket!,
+                    loadCallback: load)),
         child: Container(
           decoration: BoxDecoration(
             color: kTileBgColor,

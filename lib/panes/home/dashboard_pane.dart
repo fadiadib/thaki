@@ -32,14 +32,14 @@ class TkDashboardPane extends TkPane {
   List<Widget> _getTicketCards(TkBooker booker, BuildContext context) {
     List<Widget> widgets = [];
     if (booker.upcomingTickets != null)
-      for (TkTicket ticket in booker.upcomingTickets) {
+      for (TkTicket? ticket in booker.upcomingTickets!) {
         widgets.add(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: TkCard(
               borderRadius: 20,
               onTap: () =>
-                  TkQRHelper.showQRCode(context: context, ticket: ticket),
+                  TkQRHelper.showQRCode(context: context, ticket: ticket!),
               bgColor: kPrimaryColor.withOpacity(0.15),
               textColor: kDarkGreyColor,
               titles: {
@@ -49,21 +49,20 @@ class TkDashboardPane extends TkPane {
                 TkCardSide.bottomRight: S.of(context).kTo
               },
               data: {
-                TkCardSide.topLeft: ticket.identifier + ticket.id.toString(),
+                TkCardSide.topLeft: ticket!.identifier! + ticket.id.toString(),
                 TkCardSide.topRight: Provider.of<TkLangController>(context,
                             listen: false)
                         .isRTL
-                    ? TkLicenseHelper.formatARLicensePlate(ticket.car.plateAR)
+                    ? TkLicenseHelper.formatARLicensePlate(ticket.car.plateAR!)
                     : ticket.car.plateEN,
                 TkCardSide.bottomLeft:
-                    TkDateTimeHelper.formatDate(ticket.start.toString()) +
+                    TkDateTimeHelper.formatDate(ticket.start.toString())! +
                         '\n' +
-                        TkDateTimeHelper.formatTime(
-                            context, ticket.start.toString()),
+                        TkDateTimeHelper.formatTime(context, ticket.start.toString())!,
                 TkCardSide.bottomRight: TkDateTimeHelper.formatDate(
-                        ticket.end.toString()) +
+                        ticket.end.toString())! +
                     '\n' +
-                    TkDateTimeHelper.formatTime(context, ticket.end.toString()),
+                    TkDateTimeHelper.formatTime(context, ticket.end.toString())!,
               },
               child: Align(
                 alignment:
@@ -142,7 +141,7 @@ class TkDashboardPane extends TkPane {
     return S.of(context).kYourRequestIsDeclined;
   }
 
-  Function _getSubscriptionBtnAction(TkUser user, BuildContext context) {
+  Function? _getSubscriptionBtnAction(TkUser user, BuildContext context) {
     if (user.isApproved == 0)
       return () => Navigator.of(context).pushNamed(TkBuySubscriptionScreen.id);
     if (user.isApproved == 1)
@@ -153,7 +152,7 @@ class TkDashboardPane extends TkPane {
 
   Widget _createBalance(
       TkPurchaser purchaser, TkAccount account, BuildContext context) {
-    TkUser user = account.user;
+    TkUser? user = account.user;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -180,7 +179,7 @@ class TkDashboardPane extends TkPane {
                   },
                   data: {
                     TkCardSide.topLeft: purchaser.balance != null
-                        ? (purchaser.balance?.points.toString() +
+                        ? (purchaser.balance!.points.toString() +
                             ' ' +
                             S.of(context).kHours)
                         : '',
@@ -222,7 +221,7 @@ class TkDashboardPane extends TkPane {
             padding:
                 const EdgeInsets.only(top: 0, left: 50, right: 50, bottom: 20),
             child: TkButton(
-              title: _getSubscriptionBtnTitle(user, context),
+              title: _getSubscriptionBtnTitle(user!, context),
               btnBorderColor: kSecondaryColor,
               btnColor: kSecondaryColor,
               disabledTitleColor: kWhiteColor.withOpacity(0.5),

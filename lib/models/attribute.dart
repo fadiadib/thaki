@@ -1,5 +1,5 @@
 class TkAttribute {
-  int id;
-  String nameEN;
-  String nameAR;
+  int? id;
+  String? nameEN;
+  String? nameAR;
 }

@@ -1,3 +1,8 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,8 +24,46 @@ import 'package:thaki/providers/transactor.dart';
 import 'package:thaki/providers/user_attributes_controller.dart';
 import 'package:thaki/providers/versioner.dart';
 import 'package:thaki/app.dart';
+import 'package:thaki/utilities/index.dart';
 
-void main() => runApp(ThakiMain());
+import 'package:webview_flutter/webview_flutter.dart';
+
+
+import 'globals/index.dart';
+import 'models/index.dart';
+
+/// [_firebaseMessagingBackgroundHandler]
+/// Global function that handles background messages
+/// Adds the new notification to the notifications database and updates the app badge
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // Update badge
+  // TurniBadgeHelper.incrementBadge();
+
+  // Initialize firebase
+  await Firebase.initializeApp();
+
+  // Create a new notification object and insert it into the database
+  // when the app comes to the foreground, the notifications are
+  // reinitialized from the database
+  final TkNotification notification = TkNotification.fromJson(message.data);
+  TkDBHelper.insertInDatabase(
+      kNtfTableName,
+      kCreateNtfDBCmd,
+      kInsertNtfDBCmd,
+      kSelectIdNtfDBCmd,
+      notification.id,
+      json.encode(message));
+}
+
+Future<void> main() async {
+  // Setup background notifications for iOS
+  if (Platform.isIOS)
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+
+  runApp(ThakiMain());
+}
 
 /// Main application
 class ThakiMain extends StatelessWidget {

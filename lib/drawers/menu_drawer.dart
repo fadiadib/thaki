@@ -26,9 +26,9 @@ class TkMenuDrawer extends StatelessWidget {
     this.startLoadingCallback,
     this.stopLoadingCallback,
   });
-  final Function popParentCallback;
-  final Function startLoadingCallback;
-  final Function stopLoadingCallback;
+  final Function? popParentCallback;
+  final Function? startLoadingCallback;
+  final Function? stopLoadingCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -81,19 +81,19 @@ class TkMenuDrawer extends StatelessWidget {
                   title: S.of(context).kSwitchLanguage,
                   child: Icon(kCarouselForwardBtnIcon,
                       color: kMediumGreyColor, size: 10),
-                  textStyle: kRegularStyle[kNormalSize]
+                  textStyle: kRegularStyle[kNormalSize]!
                       .copyWith(fontFamily: kRTLFontFamily),
                   action: () {
                     final TkAccount account =
                         Provider.of<TkAccount>(context, listen: false);
                     Provider.of<TkLangController>(context, listen: false)
                         .switchLang();
-                    account.user.lang =
+                    account.user!.lang =
                         Provider.of<TkLangController>(context, listen: false)
                             .lang;
                     account.load();
                     Provider.of<TkBooker>(context, listen: false)
-                        .loadTickets(account.user);
+                        .loadTickets(account.user!);
 
                     // Language successfully changed so pop drawer
                     Navigator.of(context).pop();
@@ -108,15 +108,15 @@ class TkMenuDrawer extends StatelessWidget {
                   action: () async {
                     // Start loading
                     if (startLoadingCallback != null)
-                      startLoadingCallback(S.of(context).kLoggingOut);
+                      startLoadingCallback!(S.of(context).kLoggingOut);
 
                     // Perform logout
                     await account.logout().then((value) {
-                      if (stopLoadingCallback != null) stopLoadingCallback();
+                      if (stopLoadingCallback != null) stopLoadingCallback!();
                     });
 
                     // Pop parent
-                    if (popParentCallback != null) popParentCallback();
+                    if (popParentCallback != null) popParentCallback!();
                   },
                 ),
 
@@ -176,7 +176,7 @@ class TkMenuDrawer extends StatelessWidget {
                       S.of(context).kLocale + kTermsConditionsURL),
                 ),
 
-                if (account.user.isSocial)
+                if (account.user!.isSocial)
                   // Delete account menu item
                   GestureDetector(
                     child: Padding(
@@ -184,7 +184,7 @@ class TkMenuDrawer extends StatelessWidget {
                       child: Center(
                         child: Text(
                           S.of(context).kDeleteAccount,
-                          style: kBoldStyle[kSmallSize]
+                          style: kBoldStyle[kSmallSize]!
                               .copyWith(color: kLightPurpleColor),
                         ),
                       ),
@@ -198,15 +198,15 @@ class TkMenuDrawer extends StatelessWidget {
                           false) {
                         // Start loading
                         if (startLoadingCallback != null)
-                          startLoadingCallback(S.of(context).kDeletingAccount);
+                          startLoadingCallback!(S.of(context).kDeletingAccount);
 
                         await account.deleteSocial().then((value) {
                           if (stopLoadingCallback != null)
-                            stopLoadingCallback();
+                            stopLoadingCallback!();
                         });
 
                         // Pop parent
-                        if (popParentCallback != null) popParentCallback();
+                        if (popParentCallback != null) popParentCallback!();
                       }
                     },
                   ),
@@ -222,7 +222,7 @@ class TkMenuDrawer extends StatelessWidget {
                               DateTime.now().year.toString() +
                               ' ' +
                               S.of(context).kAppTitle,
-                          style: kBoldStyle[kNormalSize]
+                          style: kBoldStyle[kNormalSize]!
                               .copyWith(color: kPrimaryColor),
                         ),
                         Text(

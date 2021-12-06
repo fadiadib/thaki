@@ -5,8 +5,8 @@ import 'package:thaki/widgets/general/progress_indicator.dart';
 class TkButton extends StatelessWidget {
   // Button theme
   TkButton({
-    @required this.onPressed,
-    @required this.title,
+    required this.onPressed,
+    required this.title,
     this.btnIcon,
     this.preBtnIcon,
     this.btnColor = kDefaultButtonBgColor,
@@ -30,14 +30,14 @@ class TkButton extends StatelessWidget {
   final Color btnBorderColor;
   final Color titleColor;
   final Color disabledTitleColor;
-  final String title;
-  final Function onPressed;
+  final String? title;
+  final Function? onPressed;
   final double btnHeight;
-  final double btnWidth;
-  final IconData btnIcon;
-  final IconData preBtnIcon;
+  final double? btnWidth;
+  final IconData? btnIcon;
+  final IconData? preBtnIcon;
   final bool uppercaseTitle;
-  final double titleSize;
+  final double? titleSize;
   final double gapSize;
   final bool isLoading;
   final double iconRotation;
@@ -45,10 +45,10 @@ class TkButton extends StatelessWidget {
   Widget getTitle() {
     // Add a text widget inside the button
     return Text(
-      uppercaseTitle ? title.toUpperCase() : title,
+      uppercaseTitle ? title!.toUpperCase() : title!,
       textAlign: TextAlign.center,
       overflow: TextOverflow.ellipsis,
-      style: kBoldStyle[kNormalSize].copyWith(
+      style: kBoldStyle[kNormalSize]!.copyWith(
         color: isLoading || !enabled ? disabledTitleColor : titleColor,
         fontSize: titleSize,
       ),
@@ -120,7 +120,7 @@ class TkButton extends StatelessWidget {
           ),
 
           // On pressed button action
-          onPressed: isLoading || !enabled ? null : onPressed,
+          onPressed: isLoading || !enabled ? null : onPressed as void Function()?,
         ),
       ),
     );

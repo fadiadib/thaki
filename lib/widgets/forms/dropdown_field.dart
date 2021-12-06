@@ -40,18 +40,18 @@ import 'package:thaki/globals/colors.dart';
 ///itemsVisibleInDropdown - int - Number of suggestions to be shown by default in the Dropdown after which the list scrolls. Defaults to 3
 class DropDownField extends FormField<String> {
   final dynamic value;
-  final Widget icon;
-  final String hintText;
-  final TextStyle hintStyle;
-  final String labelText;
+  final Widget? icon;
+  final String? hintText;
+  final TextStyle? hintStyle;
+  final String? labelText;
   final TextStyle labelStyle;
-  final TextStyle textStyle;
+  final TextStyle? textStyle;
   final bool required;
   final bool enabled;
-  final List<dynamic> items;
-  final List<TextInputFormatter> inputFormatters;
-  final FormFieldSetter<dynamic> setter;
-  final ValueChanged<dynamic> onValueChanged;
+  final List<dynamic>? items;
+  final List<TextInputFormatter>? inputFormatters;
+  final FormFieldSetter<dynamic>? setter;
+  final ValueChanged<dynamic>? onValueChanged;
   final bool strict;
   final int itemsVisibleInDropdown;
 
@@ -59,10 +59,10 @@ class DropDownField extends FormField<String> {
   ///
   /// If null, this widget will create its own [TextEditingController] and
   /// initialize its [TextEditingController.text] with [initialValue].
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   DropDownField(
-      {Key key,
+      {Key? key,
       this.controller,
       this.value,
       this.required: false,
@@ -86,11 +86,12 @@ class DropDownField extends FormField<String> {
       this.strict: true})
       : super(
           key: key,
-          autovalidate: false,
+          // autovalidate: false,
+          autovalidateMode: AutovalidateMode.disabled,
           initialValue: controller != null ? controller.text : (value ?? ''),
           onSaved: setter,
           builder: (FormFieldState<String> field) {
-            final DropDownFieldState state = field;
+            final DropDownFieldState state = field as DropDownFieldState;
             final ScrollController _scrollController = ScrollController();
             final InputDecoration effectiveDecoration = InputDecoration(
                 border: InputBorder.none,
@@ -118,7 +119,8 @@ class DropDownField extends FormField<String> {
                     Expanded(
                       flex: 5,
                       child: TextFormField(
-                        autovalidate: true,
+                        // autovalidate: true,
+                        autovalidateMode: AutovalidateMode.always,
                         controller: state._effectiveController,
                         decoration: effectiveDecoration.copyWith(
                             errorText: field.errorText),
@@ -126,10 +128,11 @@ class DropDownField extends FormField<String> {
                         textAlign: TextAlign.start,
                         autofocus: false,
                         obscureText: false,
-                        maxLengthEnforced: true,
+                        maxLengthEnforcement: MaxLengthEnforcement.enforced,
+                        // maxLengthEnforced: true,
                         onChanged: onValueChanged,
                         maxLines: 1,
-                        validator: (String newValue) {
+                        validator: (String? newValue) {
                           if (required) {
                             if (newValue == null || newValue.isEmpty)
                               return 'This field cannot be empty!';
@@ -139,7 +142,7 @@ class DropDownField extends FormField<String> {
                           //when the dropdown items will not have been loaded
                           if (items != null) {
                             if (strict &&
-                                newValue.isNotEmpty &&
+                                newValue!.isNotEmpty &&
                                 !items.contains(newValue))
                               return 'Invalid value in this field!';
                           }
@@ -178,12 +181,12 @@ class DropDownField extends FormField<String> {
                           scrollDirection: Axis.vertical,
                           controller: _scrollController,
                           padding: EdgeInsets.only(left: 40.0),
-                          children: items.isNotEmpty
+                          children: items!.isNotEmpty
                               ? ListTile.divideTiles(
                                       context: field.context,
-                                      tiles: state._getChildren(state._items))
+                                      tiles: state._getChildren(state._items!))
                                   .toList()
-                              : List(),
+                              : [],
                         ),
                       ),
               ],
@@ -195,30 +198,30 @@ class DropDownField extends FormField<String> {
   DropDownFieldState createState() => DropDownFieldState();
 
   void clearValue() {
-    controller.text = '';
-    onValueChanged('');
+    controller!.text = '';
+    onValueChanged!('');
   }
 }
 
 class DropDownFieldState extends FormFieldState<String> {
-  TextEditingController _controller;
+  TextEditingController? _controller;
   bool _showdropdown = false;
   String _searchText = "";
 
   @override
-  DropDownField get widget => super.widget;
-  TextEditingController get _effectiveController =>
+  DropDownField get widget => super.widget as DropDownField;
+  TextEditingController? get _effectiveController =>
       widget.controller ?? _controller;
 
-  List<String> get _items => widget.items;
+  List<String>? get _items => widget.items as List<String>?;
 
   void toggleDropDownVisibility() {}
 
   void clearValue() {
     setState(() {
-      _effectiveController.text = '';
+      _effectiveController!.text = '';
     });
-    widget.onValueChanged('');
+    widget.onValueChanged!('');
   }
 
   @override
@@ -230,9 +233,9 @@ class DropDownFieldState extends FormFieldState<String> {
 
       if (oldWidget.controller != null && widget.controller == null)
         _controller =
-            TextEditingController.fromValue(oldWidget.controller.value);
+            TextEditingController.fromValue(oldWidget.controller!.value);
       if (widget.controller != null) {
-        setValue(widget.controller.text);
+        setValue(widget.controller!.text);
         if (oldWidget.controller == null) _controller = null;
       }
     }
@@ -251,21 +254,21 @@ class DropDownFieldState extends FormFieldState<String> {
       _controller = TextEditingController(text: widget.initialValue);
     }
 
-    _effectiveController.addListener(_handleControllerChanged);
+    _effectiveController!.addListener(_handleControllerChanged);
 
-    _searchText = _effectiveController.text;
+    _searchText = _effectiveController!.text;
   }
 
   @override
   void reset() {
     super.reset();
     setState(() {
-      _effectiveController.text = widget.initialValue;
+      _effectiveController!.text = widget.initialValue!;
     });
   }
 
   List<ListTile> _getChildren(List<String> items) {
-    List<ListTile> childItems = List();
+    List<ListTile> childItems = [];
     for (var item in items) {
       if (_searchText.isNotEmpty) {
         if (item.toUpperCase().contains(_searchText.toUpperCase()))
@@ -286,10 +289,10 @@ class DropDownFieldState extends FormFieldState<String> {
       ),
       onTap: () {
         setState(() {
-          _effectiveController.text = text;
+          _effectiveController!.text = text;
           _handleControllerChanged();
           _showdropdown = false;
-          if (widget.onValueChanged != null) widget.onValueChanged(text);
+          if (widget.onValueChanged != null) widget.onValueChanged!(text);
         });
       },
     );
@@ -303,16 +306,16 @@ class DropDownFieldState extends FormFieldState<String> {
     // notifications for changes originating from within this class -- for
     // example, the reset() method. In such cases, the FormField value will
     // already have been set.
-    if (_effectiveController.text != value)
-      didChange(_effectiveController.text);
+    if (_effectiveController!.text != value)
+      didChange(_effectiveController!.text);
 
-    if (_effectiveController.text.isEmpty) {
+    if (_effectiveController!.text.isEmpty) {
       setState(() {
         _searchText = "";
       });
     } else {
       setState(() {
-        _searchText = _effectiveController.text;
+        _searchText = _effectiveController!.text;
         _showdropdown = false;
       });
     }

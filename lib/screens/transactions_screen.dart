@@ -28,7 +28,7 @@ class _TkTransactionsScreenState extends State<TkTransactionsScreen> {
     final TkTransactor transactor =
         Provider.of<TkTransactor>(context, listen: false);
 
-    await transactor.loadTransactions(user: account.user);
+    await transactor.loadTransactions(user: account.user!);
   }
 
   Widget _createTabs(TkTransactor transactor) {

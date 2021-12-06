@@ -34,7 +34,7 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
         TkBooker booker = Provider.of<TkBooker>(context, listen: false);
         if (booker.creditMode) {
           booker.reserveParking(
-              Provider.of<TkAccount>(context, listen: false).user);
+              Provider.of<TkAccount>(context, listen: false).user!);
         }
 
         if (!booker.creditMode && !kSaveCardMode) {
@@ -60,7 +60,7 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
         // Book parking
         TkBooker booker = Provider.of<TkBooker>(context, listen: false);
         booker.reserveParking(
-            Provider.of<TkAccount>(context, listen: false).user);
+            Provider.of<TkAccount>(context, listen: false).user!);
 
         // Load next screen
         loadNextPane();
@@ -69,7 +69,7 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
         TkParkingSuccessPane(
           onDone: () {
             Provider.of<TkPurchaser>(context, listen: false).loadBalance(
-                Provider.of<TkAccount>(context, listen: false).user,
+                Provider.of<TkAccount>(context, listen: false).user!,
                 notify: false);
             loadNextPane();
           },
@@ -99,7 +99,7 @@ class _TkBookParkingScreenState extends TkMultiStepPageState {
         TkParkingSuccessPane(
           onDone: () {
             Provider.of<TkPurchaser>(context, listen: false).loadBalance(
-                Provider.of<TkAccount>(context, listen: false).user,
+                Provider.of<TkAccount>(context, listen: false).user!,
                 notify: false);
             loadNextPane();
           },

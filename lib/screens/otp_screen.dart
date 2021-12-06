@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +24,7 @@ class TkOTPScreen extends StatefulWidget {
 }
 
 class _TkOTPScreenState extends State<TkOTPScreen> {
-  TkInfoFieldsList _fields;
+  TkInfoFieldsList? _fields;
 
   @override
   void initState() {
@@ -39,7 +40,7 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
     _fields = results;
 
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
-    account.user.updateModelFromInfoFields(results);
+    account.user!.updateModelFromInfoFields(results);
 
     if (await account.resetPassword()) {
       Navigator.of(context).pop();
@@ -52,9 +53,8 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
 
   bool _validatePasswordMatch(TkInfoField confirmField) {
     // Search for the password field in fields
-    TkInfoField passwordField = _fields.fields.firstWhere(
-        (element) => element.name == kUserPasswordTag,
-        orElse: () => null);
+    TkInfoField? passwordField = _fields!.fields.firstWhereOrNull(
+        (element) => element.name == kUserPasswordTag);
     if (passwordField != null && passwordField.value == confirmField.value)
       return true;
     return false;
@@ -69,9 +69,9 @@ class _TkOTPScreenState extends State<TkOTPScreen> {
 
     return TkFormFrame(
       isLoading: account.isLoading,
-      langCode: controller.lang.languageCode,
-      formTitle: kOTPFieldsJson[kFormName][controller.lang.languageCode],
-      actionTitle: kOTPFieldsJson[kFormAction][controller.lang.languageCode],
+      langCode: controller.lang!.languageCode,
+      formTitle: kOTPFieldsJson[kFormName][controller.lang!.languageCode],
+      actionTitle: kOTPFieldsJson[kFormAction][controller.lang!.languageCode],
       buttonTag: kLoginTag,
       fields: _fields,
       validatePassword: _validatePassword,

@@ -9,7 +9,7 @@ class TkNavIconData {
     this.disabled = false,
   });
 
-  final ImageProvider icon;
+  final ImageProvider? icon;
   final bool disabled;
 }
 
@@ -32,7 +32,7 @@ abstract class TkPane extends StatelessWidget {
   });
 
   // Pane title
-  final String paneTitle;
+  final String? paneTitle;
 
   // Allow navigation
   final bool allowNavigation;
@@ -41,27 +41,27 @@ abstract class TkPane extends StatelessWidget {
   final bool allowClose;
 
   // On done callback
-  final Function onDone;
+  final Function? onDone;
 
   // On select callback
-  final Function onSelect;
+  final Function? onSelect;
 
   // On close callback
-  final Function onClose;
+  final Function? onClose;
 
   // Navigation button icon
-  final TkNavIconData navIconData;
+  final TkNavIconData? navIconData;
 
   // Floating button widget
-  final Widget floatingButton;
+  final Widget? floatingButton;
 
   // Is this pane ready to be loaded
   final bool enabled;
 
   // Pane top image
-  final String image;
+  final String? image;
 
   // Getters
-  String get title => paneTitle;
+  String? get title => paneTitle;
   bool get close => allowClose;
 }

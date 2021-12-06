@@ -50,7 +50,7 @@ class TkUser {
     }
 
     if (json[kUserLangTag] != null) {
-      String langCode = json[kUserLangTag];
+      String? langCode = json[kUserLangTag];
       if (langCode == null) {
         // No language selected, choose default
         langCode = 'en';
@@ -68,7 +68,7 @@ class TkUser {
     if (json[kUserCarsTag] != null) {
       cars = [];
       for (Map<String, dynamic> carJson in json[kUserCarsTag])
-        cars.add(TkCar.fromJson(carJson));
+        cars!.add(TkCar.fromJson(carJson));
     }
 
     // Create user credit cards
@@ -76,10 +76,10 @@ class TkUser {
       cards = [];
       for (Map<String, dynamic> cardJson in json[kUserCardsTag]) {
         TkCredit card = TkCredit.fromJson(cardJson);
-        if (card.preferred)
-          cards.insert(0, card);
+        if (card.preferred!)
+          cards!.insert(0, card);
         else
-          cards.add(card);
+          cards!.add(card);
       }
     }
   }
@@ -88,7 +88,7 @@ class TkUser {
     updateModelFromJson(json);
   }
 
-  Map<String, String> toHeader() {
+  Map<String, String?> toHeader() {
     return {
       kLangTag: lang?.languageCode,
       kAuthTag: '$tokenType $token',
@@ -107,7 +107,7 @@ class TkUser {
       kUserPhoneTag: phone,
       kUserBirthDateTag:
           birthDate == null ? '' : birthDate.toString().split(' ').first,
-      kFBTokenTag: await FirebaseMessaging().getToken(),
+      kFBTokenTag: await FirebaseMessaging.instance.getToken(),
     };
     if (password != null)
       result[kUserPasswordTag] = TkCryptoHelper.hashSha256(password);
@@ -124,7 +124,7 @@ class TkUser {
     return {
       kUserEmailTag: email,
       kUserPasswordTag: TkCryptoHelper.hashSha256(password),
-      kFBTokenTag: await FirebaseMessaging().getToken(),
+      kFBTokenTag: await FirebaseMessaging.instance.getToken(),
     };
   }
 
@@ -138,7 +138,7 @@ class TkUser {
       kUserPhoneTag: phone ?? '',
       kUserBirthDateTag:
           birthDate != null ? birthDate.toString().split('.').first : '',
-      kFBTokenTag: await FirebaseMessaging().getToken(),
+      kFBTokenTag: await FirebaseMessaging.instance.getToken(),
       kUserSocialTokenTag: socialToken,
       kUserLoginTypeTag: loginType,
     };
@@ -159,12 +159,12 @@ class TkUser {
 
   Future<Map<String, dynamic>> toLoadJson() async {
     return {
-      kFBTokenTag: await FirebaseMessaging().getToken(),
+      kFBTokenTag: await FirebaseMessaging.instance.getToken(),
     };
   }
 
   TkInfoFieldsList toInfoFields(TkInfoFieldsList fields) {
-    String fullName = firstName;
+    String fullName = firstName!;
     if (middleName != null) fullName += ' $middleName';
     if (lastName != null) fullName += ' $lastName';
 
@@ -187,29 +187,29 @@ class TkUser {
         lastName == null;
   }
 
-  Locale lang;
-  String token;
-  String tokenType;
+  Locale? lang;
+  String? token;
+  String? tokenType;
 
-  String email;
-  String otp;
-  DateTime birthDate;
-  String password;
-  String confirmPassword;
-  String oldPassword;
-  String phone;
-  String socialToken;
-  String loginType;
-  bool isSocial;
-  bool rememberMe;
-  int isApproved;
-  List<TkCar> cars;
-  List<TkCredit> cards;
+  String? email;
+  String? otp;
+  DateTime? birthDate;
+  String? password;
+  String? confirmPassword;
+  String? oldPassword;
+  String? phone;
+  String? socialToken;
+  String? loginType;
+  late bool isSocial;
+  bool? rememberMe;
+  int? isApproved;
+  List<TkCar>? cars;
+  List<TkCredit>? cards;
 
-  int nationality;
-  int userType;
-  String gender;
-  String firstName;
-  String middleName;
-  String lastName;
+  int? nationality;
+  int? userType;
+  String? gender;
+  String? firstName;
+  String? middleName;
+  String? lastName;
 }

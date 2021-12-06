@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:thaki/globals/index.dart';
@@ -12,10 +11,10 @@ import 'package:thaki/globals/index.dart';
 class TkNetworkHelper {
   // Method = GET
   Future<Map> getData({
-    @required String url,
-    Map<String, dynamic> params,
-    Map<String, String> headers,
-    List<http.MultipartFile> files,
+    required String url,
+    Map<String, dynamic>? params,
+    Map<String, String?>? headers,
+    List<http.MultipartFile>? files,
   }) async {
     return _performRequest(
         url: url,
@@ -27,10 +26,10 @@ class TkNetworkHelper {
 
   // Method = POST
   Future<Map> postData({
-    @required String url,
-    Map<String, dynamic> params,
-    Map<String, String> headers,
-    List<http.MultipartFile> files,
+    required String url,
+    Map<String, dynamic>? params,
+    Map<String, String?>? headers,
+    List<http.MultipartFile>? files,
   }) async {
     return _performRequest(
         url: url,
@@ -42,10 +41,10 @@ class TkNetworkHelper {
 
   // Method = PUT
   Future<Map> putData({
-    @required String url,
-    Map<String, dynamic> params,
-    Map<String, String> headers,
-    List<http.MultipartFile> files,
+    required String url,
+    Map<String, dynamic>? params,
+    Map<String, String?>? headers,
+    List<http.MultipartFile>? files,
   }) async {
     return _putRequest(
         url: url,
@@ -57,20 +56,20 @@ class TkNetworkHelper {
 
   // Method = DELETE
   Future<Map> deleteData({
-    @required String url,
-    Map<String, String> headers,
-    List<http.MultipartFile> files,
+    required String url,
+    Map<String, String?>? headers,
+    List<http.MultipartFile>? files,
   }) async {
     return _deleteRequest(url: url, method: 'DELETE', headers: headers);
   }
 
   // Perform the request
   Future<Map> _performRequest({
-    @required String url,
-    Map<String, dynamic> bodyParams,
-    String method,
-    Map<String, String> headers,
-    List<http.MultipartFile> files,
+    required String url,
+    Map<String, dynamic>? bodyParams,
+    required String method,
+    Map<String, String?>? headers,
+    List<http.MultipartFile>? files,
   }) async {
     try {
       // Print verbose
@@ -84,7 +83,7 @@ class TkNetworkHelper {
       if (bodyParams != null)
         bodyParams.forEach((key, value) => request.fields[key] = value);
       if (headers != null)
-        headers.forEach((key, value) => request.headers[key] = value);
+        headers.forEach((key, value) => request.headers[key] = value!);
       if (files != null)
         for (http.MultipartFile file in files) {
           request.files.add(file);
@@ -111,11 +110,11 @@ class TkNetworkHelper {
 
   // Perform the request
   Future<Map> _putRequest({
-    @required String url,
-    Map<String, dynamic> bodyParams,
-    String method,
-    Map<String, String> headers,
-    List<http.MultipartFile> files,
+    required String url,
+    Map<String, dynamic>? bodyParams,
+    String? method,
+    Map<String, String?>? headers,
+    List<http.MultipartFile>? files,
   }) async {
     try {
       // Print verbose
@@ -124,7 +123,7 @@ class TkNetworkHelper {
 
       // Perform network request
       http.Response response =
-          await http.put(Uri.parse(url), headers: headers, body: bodyParams);
+          await http.put(Uri.parse(url), headers: headers as Map<String, String>?, body: bodyParams);
       String rep = response.body.toString();
 
       // Print verbose
@@ -143,9 +142,9 @@ class TkNetworkHelper {
 
   // Perform the request
   Future<Map> _deleteRequest({
-    @required String url,
-    String method,
-    Map<String, String> headers,
+    required String url,
+    String? method,
+    Map<String, String?>? headers,
   }) async {
     try {
       // Print verbose
@@ -153,7 +152,7 @@ class TkNetworkHelper {
 
       // Perform network request
       http.Response response =
-          await http.delete(Uri.parse(url), headers: headers);
+          await http.delete(Uri.parse(url), headers: headers as Map<String, String>?);
       String rep = response.body.toString();
 
       // Print verbose

@@ -23,7 +23,7 @@ class TkForgotPasswordScreen extends StatefulWidget {
 }
 
 class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
-  TkInfoFieldsList _fields;
+  TkInfoFieldsList? _fields;
 
   @override
   void initState() {
@@ -34,7 +34,7 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.clearErrors();
 
-    if (account.user != null) _fields = account.user.toInfoFields(_fields);
+    if (account.user != null) _fields = account.user!.toInfoFields(_fields!);
   }
 
   Future<void> _updateModel(TkInfoFieldsList results) async {
@@ -53,9 +53,9 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
 
     return TkFormFrame(
       isLoading: account.isLoading,
-      langCode: controller.lang.languageCode,
-      formTitle: kResetFieldsJson[kFormName][controller.lang.languageCode],
-      actionTitle: kResetFieldsJson[kFormAction][controller.lang.languageCode],
+      langCode: controller.lang!.languageCode,
+      formTitle: kResetFieldsJson[kFormName][controller.lang!.languageCode],
+      actionTitle: kResetFieldsJson[kFormAction][controller.lang!.languageCode],
       buttonTag: kLoginTag,
       fields: _fields,
       action: (TkInfoFieldsList results) async {
@@ -70,7 +70,7 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
                 Navigator.pushReplacementNamed(context, TkLoginScreen.id),
             child: Text(
               S.of(context).kLoginExclamation,
-              style: kRegularStyle[kSmallSize].copyWith(
+              style: kRegularStyle[kSmallSize]!.copyWith(
                 color: kPrimaryColor,
               ),
             ),

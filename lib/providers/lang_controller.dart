@@ -7,26 +7,26 @@ import 'package:thaki/utilities/index.dart';
 class TkLangController extends ChangeNotifier {
   TkSharedPrefHelper _prefs = TkSharedPrefHelper();
 
-  Locale lang;
-  String fontFamily;
+  Locale? lang;
+  String? fontFamily;
 
-  bool get isRTL => lang.languageCode == 'ar';
+  bool get isRTL => lang!.languageCode == 'ar';
 
   void switchLang() {
-    if (lang.languageCode == 'en') {
+    if (lang!.languageCode == 'en') {
       lang = Locale('ar', '');
       fontFamily = kRTLFontFamily;
     } else {
       lang = Locale('en', '');
       fontFamily = kLTRFontFamily;
     }
-    _prefs.store(tag: kLangTag, data: lang.languageCode);
+    _prefs.store(tag: kLangTag, data: lang!.languageCode);
 
     notifyListeners();
   }
 
   void initLang() async {
-    String langCode = await _prefs.get(tag: kLangTag);
+    String? langCode = await _prefs.get(tag: kLangTag);
     if (langCode == null) {
       // No language selected, choose default
       langCode = 'en';
@@ -41,11 +41,11 @@ class TkLangController extends ChangeNotifier {
       fontFamily = kRTLFontFamily;
     }
 
-    _prefs.store(tag: kLangTag, data: lang.languageCode);
+    _prefs.store(tag: kLangTag, data: lang!.languageCode);
     notifyListeners();
   }
 
-  Map<String, String> toHeader() {
+  Map<String, String?> toHeader() {
     return {
       kLangTag: lang?.languageCode,
     };

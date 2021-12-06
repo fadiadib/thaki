@@ -41,33 +41,33 @@ class TkTextField extends StatelessWidget {
     this.maxLength,
   });
 
-  final IconData icon;
-  final String initialValue;
+  final IconData? icon;
+  final String? initialValue;
   final bool isLoading;
-  final bool enabled;
-  final Function onChanged;
-  final TextInputType keyboardType;
+  final bool? enabled;
+  final Function? onChanged;
+  final TextInputType? keyboardType;
   final bool obscureText;
-  final String hintText;
+  final String? hintText;
   final bool halfSize;
-  final Function validator;
+  final Function? validator;
   final bool validate;
-  final String errorMessage;
-  final double width;
+  final String? errorMessage;
+  final double? width;
   final double height;
   final double borderRadius;
   final double internalHPadding;
   final double internalVPadding;
   final bool raised;
   final TextAlign align;
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
   final bool autoFocus;
-  final TextStyle style;
+  final TextStyle? style;
   final bool showCursor;
-  final int lines;
-  final TextEditingController controller;
+  final int? lines;
+  final TextEditingController? controller;
   final bool maxLengthEnforced;
-  final int maxLength;
+  final int? maxLength;
 
   Widget getField() {
     return TextFormField(
@@ -76,12 +76,12 @@ class TkTextField extends StatelessWidget {
       enabled: enabled,
       obscureText: obscureText,
       textAlign: align,
-      style: enabled ? style ?? kTextEditStyle : kDisabledTextEditStyle,
+      style: enabled! ? style ?? kTextEditStyle : kDisabledTextEditStyle,
       initialValue: initialValue,
       controller: controller,
 
       // Keyboard settings
-      keyboardType: lines > 1 ? TextInputType.multiline : keyboardType,
+      keyboardType: lines! > 1 ? TextInputType.multiline : keyboardType,
       inputFormatters: keyboardType == TextInputType.number
           ? <TextInputFormatter>[
               FilteringTextInputFormatter.allow(
@@ -90,7 +90,7 @@ class TkTextField extends StatelessWidget {
           : null,
 
       // Number of lines
-      maxLines: lines > 1 ? null : 1,
+      maxLines: lines! > 1 ? null : 1,
       minLines: lines,
 
       // Text length
@@ -114,7 +114,7 @@ class TkTextField extends StatelessWidget {
       ),
 
       // Text change callback
-      onChanged: onChanged,
+      onChanged: onChanged as void Function(String)?,
     );
   }
 
@@ -128,7 +128,7 @@ class TkTextField extends StatelessWidget {
             width: width,
             child: Container(
               // Specify the input text height
-              height: height + (lines - 1) * height,
+              height: height + (lines! - 1) * height,
 
               // Create the surrounding box with
               decoration: BoxDecoration(
@@ -173,11 +173,11 @@ class TkTextField extends StatelessWidget {
         ),
 
         // Validation
-        (validate && (validator != null) && !validator())
+        (validate && (validator != null) && !validator!())
             ? Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
-                  errorMessage,
+                  errorMessage!,
                   textAlign: TextAlign.start,
                   style: kErrorStyle,
                   softWrap: true,
@@ -214,7 +214,7 @@ class TkDateField extends TkTextField {
     style,
     showCursor = true,
     this.value,
-    @required this.context,
+    required this.context,
     this.type = TkInfoFieldType.Date,
     this.allowFuture = false,
     this.allowPast = true,
@@ -243,14 +243,14 @@ class TkDateField extends TkTextField {
           showCursor: showCursor,
         );
 
-  final DateTime value;
+  final DateTime? value;
   final BuildContext context;
-  final TkInfoFieldType type;
+  final TkInfoFieldType? type;
   final bool allowFuture;
   final bool allowPast;
   final LocaleType locale;
 
-  String _formatValue(DateTime value) {
+  String? _formatValue(DateTime? value) {
     if (value == null) return hintText ?? '';
 
     switch (type) {
@@ -263,9 +263,9 @@ class TkDateField extends TkTextField {
       case TkInfoFieldType.DateTime:
         // Date and Time
         String date =
-            TkDateTimeHelper.formatDate(value.toString().split(' ').first);
+            TkDateTimeHelper.formatDate(value.toString().split(' ').first)!;
         String time = TkDateTimeHelper.formatTime(
-            context, value.toString().split(' ').last);
+            context, value.toString().split(' ').last)!;
 
         return date + ' - ' + time;
       default:
@@ -288,11 +288,11 @@ class TkDateField extends TkTextField {
           theme: DatePickerTheme(
             headerColor: kWhiteColor,
             backgroundColor: kWhiteColor,
-            itemStyle: kTextEditStyle,
-            doneStyle: kTextEditStyle,
+            itemStyle: kTextEditStyle!,
+            doneStyle: kTextEditStyle!,
           ),
           onChanged: (date) {},
-          onConfirm: (date) => onChanged(date),
+          onConfirm: (date) => onChanged!(date),
           currentTime: value,
           locale: locale,
         );
@@ -305,11 +305,11 @@ class TkDateField extends TkTextField {
           theme: DatePickerTheme(
             headerColor: kWhiteColor,
             backgroundColor: kWhiteColor,
-            itemStyle: kTextEditStyle,
-            doneStyle: kTextEditStyle,
+            itemStyle: kTextEditStyle!,
+            doneStyle: kTextEditStyle!,
           ),
           onChanged: (time) {},
-          onConfirm: (time) => onChanged(time),
+          onConfirm: (time) => onChanged!(time),
           currentTime: value,
           locale: locale,
         );
@@ -326,11 +326,11 @@ class TkDateField extends TkTextField {
           theme: DatePickerTheme(
             headerColor: kWhiteColor,
             backgroundColor: kWhiteColor,
-            itemStyle: kTextEditStyle,
-            doneStyle: kTextEditStyle,
+            itemStyle: kTextEditStyle!,
+            doneStyle: kTextEditStyle!,
           ),
           onChanged: (date) {},
-          onConfirm: (date) => onChanged(date),
+          onConfirm: (date) => onChanged!(date),
           currentTime: value,
           locale: locale,
         );
@@ -351,7 +351,7 @@ class TkDateField extends TkTextField {
       height: kDefaultTextEditHeight,
       padding: EdgeInsetsDirectional.fromSTEB(10.0, 5.0, 0, 0),
       child: GestureDetector(
-        onTap: enabled
+        onTap: enabled!
             ? () {
                 FocusScope.of(context).requestFocus(FocusNode());
 
@@ -359,7 +359,7 @@ class TkDateField extends TkTextField {
               }
             : null,
         child: Text(
-          _formatValue(value),
+          _formatValue(value)!,
           style: value == null ? kHintStyle : kTextEditStyle,
           textAlign: align,
         ),
@@ -393,8 +393,8 @@ class TkDropDownField extends TkTextField {
     style,
     showCursor = true,
     this.value,
-    @required this.values,
-    @required this.context,
+    required this.values,
+    required this.context,
   }) : super(
           isLoading: isLoading,
           enabled: enabled,
@@ -419,8 +419,8 @@ class TkDropDownField extends TkTextField {
           showCursor: showCursor,
         );
 
-  final String value;
-  final List<String> values;
+  final String? value;
+  final List<String?> values;
   final BuildContext context;
 
   List<DropdownMenuItem<String>> getItems() {
@@ -436,9 +436,9 @@ class TkDropDownField extends TkTextField {
           // The label will also be the value
           child: FittedBox(
             child: Text(
-              value,
+              value!,
               style:
-                  enabled ? style : style?.copyWith(color: kDisabledTextColor),
+                  enabled! ? style : style?.copyWith(color: kDisabledTextColor),
               textAlign: align,
             ),
           ),
@@ -470,13 +470,13 @@ class TkDropDownField extends TkTextField {
           isExpanded: true,
           itemHeight: kDefaultTextEditTitleSize,
           underline: Container(),
-          hint: Text(hintText, style: kHintStyle),
+          hint: Text(hintText!, style: kHintStyle),
 
           // Get the items
           items: getItems(),
 
           // On changed action
-          onChanged: onChanged,
+          onChanged: onChanged as void Function(String?)?,
         ),
       ),
     );
@@ -508,8 +508,8 @@ class TkSearchableDropDownField extends TkTextField {
     style,
     showCursor = true,
     this.value,
-    @required this.values,
-    @required this.context,
+    required this.values,
+    required this.context,
     this.controller,
   }) : super(
           isLoading: isLoading,
@@ -535,10 +535,10 @@ class TkSearchableDropDownField extends TkTextField {
           showCursor: showCursor,
         );
 
-  final String value;
+  final String? value;
   final List<String> values;
   final BuildContext context;
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   @override
   Widget getField() {
@@ -559,10 +559,10 @@ class TkSearchableDropDownField extends TkTextField {
           strict: false,
           labelText: hintText,
           items: values,
-          setter: onChanged,
-          enabled: enabled,
+          setter: onChanged as void Function(dynamic)?,
+          enabled: enabled!,
           textStyle: style,
-          onValueChanged: onChanged,
+          onValueChanged: onChanged as void Function(dynamic)?,
           itemsVisibleInDropdown: 2,
           hintStyle: style,
         ),
@@ -612,11 +612,11 @@ class TkSearchableDropDownField extends TkTextField {
         ),
 
         // Validation
-        (validate && (validator != null) && !validator())
+        (validate && (validator != null) && !validator!())
             ? Padding(
                 padding: const EdgeInsets.only(top: 5.0),
                 child: Text(
-                  errorMessage,
+                  errorMessage!,
                   textAlign: TextAlign.start,
                   style: kErrorStyle,
                   softWrap: true,
@@ -653,8 +653,8 @@ class TkExpandedSearchDropDownField extends TkTextField {
     style,
     showCursor = true,
     this.value,
-    @required this.values,
-    @required this.context,
+    required this.values,
+    required this.context,
     this.controller,
   }) : super(
           isLoading: isLoading,
@@ -680,10 +680,10 @@ class TkExpandedSearchDropDownField extends TkTextField {
           showCursor: showCursor,
         );
 
-  final String value;
-  final List<String> values;
+  final String? value;
+  final List<String?> values;
   final BuildContext context;
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   @override
   Widget getField() {
@@ -700,16 +700,16 @@ class TkExpandedSearchDropDownField extends TkTextField {
 
       child: Theme(
         data: Theme.of(context).copyWith(canvasColor: kWhiteColor),
-        child: DropdownSearch<String>(
+        child: DropdownSearch<String?>(
           maxHeight: maxHeight,
           mode: Mode.BOTTOM_SHEET,
-          enabled: enabled,
+          enabled: enabled!,
           showSelectedItem: true,
           items: values,
           hint: hintText,
           autoFocusSearchBox: true,
           showSearchBox: true,
-          onChanged: onChanged,
+          onChanged: onChanged as void Function(String?)?,
           selectedItem: value,
         ),
       ),

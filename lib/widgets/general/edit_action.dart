@@ -5,16 +5,16 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 
 class TkEditAction extends StatelessWidget {
-  TkEditAction({@required this.onTap});
+  TkEditAction({required this.onTap});
   final Function onTap;
 
   @override
   Widget build(BuildContext context) {
-    return IconSlideAction(
-      caption: S.of(context).kEdit,
-      color: kSecondaryColor,
+    return SlidableAction(
+      label: S.of(context).kEdit,
+      backgroundColor: kSecondaryColor,
       icon: kEditBtIcon,
-      onTap: onTap,
+      onPressed: onTap as void Function(BuildContext)?,
       foregroundColor: kWhiteColor,
     );
   }

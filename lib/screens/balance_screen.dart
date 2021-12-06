@@ -17,7 +17,7 @@ class _TkBalanceScreenState extends TkMultiStepPageState {
   void initData() async {
     // Load available packages
     Provider.of<TkPurchaser>(context, listen: false).loadBalance(
-        Provider.of<TkAccount>(context, listen: false).user,
+        Provider.of<TkAccount>(context, listen: false).user!,
         notify: false);
   }
 

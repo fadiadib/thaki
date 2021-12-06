@@ -11,7 +11,7 @@ class TkDBHelper {
     String createCmd,
     String insertCmd,
     String selectCmd,
-    int id,
+    int? id,
     String data,
   ) async {
     await mutex.acquire();
@@ -74,7 +74,7 @@ class TkDBHelper {
     String dbName,
     String createCmd,
     String deleteCmd,
-    int id,
+    int? id,
   ) async {
     await mutex.acquire();
 

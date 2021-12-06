@@ -11,27 +11,28 @@ import 'package:thaki/widgets/general/sliddable.dart';
 
 class TkCarTile extends StatelessWidget {
   TkCarTile({
-    @required this.car,
+    required this.car,
     this.onTap,
     this.onDelete,
     this.onEdit,
     this.langCode = 'en',
     this.showRibbon = false,
   });
+
   final TkCar car;
-  final Function onTap;
-  final Function onDelete;
-  final Function onEdit;
-  final String langCode;
+  final Function? onTap;
+  final Function? onDelete;
+  final Function? onEdit;
+  final String? langCode;
   final bool showRibbon;
 
   @override
   Widget build(BuildContext context) {
     return TkSlidableTile(
-      onDelete: onDelete == null ? null : () => onDelete(car),
-      onEdit: onEdit == null ? null : () => onEdit(car),
+      onDelete: onDelete == null ? null : () => onDelete!(car),
+      onEdit: onEdit == null ? null : () => onEdit!(car),
       child: GestureDetector(
-        onTap: onTap == null ? null : () => onTap(car),
+        onTap: onTap == null ? null : () => onTap!(car),
         child: Container(
           height: kTileHeight,
           // Form frame shadow
@@ -40,12 +41,12 @@ class TkCarTile extends StatelessWidget {
             boxShadow: kTileShadow,
             borderRadius: BorderRadius.circular(4.0),
             border: Border.all(
-                color: car.preferred ? kSecondaryColor : kTransparentColor),
+                color: car.preferred! ? kSecondaryColor : kTransparentColor),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Stack(
-              overflow: Overflow.visible,
+              clipBehavior: Clip.none,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -65,8 +66,8 @@ class TkCarTile extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 4.0),
                           child: Text(
-                            car.name,
-                            style: kBoldStyle[kNormalSize]
+                            car.name!,
+                            style: kBoldStyle[kNormalSize]!
                                 .copyWith(color: kBlackColor),
                           ),
                         ),
@@ -95,7 +96,7 @@ class TkCarTile extends StatelessWidget {
                   child: // Preferred mark
                       Icon(
                     kStarCircleBtnIcon,
-                    color: car.preferred ? kSecondaryColor : kTransparentColor,
+                    color: car.preferred! ? kSecondaryColor : kTransparentColor,
                   ),
                 ),
               ],

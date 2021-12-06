@@ -132,6 +132,7 @@ const String kUserLoginTypeTag = 'login_type';
 // Notifications tags
 const String kNotificationTag = 'notification';
 const String kNotificationIdTag = 'id';
+const String kNotificationNIdTag = 'nid';
 const String kNotificationTagTag = 'tag';
 const String kNotificationDataTag = 'data';
 const String kNotificationTitleTag = 'title';

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
@@ -25,11 +26,11 @@ class TkSubscriber extends ChangeNotifier {
   static TkAPIHelper _apis = new TkAPIHelper();
 
   // Model
-  String _disclaimer;
-  String get disclaimer => _disclaimer;
-  TkPermit _permit;
-  TkPermit get permit => _permit;
-  set permit(TkPermit p) {
+  String? _disclaimer;
+  String? get disclaimer => _disclaimer;
+  TkPermit? _permit;
+  TkPermit? get permit => _permit;
+  set permit(TkPermit? p) {
     _permit = p;
     notifyListeners();
   }
@@ -38,35 +39,34 @@ class TkSubscriber extends ChangeNotifier {
   List<TkSubscription> get subscriptions => _subscriptions;
   List<TkSubscription> _userSubscriptions = [];
   List<TkSubscription> get userSubscriptions => _userSubscriptions;
-  TkSubscription _selectedSubscription;
-  TkSubscription get selectedSubscription => _selectedSubscription;
-  set selectedSubscription(TkSubscription sub) {
+  TkSubscription? _selectedSubscription;
+  TkSubscription? get selectedSubscription => _selectedSubscription;
+  set selectedSubscription(TkSubscription? sub) {
     _selectedSubscription = sub;
     notifyListeners();
   }
 
-  TkCredit _selectedCard;
-  TkCredit get selectedCard => _selectedCard;
-  set selectedCard(TkCredit card) {
+  TkCredit? _selectedCard;
+  TkCredit? get selectedCard => _selectedCard;
+  set selectedCard(TkCredit? card) {
     _selectedCard = card;
     _validationPaymentError = null;
     notifyListeners();
   }
 
-  TkCar selectedCar;
+  TkCar? selectedCar;
 
-  String _cvv;
-  String get cvv => _cvv;
-  set cvv(String value) {
+  String? _cvv;
+  String? get cvv => _cvv;
+  set cvv(String? value) {
     _cvv = value;
     notifyListeners();
   }
 
   List<TkDocument> _documents = [];
   List<TkDocument> get documents => _documents;
-  void updateDocument(String tag, File image) {
-    TkDocument found = _documents.firstWhere((element) => element.tag == tag,
-        orElse: () => null);
+  void updateDocument(String? tag, File? image) {
+    TkDocument? found = _documents.firstWhereOrNull((element) => element.tag == tag);
     if (found != null) {
       found.image = image;
       notifyListeners();
@@ -78,14 +78,14 @@ class TkSubscriber extends ChangeNotifier {
   bool get isLoading => _isLoading;
 
   // Errors
-  Map<TkSubscriberError, String> _error = Map();
-  Map<TkSubscriberError, String> get error => _error;
-  String loadUserSubscriptionsError;
+  Map<TkSubscriberError, String?> _error = Map();
+  Map<TkSubscriberError, String?> get error => _error;
+  String? loadUserSubscriptionsError;
   void clearErrors() => _error.clear();
 
   // Validation
-  String _validationPaymentError;
-  String get validationPaymentError => _validationPaymentError;
+  String? _validationPaymentError;
+  String? get validationPaymentError => _validationPaymentError;
   bool validatePayment(BuildContext context) {
     if (_selectedCard == null) {
       _validationPaymentError = S.of(context).kSelectPaymentToProceed;
@@ -96,9 +96,9 @@ class TkSubscriber extends ChangeNotifier {
   }
 
   // Documents validation error
-  String _validationDocumentsError;
-  String get validationDocumentsError => _validationDocumentsError;
-  set validationDocumentsError(String error) {
+  String? _validationDocumentsError;
+  String? get validationDocumentsError => _validationDocumentsError;
+  set validationDocumentsError(String? error) {
     _validationDocumentsError = error;
     notifyListeners();
   }
@@ -108,7 +108,7 @@ class TkSubscriber extends ChangeNotifier {
   /// documents are uploaded correctly
   bool validateDocuments(BuildContext context) {
     for (TkDocument doc in _documents) {
-      if (doc.required && doc.image == null) {
+      if (doc.required! && doc.image == null) {
         _validationDocumentsError = S.of(context).kUploadDocumentsToProceed;
         notifyListeners();
         return false;
@@ -157,7 +157,7 @@ class TkSubscriber extends ChangeNotifier {
         await _apis.loadDocuments(user: user, type: 'subscription');
     if (result[kStatusTag] == kSuccessCode) {
       for (Map json in result[kDataTag][kDocumentsTag]) {
-        _documents.add(TkDocument.fromJson(json));
+        _documents.add(TkDocument.fromJson(json as Map<String, dynamic>));
       }
     } else {
       // an error happened
@@ -178,15 +178,15 @@ class TkSubscriber extends ChangeNotifier {
     // Start any loading indicators
     _isLoading = true;
     _error[TkSubscriberError.apply] = null;
-    _permit.documents = _documents;
+    _permit!.documents = _documents;
 
     final Map result = await _apis.applyForSubscription(
-        permit: _permit, user: user, car: selectedCar);
+        permit: _permit!, user: user, car: selectedCar!);
     if (result[kStatusTag] != kSuccessCreationCode) {
       // an error happened
       _error[TkSubscriberError.apply] = _apis.normalizeError(result);
     } else {
-      selectedCar.isApproved = 3;
+      selectedCar!.isApproved = 3;
 
       // Update firebase analytics that the user successfully
       // applied for a resident permit
@@ -216,7 +216,7 @@ class TkSubscriber extends ChangeNotifier {
     _cvv = null;
     if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kSubscriptionsListTag]) {
-        _subscriptions.add(TkSubscription.fromJson(data));
+        _subscriptions.add(TkSubscription.fromJson(data as Map<String, dynamic>));
       }
       if (_subscriptions.isNotEmpty)
         _selectedSubscription = _subscriptions.first;
@@ -244,9 +244,9 @@ class TkSubscriber extends ChangeNotifier {
 
     final Map result = await _apis.buySubscriptions(
       user: user,
-      car: selectedCar,
-      subscription: _selectedSubscription,
-      card: _selectedCard,
+      car: selectedCar!,
+      subscription: _selectedSubscription!,
+      card: _selectedCard!,
       cvv: _cvv,
     );
 
@@ -275,7 +275,7 @@ class TkSubscriber extends ChangeNotifier {
     _userSubscriptions.clear();
     if (result[kStatusTag] == kSuccessCode) {
       for (Map data in result[kDataTag][kSubscriptionsClientTag]) {
-        _userSubscriptions.add(TkSubscription.fromUserSubscriptionsJson(data));
+        _userSubscriptions.add(TkSubscription.fromUserSubscriptionsJson(data as Map<String, dynamic>));
       }
     } else {
       // an error happened

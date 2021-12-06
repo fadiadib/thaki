@@ -4,26 +4,26 @@ import 'package:thaki/models/index.dart';
 
 class TkLicenseCard extends StatelessWidget {
   TkLicenseCard({this.car});
-  final TkCar car;
+  final TkCar? car;
 
   /// Finds the letters part in the car arabic license plate
   String _getARLetterPlate() {
     // First check for letters without spaces
-    String result = RegExp(r"([\u0621-\u064A]){2,3}", unicode: true)
-        .stringMatch(car.plateAR);
+    String? result = RegExp(r"([\u0621-\u064A]){2,3}", unicode: true)
+        .stringMatch(car!.plateAR!);
 
     // If found split them and join with space
     if (result != null) return result.split('').join(' ');
 
     // If no match, try to find letters with spaces and return it
     result = RegExp(r"([\u0621-\u064A]\s*){2,3}", unicode: true)
-            .stringMatch(car.plateAR) ??
+            .stringMatch(car!.plateAR!) ??
         '-';
     return result;
   }
 
   Widget _getWidget() {
-    if (car.state == 1) {
+    if (car!.state == 1) {
       return Row(
         children: [
           Column(
@@ -36,8 +36,8 @@ class TkLicenseCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    RegExp(r"[A-Z]{2,3}").stringMatch(car.plateEN) ?? '-',
-                    style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),
+                    RegExp(r"[A-Z]{2,3}").stringMatch(car!.plateEN!) ?? '-',
+                    style: kBoldStyle[kSmallSize]!.copyWith(fontSize: 12),
                   ),
                 ),
               ),
@@ -47,7 +47,7 @@ class TkLicenseCard extends StatelessWidget {
                 decoration: BoxDecoration(),
                 child: Center(
                   child: Text(_getARLetterPlate(),
-                      style: kBoldStyle[kSmallSize].copyWith(fontSize: 10)),
+                      style: kBoldStyle[kSmallSize]!.copyWith(fontSize: 10)),
                 ),
               ),
             ],
@@ -64,8 +64,8 @@ class TkLicenseCard extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    RegExp(r"[\d]+").stringMatch(car.plateEN) ?? '-',
-                    style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),
+                    RegExp(r"[\d]+").stringMatch(car!.plateEN!) ?? '-',
+                    style: kBoldStyle[kSmallSize]!.copyWith(fontSize: 12),
                   ),
                 ),
               ),
@@ -76,9 +76,9 @@ class TkLicenseCard extends StatelessWidget {
                 child: Center(
                   child: Text(
                     RegExp(r"[\u0660-\u0669\d]+", unicode: true)
-                            .stringMatch(car.plateAR) ??
+                            .stringMatch(car!.plateAR!) ??
                         '-',
-                    style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),
+                    style: kBoldStyle[kSmallSize]!.copyWith(fontSize: 12),
                   ),
                 ),
               ),
@@ -96,8 +96,8 @@ class TkLicenseCard extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              RegExp(r"\d+").stringMatch(car.plateEN) ?? '-',
-              style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),
+              RegExp(r"\d+").stringMatch(car!.plateEN!) ?? '-',
+              style: kBoldStyle[kSmallSize]!.copyWith(fontSize: 12),
             ),
           ),
         ),
@@ -108,9 +108,9 @@ class TkLicenseCard extends StatelessWidget {
           child: Center(
             child: Text(
               RegExp(r"[\u0660-\u0669]+", unicode: true)
-                      .stringMatch(car.plateAR) ??
+                      .stringMatch(car!.plateAR!) ??
                   '-',
-              style: kBoldStyle[kSmallSize].copyWith(fontSize: 12),
+              style: kBoldStyle[kSmallSize]!.copyWith(fontSize: 12),
             ),
           ),
         ),

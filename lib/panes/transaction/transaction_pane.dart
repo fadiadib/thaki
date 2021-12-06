@@ -15,7 +15,7 @@ import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/base/index.dart';
 
 class TkTransactionPane extends TkPane {
-  TkTransactionPane({onDone, onClose, this.guest = false, @required this.type})
+  TkTransactionPane({onDone, onClose, this.guest = false, required this.type})
       : super(
           paneTitle: '',
           onDone: onDone,
@@ -25,7 +25,7 @@ class TkTransactionPane extends TkPane {
   final bool guest;
   final TkTransactionType type;
 
-  void _paymentCallback(bool result) => onDone();
+  void _paymentCallback(bool result) => onDone!();
 
   /// Takes the context and user object and creates a web view
   /// widget showing the payment page
@@ -42,7 +42,7 @@ class TkTransactionPane extends TkPane {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: WebView(
-              initialUrl: transactor.transactionPage.replaceAll(' ', '%20'),
+              initialUrl: transactor.transactionPage!.replaceAll(' ', '%20'),
               javascriptMode: JavascriptMode.unrestricted,
               gestureNavigationEnabled: true,
               onWebViewCreated: (WebViewController webViewController) {
@@ -70,7 +70,7 @@ class TkTransactionPane extends TkPane {
 
                 if (url == transactor.callbackPage) {
                   transactor.stopTransactionChecker();
-                  onDone();
+                  onDone!();
                 }
               },
             ),

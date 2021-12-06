@@ -3,7 +3,7 @@ import 'package:thaki/globals/index.dart';
 
 class TkError extends StatelessWidget {
   TkError({this.message});
-  final String message;
+  final String? message;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class TkError extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4.0),
                 ),
                 child: Text(
-                  message.isEmpty ? kUnknownError : message,
+                  message!.isEmpty ? kUnknownError : message!,
                   style: kErrorStyle,
                   textAlign: TextAlign.center,
                 ),

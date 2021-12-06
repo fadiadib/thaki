@@ -6,7 +6,7 @@ import 'package:thaki/widgets/tiles/parking_type_tile.dart';
 
 class TkParkingTypeList extends StatelessWidget {
   TkParkingTypeList({this.onTap, this.parkNow = true});
-  final Function onTap;
+  final Function? onTap;
   final bool parkNow;
 
   @override

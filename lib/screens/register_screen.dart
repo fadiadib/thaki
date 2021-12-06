@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -31,14 +32,14 @@ class TkRegisterScreen extends StatefulWidget {
 
 class _TkRegisterScreenState extends State<TkRegisterScreen>
     with TkFormFieldValidatorMixin {
-  TkInfoFieldsList _fields;
+  TkInfoFieldsList? _fields;
   bool terms = false;
-  String firstName;
-  String middleName;
-  String lastName;
-  String gender;
-  int nationality;
-  int userType;
+  String? firstName;
+  String? middleName;
+  String? lastName;
+  String? gender;
+  int? nationality;
+  int? userType;
 
   /// Override mandatory validate field method from form field validator
   /// validate each field according to its type.
@@ -225,29 +226,28 @@ class _TkRegisterScreenState extends State<TkRegisterScreen>
 
       TkAccount account = Provider.of<TkAccount>(context, listen: false);
       account.user = TkUser.fromInfoFields(results);
-      account.user.firstName = firstName;
-      account.user.middleName = middleName;
-      account.user.lastName = lastName;
-      account.user.nationality = nationality;
-      account.user.userType = userType;
-      account.user.gender = gender;
+      account.user!.firstName = firstName;
+      account.user!.middleName = middleName;
+      account.user!.lastName = lastName;
+      account.user!.nationality = nationality;
+      account.user!.userType = userType;
+      account.user!.gender = gender;
 
-      if (await account.register(store: account.user.rememberMe))
+      if (await account.register(store: account.user!.rememberMe))
         Navigator.pushReplacementNamed(context, TkHomeScreen.id);
     }
   }
 
-  bool _extraValidation() {
+  bool? _extraValidation() {
     setState(() => startValidating());
-    bool result = validate();
+    bool? result = validate();
     return result;
   }
 
   bool _validatePasswordMatch(TkInfoField confirmField) {
     // Search for the password field in fields
-    TkInfoField passwordField = _fields.fields.firstWhere(
-        (element) => element.name == kUserPasswordTag,
-        orElse: () => null);
+    TkInfoField? passwordField = _fields!.fields.firstWhereOrNull(
+        (element) => element.name == kUserPasswordTag);
     if (passwordField != null && passwordField.value == confirmField.value)
       return true;
     return false;
@@ -261,10 +261,10 @@ class _TkRegisterScreenState extends State<TkRegisterScreen>
     TkLangController controller = Provider.of<TkLangController>(context);
 
     return TkFormFrame(
-      langCode: controller.lang.languageCode,
-      formTitle: kRegisterFieldsJson[kFormName][controller.lang.languageCode],
+      langCode: controller.lang!.languageCode,
+      formTitle: kRegisterFieldsJson[kFormName][controller.lang!.languageCode],
       actionTitle: kRegisterFieldsJson[kFormAction]
-          [controller.lang.languageCode],
+          [controller.lang!.languageCode],
       buttonTag: kSignUpTag,
       fields: _fields,
       validatePasswordMatch: _validatePasswordMatch,
@@ -284,7 +284,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen>
                 Navigator.pushReplacementNamed(context, TkLoginScreen.id),
             child: Text(
               S.of(context).kLoginExclamation,
-              style: kRegularStyle[kSmallSize].copyWith(color: kPrimaryColor),
+              style: kRegularStyle[kSmallSize]!.copyWith(color: kPrimaryColor),
             ),
           )
         ],
@@ -301,7 +301,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen>
                 label: S.of(context).kAcceptTerms,
                 value: terms,
                 onChanged: (value) => setState(() => terms = value),
-                style: kBoldStyle[kSmallSize]
+                style: kBoldStyle[kSmallSize]!
                     .copyWith(decoration: TextDecoration.underline),
               ),
             ),
@@ -324,7 +324,7 @@ class _TkRegisterScreenState extends State<TkRegisterScreen>
         callback: () async {
           if (await account.social()) {
             if (account.user != null) {
-              if (account.user.needsUpdate) {
+              if (account.user!.needsUpdate) {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     settings: RouteSettings(name: TkEditProfileScreen.id),

@@ -14,21 +14,21 @@ class TkTicketList extends StatelessWidget {
       this.ribbon,
       this.ribbonColor,
       this.langCode = 'en'});
-  final List<TkTicket> tickets;
-  final Function onTap;
-  final Function onDelete;
-  final String ribbon;
-  final Color ribbonColor;
+  final List<TkTicket?>? tickets;
+  final Function? onTap;
+  final Function? onDelete;
+  final String? ribbon;
+  final Color? ribbonColor;
   final String langCode;
-  final Function onRefresh;
+  final Function? onRefresh;
 
   List<Widget> _getTicketTiles(BuildContext context) {
     List<Widget> tiles = [];
 
     tiles.add(SizedBox(height: 20));
 
-    if (tickets != null && tickets.isNotEmpty) {
-      for (TkTicket ticket in tickets) {
+    if (tickets != null && tickets!.isNotEmpty) {
+      for (TkTicket? ticket in tickets!) {
         tiles.add(
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 7),
@@ -64,6 +64,6 @@ class TkTicketList extends StatelessWidget {
     return onRefresh == null
         ? tickets
         : RefreshIndicator(
-            backgroundColor: kWhiteColor, onRefresh: onRefresh, child: tickets);
+            backgroundColor: kWhiteColor, onRefresh: onRefresh as Future<void> Function(), child: tickets);
   }
 }
