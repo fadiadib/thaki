@@ -72,6 +72,7 @@ class _TkCarsListScreenState extends State<TkCarsListScreen> {
                               false) await account.deleteCar(car);
                         },
                         onEdit: (TkCar car) async {
+                          print('In fun call');
                           Navigator.of(context).push(
                             MaterialPageRoute(
                               settings: RouteSettings(name: TkAddCarScreen.id),

@@ -6,7 +6,7 @@ import 'package:thaki/globals/index.dart';
 
 class TkEditAction extends StatelessWidget {
   TkEditAction({required this.onTap});
-  final Function onTap;
+  final Function(BuildContext context) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class TkEditAction extends StatelessWidget {
       label: S.of(context).kEdit,
       backgroundColor: kSecondaryColor,
       icon: kEditBtIcon,
-      onPressed: onTap as void Function(BuildContext)?,
+      onPressed: onTap,
       foregroundColor: kWhiteColor,
     );
   }

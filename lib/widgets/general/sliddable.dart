@@ -9,9 +9,9 @@ class TkSlidableTile extends StatelessWidget {
       {required this.child, this.onDelete, this.onEdit, this.onSeen});
 
   final Widget child;
-  final Function? onDelete;
-  final Function? onEdit;
-  final Function? onSeen;
+  final Function(BuildContext context)? onDelete;
+  final Function(BuildContext context)? onEdit;
+  final Function(BuildContext context)? onSeen;
 
   @override
   Widget build(BuildContext context) {

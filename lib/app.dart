@@ -7,6 +7,7 @@ import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/providers/firebase_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/providers/messenger.dart';
 import 'package:thaki/providers/versioner.dart';
 import 'package:thaki/screens/balance_screen.dart';
 import 'package:thaki/screens/buy_subscription_screen.dart';
@@ -36,6 +37,12 @@ import 'package:thaki/utilities/analytics_helper.dart';
 /// Child app for main, it sets up versioning, language
 /// the app theme, and material routes
 class TkThakiApp extends StatelessWidget {
+  /// Initializes flutter fire
+  Future<void> initFlutterFire(BuildContext context) async {
+    await Provider.of<TkFirebaseController>(context, listen: false).initializeFlutterFire();
+    await Provider.of<TkMessenger>(context, listen: false).init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<TkLangController>(
@@ -48,8 +55,7 @@ class TkThakiApp extends StatelessWidget {
           Provider.of<TkVersioner>(context, listen: false).initVersion();
 
         // Initialize FlutterFire
-        Provider.of<TkFirebaseController>(context, listen: false)
-            .initializeFlutterFire();
+        initFlutterFire(context);
 
         return MaterialApp(
           navigatorObservers: [TkAnalyticsHelper.getAnalyticsObserver()],

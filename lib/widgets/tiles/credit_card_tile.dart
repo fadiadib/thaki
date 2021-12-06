@@ -25,8 +25,8 @@ class TkCreditCardTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TkSlidableTile(
-      onDelete: onDelete == null ? null : () => onDelete!(creditCard),
-      onEdit: onEdit == null ? null : () => onEdit!(creditCard),
+      onDelete: onDelete == null ? null : (BuildContext context) => onDelete!(creditCard),
+      onEdit: onEdit == null ? null : (BuildContext context) => onEdit!(creditCard),
       child: GestureDetector(
         onTap: () {
           if (onTap != null) onTap!(creditCard);

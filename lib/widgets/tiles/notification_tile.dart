@@ -18,14 +18,14 @@ class TkNotificationTile extends StatelessWidget {
     return Consumer<TkMessenger>(
       builder: (context, messenger, _) {
         return TkSlidableTile(
-          onDelete: () async {
+          onDelete: (BuildContext context) async {
             if (await TkDialogHelper.gShowConfirmationDialog(
                     context: context,
                     message: S.of(context).kAreYouSureNotification,
                     type: gDialogType.yesNo) ??
                 false) messenger.deleteNotification(notification);
           },
-          onSeen: () {
+          onSeen: (BuildContext context) {
             messenger.updateSeen(notification, !notification.isSeen!);
             messenger.showBody(notification, value: false);
           },

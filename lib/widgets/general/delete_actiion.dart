@@ -6,7 +6,7 @@ import 'package:thaki/globals/index.dart';
 
 class TkDeleteAction extends StatelessWidget {
   TkDeleteAction({required this.onTap});
-  final Function onTap;
+  final Function(BuildContext context) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class TkDeleteAction extends StatelessWidget {
       label: S.of(context).kDelete,
       backgroundColor: kRedAccentColor,
       icon: kDeleteBtnIcon,
-      onPressed: onTap as void Function(BuildContext)?,
+      onPressed: onTap,
     );
   }
 }

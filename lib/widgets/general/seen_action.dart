@@ -6,7 +6,7 @@ import 'package:thaki/globals/index.dart';
 
 class TkSeenAction extends StatelessWidget {
   TkSeenAction({required this.onTap});
-  final Function onTap;
+  final Function(BuildContext context) onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class TkSeenAction extends StatelessWidget {
       label: S.of(context).kUpdateSeen,
       backgroundColor: kSecondaryColor,
       icon: kSeenBtnIcon,
-      onPressed: onTap as void Function(BuildContext)?,
+      onPressed: onTap,
       foregroundColor: kWhiteColor,
     );
   }

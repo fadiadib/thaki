@@ -29,8 +29,8 @@ class TkCarTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TkSlidableTile(
-      onDelete: onDelete == null ? null : () => onDelete!(car),
-      onEdit: onEdit == null ? null : () => onEdit!(car),
+      onDelete: onDelete == null ? null : (BuildContext context) => onDelete!(car),
+      onEdit: onEdit == null ? null : (BuildContext context) => onEdit!(car),
       child: GestureDetector(
         onTap: onTap == null ? null : () => onTap!(car),
         child: Container(

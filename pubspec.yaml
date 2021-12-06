@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.6+35
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.13.0 <3.0.0'
 
 dependencies:
   flutter:
@@ -33,7 +33,7 @@ dependencies:
   http: ^0.13.4
   crypto: ^3.0.1
   intl: ^0.17.0
-  sqflite: ^2.0.0+4
+  sqflite: ^2.0.1
   mutex: ^3.0.0
   email_validator: ^2.0.1
   url_launcher: ^6.0.17
@@ -50,7 +50,7 @@ dependencies:
   flutter_datetime_picker: ^1.5.1
   package_info: ^2.0.2
   carousel_slider: ^4.0.0
-  firebase_messaging: ^11.1.0
+  firebase_messaging: ^11.2.0
   firebase_analytics: ^8.3.4
   flutter_slidable: ^1.1.0
   qr_flutter: ^4.0.0
@@ -72,11 +72,11 @@ dependencies:
 #  dropdownfield: ^1.0.3
   firebase_remote_config: ^0.11.0+2
   sign_in_with_apple: ^3.3.0
-  firebase_auth: ^3.2.0
+  firebase_auth: ^3.3.0
   flutter_local_notifications: ^9.1.4
 
-  material_design_icons_flutter: ^5.0.6295
-  collection: ^1.15.0-nullsafety.4
+  material_design_icons_flutter: ^5.0.6595
+  collection: ^1.15.0
 
 dev_dependencies:
   flutter_test:

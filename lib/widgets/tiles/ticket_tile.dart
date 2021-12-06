@@ -183,7 +183,7 @@ class _TkTicketTileState extends State<TkTicketTile> {
     return TkSlidableTile(
       onDelete: widget.onDelete == null
           ? null
-          : () => widget.onDelete!(widget.ticket),
+          : (BuildContext context) => widget.onDelete!(widget.ticket),
       child: GestureDetector(
         onTap: isLoading
             ? null
