@@ -38,6 +38,7 @@ class TkAPIHelper {
   /// error strings and groups them into a paragraph.
   String? normalizeError(Map result) {
     String errorMessage = '';
+    print(result[kErrorMessageTag]);
     if (result[kErrorMessageTag] != null) {
       Map errors = result[kErrorMessageTag];
       for (String key in errors.keys as Iterable<String>) {

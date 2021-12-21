@@ -110,7 +110,7 @@ class TkMarker extends StatelessWidget {
         ? Positioned(
             right: side == TkCardRibbonSide.right ? -5 : null,
             left: side == TkCardRibbonSide.left ? -5 : null,
-            top: 10,
+            top: 5,
             child: _buildMarker())
         : _buildMarker();
   }

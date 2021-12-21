@@ -68,7 +68,7 @@ class TkInfoField {
     }
 
     // Parse the info field type
-    String infoFieldType = data[kIFType].toString() ?? kDefaultInfoFieldTypeIdx;
+    String infoFieldType = data[kIFType] != null ? data[kIFType].toString() : kDefaultInfoFieldTypeIdx;
     List<String> infoFieldTypeList =
         infoFieldType.split(kInfoFieldTypeDelimiter);
 

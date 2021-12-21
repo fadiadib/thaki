@@ -212,6 +212,8 @@ class TkMessenger extends ChangeNotifier {
     List<Map<String, dynamic>> messages = await TkDBHelper.readFromDatabase(
         kNtfTableName, kCreateNtfDBCmd, kSelectBtfDBCmd);
 
+    _notifications.clear();
+
     // Iterate on each row and create a notification object
     for (Map<String, dynamic> message in messages.reversed) {
       Map<String, dynamic> js = json.decode(message[kNtfDataColumnName]);

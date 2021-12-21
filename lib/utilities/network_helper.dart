@@ -43,7 +43,7 @@ class TkNetworkHelper {
   Future<Map> putData({
     required String url,
     Map<String, dynamic>? params,
-    Map<String, String?>? headers,
+    Map<String, String>? headers,
     List<http.MultipartFile>? files,
   }) async {
     return _putRequest(
@@ -113,7 +113,7 @@ class TkNetworkHelper {
     required String url,
     Map<String, dynamic>? bodyParams,
     String? method,
-    Map<String, String?>? headers,
+    Map<String, String>? headers,
     List<http.MultipartFile>? files,
   }) async {
     try {
@@ -123,7 +123,7 @@ class TkNetworkHelper {
 
       // Perform network request
       http.Response response =
-          await http.put(Uri.parse(url), headers: headers as Map<String, String>?, body: bodyParams);
+          await http.put(Uri.parse(url), headers: headers, body: bodyParams);
       String rep = response.body.toString();
 
       // Print verbose

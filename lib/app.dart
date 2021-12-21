@@ -39,7 +39,8 @@ import 'package:thaki/utilities/analytics_helper.dart';
 class TkThakiApp extends StatelessWidget {
   /// Initializes flutter fire
   Future<void> initFlutterFire(BuildContext context) async {
-    await Provider.of<TkFirebaseController>(context, listen: false).initializeFlutterFire();
+    await Provider.of<TkFirebaseController>(context, listen: false)
+        .initializeFlutterFire();
     await Provider.of<TkMessenger>(context, listen: false).init();
   }
 
@@ -134,6 +135,13 @@ class TkThakiApp extends StatelessWidget {
 
           // Push the splash screen
           initialRoute: TkSplashScreen.id,
+          builder: (BuildContext context, Widget? child) {
+            final MediaQueryData data = MediaQuery.of(context);
+            return MediaQuery(
+              data: data.copyWith(textScaleFactor: 1.0),
+              child: child!,
+            );
+          },
         );
       },
     );

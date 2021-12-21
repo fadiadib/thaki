@@ -180,37 +180,39 @@ class _TkTicketTileState extends State<TkTicketTile> {
 
   @override
   Widget build(BuildContext context) {
-    return TkSlidableTile(
-      onDelete: widget.onDelete == null
-          ? null
-          : (BuildContext context) => widget.onDelete!(widget.ticket),
-      child: GestureDetector(
-        onTap: isLoading
+    return Container(
+      decoration: BoxDecoration(
+        color: kTileBgColor,
+        boxShadow: kTileShadow,
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+      child: TkSlidableTile(
+        onDelete: widget.onDelete == null
             ? null
-            : widget.onTap as void Function()? ??
-                (() => TkQRHelper.showQRCode(
-                    context: context,
-                    ticket: widget.ticket!,
-                    loadCallback: load)),
-        child: Container(
-          decoration: BoxDecoration(
-            color: kTileBgColor,
-            boxShadow: kTileShadow,
-            borderRadius: BorderRadius.circular(4.0),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _getTileImage(),
-              Container(
-                width: 1,
-                height: 100,
-                decoration: BoxDecoration(
-                  border: Border.all(color: kMediumGreyColor.withOpacity(0.2)),
+            : (BuildContext context) => widget.onDelete!(widget.ticket),
+        child: GestureDetector(
+          onTap: isLoading
+              ? null
+              : widget.onTap as void Function()? ??
+                  (() => TkQRHelper.showQRCode(
+                      context: context,
+                      ticket: widget.ticket!,
+                      loadCallback: load)),
+          child: Container(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _getTileImage(),
+                Container(
+                  width: 1,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: kMediumGreyColor.withOpacity(0.2)),
+                  ),
                 ),
-              ),
-              _getTileDetails(context),
-            ],
+                _getTileDetails(context),
+              ],
+            ),
           ),
         ),
       ),

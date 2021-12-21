@@ -16,15 +16,28 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/firebase_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/firebase_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/cars_list_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/cars_list_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/general/delete_actiion.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/general/delete_actiion.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/general/edit_action.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/general/edit_action.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/general/seen_action.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/general/seen_action.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/general/sliddable.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/general/sliddable.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/globals/icons.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/icons.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/globals/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/settings.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/info_fields.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/info_fields.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/panes/parking/parking_time_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/parking/parking_time_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/account.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/account.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/messenger.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/messenger.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/forgot_password_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/forgot_password_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/api_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/api_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/date_time_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/date_time_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/network_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/network_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/cards/id_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/cards/id_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/button.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/dropdown_search/select_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/dropdown_search/select_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/text_fields.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/text_fields.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/general/ribbon.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/general/ribbon.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/car_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/car_tile.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/credit_card_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/credit_card_tile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/notification_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/notification_tile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/ticket_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/ticket_tile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
@@ -474,7 +487,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633437267423</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary=". Fixed Android 12 webview bug&#10;. Fixed Slidable widget">
+      <created>1638801838237</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1638801838237</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -491,8 +511,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="+ Updated version." />
-    <MESSAGE value="+ Social login.&#10;+ Old password." />
     <MESSAGE value="+ Build 18." />
     <MESSAGE value="+ Build 19." />
     <MESSAGE value="+ Build 20." />
@@ -516,6 +534,8 @@
     <MESSAGE value="+ Fix for Apple update profile." />
     <MESSAGE value="+ Fix for Apple profile update.&#10;+ Some comments." />
     <MESSAGE value="initial commit after migration&#10;. Slidable widget not functioning" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit after migration&#10;. Slidable widget not functioning" />
+    <MESSAGE value=". Fixed Android 12 webview bug&#10;. Fixed Slidable widget" />
+    <MESSAGE value="Ready for testing iOS" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ready for testing iOS" />
   </component>
 </project>

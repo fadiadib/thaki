@@ -42,7 +42,7 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.clearErrors();
 
-    if (account.user != null) _fields = account.user!.toInfoFields(_fields!);
+    if (_fields != null && account.user != null) _fields = account.user!.toInfoFields(_fields!);
 
     if (widget.showPasswordSuccess)
       Future.delayed(Duration(milliseconds: 100)).then(

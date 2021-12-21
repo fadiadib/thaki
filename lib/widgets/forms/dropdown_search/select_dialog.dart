@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:thaki/generated/l10n.dart';
+import 'package:thaki/globals/index.dart';
 import 'dropdown_search.dart';
 
 class SelectDialog<T> extends StatefulWidget {
@@ -231,8 +232,8 @@ class _SelectDialogState<T> extends State<SelectDialog<T?>> {
           return true;
         else if (widget.itemAsString != null) {
           return widget.itemAsString!(i)
-                  .toLowerCase()
-                  .contains(filter.toLowerCase());
+              .toLowerCase()
+              .contains(filter.toLowerCase());
         }
         return false;
       }).toList();
@@ -245,7 +246,8 @@ class _SelectDialogState<T> extends State<SelectDialog<T?>> {
     if (widget.onFind != null && (widget.isFilteredOnline || isFistLoad)) {
       try {
         final List<T?> onlineItems = [];
-        onlineItems.addAll(widget.onFind != null ? await widget.onFind!(filter) : []);
+        onlineItems
+            .addAll(widget.onFind != null ? await widget.onFind!(filter) : []);
 
         //Remove all old data
         _items.clear();
@@ -297,8 +299,7 @@ class _SelectDialogState<T> extends State<SelectDialog<T?>> {
           item,
           _manageSelectedItemVisibility(item),
         ),
-        onTap: widget.itemDisabled != null &&
-                (widget.itemDisabled!(item) ?? false) == true
+        onTap: widget.itemDisabled != null && widget.itemDisabled!(item) == true
             ? null
             : () {
                 Navigator.pop(context, item);
@@ -309,12 +310,14 @@ class _SelectDialogState<T> extends State<SelectDialog<T?>> {
       return ListTile(
         title: Text(
           widget.itemAsString != null
-              ? (widget.itemAsString!(item) ?? "")
+              ? widget.itemAsString!(item)
               : item.toString(),
+          style: _manageSelectedItemVisibility(item) == true
+              ? TextStyle(color: kPrimaryColor)
+              : null,
         ),
         selected: _manageSelectedItemVisibility(item),
-        onTap: widget.itemDisabled != null &&
-                (widget.itemDisabled!(item) ?? false) == true
+        onTap: widget.itemDisabled != null && widget.itemDisabled!(item) == true
             ? null
             : () {
                 Navigator.pop(context, item);
@@ -371,6 +374,7 @@ class Debouncer {
 
   call(Function action) {
     _timer?.cancel();
-    _timer = Timer(delay ?? const Duration(milliseconds: 500), action as void Function());
+    _timer = Timer(
+        delay ?? const Duration(milliseconds: 500), action as void Function());
   }
 }

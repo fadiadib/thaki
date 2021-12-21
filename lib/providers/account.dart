@@ -473,6 +473,7 @@ class TkAccount extends ChangeNotifier {
     notifyListeners();
 
     Map result = await _apis.updateCar(user: user!, car: car);
+    print(result);
     if (result[kStatusTag] != kSuccessCode) {
       // an error happened
       updateCarError = _apis.normalizeError(result);

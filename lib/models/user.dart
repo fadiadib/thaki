@@ -88,9 +88,9 @@ class TkUser {
     updateModelFromJson(json);
   }
 
-  Map<String, String?> toHeader() {
+  Map<String, String> toHeader() {
     return {
-      kLangTag: lang?.languageCode,
+      kLangTag: lang!.languageCode,
       kAuthTag: '$tokenType $token',
     };
   }
@@ -164,7 +164,7 @@ class TkUser {
   }
 
   TkInfoFieldsList toInfoFields(TkInfoFieldsList fields) {
-    String fullName = firstName!;
+    String fullName = firstName ?? '';
     if (middleName != null) fullName += ' $middleName';
     if (lastName != null) fullName += ' $lastName';
 

@@ -45,6 +45,7 @@ class _TkIDCardState extends State<TkIDCard> {
   void updateImage(ImageSource source, BuildContext context) async {
     // Get the image from the camera or gallery according to source
     try {
+      print('PICKING IMAGE');
       ImagePicker imagePicker = new ImagePicker();
       XFile? image = await imagePicker.pickImage(source: source);
 
@@ -64,12 +65,12 @@ class _TkIDCardState extends State<TkIDCard> {
         // Compress file
         Directory tempDir = await getTemporaryDirectory();
         File temp = new File('${tempDir.path}/temp.jpeg');
-        File compressedImage = await (compressAndGetFile(image.path, temp.path) as FutureOr<File>);
+        File? compressedImage = await (compressAndGetFile(image.path, temp.path));
         setState(() => isLoading = false);
 
         // Allow the user to crop/rotate the picture
         File? croppedImage = await ImageCropper.cropImage(
-          sourcePath: compressedImage.path,
+          sourcePath: compressedImage!.path,
           aspectRatioPresets: [
             CropAspectRatioPreset.square,
             CropAspectRatioPreset.ratio3x2,
@@ -95,6 +96,7 @@ class _TkIDCardState extends State<TkIDCard> {
         if (croppedImage != null) widget.callback!(croppedImage);
       }
     } catch (e) {
+      print(e.toString());
       setState(() => isLoading = false);
 
       if (widget.errorCallback != null) {

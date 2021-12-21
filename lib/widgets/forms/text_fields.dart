@@ -105,6 +105,7 @@ class TkTextField extends StatelessWidget {
       // Input decoration: add hint text, hint
       // text style and remove borders
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
         isDense: true,
         hintText: hintText,
         hintStyle: kHintStyle,

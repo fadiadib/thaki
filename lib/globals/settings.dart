@@ -1,5 +1,5 @@
 // Network settings
-const bool kVerboseNetworkMessages = false;
+const bool kVerboseNetworkMessages = true;
 const bool kDemoMode = true; // Don't change this!
 
 // App ID
@@ -30,7 +30,7 @@ const bool kCheckProfileComplete = false;
 
 // Force server flags (for testing purposes only)
 const bool kForceLiveServer = false;
-const bool kForceTestServer = false;
+const bool kForceTestServer = true;
 const bool kForceDataCenter = false;
 
 // Default servers

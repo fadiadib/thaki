@@ -64,7 +64,10 @@ class TkParkingTimePane extends TkPane {
               hintText: S.of(context).kSelectDateTime,
               validator: () => (booker.bookDate != null &&
                   DateTime.now().isBefore(booker.bookDate!)),
-              onChanged: (value) => booker.bookDate = value,
+              onChanged: (value) {
+                print(value);
+                return booker.bookDate = value;
+              },
               errorMessage: booker.bookDate == null
                   ? S.of(context).kPleaseEnterAValid + S.of(context).kDateTime
                   : S.of(context).kDateTime + S.of(context).kIsPast,

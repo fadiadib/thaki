@@ -113,7 +113,8 @@ class TkDateTimeHelper {
     String minute;
 
     for (String item in time.split(':')) {
-      timeComponents.add(int.parse(item));
+      print(item);
+      timeComponents.add(double.parse(item).toInt());
     }
     if (timeComponents.length < 2) return time;
 

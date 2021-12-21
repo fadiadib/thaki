@@ -34,7 +34,7 @@ class _TkForgotPasswordScreenState extends State<TkForgotPasswordScreen> {
     TkAccount account = Provider.of<TkAccount>(context, listen: false);
     account.clearErrors();
 
-    if (account.user != null) _fields = account.user!.toInfoFields(_fields!);
+    if (_fields != null && account.user != null) _fields = account.user!.toInfoFields(_fields!);
   }
 
   Future<void> _updateModel(TkInfoFieldsList results) async {
