@@ -107,7 +107,7 @@ class TkUser {
       kUserPhoneTag: phone,
       kUserBirthDateTag:
           birthDate == null ? '' : birthDate.toString().split(' ').first,
-      kFBTokenTag: await FirebaseMessaging().getToken(),
+      kFBTokenTag: await FirebaseMessaging.instance.getToken() ?? '',
     };
     if (password != null)
       result[kUserPasswordTag] = TkCryptoHelper.hashSha256(password);
@@ -124,7 +124,7 @@ class TkUser {
     return {
       kUserEmailTag: email,
       kUserPasswordTag: TkCryptoHelper.hashSha256(password),
-      kFBTokenTag: await FirebaseMessaging().getToken(),
+      kFBTokenTag: await FirebaseMessaging.instance.getToken() ?? '',
     };
   }
 
@@ -138,7 +138,7 @@ class TkUser {
       kUserPhoneTag: phone ?? '',
       kUserBirthDateTag:
           birthDate != null ? birthDate.toString().split('.').first : '',
-      kFBTokenTag: await FirebaseMessaging().getToken(),
+      kFBTokenTag: await FirebaseMessaging.instance.getToken() ?? '',
       kUserSocialTokenTag: socialToken,
       kUserLoginTypeTag: loginType,
     };
@@ -159,7 +159,7 @@ class TkUser {
 
   Future<Map<String, dynamic>> toLoadJson() async {
     return {
-      kFBTokenTag: await FirebaseMessaging().getToken(),
+      kFBTokenTag: await FirebaseMessaging.instance.getToken() ?? '',
     };
   }
 

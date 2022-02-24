@@ -1,7 +1,17 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:thaki/globals/db_commands.dart';
+import 'package:thaki/models/notification.dart';
+import 'package:thaki/utilities/badge_helper.dart';
+import 'package:thaki/utilities/db_helper.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/booker.dart';
@@ -20,7 +30,38 @@ import 'package:thaki/providers/user_attributes_controller.dart';
 import 'package:thaki/providers/versioner.dart';
 import 'package:thaki/app.dart';
 
-void main() => runApp(ThakiMain());
+/// [_firebaseMessagingBackgroundHandler]
+/// Global function that handles background messages
+/// Adds the new notification to the notifications database and updates the app badge
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  // Update badge
+  TkBadgeHelper.incrementBadge();
+
+  // Initialize firebase
+  await Firebase.initializeApp();
+
+  // Create a new notification object and insert it into the database
+  // when the app comes to the foreground, the notifications are
+  // reinitialized from the database
+  final TkNotification notification = TkNotification.fromJson(message.data);
+  TkDBHelper.insertInDatabase(kNtfTableName, kCreateNtfDBCmd, kInsertNtfDBCmd,
+      kSelectIdNtfDBCmd, notification.id, json.encode(message));
+}
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Initialize firebase
+  await Firebase.initializeApp();
+
+  // Setup background notifications for iOS
+  if (Platform.isIOS)
+    FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+
+  runApp(ThakiMain());
+}
 
 /// Main application
 class ThakiMain extends StatelessWidget {

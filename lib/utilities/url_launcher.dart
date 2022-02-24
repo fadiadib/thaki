@@ -12,12 +12,12 @@ class TkURLLauncher {
   static Future<String> getFrontEndRootURL() async {
     if (_rootURL != null) return _rootURL;
 
-    final RemoteConfig remoteConfig = await RemoteConfig.instance;
+    final FirebaseRemoteConfig remoteConfig =
+        await FirebaseRemoteConfig.instance;
     final defaults = <String, dynamic>{kBaseHandle: kDefaultBaseURL};
-    await remoteConfig.setDefaults(defaults);
 
-    await remoteConfig.fetch(expiration: const Duration(hours: 12));
-    await remoteConfig.activateFetched();
+    await remoteConfig.setDefaults(defaults);
+    await remoteConfig.fetchAndActivate();
 
     _rootURL = remoteConfig.getString(kBaseHandle);
     return _rootURL;

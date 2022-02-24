@@ -205,9 +205,15 @@ final ThemeData gThemeData = ThemeData(
   backgroundColor: kPrimaryBgColor,
   scaffoldBackgroundColor: kPrimaryBgColor,
   primaryColor: kPrimaryColor,
-  accentColor: kSecondaryColor,
-  textSelectionColor: kSecondaryColor,
-  textSelectionHandleColor: kPrimaryColor,
+  colorScheme: ColorScheme.fromSwatch().copyWith(
+    secondary: kSecondaryColor,
+    primary: kPrimaryColor,
+    brightness: Brightness.light,
+  ),
+  textSelectionTheme: TextSelectionThemeData(
+    selectionColor: kSecondaryColor,
+    selectionHandleColor: kPrimaryColor,
+  ),
 
   inputDecorationTheme: InputDecorationTheme(
     enabledBorder: OutlineInputBorder(

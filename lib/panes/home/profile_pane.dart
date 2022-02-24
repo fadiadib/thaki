@@ -25,13 +25,11 @@ import 'package:thaki/widgets/general/section_title.dart';
 import 'package:thaki/widgets/cards/user_info_card.dart';
 
 class TkProfilePane extends TkPane {
-  TkProfilePane({@required this.scaffoldKey, onDone, onSelect})
+  TkProfilePane({onDone, onSelect})
       : super(
             paneTitle: '',
             navIconData: TkNavIconData(icon: AssetImage(kProfileIcon)),
             onSelect: onSelect);
-
-  final Function scaffoldKey;
 
   Widget _createPersonalInfo(TkAccount account, BuildContext context) {
     return Column(
@@ -46,8 +44,8 @@ class TkProfilePane extends TkPane {
               if (await Navigator.of(context)
                       .pushNamed(TkEditProfileScreen.id) ==
                   true) {
-                TkSnackBarHelper.show(this.scaffoldKey(), context,
-                    S.of(context).kUserProfileUpdated);
+                TkSnackBarHelper.show(
+                    context, S.of(context).kUserProfileUpdated);
               }
             },
           ),

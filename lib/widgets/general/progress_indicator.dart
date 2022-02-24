@@ -15,11 +15,9 @@ class TkProgressIndicator extends StatelessWidget {
       child: Container(
         height: size,
         width: size,
-        child: Theme(
-          data: Theme.of(context).copyWith(accentColor: color),
-          child: CircularProgressIndicator(
-            strokeWidth: strokeWidth,
-          ),
+        child: CircularProgressIndicator(
+          color: color,
+          strokeWidth: strokeWidth,
         ),
       ),
     );

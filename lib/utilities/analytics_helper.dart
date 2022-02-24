@@ -8,7 +8,7 @@ import 'package:thaki/models/index.dart';
 /// A utility class that logs firebase analytics events
 class TkAnalyticsHelper {
   /// FirebaseAnalytics object
-  static FirebaseAnalytics _analytics = FirebaseAnalytics();
+  static FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
 
   /// [getAnalyticsObserver]
   /// Creates a firebase analytics observer passed to the app pages routes
@@ -19,7 +19,7 @@ class TkAnalyticsHelper {
   /// Sets the user properties in firebase analytics
   /// [user] TkUser object of the current user
   static Future<void> setUserProperties(TkUser user) async {
-    await _analytics.setUserId(user.token);
+    await _analytics.setUserId(id: user.token);
   }
 
   /// [logLogin]

@@ -112,10 +112,11 @@ class TkSocialLogin extends StatelessWidget {
     account.socialError = null;
 
     try {
-      final AccessToken result = await FacebookAuth.instance.login();
-      final token = result.token;
-      final graphResponse = await http.get(
-          'https://graph.facebook.com/v2.12/me?fields=name,first_name,middle_name,last_name,email&access_token=$token');
+      final LoginResult result = await FacebookAuth.instance.login();
+      final token = result.accessToken.token;
+      final graphResponse = await http.get(Uri(
+          path:
+              'https://graph.facebook.com/v2.12/me?fields=name,first_name,middle_name,last_name,email&access_token=$token'));
       final profile = json.decode(graphResponse.body);
 
       account.user = TkUser.fromJson({
@@ -124,7 +125,7 @@ class TkSocialLogin extends StatelessWidget {
           kUserMiddleNameTag: profile['middle_name'],
           kUserLastNameTag: profile['last_name'],
           kUserEmailTag: profile['email'],
-          kUserSocialTokenTag: result.userId,
+          kUserSocialTokenTag: result.accessToken.userId,
           kUserLoginTypeTag: 'Facebook',
         }
       });

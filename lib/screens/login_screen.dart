@@ -31,7 +31,6 @@ class TkLoginScreen extends StatefulWidget {
 
 class _TkLoginScreenState extends State<TkLoginScreen> {
   TkInfoFieldsList _fields;
-  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
   @override
   void initState() {
@@ -46,8 +45,8 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
 
     if (widget.showPasswordSuccess)
       Future.delayed(Duration(milliseconds: 100)).then(
-        (value) => TkSnackBarHelper.show(
-            _scaffoldKey, context, S.of(context).kUserProfileUpdated),
+        (value) =>
+            TkSnackBarHelper.show(context, S.of(context).kUserProfileUpdated),
       );
   }
 
@@ -143,7 +142,6 @@ class _TkLoginScreenState extends State<TkLoginScreen> {
         return WillPopScope(
           onWillPop: () async => true,
           child: Scaffold(
-            key: _scaffoldKey,
             appBar: TkAppBar(
               context: context,
               enableNotifications: false,

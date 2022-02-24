@@ -5,7 +5,6 @@ import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/info_fields.dart';
 import 'package:thaki/utilities/date_time_helper.dart';
-import 'package:thaki/widgets/forms/dropdown_field.dart';
 import 'package:thaki/widgets/forms/dropdown_search/dropdown_search.dart';
 import 'package:thaki/widgets/general/progress_indicator.dart';
 
@@ -94,7 +93,9 @@ class TkTextField extends StatelessWidget {
       minLines: lines,
 
       // Text length
-      maxLengthEnforced: maxLengthEnforced,
+      maxLengthEnforcement: maxLengthEnforced
+          ? MaxLengthEnforcement.enforced
+          : MaxLengthEnforcement.none,
       maxLength: maxLength,
 
       // Focus settings
@@ -479,151 +480,6 @@ class TkDropDownField extends TkTextField {
           onChanged: onChanged,
         ),
       ),
-    );
-  }
-}
-
-/// Dropdown selection field
-class TkSearchableDropDownField extends TkTextField {
-  TkSearchableDropDownField({
-    isLoading = false,
-    enabled = true,
-    onChanged,
-    keyboardType,
-    obscureText = false,
-    hintText,
-    halfSize = false,
-    validator,
-    validate = false,
-    errorMessage,
-    borderRadius = kDefaultTextEditRadius,
-    width,
-    height = kDefaultTextEditHeight,
-    internalHPadding = kDefaultTextEditInternalPadding,
-    internalVPadding = kDefaultTextEditInternalPadding,
-    raised = false,
-    align = TextAlign.start,
-    focusNode,
-    autoFocus = false,
-    style,
-    showCursor = true,
-    this.value,
-    @required this.values,
-    @required this.context,
-    this.controller,
-  }) : super(
-          isLoading: isLoading,
-          enabled: enabled,
-          onChanged: onChanged,
-          keyboardType: keyboardType,
-          obscureText: obscureText,
-          hintText: hintText,
-          halfSize: halfSize,
-          validator: validator,
-          validate: validate,
-          errorMessage: errorMessage,
-          borderRadius: borderRadius,
-          width: width,
-          height: height,
-          internalHPadding: internalHPadding,
-          internalVPadding: internalVPadding,
-          raised: raised,
-          align: align,
-          focusNode: focusNode,
-          autoFocus: autoFocus,
-          style: style,
-          showCursor: showCursor,
-        );
-
-  final String value;
-  final List<String> values;
-  final BuildContext context;
-  final TextEditingController controller;
-
-  @override
-  Widget getField() {
-    return Container(
-      // Create the surrounding box with
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(color: kAccentGreyColor, width: 1),
-      ),
-      // padding: EdgeInsetsDirectional.fromSTEB(10.0, 0, 10.0, 0),
-
-      child: Theme(
-        data: Theme.of(context).copyWith(canvasColor: kWhiteColor),
-        child: DropDownField(
-          controller: controller,
-          value: value,
-          required: false,
-          strict: false,
-          labelText: hintText,
-          items: values,
-          setter: onChanged,
-          enabled: enabled,
-          textStyle: style,
-          onValueChanged: onChanged,
-          itemsVisibleInDropdown: 2,
-          hintStyle: style,
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Center(
-          child: SizedBox(
-            width: width,
-            child: Container(
-              // Specify the input text height
-              // height: height + (lines - 1) * height,
-
-              // Create the surrounding box with
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(borderRadius),
-              ),
-
-              // Place a TextField in the middle of the box
-              child: Center(
-                child: Row(
-                  children: <Widget>[
-                    // The field
-                    Expanded(flex: 2, child: getField()),
-
-                    // If loading, show small gap and progress indicator
-                    isLoading ? SizedBox(width: 20.0) : Container(),
-                    isLoading
-                        ? SizedBox(
-                            height: 20.0,
-                            width: 20.0,
-                            child: TkProgressIndicator())
-                        : icon != null
-                            ? Icon(icon, color: kPrimaryIconColor)
-                            : Container(),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-
-        // Validation
-        (validate && (validator != null) && !validator())
-            ? Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Text(
-                  errorMessage,
-                  textAlign: TextAlign.start,
-                  style: kErrorStyle,
-                  softWrap: true,
-                ),
-              )
-            : Container(),
-      ],
     );
   }
 }

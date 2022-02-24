@@ -16,3 +16,4 @@ export 'credit_card_helper.dart';
 export 'qr_helper.dart';
 export 'license_helper.dart';
 export 'snackbar_helper.dart';
+export 'badge_helper.dart';

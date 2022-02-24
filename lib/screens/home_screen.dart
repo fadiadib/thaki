@@ -28,7 +28,6 @@ class TkHomeScreen extends StatefulWidget {
 
 class _TkHomeScreenState extends State<TkHomeScreen> {
   List<TkPane> _panes = [];
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
   /// Returns the bottom navigation menu icons
   List<Image> _getIcons() {
@@ -132,7 +131,7 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
         onSelect: () =>
             Provider.of<TkBooker>(context, listen: false).cancelError = null,
       ),
-      TkProfilePane(scaffoldKey: () => scaffoldKey),
+      TkProfilePane(),
     ];
   }
 
@@ -150,8 +149,6 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
               return false;
             },
             child: Scaffold(
-              key: scaffoldKey,
-
               // Appbar
               appBar: TkAppBar(
                 context: context,

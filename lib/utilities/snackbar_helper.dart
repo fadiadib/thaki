@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:thaki/globals/index.dart';
 
 class TkSnackBarHelper {
-  static void show(
-      GlobalKey<ScaffoldState> scaffoldKey, BuildContext context, message) {
-    if (scaffoldKey == null) return;
-
-    scaffoldKey.currentState.showSnackBar(
+  static void show(BuildContext context, message) {
+    ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Padding(
           padding: const EdgeInsets.all(8.0),

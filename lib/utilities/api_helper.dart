@@ -1,11 +1,12 @@
 import 'package:meta/meta.dart';
 
+import 'package:firebase_remote_config/firebase_remote_config.dart';
+
 import 'package:thaki/globals/index.dart';
 import 'package:thaki/models/index.dart';
 import 'package:thaki/providers/lang_controller.dart';
 
 import 'package:thaki/utilities/network_helper.dart';
-import 'package:firebase_remote_config/firebase_remote_config.dart';
 
 /// Thaki API methods return json maps
 class TkAPIHelper {
@@ -22,12 +23,12 @@ class TkAPIHelper {
 
     if (_rootURL != null) return _rootURL;
 
-    final RemoteConfig remoteConfig = await RemoteConfig.instance;
+    final FirebaseRemoteConfig remoteConfig =
+        await FirebaseRemoteConfig.instance;
     final defaults = <String, dynamic>{kRootAPIHandle: kDefaultTestServer};
-    await remoteConfig.setDefaults(defaults);
 
-    await remoteConfig.fetch(expiration: const Duration(hours: 12));
-    await remoteConfig.activateFetched();
+    await remoteConfig.setDefaults(defaults);
+    await remoteConfig.fetchAndActivate();
 
     _rootURL = remoteConfig.getString(kRootAPIHandle);
     return _rootURL;

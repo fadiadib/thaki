@@ -200,7 +200,7 @@ class _TkSeparatedLicenseFieldState extends State<TkSeparatedLicenseField> {
           Directionality(
             textDirection: TextDirection.ltr,
             child: PinCodeTextField(
-              enabled: widget.enabled,
+              // enabled: widget.enabled,
               controller: _digitsController,
               focusNode: _digitNode,
               autoDismissKeyboard: false,
@@ -264,7 +264,7 @@ class _TkSeparatedLicenseFieldState extends State<TkSeparatedLicenseField> {
           Text(S.of(context).kCharacters),
           SizedBox(height: 10.0),
           PinCodeTextField(
-            enabled: widget.enabled,
+            // enabled: widget.enabled,
             controller: _charController,
             focusNode: _charNode,
             autoDismissKeyboard: false,

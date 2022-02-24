@@ -12,8 +12,9 @@ class TkDBHelper {
     String insertCmd,
     String selectCmd,
     int id,
-    String data,
-  ) async {
+    String data, {
+    bool force = false,
+  }) async {
     await mutex.acquire();
 
     try {
@@ -26,14 +27,15 @@ class TkDBHelper {
         await db.execute(createCmd);
       });
 
-      // Check that the entry does not exist
-      var search;
-      try {
-        search = await database.rawQuery(selectCmd + id.toString());
-      } finally {}
+      if (!force) {
+        // Check that the entry does not exist
+        var search = await database.rawQuery(selectCmd + id.toString());
 
-      if (search == null || search.isEmpty) {
-        // Insert the data
+        if (search.isEmpty) {
+          // Insert the data
+          await database.rawInsert(insertCmd + '(\'$id\', \'$data\')');
+        }
+      } else {
         await database.rawInsert(insertCmd + '(\'$id\', \'$data\')');
       }
 

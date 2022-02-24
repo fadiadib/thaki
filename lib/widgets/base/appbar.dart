@@ -19,13 +19,16 @@ class TkAppBar extends AppBar {
     this.onNotificationClick,
   }) : super(
           centerTitle: true,
-          brightness: Brightness.light,
           backgroundColor: kTransparentColor,
+          foregroundColor: kDarkGreyColor,
           title: title,
           elevation: 0,
           automaticallyImplyLeading: !removeLeading,
-          leading:
-              !removeLeading ? null : leading == null ? Container() : leading,
+          leading: !removeLeading
+              ? null
+              : leading == null
+                  ? Container()
+                  : leading,
           actions: <Widget>[
             enableClose
                 ? IconButton(

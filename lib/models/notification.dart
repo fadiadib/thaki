@@ -3,14 +3,14 @@ import 'dart:math';
 import 'package:thaki/globals/index.dart';
 
 class TkNotification {
-  TkNotification.fromJson(Map<String, dynamic> json) {
+  TkNotification.fromJson(Map<String, dynamic> json, {int nid, String tag}) {
     // Notification data can be inside a 'data'
     // ag or 'notification' tag
     Map<dynamic, dynamic> dataJson = json;
     if (json[kNotificationDataTag] != null) {
       dataJson = json[kNotificationDataTag];
-    } else if (json[kNotificationTag] != null) {
-      dataJson = json[kNotificationTag];
+    } else {
+      dataJson = json;
     }
 
     // Get the id
@@ -19,6 +19,8 @@ class TkNotification {
       id = int.tryParse(
           dataJson[kNotificationTagTag].toString().split('_').last);
     if (id == null) id = Random().nextInt(10000);
+    this.nid = nid ?? int.tryParse(dataJson[kNotificationNIdTag].toString());
+    this.tag = tag ?? dataJson[kNotificationTagTag];
 
     // Get message details: title, short and body
     title = dataJson[kNotificationTitleTag] ?? '';
@@ -60,6 +62,8 @@ class TkNotification {
   }
 
   int id;
+  int nid;
+  String tag;
   String title;
   String short;
   String body;

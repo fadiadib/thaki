@@ -90,7 +90,7 @@ class _TkTicketTileState extends State<TkTicketTile> {
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Stack(
-          overflow: Overflow.visible,
+          clipBehavior: Clip.none,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,

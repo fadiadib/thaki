@@ -132,6 +132,7 @@ const String kUserLoginTypeTag = 'login_type';
 // Notifications tags
 const String kNotificationTag = 'notification';
 const String kNotificationIdTag = 'id';
+const String kNotificationNIdTag = 'nid';
 const String kNotificationTagTag = 'tag';
 const String kNotificationDataTag = 'data';
 const String kNotificationTitleTag = 'title';
@@ -142,6 +143,7 @@ const String kNotificationDataTypeTag = 'n_type';
 const String kNotificationExpiryTag = 'n_expiry';
 const String kNotificationSeenTag = 'n_seen';
 const String kNotificationDateTag = 'n_date';
+const String kNotificationsCount = 'count';
 // Car tags
 const String kCarTag = 'car';
 const String kCarIdTag = 'id';

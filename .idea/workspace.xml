@@ -13,43 +13,120 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="905d3c98-3b62-48e2-b2c9-ce7991e6688f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lib/widgets/general/warning.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/modules/android.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/app/src/main/res/values/ic_launcher_background.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/128.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/172.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/196.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/216.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/256.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/32.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/55.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/88.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/utilities/badge_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/main_dart.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/ic_launcher-playstore.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/ic_launcher-playstore.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/android/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fonts alias" beforeDir="false" afterPath="$PROJECT_DIR$/fonts alias" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Flutter/AppFrameworkInfo.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Podfile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/drawers/menu_drawer.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/drawers/menu_drawer.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated/intl/messages_ar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/intl/messages_ar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated/intl/messages_en.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/intl/messages_en.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/generated/l10n.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/generated/l10n.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/globals/settings.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/settings.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/intl_ar.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/intl_ar.arb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/l10n/intl_en.arb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/l10n/intl_en.arb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/100.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/100.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/1024.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/1024.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/114.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/114.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/120.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/120.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/144.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/144.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/152.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/152.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/167.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/167.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/180.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/180.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/20.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/20.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/29.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/29.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/40.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/40.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/50.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/50.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/57.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/57.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/58.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/58.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/60.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/60.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/72.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/72.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/76.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/76.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/80.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/80.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/87.png" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/87.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" afterPath="$PROJECT_DIR$/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/app.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/app.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/globals/apiuris.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/apiuris.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/globals/theme.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/globals/theme.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/models/notification.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/notification.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/models/user.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/user.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/dashboard_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/dashboard_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/home/tickets_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/tickets_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/parking/parking_duration_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/parking/parking_duration_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/parking/parking_time_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/parking/parking_time_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/panes/subscription/subscription_list_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/subscription/subscription_list_pane.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/account.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/account.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/booker.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/booker.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/purchaser.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/purchaser.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/providers/tab_selector.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/tab_selector.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/add_car_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/add_car_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/balance_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/balance_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/book_parking_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/book_parking_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/buy_package_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/buy_package_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/panes/home/profile_pane.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/panes/home/profile_pane.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/providers/messenger.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/providers/messenger.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/home_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/screens/subscription_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/subscription_screen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/widgets/lists/ticket_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/lists/ticket_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/screens/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/analytics_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/analytics_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/api_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/api_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/db_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/db_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/index.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/index.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/snackbar_helper.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/snackbar_helper.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/utilities/url_launcher.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/utilities/url_launcher.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/base/appbar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/base/appbar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/cards/id_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/cards/id_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/dropdown_field.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/dropdown_search/popup_menu.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/dropdown_search/popup_menu.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/dropdown_search/select_dialog.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/dropdown_search/select_dialog.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/license_field.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/license_field.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/forms/text_fields.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/forms/text_fields.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/general/progress_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/general/progress_indicator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/login/social_login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/login/social_login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/car_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/car_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/package_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/package_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/subscription_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/subscription_tile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/ticket_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/ticket_tile.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/widgets/tiles/user_package_tile.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/widgets/tiles/user_package_tile.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thaki.iml" beforeDir="false" afterPath="$PROJECT_DIR$/thaki.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[VirtualDevicePath@/Users/fadiadib/.android/avd/Pixel_4_XL_API_R.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/fadiadib/.android/avd/Pixel_4_XL_API_R.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -64,12 +141,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1pJZNtLO2IKCHOhrCJB6ooWdyPZ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
@@ -154,10 +234,10 @@
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Android App.thaki" />
-      <item itemvalue="Flutter.main.dart" />
-    </list>
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
@@ -488,6 +568,7 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="+ Moved approval to cars instead of user.&#10;+ Violations integration completion." />
     <MESSAGE value="+ Updated version." />
     <MESSAGE value="+ Social login.&#10;+ Old password." />
@@ -514,264 +595,5 @@
     <MESSAGE value="+ Fix for Apple update profile." />
     <MESSAGE value="+ Fix for Apple profile update.&#10;+ Some comments." />
     <option name="LAST_COMMIT_MESSAGE" value="+ Fix for Apple profile update.&#10;+ Some comments." />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="426" y="304" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1633437214856">
-      <screen x="0" y="23" width="1920" height="1126" />
-    </state>
-    <state x="426" y="304" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1126@0.23.1920.1126" timestamp="1633437214856" />
-    <state x="-1609" y="477" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1629543485342">
-      <screen x="-1920" y="23" width="1920" height="1057" />
-    </state>
-    <state x="-1609" y="477" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629543485342" />
-    <state x="311" y="508" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1626013593597" />
-    <state x="663" y="465" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1626013605369">
-      <screen x="0" y="23" width="1920" height="1129" />
-    </state>
-    <state x="663" y="465" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.23.1920.1129@0.23.1920.1129" timestamp="1626013605369" />
-    <state x="271" y="135" width="1242" height="741" key="AVDManager" timestamp="1633805351522">
-      <screen x="0" y="23" width="1680" height="983" />
-    </state>
-    <state x="-1644" y="120" width="1419" height="797" key="AVDManager/-1920.23.1920.1057/0.23.1680.982@-1920.23.1920.1057" timestamp="1629754091093" />
-    <state x="-1421" y="161" width="1419" height="797" key="AVDManager/-3036.347.1116.733/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629754744691" />
-    <state x="124" y="182" width="1419" height="797" key="AVDManager/0.23.1920.1126@0.23.1920.1126" timestamp="1629731682798" />
-    <state x="148" y="137" width="1419" height="797" key="AVDManager/0.23.1920.1127@0.23.1920.1127" timestamp="1629735043256" />
-    <state x="311" y="147" width="1419" height="882" key="AVDManager/0.23.1920.1128@0.23.1920.1128" timestamp="1629722819583" />
-    <state x="124" y="97" width="1419" height="882" key="AVDManager/0.23.1920.1129@0.23.1920.1129" timestamp="1629729267217" />
-    <state x="425" y="175" width="1419" height="883" key="AVDManager/0.23.1920.1130@0.23.1920.1130" timestamp="1626026941866" />
-    <state x="1990" y="144" width="1419" height="797" key="AVDManager/1680.23.1920.1057/0.23.1680.981@1680.23.1920.1057" timestamp="1630416920568" />
-    <state x="2003" y="274" width="1419" height="797" key="AVDManager/1680.23.1920.1057/0.23.1680.982@1680.23.1920.1057" timestamp="1630355198569" />
-    <state x="271" y="135" width="1242" height="741" key="AVDManager/1680.23.1920.1057/0.23.1680.983@0.23.1680.983" timestamp="1633805351522" />
-    <state x="2003" y="274" width="1419" height="797" key="AVDManager/1680.23.1920.1057/0.23.1680.983@1680.23.1920.1057" timestamp="1630355471273" />
-    <state x="605" y="335" key="AndroidProcessChooserDialog" timestamp="1632657278781">
-      <screen x="0" y="23" width="1920" height="1128" />
-    </state>
-    <state x="605" y="335" key="AndroidProcessChooserDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1632657278781" />
-    <state x="605" y="335" key="AndroidProcessChooserDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1626573949529" />
-    <state x="271" y="23" key="CommitChangelistDialog2" timestamp="1633437267243">
-      <screen x="0" y="23" width="1920" height="1126" />
-    </state>
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1009@0.23.1920.1009" timestamp="1628469061691" />
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1125@0.23.1920.1125" timestamp="1629130294612" />
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1126@0.23.1920.1126" timestamp="1633437267243" />
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1127@0.23.1920.1127" timestamp="1632998574582" />
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1128@0.23.1920.1128" timestamp="1632656038436" />
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1129@0.23.1920.1129" timestamp="1630323991509" />
-    <state x="271" y="23" key="CommitChangelistDialog2/0.23.1920.1130@0.23.1920.1130" timestamp="1627341844475" />
-    <state x="1951" y="23" key="CommitChangelistDialog2/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631557629411" />
-    <state x="68" y="66" width="1558" height="1040" maximized="true" key="DiffContextDialog" timestamp="1634570804961">
-      <screen x="0" y="23" width="1920" height="1127" />
-    </state>
-    <state x="151" y="113" width="1481" height="825" key="DiffContextDialog/-1920.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1629143070884" />
-    <state x="-1541" y="156" width="1085" height="868" key="DiffContextDialog/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629569397122" />
-    <state x="-1541" y="156" width="1085" height="868" key="DiffContextDialog/-1920.23.1920.1057/0.23.1680.984@-1920.23.1920.1057" timestamp="1629571367245" />
-    <state x="-1762" y="117" width="1085" height="867" key="DiffContextDialog/-3036.347.1116.733/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629761807672" />
-    <state x="157" y="107" width="1085" height="985" key="DiffContextDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1631718034732" />
-    <state x="151" y="113" width="1481" height="825" key="DiffContextDialog/0.23.1920.1005@0.23.1920.1005" timestamp="1629142599069" />
-    <state x="158" y="112" width="1085" height="828" key="DiffContextDialog/0.23.1920.1009@0.23.1920.1009" timestamp="1628469227775" />
-    <state x="157" y="107" width="1085" height="985" key="DiffContextDialog/0.23.1920.1125@0.23.1920.1125" timestamp="1632833917993" />
-    <state x="157" y="107" width="1085" height="985" key="DiffContextDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1633534273041" />
-    <state x="68" y="66" width="1558" height="1040" maximized="true" key="DiffContextDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1634570804961" />
-    <state x="158" y="123" width="1085" height="924" key="DiffContextDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1632659435452" />
-    <state x="379" y="165" width="1085" height="927" key="DiffContextDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1633352854931" />
-    <state x="157" y="122" width="1085" height="925" key="DiffContextDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1628608252890" />
-    <state x="158" y="123" width="1085" height="928" key="DiffContextDialog/0.23.1920.1131@0.23.1920.1131" timestamp="1631194444146" />
-    <state x="2013" y="62" width="1085" height="923" key="DiffContextDialog/1680.23.1920.1005/0.23.1680.1027@1680.23.1920.1005" timestamp="1630446023800" />
-    <state x="1837" y="111" width="1085" height="826" key="DiffContextDialog/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631557650907" />
-    <state x="2014" y="63" width="1085" height="925" key="DiffContextDialog/1680.23.1920.1008/0.23.1680.978@0.23.1680.978" timestamp="1630261563211" />
-    <state x="2014" y="65" width="1085" height="970" key="DiffContextDialog/1680.23.1920.1057/0.23.1680.984@1680.23.1920.1057" timestamp="1632747154314" />
-    <state width="1331" height="257" key="GridCell.Tab.0.bottom" timestamp="1634558861076">
-      <screen x="0" y="23" width="1920" height="1127" />
-    </state>
-    <state width="1375" height="276" key="GridCell.Tab.0.bottom/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629834118274" />
-    <state width="1359" height="242" key="GridCell.Tab.0.bottom/-1920.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1629305934289" />
-    <state width="1386" height="276" key="GridCell.Tab.0.bottom/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629569409497" />
-    <state width="1386" height="276" key="GridCell.Tab.0.bottom/-1920.23.1920.1057/0.23.1680.984@-1920.23.1920.1057" timestamp="1629571367158" />
-    <state width="1375" height="285" key="GridCell.Tab.0.bottom/-3036.347.1116.733/-1920.23.1920.1005/0.23.1680.1027@-1920.23.1920.1005" timestamp="1629763479427" />
-    <state width="1375" height="304" key="GridCell.Tab.0.bottom/-3036.347.1116.733/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629762498904" />
-    <state width="1359" height="242" key="GridCell.Tab.0.bottom/0.23.1920.1005@0.23.1920.1005" timestamp="1629142604350" />
-    <state width="1331" height="295" key="GridCell.Tab.0.bottom/0.23.1920.1125@0.23.1920.1125" timestamp="1632835185416" />
-    <state width="1331" height="295" key="GridCell.Tab.0.bottom/0.23.1920.1126@0.23.1920.1126" timestamp="1633535795817" />
-    <state width="1331" height="257" key="GridCell.Tab.0.bottom/0.23.1920.1127@0.23.1920.1127" timestamp="1634558861076" />
-    <state width="1331" height="257" key="GridCell.Tab.0.bottom/0.23.1920.1128@0.23.1920.1128" timestamp="1634557531064" />
-    <state width="1309" height="295" key="GridCell.Tab.0.bottom/0.23.1920.1129@0.23.1920.1129" timestamp="1632238816021" />
-    <state width="1353" height="250" key="GridCell.Tab.0.bottom/0.23.1920.1130@0.23.1920.1130" timestamp="1627391149711" />
-    <state width="1309" height="206" key="GridCell.Tab.0.bottom/1680.23.1920.1005/0.23.1680.1027@1680.23.1920.1005" timestamp="1631818828976" />
-    <state width="1373" height="273" key="GridCell.Tab.0.bottom/1680.23.1920.1006/0.23.1680.1027@1680.23.1920.1006" timestamp="1630449446593" />
-    <state width="1309" height="257" key="GridCell.Tab.0.bottom/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631866634844" />
-    <state width="1331" height="294" key="GridCell.Tab.0.bottom/1680.23.1920.1008/0.23.1680.1027@0.23.1680.1027" timestamp="1633867083113" />
-    <state width="1309" height="273" key="GridCell.Tab.0.bottom/1680.23.1920.1008/0.23.1680.1027@1680.23.1920.1008" timestamp="1631556416976" />
-    <state width="1331" height="294" key="GridCell.Tab.0.bottom/1680.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1633787507887" />
-    <state width="1434" height="281" key="GridCell.Tab.0.bottom/1680.23.1920.1057/0.23.1680.981@1680.23.1920.1057" timestamp="1631787990972" />
-    <state width="1331" height="294" key="GridCell.Tab.0.bottom/1680.23.1920.1057/0.23.1680.982@0.23.1680.982" timestamp="1633853516786" />
-    <state width="1373" height="273" key="GridCell.Tab.0.bottom/1680.23.1920.1057/0.23.1680.982@1680.23.1920.1057" timestamp="1630272025864" />
-    <state width="1331" height="294" key="GridCell.Tab.0.bottom/1680.23.1920.1057/0.23.1680.983@0.23.1680.983" timestamp="1633862790728" />
-    <state width="1616" height="295" key="GridCell.Tab.0.bottom/1680.23.1920.1057/0.23.1680.983@1680.23.1920.1057" timestamp="1632741471165" />
-    <state width="1331" height="295" key="GridCell.Tab.0.bottom/1680.23.1920.1057/0.23.1680.984@1680.23.1920.1057" timestamp="1632747322890" />
-    <state width="1331" height="257" key="GridCell.Tab.0.center" timestamp="1634558861075">
-      <screen x="0" y="23" width="1920" height="1127" />
-    </state>
-    <state width="1375" height="276" key="GridCell.Tab.0.center/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629834118271" />
-    <state width="1359" height="242" key="GridCell.Tab.0.center/-1920.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1629305934288" />
-    <state width="1386" height="276" key="GridCell.Tab.0.center/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629569409496" />
-    <state width="1386" height="276" key="GridCell.Tab.0.center/-1920.23.1920.1057/0.23.1680.984@-1920.23.1920.1057" timestamp="1629571367157" />
-    <state width="1375" height="285" key="GridCell.Tab.0.center/-3036.347.1116.733/-1920.23.1920.1005/0.23.1680.1027@-1920.23.1920.1005" timestamp="1629763479425" />
-    <state width="1375" height="304" key="GridCell.Tab.0.center/-3036.347.1116.733/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629762498904" />
-    <state width="1359" height="242" key="GridCell.Tab.0.center/0.23.1920.1005@0.23.1920.1005" timestamp="1629142604349" />
-    <state width="1331" height="295" key="GridCell.Tab.0.center/0.23.1920.1125@0.23.1920.1125" timestamp="1632835185415" />
-    <state width="1331" height="295" key="GridCell.Tab.0.center/0.23.1920.1126@0.23.1920.1126" timestamp="1633535795816" />
-    <state width="1331" height="257" key="GridCell.Tab.0.center/0.23.1920.1127@0.23.1920.1127" timestamp="1634558861075" />
-    <state width="1331" height="257" key="GridCell.Tab.0.center/0.23.1920.1128@0.23.1920.1128" timestamp="1634557531063" />
-    <state width="1309" height="295" key="GridCell.Tab.0.center/0.23.1920.1129@0.23.1920.1129" timestamp="1632238816020" />
-    <state width="1353" height="250" key="GridCell.Tab.0.center/0.23.1920.1130@0.23.1920.1130" timestamp="1627391149709" />
-    <state width="1309" height="206" key="GridCell.Tab.0.center/1680.23.1920.1005/0.23.1680.1027@1680.23.1920.1005" timestamp="1631818828975" />
-    <state width="1373" height="273" key="GridCell.Tab.0.center/1680.23.1920.1006/0.23.1680.1027@1680.23.1920.1006" timestamp="1630449446592" />
-    <state width="1309" height="257" key="GridCell.Tab.0.center/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631866634843" />
-    <state width="1331" height="294" key="GridCell.Tab.0.center/1680.23.1920.1008/0.23.1680.1027@0.23.1680.1027" timestamp="1633867083112" />
-    <state width="1309" height="273" key="GridCell.Tab.0.center/1680.23.1920.1008/0.23.1680.1027@1680.23.1920.1008" timestamp="1631556416975" />
-    <state width="1331" height="294" key="GridCell.Tab.0.center/1680.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1633787507880" />
-    <state width="1434" height="281" key="GridCell.Tab.0.center/1680.23.1920.1057/0.23.1680.981@1680.23.1920.1057" timestamp="1631787990971" />
-    <state width="1331" height="294" key="GridCell.Tab.0.center/1680.23.1920.1057/0.23.1680.982@0.23.1680.982" timestamp="1633853516785" />
-    <state width="1373" height="273" key="GridCell.Tab.0.center/1680.23.1920.1057/0.23.1680.982@1680.23.1920.1057" timestamp="1630272025863" />
-    <state width="1331" height="294" key="GridCell.Tab.0.center/1680.23.1920.1057/0.23.1680.983@0.23.1680.983" timestamp="1633862790727" />
-    <state width="1616" height="295" key="GridCell.Tab.0.center/1680.23.1920.1057/0.23.1680.983@1680.23.1920.1057" timestamp="1632741471164" />
-    <state width="1331" height="295" key="GridCell.Tab.0.center/1680.23.1920.1057/0.23.1680.984@1680.23.1920.1057" timestamp="1632747322889" />
-    <state width="1331" height="257" key="GridCell.Tab.0.left" timestamp="1634558861074">
-      <screen x="0" y="23" width="1920" height="1127" />
-    </state>
-    <state width="1375" height="276" key="GridCell.Tab.0.left/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629834118270" />
-    <state width="1359" height="242" key="GridCell.Tab.0.left/-1920.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1629305934287" />
-    <state width="1386" height="276" key="GridCell.Tab.0.left/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629569409495" />
-    <state width="1386" height="276" key="GridCell.Tab.0.left/-1920.23.1920.1057/0.23.1680.984@-1920.23.1920.1057" timestamp="1629571367156" />
-    <state width="1375" height="285" key="GridCell.Tab.0.left/-3036.347.1116.733/-1920.23.1920.1005/0.23.1680.1027@-1920.23.1920.1005" timestamp="1629763479424" />
-    <state width="1375" height="304" key="GridCell.Tab.0.left/-3036.347.1116.733/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629762498903" />
-    <state width="1359" height="242" key="GridCell.Tab.0.left/0.23.1920.1005@0.23.1920.1005" timestamp="1629142604349" />
-    <state width="1331" height="295" key="GridCell.Tab.0.left/0.23.1920.1125@0.23.1920.1125" timestamp="1632835185414" />
-    <state width="1331" height="295" key="GridCell.Tab.0.left/0.23.1920.1126@0.23.1920.1126" timestamp="1633535795815" />
-    <state width="1331" height="257" key="GridCell.Tab.0.left/0.23.1920.1127@0.23.1920.1127" timestamp="1634558861074" />
-    <state width="1331" height="257" key="GridCell.Tab.0.left/0.23.1920.1128@0.23.1920.1128" timestamp="1634557531062" />
-    <state width="1309" height="295" key="GridCell.Tab.0.left/0.23.1920.1129@0.23.1920.1129" timestamp="1632238816019" />
-    <state width="1353" height="250" key="GridCell.Tab.0.left/0.23.1920.1130@0.23.1920.1130" timestamp="1627391149709" />
-    <state width="1309" height="206" key="GridCell.Tab.0.left/1680.23.1920.1005/0.23.1680.1027@1680.23.1920.1005" timestamp="1631818828974" />
-    <state width="1373" height="273" key="GridCell.Tab.0.left/1680.23.1920.1006/0.23.1680.1027@1680.23.1920.1006" timestamp="1630449446591" />
-    <state width="1309" height="257" key="GridCell.Tab.0.left/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631866634843" />
-    <state width="1331" height="294" key="GridCell.Tab.0.left/1680.23.1920.1008/0.23.1680.1027@0.23.1680.1027" timestamp="1633867083112" />
-    <state width="1309" height="273" key="GridCell.Tab.0.left/1680.23.1920.1008/0.23.1680.1027@1680.23.1920.1008" timestamp="1631556416975" />
-    <state width="1331" height="294" key="GridCell.Tab.0.left/1680.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1633787507879" />
-    <state width="1434" height="281" key="GridCell.Tab.0.left/1680.23.1920.1057/0.23.1680.981@1680.23.1920.1057" timestamp="1631787990970" />
-    <state width="1331" height="294" key="GridCell.Tab.0.left/1680.23.1920.1057/0.23.1680.982@0.23.1680.982" timestamp="1633853516784" />
-    <state width="1373" height="273" key="GridCell.Tab.0.left/1680.23.1920.1057/0.23.1680.982@1680.23.1920.1057" timestamp="1630272025863" />
-    <state width="1331" height="294" key="GridCell.Tab.0.left/1680.23.1920.1057/0.23.1680.983@0.23.1680.983" timestamp="1633862790726" />
-    <state width="1616" height="295" key="GridCell.Tab.0.left/1680.23.1920.1057/0.23.1680.983@1680.23.1920.1057" timestamp="1632741471164" />
-    <state width="1331" height="295" key="GridCell.Tab.0.left/1680.23.1920.1057/0.23.1680.984@1680.23.1920.1057" timestamp="1632747322889" />
-    <state width="1331" height="257" key="GridCell.Tab.0.right" timestamp="1634558861076">
-      <screen x="0" y="23" width="1920" height="1127" />
-    </state>
-    <state width="1375" height="276" key="GridCell.Tab.0.right/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629834118271" />
-    <state width="1359" height="242" key="GridCell.Tab.0.right/-1920.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1629305934288" />
-    <state width="1386" height="276" key="GridCell.Tab.0.right/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629569409497" />
-    <state width="1386" height="276" key="GridCell.Tab.0.right/-1920.23.1920.1057/0.23.1680.984@-1920.23.1920.1057" timestamp="1629571367157" />
-    <state width="1375" height="285" key="GridCell.Tab.0.right/-3036.347.1116.733/-1920.23.1920.1005/0.23.1680.1027@-1920.23.1920.1005" timestamp="1629763479426" />
-    <state width="1375" height="304" key="GridCell.Tab.0.right/-3036.347.1116.733/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629762498904" />
-    <state width="1359" height="242" key="GridCell.Tab.0.right/0.23.1920.1005@0.23.1920.1005" timestamp="1629142604350" />
-    <state width="1331" height="295" key="GridCell.Tab.0.right/0.23.1920.1125@0.23.1920.1125" timestamp="1632835185416" />
-    <state width="1331" height="295" key="GridCell.Tab.0.right/0.23.1920.1126@0.23.1920.1126" timestamp="1633535795816" />
-    <state width="1331" height="257" key="GridCell.Tab.0.right/0.23.1920.1127@0.23.1920.1127" timestamp="1634558861076" />
-    <state width="1331" height="257" key="GridCell.Tab.0.right/0.23.1920.1128@0.23.1920.1128" timestamp="1634557531063" />
-    <state width="1309" height="295" key="GridCell.Tab.0.right/0.23.1920.1129@0.23.1920.1129" timestamp="1632238816020" />
-    <state width="1353" height="250" key="GridCell.Tab.0.right/0.23.1920.1130@0.23.1920.1130" timestamp="1627391149711" />
-    <state width="1309" height="206" key="GridCell.Tab.0.right/1680.23.1920.1005/0.23.1680.1027@1680.23.1920.1005" timestamp="1631818828976" />
-    <state width="1373" height="273" key="GridCell.Tab.0.right/1680.23.1920.1006/0.23.1680.1027@1680.23.1920.1006" timestamp="1630449446592" />
-    <state width="1309" height="257" key="GridCell.Tab.0.right/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631866634844" />
-    <state width="1331" height="294" key="GridCell.Tab.0.right/1680.23.1920.1008/0.23.1680.1027@0.23.1680.1027" timestamp="1633867083113" />
-    <state width="1309" height="273" key="GridCell.Tab.0.right/1680.23.1920.1008/0.23.1680.1027@1680.23.1920.1008" timestamp="1631556416976" />
-    <state width="1331" height="294" key="GridCell.Tab.0.right/1680.23.1920.1057/0.23.1680.981@0.23.1680.981" timestamp="1633787507882" />
-    <state width="1434" height="281" key="GridCell.Tab.0.right/1680.23.1920.1057/0.23.1680.981@1680.23.1920.1057" timestamp="1631787990971" />
-    <state width="1331" height="294" key="GridCell.Tab.0.right/1680.23.1920.1057/0.23.1680.982@0.23.1680.982" timestamp="1633853516785" />
-    <state width="1373" height="273" key="GridCell.Tab.0.right/1680.23.1920.1057/0.23.1680.982@1680.23.1920.1057" timestamp="1630272025864" />
-    <state width="1331" height="294" key="GridCell.Tab.0.right/1680.23.1920.1057/0.23.1680.983@0.23.1680.983" timestamp="1633862790727" />
-    <state width="1616" height="295" key="GridCell.Tab.0.right/1680.23.1920.1057/0.23.1680.983@1680.23.1920.1057" timestamp="1632741471165" />
-    <state width="1331" height="295" key="GridCell.Tab.0.right/1680.23.1920.1057/0.23.1680.984@1680.23.1920.1057" timestamp="1632747322889" />
-    <state x="0" y="73" key="MergeDialog" timestamp="1628696102333">
-      <screen x="0" y="23" width="1920" height="1126" />
-    </state>
-    <state x="0" y="73" key="MergeDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1628696102333" />
-    <state x="199" y="193" key="MultipleFileMergeDialog" timestamp="1628696102377">
-      <screen x="0" y="23" width="1920" height="1126" />
-    </state>
-    <state x="199" y="193" key="MultipleFileMergeDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1628696102377" />
-    <state x="1791" y="23" width="1482" height="1057" key="SettingsEditor" timestamp="1630356777456">
-      <screen x="1680" y="23" width="1920" height="1057" />
-    </state>
-    <state x="111" y="23" key="SettingsEditor/0.23.1920.1127@0.23.1920.1127" timestamp="1626192091322" />
-    <state x="111" y="23" key="SettingsEditor/0.23.1920.1129@0.23.1920.1129" timestamp="1627908143495" />
-    <state x="1791" y="23" width="1482" height="1057" key="SettingsEditor/1680.23.1920.1057/0.23.1680.981@1680.23.1920.1057" timestamp="1630356777456" />
-    <state x="1791" y="23" key="SettingsEditor/1680.23.1920.1057/0.23.1680.983@1680.23.1920.1057" timestamp="1630355471148" />
-    <state x="160" y="168" width="1229" height="777" key="ShowDiffWithBranchDialog" timestamp="1628431983216">
-      <screen x="0" y="23" width="1920" height="1128" />
-    </state>
-    <state x="160" y="168" width="1229" height="777" key="ShowDiffWithBranchDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1628431983216" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2" timestamp="1633437273323">
-      <screen x="0" y="23" width="1920" height="1126" />
-    </state>
-    <state x="209" y="238" key="Vcs.Push.Dialog.v2/0.23.1920.1009@0.23.1920.1009" timestamp="1628469081262" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1125@0.23.1920.1125" timestamp="1629130296362" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1126@0.23.1920.1126" timestamp="1633437273323" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1127@0.23.1920.1127" timestamp="1632998576445" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1128@0.23.1920.1128" timestamp="1632656040156" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1129@0.23.1920.1129" timestamp="1630323993512" />
-    <state x="209" y="263" key="Vcs.Push.Dialog.v2/0.23.1920.1130@0.23.1920.1130" timestamp="1627341846177" />
-    <state x="1889" y="237" key="Vcs.Push.Dialog.v2/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631557631678" />
-    <state x="360" y="123" key="VcsDiffUtil.ChangesDialog" timestamp="1634570791354">
-      <screen x="0" y="23" width="1920" height="1127" />
-    </state>
-    <state x="-1456" y="193" key="VcsDiffUtil.ChangesDialog/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629569401253" />
-    <state x="-1456" y="195" key="VcsDiffUtil.ChangesDialog/-3036.347.1116.733/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629761799954" />
-    <state x="464" y="195" key="VcsDiffUtil.ChangesDialog/0.0.1920.1200@0.0.1920.1200" timestamp="1631718038083" />
-    <state x="491" y="262" key="VcsDiffUtil.ChangesDialog/0.23.1920.1005@0.23.1920.1005" timestamp="1629142602732" />
-    <state x="464" y="187" key="VcsDiffUtil.ChangesDialog/0.23.1920.1009@0.23.1920.1009" timestamp="1628469049652" />
-    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1125@0.23.1920.1125" timestamp="1632833864229" />
-    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1633534171675" />
-    <state x="360" y="123" key="VcsDiffUtil.ChangesDialog/0.23.1920.1127@0.23.1920.1127" timestamp="1634570791354" />
-    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1128@0.23.1920.1128" timestamp="1632659338796" />
-    <state x="464" y="205" key="VcsDiffUtil.ChangesDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1633352798988" />
-    <state x="464" y="206" key="VcsDiffUtil.ChangesDialog/0.23.1920.1130@0.23.1920.1130" timestamp="1627341033723" />
-    <state x="464" y="207" key="VcsDiffUtil.ChangesDialog/0.23.1920.1131@0.23.1920.1131" timestamp="1631191692660" />
-    <state x="1793" y="264" key="VcsDiffUtil.ChangesDialog/1680.23.1920.1007/0.23.1680.1027@1680.23.1920.1007" timestamp="1631557535274" />
-    <state x="464" y="56" key="VcsDiffUtil.ChangesDialog/1680.23.1920.1008/0.23.1680.978@0.23.1680.978" timestamp="1630261558816" />
-    <state x="2210" y="59" key="VcsDiffUtil.ChangesDialog/1680.23.1920.1057/0.23.1680.981@1680.23.1920.1057" timestamp="1630417871735" />
-    <state x="2210" y="59" key="VcsDiffUtil.ChangesDialog/1680.23.1920.1057/0.23.1680.984@1680.23.1920.1057" timestamp="1632747091943" />
-    <state x="391" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1628525876987">
-      <screen x="0" y="23" width="1920" height="1005" />
-    </state>
-    <state x="391" y="441" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1005@0.23.1920.1005" timestamp="1628525876987" />
-    <state x="391" y="492" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1920.1128@0.23.1920.1128" timestamp="1628431517584" />
-    <state x="422" y="23" width="1107" height="1127" key="find.popup" timestamp="1634141615935">
-      <screen x="0" y="23" width="1920" height="1127" />
-    </state>
-    <state x="-1512" y="268" width="1362" height="812" key="find.popup/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629756348724" />
-    <state x="-1428" y="277" width="1362" height="742" key="find.popup/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629552505085" />
-    <state x="-1453" y="278" width="1362" height="742" key="find.popup/-3036.347.1116.733/-1920.23.1920.1057/0.23.1680.981@-1920.23.1920.1057" timestamp="1629760284906" />
-    <state x="192" y="325" width="1630" height="751" key="find.popup/0.23.1920.1126@0.23.1920.1126" timestamp="1631719762615" />
-    <state x="422" y="23" width="1107" height="1127" key="find.popup/0.23.1920.1127@0.23.1920.1127" timestamp="1634141615935" />
-    <state x="492" y="294" width="1362" height="752" key="find.popup/0.23.1920.1128@0.23.1920.1128" timestamp="1632661849899" />
-    <state x="492" y="23" width="1362" height="1129" key="find.popup/0.23.1920.1129@0.23.1920.1129" timestamp="1628709302733" />
-    <state x="2172" y="277" width="1362" height="742" key="find.popup/1680.23.1920.1057/0.23.1680.984@1680.23.1920.1057" timestamp="1632746219700" />
-    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup" timestamp="1634134290746">
-      <screen x="0" y="23" width="1920" height="1127" />
-    </state>
-    <state x="-1597" y="111" width="1005" height="969" key="search.everywhere.popup/-1920.23.1920.1057/0.23.1680.983@-1920.23.1920.1057" timestamp="1629543599944" />
-    <state x="323" y="107" width="1005" height="922" key="search.everywhere.popup/0.23.1920.1005@0.23.1920.1005" timestamp="1629141757901" />
-    <state x="323" y="117" width="1005" height="1032" key="search.everywhere.popup/0.23.1920.1125@0.23.1920.1125" timestamp="1632233251722" />
-    <state x="323" y="117" width="1005" height="1033" key="search.everywhere.popup/0.23.1920.1126@0.23.1920.1126" timestamp="1631722766195" />
-    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1127@0.23.1920.1127" timestamp="1634134290746" />
-    <state x="323" y="117" width="1005" height="1034" key="search.everywhere.popup/0.23.1920.1128@0.23.1920.1128" timestamp="1632660783695" />
-    <state x="323" y="117" width="1005" height="1035" key="search.everywhere.popup/0.23.1920.1129@0.23.1920.1129" timestamp="1628709268477" />
-    <state x="2003" y="111" width="1005" height="969" key="search.everywhere.popup/1680.23.1920.1057/0.23.1680.984@1680.23.1920.1057" timestamp="1632749233637" />
-    <state x="402" y="473" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1631725984449">
-      <screen x="0" y="23" width="1920" height="1126" />
-    </state>
-    <state x="402" y="473" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.23.1920.1126@0.23.1920.1126" timestamp="1631725984449" />
-    <state x="402" y="474" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/0.23.1920.1129@0.23.1920.1129" timestamp="1626176116506" />
   </component>
 </project>

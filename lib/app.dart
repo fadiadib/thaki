@@ -5,12 +5,12 @@ import 'package:provider/provider.dart';
 
 import 'package:thaki/generated/l10n.dart';
 import 'package:thaki/globals/index.dart';
-import 'package:thaki/providers/firebase_controller.dart';
 import 'package:thaki/providers/lang_controller.dart';
+import 'package:thaki/providers/messenger.dart';
 import 'package:thaki/providers/versioner.dart';
+
 import 'package:thaki/screens/balance_screen.dart';
 import 'package:thaki/screens/buy_subscription_screen.dart';
-
 import 'package:thaki/screens/home_screen.dart';
 import 'package:thaki/screens/login_screen.dart';
 import 'package:thaki/screens/notification_screen.dart';
@@ -47,9 +47,8 @@ class TkThakiApp extends StatelessWidget {
         if (Provider.of<TkVersioner>(context, listen: false).version == null)
           Provider.of<TkVersioner>(context, listen: false).initVersion();
 
-        // Initialize FlutterFire
-        Provider.of<TkFirebaseController>(context, listen: false)
-            .initializeFlutterFire();
+        // Initialize notifications
+        Provider.of<TkMessenger>(context, listen: false).init();
 
         return MaterialApp(
           navigatorObservers: [TkAnalyticsHelper.getAnalyticsObserver()],
@@ -80,9 +79,15 @@ class TkThakiApp extends StatelessWidget {
             backgroundColor: kPrimaryBgColor,
             scaffoldBackgroundColor: kPrimaryBgColor,
             primaryColor: kPrimaryColor,
-            accentColor: kSecondaryColor,
-            textSelectionColor: kSecondaryColor,
-            textSelectionHandleColor: kPrimaryColor,
+            colorScheme: ColorScheme.fromSwatch().copyWith(
+              secondary: kSecondaryColor,
+              primary: kPrimaryColor,
+              brightness: Brightness.light,
+            ),
+            textSelectionTheme: TextSelectionThemeData(
+              selectionColor: kSecondaryColor,
+              selectionHandleColor: kPrimaryColor,
+            ),
 
             inputDecorationTheme: InputDecorationTheme(
               enabledBorder: OutlineInputBorder(

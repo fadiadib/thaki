@@ -45,7 +45,7 @@ class _TkIDCardState extends State<TkIDCard> {
     // Get the image from the camera or gallery according to source
     try {
       ImagePicker imagePicker = new ImagePicker();
-      PickedFile image = await imagePicker.getImage(source: source);
+      XFile image = await imagePicker.pickImage(source: source);
 
       if (image != null) {
         setState(() => isLoading = true);

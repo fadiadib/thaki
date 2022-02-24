@@ -45,7 +45,7 @@ class TkCarTile extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Stack(
-              overflow: Overflow.visible,
+              clipBehavior: Clip.none,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
