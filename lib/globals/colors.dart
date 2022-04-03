@@ -16,6 +16,7 @@ const Color kOrangeColor = Color(0xFFE77301);
 const Color kCyanColor = Color(0xFF22D4D7);
 const Color kGreenAccentColor = Colors.lightGreen;
 const Color kRedAccentColor = Colors.redAccent;
+const Color kRamadanBgColor = Color(0xFF3B4E9B);
 
 /// Color scheme
 const Color kPrimaryColor = kMediumPurpleColor;

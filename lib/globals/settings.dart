@@ -27,6 +27,8 @@ const double kMaxImageSie = 5.0; // in megabytes
 const bool kShowTransactions = false;
 const bool kShowAllViolations = true;
 const bool kCheckProfileComplete = false;
+const bool kRamadanMode = true;
+const int kShowHomePopupRep = 3;
 
 // Force server flags (for testing purposes only)
 const bool kForceLiveServer = false;

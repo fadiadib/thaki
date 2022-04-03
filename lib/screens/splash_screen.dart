@@ -302,6 +302,44 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
     });
   }
 
+  Widget _drawRamadanStack() {
+    return Stack(
+      children: [
+        Align(
+          alignment: Alignment.topCenter,
+          child: Image(
+            image: AssetImage(kRamadanSplashTop),
+            width: MediaQuery.of(context).size.width * 1,
+          ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Hero(
+            tag: 'logo',
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 900),
+              height: _logoRadius * 2,
+              width: _logoRadius * 2,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(kRamadanSplashCenter),
+                  fit: BoxFit.scaleDown,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomRight,
+          child: Image(
+            image: AssetImage(kRamadanSplashCorner),
+            width: MediaQuery.of(context).size.width * 0.8,
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -315,18 +353,30 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
     _loadNextScreen();
   }
 
+  Widget getScaffoldBody() {
+    if (kRamadanMode) {
+      return TkScaffoldBody(
+        image: AssetImage(kRamadanSplashBg),
+        enableGradient: false,
+        color: kRamadanBgColor,
+        enableSafeArea: false,
+        child: _drawRamadanStack(),
+      );
+    } else {
+      return TkScaffoldBody(
+        image: AssetImage(kSplashBg),
+        colorOverlay: kPrimaryColor,
+        enableSafeArea: false,
+        child: _drawStack(),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async => false,
-      child: Scaffold(
-        body: TkScaffoldBody(
-          image: AssetImage(kSplashBg),
-          colorOverlay: kPrimaryColor,
-          enableSafeArea: false,
-          child: _drawStack(),
-        ),
-      ),
+      child: Scaffold(body: getScaffoldBody()),
     );
   }
 }

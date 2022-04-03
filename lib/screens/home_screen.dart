@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 import 'package:thaki/globals/index.dart';
+import 'package:thaki/utilities/index.dart';
 import 'package:thaki/panes/home/index.dart';
 import 'package:thaki/providers/account.dart';
 import 'package:thaki/providers/attributes_controller.dart';
@@ -118,6 +119,26 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
   /// the side menu drawer
   void stopLoading() => Navigator.of(context).pop();
 
+  /// Show a popup with Ramadan hours
+  /// Should only appear 3 times for a user
+  /// checks the shared preference
+  Future<void> showPopup() async {
+    if (kRamadanMode) {
+      try {
+        final TkSharedPrefHelper prefs = TkSharedPrefHelper();
+        final String popupCountStr =
+            await prefs.get(tag: kHomePopupCount) ?? '0';
+        final int popupCount = int.tryParse(popupCountStr);
+
+        if (popupCount < kShowHomePopupRep) {
+          TkDialogHelper.gShowImagePopup(
+              context: context, imageProvider: AssetImage(kRamadanImage));
+          prefs.store(tag: kHomePopupCount, data: (popupCount + 1).toString());
+        }
+      } catch (e) {}
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -133,6 +154,8 @@ class _TkHomeScreenState extends State<TkHomeScreen> {
       ),
       TkProfilePane(),
     ];
+
+    showPopup();
   }
 
   @override

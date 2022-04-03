@@ -58,6 +58,7 @@ Future<void> main() async {
   if (Platform.isIOS)
     FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
+  // Fix for Android 12 web view
   if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
 
   runApp(ThakiMain());

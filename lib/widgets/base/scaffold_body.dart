@@ -9,6 +9,8 @@ class TkScaffoldBody extends StatelessWidget {
     this.colorOverlay,
     this.overlayOpacity = 0.83,
     this.enableSafeArea = true,
+    this.color,
+    this.enableGradient = true,
   });
 
   final Widget child;
@@ -16,6 +18,8 @@ class TkScaffoldBody extends StatelessWidget {
   final Color colorOverlay;
   final double overlayOpacity;
   final bool enableSafeArea;
+  final Color color;
+  final bool enableGradient;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,8 @@ class TkScaffoldBody extends StatelessWidget {
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Container(
         decoration: BoxDecoration(
-          gradient: kWhiteBgLinearGradient,
+          color: color,
+          gradient: enableGradient ? kWhiteBgLinearGradient : null,
           image: image == null
               ? null
               : DecorationImage(image: image, fit: BoxFit.cover),

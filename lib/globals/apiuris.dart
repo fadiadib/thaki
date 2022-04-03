@@ -277,3 +277,5 @@ const String kTransactionsTag = 'transactions';
 const String kOnBoardingTag = 'onboarding';
 const String kScreenMessageTag = 'message';
 const String kScreenImageTag = 'image';
+// Ramadan popup
+const String kHomePopupCount = 'home_popup';

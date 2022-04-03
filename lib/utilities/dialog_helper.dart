@@ -158,4 +158,56 @@ class TkDialogHelper {
       ),
     );
   }
+
+  static Future<void> gShowImagePopup({
+    @required BuildContext context,
+    @required ImageProvider imageProvider,
+  }) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20.0),
+              topLeft: Radius.circular(20.0),
+            ),
+            child: Container(
+              decoration: BoxDecoration(
+                color: kWhiteColor,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20.0),
+                  topLeft: Radius.circular(20.0),
+                ),
+              ),
+              child: Stack(
+                children: [
+                  Positioned.fill(child: Image(image: imageProvider)),
+                  Positioned.directional(
+                    textDirection:
+                        Provider.of<TkLangController>(context, listen: false)
+                                .isRTL
+                            ? TextDirection.rtl
+                            : TextDirection.ltr,
+                    top: 10.0,
+                    end: 10.0,
+                    child: GestureDetector(
+                      child: Icon(
+                        kCloseBtnIcon,
+                        color: kMediumGreyColor,
+                        size: 20,
+                      ),
+                      onTap: () => Navigator.of(context).pop(),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
