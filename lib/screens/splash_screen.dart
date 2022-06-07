@@ -365,6 +365,7 @@ class _TkSplashScreenState extends State<TkSplashScreen> {
     } else {
       return TkScaffoldBody(
         image: AssetImage(kSplashBg),
+        color: kMediumPurpleColor,
         colorOverlay: kPrimaryColor,
         enableSafeArea: false,
         child: _drawStack(),
